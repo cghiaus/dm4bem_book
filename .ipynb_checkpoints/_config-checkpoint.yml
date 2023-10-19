@@ -21,13 +21,12 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/cghiaus/dm4bem_book  # Online location of your book
+  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
-  base_url: https://cghiaus.github.io/dm4bem_book/
   use_issues_button: true
   use_repository_button: true
