@@ -162,7 +162,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">From differential-algebraic equations to state-space representation</a></li>
-
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
@@ -393,26 +392,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential-algebraic equations (DAE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-in-block-matrices">DAE in block matrices</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix"><span class="math notranslate nohighlight">\(\begin{bmatrix}
-0 &amp; 0\\ 
-0 &amp; C_C
-\end{bmatrix}\)</span>
-<span class="math notranslate nohighlight">\(\begin{bmatrix}
-\dot{\theta}_0\\ 
-\dot{\theta}_C
-\end{bmatrix}\)</span></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-nodes-without-capacities">Elimination of nodes without capacities</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -445,18 +430,15 @@ y = C_s \theta_C + D_s u
 \[C \dot{\theta} = K \theta + K_b b + f\]</div>
 <p>where <span class="math notranslate nohighlight">\(K = -A^T G A\)</span> and <span class="math notranslate nohighlight">\(K_b = A^T G\)</span>.</p>
 <p>We write this equation in block matrices corresponding to nodes without capacities, <span class="math notranslate nohighlight">\(\theta_0\)</span>, and to nodes with capacities, <span class="math notranslate nohighlight">\(\theta_C\)</span>:</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix">
-<h1><span class="math notranslate nohighlight">\(\begin{bmatrix}
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
 0 &amp; 0\\ 
 0 &amp; C_C
 \end{bmatrix}\)</span>
 <span class="math notranslate nohighlight">\(\begin{bmatrix}
 \dot{\theta}_0\\ 
 \dot{\theta}_C
-\end{bmatrix}\)</span><a class="headerlink" href="#begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix" title="Permalink to this headline">#</a></h1>
-<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+\end{bmatrix}=\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
 K_{11} &amp; K_{12}\\ 
 K_{21} &amp; K_{22} 
 \end{bmatrix}\)</span>
@@ -490,6 +472,7 @@ K_{b1}\\
 K_{b2} 
 \end{bmatrix}\)</span></p>
 <p><span class="math notranslate nohighlight">\(I_{11}\)</span> and <span class="math notranslate nohighlight">\(I_{22}\)</span> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Identity_matrix">identity matrices</a> of size of <span class="math notranslate nohighlight">\(\theta_0\)</span> and <span class="math notranslate nohighlight">\(\theta_C\)</span>,, respectively.</p>
+</section>
 <section id="elimination-of-nodes-without-capacities">
 <h2>Elimination of nodes without capacities<a class="headerlink" href="#elimination-of-nodes-without-capacities" title="Permalink to this headline">#</a></h2>
 <p>By multiplying the first row with <span class="math notranslate nohighlight">\(-K_{21}K_{11}^{-1}\)</span>, we obtain:</p>
@@ -682,26 +665,12 @@ b \\ f_0 \\ f_C
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential-algebraic equations (DAE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-in-block-matrices">DAE in block matrices</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix"><span class="math notranslate nohighlight">\(\begin{bmatrix}
-0 &amp; 0\\ 
-0 &amp; C_C
-\end{bmatrix}\)</span>
-<span class="math notranslate nohighlight">\(\begin{bmatrix}
-\dot{\theta}_0\\ 
-\dot{\theta}_C
-\end{bmatrix}\)</span></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-nodes-without-capacities">Elimination of nodes without capacities</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
