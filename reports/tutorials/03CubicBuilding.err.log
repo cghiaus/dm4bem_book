@@ -25,7 +25,7 @@ del data
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_4253/3599414535.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_4344/3599414535.py[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0mfilename[0m [0;34m=[0m [0;34m'./weather_data/FRA_Lyon.074810_IWEC.epw'[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 2[0;31m [0;34m[[0m[0mdata[0m[0;34m,[0m [0mmeta[0m[0;34m][0m [0;34m=[0m [0mdm4bem[0m[0;34m.[0m[0mread_epw[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mcoerce_year[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      3[0m [0mweather[0m [0;34m=[0m [0mdata[0m[0;34m[[0m[0;34m[[0m[0;34m"temp_air"[0m[0;34m,[0m [0;34m"dir_n_rad"[0m[0;34m,[0m [0;34m"dif_h_rad"[0m[0;34m][0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
