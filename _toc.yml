@@ -4,7 +4,8 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
+- file: 01WeatherData
 - file: notebooks
+- file: markdown
 - file: markdown-notebooks
-- file: 01WeatherData.ipynb
+

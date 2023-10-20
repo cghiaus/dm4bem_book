@@ -3,7 +3,7 @@
 
 title: My sample book
 author: The Jupyter Book Community
-logo: logo.png
+logo: logo.svg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -31,3 +31,11 @@ html:
   base_url: https://cghiaus.github.io/dm4bem_book/
   use_issues_button: true
   use_repository_button: true
+
+# Added according to https://jupyterbook.org/interactive/launchbuttons.html
+
+# Control the notebook interface that opens
+# Add a Launch on Binder button
+launch_buttons:
+  notebook_interface: "jupyterlab"  # or "classic"
+  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
