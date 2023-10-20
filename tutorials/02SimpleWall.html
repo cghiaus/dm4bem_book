@@ -1929,7 +1929,7 @@ Max time step Δt = 416.11 s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-04-10&#39;</span>
 <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-05-15&#39;</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1944,26 +1944,6 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4811</span><span class="o">/</span><span class="mf">3985025620.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># weather = data[[&quot;temp_air&quot;, &quot;dir_n_rad&quot;, &quot;dif_h_rad&quot;]]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">]]</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">del</span> <span class="n">data</span>
-
-<span class="nn">~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py</span> in <span class="ni">read_epw</span><span class="nt">(filename, coerce_year)</span>
-<span class="g g-Whitespace">    </span><span class="mi">563</span> 
-<span class="g g-Whitespace">    </span><span class="mi">564</span>     <span class="c1"># Assume it&#39;s accessible via the file system</span>
-<span class="ne">--&gt; </span><span class="mi">565</span>     <span class="n">csvdata</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">567</span>         <span class="n">data</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">parse_epw</span><span class="p">(</span><span class="n">csvdata</span><span class="p">,</span> <span class="n">coerce_year</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>In the weather data file, each month is taken from another year. We will replace the years with only one value, e.g. 2000, then keep only the values between <code class="docutils literal notranslate"><span class="pre">start_date</span></code> and <code class="docutils literal notranslate"><span class="pre">end_date</span></code>.</p>
 <div class="cell docutils container">
@@ -1974,6 +1954,77 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp_air</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-04-10 00:00:00+01:00</th>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <th>2000-04-10 01:00:00+01:00</th>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>2000-04-10 02:00:00+01:00</th>
+      <td>3.8</td>
+    </tr>
+    <tr>
+      <th>2000-04-10 03:00:00+01:00</th>
+      <td>3.2</td>
+    </tr>
+    <tr>
+      <th>2000-04-10 04:00:00+01:00</th>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2000-05-15 19:00:00+01:00</th>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>2000-05-15 20:00:00+01:00</th>
+      <td>14.0</td>
+    </tr>
+    <tr>
+      <th>2000-05-15 21:00:00+01:00</th>
+      <td>12.6</td>
+    </tr>
+    <tr>
+      <th>2000-05-15 22:00:00+01:00</th>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>2000-05-15 23:00:00+01:00</th>
+      <td>12.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>864 rows × 1 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1983,6 +2034,77 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7200</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10800</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>14400</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>859</th>
+      <td>3092400</td>
+    </tr>
+    <tr>
+      <th>860</th>
+      <td>3096000</td>
+    </tr>
+    <tr>
+      <th>861</th>
+      <td>3099600</td>
+    </tr>
+    <tr>
+      <th>862</th>
+      <td>3103200</td>
+    </tr>
+    <tr>
+      <th>863</th>
+      <td>3106800</td>
+    </tr>
+  </tbody>
+</table>
+<p>864 rows × 1 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="resample-the-weather-data">
@@ -2005,6 +2127,77 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>θ °C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.00e+00</th>
+      <td>5.10</td>
+    </tr>
+    <tr>
+      <th>3.60e+02</th>
+      <td>5.04</td>
+    </tr>
+    <tr>
+      <th>7.20e+02</th>
+      <td>4.98</td>
+    </tr>
+    <tr>
+      <th>1.08e+03</th>
+      <td>4.92</td>
+    </tr>
+    <tr>
+      <th>1.44e+03</th>
+      <td>4.86</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3.11e+06</th>
+      <td>12.00</td>
+    </tr>
+    <tr>
+      <th>3.11e+06</th>
+      <td>12.00</td>
+    </tr>
+    <tr>
+      <th>3.11e+06</th>
+      <td>12.00</td>
+    </tr>
+    <tr>
+      <th>3.11e+06</th>
+      <td>12.00</td>
+    </tr>
+    <tr>
+      <th>3.11e+06</th>
+      <td>12.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>8640 rows × 1 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="input-vector">
@@ -2019,6 +2212,101 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>8630</th>
+      <th>8631</th>
+      <th>8632</th>
+      <th>8633</th>
+      <th>8634</th>
+      <th>8635</th>
+      <th>8636</th>
+      <th>8637</th>
+      <th>8638</th>
+      <th>8639</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>To</th>
+      <td>5.1</td>
+      <td>5.04</td>
+      <td>4.98</td>
+      <td>4.92</td>
+      <td>4.86</td>
+      <td>4.8</td>
+      <td>4.74</td>
+      <td>4.68</td>
+      <td>4.62</td>
+      <td>4.56</td>
+      <td>...</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+      <td>12.0</td>
+    </tr>
+    <tr>
+      <th>Qh</th>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 8640 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="time-integration">
@@ -2053,6 +2341,9 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/5b9487a2564e4422d0d29e888cd33c7c54318ebf9f58ff1243bc0970439e587a.png" src="../_images/5b9487a2564e4422d0d29e888cd33c7c54318ebf9f58ff1243bc0970439e587a.png" />
+</div>
 </div>
 <blockquote>
 <div><p>Figure 5. Simulation of wall response to the variation of the outdoor temperature obtained with Euler <strong>explicit</strong> method for integration in time.</p>
@@ -2069,6 +2360,9 @@ Max time step Δt = 416.11 s
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d2a2a22968e3b7f5a7e2e53ffb7d4616b3eb1a5df23c02b4674ffa9d10b76a48.png" src="../_images/d2a2a22968e3b7f5a7e2e53ffb7d4616b3eb1a5df23c02b4674ffa9d10b76a48.png" />
 </div>
 </div>
 <blockquote>
@@ -2087,7 +2381,7 @@ Max time step Δt = 416.11 s
 <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-05-15&#39;</span>
 
 <span class="c1"># read data and keep air temperature</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="k">del</span> <span class="n">data</span>
@@ -2133,6 +2427,9 @@ Max time step Δt = 416.11 s
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/62916f4cf34fddb66337fff2d753177ed0d715e2ec1efd4fe65ff2e8eeda1f9d.png" src="../_images/62916f4cf34fddb66337fff2d753177ed0d715e2ec1efd4fe65ff2e8eeda1f9d.png" />
+</div>
 </div>
 <blockquote>
 <div><p>Figure 7. Simulation of wall response to the variation of the outdoor temperature obtained with Euler <strong>explicit</strong> method for integration in time.</p>
@@ -2147,6 +2444,9 @@ Max time step Δt = 416.11 s
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c96984507fb84dd0fdc7d923b52663d54a970b53c3b15c3c6a37bd900e85d3a8.png" src="../_images/c96984507fb84dd0fdc7d923b52663d54a970b53c3b15c3c6a37bd900e85d3a8.png" />
 </div>
 </div>
 <blockquote>
