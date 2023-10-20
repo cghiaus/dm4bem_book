@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: 01WeatherData
+- file: tutorials/01WeatherData
 - file: notebooks
 - file: markdown
 - file: markdown-notebooks
