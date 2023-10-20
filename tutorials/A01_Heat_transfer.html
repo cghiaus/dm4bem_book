@@ -531,39 +531,49 @@ document.write(`
 <section id="view-factors-inside-the-building">
 <h4>View factors inside the building<a class="headerlink" href="#view-factors-inside-the-building" title="Permalink to this headline">#</a></h4>
 <p>The majority of methods used for modelling the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_radiation">radiative heat exchange</a> use the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a> between surfaces. The view factor <span class="math notranslate nohighlight">\(F_{i,j}\)</span> is defined as <em>the proportion of radiation leaving surface <span class="math notranslate nohighlight">\(i\)</span> that is intercepted by surface <span class="math notranslate nohighlight">\(j\)</span></em>. The view factors can be estimated by <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#View_factors_of_differential_areas">differential areas</a> or for different configurations of surfaces (<a class="reference external" href="http://www.thermalradiation.net/indexCat.html">Howell, 2010</a>).</p>
-<p>The view factors need to satisfy the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">summation rule</a>
-$<span class="math notranslate nohighlight">\(\sum_{j=0}^{n-1} F_{i,j} = 1\)</span><span class="math notranslate nohighlight">\(
-and the [reciprocity theorem](https://en.wikipedia.org/wiki/View_factor#Reciprocity):
-\)</span><span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j\)</span><span class="math notranslate nohighlight">\(
-where \)</span>S_{i}<span class="math notranslate nohighlight">\( and \)</span>S_{j}$ are the surface areas.</p>
-<p>For a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Convex_function">convex</a> surface <span class="math notranslate nohighlight">\(i\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing_surfaces">self-viewing factor</a> is zero,
-$<span class="math notranslate nohighlight">\(F_{i,i} = 0\)</span>$</p>
+<p>The view factors need to satisfy the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">summation rule</a></p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{n-1} F_{i,j} = 1\]</div>
+<p>and the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity theorem</a>:</p>
+<div class="math notranslate nohighlight">
+\[F_{i,j} S_i = F_{j,i} S_j\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{i}\)</span> and <span class="math notranslate nohighlight">\(S_{j}\)</span> are the surface areas.</p>
+<p>For a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Convex_function">convex</a> surface <span class="math notranslate nohighlight">\(i\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing_surfaces">self-viewing factor</a> is zero,</p>
+<div class="math notranslate nohighlight">
+\[F_{i,i} = 0\]</div>
 <p>Two simplified relations are used to calculate the view factors for buildings.</p>
-<p>In the first one, the view factors are defined by:
-$<span class="math notranslate nohighlight">\(\begin{cases}
+<p>In the first one, the view factors are defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
 F_{i,j} = \frac{S_i}{S_T}\\ 
 F_{i,i} = 0
-\end{cases}\)</span>$</p>
+\end{cases}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_j\)</span> is included in the total surface <span class="math notranslate nohighlight">\(S_T\)</span>. In this method, the reciprocity theorem is satisfied,
-$<span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j = \frac{S_i S_j}{S_T}\)</span><span class="math notranslate nohighlight">\(
-but summation rule isn't,
-\)</span><span class="math notranslate nohighlight">\(\sum_{j=0}^{n-1} F_{i,j} = \sum_{j=0, j \neq i}^{n-1} \frac{S_j}{S_T} = \frac {S_T - S_i}{S_T} \neq 1\)</span>$</p>
+$<span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j = \frac{S_i S_j}{S_T}\)</span>$
+but summation rule isn’t,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{n-1} F_{i,j} = \sum_{j=0, j \neq i}^{n-1} \frac{S_j}{S_T} = \frac {S_T - S_i}{S_T} \neq 1\]</div>
 <p>In this case, the heat balance for each surface would be wrong.</p>
-<p>In the second one, the view factors are defined by:
-$<span class="math notranslate nohighlight">\(\begin{cases}
+<p>In the second one, the view factors are defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
 F_{i,j} = \frac{S_j}{S_T -S_i}\\ 
 F_{i,i} = 0
-\end{cases}\)</span>$</p>
+\end{cases}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_i\)</span> is not included in the total surface <span class="math notranslate nohighlight">\(S_{T,i} = S_T - S_i\)</span>.</p>
-<p>In this case, the reciprocty theorem is generally not respected:
-$<span class="math notranslate nohighlight">\(F_{i, j} S_i = \frac{S_j}{S_T - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_T - S_j} S_j\)</span><span class="math notranslate nohighlight">\(
-but the summation rule is respected:
-\)</span><span class="math notranslate nohighlight">\( \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_T - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \)</span>$</p>
-<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j,k\)</span> that are in the same plan (e.g. a window and a wall) is zero,
-$<span class="math notranslate nohighlight">\(F_{j,k} = F_{k,j}=0\)</span>$</p>
-<p>Therefore the total surface <span class="math notranslate nohighlight">\(S_{T,i}\)</span> should be:
-$<span class="math notranslate nohighlight">\(S_{T,i} = \sum_{j=0}^{n-1} S_j - \sum_k S_k\)</span><span class="math notranslate nohighlight">\(
-i.e. the surfaces \)</span>S_k<span class="math notranslate nohighlight">\( in the same plan with the surface \)</span>S_i<span class="math notranslate nohighlight">\( are not included in \)</span>S_{T,i}$.</p>
+<p>In this case, the reciprocty theorem is generally not respected:</p>
+<div class="math notranslate nohighlight">
+\[F_{i, j} S_i = \frac{S_j}{S_T - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_T - S_j} S_j\]</div>
+<p>but the summation rule is respected:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_T - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \end{split}\]</div>
+<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j,k\)</span> that are in the same plan (e.g. a window and a wall) is zero,</p>
+<div class="math notranslate nohighlight">
+\[F_{j,k} = F_{k,j}=0\]</div>
+<p>Therefore the total surface <span class="math notranslate nohighlight">\(S_{T,i}\)</span> should be:</p>
+<div class="math notranslate nohighlight">
+\[S_{T,i} = \sum_{j=0}^{n-1} S_j - \sum_k S_k\]</div>
+<p>i.e. the surfaces <span class="math notranslate nohighlight">\(S_k\)</span> in the same plan with the surface <span class="math notranslate nohighlight">\(S_i\)</span> are not included in <span class="math notranslate nohighlight">\(S_{T,i}\)</span>.</p>
 </section>
 <section id="view-factor-between-tilted-outdoor-walls-and-sky">
 <h4>View factor between tilted outdoor walls and sky<a class="headerlink" href="#view-factor-between-tilted-outdoor-walls-and-sky" title="Permalink to this headline">#</a></h4>
