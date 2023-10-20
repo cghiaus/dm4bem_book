@@ -485,7 +485,7 @@ document.write(`
 <h2>Physical analysis<a class="headerlink" href="#physical-analysis" title="Permalink to this headline">#</a></h2>
 <section id="description-of-the-building">
 <h3>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this headline">#</a></h3>
-<p><img alt="cube" src="tutorials/figures/03_cube_principle.svg" /></p>
+<p><img alt="cube" src="../_images/03_cube_principle.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an HVAC system which acts as a proportional controller.</p>
 </div></blockquote>
@@ -731,7 +731,7 @@ document.write(`
 <li><p>the <strong>nodes</strong> (or vertices) represent temperatures,  <span class="math notranslate nohighlight">\(\theta_i\)</span>, of geometrical points, surfaces or volumes;</p></li>
 <li><p>the oriented <strong>branches</strong> (or edges) represent thermal heat flow rates, <span class="math notranslate nohighlight">\(q_j\)</span>, betweenn the temperature nodes.</p></li>
 </ul>
-<p><img alt="basic_TC" src="tutorials/figures/A01_Basic_thermal_circuit.svg" /></p>
+<p><img alt="basic_TC" src="../_images/A01_Basic_thermal_circuit.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Basic thermal network.</p>
 </div></blockquote>
@@ -771,11 +771,11 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p><img alt="heat_processes" src="tutorials/figures/03_heat_process.svg" /></p>
+<p><img alt="heat_processes" src="../_images/03_heat_process.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Heat processes for the cubic building shown in Figure 1.</p>
 </div></blockquote>
-<p><img alt="thermal_circuit" src="tutorials/figures/03_therm_circ.svg" /></p>
+<p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
 <blockquote>
 <div><p>Figure 4. Thermal circuit for the cubic building shown in Figure 1 and the heat processes shown in Figure 2. <em>Note</em>: space discretization of the walls is done for simplicity.</p>
 </div></blockquote>
@@ -967,7 +967,7 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 <section id="thermal-network-for-long-wave-radiation">
 <h5>Thermal network for long wave radiation<a class="headerlink" href="#thermal-network-for-long-wave-radiation" title="Permalink to this headline">#</a></h5>
 <p>The long-wave heat exchange between surfaces may be modelled by using the concept of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> and then linearizing the radiative heat exchange.</p>
-<p><img alt="LW_rad_excg" src="tutorials/figures/03_LW_rad_excg.svg" /></p>
+<p><img alt="LW_rad_excg" src="../_images/03_LW_rad_excg.svg" /></p>
 <blockquote>
 <div><p>Figure 5. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (source) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
 </div></blockquote>
@@ -1420,7 +1420,7 @@ q = G (-A \theta + b)
 $<span class="math notranslate nohighlight">\(C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\)</span><span class="math notranslate nohighlight">\(
 which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation
 \)</span><span class="math notranslate nohighlight">\(q = G (-A \theta + b)\)</span>$</p>
-<p><img alt="thermal_circuit" src="tutorials/figures/03_TCmatrices.svg" /></p>
+<p><img alt="thermal_circuit" src="../_images/03_TCmatrices.svg" /></p>
 <blockquote>
 <div><p>Figure 6. Matrices of the system of Differential-Algebraic Equations (DAE)
 \begin{aligned}
@@ -2521,7 +2521,7 @@ and
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4436</span><span class="o">/</span><span class="mf">3599414535.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4569</span><span class="o">/</span><span class="mf">3599414535.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>

@@ -465,7 +465,7 @@ document.write(`
 <section id="physical-characteristics-and-mathematical-model">
 <h2>Physical characteristics and mathematical model<a class="headerlink" href="#physical-characteristics-and-mathematical-model" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider the heat transfer through a plane wall which separates the outside air, at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperature</a> <span class="math notranslate nohighlight">\(T_o\)</span>, from the inside air. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">Heat flow rate</a> <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> is added to the inside air by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Fan_coil_unit">fan-coil</a> (see Figure 1).</p>
-<p><img alt="wall" src="tutorials/figures/02_wall.svg" /></p>
+<p><img alt="wall" src="../_images/02_wall.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Plane wall and its thermal network model. The concrete wall is divided in four <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> and the insulation in two.</p>
 </div></blockquote>
@@ -630,7 +630,7 @@ document.write(`
 <section id="thermal-network-model">
 <h2>Thermal network model<a class="headerlink" href="#thermal-network-model" title="Permalink to this headline">#</a></h2>
 <p>The wall consists of two layers: concrete and insulation. The first layer is discretized in 4 <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> and the second layer in 2 meshes. By adding together the resistances which are in series, a simpler thermal network is obtained (Figue 2).</p>
-<p><img alt="RC" src="tutorials/figures/02_RC_model.svg" /></p>
+<p><img alt="RC" src="../_images/02_RC_model.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Thermal network model of a simple wall obtained from Figure 1 by using the equivalent of the resistances in series. This model contains capacities in every node.</p>
 </div></blockquote>
@@ -1947,7 +1947,7 @@ Max time step Δt = 416.11 s
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4430</span><span class="o">/</span><span class="mf">3985025620.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4564</span><span class="o">/</span><span class="mf">3985025620.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># weather = data[[&quot;temp_air&quot;, &quot;dir_n_rad&quot;, &quot;dif_h_rad&quot;]]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">]]</span>
