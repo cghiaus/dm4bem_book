@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>From thermal networks to differential-algebraic equations &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A02_TC2DAE';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Mangement
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/tutorials/A02_TC2DAE.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A02_TC2DAE.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/A02_TC2DAE.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>From thermal networks to differential-algebraic equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences">Temperature differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-rates">Flow rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-balance">Energy balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-differential-algebraic-equations">System of differential-algebraic equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="from-thermal-networks-to-differential-algebraic-equations">
+<h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this headline">#</a></h1>
+<p>The framework for obtaing the differential-algebraic system of equations (DAE) describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
+<p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flow-rates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes.</p>
+<p><img alt="procedure" src="tutorials/figures/A02_calc_procedure.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Obtaining the system of differential-algebraic equations from a thermal network: a) General framework. b) Temperature differences. c) Flow rates. d) Energy balance.</p>
+</div></blockquote>
+<p><img alt="T2DAE" src="tutorials/figures/A02_TC2DAE.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Example of differential-algebraic system of equations for a thermal network: a) Thermal network. b) Matrices and vectors. c) Differencial-algebraic equations (DAE).</p>
+</div></blockquote>
+<p>The system of differential-algebraic equations is obtained by calculating the temperature differences on conductances, then the flow rates, and finally the energy balance (Figure 1).</p>
+<section id="temperature-differences">
+<h2>Temperature differences<a class="headerlink" href="#temperature-differences" title="Permalink to this headline">#</a></h2>
+<p>Let’s define the temperature difference <span class="math notranslate nohighlight">\(e\)</span> over a conductance <span class="math notranslate nohighlight">\(G\)</span> as being the difference between the temperatures in the direction of the flow rate; e.g., in Figure 2a, the flow rate is from <span class="math notranslate nohighlight">\(\theta_0\)</span> to <span class="math notranslate nohighlight">\(\theta_1\)</span>, so the temperature difference over the conductance <span class="math notranslate nohighlight">\(G_1\)</span> is <span class="math notranslate nohighlight">\(e_1 = \theta_0 - \theta_1\)</span>.</p>
+<p>For the thermal circuit represented in Figure 2a, the temperature differences over the conductances <span class="math notranslate nohighlight">\(G_0, G_1, G_2\)</span> are (Figure 1b):</p>
+<p><span class="math notranslate nohighlight">\(\begin{cases}
+e_0 = (0 - \theta_0) + T_1 \\ 
+e_1 = \theta_0 - \theta_1 \\
+e_2 = \theta_1 - 0 - T_1 
+\end{cases}\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(0\)</span> stands for the reference temperature. Or, in matrix form:</p>
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+e_0\\ 
+e_1\\ 
+e_2
+\end{bmatrix}\)</span> =
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+-1 &amp; 0 \\ 
+ 1 &amp; -1 \\ 
+ 0 &amp; 1 
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+\theta_0 \\ 
+\theta_1
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(+ \begin{bmatrix}
+T_0\\ 
+0\\ 
+-T_2
+\end{bmatrix}\)</span></p>
+<p>or:</p>
+<div class="math notranslate nohighlight">
+\[e = \Delta \theta + b = -A \theta + b\]</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(e = \begin{bmatrix}
+e_0\\ 
+e_1\\ 
+e_2
+\end{bmatrix}\)</span> - vector of temperature differences over the conductances <span class="math notranslate nohighlight">\(G_0, G_1, G_2\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(\Delta = \begin{bmatrix}
+-1 &amp; 0 \\ 
+ 1 &amp; -1 \\ 
+ 0 &amp; 1 
+\end{bmatrix}\)</span> - difference operator;</p>
+<p><span class="math notranslate nohighlight">\(A = -\Delta = \begin{bmatrix}
+1 &amp; 0 \\ 
+-1 &amp; 1 \\ 
+ 0 &amp; -1 
+\end{bmatrix}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>;
+<span class="math notranslate nohighlight">\(A_{kl} = \begin{cases}\phantom{-}
+0 &amp; \text{if branch } q_k \text{ is not connected to node }  \theta_l \\ 
++1 &amp; \text{if branch } q_k \text{ enters into node }  \theta_l\\ 
+-1 &amp; \text{if branch } q_k \text{ gets out of node }  \theta_l 
+\end{cases}\)</span></p>
+<p><span class="math notranslate nohighlight">\(b = \begin{bmatrix}
+T_0\\ 
+0\\ 
+-T_2
+\end{bmatrix}\)</span> - vector of temperature sources.</p>
+<p>Note that the value of <span class="math notranslate nohighlight">\(b_2\)</span> in vector <span class="math notranslate nohighlight">\(b\)</span> is <span class="math notranslate nohighlight">\(b_2 = -T_2\)</span>. This is in accordance with the <a class="reference external" href="https://en.wikipedia.org/wiki/Passive_sign_convention">sign convention</a> for active and passive components:</p>
+<ul class="simple">
+<li><p>in a thermal resistance, the flow is positif from high temperature to low temperature;</p></li>
+<li><p>in a temperature source, the flow is positif from low temperature to high temperature.</p></li>
+</ul>
+</section>
+<section id="flow-rates">
+<h2>Flow rates<a class="headerlink" href="#flow-rates" title="Permalink to this headline">#</a></h2>
+<p>For the thermal circuit represented in Figure 2a, the flow rates through the conductances are (Figure 2c):</p>
+<p><span class="math notranslate nohighlight">\(\begin{cases}
+q_0 = G_0 e_0 \\ 
+q_1 = G_1 e_1 \\
+q_2 = G_2 e_2 
+\end{cases}\)</span></p>
+<p>or, in matrix form:</p>
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+q_0\\ 
+q_1\\ 
+q_2
+\end{bmatrix}\)</span> =
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+G_0 &amp; 0 &amp; 0 \\ 
+  0 &amp; G_1 &amp; 0 \\ 
+  0 &amp; 0 &amp; G_2 
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+e_0\\ 
+e_1\\ 
+e_2
+\end{bmatrix}\)</span></p>
+<p>or:</p>
+<div class="math notranslate nohighlight">
+\[q = Ge\]</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(q = \begin{bmatrix}
+q_0\\ 
+q_1\\ 
+q_2
+\end{bmatrix}\)</span> - vector of flow rates through conductances;</p>
+<p><span class="math notranslate nohighlight">\(G = \begin{bmatrix}
+G_0 &amp; 0 &amp; 0 \\ 
+  0 &amp; G_1 &amp; 0 \\ 
+  0 &amp; 0 &amp; G_2 
+\end{bmatrix}\)</span> - diagonal matrix of conductances;</p>
+<p><span class="math notranslate nohighlight">\(e = \begin{bmatrix}
+e_0\\ 
+e_1\\ 
+e_2
+\end{bmatrix}\)</span> - vector of temperature differences over the conductances <span class="math notranslate nohighlight">\(G_0, G_1, G_2\)</span>.</p>
+</section>
+<section id="energy-balance">
+<h2>Energy balance<a class="headerlink" href="#energy-balance" title="Permalink to this headline">#</a></h2>
+<p>For the thermal circuit represented in Figure 2a, the energy balance equations in the two temperature nodes are (Figure 2d):</p>
+<p><span class="math notranslate nohighlight">\(\begin{cases}
+C_0 \dot{\theta}_0 = q_0 - q_1 + \dot{Q_0} \\ 
+C_1 \dot{\theta}_1 = q_1 - q_2 + \dot{Q_1}
+\end{cases}\)</span></p>
+<p>or, in matrix form:</p>
+<p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+C_0 &amp; 0 \\ 
+0 &amp; C_1 
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+\dot{\theta}_0 \\ 
+\dot{\theta}_1
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(= \begin{bmatrix}
+1 &amp; -1 &amp; 0 \\ 
+0 &amp; 1 &amp; -1
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+q_0\\ 
+q_1\\ 
+q_2
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\(+ \begin{bmatrix}
+\dot{Q}_0\\ 
+\dot{Q}_1
+\end{bmatrix}\)</span></p>
+<p>or,</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -\Delta^T q + f = A^T q + f\]</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(C = \begin{bmatrix}
+C_0 &amp; 0 \\ 
+0 &amp; C_1 
+\end{bmatrix}\)</span> - diagonal matrix of capacities;</p>
+<p><span class="math notranslate nohighlight">\(\dot{\theta} = \begin{bmatrix}
+\dot{\theta}_0 \\ 
+\dot{\theta}_1
+\end{bmatrix}\)</span> - vector of time derivatives of temperatures;</p>
+<p><span class="math notranslate nohighlight">\(\Delta^T = \begin{bmatrix}
+-1 &amp; 1 &amp; 0 \\ 
+0 &amp; -1 &amp; 1
+\end{bmatrix}\)</span> - transpose of difference matrix;</p>
+<p><span class="math notranslate nohighlight">\(A^T = -\Delta^T\)</span> - transpose of incidence matrix;</p>
+<p><span class="math notranslate nohighlight">\(f = \begin{bmatrix}
+\dot{Q}_0\\ 
+\dot{Q}_1
+\end{bmatrix}\)</span> - vector of flow-rate sources.</p>
+</section>
+<section id="system-of-differential-algebraic-equations">
+<h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h2>
+<p>By substituting the flow-rates <span class="math notranslate nohighlight">\(q\)</span> from:
+$<span class="math notranslate nohighlight">\(q = Ge = G(- A \theta + b) = G(\Delta \theta + b)\)</span><span class="math notranslate nohighlight">\(
+into 
+\)</span><span class="math notranslate nohighlight">\(C \dot{\theta} = A^T q + f\)</span><span class="math notranslate nohighlight">\(
+or into
+\)</span><span class="math notranslate nohighlight">\(C \dot{\theta} = -\Delta^T q + f\)</span>$
+we obtain the system of differential-algebraic equations:</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
+<p>or
+$<span class="math notranslate nohighlight">\(C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\)</span>$</p>
+<p>After solving for temperature vector <span class="math notranslate nohighlight">\(\theta\)</span>, the flow rates are found by:</p>
+<div class="math notranslate nohighlight">
+\[q = G(-A \theta + b)\]</div>
+<p>or
+$<span class="math notranslate nohighlight">\(q = G(\Delta \theta + b)\)</span>$</p>
+<p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(-\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
+<p>has a form similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Heat_equation">heat diffusion equation</a>:</p>
+<div class="math notranslate nohighlight">
+\[\rho c_p \dot{\theta} = -\mathrm{div}(-\lambda \mathbf{grad}\theta) + p\]</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(\rho c_p\)</span> - massic specific heat capacity of the unit volume, J/(m³·K), where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Density">density</a> in kg/m³ and <span class="math notranslate nohighlight">\(c_p\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> in J/(kg·K).</p>
+<p><span class="math notranslate nohighlight">\(\lambda\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> in W/(m·K).</p>
+<p><span class="math notranslate nohighlight">\(p\)</span> - thermal energy generated per unit of volume, W/m³.</p>
+<p><span class="math notranslate nohighlight">\(\mathrm{div}\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Del#Divergence">divergence</a> of the heat density field.</p>
+<p><span class="math notranslate nohighlight">\(\mathbf{grad}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Gradient?searchToken=9rqqbuz7wuxvbp6gq3b4iignd">gradient</a> of temperature <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p>As opposed to the differential form, the discrete form</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
+<p>contains the boundary conditions (in terms <span class="math notranslate nohighlight">\(- \Delta^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p><strong>Problem</strong></p>
+<p>Let’s consider a wall with a thickness <span class="math notranslate nohighlight">\(w\)</span> = 0.20 m and a surface area <span class="math notranslate nohighlight">\(S\)</span> = 20.00 m², with outside air temperature <span class="math notranslate nohighlight">\(\theta_o\)</span> = -5.0 °C and inside air temperature maintained at <span class="math notranslate nohighlight">\(\theta_i\)</span> = 24.0 °C. We assume that heat transfer is one-dimensional, in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, and there’s no internal heat generation. The material has <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> <span class="math notranslate nohighlight">\(\lambda\)</span> = 1.00 W/(m·K), and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">heat transfer coefficients</a> by convection outside and inside are <span class="math notranslate nohighlight">\(h_o\)</span> = 25.00 W/(m²·K) and <span class="math notranslate nohighlight">\(h_i\)</span> = 8.00 W/(m²·K), respectively. The outer surface, with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.70, receives solar <span class="xref myst">irradiance</span> <span class="math notranslate nohighlight">\(E\)</span> = 200.0 W/m².</p>
+<p>Calculate the following values:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta_o\)</span>: the temperature of the external surface.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>: the temperature of the internal surface.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{o,e}\)</span>: the thermal flow-rate through the wall from the outside to the inside.</p></li>
+</ul>
+<p><strong>Solution</strong></p>
+<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, the capacities are considered zero.
+The thermal network is given in Figure 2a. The matrices and the vectors of the model are (Figure 2b):</p>
+<p><span class="math notranslate nohighlight">\(A = \begin{bmatrix}
+1 &amp; 0 \\ 
+-1 &amp; 1 \\ 
+ 0 &amp; -1 
+\end{bmatrix}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>;</p>
+<p><span class="math notranslate nohighlight">\(G = \begin{bmatrix}
+h_o S &amp; 0 &amp; 0 \\ 
+  0 &amp; (\lambda / w) S &amp; 0 \\ 
+  0 &amp; 0 &amp; h_i S 
+\end{bmatrix}\)</span> - conductance matrix;</p>
+<p><span class="math notranslate nohighlight">\(b = \begin{bmatrix}
+T_0\\ 
+0\\ 
+-T_2
+\end{bmatrix}\)</span> - vector of temperature sources;</p>
+<p><span class="math notranslate nohighlight">\(f = \begin{bmatrix}
+\alpha E S\\ 
+0
+\end{bmatrix}\)</span> - vector of flow-rate sources.</p>
+<p>The steady-state solution is:</p>
+<p><span class="math notranslate nohighlight">\(\begin{cases}
+\theta = (-A^T G A)^{-1} + A^T G b + f\\
+q = G(-A\theta + b)
+\end{cases}\)</span></p>
+<p>obtained from
+$<span class="math notranslate nohighlight">\(C \dot{\theta} = -A^T G A \theta + A^T G b + f\)</span><span class="math notranslate nohighlight">\(
+for \)</span>C = 0$.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Given data</span>
+<span class="c1"># ==========</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mf">0.2</span>     <span class="c1"># m, wall thickness</span>
+<span class="n">S</span> <span class="o">=</span> <span class="mf">20.0</span>    <span class="c1"># m², wall surface area</span>
+<span class="n">To</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.0</span>   <span class="c1"># °C, outside air temperature</span>
+<span class="n">Ti</span> <span class="o">=</span> <span class="mf">24.0</span>   <span class="c1"># °C, inside air temperature</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">1.0</span>     <span class="c1"># W/(m·K), thermal conductivity</span>
+<span class="n">ho</span> <span class="o">=</span> <span class="mf">25.0</span>   <span class="c1"># W/(m²·K), outside convection coefficients</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mf">8.0</span>    <span class="c1"># W/(m²·K), outside convection coefficients</span>
+<span class="n">α</span> <span class="o">=</span> <span class="mf">0.70</span>    <span class="c1"># -, absorbtance of outdoor surface</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mf">200.0</span>   <span class="c1"># W/m², solar irradiance on the outdoor surface</span>
+
+<span class="c1"># Calculations</span>
+<span class="c1"># ============</span>
+<span class="c1"># Incidence matrix</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># Conductance matrix</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">ho</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">λ</span> <span class="o">/</span> <span class="n">w</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">hi</span> <span class="o">*</span> <span class="n">S</span><span class="p">])</span>
+
+<span class="c1"># Temperature source vector</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">To</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">Ti</span><span class="p">])</span>
+
+<span class="c1"># Flow-rate source vector</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">α</span> <span class="o">*</span> <span class="n">E</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Temperature vector in steady-state</span>
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span> <span class="o">@</span> <span class="n">b</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Flow-rate vector in steady-state</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">G</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">@</span> <span class="n">θ</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperatures: θ0 = </span><span class="si">{</span><span class="n">θ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> °C, θ1 = </span><span class="si">{</span><span class="n">θ</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> °C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flow-rates: q0 = </span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> W, q1 = </span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> W, q2 = </span><span class="si">{</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> W&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Temperatures: θ0 = 3.16 °C, θ1 = 15.99 °C
+Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<p>Strang, G. (2007) Computational Science and Engineering. Wellesley, MA: Wellesley-Cambridge Press</p>
+<p>Ghiaus, C. (2013). Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences">Temperature differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-rates">Flow rates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-balance">Energy balance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-differential-algebraic-equations">System of differential-algebraic equations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
