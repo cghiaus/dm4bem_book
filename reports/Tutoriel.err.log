@@ -17,20 +17,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from dm4bem import read_epw, sol_rad_tilt_surf
+/Users/cghiaus/mybook
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6391/1327001636.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      3[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[0;32m----> 5[0;31m [0;32mfrom[0m [0mdm4bem[0m [0;32mimport[0m [0mread_epw[0m[0;34m,[0m [0msol_rad_tilt_surf[0m[0;34m[0m[0;34m[0m[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6658/142976040.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mUsers[0m[0;34m/[0m[0mcghiaus[0m[0;34m/[0m[0mmybook[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;31mModuleNotFoundError[0m: No module named 'dm4bem'
-ModuleNotFoundError: No module named 'dm4bem'
+[0;31mNameError[0m: name 'Users' is not defined
+NameError: name 'Users' is not defined
 
