@@ -158,10 +158,13 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
-<li class="toctree-l1"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">From differential-algebraic equations to state-space representation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">From differential-algebraic equations to state-space representation</a></li>
 
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
@@ -390,7 +393,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential-algebraic equations (DAE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-in-block-matrices">DAE in block matrices</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix"><span class="math notranslate nohighlight">\(\begin{bmatrix}
 0 &amp; 0\\ 
 0 &amp; C_C
@@ -399,6 +406,8 @@ document.write(`
 \dot{\theta}_0\\ 
 \dot{\theta}_C
 \end{bmatrix}\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-nodes-without-capacities">Elimination of nodes without capacities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 </li>
@@ -417,6 +426,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="from-differential-algebraic-equations-to-state-space-representation">
 <h1>From differential-algebraic equations to state-space representation<a class="headerlink" href="#from-differential-algebraic-equations-to-state-space-representation" title="Permalink to this headline">#</a></h1>
 <p>This demonstration is taken from <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus (2013)</a>.</p>
+<section id="differential-algebraic-equations-dae">
+<h2>Differential-algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider the system of diferential-algebraic equations (DAE) obtained from a thermal circuit:</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
@@ -426,11 +437,15 @@ document.write(`
 \dot{\theta}_C = A_s \theta_C + B_s u\\
 y = C_s \theta_C + D_s u
 \end{cases}\end{split}\]</div>
+</section>
+<section id="dae-in-block-matrices">
+<h2>DAE in block matrices<a class="headerlink" href="#dae-in-block-matrices" title="Permalink to this headline">#</a></h2>
 <p>We write the DAE as:</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = K \theta + K_b b + f\]</div>
 <p>where <span class="math notranslate nohighlight">\(K = -A^T G A\)</span> and <span class="math notranslate nohighlight">\(K_b = A^T G\)</span>.</p>
 <p>We write this equation in block matrices corresponding to nodes without capacities, <span class="math notranslate nohighlight">\(\theta_0\)</span>, and to nodes with capacities, <span class="math notranslate nohighlight">\(\theta_C\)</span>:</p>
+</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix">
 <h1><span class="math notranslate nohighlight">\(\begin{bmatrix}
@@ -475,6 +490,8 @@ K_{b1}\\
 K_{b2} 
 \end{bmatrix}\)</span></p>
 <p><span class="math notranslate nohighlight">\(I_{11}\)</span> and <span class="math notranslate nohighlight">\(I_{22}\)</span> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Identity_matrix">identity matrices</a> of size of <span class="math notranslate nohighlight">\(\theta_0\)</span> and <span class="math notranslate nohighlight">\(\theta_C\)</span>,, respectively.</p>
+<section id="elimination-of-nodes-without-capacities">
+<h2>Elimination of nodes without capacities<a class="headerlink" href="#elimination-of-nodes-without-capacities" title="Permalink to this headline">#</a></h2>
 <p>By multiplying the first row with <span class="math notranslate nohighlight">\(-K_{21}K_{11}^{-1}\)</span>, we obtain:</p>
 <p><span class="math notranslate nohighlight">\(\begin{bmatrix}
 0 &amp; 0\\ 
@@ -529,6 +546,9 @@ f_C
 f_0\\ 
 f_C 
 \end{bmatrix}\)</span></p>
+</section>
+<section id="state-space-representation">
+<h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h2>
 <p>Since the matrix <span class="math notranslate nohighlight">\(C_C\)</span> is <a class="reference external" href="https://en.m.wikipedia.org/wiki/Invertible_matrix">invertible</a>,
 the above equation becomes:</p>
 <p><span class="math notranslate nohighlight">\(\dot{\theta}_C = C_C^{—1}\)</span>
@@ -586,6 +606,7 @@ b \\ f_0 \\ f_C
 <div class="math notranslate nohighlight">
 \[q = G(-A \theta + b)\]</div>
 <p>The transformation from the system of differential-algebraic equations (DAE) to state-space representation is implemented in the function <code class="docutils literal notranslate"><span class="pre">tc2ss</span></code> of module <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>.</p>
+</section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>Ghiaus, C. (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p>
@@ -661,7 +682,11 @@ b \\ f_0 \\ f_C
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">From differential-algebraic equations to state-space representation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential-algebraic equations (DAE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dae-in-block-matrices">DAE in block matrices</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-0-0-0-c-c-end-bmatrix-begin-bmatrix-dot-theta-0-dot-theta-c-end-bmatrix"><span class="math notranslate nohighlight">\(\begin{bmatrix}
 0 &amp; 0\\ 
 0 &amp; C_C
@@ -670,6 +695,8 @@ b \\ f_0 \\ f_C
 \dot{\theta}_0\\ 
 \dot{\theta}_C
 \end{bmatrix}\)</span></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elimination-of-nodes-without-capacities">Elimination of nodes without capacities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
 </li>

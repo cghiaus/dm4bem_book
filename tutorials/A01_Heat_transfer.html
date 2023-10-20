@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A01_Heat_transfer';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Weather data and solar radiation on a tilted surface" href="01WeatherData.html" />
-    <link rel="prev" title="Dynamic Models for Building Energy Mangement" href="../intro.html" />
+    <link rel="next" title="From thermal networks to differential-algebraic equations" href="A02_TC2DAE.html" />
+    <link rel="prev" title="Theory in a nutshell" href="A00_theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -158,7 +158,13 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
@@ -553,7 +559,7 @@ where:</p>
 <section id="view-factors-inside-the-building">
 <h4>View factors inside the building<a class="headerlink" href="#view-factors-inside-the-building" title="Permalink to this headline">#</a></h4>
 <p>The majority of methods used for modelling the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_radiation">radiative heat exchange</a> use the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a> between surfaces. The view factor <span class="math notranslate nohighlight">\(F_{i,j}\)</span> is defined as <em>the proportion of radiation leaving surface <span class="math notranslate nohighlight">\(i\)</span> that is intercepted by surface <span class="math notranslate nohighlight">\(j\)</span></em>. The view factors can be estimated by <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#View_factors_of_differential_areas">differential areas</a> or for different configurations of surfaces (<a class="reference external" href="http://www.thermalradiation.net/indexCat.html">Howell, 2010</a>).</p>
-<p>The view factors need to satisfy the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Summation_of_view_factors">summation rule</a>
+<p>The view factors need to satisfy the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">summation rule</a>
 $<span class="math notranslate nohighlight">\(\sum_{j=0}^{n-1} F_{i,j} = 1\)</span><span class="math notranslate nohighlight">\(
 and the [reciprocity theorem](https://en.wikipedia.org/wiki/View_factor#Reciprocity):
 \)</span><span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j\)</span><span class="math notranslate nohighlight">\(
@@ -1004,20 +1010,20 @@ y = C_s \theta_s + D_s u
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="A00_theory.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dynamic Models for Building Energy Mangement</p>
+        <p class="prev-next-title">Theory in a nutshell</p>
       </div>
     </a>
     <a class="right-next"
-       href="01WeatherData.html"
+       href="A02_TC2DAE.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Weather data and solar radiation on a tilted surface</p>
+        <p class="prev-next-title">From thermal networks to differential-algebraic equations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
