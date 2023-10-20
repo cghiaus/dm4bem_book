@@ -1,11 +1,6 @@
-# Welcome to your Jupyter Book
+# Dynamic Models for Building Energy Mangement
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+The development of control algorithms necessitates dynamic models of processes. This Jupyter Book explores the modeling of thermal transfer in buildings through thermal networks. It outlines the construction of elementary thermal networks and their assembly to create the thermal network of complex systems, such as a building. Additionally, we delve into the transformation of these thermal networks into state-space representation. The state-space representation can then serve for simulations, as demonstrated here. While this book provides examples of simulation, it does not cover the development of control algorithms, which falls outside the scope of this book.
 
 ```{tableofcontents}
 ```
