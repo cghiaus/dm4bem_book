@@ -17,27 +17,23 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-filename = './weather_data/FRA_Lyon.074810_IWEC.epw'
-[data, meta] = dm4bem.read_epw(filename, coerce_year=None)
-weather = data[["temp_air", "dir_n_rad", "dif_h_rad"]]
-del data
+[As, Bs, Cs, Ds] = dm4bem.tc2ss(A, G, C, b, f, y)
+θs = ['θ1', 'θ3', 'θ6', 'θ7']       # state temperature nodes
+uT = ['q0', 'q8', 'q10', 'q11']     # temperature sources
+uQ = ['θ0', 'θ4', 'θ6', 'θ7']       # flow sources
+u = uT + uQ                         # inputs
+y = ['θ6']                          # output
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_4704/3599414535.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0mfilename[0m [0;34m=[0m [0;34m'./weather_data/FRA_Lyon.074810_IWEC.epw'[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0;34m[[0m[0mdata[0m[0;34m,[0m [0mmeta[0m[0;34m][0m [0;34m=[0m [0mdm4bem[0m[0;34m.[0m[0mread_epw[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mcoerce_year[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0mweather[0m [0;34m=[0m [0mdata[0m[0;34m[[0m[0;34m[[0m[0;34m"temp_air"[0m[0;34m,[0m [0;34m"dir_n_rad"[0m[0;34m,[0m [0;34m"dif_h_rad"[0m[0;34m][0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;32mdel[0m [0mdata[0m[0;34m[0m[0;34m[0m[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_951/484680385.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;34m[[0m[0mAs[0m[0;34m,[0m [0mBs[0m[0;34m,[0m [0mCs[0m[0;34m,[0m [0mDs[0m[0;34m][0m [0;34m=[0m [0mdm4bem[0m[0;34m.[0m[0mtc2ss[0m[0;34m([0m[0mA[0m[0;34m,[0m [0mG[0m[0;34m,[0m [0mC[0m[0;34m,[0m [0mb[0m[0;34m,[0m [0mf[0m[0;34m,[0m [0my[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mθs[0m [0;34m=[0m [0;34m[[0m[0;34m'θ1'[0m[0;34m,[0m [0;34m'θ3'[0m[0;34m,[0m [0;34m'θ6'[0m[0;34m,[0m [0;34m'θ7'[0m[0;34m][0m       [0;31m# state temperature nodes[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0muT[0m [0;34m=[0m [0;34m[[0m[0;34m'q0'[0m[0;34m,[0m [0;34m'q8'[0m[0;34m,[0m [0;34m'q10'[0m[0;34m,[0m [0;34m'q11'[0m[0;34m][0m     [0;31m# temperature sources[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0muQ[0m [0;34m=[0m [0;34m[[0m[0;34m'θ0'[0m[0;34m,[0m [0;34m'θ4'[0m[0;34m,[0m [0;34m'θ6'[0m[0;34m,[0m [0;34m'θ7'[0m[0;34m][0m       [0;31m# flow sources[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mu[0m [0;34m=[0m [0muT[0m [0;34m+[0m [0muQ[0m                         [0;31m# inputs[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py[0m in [0;36mread_epw[0;34m(filename, coerce_year)[0m
-[1;32m    563[0m [0;34m[0m[0m
-[1;32m    564[0m     [0;31m# Assume it's accessible via the file system[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 565[0;31m     [0mcsvdata[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mfilename[0m[0;34m)[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    566[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    567[0m         [0mdata[0m[0;34m,[0m [0mmeta[0m [0;34m=[0m [0mparse_epw[0m[0;34m([0m[0mcsvdata[0m[0;34m,[0m [0mcoerce_year[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: './weather_data/FRA_Lyon.074810_IWEC.epw'
-FileNotFoundError: [Errno 2] No such file or directory: './weather_data/FRA_Lyon.074810_IWEC.epw'
+[0;31mTypeError[0m: tc2ss() takes 1 positional argument but 6 were given
+TypeError: tc2ss() takes 1 positional argument but 6 were given
 

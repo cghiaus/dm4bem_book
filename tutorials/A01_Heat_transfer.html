@@ -166,24 +166,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
 </ul>
@@ -488,9 +472,10 @@ document.write(`
 <h2>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h2>
 <section id="conduction">
 <h3>Conduction<a class="headerlink" href="#conduction" title="Permalink to this headline">#</a></h3>
-<p>For a plan wall, <span class="xref myst">conduction</span> conductances, in W/K, are of the form:
-$<span class="math notranslate nohighlight">\(G_{cd} = \frac{\lambda}{w}S\)</span>$
-where:</p>
+<p>For a plan wall, <span class="xref myst">conduction</span> conductances, in W/K, are of the form:</p>
+<div class="math notranslate nohighlight">
+\[G_{cd} = \frac{\lambda}{w}S\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity">thermal conductvity</a>, W/(m⋅K);</p></li>
 <li><p><span class="math notranslate nohighlight">\(w\)</span> - width of the wall, m;</p></li>
@@ -499,9 +484,10 @@ where:</p>
 </section>
 <section id="convection">
 <h3>Convection<a class="headerlink" href="#convection" title="Permalink to this headline">#</a></h3>
-<p>[Convection](<a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)</a> conductances, in W/K, are of the form:
-$<span class="math notranslate nohighlight">\(G_{cv} = {h S}\)</span>$
-where:</p>
+<p>[Convection](<a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)</a> conductances, in W/K, are of the form:</p>
+<div class="math notranslate nohighlight">
+\[G_{cv} = {h S}\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">convection coefficient</a>, W/(m²⋅K);</p></li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>

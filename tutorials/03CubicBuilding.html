@@ -1655,6 +1655,20 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_951</span><span class="o">/</span><span class="mf">484680385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">θs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ1&#39;</span><span class="p">,</span> <span class="s1">&#39;θ3&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">]</span>       <span class="c1"># state temperature nodes</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">uT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q8&#39;</span><span class="p">,</span> <span class="s1">&#39;q10&#39;</span><span class="p">,</span> <span class="s1">&#39;q11&#39;</span><span class="p">]</span>     <span class="c1"># temperature sources</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">uQ</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ0&#39;</span><span class="p">,</span> <span class="s1">&#39;θ4&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">]</span>       <span class="c1"># flow sources</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">u</span> <span class="o">=</span> <span class="n">uT</span> <span class="o">+</span> <span class="n">uQ</span>                         <span class="c1"># inputs</span>
+
+<span class="ne">TypeError</span>: tc2ss() takes 1 positional argument but 6 were given
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1662,63 +1676,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>θ1</th>
-      <th>θ3</th>
-      <th>θ6</th>
-      <th>θ7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>θ1</th>
-      <td>-0.000024</td>
-      <td>0.000002</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>θ3</th>
-      <td>0.000121</td>
-      <td>-0.000239</td>
-      <td>0.000107</td>
-      <td>0.000011</td>
-    </tr>
-    <tr>
-      <th>θ6</th>
-      <td>0.000000</td>
-      <td>0.000790</td>
-      <td>-0.003925</td>
-      <td>0.002857</td>
-    </tr>
-    <tr>
-      <th>θ7</th>
-      <td>0.000000</td>
-      <td>0.000002</td>
-      <td>0.000085</td>
-      <td>-0.000240</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1726,83 +1683,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>q0</th>
-      <th>q8</th>
-      <th>q10</th>
-      <th>q11</th>
-      <th>θ0</th>
-      <th>θ4</th>
-      <th>θ6</th>
-      <th>θ7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>θ1</th>
-      <td>0.000022</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>1.970654e-08</td>
-      <td>0.000000e+00</td>
-      <td>0.000000</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>θ3</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>2.931594e-07</td>
-      <td>0.000000</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>θ6</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000278</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>2.600003e-05</td>
-      <td>0.000031</td>
-      <td>0.000000e+00</td>
-    </tr>
-    <tr>
-      <th>θ7</th>
-      <td>0.000000</td>
-      <td>0.000152</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>8.022402e-08</td>
-      <td>0.000000</td>
-      <td>9.182736e-07</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1810,42 +1690,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>θ1</th>
-      <th>θ3</th>
-      <th>θ6</th>
-      <th>θ7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>θ6</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1853,50 +1697,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>q0</th>
-      <th>q8</th>
-      <th>q10</th>
-      <th>q11</th>
-      <th>θ0</th>
-      <th>θ4</th>
-      <th>θ6</th>
-      <th>θ7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>θ6</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </section>
 <section id="steady-state">
@@ -1934,11 +1734,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θ = [10. 10. 10. 10. 10. 10. 10. 10.] °C
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="steady-state-from-state-space-representation">
@@ -1973,11 +1768,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u = [10 10 10 20  0  0  0  0]
-</pre></div>
-</div>
-</div>
 </div>
 <p>The steady-state value of the output of the state-space representation is obtained when <span class="math notranslate nohighlight">\(\dot \theta_{C} = 0\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1986,11 +1776,6 @@ y = C_s \theta_s + D_s u
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yss</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">As</span><span class="p">)</span> <span class="o">@</span> <span class="n">Bs</span> <span class="o">+</span> <span class="n">Ds</span><span class="p">)</span> <span class="o">@</span> <span class="n">u</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yss = </span><span class="si">{</span><span class="n">yss</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = [10.] °C
 </pre></div>
 </div>
 </div>
@@ -2003,11 +1788,6 @@ y = C_s \theta_s + D_s u
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max error between DAE and state-space: </span><span class="se">\</span>
 <span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">θ</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">yss</span><span class="p">))</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max error between DAE and state-space: 8.88e-15 °C
 </pre></div>
 </div>
 </div>
@@ -2054,17 +1834,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
-[&#39;249.30 s&#39;, &#39;4093.20 s&#39;, &#39;6729.11 s&#39;, &#39;44033.06 s&#39;]
-
-2 x Time constants:
-[&#39;498.60 s&#39;, &#39;8186.41 s&#39;, &#39;13458.22 s&#39;, &#39;88066.12 s&#39;]
-
-Maximum time step: 498.60 s = 8.31 min
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s chose a time step smaller than <span class="math notranslate nohighlight">\(\Delta t_{max} = \min (-2 / \lambda_i) \)</span>.</p>
 <div class="cell docutils container">
@@ -2072,11 +1841,6 @@ Maximum time step: 498.60 s = 8.31 min
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 480.0 s = 8 min
 </pre></div>
 </div>
 </div>
@@ -2100,14 +1864,6 @@ Maximum time step: 498.60 s = 8.31 min
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 * Time constants: 
- [   996  16372  26916 176132] s 
-
-Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="step-response">
@@ -2128,12 +1884,6 @@ Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Duration = </span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of time steps = </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="c1"># pd.DataFrame(t, columns=[&#39;time&#39;])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration = 176400.0 s
-Number of time steps = 367
 </pre></div>
 </div>
 </div>
@@ -2218,161 +1968,6 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>362</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>363</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>364</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>365</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>366</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>367 rows × 8 columns</p>
-</div></div></div>
 </div>
 </section>
 <section id="time-integration">
@@ -2436,9 +2031,6 @@ y = C_s \theta_C + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/8c1a6ee824ade2fbedce6e28e37225f36b9394ae75e6b529b3149a328eeb930e.png" src="../_images/8c1a6ee824ade2fbedce6e28e37225f36b9394ae75e6b529b3149a328eeb930e.png" />
-</div>
 </div>
 <blockquote>
 <div><p>Figure 7. Step response to outdoor temperature by using Euler
@@ -2453,14 +2045,6 @@ and
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- DAE model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">θ</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- state-space model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">yss</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- steady-state response to step input: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">y_exp</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steady-state indoor temperature obtained with:
-- DAE model: 10.0000 °C
-- state-space model: 10.0000 °C
-- steady-state response to step input: 9.9640 °C
 </pre></div>
 </div>
 </div>
@@ -2487,12 +2071,6 @@ and
 <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">end_date</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">start date&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">end date&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01 12:00:00 	start date
-2000-02-07 18:00:00 	end date
 </pre></div>
 </div>
 </div>
@@ -2662,172 +2240,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>To</th>
-      <th>To</th>
-      <th>To</th>
-      <th>Ti</th>
-      <th>Φo</th>
-      <th>Φi</th>
-      <th>Qa</th>
-      <th>Φa</th>
-    </tr>
-    <tr>
-      <th>Time</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2000-02-01 12:00:00+01:00</th>
-      <td>10.00</td>
-      <td>10.00</td>
-      <td>10.00</td>
-      <td>20.0</td>
-      <td>803.250000</td>
-      <td>48.195000</td>
-      <td>0.0</td>
-      <td>244.188000</td>
-    </tr>
-    <tr>
-      <th>2000-02-01 12:08:00+01:00</th>
-      <td>10.20</td>
-      <td>10.20</td>
-      <td>10.20</td>
-      <td>20.0</td>
-      <td>975.898057</td>
-      <td>58.553883</td>
-      <td>0.0</td>
-      <td>296.673009</td>
-    </tr>
-    <tr>
-      <th>2000-02-01 12:16:00+01:00</th>
-      <td>10.40</td>
-      <td>10.40</td>
-      <td>10.40</td>
-      <td>20.0</td>
-      <td>1148.546115</td>
-      <td>68.912767</td>
-      <td>0.0</td>
-      <td>349.158019</td>
-    </tr>
-    <tr>
-      <th>2000-02-01 12:24:00+01:00</th>
-      <td>10.60</td>
-      <td>10.60</td>
-      <td>10.60</td>
-      <td>20.0</td>
-      <td>1321.194172</td>
-      <td>79.271650</td>
-      <td>0.0</td>
-      <td>401.643028</td>
-    </tr>
-    <tr>
-      <th>2000-02-01 12:32:00+01:00</th>
-      <td>10.80</td>
-      <td>10.80</td>
-      <td>10.80</td>
-      <td>20.0</td>
-      <td>1493.842229</td>
-      <td>89.630534</td>
-      <td>0.0</td>
-      <td>454.128038</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2000-02-07 17:28:00+01:00</th>
-      <td>4.68</td>
-      <td>4.68</td>
-      <td>4.68</td>
-      <td>20.0</td>
-      <td>163.144887</td>
-      <td>9.788693</td>
-      <td>0.0</td>
-      <td>49.596046</td>
-    </tr>
-    <tr>
-      <th>2000-02-07 17:36:00+01:00</th>
-      <td>4.56</td>
-      <td>4.56</td>
-      <td>4.56</td>
-      <td>20.0</td>
-      <td>122.358665</td>
-      <td>7.341520</td>
-      <td>0.0</td>
-      <td>37.197034</td>
-    </tr>
-    <tr>
-      <th>2000-02-07 17:44:00+01:00</th>
-      <td>4.44</td>
-      <td>4.44</td>
-      <td>4.44</td>
-      <td>20.0</td>
-      <td>81.572443</td>
-      <td>4.894347</td>
-      <td>0.0</td>
-      <td>24.798023</td>
-    </tr>
-    <tr>
-      <th>2000-02-07 17:52:00+01:00</th>
-      <td>4.32</td>
-      <td>4.32</td>
-      <td>4.32</td>
-      <td>20.0</td>
-      <td>40.786222</td>
-      <td>2.447173</td>
-      <td>0.0</td>
-      <td>12.399011</td>
-    </tr>
-    <tr>
-      <th>2000-02-07 18:00:00+01:00</th>
-      <td>4.20</td>
-      <td>4.20</td>
-      <td>4.20</td>
-      <td>20.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-<p>1126 rows × 8 columns</p>
-</div></div></div>
 </div>
 </section>
 </section>
@@ -2899,9 +2311,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/a6699459b964ca0e640d16e46231c334a74338ec84163161f802f0238b866dbb.png" src="../_images/a6699459b964ca0e640d16e46231c334a74338ec84163161f802f0238b866dbb.png" />
-</div>
 </div>
 <blockquote>
 <div><p>Figure 6. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
@@ -2928,9 +2337,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/c83fd54853e7871e66d608ddee97d9325c6c0fd7696a6c5e00ac695763a25a48.png" src="../_images/c83fd54853e7871e66d608ddee97d9325c6c0fd7696a6c5e00ac695763a25a48.png" />
 </div>
 </div>
 <blockquote>
