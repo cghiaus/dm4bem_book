@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Weather data and solar radiation &#8212; My sample book</title>
+    <title>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building &#8212; My sample book</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/03CubicBuilding';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Weather data and solar radiation" href="02SimpleWall.html" />
+    <link rel="prev" title="Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall" href="02SimpleWall.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -165,24 +165,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l2 current active"><a class="current reference internal" href="#"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
 </ul>
@@ -368,7 +352,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Weather data and solar radiation</h1>
+    <h1>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,9 +362,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><span class="xref myst">Weather data and solar radiation</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall"><span class="xref myst">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-analysis">Physical analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermo-physical-properties">Thermo-physical properties</a></li>
@@ -468,15 +449,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits-assembling"><span class="xref myst">Thermal circuits assembling</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-between-models-heating-cooling-and-free-running"><span class="xref myst">Switch between models: heating &amp; cooling and free-running</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#control-input-heating-cooling-and-free-running"><span class="xref myst">Control input: heating &amp; cooling and free-running</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiation-coupled-with-convection"><span class="xref myst">Radiation coupled with convection</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sensible-thermal-load-in-steady-state"><span class="xref myst">Sensible thermal load in steady-state</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-by-ventilation"><span class="xref myst">Air flow by ventilation</span></a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -487,13 +459,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="weather-data-and-solar-radiation">
-<h1><a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">Weather data and solar radiation</span></a><a class="headerlink" href="#weather-data-and-solar-radiation" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall">
-<h1><a class="reference internal" href="02SimpleWall.html"><span class="doc std std-doc">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</span></a><a class="headerlink" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">
+  <section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">
 <h1>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building<a class="headerlink" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building" title="Permalink to this headline">#</a></h1>
 <p>This tutorial presents the theory of heat transfer in buildings and examplifies it on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>.</p>
 <p><strong>Objectives:</strong></p>
@@ -2555,7 +2521,7 @@ and
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4344</span><span class="o">/</span><span class="mf">3599414535.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4436</span><span class="o">/</span><span class="mf">3599414535.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
@@ -3027,24 +2993,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </ol>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="thermal-circuits-assembling">
-<h1><span class="xref myst">Thermal circuits assembling</span><a class="headerlink" href="#thermal-circuits-assembling" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="switch-between-models-heating-cooling-and-free-running">
-<h1><span class="xref myst">Switch between models: heating &amp; cooling and free-running</span><a class="headerlink" href="#switch-between-models-heating-cooling-and-free-running" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="control-input-heating-cooling-and-free-running">
-<h1><span class="xref myst">Control input: heating &amp; cooling and free-running</span><a class="headerlink" href="#control-input-heating-cooling-and-free-running" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="radiation-coupled-with-convection">
-<h1><span class="xref myst">Radiation coupled with convection</span><a class="headerlink" href="#radiation-coupled-with-convection" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="sensible-thermal-load-in-steady-state">
-<h1><span class="xref myst">Sensible thermal load in steady-state</span><a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="air-flow-by-ventilation">
-<h1><span class="xref myst">Air flow by ventilation</span><a class="headerlink" href="#air-flow-by-ventilation" title="Permalink to this headline">#</a></h1>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -3083,7 +3031,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="xref myst">Weather data and solar radiation</span></p>
+        <p class="prev-next-title">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</p>
       </div>
     </a>
 </div></div>
@@ -3104,9 +3052,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><span class="xref myst">Weather data and solar radiation</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall"><span class="xref myst">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-analysis">Physical analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermo-physical-properties">Thermo-physical properties</a></li>
@@ -3194,15 +3139,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits-assembling"><span class="xref myst">Thermal circuits assembling</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-between-models-heating-cooling-and-free-running"><span class="xref myst">Switch between models: heating &amp; cooling and free-running</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#control-input-heating-cooling-and-free-running"><span class="xref myst">Control input: heating &amp; cooling and free-running</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#radiation-coupled-with-convection"><span class="xref myst">Radiation coupled with convection</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sensible-thermal-load-in-steady-state"><span class="xref myst">Sensible thermal load in steady-state</span></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-by-ventilation"><span class="xref myst">Air flow by ventilation</span></a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
