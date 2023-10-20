@@ -17,20 +17,23 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from dm4bem import read_epw, sol_rad_tilt_surf
+[data, meta] = read_epw(filename, coerce_year=None)
+data
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6391/1327001636.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      3[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;34m[0m[0m
-[0;32m----> 5[0;31m [0;32mfrom[0m [0mdm4bem[0m [0;32mimport[0m [0mread_epw[0m[0;34m,[0m [0msol_rad_tilt_surf[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mModuleNotFoundError[0m: No module named 'dm4bem'
-ModuleNotFoundError: No module named 'dm4bem'
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_9343/275760639.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;34m[[0m[0mdata[0m[0;34m,[0m [0mmeta[0m[0;34m][0m [0;34m=[0m [0mread_epw[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mcoerce_year[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0mdata[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/Personel/Py/git_book/dm4bem_book/dm4bem.py[0m in [0;36mread_epw[0;34m(filename, coerce_year)[0m
+[1;32m    563[0m [0;34m[0m[0m
+[1;32m    564[0m     [0;31m# Assume it's accessible via the file system[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 565[0;31m     [0mcsvdata[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mfilename[0m[0;34m)[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    566[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    567[0m         [0mdata[0m[0;34m,[0m [0mmeta[0m [0;34m=[0m [0mparse_epw[0m[0;34m([0m[0mcsvdata[0m[0;34m,[0m [0mcoerce_year[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../weather_data/FRA_Lyon.074810_IWEC.epw'
+FileNotFoundError: [Errno 2] No such file or directory: '../weather_data/FRA_Lyon.074810_IWEC.epw'
 

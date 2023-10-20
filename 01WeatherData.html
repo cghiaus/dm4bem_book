@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Content with notebooks" href="notebooks.html" />
-    <link rel="prev" title="test" href="Tutoriel.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -158,7 +158,6 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tutoriel.html">test</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
@@ -500,7 +499,7 @@ document.write(`
 <h4>Weather data file name<a class="headerlink" href="#weather-data-file-name" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;./weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 <span class="c1"># filename = &#39;./weather_data/FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw&#39;</span>
 </pre></div>
 </div>
@@ -515,316 +514,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_9343</span><span class="o">/</span><span class="mf">275760639.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">data</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">~/Personel/Py/git_book/dm4bem_book/dm4bem.py</span> in <span class="ni">read_epw</span><span class="nt">(filename, coerce_year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span> 
+<span class="g g-Whitespace">    </span><span class="mi">564</span>     <span class="c1"># Assume it&#39;s accessible via the file system</span>
+<span class="ne">--&gt; </span><span class="mi">565</span>     <span class="n">csvdata</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span>         <span class="n">data</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">parse_epw</span><span class="p">(</span><span class="n">csvdata</span><span class="p">,</span> <span class="n">coerce_year</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>day</th>
-      <th>hour</th>
-      <th>minute</th>
-      <th>data_source_unct</th>
-      <th>temp_air</th>
-      <th>temp_dew</th>
-      <th>relative_humidity</th>
-      <th>atmospheric_pressure</th>
-      <th>...</th>
-      <th>ceiling_height</th>
-      <th>present_weather_observation</th>
-      <th>present_weather_codes</th>
-      <th>precipitable_water</th>
-      <th>aerosol_optical_depth</th>
-      <th>snow_depth</th>
-      <th>days_since_last_snowfall</th>
-      <th>albedo</th>
-      <th>liquid_precipitation_depth</th>
-      <th>liquid_precipitation_quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1983-01-01 00:00:00+01:00</th>
-      <td>1983</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7A7A7A7A7*0E8*0*0</td>
-      <td>0.8</td>
-      <td>0.3</td>
-      <td>96</td>
-      <td>100100</td>
-      <td>...</td>
-      <td>15</td>
-      <td>0</td>
-      <td>999999599</td>
-      <td>0</td>
-      <td>0.204</td>
-      <td>0</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1983-01-01 01:00:00+01:00</th>
-      <td>1983</td>
-      <td>1</td>
-      <td>1</td>
-      <td>2</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>-0.6</td>
-      <td>-0.9</td>
-      <td>97</td>
-      <td>100300</td>
-      <td>...</td>
-      <td>30</td>
-      <td>0</td>
-      <td>999999599</td>
-      <td>0</td>
-      <td>0.204</td>
-      <td>0</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1983-01-01 02:00:00+01:00</th>
-      <td>1983</td>
-      <td>1</td>
-      <td>1</td>
-      <td>3</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>-1.5</td>
-      <td>-1.7</td>
-      <td>98</td>
-      <td>100400</td>
-      <td>...</td>
-      <td>30</td>
-      <td>0</td>
-      <td>999999599</td>
-      <td>0</td>
-      <td>0.204</td>
-      <td>0</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1983-01-01 03:00:00+01:00</th>
-      <td>1983</td>
-      <td>1</td>
-      <td>1</td>
-      <td>4</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7A7A7A7A7*0E8*0*0</td>
-      <td>-1.9</td>
-      <td>-2.0</td>
-      <td>99</td>
-      <td>100500</td>
-      <td>...</td>
-      <td>30</td>
-      <td>0</td>
-      <td>999999599</td>
-      <td>0</td>
-      <td>0.204</td>
-      <td>0</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1983-01-01 04:00:00+01:00</th>
-      <td>1983</td>
-      <td>1</td>
-      <td>1</td>
-      <td>5</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>-2.1</td>
-      <td>-2.2</td>
-      <td>100</td>
-      <td>100500</td>
-      <td>...</td>
-      <td>30</td>
-      <td>0</td>
-      <td>999999599</td>
-      <td>0</td>
-      <td>0.204</td>
-      <td>0</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1986-12-31 19:00:00+01:00</th>
-      <td>1986</td>
-      <td>12</td>
-      <td>31</td>
-      <td>20</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>5.9</td>
-      <td>4.7</td>
-      <td>92</td>
-      <td>99400</td>
-      <td>...</td>
-      <td>22000</td>
-      <td>9</td>
-      <td>999999999</td>
-      <td>0</td>
-      <td>0.117</td>
-      <td>2</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1986-12-31 20:00:00+01:00</th>
-      <td>1986</td>
-      <td>12</td>
-      <td>31</td>
-      <td>21</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>5.5</td>
-      <td>4.5</td>
-      <td>93</td>
-      <td>99400</td>
-      <td>...</td>
-      <td>22000</td>
-      <td>9</td>
-      <td>999999999</td>
-      <td>0</td>
-      <td>0.117</td>
-      <td>2</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1986-12-31 21:00:00+01:00</th>
-      <td>1986</td>
-      <td>12</td>
-      <td>31</td>
-      <td>22</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7A7A7A7A7*0E8*0*0</td>
-      <td>4.9</td>
-      <td>3.9</td>
-      <td>94</td>
-      <td>99500</td>
-      <td>...</td>
-      <td>22000</td>
-      <td>9</td>
-      <td>999999999</td>
-      <td>0</td>
-      <td>0.117</td>
-      <td>2</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1986-12-31 22:00:00+01:00</th>
-      <td>1986</td>
-      <td>12</td>
-      <td>31</td>
-      <td>23</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>3.7</td>
-      <td>2.9</td>
-      <td>94</td>
-      <td>99600</td>
-      <td>...</td>
-      <td>22000</td>
-      <td>9</td>
-      <td>999999999</td>
-      <td>0</td>
-      <td>0.117</td>
-      <td>2</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1986-12-31 23:00:00+01:00</th>
-      <td>1986</td>
-      <td>12</td>
-      <td>31</td>
-      <td>24</td>
-      <td>60</td>
-      <td>C9C9C9C9*0?9?9?9?9?9?9?9A7A7B8B8A7A7*0E8*0*0</td>
-      <td>2.3</td>
-      <td>1.6</td>
-      <td>95</td>
-      <td>99800</td>
-      <td>...</td>
-      <td>1320</td>
-      <td>9</td>
-      <td>999999999</td>
-      <td>0</td>
-      <td>0.117</td>
-      <td>2</td>
-      <td>88</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>8760 rows × 35 columns</p>
-</div></div></div>
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="weather-data-is-from-different-years">
@@ -1102,7 +808,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p><img alt="t01_orientation_angles" src="_images/01_orientation_angles.svg" /></p>
+<p><img alt="t01_orientation_angles" src="../figures/01_orientation_angles.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Orientation of a surface:</p>
 <ul class="simple">
@@ -1379,12 +1085,12 @@ $<span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Tutoriel.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">test</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
       </div>
     </a>
     <a class="right-next"
