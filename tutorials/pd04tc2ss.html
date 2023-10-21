@@ -63,6 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd04tc2ss';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Assembled thermal circuits (from matrix and lists)" href="pd03assembleTCd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -153,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
@@ -166,10 +167,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal circuit to state-space</a></li>
 </ul>
 </li>
 </ul>
@@ -401,19 +403,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pd_dm4bem</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2235</span><span class="o">/</span><span class="mf">1050272622.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pd_dm4bem</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pd_dm4bem&#39;
+<span class="kn">import</span> <span class="nn">dm4bem</span>
 </pre></div>
 </div>
 </div>
@@ -421,11 +411,11 @@ document.write(`
 <section id="assembling-and-converting-the-thermal-circuits-to-state-space">
 <h2>Assembling and converting the thermal circuits to state-space<a class="headerlink" href="#assembling-and-converting-the-thermal-circuits-to-state-space" title="Permalink to this headline">#</a></h2>
 <p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2 and then obtain the state-space representation.</p>
-<p><img alt="disassambled_TC" src="tutorials/bldg/ass_TCd.svg" /></p>
+<p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Four disassembled thermal circuits: wall_out, TC0, TC1, TC2, TC3.</p>
 </div></blockquote>
-<p><img alt="disassambled_TC" src="tutorials/bldg/ass_TC.svg" /></p>
+<p><img alt="disassambled_TC" src="../_images/ass_TC.svg" /></p>
 <blockquote>
 <div><p>Figure 2. The assembling of the four circuits from Figure 1.</p>
 </div></blockquote>
@@ -436,12 +426,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits</span>
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;bldg&quot;</span>
-<span class="n">TCd</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
-                         <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;pd/bldg&quot;</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
+                      <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># For non auto-numbering of thermal circuits TC</span>
-<span class="c1"># TCd = pd_dm4bem.bldg2TCd(folder_path, TC_auto_number=False)</span>
+<span class="c1"># TCd = dm4bem.bldg2TCd(folder_path, TC_auto_number=False)</span>
 </pre></div>
 </div>
 </div>
@@ -455,12 +445,12 @@ document.write(`
 
 <span class="c1"># from &#39;assembly_matrix.csv&#39;</span>
 <span class="n">ass_mat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_matrix.csv&#39;</span><span class="p">)</span>
-<span class="n">TCm</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
+<span class="n">TCm</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
 
 <span class="c1"># from &#39;assembly_lists.csv&#39;</span>
 <span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
-<span class="n">ass_mat</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
-<span class="n">TCl</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
+<span class="n">ass_mat</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
+<span class="n">TCl</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,7 +461,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State-space from TC</span>
-<span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TCl</span><span class="p">)</span>
+<span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TCl</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1147,27 +1137,19 @@ Maximum time step: 498.60 s = 8.31 min
 <blockquote>
 <div><p><a class="reference external" href="https://hal.science/hal-03605823/document">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301.</p>
 </div></blockquote>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pd_dm4bem</span>
-</pre></div>
-</div>
-</div>
-</div>
 <section id="thermal-circuit-file-to-state-space">
 <h3>Thermal circuit file to state-space<a class="headerlink" href="#thermal-circuit-file-to-state-space" title="Permalink to this headline">#</a></h3>
 <section id="file-describing-the-thermal-circuit-with-symbols">
 <h4>File describing the thermal circuit with symbols<a class="headerlink" href="#file-describing-the-thermal-circuit-with-symbols" title="Permalink to this headline">#</a></h4>
-<p>Let’s consider a thermal circuit that uses symbols for numbering the temperature nodes and the oriented flow branches (Figure 1).</p>
-<p><img alt="tc_sym" src="tutorials/TC_tc2ss/tc2ss_sym.svg" /></p>
+<p>Let’s consider a thermal circuit that uses symbols for numbering the temperature nodes and the oriented flow branches (Figure 4).</p>
+<p><img alt="tc_sym" src="../_images/tc2ss_sym.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Thermal circuit with symbols.</p>
+<div><p>Figure 4. Thermal circuit with symbols.</p>
 </div></blockquote>
 <p>The thermal circuit from Figure 1 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_sym.csv</span></code>. In this case, symbols are used for the nodes and the branches.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./TC_tc2ss/TC_tc2ss_sym.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/TC_tc2ss/TC_tc2ss_sym.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1290,10 +1272,10 @@ Maximum time step: 498.60 s = 8.31 min
 <p>The nodes and the oriented branches can be auto-numbered. The names of the nodes and branches are composed by the name of the circuit and θ0, θ1, … , for nodes and q0, q1, … for branches, e.g., a_θ1 stands for temperature node θ1 of circuit a.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;TC_tc2ss/TC_tc2ss_sym.csv&quot;</span>
-<span class="n">TC</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
-                       <span class="n">auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">[</span><span class="n">Asa</span><span class="p">,</span> <span class="n">Bsa</span><span class="p">,</span> <span class="n">Csa</span><span class="p">,</span> <span class="n">Dsa</span><span class="p">,</span> <span class="n">ua</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;pd/TC_tc2ss/TC_tc2ss_sym.csv&quot;</span>
+<span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+                    <span class="n">auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Asa</span><span class="p">,</span> <span class="n">Bsa</span><span class="p">,</span> <span class="n">Csa</span><span class="p">,</span> <span class="n">Dsa</span><span class="p">,</span> <span class="n">ua</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
 <span class="n">Asa</span>
 </pre></div>
 </div>
@@ -1342,9 +1324,9 @@ Maximum time step: 498.60 s = 8.31 min
 <p>Alternatively, the nodes and the branches can keep the names given in the <code class="docutils literal notranslate"><span class="pre">TC</span></code> file (the default value of <code class="docutils literal notranslate"><span class="pre">auto_number</span></code>is <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;TC_tc2ss/TC_tc2ss_sym.csv&quot;</span>
-<span class="n">TC</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="p">[</span><span class="n">Ass</span><span class="p">,</span> <span class="n">Bss</span><span class="p">,</span> <span class="n">Css</span><span class="p">,</span> <span class="n">Dss</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;pd/TC_tc2ss/TC_tc2ss_sym.csv&quot;</span>
+<span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Ass</span><span class="p">,</span> <span class="n">Bss</span><span class="p">,</span> <span class="n">Css</span><span class="p">,</span> <span class="n">Dss</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
 <span class="n">Ass</span>
 </pre></div>
 </div>
@@ -1392,15 +1374,15 @@ Maximum time step: 498.60 s = 8.31 min
 </section>
 <section id="file-describing-the-thermal-circuit-with-numbers">
 <h3>File describing the thermal circuit with numbers<a class="headerlink" href="#file-describing-the-thermal-circuit-with-numbers" title="Permalink to this headline">#</a></h3>
-<p>Instead of using symbols, the thermal circuit can be numbered (Figure 2).</p>
-<p><img alt="tc_num" src="tutorials/TC_tc2ss/tc2ss_num.svg" /></p>
+<p>Instead of using symbols, the thermal circuit can be numbered (Figure 5).</p>
+<p><img alt="tc_num" src="../_images/tc2ss_num.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Numbered thermal circuit</p>
+<div><p>Figure 5. Numbered thermal circuit</p>
 </div></blockquote>
 <p>The thermal circuit from Figure 1 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_num.csv</span></code>. In this case, the nodes and the branches are numbered.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./TC_tc2ss/TC_tc2ss_num.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/TC_tc2ss/TC_tc2ss_num.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1519,9 +1501,9 @@ Maximum time step: 498.60 s = 8.31 min
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;TC_tc2ss/TC_tc2ss_num.csv&quot;</span>
-<span class="n">TC</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
-<span class="p">[</span><span class="n">Asn</span><span class="p">,</span> <span class="n">Bsn</span><span class="p">,</span> <span class="n">Csn</span><span class="p">,</span> <span class="n">Dsn</span><span class="p">,</span> <span class="n">un</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_file</span> <span class="o">=</span> <span class="s2">&quot;pd/TC_tc2ss/TC_tc2ss_num.csv&quot;</span>
+<span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="n">TC_file</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">Asn</span><span class="p">,</span> <span class="n">Bsn</span><span class="p">,</span> <span class="n">Csn</span><span class="p">,</span> <span class="n">Dsn</span><span class="p">,</span> <span class="n">un</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
 <span class="n">Asn</span>
 </pre></div>
 </div>
@@ -1600,6 +1582,15 @@ Maximum time step: 498.60 s = 8.31 min
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="pd03assembleTCd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assembled thermal circuits (from matrix and lists)</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
