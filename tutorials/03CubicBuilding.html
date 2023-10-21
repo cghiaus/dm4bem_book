@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/03CubicBuilding';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="State-space models by using Pandas" href="pdREADME.html" />
     <link rel="prev" title="Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall" href="02SimpleWall.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -152,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Dynamic Models for Building Energy Mangement
+                    Dynamic Models for Building Energy Management
                 </a>
             </li>
         </ul>
@@ -167,6 +168,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs preparation and simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -461,6 +470,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">
 <h1>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building<a class="headerlink" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F03CubicBuilding.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This tutorial presents the theory of heat transfer in buildings and examplifies it on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>.</p>
 <p><strong>Objectives:</strong></p>
 <ul class="simple">
@@ -1658,7 +1668,7 @@ y = C_s \theta_s + D_s u
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_951</span><span class="o">/</span><span class="mf">484680385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4093</span><span class="o">/</span><span class="mf">484680385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">θs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ1&#39;</span><span class="p">,</span> <span class="s1">&#39;θ3&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">]</span>       <span class="c1"># state temperature nodes</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">uT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q8&#39;</span><span class="p">,</span> <span class="s1">&#39;q10&#39;</span><span class="p">,</span> <span class="s1">&#39;q11&#39;</span><span class="p">]</span>     <span class="c1"># temperature sources</span>
@@ -2419,6 +2429,15 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="pdREADME.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">State-space models by using Pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   

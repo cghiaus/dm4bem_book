@@ -153,7 +153,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    Dynamic Models for Building Energy Mangement
+                    Dynamic Models for Building Energy Management
                 </a>
             </li>
         </ul>
@@ -166,24 +166,16 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html"><span class="xref myst">Weather data and solar radiation</span></a></li>
-
-
-
-
-
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs preparation and simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -397,6 +389,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="from-differential-algebraic-equations-to-state-space-representation">
 <h1>From differential-algebraic equations to state-space representation<a class="headerlink" href="#from-differential-algebraic-equations-to-state-space-representation" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FA03_DAE2SS.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This demonstration is taken from <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus (2013)</a>.</p>
 <section id="differential-algebraic-equations-dae">
 <h2>Differential-algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h2>
