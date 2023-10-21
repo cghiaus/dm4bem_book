@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>State-space models by using Pandas &#8212; My sample book</title>
+    <title>Assembled thermal circuits (from matrix and lists) &#8212; My sample book</title>
   
   
   
@@ -60,13 +60,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pdREADME';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd03assembleTCd';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Disassembled thermal circuits from wall description" href="pd01wall2TC.html" />
-    <link rel="prev" title="Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building" href="03CubicBuilding.html" />
+    <link rel="prev" title="Disassembled thermal circuits from folder describing the building" href="pd02bldg2TCd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -170,10 +167,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">State-space models by using Pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assembled thermal circuits (from matrix and lists)</a></li>
 </ul>
 </li>
 </ul>
@@ -247,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/pdREADME.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/pd03assembleTCd.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Ouvrez un problème"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +274,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tutorials/pdREADME.md" target="_blank"
+      <li><a href="../_sources/tutorials/pd03assembleTCd.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Télécharger le fichier source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -287,7 +284,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -346,7 +343,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -357,11 +356,25 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>State-space models by using Pandas</h1>
+    <h1>Assembled thermal circuits (from matrix and lists)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem">Stating the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling">Assembling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-assembling-matrix">Use of assembling matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-assembling-lists">Use of assembling lists</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -371,36 +384,112 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="state-space-models-by-using-pandas">
-<h1>State-space models by using Pandas<a class="headerlink" href="#state-space-models-by-using-pandas" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Workflow">workflow</a> for thermal analysis by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module is presented in figure 1:</p>
-<ul class="simple">
-<li><p>Model:</p>
-<ul>
-<li><p>obtain dissasembled thermal circuit from files describing the walls and the thermal circuits (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
-<li><p>assemble the thermal circuits (functions <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix()</span></code> and <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>);</p></li>
-<li><p>state-space representation from thermal circuit (function <code class="docutils literal notranslate"><span class="pre">tc2ss()</span></code>).</p></li>
-</ul>
-</li>
-<li><p>Inputs:</p>
-<ul>
-<li><p>get weather data: outdoor temperature and direct, diffuse and reflected solar radiation on tilted surfaces (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
-<li><p>define the other inputs, such as indoor temperature set points, auxialiry flow-rates;</p></li>
-</ul>
-</li>
-<li><p>Simulation:</p>
-<ul>
-<li><p>prepare the inputs from input description of the state-space  (<span class="math notranslate nohighlight">\(u_s\)</span>) and the <em>input data set</em> (function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>);</p></li>
-<li><p>integrate in time by using Euler explicit and implicit methods.</p></li>
-</ul>
-</li>
-</ul>
-<p><img alt="work_flow" src="../_images/pd_work_flow.svg" /></p>
-<blockquote>
-<div><p>Figure 1. Workflow for building simulation by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
-</div></blockquote>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="assembled-thermal-circuits-from-matrix-and-lists">
+<h1>Assembled thermal circuits (from matrix and lists)<a class="headerlink" href="#assembled-thermal-circuits-from-matrix-and-lists" title="Permalink to this headline">#</a></h1>
+<p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be by using assembling matrix or assembling lits. The assembling from matrix is implemented in the functions <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
 </div>
+</div>
+</div>
+<section id="stating-the-problem">
+<h2>Stating the problem<a class="headerlink" href="#stating-the-problem" title="Permalink to this headline">#</a></h2>
+<p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2.</p>
+<p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Four disassembled thermal circuits: wall_out, TC0, TC1, TC2, TC3.</p>
+</div></blockquote>
+<p><img alt="disassambled_TC" src="../_images/ass_TC.svg" /></p>
+<blockquote>
+<div><p>Figure 2. The assembling of the four circuits from Figure 1.</p>
+</div></blockquote>
+</section>
+<section id="description-of-the-folder-containing-the-circuits">
+<h2>Description of the folder containing the circuits<a class="headerlink" href="#description-of-the-folder-containing-the-circuits" title="Permalink to this headline">#</a></h2>
+<p>The disassembled circuits and the indications on how to assemble them are given in the folder <code class="docutils literal notranslate"><span class="pre">.\bldg</span></code> composed by the files (see <em>Walls data</em> in <span class="xref myst">01wall2TC.ipynb</span>):</p>
+<ul class="simple">
+<li><p>assembly:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">assembly_lists.csv</span></code>: lists with the nodes that merge;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>: matrix with the nodes that merge;</p></li>
+</ul>
+</li>
+<li><p>thermal circuits: <code class="docutils literal notranslate"><span class="pre">TC0.csv,</span> <span class="pre">...</span> <span class="pre">,</span> <span class="pre">TC3.csv</span></code>;</p></li>
+<li><p>walls:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>: physical properties and width of each mayerial;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>: geometric and surface characteristics of each wall.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="assembling">
+<h2>Assembling<a class="headerlink" href="#assembling" title="Permalink to this headline">#</a></h2>
+<p>In order to obtain the assembled circuit, first we need to construct the disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code>. The numbering of the thermal circuits <code class="docutils literal notranslate"><span class="pre">TC</span></code> can be automatic or the symbols given in <code class="docutils literal notranslate"><span class="pre">TC_.csv</span></code> files can be used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;pd/bldg&#39;</span>
+
+<span class="c1"># Disassembled thermal circuits</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
+                      <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="use-of-assembling-matrix">
+<h3>Use of assembling matrix<a class="headerlink" href="#use-of-assembling-matrix" title="Permalink to this headline">#</a></h3>
+<p>Then, we can obtain the assembled thermal circuits by using the assembly matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assembled thermal circuit from assembly_matrix.csv</span>
+<span class="n">ass_mat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_matrix.csv&#39;</span><span class="p">)</span>
+<span class="n">TCm</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
+<span class="c1"># dm4bem.print_TC(TCm)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="use-of-assembling-lists">
+<h3>Use of assembling lists<a class="headerlink" href="#use-of-assembling-lists" title="Permalink to this headline">#</a></h3>
+<p>Alternatively, we can obtain the assembled circuit by using the assembly lists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assembled thermal circuit from assembly_lists.csv</span>
+<span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
+<span class="n">ass_mat</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
+<span class="n">TCl</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2153</span><span class="o">/</span><span class="mf">3038430768.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ass_mat</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">TCl</span> <span class="o">=</span> <span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_mat</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;pd_dm4bem&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>The otained thermal circuit has all the branches of the set of disassembled circuits but fewer nodes (Figure 2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd_dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the nodes which are faded in Figure 2 (c0_θ0, c0_θ1, c1_θ2, c3_θ0 and ow0_θ5) do not exist anymore in the assembeled thermal circuit since they were merged with the primary nodes.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -435,22 +524,13 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="03CubicBuilding.html"
+       href="pd02bldg2TCd.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</p>
+        <p class="prev-next-title">Disassembled thermal circuits from folder describing the building</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="pd01wall2TC.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Disassembled thermal circuits from wall description</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -461,6 +541,26 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem">Stating the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling">Assembling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-assembling-matrix">Use of assembling matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-assembling-lists">Use of assembling lists</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
