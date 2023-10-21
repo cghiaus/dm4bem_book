@@ -924,12 +924,14 @@ q = G (-A \theta + b)
 <li><p><span class="math notranslate nohighlight">\(b\)</span> - temperature source vector of size <span class="math notranslate nohighlight">\(n_q\)</span>: if there is no temperature source on the branch <em>m</em>, then <span class="math notranslate nohighlight">\(b_m = 0\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(f\)</span> - heat flow source vector of size <span class="math notranslate nohighlight">\(n_θ\)</span>: if there is no heat flow source in the node <em>n</em>, then <span class="math notranslate nohighlight">\(f_n = 0\)</span>.</p></li>
 </ul>
-<p><strong>Note</strong>: The incidence matrix <span class="math notranslate nohighlight">\(A\)</span> is related to difference operator <span class="math notranslate nohighlight">\(\Delta\)</span>:
-$<span class="math notranslate nohighlight">\( \Delta = -A\)</span>$</p>
+<p><strong>Note</strong>: The incidence matrix <span class="math notranslate nohighlight">\(A\)</span> is related to difference operator <span class="math notranslate nohighlight">\(\Delta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \Delta = -A\]</div>
 <p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation
-$<span class="math notranslate nohighlight">\(C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\)</span><span class="math notranslate nohighlight">\(
-which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation
-\)</span><span class="math notranslate nohighlight">\(q = G (-A \theta + b)\)</span>$</p>
+$<span class="math notranslate nohighlight">\(C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\)</span>$
+which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation</p>
+<div class="math notranslate nohighlight">
+\[q = G (-A \theta + b)\]</div>
 <p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes. The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the nodes which are the outputs of the model.</p>
 </section>
 <section id="state-space-representation">
