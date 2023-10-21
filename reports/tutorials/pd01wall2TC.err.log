@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Thermal circuits from data & type files of walls
+TCd_in = pd_dm4bem.wall2TC(wall_types, walls, prefix="i")
+
+# Uncomment below to print all thermal circuits
+# print('TCd_in')
+# for key in TCd_in.keys():
+#    print('Wall:', key)
+#    pd_dm4bem.print_TC(TCd_in[key])
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_1675/2803901383.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Thermal circuits from data & type files of walls[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mTCd_in[0m [0;34m=[0m [0mpd_dm4bem[0m[0;34m.[0m[0mwall2TC[0m[0;34m([0m[0mwall_types[0m[0;34m,[0m [0mwalls[0m[0;34m,[0m [0mprefix[0m[0;34m=[0m[0;34m"i"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;31m# Uncomment below to print all thermal circuits[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0;31m# print('TCd_in')[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'pd_dm4bem' is not defined
+NameError: name 'pd_dm4bem' is not defined
+
