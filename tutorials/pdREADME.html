@@ -375,7 +375,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="state-space-representation-from-assembled-thermal-circuits">
 <h1>State-space representation from assembled thermal circuits<a class="headerlink" href="#state-space-representation-from-assembled-thermal-circuits" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Workflow">workflow</a> for thermal analysis by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module is presented in figure 1:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Workflow">workflow</a> for thermal analysis by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module is presented in Figure 1:</p>
 <ul class="simple">
 <li><p>Model:</p>
 <ul>
@@ -386,8 +386,8 @@ document.write(`
 </li>
 <li><p>Inputs:</p>
 <ul>
-<li><p>get weather data: outdoor temperature and direct, diffuse and reflected solar radiation on tilted surfaces (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
-<li><p>define the other inputs, such as indoor temperature set points, auxialiry flow-rates;</p></li>
+<li><p>get weather data: outdoor temperature and direct, diffuse solar radiation (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
+<li><p>define the other inputs, such as indoor temperature set points, auxiliary flow-rates;</p></li>
 </ul>
 </li>
 <li><p>Simulation:</p>
