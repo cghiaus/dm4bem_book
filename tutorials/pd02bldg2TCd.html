@@ -168,12 +168,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuitsmodels</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs preparation and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -369,7 +369,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem">Stating the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem-of-assembling">Stating the problem of assembling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix-and-lists">Assembly matrix and lists</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix">Assembly matrix</a></li>
@@ -419,16 +420,54 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="stating-the-problem">
-<h2>Stating the problem<a class="headerlink" href="#stating-the-problem" title="Permalink to this headline">#</a></h2>
-<p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2.</p>
+<section id="description-of-the-building">
+<h2>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this headline">#</a></h2>
+<p><img alt="cube" src="../_images/03_cube_principle.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an HVAC system which acts as a proportional controller.</p>
+</div></blockquote>
+<p>Let’s consider a cubic building with an HVAC systems acting as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a>.</p>
+<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is:</p>
+<ul class="simple">
+<li><p>through the walls (concrete and insulation),</p></li>
+<li><p>through the glass window,</p></li>
+<li><p>by ventilation,</p></li>
+<li><p>from indoor auxiliary sources,</p></li>
+<li><p>from the HVAC system.</p></li>
+</ul>
+<p>The HVAC system is modelled as a proportional controller.</p>
+<p>There is long wave radiative exchange between the wall and the glass window.</p>
+<p>The sources are:</p>
+<ul class="simple">
+<li><p>temperature sources:</p>
+<ul>
+<li><p>outdoor atmospheric air;</p></li>
+<li><p>indoor air temperature setpoint;</p></li>
+</ul>
+</li>
+<li><p>flow rate sources:</p>
+<ul>
+<li><p>solar radiation on the outdoor and the indoor walls;</p></li>
+<li><p>auxiliary heat gains in the thermal zone.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="heat_processes" src="../_images/03_heat_process.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Heat processes for the cubic building shown in Figure 1.</p>
+</div></blockquote>
+<p>Heat transfer for this toy model is presented in Figures 3 and 4.</p>
+</section>
+<section id="stating-the-problem-of-assembling">
+<h2>Stating the problem of assembling<a class="headerlink" href="#stating-the-problem-of-assembling" title="Permalink to this headline">#</a></h2>
+<p>Consider the disassembled thermal circuits shown in Figure 3 that we want to assemble as shown in Figure 4.</p>
 <p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Four disassembled thermal circuits: wall_out: ow0 (in red), TC0: c0 (in blue), TC1: c1 (in green), TC2: c2 (in magenta), TC3: c3 (in black).</p>
+<div><p>Figure 3. Four disassembled thermal circuits: wall_out: ow0 (in red), TC0: c0 (in blue), TC1: c1 (in green), TC2: c2 (in magenta), TC3: c3 (in black).</p>
 </div></blockquote>
 <p><img alt="disassambled_TC" src="../_images/ass_TC.svg" /></p>
 <blockquote>
-<div><p>Figure 2. The assembling of the four circuits from Figure 1. The faded nodes are deleted.</p>
+<div><p>Figure 4. The assembling of the four circuits from Figure 2. The faded nodes are deleted.</p>
 </div></blockquote>
 <p>The assembling is done by putting temperature nodes in common, e.g., the node 0 of the circuit c0 to be the same with the node 4 of the circuit ow0. This operation is called <a class="reference external" href="https://en.m.wikipedia.org/wiki/Graph_operations#Unary_operations">merging of vertexes</a> in graph theory.</p>
 </section>
@@ -454,8 +493,8 @@ document.write(`
 <h3>Assembly matrix and lists<a class="headerlink" href="#assembly-matrix-and-lists" title="Permalink to this headline">#</a></h3>
 <section id="assembly-matrix">
 <h4>Assembly matrix<a class="headerlink" href="#assembly-matrix" title="Permalink to this headline">#</a></h4>
-<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common: the first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept; the second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node. For example, in Figure 2 the nodes put in commun are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
-<p>The five merging arrows in Figure 2 are:</p>
+<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common: the first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept; the second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node. For example, in Figure 4 the nodes put in commun are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
+<p>The five merging arrows in Figure 4 are:</p>
 <ol class="arabic simple" start="0">
 <li><p>Node 4 of circuit ow0 (in red) is in common with node 0 of circuit c0 (in blue); node 4 of circuit ow0 is kept (node 0 of circuit c0, in faded blue, is deleted).</p></li>
 <li><p>2nd last node of circuit c1 (in green) is in common with node 1 of circuit c0 (in blue); the node of circuit c1 is kept (node 1 of circuit c0, in faded blue, is deleted).</p></li>
@@ -544,7 +583,7 @@ document.write(`
 <li><p><strong>node0</strong>: the node that is kept (to which all the merging arrows point);</p></li>
 <li><p><strong>nodes</strong>: the node or nodes that are merged and deleted (that are the tail of the merging arrows).</p></li>
 </ul>
-<p>For the circuits shown in Figures 1 and 2, there are three lists representing the three nodes that are kept (nodes to which the merging arrows point):</p>
+<p>For the circuits shown in Figures 3 and 4, there are three lists representing the three nodes that are kept (nodes to which the merging arrows point):</p>
 <ul class="simple">
 <li><p>On row 0:</p>
 <ul>
@@ -627,10 +666,10 @@ document.write(`
 <li><p><strong>f</strong>: heat flow source vector ;</p></li>
 <li><p><strong>y</strong>: output (temperature) vector.</p></li>
 </ul>
-<p>For example, the <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 1, 2 and 3.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 3, 4 and 5.</p>
 <p><img alt="disassambled_TC" src="../_images/TC1.svg" /></p>
 <blockquote>
-<div><p>Figure 3. Thermal circuit <code class="docutils literal notranslate"><span class="pre">TC1:</span> <span class="pre">c1</span></code> described in the file <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>.</p>
+<div><p>Figure 5. Thermal circuit <code class="docutils literal notranslate"><span class="pre">TC1:</span> <span class="pre">c1</span></code> described in the file <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1109,7 +1148,7 @@ document.write(`
 </div></div></div>
 </div>
 <p>The walls of <strong>type</strong> 0 have two layers: Concrete and Insulation. Their physical characteristics (conductivity, specific heat, density) are given in SI units (W·m⁻¹·K⁻¹, J·kg⁻¹·K⁻¹, and kg·m⁻³, respectively). The width of the layers is in m. <strong>Mesh</strong> represents the number of meshes in which the layer is discretized. Each mesh has two resistances and a capacity.</p>
-<p>The wall <strong>owO</strong> (in red) in Figures 1 and 2 is of type 0. It has two layers (concrete and insulation), each one discretized in one mesh.</p>
+<p>The wall <strong>owO</strong> (in red) in Figures 3 and 4 is of type 0. It has two layers (concrete and insulation), each one discretized in one mesh.</p>
 </section>
 <section id="walls-data">
 <h4>Walls data<a class="headerlink" href="#walls-data" title="Permalink to this headline">#</a></h4>
@@ -1331,7 +1370,7 @@ Name: G, dtype: float64
 </div>
 </div>
 </div>
-<p>All circuits contained in the data structure <code class="docutils literal notranslate"><span class="pre">TCd</span></code> can be printed (see Figures 1 and 2).</p>
+<p>All circuits contained in the data structure <code class="docutils literal notranslate"><span class="pre">TCd</span></code> can be printed (see Figures 3 and 4).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">TCd</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -1805,7 +1844,8 @@ Name: y, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem">Stating the problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem-of-assembling">Stating the problem of assembling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix-and-lists">Assembly matrix and lists</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix">Assembly matrix</a></li>

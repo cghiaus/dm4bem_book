@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Inputs preparation and simulation &#8212; My sample book</title>
+    <title>Inputs and simulation &#8212; My sample book</title>
   
   
   
@@ -169,12 +169,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuitsmodels</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Inputs preparation and simulation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Inputs and simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -360,7 +360,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Inputs preparation and simulation</h1>
+    <h1>Inputs and simulation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -411,10 +411,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="inputs-preparation-and-simulation">
-<h1>Inputs preparation and simulation<a class="headerlink" href="#inputs-preparation-and-simulation" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="inputs-and-simulation">
+<h1>Inputs and simulation<a class="headerlink" href="#inputs-and-simulation" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2Fpd05simulation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook show a complete example of simulation for the toy model of the building. It covers (Figure 1):</p>
+<p>This notebook shows a complete example of simulation for a toy model of a building. It covers (Figure 1):</p>
 <ul class="simple">
 <li><p>modeling:</p>
 <ul>
@@ -425,14 +425,14 @@ document.write(`
 </li>
 <li><p>input data set:</p>
 <ul>
-<li><p>get weather data: outdoor temperature and direct, diffuse and reflected solar radiation on tilted surfaces (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code> and <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
+<li><p>get weather data: outdoor temperature, and direct and diffuse solar radiation (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code>) and calculate solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
 <li><p>define the other inputs, such as indoor temperature set points, auxialiry flow-rates;</p></li>
 </ul>
 </li>
 <li><p>simulation:</p>
 <ul>
 <li><p>prepare the inputs from input description of the state-space  (<span class="math notranslate nohighlight">\(u_s\)</span>) and the <em>input data set</em> (function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>);</p></li>
-<li><p>integrate in time by using Euler explicit and implicit methods.</p></li>
+<li><p>integrate in time (e.g., by using Euler explicit and implicit methods).</p></li>
 </ul>
 </li>
 </ul>
