@@ -747,13 +747,14 @@ document.write(`
 </div>
 <section id="conductance-matrix-g">
 <h3>Conductance matrix <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#conductance-matrix-g" title="Permalink to this headline">#</a></h3>
-<p>The resistances are grouped in the conductance matrix, which is diagonal:
-$<span class="math notranslate nohighlight">\(G = \begin{bmatrix}
+<p>The resistances are grouped in the conductance matrix, which is diagonal:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}G = \begin{bmatrix}
 R_0^{-1} &amp;  &amp;  &amp; \\ 
  &amp; R_1^{-1} &amp;  &amp; \\ 
  &amp;  &amp; ... &amp; \\ 
  &amp;  &amp;  &amp; R_{n_q-1}^{-1}
-\end{bmatrix}\)</span>$</p>
+\end{bmatrix}\end{split}\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n_q\)</span> is the number of flow rate branches, <span class="math notranslate nohighlight">\(n_q = 7\)</span>;</p></li>
@@ -952,8 +953,9 @@ C_0 &amp;  &amp;  &amp; \\
 <p>The system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations</a> (DAE) is [<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>]:</p>
 <div class="math notranslate nohighlight">
 \[C\dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
-<p>or
-$<span class="math notranslate nohighlight">\(C\dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\)</span>$</p>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[C\dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
 <p>which contains the matrices and vectors characterizing the circuit:</p>
 <ul class="simple">
 <li><p>elements: conductances <span class="math notranslate nohighlight">\(G\)</span> and capacities <span class="math notranslate nohighlight">\(C\)</span>;</p></li>
@@ -1325,22 +1327,25 @@ A^T G &amp; I
 </table>
 </div></div></div>
 </div>
-<p>The input vector is formed by stacking the vector of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and the vector of flow sources <span class="math notranslate nohighlight">\(f\)</span>:
-$<span class="math notranslate nohighlight">\(u = \begin{bmatrix} b \\ f\end{bmatrix}\)</span>$</p>
-<p>However, many sources in the model are zero. For our example, there are only two sources: <span class="math notranslate nohighlight">\(T_o\)</span> and <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>. Therefore,
-$<span class="math notranslate nohighlight">\(b = \begin{bmatrix}
+<p>The input vector is formed by stacking the vector of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and the vector of flow sources <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u = \begin{bmatrix} b \\ f\end{bmatrix}\end{split}\]</div>
+<p>However, many sources in the model are zero. For our example, there are only two sources: <span class="math notranslate nohighlight">\(T_o\)</span> and <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}b = \begin{bmatrix}
 T_o\\ 
 0\\ 
 ...\\ 
 0
-\end{bmatrix}\)</span><span class="math notranslate nohighlight">\(
-and
-\)</span><span class="math notranslate nohighlight">\(f = \begin{bmatrix}
+\end{bmatrix}\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f = \begin{bmatrix}
 0\\ 
 0\\ 
 ...\\ 
 \dot{Q}_h
-\end{bmatrix}\)</span>$</p>
+\end{bmatrix}\end{split}\]</div>
 <p>Since the sources that are always zero have no influence on the outputs, they can be eliminated from the input vector, which becomes:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}u = \begin{bmatrix} T_o \\ \dot{Q}_h\end{bmatrix}\end{split}\]</div>
@@ -1464,10 +1469,13 @@ $<span class="math notranslate nohighlight">\(T_o \equiv  \theta_6 = \begin{bmat
 \[ \left | 1 + \lambda _i \Delta t \right | \leq 1, \forall i \]</div>
 <p>If all eigenvalues of state matrix <span class="math notranslate nohighlight">\(A_s\)</span> are real, as is the case for thermal networks, then the above condition becomes:</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned} -2 \leq \lambda _i\Delta t\leq 0, \forall i $$.\\Since the eigenvalues $\lambda_i$ are related to the time constants $T_i$,\\$$ \lambda _i = - \frac{1}{T_i} \end{aligned}\end{align} \]</div>
+\[ -2 \leq \lambda _i\Delta t\leq 0, ∀ i.\]</div>
+<p>Since the eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> are related to the time constants <span class="math notranslate nohighlight">\(T_i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[ \lambda _i = - \frac{1}{T_i},\]</div>
 <p>it results that the condition for stability is</p>
 <div class="math notranslate nohighlight">
-\[ 0 \leq \Delta t \leq \min (-2 / \lambda_i) = 2 \min (T_i)\]</div>
+\[ 0 \leq \Delta t \leq \min (-2 / \lambda_i) = 2 \min (T_i).\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># minimum eigenvalue of matrix A</span>
