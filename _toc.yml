@@ -4,8 +4,20 @@
 format: jb-book
 root: intro
 chapters:
+- file: tutorials/A00_theory
+  sections:
+  - file: tutorials/A01_Heat_transfer
+  - file: tutorials/A02_TC2DAE
+  - file: tutorials/A03_DAE2SS
 - file: tutorials/01WeatherData
-- file: notebooks
-- file: markdown
-- file: markdown-notebooks
-
+- file: tutorials/02Model_Simulation
+  sections:
+  - file: tutorials/02SimpleWall
+  - file: tutorials/03CubicBuilding
+- file: tutorials/pdREADME.md
+  sections:
+  - file: tutorials/pd01wall2TC
+  - file: tutorials/pd02bldg2TCd
+  - file: tutorials/pd03assembleTCd
+  - file: tutorials/pd04tc2ss
+  - file: tutorials/pd05simulation
