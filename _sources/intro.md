@@ -1,4 +1,4 @@
-# Dynamic Models for Building Energy Mangement
+# Dynamic Models for Building Energy Management
 
 by Christian Ghiaus
 - Web of Science [K-1307-2012](https://www.webofscience.com/wos/author/record/1651371)
