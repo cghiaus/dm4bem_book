@@ -13,6 +13,7 @@ https://github.com/pvlib/pvlib-python/blob/master/pvlib/iotools/epw.py
 
 import numpy as np
 import pandas as pd
+from scipy.linalg import block_diag
 import os
 import glob
 import ast
@@ -1090,6 +1091,128 @@ def bldg2TCd(folder_path, TC_auto_number):
 #     TC['f'] = TC['f'].sort_index()
 
 #     return TC
+
+def TCAss(TCd, AssX):
+    """
+    Parameters
+    ----------
+    TCd : dictionary of thermal circuits
+        DESCRIPTION.
+        Dictionary of disassembled thermal circuitss. Example:
+            TCd = {'0': TCd0,
+                   '1': TCd1,
+                   ...
+                   'n': TCdn}
+        Each thermal circuit is a dictionary:
+            TCdk = {'A': A, 'G': G, 'b': b, 'C': C, 'f': f, 'y': y}
+
+    AssX : np.array
+        DESCRIPTION.
+        Assembling matrix:
+            [[TC<-, node, <-TC, node],
+             ...
+             [TC<-, node, <-TC, node]]
+
+    Returns
+    -------
+    TCa : Dictionary
+        DESCRIPTION.
+        Assembled thermal circuit:
+            TCdk = {'A': A, 'G': G, 'C': C, 'b': b, 'f': f, 'y': y}
+    """
+    # Create assembing matrix Ass from AssX
+    TCdf = pd.DataFrame(TCd).transpose()
+
+    # Global indexes of the 1st node of each TC
+    size_f_eachTCd = TCdf.f.apply(lambda x: np.size(x))
+    TCdf['global 1st node'] = np.cumsum(size_f_eachTCd)
+    TCdf['global 1st node'] = TCdf['global 1st node'].shift(1).fillna(0)
+
+    # Global indexes of the 1st branch of each TC
+    size_b_eachTCd = TCdf.b.apply(lambda x: np.size(x))
+    TCdf['global 1st branch'] = np.cumsum(size_b_eachTCd)
+    TCdf['global 1st branch'] = TCdf['global 1st branch'].shift(1).fillna(0)
+
+    # Ass = global_1st_node of TC from AssX + its local node
+    Ass = np.array([TCdf['global 1st node'][AssX[:, 0]] + AssX[:, 1],
+                    TCdf['global 1st node'][AssX[:, 2]] + AssX[:, 3]])
+    Ass = Ass.astype(int)
+
+    # Disassembling matrix for temperatures Adθ
+    # - matrix that keeps the indexes of themperature nodes
+    Adθ = np.eye(sum(size_f_eachTCd))
+    # - add the columns that merge
+    Adθ[:, Ass[0]] = Adθ[:, Ass[0]] + Adθ[:, Ass[1]]
+    # - eliminate the columns that correspond to eliminated nodes
+    Adθ = np.delete(Adθ, Ass[1], 1)
+
+    Adq = np.eye(sum(size_b_eachTCd))
+
+    # Ad for [q1 q2 ... θ1 θ2 ...]
+    Ad = block_diag(Adq, Adθ)
+
+    # List of indexes for Adq
+    row_Adq_local = TCdf.b.apply(lambda x: np.arange(np.size(x)))
+    row_Adq_global = row_Adq_local + TCdf['global 1st branch']
+    row_Adq_global = [list(x) for x in row_Adq_global]
+
+    # List of indexes for Adθ
+    row_Adθ_local = TCdf.f.apply(lambda x: np.arange(np.size(x)))
+    row_Adθ_global = row_Adθ_local + TCdf['global 1st node']
+    row_Adθ_global += row_Adq_global[-1][-1] + 1
+    row_Adθ_global = [list(x) for x in row_Adθ_global]
+
+    row_Ad = list(zip(row_Adq_global, row_Adθ_global))
+    row_Ad = [item for sublist in row_Ad for item in sublist]
+    row_Ad = [item for sublist in row_Ad for item in sublist]
+    row_Ad = [int(i) for i in row_Ad]
+
+    # Ad for [q1 θ1 q2 θ2 ...]
+    Ad = Ad[row_Ad, :]
+
+    TCdf['invG'] = TCdf.G.apply(lambda x: np.linalg.inv(x))
+
+    # Block matrices Ki for each TC
+    T = TCdf[['A', 'invG', 'C', 'b', 'f', 'y']].copy()
+    T['K'] = ""
+    Kd = []
+    ubf = uby = None
+    for k in range(T.shape[0]):
+        T['K'][k] = np.block([[T['invG'][k], T['A'][k]],
+                              [-T['A'][k].T, T['C'][k]]])
+        Kd = block_diag(Kd, T['K'][k])
+        ubf = np.block([ubf, T['b'][k], T['f'][k]])
+        uby = np.block([uby, T['b'][k], T['y'][k]])
+    Kd = np.delete(Kd, obj=0, axis=0)
+    ubf = np.delete(ubf, obj=0, axis=0)
+    uby = np.delete(uby, obj=0, axis=0)
+
+    Ka = Ad.T @ Kd @ Ad
+
+    # Elements of the assembled circuit
+    # total number of flows
+    nq = sum(size_b_eachTCd)
+    Ga = np.linalg.inv(Ka[:nq, :nq])
+    Aa = Ka[:nq, nq:]
+    Ca = Ka[nq:, nq:]
+
+    u = Ad.T @ ubf
+    ba = u[:nq]
+    fa = u[nq:]     # elements of f for merged nodes > 1
+    fa[fa.nonzero()] = 1
+
+    u = Ad.T @ uby
+    ya = u[nq:]     # elements of f for merged nodes > 1
+    ya[ya.nonzero()] = 1
+
+    TCa = {'A': Aa, 'G': Ga, 'C': Ca, 'b': ba, 'f': fa, 'y': ya}
+
+    TCdf['q local'] = row_Adq_local
+    TCdf['q global'] = row_Adq_global
+    TCdf['θ local'] = row_Adθ_local
+    TCdf['θ glob diss'] = row_Adθ_global
+    TCdf['θ glob diss'] = TCdf['θ glob diss'].apply(lambda x: np.array(x) - nq)
+    return TCa
 
 
 def assemble_TCd_matrix(TCd, ass_mat, TC_auto_number=False):
