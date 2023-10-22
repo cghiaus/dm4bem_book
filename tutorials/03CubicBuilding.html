@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building &#8212; My sample book</title>
+    <title>Toy model building &#8212; My sample book</title>
   
   
   
@@ -167,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Toy model building</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -361,7 +361,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</h1>
+    <h1>Toy model building</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -468,10 +468,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building">
-<h1>Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building<a class="headerlink" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-some-nodes-cubic-building" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="toy-model-building">
+<h1>Toy model building<a class="headerlink" href="#toy-model-building" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F03CubicBuilding.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This tutorial presents the theory of heat transfer in buildings and examplifies it on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>. The model is a thermal circuit with capacities in some nodes and wihout capacities in the ot</p>
+<p>This tutorial presents the theory of heat transfer in buildings and examplifies it on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>. The model is a thermal circuit with thermal capacities in some of the nodes.</p>
 <p><strong>Objectives:</strong></p>
 <ul class="simple">
 <li><p>Analyse a cubic building with 5 identical walls &amp; a transparent wall (glass window), air infiltration, and HVAC system controlling the indoor air temperature.</p></li>
@@ -1679,7 +1679,7 @@ y = C_s \theta_s + D_s u
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1564</span><span class="o">/</span><span class="mf">484680385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1636</span><span class="o">/</span><span class="mf">484680385.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">θs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ1&#39;</span><span class="p">,</span> <span class="s1">&#39;θ3&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">]</span>       <span class="c1"># state temperature nodes</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">uT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q8&#39;</span><span class="p">,</span> <span class="s1">&#39;q10&#39;</span><span class="p">,</span> <span class="s1">&#39;q11&#39;</span><span class="p">]</span>     <span class="c1"># temperature sources</span>
