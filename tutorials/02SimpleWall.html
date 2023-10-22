@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall &#8212; My sample book</title>
+    <title>Simple wall &#8212; My sample book</title>
   
   
   
@@ -166,16 +166,16 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Simple wall</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space models by using Pandas</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs preparation and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -361,7 +361,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</h1>
+    <h1>Simple wall</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -429,9 +429,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall">
-<h1>Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall<a class="headerlink" href="#thermal-circuit-and-state-space-representation-for-a-thermal-circuit-with-capacities-in-every-node-simple-wall" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-wall">
+<h1>Simple wall<a class="headerlink" href="#simple-wall" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F02SimpleWall.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This notebook presents the thermal circuit and state-space representation for a thermal circuit with capacities in every node.</p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <section id="objectives">

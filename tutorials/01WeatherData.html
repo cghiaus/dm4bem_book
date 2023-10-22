@@ -166,7 +166,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
 </ul>
 </li>
@@ -1200,7 +1200,7 @@ dtype: int64
 <div class="math notranslate nohighlight">
 \[ \omega = 15\left ( hour + \frac{minute}{60} - 12 \right )\]</div>
 <p>where <em>hour</em> and <em>minute</em> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_time#Mean_solar_time">solar time</a>.</p>
-<p><span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
+<p>Note: <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hour</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span>
