@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/02SimpleWall';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building" href="03CubicBuilding.html" />
+    <link rel="next" title="Toy model building" href="03CubicBuilding.html" />
     <link rel="prev" title="Modeling and simulation" href="02Model_Simulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -167,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Simple wall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Toy model building</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -438,7 +438,7 @@ document.write(`
 <section id="objectives">
 <h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Model heat transfer with a thermal network.</p></li>
+<li><p>Model heat transfer by using a thermal network.</p></li>
 <li><p>Obtain the mathematical model as a system of differential algebraic equations (DAE).</p></li>
 <li><p>Find the steady-state solution.</p></li>
 <li><p>Transform the system of DAE into state-space representation.</p></li>
@@ -742,6 +742,9 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># number of temperature nodes and flow branches</span>
 <span class="n">no_θ</span> <span class="o">=</span> <span class="n">no_q</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ0&#39;</span><span class="p">,</span> <span class="s1">&#39;θ1&#39;</span><span class="p">,</span> <span class="s1">&#39;θ2&#39;</span><span class="p">,</span> <span class="s1">&#39;θ3&#39;</span><span class="p">,</span> <span class="s1">&#39;θ4&#39;</span><span class="p">,</span> <span class="s1">&#39;θ5&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">]</span>  <span class="c1"># temperature nodes</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q1&#39;</span><span class="p">,</span> <span class="s1">&#39;q2&#39;</span><span class="p">,</span> <span class="s1">&#39;q3&#39;</span><span class="p">,</span> <span class="s1">&#39;q4&#39;</span><span class="p">,</span> <span class="s1">&#39;q5&#39;</span><span class="p">,</span> <span class="s1">&#39;q6&#39;</span><span class="p">]</span>  <span class="c1"># flow-rate branches</span>
 </pre></div>
 </div>
 </div>
@@ -827,7 +830,7 @@ C_0 &amp;  &amp;  &amp; \\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Arc-node incidence matrix</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_q</span><span class="p">,</span> <span class="n">no_θ</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -850,18 +853,18 @@ C_0 &amp;  &amp;  &amp; \\
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
+      <th>θ0</th>
+      <th>θ1</th>
+      <th>θ2</th>
+      <th>θ3</th>
+      <th>θ4</th>
+      <th>θ5</th>
+      <th>θ6</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>q0</th>
       <td>1.0</td>
       <td>-0.0</td>
       <td>-0.0</td>
@@ -871,7 +874,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>q1</th>
       <td>-1.0</td>
       <td>1.0</td>
       <td>-0.0</td>
@@ -881,7 +884,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>q2</th>
       <td>-0.0</td>
       <td>-1.0</td>
       <td>1.0</td>
@@ -891,7 +894,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>q3</th>
       <td>-0.0</td>
       <td>-0.0</td>
       <td>-1.0</td>
@@ -901,7 +904,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>q4</th>
       <td>-0.0</td>
       <td>-0.0</td>
       <td>-0.0</td>
@@ -911,7 +914,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>q5</th>
       <td>-0.0</td>
       <td>-0.0</td>
       <td>-0.0</td>
@@ -921,7 +924,7 @@ C_0 &amp;  &amp;  &amp; \\
       <td>-0.0</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>q6</th>
       <td>-0.0</td>
       <td>-0.0</td>
       <td>-0.0</td>
@@ -1049,7 +1052,7 @@ A^T G &amp; I
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State matrix</span>
 <span class="n">As</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span> <span class="o">@</span> <span class="n">A</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">As</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">As</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1072,18 +1075,18 @@ A^T G &amp; I
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
+      <th>θ0</th>
+      <th>θ1</th>
+      <th>θ2</th>
+      <th>θ3</th>
+      <th>θ4</th>
+      <th>θ5</th>
+      <th>θ6</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>θ0</th>
       <td>-3.6e-04</td>
       <td>2.8e-04</td>
       <td>0.0e+00</td>
@@ -1093,7 +1096,7 @@ A^T G &amp; I
       <td>0.0e+00</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>θ1</th>
       <td>2.8e-04</td>
       <td>-5.5e-04</td>
       <td>2.8e-04</td>
@@ -1103,7 +1106,7 @@ A^T G &amp; I
       <td>0.0e+00</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>θ2</th>
       <td>0.0e+00</td>
       <td>2.8e-04</td>
       <td>-5.5e-04</td>
@@ -1113,7 +1116,7 @@ A^T G &amp; I
       <td>0.0e+00</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>θ3</th>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
       <td>2.8e-04</td>
@@ -1123,7 +1126,7 @@ A^T G &amp; I
       <td>0.0e+00</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>θ4</th>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
@@ -1133,7 +1136,7 @@ A^T G &amp; I
       <td>0.0e+00</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>θ5</th>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
@@ -1143,7 +1146,7 @@ A^T G &amp; I
       <td>1.7e-03</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>θ6</th>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
       <td>0.0e+00</td>
@@ -1165,7 +1168,7 @@ A^T G &amp; I
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input matrix</span>
 <span class="n">Bs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)])</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Bs</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Bs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">q</span> <span class="o">+</span> <span class="n">θ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1188,25 +1191,25 @@ A^T G &amp; I
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>11</th>
-      <th>12</th>
-      <th>13</th>
+      <th>q0</th>
+      <th>q1</th>
+      <th>q2</th>
+      <th>q3</th>
+      <th>q4</th>
+      <th>q5</th>
+      <th>q6</th>
+      <th>θ0</th>
+      <th>θ1</th>
+      <th>θ2</th>
+      <th>θ3</th>
+      <th>θ4</th>
+      <th>θ5</th>
+      <th>θ6</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>θ0</th>
       <td>8.38e-05</td>
       <td>-2.77e-04</td>
       <td>0.00e+00</td>
@@ -1223,7 +1226,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>θ1</th>
       <td>0.00e+00</td>
       <td>2.77e-04</td>
       <td>-2.77e-04</td>
@@ -1240,7 +1243,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>θ2</th>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
       <td>2.77e-04</td>
@@ -1257,7 +1260,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>θ3</th>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
@@ -1274,7 +1277,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>θ4</th>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
@@ -1291,7 +1294,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>θ5</th>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
@@ -1308,7 +1311,7 @@ A^T G &amp; I
       <td>0.00e+00</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>θ6</th>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
       <td>0.00e+00</td>
@@ -2532,7 +2535,7 @@ Max time step Δt = 416.11 s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</p>
+        <p class="prev-next-title">Toy model building</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
