@@ -165,11 +165,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Thermal circuit and state-space representation for a thermal circuit with capacities in every node: simple wall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Thermal circuit and state-space representation for a thermal circuit with capacities in some nodes: cubic building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Toy model building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuitsmodels</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
@@ -492,8 +492,8 @@ document.write(`
 <h2>Eigenvalues, time step and duration<a class="headerlink" href="#eigenvalues-time-step-and-duration" title="Permalink to this headline">#</a></h2>
 <p>The state-space representation allows us to do the eigenvalues analysis and to find:</p>
 <ul class="simple">
-<li><p>maximum time step: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2 \mathrm{min} (-1 / \lambda)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix As;</p></li>
-<li><p>minimum settling time: <span class="math notranslate nohighlight">\(t_{settle} = 4 \mathrm{max} (-1 / \lambda\)</span>).</p></li>
+<li><p>maximum time step for Euler explicit method: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2·\mathrm{min} (-1 / \lambda)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix As;</p></li>
+<li><p>minimum settling time: <span class="math notranslate nohighlight">\(t_{settle} = 4· \mathrm{max} (-1 / \lambda\)</span>).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
