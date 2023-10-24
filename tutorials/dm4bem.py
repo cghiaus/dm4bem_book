@@ -13,7 +13,6 @@ https://github.com/pvlib/pvlib-python/blob/master/pvlib/iotools/epw.py
 
 import numpy as np
 import pandas as pd
-from scipy.linalg import block_diag
 import os
 import glob
 import ast
