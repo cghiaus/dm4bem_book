@@ -454,6 +454,11 @@ document.write(`
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Time integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">Plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-pandas">Plots using Pandas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-matplotlib">Plots using matplotlib</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -2647,8 +2652,16 @@ and
 </div>
 </div>
 </div>
-<p>The total shortwave incident irradiance on the wall <span class="math notranslate nohighlight">\(i\)</span>, is</p>
-<p><span class="math notranslate nohighlight">\(E_i\)</span>,</p>
+<p>The short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall is:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_i = \tau_{g,SW}  \alpha_{w,SW} S_g E_{tot}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tau_{g,SW}\)</span> is the transmission coefficient of the window glass, <span class="math notranslate nohighlight">\(0 \leqslant \tau_{g,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{w,SW}\)</span> - absortion coefficient of the indoor surface of the wall in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_g\)</span> - surface area of the window glass, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total solar radiation intensity on the wall, W/m²</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Window glass properties</span>
@@ -2657,7 +2670,22 @@ and
 <span class="n">S_g</span> <span class="o">=</span> <span class="mi">9</span>         <span class="c1"># m2, surface area of glass</span>
 
 <span class="n">Φi</span> <span class="o">=</span> <span class="n">τ_gSW</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
-<span class="n">Φa</span> <span class="o">=</span> <span class="n">α_gSW</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The short wave (i.e. solar) radiation, in W, absorbed by the window glass is:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_a = \alpha_{g,SW} S_g E_{tot}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha_{g,SW}\)</span> is the absortion coefficient of the glass window in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_g\)</span> - surface area of the glass window, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total solar irradiation on the wall, W/m².</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Φa</span> <span class="o">=</span> <span class="n">α_gSW</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
 </pre></div>
 </div>
 </div>
@@ -2670,17 +2698,6 @@ and
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># auxiliary (internal) sources</span>
 <span class="n">Qa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">weather</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input data set</span>
-<span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span>
-                               <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">})</span>
-<span class="c1"># Get input from input_data_set</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2711,38 +2728,24 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
  \dot{Q}_{a(0)} &amp; \dot{Q}_{a(1)} &amp; ... &amp; \dot{Q}_{a(n-1)}\\ 
 \Phi_{a,(0)} &amp; \Phi_{a,(1)} &amp; ... &amp; \Phi_{a,(n-1)}
 \end{bmatrix}\end{split}\]</div>
-<p>where:</p>
+<p>where the input data set is:</p>
 <p><span class="math notranslate nohighlight">\(T_o\)</span>: the time series vector of outdoor temperatures (from weather data), °C.</p>
 <p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span>: time series vector of indoor setpoint temperatures, °C.</p>
-<p><span class="math notranslate nohighlight">\(\Phi_o\)</span>: time series vector of solar (i.e. short wave) radiation, in W, absorbed by the outdoor surface of the wall:</p>
-<div class="math notranslate nohighlight">
-\[\Phi_o = \alpha_{w,SW} S_w E_{tot}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\alpha_{w,SW}\)</span> is the absortion coefficient of the outdoor surface of the wall in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_w\)</span> - surface area of the wall, m²;</p></li>
-<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total solar irradiation on the wall, W/m².</p></li>
-</ul>
-<p><span class="math notranslate nohighlight">\(\Phi_i\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall:</p>
-<div class="math notranslate nohighlight">
-\[\Phi_i = \tau_{g,SW}  \alpha_{w,SW} S_g E_{tot}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\tau_{g,SW}\)</span> is the transmission coefficient of the window glass, <span class="math notranslate nohighlight">\(0 \leqslant \tau_{g,SW} \leqslant 1\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\alpha_{w,SW}\)</span> - absortion coefficient of the indoor surface of the wall in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_g\)</span> - surface area of the window glass, m²;</p></li>
-<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total solar radiation intensity on the wall, W/m².</p></li>
-</ul>
+<p><span class="math notranslate nohighlight">\(\Phi_o\)</span>: time series vector of solar (i.e. short wave) radiation, in W, absorbed by the outdoor surface of the wall;</p>
+<p><span class="math notranslate nohighlight">\(\Phi_i\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall;</p>
 <p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>: time vector of auxiliary heat flows (from occupants, electrical devices, etc.), W.</p>
-<p><span class="math notranslate nohighlight">\(\Phi_a\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the window glass:</p>
-<div class="math notranslate nohighlight">
-\[\Phi_a = \alpha_{g,SW} S_g E_{tot}\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\alpha_{g,SW}\)</span> is the absortion coefficient of the glass window in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_g\)</span> - surface area of the glass window, m²;</p></li>
-<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total solar irradiation on the wall, W/m².</p></li>
-</ul>
+<p><span class="math notranslate nohighlight">\(\Phi_a\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the window glass.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input data set</span>
+<span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span>
+                               <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">})</span>
+<span class="c1"># Input vector in time from input_data_set</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="initial-conditions">
@@ -2751,9 +2754,9 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                     <span class="c1"># °C, initial temperatures</span>
 <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># Fill θ with initial valeus θ0</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial valeus θ0</span>
 </pre></div>
 </div>
 </div>
@@ -2776,13 +2779,9 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 </div>
-<p>yields the time variation of state variable <span class="math notranslate nohighlight">\(\theta\)</span>, from which we obtain the variation of the output (i.e. indoor temperature):</p>
+<p>yields the time variation of state variable <span class="math notranslate nohighlight">\(\theta\)</span>, from which we obtain the variation of the output in time (i.e., indoor temperature):</p>
 <div class="math notranslate nohighlight">
 \[y = C_s \theta_s + D_s u\]</div>
-<p>and the variation of the heat flow of the HVAC system:</p>
-<div class="math notranslate nohighlight">
-\[q_{HVAC} = K_p (T_{i,sp} - \theta_i) = K_p (T_{i,sp} - y)\]</div>
-<p>where <span class="math notranslate nohighlight">\(K_p\)</span> is the gain of the P-controller and <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> is the HVAC-setpoint for the indoor temperature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outputs</span>
@@ -2791,6 +2790,10 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 </div>
+<p>and the variation in time of the heat flow of the HVAC system:</p>
+<div class="math notranslate nohighlight">
+\[q_{HVAC} = K_p (T_{i,sp} - \theta_i) = K_p (T_{i,sp} - y)\]</div>
+<p>where <span class="math notranslate nohighlight">\(K_p\)</span> is the gain of the P-controller and <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> is the HVAC-setpoint for the indoor temperature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Kp</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span>     <span class="c1"># controller gain</span>
@@ -2799,6 +2802,16 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 </div>
+</section>
+<section id="plots">
+<h4>Plots<a class="headerlink" href="#plots" title="Permalink to this headline">#</a></h4>
+<p>We select the data to plot:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span>, outdoor temperature, in °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>, indoor temperature, in °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span>, total solar irradiance, W/m²;</p></li>
+<li><p>q_{HVAC}, thermal load of the buildings, W.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;θi&#39;</span><span class="p">:</span> <span class="n">y_exp</span><span class="p">[</span><span class="s1">&#39;θ6&#39;</span><span class="p">],</span>
@@ -2807,6 +2820,9 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 </div>
+<section id="plots-using-pandas">
+<h5>Plots using Pandas<a class="headerlink" href="#plots-using-pandas" title="Permalink to this headline">#</a></h5>
+<p>The plots mays be done by using <code class="docutils literal notranslate"><span class="pre">plot</span></code> method for DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -2832,6 +2848,10 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <blockquote>
 <div><p>Figure 6. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
+</section>
+<section id="plots-using-matplotlib">
+<h5>Plots using matplotlib<a class="headerlink" href="#plots-using-matplotlib" title="Permalink to this headline">#</a></h5>
+<p>Alternativelly, we may use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>   <span class="c1"># time vector</span>
@@ -2862,6 +2882,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <blockquote>
 <div><p>Figure 7. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
+</section>
 </section>
 </section>
 </section>
@@ -3050,6 +3071,11 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Time integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">Plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-pandas">Plots using Pandas</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-matplotlib">Plots using matplotlib</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
