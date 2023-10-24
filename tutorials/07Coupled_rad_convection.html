@@ -1,0 +1,1022 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Radiation coupled with convection &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/07Coupled_rad_convection';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Miscellaneous" href="miscellaneous.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Toy model building</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Radiation coupled with convection</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/07Coupled_rad_convection.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/07Coupled_rad_convection.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Radiation coupled with convection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-analysis">Problem analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model">Physical model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-model">Computational model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-for-problem-solving">Plan for problem solving</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors">View factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-wave-solar-radiation">Short-wave (solar) radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-infrared-thermal-radiation">Long-wave (infrared) thermal radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-short-wave-radiation-long-wave-radiation-and-convection">Coupled short-wave radiation, long-wave radiation and convection</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="radiation-coupled-with-convection">
+<h1>Radiation coupled with convection<a class="headerlink" href="#radiation-coupled-with-convection" title="Permalink to this headline">#</a></h1>
+<p><img alt="Figure 1" src="../_images/07_radiation_convect_prism.svg" /></p>
+<blockquote>
+<div><p>Figures 1. a) Triagular prism. b) Heat flow rate balance on a surface.</p>
+</div></blockquote>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider a triangular prism of infinite lenght (Figure 1a) with the characteristics:</p>
+<ul class="simple">
+<li><p>surface 1: transparnt in short-wave, <span class="math notranslate nohighlight">\(\tau_{SW}=1\)</span>, opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
+<li><p>surfaces 2 and 3: opaque <span class="math notranslate nohighlight">\(\tau_{SW}=1\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{SW} = 0.8\)</span> in short-wave and opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
+</ul>
+<p>The short wave (solar) radiation on the walls 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m²}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m²}\)</span>, respectively.</p>
+<p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/m²K}\)</span> for all wals.</p>
+<p>The temperature of each wall is considered homogeneous. The heat balance of a wall is represented in Figure 1b.
+The heat flow rate by conduction is negligible for all walls, <span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> (Figure 1b).</p>
+<p>In this conditions, find the temperatures of the walls.</p>
+</section>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">#</a></h2>
+<section id="problem-analysis">
+<h3>Problem analysis<a class="headerlink" href="#problem-analysis" title="Permalink to this headline">#</a></h3>
+<section id="physical-model">
+<h4>Physical model<a class="headerlink" href="#physical-model" title="Permalink to this headline">#</a></h4>
+<p>The indoor air temperature is controlled; since it does not change as a result of what happens in the system, it is an input.</p>
+<p>The short-wave (solar) <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> are also inputs.</p>
+<p>The tempertures of the surfaces are three dependent variables represented by nodes; they are the outputs (dependent variables).</p>
+</section>
+<section id="computational-model">
+<h4>Computational model<a class="headerlink" href="#computational-model" title="Permalink to this headline">#</a></h4>
+<p>The knwon variables (the inputs of the computational model) are the inputs of the physical model and the ouputs of the computational model are the outputs of the phyisical model. It is a <em>direct problem</em>.</p>
+<p>The problem is described by:</p>
+<p><span class="math notranslate nohighlight">\(\sigma\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Vector of outputs</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> : vector of unknown temperaures (output of the model).</p></li>
+</ul>
+</li>
+</ol>
+</br>
+<ol class="arabic simple" start="2">
+<li><p>Vectors of variables:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E^o\)</span>: direct <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span>: total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces: the sum of direct irradiance and reflected irradiances received from the other surfaces, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^o\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant emmitance</a> or total emmisive power of a <a class="reference external" href="https://en.wikipedia.org/wiki/Black-body_radiation">black body</a>, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_a\)</span>: air temperaures beyond the boundary layer of each surface, °C.</p></li>
+</ul>
+</li>
+</ol>
+</br>
+<ol class="arabic simple" start="3">
+<li><p>Matrices of coefficients:</p>
+<ul class="simple">
+<li><p>Short-wave radiation:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Absorption_(electromagnetic_radiation)">absorption</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \alpha_i \le 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_coefficient">reflexion</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \rho_i \le 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Transmission_coefficient#Optics">transmission</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \tau_i \le 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a>, <span class="math notranslate nohighlight">\(0 \le F_{i,j} \le 1\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Long-wave radiation:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span>: coefficents of <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a>, <span class="math notranslate nohighlight">\(0 \le \varepsilon_i \le 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(F\)</span>: view factors (same as for short-wave radiation).</p></li>
+</ul>
+</li>
+<li><p>Convection</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(h\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Heat_transfer_coefficient">heat convection</a> (diagonal matrix), W/m² K.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note:</strong></p>
+<p>According to <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">Kirchhoff’s law of thermal radiation</a>, the absorbtivity and the emmisivity are equal for the same wavelength, <span class="math notranslate nohighlight">\(\alpha_{\lambda} = \varepsilon_{\lambda}\)</span>. Therefore, in order to simplify the notations, absortivity <span class="math notranslate nohighlight">\(\alpha\)</span> is used for short-wave radiation and emissivity <span class="math notranslate nohighlight">\(\varepsilon\)</span> is used for long-wave radiation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Stefan-Bolzmann constant</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mf">5.670e-8</span>    <span class="c1"># W / (m2 K4)</span>
+
+<span class="c1"># Vectors of inputs</span>
+<span class="c1"># =================</span>
+<span class="c1"># Irradiances of the surfaces</span>
+<span class="n">E0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">E0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span>     <span class="c1"># W/m2</span>
+
+<span class="c1"># Air temperature beyond the boundary layer</span>
+<span class="n">Ta</span> <span class="o">=</span> <span class="mi">20</span>                 <span class="c1"># °C, indoor air temperature</span>
+<span class="n">Ta</span> <span class="o">=</span> <span class="n">Ta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>    <span class="c1"># the same for all 3 surfaces</span>
+
+<span class="c1"># Matrices of coefficients</span>
+<span class="c1"># ========================</span>
+<span class="c1"># Transmission coefficients - short-wave (LW)</span>
+<span class="n">τ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">τ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">τ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">τ</span><span class="p">)</span>
+
+<span class="c1"># Absorbtion coefficients - short-wave (SW)</span>
+<span class="n">α</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">α</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">α</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">α</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span>
+
+<span class="c1"># Reflexion coefficient - short-wave (SW)</span>
+<span class="n">ρ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">α</span> <span class="o">+</span> <span class="n">τ</span><span class="p">)</span>
+
+<span class="c1"># Emissivity coefficients - long-wave (LW)</span>
+<span class="n">ε</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Heat convection coefficient</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># W/(m2 K)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="c1"># Identity matrix</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plan-for-problem-solving">
+<h4>Plan for problem solving<a class="headerlink" href="#plan-for-problem-solving" title="Permalink to this headline">#</a></h4>
+<p>The problem to solve is to find the three temperaures of the surfaces. In linear form, it means to solve the equation</p>
+<div class="math notranslate nohighlight">
+\[A_{\theta} \theta = b_{\theta}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{\theta}\)</span> is a matrix with elements depending on coeffcients;</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_{\theta}\)</span> - vector with elements depending on coefficients and inputs;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - vector of temperatures (size 3).</p></li>
+</ul>
+<p>The system of equations for temperaures will be obtained from the heat balance on the surfaces (Figure 1b):</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{cv} + \varphi_{SW} - \varphi_{LW} + \varphi_{cd} = 0 \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\varphi_{cv}\)</span> is the flow rate by convection, <span class="math notranslate nohighlight">\(\varphi_{cv} = h (T_a - \theta)\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{SW}\)</span> - short-wave radiation absorbed by the surfaces, <span class="math notranslate nohighlight">\(\varphi_{SW} = A_{E^o}E^o\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{LW}\)</span> - long-wave radiation, <span class="math notranslate nohighlight">\(\varphi_{LW} = A_{M^o}M^o\)</span>, where <span class="math notranslate nohighlight">\(M^o_i\)</span> is the vector of emitances <span class="math notranslate nohighlight">\(M^o_i = \sigma T_i^4\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> - flow-rate through conduction; zero in this specific problem.</p></li>
+</ul>
+</section>
+</section>
+<section id="view-factors">
+<h3>View factors<a class="headerlink" href="#view-factors" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\(F_{1,1} = F_{2,2} = F_{3,3} \)</span> - the surfaces are flat.</p>
+<p><span class="math notranslate nohighlight">\(F_{1,2} = F_{3,1}\)</span> - due to symetry.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 1} + F_{1, 2} + F_{1, 3} = 1\)</span>, is results that <span class="math notranslate nohighlight">\(F_{1, 2} = F_{1, 3} = 1/2\)</span>.</p>
+<p>From the reciprocity relation, <span class="math notranslate nohighlight">\(F_{1,2}S_1 = F_{2,1}S_2\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_1 = \sqrt{2}S_2\)</span>, it results that <span class="math notranslate nohighlight">\( \sqrt{2} F_{1, 2} = F_{2, 1}\)</span>, i.e. <span class="math notranslate nohighlight">\(F_{2, 1} = \sqrt{2} / 2\)</span>.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{2, j} = F_{2, 1} + F_{2, 2} + F_{2, 3} = 1\)</span>, is results that <span class="math notranslate nohighlight">\(F_{2, 3} = 1 - F_{2, 1} = 1 - \sqrt{2} / 2\)</span>.</p>
+<p>Due to symetry, <span class="math notranslate nohighlight">\(F_{3, 2} = F_{2, 3}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F = &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F = 
+[[0.  0.5 0.5]
+ [0.7 0.  0.3]
+ [0.7 0.3 0. ]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="short-wave-solar-radiation">
+<h3>Short-wave (solar) radiation<a class="headerlink" href="#short-wave-solar-radiation" title="Permalink to this headline">#</a></h3>
+<p>The set of previous equation for short-wave solar radiation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 - \rho_1 F_{1,1} &amp; - \rho_2 F_{1,2}    &amp; - \rho_n F_{1,3}\\ 
+- \rho_1 F_{2,1}   &amp; 1 - \rho_2 F_{2,2}  &amp; - \rho_n F_{2,n3} \\ 
+- \rho_1 F_{n,1}   &amp; - \rho_2 F_{n,1}    &amp; 1 - \rho_n F_{n,n}
+\end{bmatrix} \begin{bmatrix}
+E_1\\ 
+E_2\\ 
+E_3
+\end{bmatrix} = \begin{bmatrix}
+E_{1}^{o}\\ 
+E_{2}^{o}\\  
+E_{3}^{o}
+\end{bmatrix}
+\end{split}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[(I - \mathrm{diag}(\rho) \circ F) E = E^o\]</div>
+<p>The unknown total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> on walls, in W/m², are then</p>
+<div class="math notranslate nohighlight">
+\[ E = (I - \rho \circ F)^{-1} E^o\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{diag}(·)\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Diagonal_matrix#Matrix-to-vector_diag_operator">matrix-to-vector diagonal operator</a>;</p></li>
+<li><p>the symbol <span class="math notranslate nohighlight">\(\circ\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a>;</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(I =\begin{bmatrix}
+1 &amp; 0 &amp; 0 \\ 
+0 &amp; 1 &amp; 0 \\ 
+0 &amp; 0 &amp; 1 
+\end{bmatrix}, \)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Identity_matrix">identity matrix</a>;</p>
+<p><span class="math notranslate nohighlight">\(\rho = \begin{bmatrix}
+\rho_1 &amp; 0 &amp; 0\\ 
+0 &amp; \rho_2  &amp; 0\\ 
+0 &amp; 0  &amp; \rho_3 
+\end{bmatrix}\)</span> - diagonal matrix of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Reflectance">reflectances</a>, <span class="math notranslate nohighlight">\(0 \le \rho_i \le 1\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(F = \begin{bmatrix}
+F_{1,1} &amp; F_{1,2} &amp; F_{1,3}\\ 
+F_{2,1} &amp; F_{2,2} &amp; F_{2,3} \\ 
+F_{3,1} &amp; F_{3,2} &amp; F_{3,3}
+\end{bmatrix}\)</span> - matrix of <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a>, <span class="math notranslate nohighlight">\(0 \le F_{i,j} \le 1\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(E^o = \begin{bmatrix}
+E_{1}^{o}\\ 
+E_{2}^{o}\\ 
+E_{3}^{o}
+\end{bmatrix}\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">direct solar irradiances</a>, W/m²;</p>
+<p><span class="math notranslate nohighlight">\(E = \begin{bmatrix}
+E_1\\ 
+E_2\\  
+E_3
+\end{bmatrix}\)</span> - vector of unknown total irradiances, W/m².</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">((</span><span class="n">I</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">ρ</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">))</span> <span class="o">@</span> <span class="n">E0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E = &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="s1">&#39;W/m²&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E = 
+[ 23.4 126.3 107.4] W/m²
+</pre></div>
+</div>
+</div>
+</div>
+<p>Short-wave heat flow rate absorbed by the surfaces:
+$<span class="math notranslate nohighlight">\(\varphi = \alpha E\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">φSW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;φ_SW = &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">φSW</span><span class="p">,</span> <span class="s1">&#39;W/m²&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>φ_SW = 
+[  0.  101.   85.9] W/m²
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="long-wave-infrared-thermal-radiation">
+<h3>Long-wave (infrared) thermal radiation<a class="headerlink" href="#long-wave-infrared-thermal-radiation" title="Permalink to this headline">#</a></h3>
+<p>Long-wave absorbtion coefficinets of the surfaces are <span class="math notranslate nohighlight">\(\alpha_{LW,0} = \alpha_{LW,1} = \alpha_{LW,2} = 0.8\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># α = 0.8 * np.ones(3)</span>
+<span class="c1"># α = np.diag(α)</span>
+<span class="c1"># ε = α       # Kirchhoff law</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The net flow rate density emmitted by a surface is:
+$<span class="math notranslate nohighlight">\(\varphi_{LW, i} = \varepsilon_i M^o_i - \alpha_i E_{LW,i}\)</span>$
+where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(M^o_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> of the surface, <span class="math notranslate nohighlight">\(M^o_i = \sigma T_i^4\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{LW,i}\)</span> - global long wave radiation (luminace) received by the surface;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficent of absortivity in long wave;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coeffient of emmissivity in long wave.</p></li>
+</ul>
+<p>The global long wave radiation (luminace) received by the surface is the sum of the emmitted and reflected flow, refe</p>
+<div class="math notranslate nohighlight">
+\[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(J_j\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>.</p></li>
+</ul>
+<p>Taking int account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
+<div class="math notranslate nohighlight">
+\[E_{LW,i} = \sum_j F_{i, j} (\varepsilon_jM^o_j + \rho_j E_{LW, j})\]</div>
+<p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span> and, since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[E_{LW,i} - \sum_j F_{i, j} (1 - \varepsilon_j) E_{LW,j} = \sum_j F_{i,j} \varepsilon_j M^o_j\]</div>
+<p>In matrix form, this equation is:</p>
+<div class="math notranslate nohighlight">
+\[ (I - F(I - \varepsilon))E_{LW} = F \varepsilon M^o\]</div>
+<p>In our case, the matrix <span class="math notranslate nohighlight">\((I - F(I - \varepsilon))\)</span> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">F</span> <span class="o">@</span> <span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">ε</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  -0.1 -0.1]
+ [-0.1  1.  -0.1]
+ [-0.1 -0.1  1. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the matrix <span class="math notranslate nohighlight">\(F \varepsilon\)</span> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">F</span> <span class="o">@</span> <span class="n">ε</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.  0.4 0.4]
+ [0.6 0.  0.2]
+ [0.6 0.2 0. ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this equation, it results the vector of long wave radiation on surfaces:</p>
+<div class="math notranslate nohighlight">
+\[E_{LW} = [(I - F(I - \varepsilon))]^{-1} F \varepsilon M^o\]</div>
+<p>By substituting <span class="math notranslate nohighlight">\(E_{LW}\)</span> into</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW, i} = \varepsilon_i M^o_i - \alpha_i E_{LW,i}\]</div>
+<p>we obtain</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW} =  \varepsilon \{I - [I - F (I - \varepsilon)]^{-1}\ F \varepsilon\}  M^o = K M^o\]</div>
+<p>In our case, the matrix <span class="math notranslate nohighlight">\(K = \varepsilon \{I - [I - F (I - \varepsilon)]^{-1}\ F \varepsilon\}\)</span> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">ε</span> <span class="o">@</span> <span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">F</span> <span class="o">@</span> <span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">ε</span><span class="p">))</span> <span class="o">@</span> <span class="n">F</span> <span class="o">@</span> <span class="n">ε</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;K = &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>K = 
+[[ 0.7 -0.4 -0.4]
+ [-0.5  0.7 -0.2]
+ [-0.5 -0.2  0.7]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The equation of <span class="math notranslate nohighlight">\(\varphi_{LW} = K M^o\)</span> is linear in emmitances <span class="math notranslate nohighlight">\(M^o\)</span> but not linear in temperatures, since <span class="math notranslate nohighlight">\(M^o_i = \sigma T_i^4\)</span>. In order to linearize the equation <span class="math notranslate nohighlight">\(\varphi_{LW} = K \sigma T^4\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T^4 = \begin{bmatrix}
+T_0^4\\ 
+T_1^4\\ 
+T_2^4
+\end{bmatrix}\end{split}\]</div>
+<p>is the vector of (absolote values) temperatures of the surfaces.</p>
+<p>Let’s consider the particular case in which all temperatures have the same value <span class="math notranslate nohighlight">\(\bar{T}\)</span>. In this case, the heat flow rate between the surfaces is zero,</p>
+<div class="math notranslate nohighlight">
+\[\bar \varphi_{LW} = K \sigma \bar T^4 = 0\]</div>
+<p>Therefore,</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW} - \bar \varphi_{LW} = \varphi_{LW} = K \sigma (T^4 - \bar T^4)\]</div>
+<p>Taking into account that</p>
+<div class="math notranslate nohighlight">
+\[T_i^4 - \bar T_i^4 = (T_i^2 + \bar T_i^2 )(T_i + \bar T_i )(T_i - \bar T_i )\]</div>
+<p>the linearized equation for long-wave radiation is then:</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW} = K M^o = \sigma K H (T - \bar T) = \sigma K H \theta\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(H\)</span> is diagonal with the elements
+$<span class="math notranslate nohighlight">\(H_i = (T_i^2 + \bar T_i^2 )(T_i + \bar T_i)\)</span>$</p>
+<p>Solving this equation requires an initial guess of <span class="math notranslate nohighlight">\(\bar T_i\)</span>. If we consider that <span class="math notranslate nohighlight">\(T_i  \approx \bar T_i\)</span> and that <span class="math notranslate nohighlight">\(\bar T_i = \bar T = 273.15 \, \mathrm K\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[T_i^4 - \bar T_i^4 \approx 4 \bar T^3\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW} = K M^o \approx 4 \sigma \bar T^3 K \theta\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\theta = \begin{bmatrix}
+\theta_0\\ 
+\theta_1\\ 
+\theta_2
+\end{bmatrix}\end{split}\]</div>
+<p>are the surface temperatures expressed in degree Celsius.</p>
+<p>For our example, the diagonal matrix <span class="math notranslate nohighlight">\(H \approx 4 \sigma \bar T^3 I\)</span> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T0</span> <span class="o">=</span> <span class="mf">273.15</span>        <span class="c1"># K, temperature</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T0</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[4.6 0.  0. ]
+ [0.  4.6 0. ]
+ [0.  0.  4.6]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\sigma \bar T^3 K\)</span> of the linearized expression of heat flow rates $<span class="math notranslate nohighlight">\(\varphi_{LW} = 4 \sigma \bar T^3 K \theta = L \theta\)</span>$ is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">H</span> <span class="o">@</span> <span class="n">K</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L = &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>L = 
+[[ 3.2 -1.6 -1.6]
+ [-2.3  3.4 -1.1]
+ [-2.3 -1.1  3.4]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note:</strong> For values of the temperature that are usual in buildings, i.e., <span class="math notranslate nohighlight">\(0°C \leq \bar T - 273.15 \leq 40 °C\)</span>, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.5 and 7.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T0</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T0</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.6 7. ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="coupled-short-wave-radiation-long-wave-radiation-and-convection">
+<h3>Coupled short-wave radiation, long-wave radiation and convection<a class="headerlink" href="#coupled-short-wave-radiation-long-wave-radiation-and-convection" title="Permalink to this headline">#</a></h3>
+<p>From the heat flow balance for a surface <span class="math notranslate nohighlight">\(i\)</span> shown in Figure 1b, it results that</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{cv} + \varphi_{SW} - \varphi_{LW} + \varphi_{cd} = 0 \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\varphi_{cv} = h (T_a - \theta)\)</span> is the flow rate by convection;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{SW}\)</span> - short-wave radiation absorbed by the surfaces;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{LW} = L \theta\)</span> - linearized long-wave radiation;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> - flow-rate through conduction; it is zero in this specific problem.</p></li>
+</ul>
+<p>By substitution, it results:</p>
+<div class="math notranslate nohighlight">
+\[h (T_a - \theta) + \varphi_{SW} - L \theta = 0 \]</div>
+<p>which, by considering that the vector of temperatures is the uknown, becomes:</p>
+<div class="math notranslate nohighlight">
+\[(L + hI) \theta = (\varphi_{SW} + h T_a)\]</div>
+<p>which is an equation of the form $<span class="math notranslate nohighlight">\(A_{\theta} \theta = b_{\theta}\)</span>$ where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_{\theta} = L + hI\)</span> is a matrix with elements depending on coeffcients (<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(h\)</span>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_{\theta} = \varphi_{SW} + h T_a\)</span> - vector with elements depending on coefficients (<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(h\)</span>) and inputs (<span class="math notranslate nohighlight">\(E^o\)</span> and <span class="math notranslate nohighlight">\(T_a\)</span>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - vector of temperatures (size 3)</p></li>
+</ul>
+<p>By solving for surface temperatures <span class="math notranslate nohighlight">\(\theta\)</span>, it results:</p>
+<div class="math notranslate nohighlight">
+\[\theta = (L + hI)^{-1} (\varphi_{SW} + h T_a)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">φSW</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="n">Ta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;θ = &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">θ</span><span class="p">,</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θ = 
+[25.8 35.4 33.8] °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="miscellaneous.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Miscellaneous</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-analysis">Problem analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-model">Physical model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-model">Computational model</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-for-problem-solving">Plan for problem solving</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors">View factors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-wave-solar-radiation">Short-wave (solar) radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-infrared-thermal-radiation">Long-wave (infrared) thermal radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-short-wave-radiation-long-wave-radiation-and-convection">Coupled short-wave radiation, long-wave radiation and convection</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
