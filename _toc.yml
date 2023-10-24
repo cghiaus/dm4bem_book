@@ -21,3 +21,9 @@ chapters:
   - file: tutorials/pd03assembleTCd
   - file: tutorials/pd04tc2ss
   - file: tutorials/pd05simulation
+- file: tutorials/miscellaneous.md
+  sections:
+  - file: tutorials/07Coupled_rad_convection
+  - file: tutorials/08Thermal_load.ipynb
+  - file: tutorials/09Air_flow_ventilation.ipynb
+  - file: tutorials/10Degree_hours_intermittance.ipynb
