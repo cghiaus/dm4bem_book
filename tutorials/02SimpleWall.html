@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Simple wall &#8212; My sample book</title>
+    <title>Simple wall &#8212; dm4bem</title>
   
   
   
@@ -627,7 +627,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>Let’s consider the surface area of the wall 3 x 3 m² and the volume of the indoor air is 3 x 3 x 3 m³.</p>
+<p>Let’s consider that the surface area of the wall is 3 x 3 m² and the volume of the indoor air is 3 x 3 x 3 m³.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_wall</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>      <span class="c1"># m², wall surface area</span>
@@ -648,7 +648,7 @@ document.write(`
 <ul class="simple">
 <li><p>oriented branches: temperature sources and resistances (or conductances) through which crosses a flow rate;</p></li>
 <li><p>nodes: flow rate sources and capacities characterized by a temperature;</p></li>
-<li><p>incidence relation: how the nodes are connected by the oriented branches.</p></li>
+<li><p>incidence relation: description of how the nodes are connected by the oriented branches.</p></li>
 </ul>
 <p>The circuit (or the network) is described by:</p>
 <ul class="simple">
@@ -656,10 +656,10 @@ document.write(`
 <li><p>sources: temperatures and heat flow rates;</p></li>
 <li><p>connections: an oriented graph which shows how the nodes of temperature are connected by oriented branches of flow rates.</p></li>
 </ul>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Network_analysis_(electrical_circuits)">Network (or circuit) analysis</a> means finding the temperatures and the flow rates when the circuit (i.e. the elements, sources and their connections) is given.</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Network_analysis_(electrical_circuits)">Network (or circuit) analysis</a> means finding the temperatures and the flow rates when the circuit (i.e. the elements, the sources and their connections) is given.</p>
 <p>The circuit elements of the thermal network are the resistances and the capacities. Their values are found by using the thermo-physical properties of the materials: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity">thermal conductivity</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a>, and the geometrical values: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Length">width</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Surface_area">surface area</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volume">volume</a>.</p>
 <p>The parameters are grouped in matrices of parameters, or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Coefficient_matrix">coefficent matrices</a>, and the variables are in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Vector_(mathematics_and_physics)">vectors</a>. The variables are physical inputs, modelled by temperature and flow rate sources, and physical outputs, modelled by temperatures of the nodes and flow rates through the branches.</p>
-<p>The circuits model physical systems which are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Causal_system">causal</a>: the values of the outputs depend on past and current values of the inputs (but not on future values of the inputs).</p>
+<p>The thermal circuits model physical systems which are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Causal_system">causal</a>: the values of the outputs depend on past and current values of the inputs (but not on future values of the inputs).</p>
 <section id="resistances">
 <h3>Resistances<a class="headerlink" href="#resistances" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_resistance">thermal resistances</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">thermal conduction</a> are of the form:</p>
@@ -2618,7 +2618,7 @@ Max time step Δt = 416.11 s
   <div class="footer-item">
     
 <p class="component-author">
-Par The Jupyter Book Community
+Par Christian Ghiaus
 </p>
 
   </div>
