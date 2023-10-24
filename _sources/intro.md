@@ -16,7 +16,7 @@ This book uses the writing conventions for unit symbols and names recommanded by
 
 The Jupyter Notebooks can be run interactively by pushing the __launch binder__ button:
 
-![Binder](https://mybinder.org/badge_logo.svg)  
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 
 ```{tableofcontents}
 ```
