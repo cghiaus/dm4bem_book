@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of the potential of energy savings obtained by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 </ul>
 </li>
 </ul>
@@ -535,16 +535,16 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 </section>
 <section id="plan-for-problem-solving">
 <h4>Plan for problem solving<a class="headerlink" href="#plan-for-problem-solving" title="Permalink to this headline">#</a></h4>
-<p>The problem to solve is to find the three temperaures of the surfaces. In linear form, it means to solve the equation</p>
+<p>The problem to solve is to find the three temperatures of the surfaces. In linear form, it means to solve the equation</p>
 <div class="math notranslate nohighlight">
 \[A_{\theta} \theta = b_{\theta}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(A_{\theta}\)</span> is a matrix with elements depending on coeffcients;</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{\theta}\)</span> is a matrix with elements depending on coefficients;</p></li>
 <li><p><span class="math notranslate nohighlight">\(b_{\theta}\)</span> - vector with elements depending on coefficients and inputs;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> - vector of temperatures (size 3).</p></li>
 </ul>
-<p>The system of equations for temperaures will be obtained from the heat balance on the surfaces (Figure 1b):</p>
+<p>The system of equations for temperatures will be obtained from the heat balance on the surfaces (Figure 1b):</p>
 <div class="math notranslate nohighlight">
 \[\varphi_{cv} + \varphi_{SW} - \varphi_{LW} + \varphi_{cd} = 0 \]</div>
 <p>where:</p>
@@ -560,9 +560,9 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <h3>View factors<a class="headerlink" href="#view-factors" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(F_{1,1} = F_{2,2} = F_{3,3} \)</span> - the surfaces are flat.</p>
 <p><span class="math notranslate nohighlight">\(F_{1,2} = F_{3,1}\)</span> - due to symetry.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 1} + F_{1, 2} + F_{1, 3} = 1\)</span>, is results that <span class="math notranslate nohighlight">\(F_{1, 2} = F_{1, 3} = 1/2\)</span>.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 1} + F_{1, 2} + F_{1, 3} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = F_{1, 3} = 1/2\)</span>.</p>
 <p>From the reciprocity relation, <span class="math notranslate nohighlight">\(F_{1,2}S_1 = F_{2,1}S_2\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_1 = \sqrt{2}S_2\)</span>, it results that <span class="math notranslate nohighlight">\( \sqrt{2} F_{1, 2} = F_{2, 1}\)</span>, i.e. <span class="math notranslate nohighlight">\(F_{2, 1} = \sqrt{2} / 2\)</span>.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{2, j} = F_{2, 1} + F_{2, 2} + F_{2, 3} = 1\)</span>, is results that <span class="math notranslate nohighlight">\(F_{2, 3} = 1 - F_{2, 1} = 1 - \sqrt{2} / 2\)</span>.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{2, j} = F_{2, 1} + F_{2, 2} + F_{2, 3} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{2, 3} = 1 - F_{2, 1} = 1 - \sqrt{2} / 2\)</span>.</p>
 <p>Due to symetry, <span class="math notranslate nohighlight">\(F_{3, 2} = F_{2, 3}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,8 +655,9 @@ E_3
 </div>
 </div>
 </div>
-<p>Short-wave heat flow rate absorbed by the surfaces:
-$<span class="math notranslate nohighlight">\(\varphi = \alpha E\)</span>$</p>
+<p>Short-wave heat flow rate absorbed by the surfaces:</p>
+<div class="math notranslate nohighlight">
+\[\varphi = \alpha E\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">φSW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span>
@@ -685,23 +686,24 @@ $<span class="math notranslate nohighlight">\(\varphi = \alpha E\)</span>$</p>
 </div>
 </div>
 </div>
-<p>The net flow rate density emmitted by a surface is:
-$<span class="math notranslate nohighlight">\(\varphi_{LW, i} = \varepsilon_i M^o_i - \alpha_i E_{LW,i}\)</span>$
-where:</p>
+<p>The net flow rate density emmitted by a surface is:</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW, i} = \varepsilon_i M^o_i - \alpha_i E_{LW,i}\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(M^o_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> of the surface, <span class="math notranslate nohighlight">\(M^o_i = \sigma T_i^4\)</span>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(E_{LW,i}\)</span> - global long wave radiation (luminace) received by the surface;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficent of absortivity in long wave;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coeffient of emmissivity in long wave.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficient of absortivity in long wave;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coefficient of emmissivity in long wave.</p></li>
 </ul>
-<p>The global long wave radiation (luminace) received by the surface is the sum of the emmitted and reflected flow, refe</p>
+<p>The global long wave radiation (luminace) received by the surface is the sum of the emmitted and reflected flow,</p>
 <div class="math notranslate nohighlight">
 \[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(J_j\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>.</p></li>
 </ul>
-<p>Taking int account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
+<p>Taking into account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
 <div class="math notranslate nohighlight">
 \[E_{LW,i} = \sum_j F_{i, j} (\varepsilon_jM^o_j + \rho_j E_{LW, j})\]</div>
 <p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span> and, since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>. Therefore,</p>
@@ -774,7 +776,7 @@ T_0^4\\
 T_1^4\\ 
 T_2^4
 \end{bmatrix}\end{split}\]</div>
-<p>is the vector of (absolote values) temperatures of the surfaces.</p>
+<p>is the vector of (absolute) temperatures of the surfaces.</p>
 <p>Let’s consider the particular case in which all temperatures have the same value <span class="math notranslate nohighlight">\(\bar{T}\)</span>. In this case, the heat flow rate between the surfaces is zero,</p>
 <div class="math notranslate nohighlight">
 \[\bar \varphi_{LW} = K \sigma \bar T^4 = 0\]</div>
@@ -787,8 +789,9 @@ T_2^4
 <p>the linearized equation for long-wave radiation is then:</p>
 <div class="math notranslate nohighlight">
 \[\varphi_{LW} = K M^o = \sigma K H (T - \bar T) = \sigma K H \theta\]</div>
-<p>where the matrix <span class="math notranslate nohighlight">\(H\)</span> is diagonal with the elements
-$<span class="math notranslate nohighlight">\(H_i = (T_i^2 + \bar T_i^2 )(T_i + \bar T_i)\)</span>$</p>
+<p>where the matrix <span class="math notranslate nohighlight">\(H\)</span> is diagonal with the elements</p>
+<div class="math notranslate nohighlight">
+\[H_i = (T_i^2 + \bar T_i^2 )(T_i + \bar T_i)\]</div>
 <p>Solving this equation requires an initial guess of <span class="math notranslate nohighlight">\(\bar T_i\)</span>. If we consider that <span class="math notranslate nohighlight">\(T_i  \approx \bar T_i\)</span> and that <span class="math notranslate nohighlight">\(\bar T_i = \bar T = 273.15 \, \mathrm K\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[T_i^4 - \bar T_i^4 \approx 4 \bar T^3\]</div>
@@ -820,7 +823,8 @@ $<span class="math notranslate nohighlight">\(H_i = (T_i^2 + \bar T_i^2 )(T_i + 
 </div>
 </div>
 </div>
-<p>The matrix <span class="math notranslate nohighlight">\(\sigma \bar T^3 K\)</span> of the linearized expression of heat flow rates $<span class="math notranslate nohighlight">\(\varphi_{LW} = 4 \sigma \bar T^3 K \theta = L \theta\)</span>$ is:</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\sigma \bar T^3 K\)</span> of the linearized expression of heat flow rates</p>
+<p>$<span class="math notranslate nohighlight">\(\varphi_{LW} = 4 \sigma \bar T^3 K \theta = L \theta\)</span>$ is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">H</span> <span class="o">@</span> <span class="n">K</span>
@@ -838,7 +842,7 @@ $<span class="math notranslate nohighlight">\(H_i = (T_i^2 + \bar T_i^2 )(T_i + 
 </div>
 </div>
 </div>
-<p><strong>Note:</strong> For values of the temperature that are usual in buildings, i.e., <span class="math notranslate nohighlight">\(0°C \leq \bar T - 273.15 \leq 40 °C\)</span>, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.5 and 7.</p>
+<p><strong>Note:</strong> For temperatures that are usual in buildings, i.e., <span class="math notranslate nohighlight">\(0°C \leq \bar T - 273.15 \leq 40 °C\)</span>, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.5 and 7.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T0</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
@@ -871,7 +875,10 @@ $<span class="math notranslate nohighlight">\(H_i = (T_i^2 + \bar T_i^2 )(T_i + 
 <p>which, by considering that the vector of temperatures is the uknown, becomes:</p>
 <div class="math notranslate nohighlight">
 \[(L + hI) \theta = (\varphi_{SW} + h T_a)\]</div>
-<p>which is an equation of the form $<span class="math notranslate nohighlight">\(A_{\theta} \theta = b_{\theta}\)</span>$ where:</p>
+<p>which is an equation of the form</p>
+<div class="math notranslate nohighlight">
+\[A_{\theta} \theta = b_{\theta}\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A_{\theta} = L + hI\)</span> is a matrix with elements depending on coeffcients (<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(h\)</span>);</p></li>
 <li><p><span class="math notranslate nohighlight">\(b_{\theta} = \varphi_{SW} + h T_a\)</span> - vector with elements depending on coefficients (<span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\varepsilon\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(h\)</span>) and inputs (<span class="math notranslate nohighlight">\(E^o\)</span> and <span class="math notranslate nohighlight">\(T_a\)</span>);</p></li>

@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of the potential of energy savings obtained by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 </ul>
 </li>
 </ul>
@@ -425,7 +425,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="sensible-thermal-load-in-steady-state">
 <h1>Sensible thermal load in steady-state<a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F08Thermal_load.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating,, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value.</p>
+<p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value.</p>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
 <section id="data">
@@ -448,9 +448,9 @@ document.write(`
 <section id="questions">
 <h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">#</a></h3>
 <ol class="arabic simple">
-<li><p>Let’s consider that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that the there is no solar radiation on the walls. Find the thermal loads of the four rooms.</p></li>
+<li><p>Let’s consider that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that there is no solar radiation on the walls. Find the thermal loads of the four rooms.</p></li>
 <li><p>From now on, let’s consider that there is solar radiation absorbed by the walls and that rooms 1 and 3 are controlled by a HVAC system while rooms 2 and 4 are in “free-running”. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
-<li><p>Room 2 in ventilated with an air-flow rate of <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span> (ACH is the number of air-changes per hour). The density and specific heat of the air are <span class="math notranslate nohighlight">\(\rho = 1.2 \, \mathrm{kg/m^3}\)</span> and <span class="math notranslate nohighlight">\(c = 1000 \, \mathrm{J/(kg \, K)}\)</span>, respectively). The outdoor air enters in room 2, then is moves to room 4 and, from here, it gets outdoors. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
+<li><p>Room 2 in ventilated with an air-flow rate of <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span> (ACH is the number of air-changes per hour). The density and specific heat of the air are <span class="math notranslate nohighlight">\(\rho = 1.2 \, \mathrm{kg/m^3}\)</span> and <span class="math notranslate nohighlight">\(c = 1000 \, \mathrm{J/(kg \, K)}\)</span>, respectively. The outdoor air enters in room 2, then is moves to room 4 and, from here, it gets outdoors. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
 <li><p>The air-flow in room 2 is reversed: from outdoors, the air enters in room 4, then it moves to room 2, from which it gets outdoors. Considering that the air flow rate of room 2 is the same as before (i.e., <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span>), find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
 </ol>
 <div class="cell docutils container">
@@ -485,10 +485,12 @@ document.write(`
 </section>
 <section id="thermal-model">
 <h2>Thermal model<a class="headerlink" href="#thermal-model" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of air circulating in room 2 results from the ventilation rate:
-$<span class="math notranslate nohighlight">\(\dot V = L·l·H·\frac{ACH}{3600 \, \mathrm{s}}\)</span>$</p>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air entering and getting out of room 2 is:
-$<span class="math notranslate nohighlight">\(\dot m = \rho \dot V\)</span>$</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of air circulating in room 2 results from the ventilation rate:</p>
+<div class="math notranslate nohighlight">
+\[\dot V = L·l·H·\frac{ACH}{3600 \, \mathrm{s}}\]</div>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air entering and getting out of room 2 is:</p>
+<div class="math notranslate nohighlight">
+\[\dot m = \rho \dot V\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V_dot</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">l</span> <span class="o">*</span> <span class="n">H</span> <span class="o">*</span> <span class="n">ACH</span> <span class="o">/</span> <span class="mi">3600</span>  <span class="c1"># volumetric air flow rate</span>
@@ -506,7 +508,7 @@ $<span class="math notranslate nohighlight">\(\dot m = \rho \dot V\)</span>$</p>
 <li><p><span class="math notranslate nohighlight">\(\dot m c\)</span> - advection, W/K;</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p\)</span> - gain of the proportional controller, W/K.</p></li>
 </ul>
-<p><strong>Note:</strong> in determening the surfce area of the walls <span class="math notranslate nohighlight">\(S = L \, l \, H\)</span> the length of the walls are the indoor values.</p>
+<p><strong>Note:</strong> in determening the surface area of the walls <span class="math notranslate nohighlight">\(S = L·l·H\)</span> the length of the walls are the indoor values.</p>
 <p>We will consider the conductances of exterior and the interior walls (Figure 2). The exterior walls are modelled with a conductance for outdoor convection (cyan in Figure 2) and an equivalent conductance for conduction in the wall and indoor convection (blue in Figure 2). The indoor walls are modelled by an equivalent conductance for indoor convection, conduction, and indoor convection on the other side.</p>
 <p><img alt="fig" src="../_images/08_blds_conductance.svg" /></p>
 <blockquote>
@@ -518,13 +520,16 @@ $<span class="math notranslate nohighlight">\(\dot m = \rho \dot V\)</span>$</p>
 <p>The thermal network modeling the building is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> (Figure 3). It is composed of edges (or branches) and vertexes (or nodes).</p>
 <p>The temperature nodes model a volume, a surface, a line or a point in space for which the temperature is considered homogenous. The nodes are dependent temperatures (outputs of the physical system). The reference temperature is considered zero Celsius; it has a known value and is represented by a bar (Figure 3).</p>
 <p>To a temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span>, there are connected <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rate</a> branches <span class="math notranslate nohighlight">\(q_k, k = 0 ... n\)</span> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">heat flow rate sources</a>, <span class="math notranslate nohighlight">\(f_j\)</span> (Figure 3a). A heat rate source delivers a heat flow rate whatever is the temperature difference. In buildings, typical heat flow rate sources are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Joule_heating">electrical appliances</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_comfort#Metabolic_rate">occupants</a>. If a heat flow rate source is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a>, then it is not figured on the graph.</p>
-<p>In steady-state, the <a class="reference external" href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_current_law">algebraic sum of the heat flow rates</a> entering the temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span> is zero:
-$<span class="math notranslate nohighlight">\(\sum_{k} q_k + f_j= 0\)</span>$</p>
+<p>In steady-state, the <a class="reference external" href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_current_law">algebraic sum of the heat flow rates</a> entering the temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span> is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k} q_k + f_j= 0\]</div>
 <p>Two temperature nodes <span class="math notranslate nohighlight">\(\theta_i\)</span> and <span class="math notranslate nohighlight">\(\theta_j\)</span> are connected by directed edges of heat flow rates <span class="math notranslate nohighlight">\(q_k\)</span> (Figure 3a). On each edge, there is a conductance <span class="math notranslate nohighlight">\(G_k\)</span> and a temperature source <span class="math notranslate nohighlight">\(b_k\)</span>. A <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a> maintains a temperature value whatever is the heat flow rate. In building, outdoor air, ground, and setpoint temperatures are typical examples of temperature sources. If a temperature source is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a>, then it is not figured on the graph.</p>
-<p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_voltage_law">directed sum of temperature differences over a branch</a>, it results that the <a class="reference external" href="https://en.wikipedia.org/wiki/Voltage_drop">temperature drop</a> over a conductance is (Figure 3a):
-$<span class="math notranslate nohighlight">\(e_k = \theta_i - \theta_j + b_k\)</span>$</p>
-<p>The relation between the temperature drop, <span class="math notranslate nohighlight">\(e_k\)</span>, over a conductance, <span class="math notranslate nohighlight">\(G_k\)</span>, and the heat flow rate, <span class="math notranslate nohighlight">\(q_k\)</span>, thrrough the conductance <span class="math notranslate nohighlight">\(G_k\)</span> is:
-$<span class="math notranslate nohighlight">\(q_k = G_k \, e_k\)</span>$</p>
+<p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_voltage_law">directed sum of temperature differences over a branch</a>, it results that the <a class="reference external" href="https://en.wikipedia.org/wiki/Voltage_drop">temperature drop</a> over a conductance is (Figure 3a):</p>
+<div class="math notranslate nohighlight">
+\[e_k = \theta_i - \theta_j + b_k\]</div>
+<p>The relation between the temperature drop, <span class="math notranslate nohighlight">\(e_k\)</span>, over a conductance, <span class="math notranslate nohighlight">\(G_k\)</span>, and the heat flow rate, <span class="math notranslate nohighlight">\(q_k\)</span>, thrrough the conductance <span class="math notranslate nohighlight">\(G_k\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[q_k = G_k \, e_k\]</div>
 <p>This <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> is characterized by:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>;</p></li>
@@ -535,8 +540,9 @@ $<span class="math notranslate nohighlight">\(q_k = G_k \, e_k\)</span>$</p>
 <p>The solution of the problem is (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus (2013)</a>):</p>
 <div class="math notranslate nohighlight">
 \[ \theta = (A^TGA)^{-1}(A^TGb + f)\]</div>
-<p>and
-$<span class="math notranslate nohighlight">\( q = G(-A\theta + b)\)</span>$</p>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ q = G(-A\theta + b)\]</div>
 <p><img alt="fig" src="../_images/08_thermal_network.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Thermal network: a) typical element of the thermal network (the sources are not figured if they are identically zero); b) thermal network model for the buiding shown in Figures 1 and 2.</p>
@@ -618,9 +624,10 @@ $<span class="math notranslate nohighlight">\( q = G(-A\theta + b)\)</span>$</p>
 </div>
 <section id="exterior-walls-outdoor-convection">
 <h4>Exterior walls: outdoor convection<a class="headerlink" href="#exterior-walls-outdoor-convection" title="Permalink to this headline">#</a></h4>
-<p>The conductances of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the walls and the outdoor air (in cyan in Figures 2 and 3) are of the form
-$<span class="math notranslate nohighlight">\(G_i = h_o \, S_{o,k},\text{ with } k = 0 ... 3\)</span><span class="math notranslate nohighlight">\(
-where \)</span>S_{o,k}$ is the surface area of the wall in contact with the outdoor air:</p>
+<p>The conductances of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the walls and the outdoor air (in cyan in Figures 2 and 3) are of the form</p>
+<div class="math notranslate nohighlight">
+\[G_i = h_o \, S_{o,k},\text{ with } k = 0 ... 3\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{o,k}\)</span> is the surface area of the wall in contact with the outdoor air:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(S_{o,0} = L \, H\)</span>;</p></li>
 <li><p><span class="math notranslate nohighlight">\(S_{o,1} = S_{o,2} = (L + l) H\)</span>;</p></li>
@@ -639,8 +646,9 @@ where \)</span>S_{o,k}$ is the surface area of the wall in contact with the outd
 </section>
 <section id="exterior-walls-conduction-and-indoor-convection">
 <h4>Exterior walls: conduction and indoor convection<a class="headerlink" href="#exterior-walls-conduction-and-indoor-convection" title="Permalink to this headline">#</a></h4>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> in the wall and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the wall and the indoor air (in blue in Figure 3) is:
-$<span class="math notranslate nohighlight">\(G_k = \frac{1}{\frac{w}{\lambda} + \frac{1}{h_i}}S_{o,j},\text{ with } k = 4 ... 7, j = 0 ... 3\)</span>$</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> in the wall and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the wall and the indoor air (in blue in Figure 3) is:</p>
+<div class="math notranslate nohighlight">
+\[G_k = \frac{1}{\frac{w}{\lambda} + \frac{1}{h_i}}S_{o,j},\text{ with } k = 4 ... 7, j = 0 ... 3\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G4 ... G7 (blue branches): conduction, indoor convection</span>
@@ -678,9 +686,10 @@ $<span class="math notranslate nohighlight">\(G_k = \frac{1}{\frac{1}{h_i} + \fr
 </section>
 <section id="ventilation-heat-transfer-by-advection">
 <h4>Ventilation: heat transfer by advection<a class="headerlink" href="#ventilation-heat-transfer-by-advection" title="Permalink to this headline">#</a></h4>
-<p>Ventilation of rooms 2 and 4 transfers heat to these spaces by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> (Figure 4). The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">energy flow rate carried by the fluid</a> is:
-$<span class="math notranslate nohighlight">\(\dot H = \dot m c \theta\)</span>$
-where:</p>
+<p>Ventilation of rooms 2 and 4 transfers heat to these spaces by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> (Figure 4). The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">energy flow rate carried by the fluid</a> is:</p>
+<div class="math notranslate nohighlight">
+\[\dot H = \dot m c \theta\]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\dot H\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Enthalpy#Relationship_to_heat">enthalpy</a> rate carried by the air, W;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot m\)</span> - mass flow rate of the air, kg / s;</p></li>
@@ -689,16 +698,20 @@ where:</p>
 </ul>
 <section id="air-flow-outdoor-room-2-room-4-outdoor">
 <h5>Air-flow: outdoor → room 2 → room 4 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-2-room-4-outdoor" title="Permalink to this headline">#</a></h5>
-<p>If the airflow is from outdoor to room 2, then the heat flow rate tranferred from outdoor air to the indoor air of room 2 is (Figure 4 a):
-$<span class="math notranslate nohighlight">\(q_{13} = \dot m c T_o - \dot m c \theta_3\)</span><span class="math notranslate nohighlight">\(
-or
-\)</span><span class="math notranslate nohighlight">\(q_{13} = G_{13}(T_o - \theta_3)\)</span><span class="math notranslate nohighlight">\(
-where \)</span>G_{13} = \dot m c$.</p>
-<p>The heat flow rate transferred by advection of the air from room 2 to room 4 is (Figure 4 a):
-$<span class="math notranslate nohighlight">\(q_{14a} = \dot m c \theta_3 - \dot m c \theta_6\)</span><span class="math notranslate nohighlight">\(
-or
-\)</span><span class="math notranslate nohighlight">\(q_{14a} = G_{14}(\theta_3 - \theta_6)\)</span><span class="math notranslate nohighlight">\(
-where \)</span>G_{14} = \dot m c$.</p>
+<p>If the airflow is from outdoor to room 2, then the heat flow rate tranferred from outdoor air to the indoor air of room 2 is (Figure 4 a):</p>
+<div class="math notranslate nohighlight">
+\[q_{13} = \dot m c T_o - \dot m c \theta_3\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{13} = G_{13}(T_o - \theta_3)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{13} = \dot m c\)</span>.</p>
+<p>The heat flow rate transferred by advection of the air from room 2 to room 4 is (Figure 4 a):</p>
+<div class="math notranslate nohighlight">
+\[q_{14a} = \dot m c \theta_3 - \dot m c \theta_6\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{14a} = G_{14}(\theta_3 - \theta_6)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c\)</span>.</p>
 <p><img alt="fig" src="../_images/08_vent_advection.svg" /></p>
 <blockquote>
 <div><p>Figure 4. Heat advection by ventilation. a) Air-flow: outdoor  → room 2 → room 4 → outdoor. b) Air-flow: outdoor → room 4 → room 2 → outdoor.</p>
@@ -706,16 +719,20 @@ where \)</span>G_{14} = \dot m c$.</p>
 </section>
 <section id="air-flow-outdoor-room-4-room-2-outdoor">
 <h5>Air-flow: outdoor → room 4 → room 2 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-4-room-2-outdoor" title="Permalink to this headline">#</a></h5>
-<p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate tranferred to the indoor air of room 2 is:
-$<span class="math notranslate nohighlight">\(q_{14b} = \dot m c \theta_6 - \dot m c \theta_3\)</span><span class="math notranslate nohighlight">\(
-or
-\)</span><span class="math notranslate nohighlight">\(q_{14b} = G_{14}(\theta_6 - \theta_3)\)</span><span class="math notranslate nohighlight">\(
-where \)</span>G_{14} = \dot m c$.</p>
-<p>The heat flow rate transferred by advection from the outdoor air to room 4 is:
-$<span class="math notranslate nohighlight">\(q_{15} = \dot m c T_o - \dot m c \theta_6\)</span><span class="math notranslate nohighlight">\(
-or
-\)</span><span class="math notranslate nohighlight">\(q_{15} = G_{15}(T_o - \theta_6)\)</span><span class="math notranslate nohighlight">\(
-where \)</span>G_{14} = \dot m c.$</p>
+<p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate tranferred to the indoor air of room 2 is:</p>
+<div class="math notranslate nohighlight">
+\[q_{14b} = \dot m c \theta_6 - \dot m c \theta_3\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{14b} = G_{14}(\theta_6 - \theta_3)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c\)</span>.</p>
+<p>The heat flow rate transferred by advection from the outdoor air to room 4 is:</p>
+<div class="math notranslate nohighlight">
+\[q_{15} = \dot m c T_o - \dot m c \theta_6\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{15} = G_{15}(T_o - \theta_6)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c.\)</span></p>
 </section>
 <section id="heat-flow-rate-from-room-2-to-room-4">
 <h5>Heat flow rate from room 2 to room 4<a class="headerlink" href="#heat-flow-rate-from-room-2-to-room-4" title="Permalink to this headline">#</a></h5>
@@ -777,9 +794,10 @@ where \)</span>G_{14} = \dot m c.$</p>
 <li><p><span class="math notranslate nohighlight">\(T_{sp}\)</span> - setpoint temperature, °C;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> - measured temperature of the indoor air, °C.</p></li>
 </ul>
-<p>The heat flow rate can be then expressed as (Figure 5b):
-$<span class="math notranslate nohighlight">\(q = G (T_{sp} - \theta)\)</span><span class="math notranslate nohighlight">\(
-where \)</span>G \equiv K_p$.</p>
+<p>The heat flow rate can be then expressed as (Figure 5b):</p>
+<div class="math notranslate nohighlight">
+\[q = G (T_{sp} - \theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G \equiv K_p\)</span>.</p>
 <p>The indoor air temperature control by the HVAC system (Figure 5a) may be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(G\)</span> (Figure 5b).</p>
 <p><img alt="fig" src="../_images/08_P-controller.svg" /></p>
 <blockquote>
@@ -941,8 +959,9 @@ q: [1719.8    0.  2057.8    0. ] W
 <h2>Question 3: ventilation from outdoor to room 2<a class="headerlink" href="#question-3-ventilation-from-outdoor-to-room-2" title="Permalink to this headline">#</a></h2>
 <p>Room 2 in ventilated with an air flow rate of <span class="math notranslate nohighlight">\(ACH\)</span> (ACH is the number of air-changes per hour). The outdoor air enters in room 2, then it moves to room 4 and, from here, it gets outdoors.</p>
 <p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
-<p>To model this direction of air flow, the conductances for ventilation are:
-$<span class="math notranslate nohighlight">\(G_{13} = G_{14} = \dot m c; G_{15} = 0 \)</span>$</p>
+<p>To model this direction of air flow, the conductances for ventilation are:</p>
+<div class="math notranslate nohighlight">
+\[G_{13} = G_{14} = \dot m c; G_{15} = 0 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zone 2 &amp; 4 free-running; solar rad;</span>
@@ -971,8 +990,9 @@ q: [1761.1    0.  2099.     0. ] W
 <h2>Question 4: ventilation from room 4 to room 2<a class="headerlink" href="#question-4-ventilation-from-room-4-to-room-2" title="Permalink to this headline">#</a></h2>
 <p>The air flow in room 2 is reversed: from outdoors, the air enters in room 4, then is moves to room 2, from which it gets outdoors. The air flow rate of room 2 is the same as before.</p>
 <p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
-<p>To model this direction of air flow, the conductances for ventilation are:
-$<span class="math notranslate nohighlight">\(G_{13} = 0; G_{14} = G_{15} = \dot m c \)</span>$</p>
+<p>To model this direction of air flow, the conductances for ventilation are:</p>
+<div class="math notranslate nohighlight">
+\[G_{13} = 0; G_{14} = G_{15} = \dot m c \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zone 2 &amp; 4 free-running; solar rad;</span>
