@@ -371,7 +371,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-and-converting-the-thermal-circuits-to-state-space">Assembling and converting the thermal circuits to state-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-duration">Eigenvalues, time step and duration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-settling-time">Eigenvalues, time step and settling time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-input-data-set-for-step-response">Create input data set for step response</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
@@ -488,11 +488,11 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="eigenvalues-time-step-and-duration">
-<h2>Eigenvalues, time step and duration<a class="headerlink" href="#eigenvalues-time-step-and-duration" title="Permalink to this headline">#</a></h2>
+<section id="eigenvalues-time-step-and-settling-time">
+<h2>Eigenvalues, time step and settling time<a class="headerlink" href="#eigenvalues-time-step-and-settling-time" title="Permalink to this headline">#</a></h2>
 <p>The state-space representation allows us to do the eigenvalues analysis and to find:</p>
 <ul class="simple">
-<li><p>maximum time step for Euler explicit method: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2·\mathrm{min} (-1 / \lambda)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix As;</p></li>
+<li><p>maximum time step for Euler explicit method: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2·\mathrm{min} (-1 / \lambda)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix As and <span class="math notranslate nohighlight">\(T = -1 / \lambda\)</span> are the time constants;</p></li>
 <li><p>minimum settling time: <span class="math notranslate nohighlight">\(t_{settle} = 4· \mathrm{max} (-1 / \lambda\)</span>).</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1136,7 +1136,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-and-converting-the-thermal-circuits-to-state-space">Assembling and converting the thermal circuits to state-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-duration">Eigenvalues, time step and duration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-settling-time">Eigenvalues, time step and settling time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-input-data-set-for-step-response">Create input data set for step response</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
