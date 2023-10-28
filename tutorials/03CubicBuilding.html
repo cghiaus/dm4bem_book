@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/03CubicBuilding';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="State-space representation from assembled thermal circuits" href="pdREADME.html" />
+    <link rel="next" title="Assembling thermal circuits" href="pdREADME.html" />
     <link rel="prev" title="Simple wall" href="02SimpleWall.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -170,12 +170,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Toy model building</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">State-space representation from assembled thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 </ul>
 </li>
 </ul>
@@ -2048,6 +2055,14 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 </div>
 </div>
 </div>
+<p>This thermal circuit can be read directly from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file that contains the matrices and vectors of the system of differential algebraic equations (A, G, C, b, f, y) which describe the circuit shown in Figure 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC_toy</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="s2">&quot;./toy_model/TC.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="state-space-representation">
@@ -2520,7 +2535,7 @@ and
 </div>
 </div>
 </div>
-<p>The weather data are for a year. The choice of <code class="docutils literal notranslate"><span class="pre">2000</span></code> for the year is arbitrary; it used in order to respect the format <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM:SS</span></code>.</p>
+<p>The weather data are for a year. The choice of <code class="docutils literal notranslate"><span class="pre">2000</span></code> for the year is arbitrary; it is used in order to respect the format <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM:SS</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">start_date</span>
@@ -2966,7 +2981,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">State-space representation from assembled thermal circuits</p>
+        <p class="prev-next-title">Assembling thermal circuits</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
