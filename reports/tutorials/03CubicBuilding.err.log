@@ -17,42 +17,35 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-t = dt * np.arange(data.shape[0])   # time vector
-
-fig, axs = plt.subplots(2, 1)
-# plot outdoor and indoor temperature
-axs[0].plot(t / 3600 / 24, data['To'], label='$θ_{outdoor}$')
-axs[0].plot(t / 3600 / 24, y_exp.val, label='$θ_{indoor}$')
-axs[0].set(ylabel='Temperatures, $θ$ / °C',
-           title='Simulation for weather')
-axs[0].legend(loc='upper right')
-
-# plot total solar radiation and HVAC heat flow
-axs[1].plot(t / 3600 / 24, data['Φtot'], label='$Φ_{total}$')
-axs[1].plot(t / 3600 / 24, q_HVAC, label='$q_{HVAC}$')
-axs[1].set(xlabel='Time, $t$ / day',
-           ylabel='Heat flows, $q$ / W')
-axs[1].legend(loc='upper right')
-
-fig.tight_layout()
+[As, Bs, Cs, Ds, us] = dm4bem.tc2ss(TC)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_9584/3030888392.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      4[0m [0;31m# plot outdoor and indoor temperature[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0maxs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m [0;34m/[0m [0;36m3600[0m [0;34m/[0m [0;36m24[0m[0;34m,[0m [0mdata[0m[0;34m[[0m[0;34m'To'[0m[0;34m][0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'$θ_{outdoor}$'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 6[0;31m [0maxs[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mplot[0m[0;34m([0m[0mt[0m [0;34m/[0m [0;36m3600[0m [0;34m/[0m [0;36m24[0m[0;34m,[0m [0my_exp[0m[0;34m.[0m[0mval[0m[0;34m,[0m [0mlabel[0m[0;34m=[0m[0;34m'$θ_{indoor}$'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      7[0m axs[0].set(ylabel='Temperatures, $θ$ / °C',
-[1;32m      8[0m            title='Simulation for weather')
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3839/3506208553.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;34m[[0m[0mAs[0m[0;34m,[0m [0mBs[0m[0;34m,[0m [0mCs[0m[0;34m,[0m [0mDs[0m[0;34m,[0m [0mus[0m[0;34m][0m [0;34m=[0m [0mdm4bem[0m[0;34m.[0m[0mtc2ss[0m[0;34m([0m[0mTC[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py[0m in [0;36mtc2ss[0;34m(TC)[0m
+[1;32m   1336[0m [0;34m[0m[0m
+[1;32m   1337[0m     [0;31m# DAE (Differential Algebraic Equations), Eq.(13)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1338[0;31m     [0mK[0m [0;34m=[0m [0;34m-[0m[0mA[0m[0;34m.[0m[0mT[0m [0;34m@[0m [0mG[0m [0;34m@[0m [0mA[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1339[0m     [0mKb[0m [0;34m=[0m [0mA[0m[0;34m.[0m[0mT[0m [0;34m@[0m [0mG[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1340[0m [0;34m[0m[0m
 
-[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/generic.py[0m in [0;36m__getattr__[0;34m(self, name)[0m
-[1;32m   5485[0m         ):
-[1;32m   5486[0m             [0;32mreturn[0m [0mself[0m[0;34m[[0m[0mname[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 5487[0;31m         [0;32mreturn[0m [0mobject[0m[0;34m.[0m[0m__getattribute__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   5488[0m [0;34m[0m[0m
-[1;32m   5489[0m     [0;32mdef[0m [0m__setattr__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mname[0m[0;34m:[0m [0mstr[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m [0;34m->[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py[0m in [0;36m__matmul__[0;34m(self, other)[0m
+[1;32m   1490[0m         [0mMatrix[0m [0mmultiplication[0m [0musing[0m [0mbinary[0m[0;31m [0m[0;31m`[0m[0;34m@[0m[0;31m`[0m [0moperator[0m [0;32min[0m [0mPython[0m[0;34m>=[0m[0;36m3.5[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1491[0m         """
+[0;32m-> 1492[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdot[0m[0;34m([0m[0mother[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1493[0m [0;34m[0m[0m
+[1;32m   1494[0m     [0;32mdef[0m [0m__rmatmul__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mother[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mAttributeError[0m: 'DataFrame' object has no attribute 'val'
-AttributeError: 'DataFrame' object has no attribute 'val'
+[0;32m~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py[0m in [0;36mdot[0;34m(self, other)[0m
+[1;32m   1444[0m             [0mcommon[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m.[0m[0munion[0m[0;34m([0m[0mother[0m[0;34m.[0m[0mindex[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1445[0m             [0;32mif[0m [0mlen[0m[0;34m([0m[0mcommon[0m[0;34m)[0m [0;34m>[0m [0mlen[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m)[0m [0;32mor[0m [0mlen[0m[0;34m([0m[0mcommon[0m[0;34m)[0m [0;34m>[0m [0mlen[0m[0;34m([0m[0mother[0m[0;34m.[0m[0mindex[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1446[0;31m                 [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"matrices are not aligned"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1447[0m [0;34m[0m[0m
+[1;32m   1448[0m             [0mleft[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mreindex[0m[0;34m([0m[0mcolumns[0m[0;34m=[0m[0mcommon[0m[0;34m,[0m [0mcopy[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: matrices are not aligned
+ValueError: matrices are not aligned
 

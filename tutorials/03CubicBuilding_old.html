@@ -62,11 +62,9 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/03CubicBuilding';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/03CubicBuilding_old';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Assembling thermal circuits" href="pdREADME.html" />
-    <link rel="prev" title="Simple wall" href="02SimpleWall.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -157,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
@@ -165,9 +163,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Toy model building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Toy model building</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -256,7 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/03CubicBuilding.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/03CubicBuilding_old.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Ouvrez un problème"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -286,7 +284,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tutorials/03CubicBuilding.ipynb" target="_blank"
+      <li><a href="../_sources/tutorials/03CubicBuilding_old.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Télécharger le fichier source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -1165,8 +1163,8 @@ F_{i,i} = 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># P-controler gain</span>
-<span class="c1"># Kp = 1e4            # almost perfect controller Kp -&gt; ∞</span>
-<span class="c1"># Kp = 1e-3           # no controller Kp -&gt; 0</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e4</span>            <span class="c1"># almost perfect controller Kp -&gt; ∞</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e-3</span>           <span class="c1"># no controller Kp -&gt; 0</span>
 <span class="n">Kp</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
@@ -2063,15 +2061,6 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 </div>
 </div>
 </div>
-<p>The gain of the proportional controller is in variable <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span></code>. It can be changed.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e4</span>    <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
-<span class="c1"># TC[&#39;G&#39;][&#39;q11&#39;] = 0      # Kp -&gt; 0, no controller (free-floating)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="state-space-representation">
@@ -2108,37 +2097,6 @@ y = C_s \theta_s + D_s u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-ValueError                                Traceback (most recent call last)
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3839/3506208553.py in &lt;module&gt;
-----&gt; 1 [As, Bs, Cs, Ds, us] = dm4bem.tc2ss(TC)
-
-~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py in tc2ss(TC)
-   1336 
-   1337     # DAE (Differential Algebraic Equations), Eq.(13)
--&gt; 1338     K = -A.T @ G @ A
-   1339     Kb = A.T @ G
-   1340 
-
-~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py in __matmul__(self, other)
-   1490         Matrix multiplication using binary `@` operator in Python&gt;=3.5.
-   1491         &quot;&quot;&quot;
--&gt; 1492         return self.dot(other)
-   1493 
-   1494     def __rmatmul__(self, other):
-
-~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/frame.py in dot(self, other)
-   1444             common = self.columns.union(other.index)
-   1445             if len(common) &gt; len(self.columns) or len(common) &gt; len(other.index):
--&gt; 1446                 raise ValueError(&quot;matrices are not aligned&quot;)
-   1447 
-   1448             left = self.reindex(columns=common, copy=False)
-
-ValueError: matrices are not aligned
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="steady-state">
@@ -2171,17 +2129,15 @@ ValueError: matrices are not aligned
 <p>For the conditions mentioned above, in steady-state, all temperatures <span class="math notranslate nohighlight">\(\theta_0 ... \theta_7\)</span>, including the indoor air temperature <span class="math notranslate nohighlight">\(\theta_6\)</span>, are equal to <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
-<span class="n">G</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
-<span class="n">diag_G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diag_G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
 <span class="n">θss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">bss</span> <span class="o">+</span> <span class="n">fss</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;θss = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">θss</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;θss = </span><span class="si">{</span><span class="n">θss</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10.11 10.32 10.52 14.76 19.   14.5  19.92 13.57] °C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10. 10. 10. 10. 10. 10. 10. 10.] °C
 </pre></div>
 </div>
 </div>
@@ -2240,7 +2196,15 @@ ValueError: matrices are not aligned
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = 19.92 °C
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_3846</span><span class="o">/</span><span class="mf">3426891578.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">yss</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">inv_As</span> <span class="o">@</span> <span class="n">Bs</span> <span class="o">+</span> <span class="n">Ds</span><span class="p">)</span> <span class="o">@</span> <span class="n">uss</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">yss</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">yss</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yss = </span><span class="si">{</span><span class="n">yss</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
 </pre></div>
 </div>
 </div>
@@ -2252,11 +2216,6 @@ ValueError: matrices are not aligned
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error between DAE and state-space: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">θss</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">yss</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
 </pre></div>
 </div>
 </div>
@@ -2303,37 +2262,13 @@ ValueError: matrices are not aligned
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
-[&#39;3.20 s&#39;, &#39;4084.51 s&#39;, &#39;4282.10 s&#39;, &#39;43729.25 s&#39;]
-
-2 x Time constants:
-[&#39;6.40 s&#39;, &#39;8169.02 s&#39;, &#39;8564.20 s&#39;, &#39;87458.51 s&#39;]
-
-Maximum time step: 6.40 s = 0.11 min
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let’s chose a time step smaller than <span class="math notranslate nohighlight">\(\Delta t_{max} = \min (-2 / \lambda_i) \)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">dtmax</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>   <span class="c1"># s</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">dtmax</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span><span class="p">)</span>   <span class="c1"># s</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 0.0 s = 0 min
-dt = 0.0 s
 </pre></div>
 </div>
 </div>
@@ -2357,14 +2292,6 @@ dt = 0.0 s
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 * Time constants: 
- [    12  16336  17128 174916] s 
-
-Settling time: 174917 s = 2915.3 min = 48.59 h = 2.02 days
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="step-response">
@@ -2382,11 +2309,6 @@ Settling time: 174917 s = 2915.3 min = 48.59 h = 2.02 days
 <span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> min = </span><span class="se">\</span>
 <span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="mi">3600</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h = </span><span class="se">\</span>
 <span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 </pre></div>
 </div>
 </div>
@@ -2476,24 +2398,6 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 
 <span class="c1"># Get inputs in time from input_data_set</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3310/2132736265.py:4: RuntimeWarning: divide by zero encountered in double_scalars
-  n = int(np.floor(duration / dt))    # number of time steps
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">OverflowError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_3310</span><span class="o">/</span><span class="mf">2132736265.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># ---------------------</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># time vector</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">duration</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>    <span class="c1"># number of time steps</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Create a DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
-
-<span class="ne">OverflowError</span>: cannot convert float infinity to integer
 </pre></div>
 </div>
 </div>
@@ -3012,24 +2916,6 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="02SimpleWall.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simple wall</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="pdREADME.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assembling thermal circuits</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
