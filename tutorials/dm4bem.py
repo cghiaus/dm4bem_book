@@ -826,7 +826,7 @@ def wall2TC(wall_types, walls_def, prefix="w"):
     return TC
 
 
-def file2TC(TC_file, name="w", auto_number=False):
+def file2TC(TC_file, name="w_", auto_number=False):
     """
     Created on Wed Nov 16 12:02:41 2022
     @author: cghiaus
@@ -903,11 +903,11 @@ def file2TC(TC_file, name="w", auto_number=False):
         Auto-numbering of the indexes and columns with _q and _θ.
         """
         # Indexes wall-number, q-flows & θ-temperatures
-        tc_q = [name + '_q' + str(x) for x in range(A.shape[0])]
-        tc_θ = [name + '_θ' + str(x) for x in range(A.shape[1])]
+        tc_q = [name + 'q' + str(x) for x in range(A.shape[0])]
+        tc_θ = [name + 'θ' + str(x) for x in range(A.shape[1])]
     else:
-        tc_q = [name + '_' + str(x) for x in list(A.index)]
-        tc_θ = [name + '_' + str(x) for x in list(A.columns)]
+        tc_q = [name + str(x) for x in list(A.index)]
+        tc_θ = [name + str(x) for x in list(A.columns)]
 
     A.index, A.columns = tc_q, tc_θ
     G.index = tc_q
