@@ -1183,7 +1183,7 @@ F_{i,i} = 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glass: convection outdoor &amp; conduction</span>
-<span class="n">Ggs</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">Gg</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Glass&#39;</span><span class="p">])))</span>
+<span class="n">Ggs</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">Gg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Glass&#39;</span><span class="p">])))</span>
 </pre></div>
 </div>
 </div>
@@ -1208,7 +1208,7 @@ F_{i,i} = 0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Specific heat&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Width&#39;</span><span class="p">]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Capacity&#39;</span><span class="p">})</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Capacity&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2066,8 +2066,8 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 <p>The gain of the proportional controller is in variable <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span></code>. It can be changed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e3</span>    <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
-<span class="c1"># TC[&#39;G&#39;][&#39;q11&#39;] = 0      # Kp -&gt; 0, no controller (free-floating)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TC[&#39;G&#39;][&#39;q11&#39;] = 1e3    # Kp -&gt; ∞, almost perfect controller</span>
+<span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># Kp -&gt; 0, no controller (free-floating)</span>
 </pre></div>
 </div>
 </div>
@@ -2150,7 +2150,7 @@ y = C_s \theta_s + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10.11 10.3  10.49 14.44 18.39 14.2  19.25 13.32] °C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10. 10. 10. 10. 10. 10. 10. 10.] °C
 </pre></div>
 </div>
 </div>
@@ -2209,7 +2209,7 @@ y = C_s \theta_s + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = 19.25 °C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = 10.00 °C
 </pre></div>
 </div>
 </div>
@@ -2225,7 +2225,7 @@ y = C_s \theta_s + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 0.00e+00 °C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
 </pre></div>
 </div>
 </div>
@@ -2274,12 +2274,12 @@ y = C_s \theta_s + D_s u
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
-[&#39;28.74 s&#39;, &#39;4088.73 s&#39;, &#39;4437.08 s&#39;, &#39;43748.58 s&#39;]
+[&#39;249.30 s&#39;, &#39;4093.20 s&#39;, &#39;6729.11 s&#39;, &#39;44033.06 s&#39;]
 
 2 x Time constants:
-[&#39;57.47 s&#39;, &#39;8177.45 s&#39;, &#39;8874.16 s&#39;, &#39;87497.15 s&#39;]
+[&#39;498.60 s&#39;, &#39;8186.41 s&#39;, &#39;13458.22 s&#39;, &#39;88066.12 s&#39;]
 
-Maximum time step: 57.47 s = 0.96 min
+Maximum time step: 498.60 s = 8.31 min
 </pre></div>
 </div>
 </div>
@@ -2301,7 +2301,7 @@ Maximum time step: 57.47 s = 0.96 min
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 50.0 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 480.0 s = 8 min
 </pre></div>
 </div>
 </div>
@@ -2327,9 +2327,9 @@ Maximum time step: 57.47 s = 0.96 min
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 * Time constants: 
- [   112  16352  17748 174992] s 
+ [   996  16372  26916 176132] s 
 
-Settling time: 174994 s = 2916.6 min = 48.61 h = 2.03 days
+Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
 </pre></div>
 </div>
 </div>
@@ -2509,7 +2509,7 @@ y = C_s \theta_C + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9f954f59b0474d5eaac61581e9ca57f4c5734bee42a46469367806266bb7c8ca.png" src="../_images/9f954f59b0474d5eaac61581e9ca57f4c5734bee42a46469367806266bb7c8ca.png" />
+<img alt="../_images/2872ab3d80e1023a6e5bff1e26a01c2466aef3ddf92c03555d359dfa7f381f99.png" src="../_images/2872ab3d80e1023a6e5bff1e26a01c2466aef3ddf92c03555d359dfa7f381f99.png" />
 </div>
 </div>
 <blockquote>
@@ -2531,9 +2531,9 @@ and
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steady-state indoor temperature obtained with:
-- DAE model: 19.2457 °C
-- state-space model: 19.2457 °C
-- steady-state response to step input: 19.2431 °C
+- DAE model: 10.0000 °C
+- state-space model: 10.0000 °C
+- steady-state response to step input: 9.9628 °C
 </pre></div>
 </div>
 </div>
@@ -2875,7 +2875,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7ea5a16bac3d5c5d4448f873a3b3c7cd9175accecbe134588395d783045ff04e.png" src="../_images/7ea5a16bac3d5c5d4448f873a3b3c7cd9175accecbe134588395d783045ff04e.png" />
+<img alt="../_images/635313936c4bd24353691a4ffb9689aafdaed017306064df281f74b8d07454fd.png" src="../_images/635313936c4bd24353691a4ffb9689aafdaed017306064df281f74b8d07454fd.png" />
 </div>
 </div>
 <blockquote>
@@ -2909,7 +2909,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/20cbad62867fcfe799d82f199e06494ec23b705e66c46f759e2b55859ae4e2b5.png" src="../_images/20cbad62867fcfe799d82f199e06494ec23b705e66c46f759e2b55859ae4e2b5.png" />
+<img alt="../_images/0649cdf5e4d686e5bc82b87146f3ebf6d74ef881cf25cf9178927210d4a19f47.png" src="../_images/0649cdf5e4d686e5bc82b87146f3ebf6d74ef881cf25cf9178927210d4a19f47.png" />
 </div>
 </div>
 <blockquote>
