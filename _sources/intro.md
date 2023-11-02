@@ -32,7 +32,7 @@ This book uses the writing conventions for SI unit symbols and names recommanded
 
 __Reproducibility__
 
-The Jupyter Notebooks can be run interactively on [mybinder.org](mybinder.org) by pushing the __launch binder__ button:
+The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 
