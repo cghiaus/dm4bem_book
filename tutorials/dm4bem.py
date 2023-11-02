@@ -1322,7 +1322,6 @@ def tc2ss(TC):
     # indexes of inputs
     idx_G = pd.Series(G.index)
     idx_C = pd.Series(C.index)
-    # idx_u = idx_G.append(idx_C)
     idx_u = pd.concat([idx_G, idx_C])
 
     G = pd.DataFrame(np.diag(G), index=G.index, columns=G.index)
