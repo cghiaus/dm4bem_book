@@ -903,8 +903,8 @@ def file2TC(TC_file, name="w_", auto_number=False):
         Auto-numbering of the indexes and columns with _q and _θ.
         """
         # Indexes wall-number, q-flows & θ-temperatures
-        tc_q = [name + 'q' + str(x) for x in range(A.shape[0])]
-        tc_θ = [name + 'θ' + str(x) for x in range(A.shape[1])]
+        tc_q = [name + '_q' + str(x) for x in range(A.shape[0])]
+        tc_θ = [name + '_θ' + str(x) for x in range(A.shape[1])]
     else:
         tc_q = [name + str(x) for x in list(A.index)]
         tc_θ = [name + str(x) for x in list(A.columns)]
