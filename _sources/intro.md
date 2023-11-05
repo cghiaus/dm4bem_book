@@ -1,6 +1,7 @@
 # Dynamic Models for Building Energy Management
 
 by Christian Ghiaus
+
 - ORCID [0000-0001-5561-1245](https://orcid.org/0000-0001-5561-1245)
 - SciProfiles [2970335](https://sciprofiles.com/profile/2970335)
 - Scopus [6603390490](https://www.scopus.com/authid/detail.uri?authorId=6603390490)
@@ -8,11 +9,7 @@ by Christian Ghiaus
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 
-Developing control algorithms requires dynamic models of the processes. This Jupyter Book explores the modeling of thermal transfer in buildings through thermal networks. It outlines the construction of elementary thermal networks and their assembly to create the thermal network of complex systems, such as a building. Additionally, it presents the transformation of these thermal networks into state-space representation, which can then serve for simulations, as demonstrated here.
-
-This book does not cover the development of control algorithms.
-
-The book uses `dm4bem` module written in _Python 3.9_ (and tested on _Pyhton 3.11_).
+State-space representation is widely used for developing control algorithms. This Jupyter Book shows how thermal transfer in buildings can be modeled by complex thermal networks, assembled from elementary thermal networks, that are converted in state-space representation. These steps are implemented by using `dm4bem` module written in _Python 3.9_ (and tested on _Pyhton 3.11_). The book does not cover the development of control algorithms.
 
 
 __Quick overview__
