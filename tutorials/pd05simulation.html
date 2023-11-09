@@ -502,7 +502,7 @@ document.write(`
 <p>We can change the values of the conductances and the capacities from the thermal circuit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;c3_q0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e3</span>  <span class="c1"># Kp, controler gain</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TC[&#39;G&#39;][&#39;c3_q0&#39;] = 1e3  # Kp, controler gain</span>
 <span class="c1"># TC[&#39;C&#39;][&#39;c2_θ0&#39;] = 0    # indoor air heat capacity</span>
 <span class="c1"># TC[&#39;C&#39;][&#39;c1_θ0&#39;] = 0    # glass (window) heat capacity</span>
 </pre></div>
@@ -542,7 +542,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 50 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 300 s = 5.0 min
 </pre></div>
 </div>
 </div>
@@ -654,7 +654,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9f954f59b0474d5eaac61581e9ca57f4c5734bee42a46469367806266bb7c8ca.png" src="../_images/9f954f59b0474d5eaac61581e9ca57f4c5734bee42a46469367806266bb7c8ca.png" />
+<img alt="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" src="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" />
 </div>
 </div>
 <blockquote>
@@ -931,7 +931,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/afdc4a87ad35ff3d415740a84a60ffba42d6c94fdb234ef75a83e2a7a28fbd95.png" src="../_images/afdc4a87ad35ff3d415740a84a60ffba42d6c94fdb234ef75a83e2a7a28fbd95.png" />
+<img alt="../_images/a1862986b1ddb621b07d13aa3e670e57865de606dcbf3f8c3fc89fd07af1cf55.png" src="../_images/a1862986b1ddb621b07d13aa3e670e57865de606dcbf3f8c3fc89fd07af1cf55.png" />
 </div>
 </div>
 <blockquote>
@@ -943,31 +943,16 @@ document.write(`
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
-<p><strong>Simulation in free-floating or with controller</strong></p>
-<p>After the assebling of the thermal circuit with the function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix</span></code>, change the gain of the P-controller by setting the value of <code class="docutils literal notranslate"><span class="pre">TC['G']['c3_q0']</span></code>:</p>
+<p><strong>Free-floating or P-controller</strong></p>
+<p>After the assembling of the thermal circuit with the function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix</span></code>, change the gain of the P-controller by setting the value of <code class="docutils literal notranslate"><span class="pre">TC['G']['c3_q0']</span></code>:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K_p = 0\)</span>: no controller (i.e., free-floating);</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p = 10^3\)</span>: good balance between precision and time-step;</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p = 10^2\)</span>: the time step is larger by the precision is low;</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p = 10^4\)</span>: the precision is good but the time step is very small.</p></li>
 </ul>
-<p>Interchange the materials  of the layers of the wall. Discuss the step responses and the simuation for weather. Give arguments for the advantages and the disadvanted of indoor and outdoor insulation.</p>
-<p>The time step depends on:</p>
-<ul class="simple">
-<li><p>P-controller gain <code class="docutils literal notranslate"><span class="pre">Kp</span></code>:</p>
-<ul>
-<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect and the time step needs to be small;</p></li>
-<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then, the controller is ineffective and the building is in free-running.</p></li>
-</ul>
-</li>
-<li><p>Capacities considered into the model:</p>
-<ul>
-<li><p>if the capacities of the air <span class="math notranslate nohighlight">\(C_a =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Air']</span></code> and of the glass <span class="math notranslate nohighlight">\(C_g =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Glass']</span></code> are considered, then the time step is small;</p></li>
-<li><p>if the capacities of the air and of the glass are zero, then the time step is large (and the order of the state-space model is reduced).</p></li>
-</ul>
-</li>
-</ul>
-<p>The controller models an HVAC system able to heat (when <span class="math notranslate nohighlight">\(q_{HVAC} &gt; 0\)</span>) and to cool (when <span class="math notranslate nohighlight">\(q_{HVAC} &lt; 0\)</span>).</p>
+<p><strong>Negligible small capacities</strong></p>
+<p>After the assembling of the thermal circuit with the function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix</span></code>, set the indoor air capacity to zero, <code class="docutils literal notranslate"><span class="pre">TC['C']['c2_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code> and the glass capacity to zero, <code class="docutils literal notranslate"><span class="pre">TC['C']['c1_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code> one-by-one and both in the same time. Note the time step and the precision of the controller in each case.</p>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
