@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/02_2_3Toy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Assembling thermal circuits" href="pdREADME.html" />
+    <link rel="next" title="Simulation: perfect controller" href="02_2_4Toy.html" />
     <link rel="prev" title="Steady-state and step response" href="02_2_2Toy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -166,10 +166,12 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
 </ul>
 </li>
 </ul>
@@ -416,7 +418,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="inputs">
 <h1>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F03CubicBuilding.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F02_2_3Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>The inputs are modelled by temperature and flow rate sources. A <a class="reference external" href="https://en.m.wikipedia.org/wiki/Control_volume">control volume</a> is a:</p>
 <ul class="simple">
 <li><p><em>temperature source</em> if the variation of its temperature is independent on the flow rate through the control surface (e.g., outdoor air temperature, indoor air temperature set-point);</p></li>
@@ -780,11 +782,11 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
       </div>
     </a>
     <a class="right-next"
-       href="pdREADME.html"
+       href="02_2_4Toy.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Assembling thermal circuits</p>
+        <p class="prev-next-title">Simulation: perfect controller</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
