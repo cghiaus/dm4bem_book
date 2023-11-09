@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd05simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Miscellaneous" href="miscellaneous.html" />
+    <link rel="next" title="Annnexes" href="annexes.html" />
     <link rel="prev" title="Thermal circuit to state-space" href="pd04tc2ss.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -165,12 +165,18 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="02Model_Simulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="02SimpleWall.html">Simple wall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03CubicBuilding.html">Toy model building</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
@@ -178,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -505,45 +511,36 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eigenvalue analysis</span>
-<span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
-<span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants:&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
-
-<span class="n">dt_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Maximum time step: </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dt_max</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
-
-<span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Minimum settling time: </span><span class="se">\</span>
-<span class="si">{</span><span class="n">t_settle</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> min = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">3600</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
-
-<span class="c1"># time step</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dt_max</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step Δt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
-
-<span class="c1"># duration: next multiple of 3600 s that is larger than t_settle</span>
-<span class="n">duration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Duration: </span><span class="se">\</span>
-<span class="si">{</span><span class="n">duration</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> min = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="mi">3600</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h = </span><span class="se">\</span>
-<span class="si">{</span><span class="n">duration</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dt_max</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
-[&#39;249.30 s&#39;, &#39;4093.21 s&#39;, &#39;6729.13 s&#39;, &#39;44033.06 s&#39;]
-
-Maximum time step: 498.60 s = 8.31 min
-Minimum settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
-Time step Δt = 480.0 s = 8 min
-Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 300 s = 5.0 min
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
+<span class="c1"># duration: next multiple of 3600 s that is larger than t_settle</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>duration = 176400 s = 49.0 h
 </pre></div>
 </div>
 </div>
@@ -620,7 +617,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2000-01-01 00:08:00</th>
+      <th>2000-01-01 00:05:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -631,7 +628,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2000-01-01 00:16:00</th>
+      <th>2000-01-01 00:10:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -642,7 +639,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2000-01-01 00:24:00</th>
+      <th>2000-01-01 00:15:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -653,7 +650,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2000-01-01 00:32:00</th>
+      <th>2000-01-01 00:20:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -675,29 +672,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>...</td>
     </tr>
     <tr>
-      <th>2000-01-03 00:16:00</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>10.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-01-03 00:24:00</th>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>20.0</td>
-      <td>10.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2000-01-03 00:32:00</th>
+      <th>2000-01-03 00:35:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -719,7 +694,29 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       <td>0.0</td>
     </tr>
     <tr>
-      <th>2000-01-03 00:48:00</th>
+      <th>2000-01-03 00:45:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:50:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:55:00</th>
       <td>10.0</td>
       <td>10.0</td>
       <td>20.0</td>
@@ -731,7 +728,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
     </tr>
   </tbody>
 </table>
-<p>367 rows × 8 columns</p>
+<p>588 rows × 8 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -796,7 +793,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2872ab3d80e1023a6e5bff1e26a01c2466aef3ddf92c03555d359dfa7f381f99.png" src="../_images/2872ab3d80e1023a6e5bff1e26a01c2466aef3ddf92c03555d359dfa7f381f99.png" />
+<img alt="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" src="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" />
 </div>
 </div>
 <blockquote>
@@ -879,7 +876,12 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Temperature sources</span>
 <span class="n">To</span> <span class="o">=</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span>
-<span class="n">Ti_sp</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">weather</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">Ti_day</span><span class="p">,</span> <span class="n">Ti_night</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">16</span>
+<span class="n">Ti_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">Ti_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">Ti_day</span> <span class="k">if</span> <span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">22</span> <span class="k">else</span> <span class="n">Ti_night</span> <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -951,7 +953,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 <span class="n">Φa</span> <span class="o">=</span> <span class="n">α_gSW</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
 
 <span class="c1"># auxiliary (internal) sources</span>
-<span class="n">Qa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">weather</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Qa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -964,7 +966,8 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input data set</span>
 <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span>
-                               <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">})</span>
+                               <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">,</span>
+                               <span class="s1">&#39;Etot&#39;</span><span class="p">:</span> <span class="n">Etot</span><span class="p">})</span>
 <span class="c1"># Get input from input_data_set</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
 </pre></div>
@@ -1040,7 +1043,7 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b2db4b339a937d305caaec70e8eabd5594fde0de4baa46e4846f7f0653ad769.png" src="../_images/8b2db4b339a937d305caaec70e8eabd5594fde0de4baa46e4846f7f0653ad769.png" />
+<img alt="../_images/c31b017d74f6d4b73d3aaea2343d8f0973415ea7c2a58fdee853f0918e40083d.png" src="../_images/c31b017d74f6d4b73d3aaea2343d8f0973415ea7c2a58fdee853f0918e40083d.png" />
 </div>
 </div>
 <blockquote>
@@ -1126,11 +1129,11 @@ Duration: 176400 s = 2940.0 min = 49.00 h = 2.04 days
       </div>
     </a>
     <a class="right-next"
-       href="miscellaneous.html"
+       href="annexes.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Miscellaneous</p>
+        <p class="prev-next-title">Annnexes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
