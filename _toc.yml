@@ -10,10 +10,15 @@ chapters:
   - file: tutorials/A02_TC2DAE
   - file: tutorials/A03_DAE2SS
 - file: tutorials/01WeatherData
-- file: tutorials/02Model_Simulation
+- file: tutorials/02_0ModelSimulation
   sections:
-  - file: tutorials/02SimpleWall
-  - file: tutorials/03CubicBuilding
+  - file: tutorials/02_1Wall
+  - file: tutorials/02_2_0Toy
+    sections:
+    - file: tutorials/02_2_1Toy
+    - file: tutorials/02_2_2Toy
+    - file: tutorials/02_2_3Toy
+    - file: tutorials/02_2_4Toy
 - file: tutorials/pdREADME.md
   sections:
   - file: tutorials/pd01wall2TC

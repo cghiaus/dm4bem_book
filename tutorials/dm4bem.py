@@ -1536,3 +1536,89 @@ def print_TC(TC):
     print(TC['f'], '\n')
     print('y:')
     print(TC['y'], '\n')
+
+
+def round_time(dtmax):
+    """
+
+    Parameters
+    ----------
+    dtmax : float
+        Maximum time step for numerical stability of Euler explicit, dtmax / s.
+
+    Returns
+    -------
+    dt : float
+        Maximum time step rounded floor to:
+        1 s, 10 s,
+        60 s (1 min), 300 s (5 min), 600 s (10 min), 1800 s (30 min),
+        36000 s (1 h), 7200 s (2 h), 14400 s (4 h), 21600 s (6 h)
+
+    """
+    def round_floor(time):
+        return np.floor(dtmax / time) * time
+
+    if dtmax > 24 * 3600:
+        dt = round_floor(24 * 3600)     # round to 24 h
+
+    elif dtmax > 12 * 3600:
+        dt = round_floor(12 * 3600)     # round to 12 h
+
+    elif dtmax > 6 * 3600:
+        dt = round_floor(6 * 3600)      # round to 6 h
+
+    elif dtmax > 4 * 3600:
+        dt = round_floor(4 * 3600)      # round to 4 h
+
+    elif dtmax > 2 * 3600:
+        dt = round_floor(2 * 3600)      # round to 2h
+
+    elif dtmax > 3600:
+        dt = round_floor(3600)          # round to 1 h
+
+    elif dtmax > 30 * 60:
+        dt = round_floor(30 * 60)       # round to 30 min
+
+    elif dtmax > 10 * 60:
+        dt = round_floor(10 * 60)       # round to 10 min
+
+    elif dtmax > 5 * 60:
+        dt = round_floor(5 * 60)        # round to 5 min
+
+    elif dtmax >= 60:
+        dt = round_floor(60)            # round to 1 min
+
+    elif dtmax >= 10:
+        dt = round_floor(10)            # round to 10 s
+
+    else:
+        dt = np.floor(dtmax)            # round to 1 s
+
+    return dt
+
+
+def print_rounded_time(var_name, t):
+    """
+    Print the time in seconds, minutes or hours with 'var_name' in text.
+    e.g.: dt = 3600.0 s = 1 h
+
+    Parameters
+    ----------
+    var_name : str
+        Name of variable, e.g., 'dt'.
+    t : float or int
+        Time, t / s.
+
+    Returns
+    -------
+    None.
+
+    """
+    hours = t / 3600.
+    minutes = t / 60.
+    if hours > 1:
+        print(var_name + f' = {int(t)} s = {float(hours):.1f} h')
+    elif minutes > 1:
+        print(var_name + f' = {int(t)} s = {float(minutes):.1f} min')
+    else:
+        print(var_name + f' = {int(t)} s')
