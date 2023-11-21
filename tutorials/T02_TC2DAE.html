@@ -185,10 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Greenhouse_effect.html">Greenhouse effect</a></li>
 </ul>
 </li>
 </ul>
@@ -404,7 +405,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="from-thermal-networks-to-differential-algebraic-equations">
 <h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FA02_TC2DAE.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The framework for obtaing the differential-algebraic system of equations (DAE) describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
+<p>The framework for obtaing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a> describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
 <p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flow-rates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes.</p>
 <p><img alt="procedure" src="../_images/A02_calc_procedure.svg" /></p>
 <blockquote>
@@ -620,8 +621,8 @@ $<span class="math notranslate nohighlight">\(q = G(\Delta \theta + b)\)</span>$
 <li><p><span class="math notranslate nohighlight">\(q_{o,e}\)</span>: the thermal flow-rate through the wall from the outside to the inside.</p></li>
 </ul>
 <p><strong>Solution</strong></p>
-<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, the capacities are considered zero.
-The thermal network is given in Figure 2a. The matrices and the vectors of the model are (Figure 2b):</p>
+<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, the capacities are considered zero.</p>
+<p>The thermal network is given in Figure 2a. The matrices and the vectors of the model are (Figure 2b):</p>
 <p><span class="math notranslate nohighlight">\(A = \begin{bmatrix}
 1 &amp; 0 \\ 
 -1 &amp; 1 \\ 
@@ -636,7 +637,7 @@ h_o S &amp; 0 &amp; 0 \\
 T_0\\ 
 0\\ 
 -T_2
-\end{bmatrix}\)</span> - vector of temperature sources;</p>
+\end{bmatrix}\)</span> - vector of temperature sources, which respects the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_sign_convention">sign convention</a>;</p>
 <p><span class="math notranslate nohighlight">\(f = \begin{bmatrix}
 \alpha E S\\ 
 0
@@ -704,7 +705,7 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>Strang, G. (2007) Computational Science and Engineering. Wellesley, MA: Wellesley-Cambridge Press</p>
-<p>Ghiaus, C. (2013). Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301.</p>
+<p>Ghiaus, C. (2013). Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301. <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p>
 </section>
 </section>
 
