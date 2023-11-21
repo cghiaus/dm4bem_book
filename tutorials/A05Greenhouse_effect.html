@@ -189,8 +189,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Greenhouse effect</a></li>
-
-
 </ul>
 </li>
 </ul>
@@ -386,23 +384,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Greenhouse effect</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unprotected-black-body-disc">Unprotected black body disc</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-black-disc">Partially transparent glass, black disc</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-gray-body-disc">Partially transparent glass, gray body disc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-gray-disc">Partially transparent glass, gray disc</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-theta-g-theta-d-end-bmatrix">$$
-\begin{bmatrix}
-\theta_g\
-\theta_d
-\end{bmatrix}</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-t-g-t-d-end-bmatrix-273-15">\begin{bmatrix}
-T_g\
-T_d
-\end{bmatrix} - 273.15</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -449,10 +434,11 @@ T_d
 <p>From energy balance on the disc surface,</p>
 <div class="math notranslate nohighlight">
 \[M_d^o=E + M_a^o\]</div>
-<p>it results:
-$<span class="math notranslate nohighlight">\(
+<p>it results:</p>
+<div class="math notranslate nohighlight">
+\[
 T_d = \sqrt[4]{M_d^o / \sigma} = 382.90 \ \mathrm{K}
-\)</span>$</p>
+\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[
@@ -480,11 +466,6 @@ T_d = \sqrt[4]{M_d^o / \sigma} = 382.90 \ \mathrm{K}
 <section id="partially-transparent-glass-black-disc">
 <h2>Partially transparent glass, black disc<a class="headerlink" href="#partially-transparent-glass-black-disc" title="Permalink to this headline">#</a></h2>
 <p>The glass has a reflection factor <span class="math notranslate nohighlight">\(\rho_{Sg} = 0.07\)</span> and a transmission factor <span class="math notranslate nohighlight">\(\tau_{Sg} = 0.90\)</span> for solar (i.e., short wave) radiation. It has a reflection factor <span class="math notranslate nohighlight">\(\rho_{Lg} = 0.50\)</span> and a transmission factor <span class="math notranslate nohighlight">\(\tau_{Lg} = 0.20\)</span> for thermal (i.e., long-wave) radiation. The disc is considered a black body. The disc is considered a black body on the illuminated side and a perfectly reflecting surface on the other side.</p>
-<p>|       | Short wave  | | |Long wave |
-|——-|:—-:|:– -:|:—-:|:—-:|
-|       |  ρ   |  τ   |  ρ   | τ    |
-| Glass | 0.07 | 0.90 | 0.50 | 0.20 |
-| Disc  | 0.0  | 0.0  | 0.0  | 0.0  |</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -508,10 +489,10 @@ T_d = \sqrt[4]{M_d^o / \sigma} = 382.90 \ \mathrm{K}
 <td class="text-center"><p>0.20</p></td>
 </tr>
 <tr class="row-even"><td><p>Disc</p></td>
-<td class="text-center"><p>0.35</p></td>
-<td class="text-center"><p>0.10</p></td>
-<td class="text-center"><p>0.30</p></td>
-<td class="text-center"><p>0.10</p></td>
+<td class="text-center"><p>0.0</p></td>
+<td class="text-center"><p>0.</p></td>
+<td class="text-center"><p>0.</p></td>
+<td class="text-center"><p>0.</p></td>
 </tr>
 </tbody>
 </table>
@@ -610,8 +591,8 @@ T_d
 </div>
 </div>
 </section>
-<section id="partially-transparent-glass-gray-body-disc">
-<h2>Partially transparent glass, gray body disc<a class="headerlink" href="#partially-transparent-glass-gray-body-disc" title="Permalink to this headline">#</a></h2>
+<section id="partially-transparent-glass-gray-disc">
+<h2>Partially transparent glass, gray disc<a class="headerlink" href="#partially-transparent-glass-gray-disc" title="Permalink to this headline">#</a></h2>
 <p>Let’s consider that the glass and the disc have the following radiative properties:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -729,25 +710,23 @@ T_d
 \end{bmatrix}
 \end{split}\]</div>
 <p>and then:</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="begin-bmatrix-theta-g-theta-d-end-bmatrix">
-<h1>$$
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{bmatrix}
-\theta_g\
+\theta_g\\ 
 \theta_d
-\end{bmatrix}<a class="headerlink" href="#begin-bmatrix-theta-g-theta-d-end-bmatrix" title="Permalink to this headline">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="begin-bmatrix-t-g-t-d-end-bmatrix-273-15">
-<h1>\begin{bmatrix}
-T_g\
-T_d
-\end{bmatrix} - 273.15<a class="headerlink" href="#begin-bmatrix-t-g-t-d-end-bmatrix-273-15" title="Permalink to this headline">#</a></h1>
-<p>\begin{bmatrix}
-84.48 \ \mathrm{°C}\
-143.20 \ \mathrm{°C}
 \end{bmatrix}
-$$.</p>
+=
+\begin{bmatrix}
+T_g\\ 
+T_d
+\end{bmatrix} - 273.15
+=
+\begin{bmatrix}
+130.45 \ \mathrm{°C}\\ 
+185.55 \ \mathrm{°C}
+\end{bmatrix}
+\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Partially transparent glass, gray disc&#39;</span><span class="p">)</span>
@@ -792,6 +771,7 @@ $$.</p>
 </div>
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -852,23 +832,10 @@ $$.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Greenhouse effect</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unprotected-black-body-disc">Unprotected black body disc</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-black-disc">Partially transparent glass, black disc</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-gray-body-disc">Partially transparent glass, gray body disc</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partially-transparent-glass-gray-disc">Partially transparent glass, gray disc</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-theta-g-theta-d-end-bmatrix">$$
-\begin{bmatrix}
-\theta_g\
-\theta_d
-\end{bmatrix}</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#begin-bmatrix-t-g-t-d-end-bmatrix-273-15">\begin{bmatrix}
-T_g\
-T_d
-\end{bmatrix} - 273.15</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
