@@ -158,9 +158,9 @@ for k in range(u.shape[0] - 1):
 # outputs
 y = (Cs @ θ.T + Ds @  u.T).T
 
-Kp = TC['G']['q11']     # controller gain
-S = 9                   # m², surface area of the toy house
-q_HVAC = Kp * (u['q11'] - y['θ6']) / 9  # W/m²
+Kp = TC['G']['q11']     # W/K, controller gain
+S = 3 * 3               # m², surface area of the toy house
+q_HVAC = Kp * (u['q11'] - y['θ6']) / S  # W/m²
 
 
 # Plots

@@ -4,11 +4,11 @@
 format: jb-book
 root: intro
 chapters:
-- file: tutorials/A00_theory
+- file: tutorials/T00_theory
   sections:
-  - file: tutorials/A01_Heat_transfer
-  - file: tutorials/A02_TC2DAE
-  - file: tutorials/A03_DAE2SS
+  - file: tutorials/T01_Heat_transfer
+  - file: tutorials/T02_TC2DAE
+  - file: tutorials/T03_DAE2SS
 - file: tutorials/01WeatherData
 - file: tutorials/02_0ModelSimulation
   sections:
@@ -26,9 +26,9 @@ chapters:
   - file: tutorials/pd03assembleTCd
   - file: tutorials/pd04tc2ss
   - file: tutorials/pd05simulation
-- file: tutorials/miscellaneous.md
+- file: tutorials/annexes.md
   sections:
-  - file: tutorials/07Coupled_rad_convection
-  - file: tutorials/08Thermal_load.ipynb
-  - file: tutorials/09Air_flow_ventilation.ipynb
-  - file: tutorials/10Degree_hours_intermittance.ipynb
+  - file: tutorials/A01Coupled_rad_convection
+  - file: tutorials/A02Thermal_load.ipynb
+  - file: tutorials/A03Air_flow_ventilation.ipynb
+  - file: tutorials/A04Degree_hours_intermittance.ipynb
