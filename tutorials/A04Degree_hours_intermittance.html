@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Degree-hour estimation of energy savings by intermittent heating &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A04Degree_hours_intermittance';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Air flow by ventilation" href="A03Air_flow_ventilation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Degree-hour estimation of energy savings by intermittent heating</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A04Degree_hours_intermittance.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/A04Degree_hours_intermittance.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Degree-hour estimation of energy savings by intermittent heating</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hour-method">Degree-hour method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-energy-used-for-heating-with-degree-hours-method">Estimation of energy used for heating with degree-hours method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hours-for-intermittent-heating">Degree-hours for intermittent heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data">Weather data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">Inputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-constant-indoor-temperature">Temperature differences for constant indoor temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-variable-indoor-temperature">Temperature differences for variable indoor temperature</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#daytime-and-nighttime">Daytime and nighttime</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-daytime">Temperature differences for daytime</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-nighttime">Temperature differences for nighttime</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hours-for-heating-dhh">Degree-hours for heating (DHH)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="degree-hour-estimation-of-energy-savings-by-intermittent-heating">
+<h1>Degree-hour estimation of energy savings by intermittent heating<a class="headerlink" href="#degree-hour-estimation-of-energy-savings-by-intermittent-heating" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FA04Degree_hours_intermittance.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>Intermittence consists in reducing the heating power during the night. In a first approximation, the savings obtained can be estimated by using degree-hours (<a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus and Allard, 2006</a>).</p>
+<section id="degree-hour-method">
+<h2>Degree-hour method<a class="headerlink" href="#degree-hour-method" title="Permalink to this headline">#</a></h2>
+<p>Let’s model the building as a volume at indoor temperature separated from the environment by an envelope. Indoor and outdoor temperatures and the properties of the envelope are homogeneous. The heat balance in steady-state is:</p>
+<div class="math notranslate nohighlight">
+\[\dot{Q}_{HVAC} - U_{bldg}·S·(\theta_{in} - \theta_{out}) = 0\]</div>
+<p>where:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_{HVAC}\)</span> - power delivered by the Heating, Ventilation and Air Conditioning (HVAC) system to the building to compensate the heat losses in order to maintain the indoor temperature at value <span class="math notranslate nohighlight">\(\theta_{in}\)</span>, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(U_{bldg}·S·(\theta_{in} - \theta_{out})\)</span> - heat losses of the building, W,</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U_{bldg}\)</span> - overall heat loss coefficient of the building, W/(m²·K) (<a class="reference external" href="https://doi.org/10.1080/19401493.2018.1561753">Ghiaus and Alzetto, 2019</a>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the building, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{out}\)</span> - outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{in}\)</span> - indoor temperature, °C.</p></li>
+</ul>
+</li>
+</ul>
+<p>The energy consumption of the HVAC system needed to maintain the indoor temperature at the value <span class="math notranslate nohighlight">\(\theta_{in}\)</span> over a period of time is the integral in time of the power load (<a class="reference external" href="https://doi.org/10.1016/j.enbuild.2005.08.014">Ghiaus, 2006</a>):</p>
+<div class="math notranslate nohighlight">
+\[Q_{HVAC} = \int_{0}^{t} |\dot{Q}_{HVAC}| dt = \int_{0}^{t} |U_{bldg}·S·(\theta_{in} - \theta_{out})| dt \]</div>
+<p>where <span class="math notranslate nohighlight">\(|\dot{Q}_{HVAC}|\)</span> is the absolute value of <span class="math notranslate nohighlight">\(\dot{Q}_{HVAC}\)</span>.</p>
+<p>By considering that the overall heat loss coefficient <span class="math notranslate nohighlight">\(U_{bldg}\)</span> is constant, then (<a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, 2003</a>)</p>
+<div class="math notranslate nohighlight">
+\[Q_{HVAC} = U_{bldg}·S· \int_{0}^{t} |\theta_{in} - \theta_{out}| dt \]</div>
+<p>which implies that the energy consumption is proportional to <span class="math notranslate nohighlight">\(\int_{0}^{t} |\theta_{in} - \theta_{out}| dt\)</span>. This integral can be discretized (in time):</p>
+<div class="math notranslate nohighlight">
+\[\int_{0}^{t} [\theta_{in} - \theta_{out}| dt  \approx  \sum_{k=0}^{n} |\theta_{in,k} - \theta_{out,k}| \Delta t\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta_{out,k}\)</span> - mean outdoor temperature in the time interval <span class="math notranslate nohighlight">\(\Delta t\)</span> at discrete time (step) <span class="math notranslate nohighlight">\(k\)</span>, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{in,k}\)</span> - mean indoor temperature in the time interval <span class="math notranslate nohighlight">\(\Delta t\)</span> at discrete time (step) <span class="math notranslate nohighlight">\(k\)</span>, °C;</p></li>
+</ul>
+<p>The expression <span class="math notranslate nohighlight">\(\sum_{k=0}^{n} |\theta_{out,k} - \theta_{in,k}| \Delta t\)</span> is called:</p>
+<ul class="simple">
+<li><p><em>degree-days</em> when the discrete time <span class="math notranslate nohighlight">\(\Delta t\)</span> is one day;</p></li>
+<li><p><em>degree-hours</em> when the discrete time <span class="math notranslate nohighlight">\(\Delta t\)</span> is one hour.</p></li>
+</ul>
+<p>Degree-days and degree-hours are used to estimate the influence of climate and of indoor temperature on energy consumption (<a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, 2003</a>, <a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus and Allard, 2006</a>, <a class="reference external" href="https://doi.org/10.1016/j.buildenv.2005.02.003">Ghiaus et al., 2006</a>). The method has the advantage of comparing the influence of different climates and indoor temperatures without knowing the actual building. It has the disadvantage of not taking into account properly the gains (solar and internal), the variable ventilation rates, and the distribution of outdoor temperatures (e.g., air and ground). Therefore, it is suited for comparing the potential of energy savings due to climate and indoor temperature.</p>
+</section>
+<section id="estimation-of-energy-used-for-heating-with-degree-hours-method">
+<h2>Estimation of energy used for heating with degree-hours method<a class="headerlink" href="#estimation-of-energy-used-for-heating-with-degree-hours-method" title="Permalink to this headline">#</a></h2>
+<p>The Heating, Ventilation and Air Conditioning (HVAC) system controls the indoor temperature all the time by heating and cooling the building. Heating is needed only when the outdoor temperature is lower than the indoor temperature. The energy consumption for heating is proportional to degree-hours (or degree-days) for heating:</p>
+<div class="math notranslate nohighlight">
+\[Q_h \sim  \sum_{k=0}^{n} (\theta_{in,k} - \left \lceil  \theta_{out,k} \right \rceil) \Delta t \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(Q_h\)</span> - energy needed for heating, J;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{k=0}^{n} (\theta_{int,k} - \left \lceil  \theta_{out,k} \right \rceil) \Delta t\)</span> - degree-hours for heating;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{in,k}\)</span> - indoor temperature over the time <span class="math notranslate nohighlight">\(k\)</span>, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil\)</span> - outdoor temperature upper bounded by the indoor temperature (i.e., not larger than the indoor temperature), °C,</p></li>
+</ul>
+<p>where
+<span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil = 
+\begin{cases}
+\theta_{out,k} \text{, if } 
+\theta_{out,k} &lt; \theta_{in,k}  
+\\
+\theta_{in,k} \text{, otherwise}
+\end{cases}\)</span></p>
+</section>
+<section id="degree-hours-for-intermittent-heating">
+<h2>Degree-hours for intermittent heating<a class="headerlink" href="#degree-hours-for-intermittent-heating" title="Permalink to this headline">#</a></h2>
+<p>In intermittent heating, the indoor temperature <span class="math notranslate nohighlight">\(\theta_{in,k}\)</span> varies in time. The estimation of energy savings by using degree-hours needs to be corrected to take into account the inertia of the building, the gains (solar and internal) and the air infiltration rate. Nevertheless, the degree-hour method gives an indication on savings by indoor temperature setpoint and climate, without modelling the building.</p>
+</section>
+<section id="python-implementation">
+<h2>Python implementation<a class="headerlink" href="#python-implementation" title="Permalink to this headline">#</a></h2>
+<section id="weather-data">
+<h3>Weather data<a class="headerlink" href="#weather-data" title="Permalink to this headline">#</a></h3>
+<p>Download the weather file with extension <code class="docutils literal notranslate"><span class="pre">.epw</span></code> from:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: folder of files at the repository of free climate data for building performance simulation,</p></li>
+<li><p><a class="reference external" href="https://energyplus.net/weather">EnergyPlus™</a>: interactive map with locations,</p></li>
+<li><p><a class="reference external" href="http://www.ladybug.tools/epwmap/">LadyBug Tools</a>: interactive map with locations,</p></li>
+<li><p><a class="reference external" href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html">PV GIS</a>: interactive map with interpolated data.</p></li>
+</ul>
+<p>For example, for the airport Lyon-Bron, France (N45.73, E5.08), download the files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FRA_Lyon.074810_IWEC.epw</span></code> or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018</span></code></p></li>
+</ul>
+<p>from <a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
+</section>
+<section id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> file name of weather data;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">θ</span></code> indoor temperature considered constant all the period;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">θday</span></code> indoor temperature during the daytime;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">θnight</span></code> indoor temperature during the nighttime;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period_start</span></code> day of the year for the start of the period of the degree-hour estimation (note that the year <code class="docutils literal notranslate"><span class="pre">2000</span></code>is a convention);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period_end</span></code> day of the year for the end of the period of the degree-hour estimation (note that the year <code class="docutils literal notranslate"><span class="pre">2000</span></code>is a convention);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">daytime_start</span></code> time at which the day starts;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">daytime_end</span></code> time at which the day ends.</p></li>
+</ul>
+<p>Note that the daytime needs to be between 00:00 and 24:00. The daytime period cannot include 24:00 (midnight), e.g., it cannot be from 22:00 to 06:00.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">dm4bem</span> <span class="kn">import</span> <span class="n">read_epw</span>
+
+<span class="c1"># Inputs</span>
+<span class="c1"># ======</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="mi">22</span>          <span class="c1"># °C, indoor temperature all time</span>
+<span class="n">θday</span> <span class="o">=</span> <span class="n">θ</span>        <span class="c1"># °C, indoor temperature during day,, e.g.: 06:00 - 22:00</span>
+<span class="n">θnight</span> <span class="o">=</span> <span class="mi">16</span>     <span class="c1"># °C, indoor temperature during night 23:00 - 06:00</span>
+
+<span class="n">period_start</span> <span class="o">=</span> <span class="s1">&#39;2000-01-01&#39;</span>
+<span class="n">period_end</span> <span class="o">=</span> <span class="s1">&#39;2000-12-31&#39;</span>
+
+<span class="n">daytime_start</span> <span class="o">=</span> <span class="s1">&#39;06:00:00+01:00&#39;</span>
+<span class="n">daytime_end</span> <span class="o">=</span> <span class="s1">&#39;22:00:00+01:00&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Computation</span>
+<span class="c1"># ===========</span>
+<span class="c1"># read Energy Plus Weather data (file .EPW)</span>
+<span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># select outdoor air temperature; call it θout</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">]]</span>
+<span class="k">del</span> <span class="n">data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;temp_air&#39;</span><span class="p">:</span> <span class="s1">&#39;θout&#39;</span><span class="p">})</span>
+
+<span class="c1"># Select the data for a period of the year</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">period_start</span><span class="p">:</span><span class="n">period_end</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temperature-differences-for-constant-indoor-temperature">
+<h3>Temperature differences for constant indoor temperature<a class="headerlink" href="#temperature-differences-for-constant-indoor-temperature" title="Permalink to this headline">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\Delta \theta_{fix,k} = \theta - \left \lceil  \theta_{out,k} \right \rceil\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - indoor temperature (constant all the time), °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil\)</span> - outdoor temperature bounded by the indoor temperature (i.e., not larger than the indoor temperature), °C,</p></li>
+</ul>
+<p>where
+<span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil = 
+\begin{cases}
+\theta_{out,k} \text{, if } \theta_{out,k} &lt; \theta
+\\
+\theta \text{ otherwise}
+\end{cases}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute degree-hours for fixed set-point</span>
+<span class="c1"># ----------------------------------------</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθfix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">θ</span><span class="p">,</span>
+    <span class="n">θ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temperature-differences-for-variable-indoor-temperature">
+<h3>Temperature differences for variable indoor temperature<a class="headerlink" href="#temperature-differences-for-variable-indoor-temperature" title="Permalink to this headline">#</a></h3>
+<section id="daytime-and-nighttime">
+<h4>Daytime and nighttime<a class="headerlink" href="#daytime-and-nighttime" title="Permalink to this headline">#</a></h4>
+<p>Daytime is from <code class="docutils literal notranslate"><span class="pre">day_start</span></code> to <code class="docutils literal notranslate"><span class="pre">day_end</span></code>(indicated in <code class="docutils literal notranslate"><span class="pre">HH:00</span></code>). Nighttime is when there is no daytime.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define start time for day and night</span>
+<span class="n">day_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">daytime_start</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">day_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">daytime_end</span><span class="p">)</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Daytime should be between 00:00 and 24:00</span>
+<span class="c1"># Daytime including midnight is not allowed, e.g., 22:00 till 06:00</span>
+<span class="n">day</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">day_start</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;=</span> <span class="n">day_end</span><span class="p">)</span>
+<span class="n">night</span> <span class="o">=</span> <span class="o">~</span><span class="n">day</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temperature-differences-for-daytime">
+<h4>Temperature differences for daytime<a class="headerlink" href="#temperature-differences-for-daytime" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\Delta \theta_{day,k} = \theta_{day} - \left \lceil  \theta_{out,k} \right \rceil_{day}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta_{day}\)</span> - indoor temperature over the time <span class="math notranslate nohighlight">\(k\)</span>, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil_{day}\)</span> - outdoor temperature bounded by indoor temperature during the daytime, °C,</p></li>
+</ul>
+<p>where
+<span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil_{day} =
+\begin{cases}
+\theta_{out,k} \text{, if } \theta_{out,k} &lt; \theta_{day} \text{ and daytime}
+\\
+\theta_{day} \text{, otherwise}
+\end{cases}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Degree-hours for daytime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">θday</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">θday</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">day</span><span class="p">,</span>
+    <span class="n">θday</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="temperature-differences-for-nighttime">
+<h4>Temperature differences for nighttime<a class="headerlink" href="#temperature-differences-for-nighttime" title="Permalink to this headline">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\Delta \theta_{night,k} = \theta_{night} - \left \lceil  \theta_{out,k} \right \rceil_{night}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta_{night}\)</span> - indoor temperature over the time <span class="math notranslate nohighlight">\(k\)</span>, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil_{night}\)</span> - outdoor temperature bounded by the indoor temperature during the nighttime, °C,</p></li>
+</ul>
+<p>where
+<span class="math notranslate nohighlight">\(\left \lceil  \theta_{out,k} \right \rceil_{night} =
+\begin{cases}
+\theta_{out,k} \text{, if }  \theta_{out,k} &lt; \theta_{night}  \text{ and nighttime}
+\\
+\theta_{night} \text{, otherwise}
+\end{cases}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Degree-hours for nighttime</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθnight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">θnight</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;θout&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">θnight</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">night</span><span class="p">,</span>
+    <span class="n">θnight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="degree-hours-for-heating-dhh">
+<h3>Degree-hours for heating (DHH)<a class="headerlink" href="#degree-hours-for-heating-dhh" title="Permalink to this headline">#</a></h3>
+<p>The degree hours for heating (<em>DHH</em>) are the sum of temperature differences:</p>
+<ul class="simple">
+<li><p>for fixed indoor temperature</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[DHH_{fix} = \sum_{k=0}^{n} \Delta \theta_{fix,k} = \sum_{k=0}^{n} ( \theta - \left \lceil  \theta_{out,k} \right \rceil)\]</div>
+<ul class="simple">
+<li><p>for daytime indoor temperature</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[DHH_{day} = \sum_{k=0}^{n} \Delta \theta_{day,k} = \sum_{k=0}^{n} ( \theta_{day} - \left \lceil  \theta_{out,k} \right \rceil_{day})\]</div>
+<ul class="simple">
+<li><p>for nighttime indoor temperature</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[DHH_{night} = \sum_{k=0}^{n} \Delta \theta_{night,k} = \sum_{k=0}^{n} ( \theta_{night} - \left \lceil  \theta_{out,k} \right \rceil_{night})\]</div>
+<ul class="simple">
+<li><p>for intermittence</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[DHH_{interm} = DHH_{day} + DHH_{night}\]</div>
+<p>The percentage of energy savings by using intermittent heating is:</p>
+<div class="math notranslate nohighlight">
+\[s = \frac{DHH_{fix} - DHH_{interm}}{DHH_{fix}} 100 \%\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sum of degree-hours for fixed indoor temperature</span>
+<span class="n">DHH_fix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθfix&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Sum of degree-hours for intermittent heating</span>
+<span class="n">DHH_interm</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Δθnight&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Results</span>
+<span class="c1"># =======</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;degree-hours fixed set-point: </span><span class="si">{</span><span class="n">DHH_fix</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> h·K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;degree-hours variable set-point: </span><span class="si">{</span><span class="n">DHH_interm</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> h·K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated savings: </span><span class="si">{</span><span class="p">(</span><span class="n">DHH_fix</span> <span class="o">-</span> <span class="n">DHH_interm</span><span class="p">)</span> <span class="o">/</span> <span class="n">DHH_fix</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>degree-hours fixed set-point: 92204.7 h·K
+degree-hours variable set-point: 78042.1 h·K
+Estimated savings: 15 %
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the obtained percentage of savings is an upper bound. The heating load during the daytime would probably be reduced by free gains, such as solar radiation, occupants and electrical devices. The set-point considered for indoor temperature during nighttime will be attended later than indicated in the time schedule for day/night setpoint due to thermal inertia. The optimal load of intermittently heated building can be assessed by estimating the command of a Model Predictive Controller (<a class="reference external" href="https://doi.org/10.1016/j.enbuild.2010.02.017">Ghiaus and Hazyuk, 2010</a>).</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, C. (2003)</a>. Free-running building temperature and HVAC climatic suitability. Energy and Buildings, 35(4), 405-411.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus, C., &amp; Allard, F. (2006)</a>. Potential for free-cooling by ventilation. Solar Energy, 80(4), 402-413.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.buildenv.2005.02.003">Ghiaus, C., Allard, F., Santamouris, M., Georgakis, C., &amp; Nicol, F. (2006)</a>. Urban environment influence on natural ventilation potential. Building and environment, 41(4), 395-406.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.enbuild.2005.08.014">Ghiaus, C. (2006)</a>. Experimental estimation of building energy performance by robust regression. Energy and buildings, 38(6), 582-587.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.enbuild.2010.02.017">Ghiaus, C., &amp; Hazyuk, I. (2010)</a>. Calculation of optimal thermal load of intermittently heated buildings. Energy and Buildings, 42(8), 1248-1258.</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1080/19401493.2018.1561753">Ghiaus, C., &amp; Alzetto, F. (2019)</a>. Design of experiments for Quick U-building method for building energy performance measurement. Journal of building performance simulation, 12(4), 465-479.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="A03Air_flow_ventilation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Air flow by ventilation</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hour-method">Degree-hour method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-energy-used-for-heating-with-degree-hours-method">Estimation of energy used for heating with degree-hours method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hours-for-intermittent-heating">Degree-hours for intermittent heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data">Weather data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">Inputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-constant-indoor-temperature">Temperature differences for constant indoor temperature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-variable-indoor-temperature">Temperature differences for variable indoor temperature</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#daytime-and-nighttime">Daytime and nighttime</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-daytime">Temperature differences for daytime</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-differences-for-nighttime">Temperature differences for nighttime</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#degree-hours-for-heating-dhh">Degree-hours for heating (DHH)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

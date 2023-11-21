@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Air flow by ventilation &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A03Air_flow_ventilation';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Degree-hour estimation of energy savings by intermittent heating" href="A04Degree_hours_intermittance.html" />
+    <link rel="prev" title="Sensible thermal load in steady-state" href="A02Thermal_load.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A03Air_flow_ventilation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/A03Air_flow_ventilation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Air flow by ventilation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-theory">Summary of theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-sources">Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-equation">Constitutive equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-equation">Mass conservation equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-of-variation-for-the-indoor-pressure">Domain of variation for the indoor pressure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neglecting-the-wind-effect">Neglecting the wind effect</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-pressure">Dynamic pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-of-variation-of-indoor-pressure">Domain of variation of indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-solution-of-nonlinear-equation-for-indoor-pressure">Graphical solution of nonlinear equation for indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solution">Numerical solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-mass-balance">Check the mass balance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considering-the-wind-effect">Considering the wind effect</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Dynamic pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Domain of variation of indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-solution-of-nolinear-equation-for-indoor-pressure">Graphical solution of nolinear equation for indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Numerical solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Check the mass balance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="air-flow-by-ventilation">
+<h1>Air flow by ventilation<a class="headerlink" href="#air-flow-by-ventilation" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FA03Air_flow_ventilation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
+<p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
+<ul class="simple">
+<li><p>Orrifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
+<li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h\,Pa}^{n_c})\)</span>.</p></li>
+<li><p>The other elements of the building are considered airthight.</p></li>
+</ul>
+<p><img alt="vent_bldg" src="../_images/09_nat_vent.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Natural ventilation with wind and stack effect.</p>
+</div></blockquote>
+<p>The static pressure at the level of the orrifices is considered <span class="math notranslate nohighlight">\(P_o = 0 \, \mathrm{Pa}\)</span>.</p>
+<p>Let’s consider that the outdoor air has the parameters <span class="math notranslate nohighlight">\(\theta_o = -5 \, \mathrm{°C}\)</span>, <span class="math notranslate nohighlight">\(\varphi_o = 100 \, \%\)</span>,<span class="math notranslate nohighlight">\(\rho_o = 1.315 \, \mathrm{kg/m^3}\)</span> and the indoor air has the parameters <span class="math notranslate nohighlight">\(\theta_i = 22 \, \mathrm{°C}\)</span>, <span class="math notranslate nohighlight">\(\varphi_i = 50 \, \%\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1.191 \, \mathrm{kg/m^3}.\)</span></p>
+<p>In these conditions, estimate:</p>
+<ul class="simple">
+<li><p>The possible domain of variation for the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span> for the flow configuration shown in Figure 1.</p></li>
+<li><p>The value of the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>.</p></li>
+<li><p>The mass flow rates:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>: from outdoors to indoors through the nord façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m_{ci}\)</span>: from outdoors to indoors through the south façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>: from indoors to outdoors through the chimney;</p></li>
+</ul>
+</li>
+</ul>
+<p>in two situations:</p>
+<ol class="arabic simple">
+<li><p>Neglecting the wind effect.</p></li>
+<li><p>Considering that the wind blows from North to South with speed <span class="math notranslate nohighlight">\(v = 18 \, \mathrm{km/h}\)</span> and that the pressure coefficients are <span class="math notranslate nohighlight">\(C_{p,n} = 0.4\)</span> for the north face, <span class="math notranslate nohighlight">\(C_{p,s} = -0.55\)</span> for the south face, and <span class="math notranslate nohighlight">\(C_{p,c} = -0.7\)</span> for the chimney.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+
+<span class="c1"># Data</span>
+<span class="c1"># standard acceleration due to gravity, m/s²</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>
+<span class="c1"># pressure exponent, dimensionless</span>
+<span class="n">no</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="mf">0.64</span><span class="p">,</span> <span class="mf">0.50</span>             <span class="c1"># orrifice, cheminée</span>
+<span class="c1"># flow coefficients, m³/(s·Paⁿ)</span>
+<span class="n">Ko</span><span class="p">,</span> <span class="n">Kc</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">,</span> <span class="mi">50</span> <span class="o">/</span> <span class="mi">3600</span>   <span class="c1"># orrifice, chimney</span>
+<span class="c1"># density, kg/m³</span>
+<span class="n">ρi</span><span class="p">,</span> <span class="n">ρo</span> <span class="o">=</span> <span class="mf">1.191</span><span class="p">,</span> <span class="mf">1.315</span>           <span class="c1"># indoor, outdoor</span>
+<span class="c1"># pressure coefficients, dimensioneless</span>
+<span class="n">Cpn</span><span class="p">,</span> <span class="n">Cps</span><span class="p">,</span> <span class="n">Cpc</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span>    <span class="c1"># north, south, chimney</span>
+<span class="c1"># hignt, m</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-of-theory">
+<h2>Summary of theory<a class="headerlink" href="#summary-of-theory" title="Permalink to this headline">#</a></h2>
+<section id="sources">
+<h3>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">#</a></h3>
+<section id="pressure-sources">
+<h4>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this headline">#</a></h4>
+<p>Pressure sources (Rock et al. 2017):</p>
+<ul class="simple">
+<li><p>stack pressure: <span class="math notranslate nohighlight">\(P_s = P_0 - \rho g z\)</span>;</p></li>
+<li><p>wind pressure: <span class="math notranslate nohighlight">\(P_w = C_p \frac{1}{2} \rho_o v^2\)</span></p></li>
+</ul>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_s\)</span> stack pressure, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_0\)</span> stack pressure at reference height, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> gravitational acceleration, m/s²</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> indoor or outdoor air density, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(z\)</span> height above the reference level, m</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_w\)</span> wind pressure difference relative to the outdoor pressure in undisturbed flow, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_p\)</span> pressure coefficient, dimensionless</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_o\)</span> outside air density, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> wind speed, m/s</p></li>
+</ul>
+</section>
+<section id="flow-sources">
+<h4>Flow sources<a class="headerlink" href="#flow-sources" title="Permalink to this headline">#</a></h4>
+<p>Flow sources inject a controlled volumetric airflow rate into the control volume, as is the case in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">HVAC systems</a>.</p>
+</section>
+</section>
+<section id="constitutive-equation">
+<h3>Constitutive equation<a class="headerlink" href="#constitutive-equation" title="Permalink to this headline">#</a></h3>
+<p>Each opening of a building can be modelled by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Constitutive_equation">constitutive equation</a> or power law (Rock et al. 2017):</p>
+<div class="math notranslate nohighlight">
+\[ \dot V_{i,j} = K_{i,j} \Delta P^n_{i,j} = K_{i,j}(P_i - P_j)^n\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric airflow through opening from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> pressure exponent, dimensionless; typical value about 0.65</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{i,j}\)</span> flow coefficient, m³/(s·Paⁿ)</p></li>
+</ul>
+<p>The values of the pressure exponent <span class="math notranslate nohighlight">\(n\)</span> and flow coefficient <span class="math notranslate nohighlight">\(K_{i,j}\)</span> cann be obtained experimentally by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">blower door</a> test.</p>
+</section>
+<section id="mass-conservation-equation">
+<h3>Mass conservation equation<a class="headerlink" href="#mass-conservation-equation" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Conservation_of_mass">mass conservation</a> law in steady-state states that the algebraic sum of mass flow rates entering in a control volume <span class="math notranslate nohighlight">\(j\)</span> is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_i \dot m_{i,j} = 0\]</div>
+<p>Mass air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{i,j} = \rho_i \, \dot V_{i,j}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot m_{i,j}\)</span> mass flow rate of air from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, kg/s</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_i\)</span> air density in control volume <span class="math notranslate nohighlight">\(i\)</span>, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ol class="arabic simple">
+<li><p>The constitutive law relates volumetric airflow to pressure difference.</p></li>
+<li><p>The balance equation is done for mass flow rate.</p></li>
+<li><p>Generally, <span class="math notranslate nohighlight">\(\dot m_{i,j} \neq \dot m_{j,i}\)</span>, even if <span class="math notranslate nohighlight">\(\dot V_{i,j} = \dot V_{j,i}\)</span>. This implies that if the mass flow rates obtained by slvinf the aeraulic circuit are negative, than the direction of the flows need to changed and a new solution to be searched for.</p></li>
+</ol>
+</section>
+<section id="domain-of-variation-for-the-indoor-pressure">
+<h3>Domain of variation for the indoor pressure<a class="headerlink" href="#domain-of-variation-for-the-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<p>For the flow directions shown in Figure 1,</p>
+<div class="math notranslate nohighlight">
+\[\dot m_{i,c} &gt; 0\]</div>
+<p>the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span> needs to satisfy the inequality (see Figure 2a):</p>
+<div class="math notranslate nohighlight">
+\[p_i + [P_{si} - (P_{dc} + P{sc})] &gt; 0\]</div>
+<p>or the inequality (see Figure 2b):</p>
+<div class="math notranslate nohighlight">
+\[p_i &gt; P_{dc} + P{sc} - P_{si}\]</div>
+<p><img alt="vent_bldg" src="../_images/09_nat_vent_1P.svg" /></p>
+<blockquote>
+<div><p>Figure 2. The model from Figure 1 with only one pressure source on a branch: a) pressure source before conductance; b) pressure source after conductance.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="static-pressure">
+<h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i g z\)</span> indoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o g z\)</span> outdoors</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Static pressure, Pa</span>
+<span class="n">Psi</span> <span class="o">=</span> <span class="o">-</span><span class="n">ρi</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">z</span>   <span class="c1"># indoors</span>
+<span class="n">Pso</span> <span class="o">=</span> <span class="o">-</span><span class="n">ρo</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">z</span>   <span class="c1"># outdoors</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="neglecting-the-wind-effect">
+<h2>Neglecting the wind effect<a class="headerlink" href="#neglecting-the-wind-effect" title="Permalink to this headline">#</a></h2>
+<section id="dynamic-pressure">
+<h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this headline">#</a></h3>
+<p>The dynamic pressures are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_pn \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_ps \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_pc \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># m/s, wind speed</span>
+<span class="c1"># dynamic pressures, Pa</span>
+<span class="n">Pdn</span> <span class="o">=</span> <span class="n">Cpn</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># north face</span>
+<span class="n">Pds</span> <span class="o">=</span> <span class="n">Cps</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># south face</span>
+<span class="n">Pdc</span> <span class="o">=</span> <span class="n">Cpc</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># chimney</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="domain-of-variation-of-indoor-pressure">
+<h3>Domain of variation of indoor pressure<a class="headerlink" href="#domain-of-variation-of-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<p>The domain of variation of <span class="math notranslate nohighlight">\(p_i\)</span> in order to have the flows shown in Figure 1 is</p>
+<div class="math notranslate nohighlight">
+\[P_{si} - (P_{dc} + P{sc}) \le p_i \le \min (P_{dn},P_{ds})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">Pdn</span><span class="p">,</span> <span class="n">Pds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure domain: </span><span class="si">{</span><span class="n">pi_min</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa &lt; pi &lt; </span><span class="si">{</span><span class="n">pi_max</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressure domain: -9.72 Pa &lt; pi &lt; 0.00 Pa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="graphical-solution-of-nonlinear-equation-for-indoor-pressure">
+<h3>Graphical solution of nonlinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nonlinear-equation-for-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<p>The mass flow balance equation for pressure node <span class="math notranslate nohighlight">\(p_i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( \dot m_{ni} = 2 \rho_o K_o (P_{dn} - P_{i})^{n_o}\)</span> - mass flow through the two orifices on north façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \dot m_{si} = 2 \rho_o K_o (P_{ds} - P_{i})^{n_o}\)</span> - mass flow through the two orifices on south façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \dot m_{ic} = \rho_i K_c (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\)</span> - mass flow from indoor air through the chimney.</p></li>
+</ul>
+<p>The mass balance is satisfied for the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span> which solves the equation:</p>
+<div class="math notranslate nohighlight">
+\[f(p_i) = 0\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[f(p_i) = 2 \rho_o K_o (P_{dn} - P_{i})^{n_o} + 2 \rho_o K_o (P_{ds} - P_{i})^{n_o} - \rho_i K_c (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">pi</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Error in mass balance equation as a function of indoor pressure.</span>
+<span class="sd">    Used to find indoor pressure pi which makes the mass balance zero.</span>
+<span class="sd">    The north and south flows are enteriing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pi : float</span>
+<span class="sd">        Indoor pressure, Pa.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    y : float</span>
+<span class="sd">        Mass flow rate unbalanced in the mass balance equation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="n">no</span> \
+        <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="n">no</span> \
+        <span class="o">-</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">pi</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
+    <span class="k">return</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution of this non-linear equation can be found graphically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot error in mass balance</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance $\dot</span><span class="si">{m}</span><span class="s1">$ [kg/s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure $p_i$ [Pa]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e2a3cd8ac575f5da2b7b400178883b3f90113c863d545ecf08e1c6b25731b633.png" src="../_images/e2a3cd8ac575f5da2b7b400178883b3f90113c863d545ecf08e1c6b25731b633.png" />
+</div>
+</div>
+</section>
+<section id="numerical-solution">
+<h3>Numerical solution<a class="headerlink" href="#numerical-solution" title="Permalink to this headline">#</a></h3>
+<p>Alternativelly, the solution to the equation</p>
+<div class="math notranslate nohighlight">
+\[f(p_i) = 0\]</div>
+<p>can be found numerically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
+<span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -4.45 Pa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-the-mass-balance">
+<h3>Check the mass balance<a class="headerlink" href="#check-the-mass-balance" title="Permalink to this headline">#</a></h3>
+<p>By knowing the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>, the mass flows  <span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>, <span class="math notranslate nohighlight">\(\dot m_{si}\)</span> and <span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>  can be found and the mass balance</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
+<p>checked.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># verification of mass balance, kg/s</span>
+<span class="n">mn</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">-</span> <span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verify mass balance:
+mass flow: north: 0.019 kg/s, south: 0.019 kg/s
+mass flow chimney: 0.038 kg/s
+error in mass flow balance: 0.000 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="considering-the-wind-effect">
+<h2>Considering the wind effect<a class="headerlink" href="#considering-the-wind-effect" title="Permalink to this headline">#</a></h2>
+<section id="id1">
+<h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>The dynamic pressures are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_pn \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_ps \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_pc \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">18</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">3600</span>            <span class="c1"># m/s, wind speed</span>
+
+<span class="c1"># dynamic pressures, Pa</span>
+<span class="n">Pdn</span> <span class="o">=</span> <span class="n">Cpn</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># north face</span>
+<span class="n">Pds</span> <span class="o">=</span> <span class="n">Cps</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># south face</span>
+<span class="n">Pdc</span> <span class="o">=</span> <span class="n">Cpc</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># chimney</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Domain of variation of indoor pressure<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>The domain of variation of <span class="math notranslate nohighlight">\(p_i\)</span> in order to have the flows shown in Figure 1 is:</p>
+<div class="math notranslate nohighlight">
+\[P_{si} - (P_{dc} + P{sc}) \le p_i \le \min (P_{dn},P_{ds})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">Pdn</span><span class="p">,</span> <span class="n">Pds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure domain with wind: </span><span class="si">{</span><span class="n">pi_min</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa &lt; pi &lt; </span><span class="si">{</span><span class="n">pi_max</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressure domain with wind: -21.23 Pa &lt; pi &lt; -9.04 Pa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="graphical-solution-of-nolinear-equation-for-indoor-pressure">
+<h3>Graphical solution of nolinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nolinear-equation-for-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<p>The solution of this non-linear equation can be found graphically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot error in mass balance</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance $\dot</span><span class="si">{m}</span><span class="s1">$ [kg/s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure $p_i$ [Pa]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6df220cf82dfce7c466eb949e25273d77ecbdee053d4682deb0be9137e1ce7e6.png" src="../_images/6df220cf82dfce7c466eb949e25273d77ecbdee053d4682deb0be9137e1ce7e6.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>Numerical solution<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>Alternativelly, the solution to the equation</p>
+<div class="math notranslate nohighlight">
+\[f(p_i) = 0\]</div>
+<p>can be found numerically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
+<span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -10.50 Pa
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Check the mass balance<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>By knowing the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>, the mass flows  <span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>, <span class="math notranslate nohighlight">\(\dot m_{si}\)</span> and <span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>  can be found and the mass balance</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
+<p>checked.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mn</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
+<span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">-</span> <span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verify mass balance:
+mass flow: north: 0.045 kg/s, south: 0.009 kg/s
+mass flow chimney: 0.054 kg/s
+error in mass flow balance: 0.000 kg/s
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<p>B. Rock, S.J. Emmerich, S. Taylor (2017) <em>F16 Ventilation and Infiltration</em> in <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">ASHRAE Fundamentals Handbook</a> ISBN 10: 1939200598  ISBN 13: 978-1939200594</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="A02Thermal_load.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sensible thermal load in steady-state</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="A04Degree_hours_intermittance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Degree-hour estimation of energy savings by intermittent heating</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-theory">Summary of theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-sources">Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-equation">Constitutive equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-equation">Mass conservation equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-of-variation-for-the-indoor-pressure">Domain of variation for the indoor pressure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neglecting-the-wind-effect">Neglecting the wind effect</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-pressure">Dynamic pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-of-variation-of-indoor-pressure">Domain of variation of indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-solution-of-nonlinear-equation-for-indoor-pressure">Graphical solution of nonlinear equation for indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-solution">Numerical solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-the-mass-balance">Check the mass balance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#considering-the-wind-effect">Considering the wind effect</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Dynamic pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Domain of variation of indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphical-solution-of-nolinear-equation-for-indoor-pressure">Graphical solution of nolinear equation for indoor pressure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Numerical solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Check the mass balance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
