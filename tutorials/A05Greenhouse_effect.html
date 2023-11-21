@@ -407,7 +407,8 @@ document.write(`
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(E=800 \ \mathrm{W/m^2}; \theta_a = 20 \ \mathrm{°C}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_a / \mathrm{K} = 273.15 + \theta_a / \mathrm{C}\)</span> - ambient temperature.</p></li>
-<li><p><span class="math notranslate nohighlight">\(M_a = \sigma T_a^4\)</span> - radiant <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">exitance</a> of a black body at the same temperature as the surface of the ambiance.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^o = \sigma T^4\)</span> - radiant <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">exitance</a> of a black body at the same temperature as the surface (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan-Boltzmann law</a>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan-Boltzmann constant</a>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -433,8 +434,13 @@ document.write(`
 </div></blockquote>
 <p>From energy balance on the disc surface,</p>
 <div class="math notranslate nohighlight">
-\[M_d^o=E + M_a^o\]</div>
-<p>it results:</p>
+\[M^o_d=E + M^o_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^o_d, \ M^o_a\)</span> - radiant <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">exitance</a> of a black body at the same temperature as the surfaces of the disc and ambiance, respectively, W/m².</p></li>
+</ul>
+<p>results the disc temperature:</p>
 <div class="math notranslate nohighlight">
 \[
 T_d = \sqrt[4]{M_d^o / \sigma} = 382.90 \ \mathrm{K}
@@ -526,7 +532,22 @@ M^o_d
  -\tau_{Sg} E - \tau{Lg} M^o_a
 \end{bmatrix}
 \end{split}\]</div>
-<p>By solving for <span class="math notranslate nohighlight">\(M^o_g\)</span> and <span class="math notranslate nohighlight">\(M^o_d\)</span>, we obtain:</p>
+<p>where the symbols are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> - hemispherical <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorbtance</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span> - hemispherical <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">transmittance</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> - hemispherical <a class="reference external" href="https://en.wikipedia.org/wiki/Reflectance">reflectance</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon\)</span> - hemispherical <a class="reference external" href="https://en.m.wikipedia.org/wiki/Emissivity">emissivity</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, W/m²</p></li>
+<li><p><span class="math notranslate nohighlight">\(M^o\)</span> - radiant <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">exitance</a> of a black body at the same temperature as the surface, W/m²</p></li>
+</ul>
+<p>and the indexes are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L\)</span> - longwave <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_radiation">thermal radiation</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Shortwave_radiation_(optics)">shortwave radiation</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(a, \ d, \ g\)</span> - ambiance, disc, glass.</p></li>
+</ul>
+<p>By solving for <span class="math notranslate nohighlight">\(M^o_g\)</span> and <span class="math notranslate nohighlight">\(M^o_d\)</span>, we obtain the temperatures:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -644,7 +665,7 @@ T_d
 <p>When <span class="math notranslate nohighlight">\(|n| &lt; 1\)</span>, the sum of a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Geometric_series">geometric series</a> is</p>
 <div class="math notranslate nohighlight">
 \[\sum_{k=0}^{\infty}n^k = \frac{1}{1-n}\]</div>
-<p>The heat balance (on the glass and on the disc) is:</p>
+<p>In <a class="reference external" href="https://en.wikipedia.org/wiki/Radiative_equilibrium">radiative equilibrum</a>, the heat balance (on the glass and on the disc) is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left\{\begin{matrix}
@@ -652,9 +673,9 @@ T_d
 \dot Q_{Ed} + \dot Q_{M^o_dd} + \dot Q_{M^o_gd} + \dot Q_{M^o_ad} = 0
 \end{matrix}\right.
 \end{split}\]</div>
-<p>where:</p>
+<p>where the heat flow rate are:</p>
 <ul class="simple">
-<li><p>glass:</p>
+<li><p>for energy balance on glass:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\dot Q_{Eg} = \alpha_{Sg} \left ( 1 + \rho_{Sd} \tau_{Sg} \frac{1}{1 - \rho_{Sg} \rho_{Sd}} \right ) E\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot Q_{M^o_dg} = \alpha_{Lg} \varepsilon_{Ld} \frac{1}{1 - \rho_{Ld} \rho_{Lg}} M^o_d\)</span></p></li>
@@ -662,7 +683,7 @@ T_d
 <li><p><span class="math notranslate nohighlight">\(\dot Q_{M^o_ag} = \alpha_{Lg} \left ( 1 + \rho_{Ld} \tau_{Lg} \frac{1}{1 - \rho_{Lg} \rho_{Ld}} \right )M^o_a\)</span></p></li>
 </ul>
 </li>
-<li><p>disc:</p>
+<li><p>for energy balance on disc:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\dot Q_{Ed} = \alpha_{Sd} \tau_{Sg} \frac{1}{1 - \rho_{Sg} \rho_{Sd}} E\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot Q_{M^o_dd} = \left ( \alpha_{Ld} \rho_{Lg} \varepsilon_{Ld} \frac{1}{1 - \rho_{Ld} \rho_{Lg}} - \varepsilon_{Ld} \right ) M^o_d\)</span></p></li>
