@@ -32,3 +32,4 @@ chapters:
   - file: tutorials/A02Thermal_load.ipynb
   - file: tutorials/A03Air_flow_ventilation.ipynb
   - file: tutorials/A04Degree_hours_intermittance.ipynb
+  - file: tutorials/A05Greenhouse_effect.ipynb
