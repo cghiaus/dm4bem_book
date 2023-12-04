@@ -6,7 +6,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
-   sodipodi:docname="09_nat_vent.svg"
+   sodipodi:docname="A03_nat_vent.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -276,9 +276,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4363093"
-     inkscape:cx="540.77699"
-     inkscape:cy="112.67042"
+     inkscape:zoom="3.4783448"
+     inkscape:cx="511.8814"
+     inkscape:cy="117.44092"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -964,9 +964,35 @@
          style="stroke-width:0.264583"
          x="129.46983"
          y="39.196873">dynamic pressure, south façade</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
+       x="123.31845"
+       y="42.631264"
+       id="text900-2-5-2-3-8-8-0"
+       inkscape:transform-center-y="3.6452221e-06"
+       inkscape:transform-center-x="3.5255354"><tspan
+         sodipodi:role="line"
+         x="123.31845"
+         y="42.631264"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
+         id="tspan898-2-5-9-7-8-8-2">p<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan4462-9-3-3-4">i</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
+       x="129.46983"
+       y="43.042957"
+       id="text2147-8-5-8"><tspan
+         sodipodi:role="line"
+         id="tspan2145-1-2-3"
+         style="stroke-width:0.264583"
+         x="129.46983"
+         y="43.042957">indoor pressure</tspan></text>
     <g
        id="g3574"
-       transform="translate(-0.57684433,0.95579143)">
+       transform="translate(-0.57684433,3.6016249)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';word-spacing:0px;stroke-width:0.264583"
@@ -991,16 +1017,16 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
        x="129.50015"
-       y="43.877464"
+       y="46.5233"
        id="text2147-8-5-9"><tspan
          sodipodi:role="line"
          id="tspan2145-1-2-1"
          style="stroke-width:0.264583"
          x="129.50015"
-         y="43.877464">mass flow rate from indoors through the chimney</tspan></text>
+         y="46.5233">mass flow rate from indoors through the chimney</tspan></text>
     <g
        id="g3574-2"
-       transform="translate(-0.57684154,5.1647299)">
+       transform="translate(-0.57684154,7.8105634)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';word-spacing:0px;stroke-width:0.264583"
@@ -1025,13 +1051,13 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
        x="129.50015"
-       y="48.150417"
+       y="50.796253"
        id="text2147-8-5-9-5"><tspan
          sodipodi:role="line"
          id="tspan2145-1-2-1-3"
          style="stroke-width:0.264583"
          x="129.50015"
-         y="48.150417">mass flow rate through north façade to indoors</tspan></text>
+         y="50.796253">mass flow rate through north façade to indoors</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,2.64583,13.409201)"
@@ -1041,27 +1067,27 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
        x="129.1739"
-       y="52.178146"
+       y="54.823982"
        id="text2147-8-5-9-5-1"><tspan
          sodipodi:role="line"
          id="tspan2145-1-2-1-3-4"
          style="stroke-width:0.264583"
          x="129.1739"
-         y="52.178146">mass flow rate through south façade to indoors</tspan></text>
+         y="54.823982">mass flow rate through south façade to indoors</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
        x="129.20009"
-       y="56.723148"
+       y="59.368984"
        id="text2147-8-5-9-5-1-6"><tspan
          sodipodi:role="line"
          id="tspan2145-1-2-1-3-4-8"
          style="stroke-width:0.264583"
          x="129.20009"
-         y="56.723148">hight of orrifices on north and south façades</tspan></text>
+         y="59.368984">hight of orrifices on north and south façades</tspan></text>
     <g
        id="g3574-2-3"
-       transform="translate(-0.44976086,9.3736686)">
+       transform="translate(-0.44976086,12.019503)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';word-spacing:0px;stroke-width:0.264583"
@@ -1086,12 +1112,12 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
        x="124.25436"
-       y="56.606709"
+       y="59.252544"
        id="text4216-3-5"><tspan
          sodipodi:role="line"
          id="tspan4214-0-3"
          x="124.25436"
-         y="56.606709"
+         y="59.252544"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583">z<tspan
    style="font-size:65%;baseline-shift:sub"
    id="tspan4241-7">o</tspan></tspan></text>
@@ -1099,23 +1125,23 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82223px;font-family:Cambria;-inkscape-font-specification:Cambria;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:square"
        x="129.20009"
-       y="60.792873"
+       y="63.438709"
        id="text2147-8-5-9-5-1-6-3"><tspan
          sodipodi:role="line"
          id="tspan2145-1-2-1-3-4-8-8"
          style="stroke-width:0.264583"
          x="129.20009"
-         y="60.792873">hight of chimney</tspan></text>
+         y="63.438709">hight of chimney</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
        x="124.25436"
-       y="60.676434"
+       y="63.322269"
        id="text4216-3-5-3"><tspan
          sodipodi:role="line"
          id="tspan4214-0-3-6"
          x="124.25436"
-         y="60.676434"
+         y="63.322269"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583">z<tspan
    style="font-size:65%;baseline-shift:sub"
    id="tspan4241-7-0">c</tspan></tspan></text>
