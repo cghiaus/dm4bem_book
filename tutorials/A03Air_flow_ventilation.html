@@ -435,7 +435,7 @@ document.write(`
 <ul class="simple">
 <li><p>Orrifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
 <li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h\,Pa}^{n_c})\)</span>.</p></li>
-<li><p>The other elements of the building are considered airthight.</p></li>
+<li><p>The other elements of the building are considered airtight.</p></li>
 </ul>
 <p><img alt="vent_bldg" src="../_images/A03_nat_vent.svg" /></p>
 <blockquote>
@@ -450,7 +450,7 @@ document.write(`
 <li><p>The mass flow rates:</p>
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>: from outdoors to indoors through the nord façade;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\dot m_{ci}\)</span>: from outdoors to indoors through the south façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m_{si}\)</span>: from outdoors to indoors through the south façade;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>: from indoors to outdoors through the chimney;</p></li>
 </ul>
 </li>
@@ -519,13 +519,10 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(n\)</span> pressure exponent, dimensionless; typical value about 0.65</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_{i,j}\)</span> flow coefficient, m³/(s·Paⁿ)</p></li>
 </ul>
-<p>The values of the pressure exponent <span class="math notranslate nohighlight">\(n\)</span> and flow coefficient <span class="math notranslate nohighlight">\(K_{i,j}\)</span> cann be obtained experimentally by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">blower door</a> test.</p>
+<p>The values of the pressure exponent <span class="math notranslate nohighlight">\(n\)</span> and flow coefficient <span class="math notranslate nohighlight">\(K_{i,j}\)</span> can be obtained experimentally by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">blower door</a> test.</p>
 </section>
 <section id="mass-conservation-equation">
 <h3>Mass conservation equation<a class="headerlink" href="#mass-conservation-equation" title="Permalink to this headline">#</a></h3>
-<p>In steady-state, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Conservation_of_mass">mass conservation</a> law states that the algebraic sum of mass flow rates entering in a control volume <span class="math notranslate nohighlight">\(j\)</span> is zero:</p>
-<div class="math notranslate nohighlight">
-\[\sum_i \dot m_{i,j} = 0\]</div>
 <p>Mass air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[ \dot m_{i,j} = \rho_i \, \dot V_{i,j}\]</div>
@@ -535,11 +532,14 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\rho_i\)</span> air density in control volume <span class="math notranslate nohighlight">\(i\)</span>, kg/m³</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
 </ul>
+<p>In steady-state, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Conservation_of_mass">mass conservation</a> law states that the algebraic sum of mass flow rates entering in a control volume <span class="math notranslate nohighlight">\(j\)</span> is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_i \dot m_{i,j} = 0\]</div>
 <p><strong>Notes:</strong></p>
 <ol class="arabic simple">
 <li><p>The constitutive law relates volumetric airflow to pressure difference.</p></li>
 <li><p>The balance equation is done for mass flow rate.</p></li>
-<li><p>Generally, <span class="math notranslate nohighlight">\(\dot m_{i,j} \neq \dot m_{j,i}\)</span>, even if <span class="math notranslate nohighlight">\(\dot V_{i,j} = \dot V_{j,i}\)</span>. This implies that if the mass flow rates obtained by solving the aeraulic circuit are negative, than the direction of the flows need to changed and a new solution to be searched for.</p></li>
+<li><p>Generally, <span class="math notranslate nohighlight">\(\dot m_{i,j} \neq \dot m_{j,i}\)</span>, even if <span class="math notranslate nohighlight">\(\dot V_{i,j} = \dot V_{j,i}\)</span>. This implies that if the mass flow rates obtained by solving the aeraulic circuit are negative, than the direction of the flows need to be changed and a new solution to be searched for.</p></li>
 </ol>
 </section>
 <section id="domain-of-variation-for-the-indoor-pressure">
@@ -576,15 +576,15 @@ document.write(`
 <p>needs to be satisfied (Figures 1 and 2).</p>
 <p><img alt="vent_bldg" src="../_images/A03_nat_vent_1P.svg" /></p>
 <blockquote>
-<div><p>Figure 2. The model from Figure 1 with only one pressure source on a branch: a) pressure source before conductance; b) pressure source after conductance.</p>
+<div><p>Figure 2. The model from Figure 1 with only one pressure source on a branch: a) pressure source before conductance; b) pressure source after conductance. The notations are the same as in Figure 1.</p>
 </div></blockquote>
 </section>
 </section>
 <section id="static-pressure">
 <h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i g z\)</span> indoors</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o g z\)</span> outdoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i g z\)</span> - static pressure indoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o g z\)</span> - static pressure outdoors</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -660,7 +660,7 @@ document.write(`
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Error in mass balance equation as a function of indoor pressure.</span>
 <span class="sd">    Used to find indoor pressure pi which makes the mass balance zero.</span>
-<span class="sd">    The north and south flows are enteriing.</span>
+<span class="sd">    The north and south flows are entering.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -764,9 +764,9 @@ error in mass flow balance: 0.000 kg/s
 <h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_pn \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_ps \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_pc \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,6 +847,9 @@ error in mass flow balance: 0.000 kg/s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -10.50 Pa
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -870,7 +873,9 @@ error in mass flow balance: 0.000 kg/s
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verify mass balance:
-mass flow: north: 0.045 kg/s, south: 0.009 kg/s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mass flow: north: 0.045 kg/s, south: 0.009 kg/s
 mass flow chimney: 0.054 kg/s
 error in mass flow balance: 0.000 kg/s
 </pre></div>
