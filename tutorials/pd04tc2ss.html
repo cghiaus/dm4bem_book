@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -409,7 +409,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="thermal-circuit-to-state-space">
 <h1>Thermal circuit to state-space<a class="headerlink" href="#thermal-circuit-to-state-space" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd04tcss.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook is a go through complete example of obtaining a state-space representation from the bilding described by walls ans thermal circuits. The steps are:</p>
+<p>This notebook is a go through complete example of how to obtain a state-space representation from the building described by walls and the thermal circuits. The steps are:</p>
 <ul class="simple">
 <li><p>in a folder, describe the walls (wall type and wall data), the thermal circuits and give the assembling matrix or lists;</p></li>
 <li><p>from walls and thermal circuits obtain the set of disassembled circuits (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
@@ -443,7 +443,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits</span>
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;pd/bldg&quot;</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -483,7 +483,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is characterized by the matrices <strong>A</strong> (state), <strong>B</strong> (input), <strong>C</strong> (ouput) and <strong>D</strong> (feedthrough) and by the input vector <strong>u</strong>. Note the use of ‘s’ (from state-space) in the names of As, Bs, Cs, Ds us in order to avoid confusion with the notation for differential-algebraic equations (A, G, C, b, f).</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is characterized by the matrices <strong>A</strong> (state), <strong>B</strong> (input), <strong>C</strong> (ouput) and <strong>D</strong> (feedthrough) and by the input vector <strong>u</strong>. Note the use of ‘s’ (from state-space) in the names of As, Bs, Cs, Ds, us in order to avoid confusion with the notation for differential-algebraic equations (A, G, C, b, f).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">As</span>
@@ -797,25 +797,22 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
 <span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants:&#39;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants:&#39;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">2 x Time constants:&#39;</span><span class="p">)</span> 
-<span class="nb">print</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
-
+<span class="c1"># maximum time step</span>
 <span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Maximum time step: </span><span class="si">{</span><span class="n">dtmax</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;Max. time step: &#39;</span><span class="p">,</span> <span class="n">dtmax</span><span class="p">)</span>
+
+<span class="c1"># settling time</span>
+<span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;Setting time: &#39;</span><span class="p">,</span> <span class="n">t_settle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
-[&#39;249.30 s&#39;, &#39;4093.21 s&#39;, &#39;6729.13 s&#39;, &#39;44033.06 s&#39;]
-
-2 x Time constants:
-[&#39;498.60 s&#39;, &#39;8186.41 s&#39;, &#39;13458.25 s&#39;, &#39;88066.12 s&#39;]
-
-Maximum time step: 498.60 s = 8.31 min
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants: [&#39;249.30 s&#39;, &#39;4093.21 s&#39;, &#39;6729.13 s&#39;, &#39;44033.06 s&#39;]
+Max. time step:  = 498 s = 8.3 min
+Setting time:  = 176132 s = 48.9 h
 </pre></div>
 </div>
 </div>
@@ -1149,7 +1146,7 @@ Maximum time step: 498.60 s = 8.31 min
 </section>
 <section id="types-of-notation">
 <h2>Types of notation<a class="headerlink" href="#types-of-notation" title="Permalink to this headline">#</a></h2>
-<p>The notation used for the nodes and flow can be symbols or numbers (in the case of autonumbering).</p>
+<p>The notation used for the nodes and flow rates can be symbols or numbers (in the case of autonumbering).</p>
 <p>The data used in the next examples is extracted from the paper:</p>
 <blockquote>
 <div><p><a class="reference external" href="https://hal.science/hal-03605823/document">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301.</p>
@@ -1163,7 +1160,7 @@ Maximum time step: 498.60 s = 8.31 min
 <blockquote>
 <div><p>Figure 4. Thermal circuit with symbols.</p>
 </div></blockquote>
-<p>The thermal circuit from Figure 1 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_sym.csv</span></code>. In this case, symbols are used for the nodes and the branches.</p>
+<p>The thermal circuit from Figure 4 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_sym.csv</span></code>. In this case, symbols are used for the nodes and the branches.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/TC_tc2ss/TC_tc2ss_sym.csv&#39;</span><span class="p">)</span>
@@ -1386,7 +1383,7 @@ Maximum time step: 498.60 s = 8.31 min
 </table>
 </div></div></div>
 </div>
-<p>Note that the order of symbols corespond to the order given in the description file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_num.csv</span></code>not to the alphabetical order.</p>
+<p>Note that the order of symbols corespond to the order given in the description file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_num.csv</span></code> not to the alphabetical order.</p>
 </section>
 </section>
 <section id="file-describing-the-thermal-circuit-with-numbers">
@@ -1396,7 +1393,7 @@ Maximum time step: 498.60 s = 8.31 min
 <blockquote>
 <div><p>Figure 5. Numbered thermal circuit</p>
 </div></blockquote>
-<p>The thermal circuit from Figure 1 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_num.csv</span></code>. In this case, the nodes and the branches are numbered.</p>
+<p>The thermal circuit from Figure 5 is defined in the file <code class="docutils literal notranslate"><span class="pre">./TC_tc2ss/TC_tc2ss_num.csv</span></code>. In this case, the nodes and the branches are numbered.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/TC_tc2ss/TC_tc2ss_num.csv&#39;</span><span class="p">)</span>

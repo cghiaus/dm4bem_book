@@ -182,7 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -404,7 +404,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="assembled-thermal-circuits-from-matrix-and-lists">
 <h1>Assembled thermal circuits (from matrix and lists)<a class="headerlink" href="#assembled-thermal-circuits-from-matrix-and-lists" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd03assembleTCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be by using assembling matrix or assembling lits. The assembling from matrix is implemented in the functions <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix.</p>
+<p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be done by using an assembling matrix or assembling lits. The assembling from matrix is implemented in the function <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix by using the function <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -449,7 +449,7 @@ document.write(`
 <p>In order to obtain the assembled circuit, first we need to construct the disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code>. The numbering of the thermal circuits <code class="docutils literal notranslate"><span class="pre">TC</span></code> can be automatic or the symbols given in <code class="docutils literal notranslate"><span class="pre">TC_.csv</span></code> files can be used.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;pd/bldg&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
 
 <span class="c1"># Disassembled thermal circuits</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>

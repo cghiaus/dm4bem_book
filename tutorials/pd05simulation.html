@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd05simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Annnexes" href="annexes.html" />
+    <link rel="next" title="Other applications" href="annexes.html" />
     <link rel="prev" title="Thermal circuit to state-space" href="pd04tc2ss.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -385,9 +385,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-and-converting-the-thermal-circuits-to-state-space">Assembling and converting the thermal circuits to state-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-settling-time">Eigenvalues, time step and settling time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set-for-step-response">Input data set for step response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-for-step-response">Inputs for step response</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
@@ -432,23 +435,31 @@ document.write(`
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd05simulation.ipynb"><img alt="Binder" src="https://static.mybinder.org/badge_logo.svg" /></a></p>
 <p>This notebook shows a complete example of simulation for a toy model obtained by assembling. It covers (Figure 1):</p>
 <ul class="simple">
-<li><p>modeling:</p>
+<li><p>Model:</p>
 <ul>
-<li><p>obtain dissasembled thermal circuit from files describing the walls and the thermal circuits (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
+<li><p>given data on walls (type and data on surfaces), thermal circuits and the assembling lists or matrix;</p></li>
+<li><p>obtain the matrices and vectors of the thermal circuit <span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>:</p>
+<ul>
+<li><p>convert a folder containing the files characterizing the building into
+a disassambled thermal circuit (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
 <li><p>assemble the thermal circuits (functions <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix()</span></code> and <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>);</p></li>
-<li><p>convert thermal circuit into state-space representation from thermal circuit (function <code class="docutils literal notranslate"><span class="pre">tc2ss()</span></code>).</p></li>
 </ul>
 </li>
-<li><p>input data set:</p>
+<li><p>transform the thermal circuit into state-space representation <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s, u_s\)</span> (function <code class="docutils literal notranslate"><span class="pre">tc2ss()</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Inputs:</p>
 <ul>
-<li><p>get weather data: outdoor temperature, and direct and diffuse solar radiation (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code>) and calculate solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
-<li><p>define the other inputs, such as indoor temperature set points, auxiliary flow-rates;</p></li>
+<li><p>given the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a> in EnergyPlus format <code class="docutils literal notranslate"><span class="pre">.epw</span></code>;</p></li>
+<li><p>read weather data: outdoor temperatur <span class="math notranslate nohighlight">\(T_o\)</span> and direct <span class="math notranslate nohighlight">\(E_{dir}\)</span>, diffuse solar radiation <span class="math notranslate nohighlight">\(E_{diff}\)</span> (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
+<li><p>determine the weather sources outdoor temperarure <span class="math notranslate nohighlight">\(T_o\)</span> and solar radiation absorbed by the outdoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, the indoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, and the glass <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p></li>
+<li><p>define the scheduled inputs, such as indoor temperature set points <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> and auxiliary flow-rates <span class="math notranslate nohighlight">\(\dot Q_a\)</span>;</p></li>
 </ul>
 </li>
-<li><p>simulation:</p>
+<li><p>Simulation:</p>
 <ul>
 <li><p>prepare the inputs from input description of the state-space  (<span class="math notranslate nohighlight">\(u_s\)</span>) and the <em>input data set</em> (function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>);</p></li>
-<li><p>integrate the state-space model in time by using Euler explicit and implicit methods.</p></li>
+<li><p>integrate in time by using Euler explicit and/or implicit methods.</p></li>
 </ul>
 </li>
 </ul>
@@ -466,8 +477,10 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="assembling-and-converting-the-thermal-circuits-to-state-space">
-<h2>Assembling and converting the thermal circuits to state-space<a class="headerlink" href="#assembling-and-converting-the-thermal-circuits-to-state-space" title="Permalink to this headline">#</a></h2>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">#</a></h2>
+<section id="assembled-thermal-circuits">
+<h3>Assembled thermal circuits<a class="headerlink" href="#assembled-thermal-circuits" title="Permalink to this headline">#</a></h3>
 <p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2 and then obtain the state-space representation.</p>
 <p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
@@ -488,7 +501,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain state-space representation</span>
 <span class="c1"># =================================</span>
 <span class="c1"># Disassembled thermal circuits</span>
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s2">&quot;pd/bldg&quot;</span>
+<span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -510,6 +523,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="state-space-representation">
+<h3>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h3>
 <p>The state-space representation is obtained from the thermal circuit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -519,9 +535,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section id="eigenvalues-time-step-and-settling-time">
-<h2>Eigenvalues, time step and settling time<a class="headerlink" href="#eigenvalues-time-step-and-settling-time" title="Permalink to this headline">#</a></h2>
 <p>The eigenvalues analysis of the state matrix yields:</p>
 <ul class="simple">
 <li><p>maximum <strong>time step</strong> for Euler explicit method: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2·\mathrm{min} (-1 / \lambda_i)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(T_i = -1 / \lambda_i\)</span> are the time constants;</p></li>
@@ -564,9 +577,10 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="input-data-set-for-step-response">
-<h2>Input data set for step response<a class="headerlink" href="#input-data-set-for-step-response" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The inputs of the system are the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate sources (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>).</p>
+</section>
+<section id="inputs-for-step-response">
+<h2>Inputs for step response<a class="headerlink" href="#inputs-for-step-response" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The inputs of the system are the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>) sources.</p>
 <p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (from the state-space representation). The transformation from input data set to the input vector is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -650,12 +664,15 @@ document.write(`
 <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">y_imp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Explicit&#39;</span><span class="p">,</span> <span class="s1">&#39;Implicit&#39;</span><span class="p">])</span>
 <span class="c1"># Flatten the two-level column labels into a single level</span>
 <span class="n">y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature, $θ_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" src="../_images/cfef8dfe13053ccc4f4def7eb336cb9df18e0847cb9b1b246ed1bea888f08754.png" />
+<img alt="../_images/5b9edff11df52e0402e5f5ae1a244e9ba01a12f88f81f46d410e94aa82ada978.png" src="../_images/5b9edff11df52e0402e5f5ae1a244e9ba01a12f88f81f46d410e94aa82ada978.png" />
 </div>
 </div>
 <blockquote>
@@ -720,8 +737,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
 <span class="n">weather</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
-
-<span class="c1"># weather = weather.resample(str(dt) + &#39;S&#39;).interpolate(method=&#39;linear&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -734,6 +749,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdor temperature;</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature set-point.</p></li>
 </ul>
+<p>For indoor temperature set-point <span class="math notranslate nohighlight">\(T_{i, sp}\)</span> let’s consider day time (from 6:00 to 22:00) and night time (the rest of the day) values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Temperature sources</span>
@@ -884,7 +900,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>started from innitial conditions, yields the time variation of state variable <span class="math notranslate nohighlight">\(\theta\)</span>, from which we obtain the variation of the output (i.e. indoor temperature):</p>
+<p>started from initial conditions, yields the time variation of state variable <span class="math notranslate nohighlight">\(\theta\)</span>, from which we obtain the variation of the output (i.e. indoor temperature):</p>
 <div class="math notranslate nohighlight">
 \[y = C_s \theta_s + D_s u\]</div>
 <p>and the variation of the heat flow of the HVAC system:</p>
@@ -903,6 +919,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>In order to plot the results, from the data let’s select the outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span>, the indoor temoerature <span class="math notranslate nohighlight">\(\theta_i\)</span>, the total solar irradiance <span class="math notranslate nohighlight">\(E_{tot}\)</span>, and the specific thermal load <span class="math notranslate nohighlight">\(q_{HVAC}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">input_data_set</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span>
@@ -925,14 +942,14 @@ document.write(`
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Etot&#39;</span><span class="p">,</span> <span class="s1">&#39;q_HVAC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                               <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / (W / m²)&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$Φ_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a1862986b1ddb621b07d13aa3e670e57865de606dcbf3f8c3fc89fd07af1cf55.png" src="../_images/a1862986b1ddb621b07d13aa3e670e57865de606dcbf3f8c3fc89fd07af1cf55.png" />
+<img alt="../_images/b3be26cbe02bf511cd617eb2fe14ef77534fd19ec23770a714e4df886dd302c6.png" src="../_images/b3be26cbe02bf511cd617eb2fe14ef77534fd19ec23770a714e4df886dd302c6.png" />
 </div>
 </div>
 <blockquote>
@@ -958,14 +975,13 @@ document.write(`
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
-<li><p>C. Ghiaus (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
-<li><p>C. Ghiaus (2021). Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198 (ref.)
-<a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">DOI 10.1007/978-3-030-76477-7_5</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
-<li><p>J.A. Duffie, W. A. Beckman, N. Blair (2020) <a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Solar Engineering of Thermal Processes</a>, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
-<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a> Annexe à l’arrêté du 19 juillet 2006</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">C. Ghiaus (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, , open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">C. Ghiaus (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
+<li><p><a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">J.A. Duffie, W. A. Beckman, N. Blair (2020)</a>. Solar Engineering of Thermal Processes, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
+<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a>. Annexe à l’arrêté du 19 juillet 2006</p></li>
 <li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
-<li><p>J.R. Howell et al. (2021) Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, <a class="reference external" href="http://www.thermalradiation.net/indexCat.html">A Catalogue of Configuration Factors</a></p></li>
-<li><p>J. Widén, J. Munkhammar (2019) <a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Solar Radiation Theory</a>, Uppsala University</p></li>
+<li><p><a class="reference external" href="http://www.thermalradiation.net/indexCat.html">J.R. Howell et al. (2021)</a>. Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, A Catalogue of Configuration Factors</p></li>
+<li><p><a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">J. Widén, J. Munkhammar (2019)</a>. Solar Radiation Theory, Uppsala University</p></li>
 </ol>
 </section>
 </section>
@@ -1015,7 +1031,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Annnexes</p>
+        <p class="prev-next-title">Other applications</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1037,9 +1053,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembling-and-converting-the-thermal-circuits-to-state-space">Assembling and converting the thermal circuits to state-space</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-time-step-and-settling-time">Eigenvalues, time step and settling time</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set-for-step-response">Input data set for step response</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-for-step-response">Inputs for step response</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>

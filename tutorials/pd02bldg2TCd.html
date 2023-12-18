@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd02bldg2TCd';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -182,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -418,14 +420,14 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="disassembled-thermal-circuits-from-folder-describing-the-building">
 <h1>Disassembled thermal circuits from folder describing the building<a class="headerlink" href="#disassembled-thermal-circuits-from-folder-describing-the-building" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd02bldg2TCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of dm4bem module.</p>
+<p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <code class="docutils literal notranslate"><span class="pre">dm4bem</span> <span class="pre">module</span></code>.</p>
 <p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code>):</p>
 <ul class="simple">
 <li><p>description of the walls (wall type and wall data);</p></li>
 <li><p>description of thermal circuits;</p></li>
-<li><p>assembling matrix or list.</p></li>
+<li><p>assembling matrix or lists.</p></li>
 </ul>
-<p>The <em>disassembled thermal network</em> is a dictionary of thermal networks, each thermal network being described by the matrices A, G, C and the vectors b, f, y.</p>
+<p>The <em>disassembled thermal network</em> is a dictionary of thermal networks, each thermal network being described by the matrices <span class="math notranslate nohighlight">\(A, G, C\)</span> and the vectors <span class="math notranslate nohighlight">\(b, f, y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -507,14 +509,19 @@ document.write(`
 <h3>Assembly matrix and lists<a class="headerlink" href="#assembly-matrix-and-lists" title="Permalink to this headline">#</a></h3>
 <section id="assembly-matrix">
 <h4>Assembly matrix<a class="headerlink" href="#assembly-matrix" title="Permalink to this headline">#</a></h4>
-<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common: the first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept; the second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node. For example, in Figure 4 the nodes put in commun are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
+<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common:</p>
+<ol class="arabic simple">
+<li><p>The first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept.</p></li>
+<li><p>The second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node.</p></li>
+</ol>
+<p>For example, in Figure 4 the nodes put in commun (or merged) are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
 <p>The five merging arrows in Figure 4 are:</p>
 <ol class="arabic simple" start="0">
-<li><p>Node 4 of circuit ow0 (in red) is in common with node 0 of circuit c0 (in blue); node 4 of circuit ow0 is kept (node 0 of circuit c0, in faded blue, is deleted).</p></li>
-<li><p>2nd last node of circuit c1 (in green) is in common with node 1 of circuit c0 (in blue); the node of circuit c1 is kept (node 1 of circuit c0, in faded blue, is deleted).</p></li>
-<li><p>Node 0 of circuit c2 (in magenta) is in common with the last node of circuit ow0 (in red); the node of circuit c2 is kept (last node of circuit ow0, in faded red, is deleted).</p></li>
-<li><p>Node 0 of circuit c2 (in magenta) is in common with the 1st node of circuit c3 (in black); the node of circuit c2 is kept (node 0 of circuit c3, in faded black, is deleted).</p></li>
-<li><p>Node 0 of circuit c2 (in magenta) is in common with the last node of circuit c1 (in green); the node of circuit c2 is kept (last node of circuit c1, in faded green, is deleted).</p></li>
+<li><p>Node 4 of circuit ow0 (in red) is merged with node 0 of circuit c0 (in blue); node 4 of circuit ow0 is kept (node 0 of circuit c0, in faded blue, is deleted).</p></li>
+<li><p>2nd last node of circuit c1 (in green) is merged with node 1 of circuit c0 (in blue); the node of circuit c1 is kept (node 1 of circuit c0, in faded blue, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit ow0 (in red); the node of circuit c2 is kept (last node of circuit ow0, in faded red, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the 1st node of circuit c3 (in black); the node of circuit c2 is kept (node 0 of circuit c3, in faded black, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit c1 (in green); the node of circuit c2 is kept (last node of circuit c1, in faded green, is deleted).</p></li>
 </ol>
 <p>These connexions are described in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>.</p>
 <div class="cell docutils container">
@@ -687,7 +694,7 @@ document.write(`
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/TC1.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/TC1.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -724,8 +731,8 @@ document.write(`
       <th>0</th>
       <td>qgo</td>
       <td>1</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
       <td>165.789</td>
       <td>To</td>
     </tr>
@@ -734,45 +741,45 @@ document.write(`
       <td>qgi</td>
       <td>-1</td>
       <td>1.0</td>
-      <td>NaN</td>
-      <td>630.000</td>
-      <td>NaN</td>
+      <td></td>
+      <td>630.0</td>
+      <td></td>
     </tr>
     <tr>
       <th>2</th>
       <td>qai</td>
-      <td>NaN</td>
+      <td></td>
       <td>-1.0</td>
       <td>1.0</td>
-      <td>72.000</td>
-      <td>NaN</td>
+      <td>72.0</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
       <td>C</td>
       <td>1089000.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
       <td>f</td>
       <td>Φa</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>5</th>
       <td>y</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
       <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -823,20 +830,20 @@ document.write(`
       <th>0</th>
       <td>qgo</td>
       <td>1</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>1</th>
       <td>qgi</td>
       <td>-1</td>
       <td>1.0</td>
-      <td>NaN</td>
+      <td></td>
     </tr>
     <tr>
       <th>2</th>
       <td>qai</td>
-      <td>NaN</td>
+      <td></td>
       <td>-1.0</td>
       <td>1.0</td>
     </tr>
@@ -883,12 +890,12 @@ document.write(`
     <tr>
       <th>1</th>
       <td>qgi</td>
-      <td>630.000</td>
+      <td>630.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>qai</td>
-      <td>72.000</td>
+      <td>72.0</td>
     </tr>
   </tbody>
 </table>
@@ -932,8 +939,8 @@ document.write(`
       <th>3</th>
       <td>C</td>
       <td>1089000.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -979,12 +986,12 @@ document.write(`
     <tr>
       <th>1</th>
       <td>qgi</td>
-      <td>NaN</td>
+      <td></td>
     </tr>
     <tr>
       <th>2</th>
       <td>qai</td>
-      <td>NaN</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -1028,8 +1035,8 @@ document.write(`
       <th>4</th>
       <td>f</td>
       <td>Φa</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -1072,8 +1079,8 @@ document.write(`
     <tr>
       <th>5</th>
       <td>y</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td></td>
+      <td></td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1086,12 +1093,12 @@ document.write(`
 <h3>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h3>
 <p>The walls are characterized by two files:</p>
 <ul class="simple">
-<li><p>wall composition and physical properties of material of types of walls (e.g., file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>);</p></li>
+<li><p>wall composition and physical properties of material for type of wall (e.g., file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>);</p></li>
 <li><p>surface characteristics of each wall (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>).</p></li>
 </ul>
 <section id="wall-types">
 <h4>Wall types<a class="headerlink" href="#wall-types" title="Permalink to this headline">#</a></h4>
-<p>Let’s consider two types of walls described in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+<p>Let’s consider two types of wall described in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/wall_types.csv&#39;</span><span class="p">)</span>
@@ -1265,14 +1272,9 @@ document.write(`
 <p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code> that describes the building.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Disassembled thermal circuits with auto-numbering&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits with auto-numbering of θ and q</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuits with auto-numbering
 </pre></div>
 </div>
 </div>

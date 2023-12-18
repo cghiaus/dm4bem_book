@@ -184,11 +184,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Greenhouse_effect.html">Greenhouse effect</a></li>
 </ul>
 </li>
 </ul>
@@ -391,7 +392,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factor-between-tilted-outdoor-walls-and-sky">View factor between tilted outdoor walls and sky</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">View factor between tilted outdoor walls and sky</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
 </ul>
 </li>
@@ -440,7 +440,7 @@ document.write(`
 <h2>Thermal networks<a class="headerlink" href="#thermal-networks" title="Permalink to this headline">#</a></h2>
 <p>Thermal networks are weighted <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">directed graphs</a> (Figure 1) in which:</p>
 <ul class="simple">
-<li><p>the <strong>nodes</strong> (or vertices) represent <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperatures</a>,  <span class="math notranslate nohighlight">\(\theta_i\)</span>, of geometrical points (0D), lines (1D), surfaces (2D) or volumes (3D);</p></li>
+<li><p>the <strong>nodes</strong> (or vertices) represent homogenous <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperatures</a>,  <span class="math notranslate nohighlight">\(\theta_i\)</span>, of geometrical points (0D), lines (1D), surfaces (2D) or volumes (3D);</p></li>
 <li><p>the oriented <strong>branches</strong> (or edges) represent <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rates</a>, <span class="math notranslate nohighlight">\(q_j\)</span>, between the temperature nodes.</p></li>
 </ul>
 <p><img alt="basic_TC" src="../_images/A01_Basic_thermal_circuit.svg" /></p>
@@ -449,18 +449,18 @@ document.write(`
 </div></blockquote>
 <p>The dependent variables of the thermal network are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_k\)</span> - temperatures, in °C or K, of a volume, surface, line or point (the temperature is considred homogeneous in these spaces). Temperatures are grouped in vector <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(q_j ≡ q_{k,l}\)</span> - flow rates, in W, between two (0D, 1D, 2D or 3D) spaces characterized by homogeneous temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_l,\)</span> respectively. Flow rates are grouped in vector <span class="math notranslate nohighlight">\(q.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - temperatures, in °C or K, of a volume (3D), surface (2D), line (1D) or point (0D) space in which the temperature is considred homogeneous. Temperatures are grouped in vector <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_j ≡ q_{k,i}\)</span> - flow rates, in W, between two (0D, 1D, 2D or 3D) spaces characterized by homogeneous temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i,\)</span> respectively. Flow rates are grouped in vector <span class="math notranslate nohighlight">\(q.\)</span></p></li>
 </ul>
 <p>The parameters of the thermal network are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(G_j ≡ G_{k,l}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">thermal conductance</a>, in W/K, between the spaces characterized by temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_l\)</span>. Conductances are grouped in the diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(C_l\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/kg, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_l\)</span>. Note that the thermal capacities for surfaces, lines and points are zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_j ≡ G_{k,i}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">thermal conductance</a>, in W/K, between the spaces characterized by temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i\)</span>. Conductances are grouped in diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/kg, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_i\)</span>. Note that the thermal capacities for surfaces, lines and points are zero because their volume is zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
 </ul>
 <p>The sources (or the inputs, or the independent variables) of the thermal network are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(T_j\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a>, in °C or K, is a source of thermal energy for which the temperature difference changes arbitrarely and does not depend on the flow rate. They are grouped in the vector <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\dot Q_k\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">flow rate source</a>, in W, is a source of thermal energy for which the flow rate changes arbitrarely and does not depend on the temperature difference. They are grouped in the vector <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_j\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a>, in °C or K, is a source of thermal energy for which the temperature changes arbitrarely and does not depend on the flow rate. They are grouped in vector <span class="math notranslate nohighlight">\(b\)</span>. Typical examples of temperature sources are the temperatures of the outdoor air, ground, indoor air <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">set point</a>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot Q_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">flow rate source</a>, in W, is a source of thermal energy for which the flow rate changes arbitrarely and does not depend on the temperature difference. They are grouped in vector <span class="math notranslate nohighlight">\(f\)</span>. Typical examples of flow rate sources are absorbed <a class="reference external" href="https://en.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Home_appliance">electric appliances</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Basal_metabolic_rate">basal metabolic rate</a> of occupants.</p></li>
 </ul>
 <p>In a node, there are:</p>
 <ul class="simple">
@@ -474,10 +474,10 @@ document.write(`
 </ul>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span>  shows the relation between oriented branches (i.e., flow rates) and nodes (i.e., temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_j\)</span> across the conductances <span class="math notranslate nohighlight">\(G_j\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_k\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_j\)</span>, in the position of the node <span class="math notranslate nohighlight">\(\theta_k\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> [<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>]:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}A_{j,k} = \begin{cases}\phantom{-}
-0 &amp; \text{if branch } q_j \text{ is not connected to node }  \theta_k \\ 
-+1 &amp; \text{if branch } q_j \text{ enters into node }  \theta_k\\ 
--1 &amp; \text{if branch } q_j \text{ gets out of node }  \theta_k 
+\[\begin{split}A_{j,i} = \begin{cases}\phantom{-}
+0 &amp; \text{if branch } q_j \text{ is not connected to node }  \theta_i \\ 
++1 &amp; \text{if branch } q_j \text{ enters into node }  \theta_i\\ 
+-1 &amp; \text{if branch } q_j \text{ gets out of node }  \theta_i 
 \end{cases}\end{split}\]</div>
 <p>The problem of analysis of thermal circuits (or the simulation problem, or the direct problem) is:</p>
 <p><strong>given</strong>:</p>
@@ -515,7 +515,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
 </ul>
 <blockquote>
-<div><p>Table 1. Surface thermal resistances [Dal Zotto et al. 2014, p. 251]</p>
+<div><p>Table 1. Surface thermal conductances (adapted after Dal Zotto et al. 2014, p. 261)</p>
 </div></blockquote>
 <table class="colwidths-auto table">
 <thead>
@@ -526,22 +526,22 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p></p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(h_i\)</span>/(W/(m²·K))</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(h_o\)</span>/(W/(m²·K))</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_i\)</span>/[W/(m²·K)]</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_o\)</span>/[W/(m²·K)]</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>Vertical</em> (tilt &gt; 60°)</p></td>
+<tr class="row-odd"><td><p><em>Vertical</em> (tilt &gt; 60°): horizontal flow rate</p></td>
 <td class="text-center"><p>7.7</p></td>
 <td class="text-center"><p>25</p></td>
 </tr>
-<tr class="row-even"><td><p><em>Horizontal</em> (tilt &lt; 60°)</p></td>
+<tr class="row-even"><td><p><em>Horizontal</em> (tilt &lt; 60°): vertical flow rate</p></td>
 <td class="text-center"><p></p></td>
 <td class="text-center"><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>- Upward heat flow</p></td>
+<tr class="row-odd"><td><p>- upward heat flow rate</p></td>
 <td class="text-center"><p>10</p></td>
 <td class="text-center"><p>25</p></td>
 </tr>
-<tr class="row-even"><td><p>- Downward heat flow</p></td>
+<tr class="row-even"><td><p>- downward heat flow rate</p></td>
 <td class="text-center"><p>5.9</p></td>
 <td class="text-center"><p>25</p></td>
 </tr>
@@ -570,26 +570,27 @@ document.write(`
 F_{i,j} = \frac{S_i}{S_T}\\ 
 F_{i,i} = 0
 \end{cases}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_j\)</span> is included in the total surface <span class="math notranslate nohighlight">\(S_T\)</span>. In this method, the reciprocity theorem is satisfied,
-$<span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j = \frac{S_i S_j}{S_T}\)</span>$
-but summation rule isn’t,</p>
+<p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_j\)</span> is included in the total surface <span class="math notranslate nohighlight">\(S_T\)</span>. In this method, the reciprocity theorem is satisfied,</p>
+<div class="math notranslate nohighlight">
+\[F_{i,j} S_i = F_{j,i} S_j = \frac{S_i S_j}{S_T}\]</div>
+<p>but summation rule isn’t,</p>
 <div class="math notranslate nohighlight">
 \[\sum_{j=0}^{n-1} F_{i,j} = \sum_{j=0, j \neq i}^{n-1} \frac{S_j}{S_T} = \frac {S_T - S_i}{S_T} \neq 1\]</div>
 <p>In this case, the heat balance for each surface would be wrong.</p>
 <p>In the second one, the view factors are defined by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
-F_{i,j} = \frac{S_j}{S_T -S_i}\\ 
+F_{i,j} = \frac{S_j}{S_{T} -S_i}\\ 
 F_{i,i} = 0
 \end{cases}\end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_i\)</span> is not included in the total surface <span class="math notranslate nohighlight">\(S_{T,i} = S_T - S_i\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(S_{T,i} = \sum_{j=0, j \neq i}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_i\)</span> is not included in the total surface <span class="math notranslate nohighlight">\(S_{T,i} = S_T - S_i\)</span>.</p>
 <p>In this case, the reciprocty theorem is generally not respected:</p>
 <div class="math notranslate nohighlight">
-\[F_{i, j} S_i = \frac{S_j}{S_T - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_T - S_j} S_j\]</div>
+\[F_{i, j} S_i = \frac{S_j}{S_{T} - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_{T} - S_j} S_j\]</div>
 <p>but the summation rule is respected:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_T - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \end{split}\]</div>
-<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j,k\)</span> that are in the same plan (e.g. a window and a wall) is zero,</p>
+\[\begin{split} \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_{T} - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \end{split}\]</div>
+<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j, k\)</span>, that are in the same plan (e.g. a window and a wall) is zero,</p>
 <div class="math notranslate nohighlight">
 \[F_{j,k} = F_{k,j}=0\]</div>
 <p>Therefore the total surface <span class="math notranslate nohighlight">\(S_{T,i}\)</span> should be:</p>
@@ -599,28 +600,21 @@ F_{i,i} = 0
 </section>
 <section id="view-factor-between-tilted-outdoor-walls-and-sky">
 <h4>View factor between tilted outdoor walls and sky<a class="headerlink" href="#view-factor-between-tilted-outdoor-walls-and-sky" title="Permalink to this headline">#</a></h4>
-<p>The view factor between the top surface of finite wall <span class="math notranslate nohighlight">\(w\)</span> tilted relative to an infinite plane of the ground <span class="math notranslate nohighlight">\(g\)</span> is [<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén, Munkhammar 2019</a>, eq. 4.18]:</p>
+<p>The view factor between the top surface of finite wall <span class="math notranslate nohighlight">\(w\)</span> tilted relative to an infinite plane of the ground <span class="math notranslate nohighlight">\(g\)</span> is (<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén &amp; Munkhammar 2019</a>, eq. 4.18):</p>
 <div class="math notranslate nohighlight">
 \[ F_{w,g} = \frac {1 - \cos \beta}{2}\]</div>
-<p>Therefore, the view factor between the tilted wall <span class="math notranslate nohighlight">\(w\)</span> and the sky dome <span class="math notranslate nohighlight">\(s\)</span> is [<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">6</a>, eq. 4.17]:
-$<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 + \cos \beta}{2}\)</span>$</p>
-</section>
-<section id="id1">
-<h4>View factor between tilted outdoor walls and sky<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
-<p>The view factor between the top surface of finite wall <span class="math notranslate nohighlight">\(w\)</span> tilted relative to an infinite plane of the ground <span class="math notranslate nohighlight">\(g\)</span> is [<a class="reference external" href="http://www.thermalradiation.net/sectionc/C-9.html">5</a>, <a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">6</a>, eq. 4.18]:</p>
+<p>Therefore, the view factor between the tilted wall <span class="math notranslate nohighlight">\(w\)</span> and the sky dome <span class="math notranslate nohighlight">\(s\)</span> is (<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén &amp; Munkhammar 2019</a>, eq. 4.17):</p>
 <div class="math notranslate nohighlight">
-\[ F_{w,g} = \frac {1 - \cos \beta}{2}\]</div>
-<p>Therefore, the view factor between the tilted wall <span class="math notranslate nohighlight">\(w\)</span> and the sky dome <span class="math notranslate nohighlight">\(s\)</span> is [<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">6</a>, eq. 4.17]:
-$<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 + \cos \beta}{2}\)</span>$</p>
+\[ F_{w,s} = 1 - F_{w,g} = \frac {1 + \cos \beta}{2}\]</div>
 </section>
 <section id="thermal-network-for-long-wave-radiation">
 <h4>Thermal network for long wave radiation<a class="headerlink" href="#thermal-network-for-long-wave-radiation" title="Permalink to this headline">#</a></h4>
 <p>The long-wave heat exchange between surfaces may be modelled by using the concept of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> and then linearizing the radiative heat exchange.</p>
 <p><img alt="LW_rad_excg" src="../_images/03_LW_rad_excg.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (source) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
+<div><p>Figure 2. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (sources) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
 </div></blockquote>
-<p>For two surfaces, shown by temperature nodes 1 and 2 in Figure 1, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">conductances</a>, in m², for radiative heat exchange expressed by using the emmitance (or the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant excitance</a>)  of the black body, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>, and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of view factors are:</p>
+<p>For two surfaces, shown by temperature nodes 1 and 2 in Figure 2, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">conductances</a>, in m², for radiative heat exchange expressed by using the emmitance (or the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant excitance</a>)  of the black body, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>, and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of view factors are:</p>
 <div class="math notranslate nohighlight">
 \[G_{1}^{r} = \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
 <div class="math notranslate nohighlight">
@@ -690,16 +684,16 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 <div class="math notranslate nohighlight">
 \[G_v = \rho_a c_a \dot{V}_a\]</div>
 <blockquote>
-<div><p>Table 2. Typical values for the ventilation rates (in air changes per hour, ACH) as a function of the position of windows (H. Recknagel, E. Spenger, E_R Schramek (2013), Table 1.12.1-4)</p>
+<div><p>Table 2. Typical values for the ventilation rates (in air changes per hour, ACH) as a function of the position of windows (Recknagel et al. 2013, Table 1.12.1-4)</p>
 </div></blockquote>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Position of windows</p></th>
-<th class="head"><p>Ventilation rate, ACH / (h⁻ⁱ)</p></th>
+<th class="head"><p>Ventilation rate, ACH / [h⁻¹]</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Window closed, doors closed</p></td>
+<tr class="row-even"><td><p>Windows closed, doors closed</p></td>
 <td><p>0 to 0.5</p></td>
 </tr>
 <tr class="row-odd"><td><p>Tilted window, venetian blind closed</p></td>
@@ -722,14 +716,19 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 </section>
 <section id="proportional-controller">
 <h3>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h3>
-<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
+<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> (Figure 3a).</p>
+<p><img alt="P_controller" src="../_images/A01_P_controller.svg" /></p>
+<blockquote>
+<div><p>Figure 3. HVAC systems as proportional controller of indoor air. a) Block diagramme. b) Thermal circuit representation.</p>
+</div></blockquote>
+<p>The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
 <div class="math notranslate nohighlight">
 \[ q_{HVAC} = K_p (T_{i, sp} - \theta_i)\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain, W/K;</p></li>
-<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C (noted in majuscule because it is an <em>input, i.e. independent, variable</em>);</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C (noted in minuscule because it is a <em>output, i.e. dependent variable</em>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C (noted in majuscule because it is an <em>input</em>, i.e. <em>independent variable</em>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C (noted in minuscule because it is a <em>output</em>, i.e. <em>dependent variable</em>).</p></li>
 </ul>
 <p>This equation shows that the proportional controller can be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{i, sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(K_p\)</span>. If the controller gain tends towards:</p>
 <ul class="simple">
@@ -743,7 +742,7 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 <h2>Thermal capacities<a class="headerlink" href="#thermal-capacities" title="Permalink to this headline">#</a></h2>
 <section id="walls">
 <h3>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h3>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">thermal capacities</a> of the wall, in J/kg, are:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">thermal capacity</a> of a wall, in J/kg, is:</p>
 <div class="math notranslate nohighlight">
 \[C_w= m_w c_w= \rho_w c_w w_w S_w\]</div>
 <p>where:</p>
@@ -763,7 +762,7 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(m_a = \rho_a V_a\)</span> is the mass of the air, kg;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\rho_w\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of air, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of the air, kg/m³;</p></li>
 <li><p><span class="math notranslate nohighlight">\(c_a\)</span> - specific heat capacity of the air, J/(kg⋅K);</p></li>
 <li><p><span class="math notranslate nohighlight">\(V_a\)</span> - volume of the air in the thermal zone, m³.</p></li>
 </ul>
@@ -807,7 +806,7 @@ $<span class="math notranslate nohighlight">\( F_{w,s} = 1 - F_{w,g} = \frac {1 
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Direct_insolation">direct</a>, diffuse and reflected components of the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar radiation</a> on a tilted surface can be estimated from weather data by using the function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf</span></code> from the module <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">weather data and solar radiation</span></a>).</p>
 <section id="external-wall">
 <h4>External wall<a class="headerlink" href="#external-wall" title="Permalink to this headline">#</a></h4>
-<p>The radiation absorbed by the outdoor surface of the wall is:</p>
+<p>The radiation absorbed by the outdoor surface of the wall,, in W, is:</p>
 <div class="math notranslate nohighlight">
 \[\Phi_o = \alpha_{w,SW} S_w E_{tot}\]</div>
 <p>where:</p>
@@ -857,9 +856,7 @@ E_{n}^{o}
 <div class="math notranslate nohighlight">
 \[ E = (I - \rho \circ F)^{-1} E^o\]</div>
 <p>where:</p>
-<ul class="simple">
-<li><p>the symbol <span class="math notranslate nohighlight">\(\circ\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a>;</p></li>
-</ul>
+<p>the symbol <span class="math notranslate nohighlight">\(\circ\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a>;</p>
 <p><span class="math notranslate nohighlight">\(I =\begin{bmatrix}
 1 &amp; 0 &amp; ... &amp; 0 \\ 
 0 &amp; 1 &amp; ... &amp; 0 \\ 
@@ -905,7 +902,7 @@ S_1 &amp; 0 &amp; ... &amp; 0 \\
 0 &amp; S_2 &amp; ... &amp; 0 \\ 
 ... &amp; ... &amp; ... &amp; ...\\ 
 0 &amp; 0 &amp; ... &amp; S_n 
-\end{bmatrix}\)</span> - matrix of surface areas of walls <span class="math notranslate nohighlight">\(i\)</span>, m².</p>
+\end{bmatrix}\)</span> - matrix of surface areas of walls, m².</p>
 </section>
 </section>
 <section id="internal-sources">
@@ -932,17 +929,18 @@ q = G (-A \theta + b)
 <li><p>if flow <em>m</em> is not connected to node <em>n</em>, then the element (<em>m, n</em>) of the matrix <span class="math notranslate nohighlight">\(A\)</span> is 0, i.e., <span class="math notranslate nohighlight">\(A_{m,n} = 0\)</span>.</p></li>
 </ul>
 </li>
-<li><p><span class="math notranslate nohighlight">\(G\)</span> - conductance diagonal matrix of size <span class="math notranslate nohighlight">\(n_q \times n_q\)</span>,  where <span class="math notranslate nohighlight">\(n_q\)</span> is the number of flow branches: diagonal matrix containing the conductances. Each branch <span class="math notranslate nohighlight">\(k\)</span> needs to contain a conductance <span class="math notranslate nohighlight">\(0 &lt; G_{k,k} &lt; \infty \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(C\)</span> - capacity diagonal matrix of size <span class="math notranslate nohighlight">\(n_θ \times n_θ\)</span>,  where <span class="math notranslate nohighlight">\(n_θ\)</span> is the number of temperature nodes: diagonal matrix containing the capacities. If there is no capacity in the node <em>n</em>, then <span class="math notranslate nohighlight">\(C_{n, n} = 0\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(b\)</span> - temperature source vector of size <span class="math notranslate nohighlight">\(n_q\)</span>: if there is no temperature source on the branch <em>m</em>, then <span class="math notranslate nohighlight">\(b_m = 0\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(f\)</span> - heat flow source vector of size <span class="math notranslate nohighlight">\(n_θ\)</span>: if there is no heat flow source in the node <em>n</em>, then <span class="math notranslate nohighlight">\(f_n = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> - conductance matrix of size <span class="math notranslate nohighlight">\(n_q \times n_q\)</span>,  where <span class="math notranslate nohighlight">\(n_q\)</span> is the number of flow branches: diagonal matrix containing the conductances. Each branch <span class="math notranslate nohighlight">\(k\)</span> needs to contain a conductance <span class="math notranslate nohighlight">\(0 &lt; G_{k,k} &lt; \infty \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> - capacity matrix of size <span class="math notranslate nohighlight">\(n_θ \times n_θ\)</span>,  where <span class="math notranslate nohighlight">\(n_θ\)</span> is the number of temperature nodes: diagonal matrix containing the capacities. If there is no capacity in the node <em>n</em>, then <span class="math notranslate nohighlight">\(C_{n, n} = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> - temperature source vector of size <span class="math notranslate nohighlight">\(n_q\)</span>: if there is no temperature source on branch <em>m</em>, then <span class="math notranslate nohighlight">\(b_m = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> - heat flow source vector of size <span class="math notranslate nohighlight">\(n_θ\)</span>: if there is no heat flow source in node <em>n</em>, then <span class="math notranslate nohighlight">\(f_n = 0\)</span>.</p></li>
 </ul>
 <p><strong>Note</strong>: The incidence matrix <span class="math notranslate nohighlight">\(A\)</span> is related to difference operator <span class="math notranslate nohighlight">\(\Delta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \Delta = -A\]</div>
-<p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation
-$<span class="math notranslate nohighlight">\(C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\)</span>$
-which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation</p>
+<p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
+<p>which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation</p>
 <div class="math notranslate nohighlight">
 \[q = G (-A \theta + b)\]</div>
 <p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes. The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the nodes which are the outputs of the model.</p>
@@ -960,17 +958,17 @@ y = C_s \theta_s + D_s u
 \end{array}\right.\end{split}\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_s\)</span> is the vector of state variables which are the temperatures of nodes containing capacities; the elements are in the same order as in the vector of temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>; its dimension, <span class="math notranslate nohighlight">\(\dim \theta_s\)</span>, is equal to the number of capacities from the thermal network; for the circuit presented in Figure 3, <span class="math notranslate nohighlight">\(\theta_s = [\theta_1, \theta_3, \theta_6, \theta_7]^T\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_s\)</span> is the vector of state variables which are the temperatures of nodes containing capacities; the elements are in the same order as in the vector of temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>; its dimension, <span class="math notranslate nohighlight">\(\dim \theta_s\)</span>, is equal to the number of capacities from the thermal network.</p></li>
 <li><p><span class="math notranslate nohighlight">\(u = \begin{bmatrix} b_T \\ f_Q\end{bmatrix}\)</span> - vector of inputs of dimension <span class="math notranslate nohighlight">\(\dim u\)</span> equal to the number of sources (of temperaure, <span class="math notranslate nohighlight">\(b_T\)</span>, and heat flows, <span class="math notranslate nohighlight">\(f_Q\)</span>) of the thermal network, where:</p>
 <ul>
-<li><p>vector <span class="math notranslate nohighlight">\(b_T\)</span> of nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources;</p></li>
-<li><p>vector <span class="math notranslate nohighlight">\(f_Q\)</span> of nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources;</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_T\)</span>: vector of nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_Q\)</span>: vector of nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources.</p></li>
 </ul>
 </li>
-<li><p><span class="math notranslate nohighlight">\(y\)</span> - vector of outputs, a subset of vector <span class="math notranslate nohighlight">\(\theta\)</span> representing temperature nodes which are of interest;</p></li>
-<li><p><span class="math notranslate nohighlight">\(A_s\)</span> - state matrix, of dimension <span class="math notranslate nohighlight">\(\dim A_s = \dim {\theta_s} \times \dim {\theta_s}\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(B_s\)</span> - input matrix, of dimension <span class="math notranslate nohighlight">\(\dim B_s = \dim {\theta_s} \times \dim u\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(C_s\)</span> - output matrix, of dimension <span class="math notranslate nohighlight">\(\dim C_s = \dim y \times \dim {\theta_s}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> - vector of outputs, a subset of vector <span class="math notranslate nohighlight">\(\theta\)</span> representing temperature nodes which are of interest.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_s\)</span> - state matrix, of dimension <span class="math notranslate nohighlight">\(\dim A_s = \dim {\theta_s} \times \dim {\theta_s}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_s\)</span> - input matrix, of dimension <span class="math notranslate nohighlight">\(\dim B_s = \dim {\theta_s} \times \dim u\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_s\)</span> - output matrix, of dimension <span class="math notranslate nohighlight">\(\dim C_s = \dim y \times \dim {\theta_s}\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(D_s\)</span> - feedthrough (or feedforward) matrix, of dimension <span class="math notranslate nohighlight">\(\dim D_s = \dim y \times \dim u\)</span>.</p></li>
 </ul>
 <p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentiante the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represenation of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of DAE.</p>
@@ -1059,7 +1057,6 @@ y = C_s \theta_s + D_s u
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factor-between-tilted-outdoor-walls-and-sky">View factor between tilted outdoor walls and sky</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">View factor between tilted outdoor walls and sky</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
 </ul>
 </li>

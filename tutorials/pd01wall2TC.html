@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd01wall2TC';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -182,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -404,13 +406,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="disassembled-thermal-circuits-from-wall-description">
 <h1>Disassembled thermal circuits from wall description<a class="headerlink" href="#disassembled-thermal-circuits-from-wall-description" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd01wall2TC.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook presents how the <em>description of the walls</em> is transformed in a set of <em>disassembled thermal networks</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">wall2TC()</span></code> of <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
+<p>This notebook presents how the <em>description of the walls</em> is transformed into a set of <em>disassembled thermal networks</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">wall2TC()</span></code> of <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
 <p>The <em>description of the walls</em> is given in a folder that contains two types of files:</p>
 <ul class="simple">
-<li><p>wall types: thermo-physical properties;</p></li>
+<li><p>wall types: thermo-physical properties of the materials;</p></li>
 <li><p>walls data: regarding the area, temperature &amp; flow-rate sources, coefficients for convection and radiation of the wall surfaces.</p></li>
 </ul>
-<p>The <em>thermal network</em> is a data structure (<code class="docutils literal notranslate"><span class="pre">dictionary</span></code>) containing the matrices A, G, C and the vectors b, f, y.</p>
+<p>The <em>thermal network</em> is a data structure (<code class="docutils literal notranslate"><span class="pre">dictionary</span></code>) containing the matrices <span class="math notranslate nohighlight">\(A, G, C\)</span> and the vectors <span class="math notranslate nohighlight">\(b, f, y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -518,7 +520,7 @@ document.write(`
 </section>
 <section id="walls-data">
 <h2>Walls data<a class="headerlink" href="#walls-data" title="Permalink to this headline">#</a></h2>
-<p>The models of walls are based on the materials given in the file <code class="docutils literal notranslate"><span class="pre">wall_types.cvs</span></code>. For each specific wall, data related to surfaces is given (area, orientation, convection coefficients, radiative properties, temperature and flow-rate sources).</p>
+<p>The models of the walls are based on the materials given in the file <code class="docutils literal notranslate"><span class="pre">wall_types.cvs</span></code>. For each specific wall, data related to surfaces is given (area, orientation, convection coefficients, radiative properties, temperature and flow-rate sources).</p>
 <p>There are three kinds of walls (Table 1):</p>
 <ul class="simple">
 <li><p>generic (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code>),</p></li>
@@ -874,7 +876,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Each matrix (A, G, C) of vector (b, f, y) of the thermal circuit can be accessed as Pandas dataframes.</p>
+<p>Each matrix (<span class="math notranslate nohighlight">\(A, G, C\)</span>) or vector (<span class="math notranslate nohighlight">\(b, f, y\)</span>) of the thermal circuit can be accessed as Pandas dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd_generic</span><span class="p">[</span><span class="s1">&#39;gw0&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
@@ -939,7 +941,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>All matrices (A, G, C) and vectors (b, f, y) of each thermal circuit can be printed.</p>
+<p>All matrices (<span class="math notranslate nohighlight">\(A, G, C\)</span>) and vectors (<span class="math notranslate nohighlight">\(b, f, y\)</span>) of each thermal circuit can be printed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCd_generic</span><span class="p">[</span><span class="s1">&#39;gw0&#39;</span><span class="p">])</span>
@@ -1231,7 +1233,7 @@ dtype: float64
 <section id="outdoor-walls">
 <h3>Outdoor walls<a class="headerlink" href="#outdoor-walls" title="Permalink to this headline">#</a></h3>
 <p>Outdoor walls do not have temperature sources on indoor surfaces (Figure 3). They can be obtained from generic walls by not indicating the temperature source T1 (on the indoor surface), or they can be described by specific files, such as <code class="docutils literal notranslate"><span class="pre">walls_in.csv</span></code>.</p>
-<p>Figure 3a shows a walls w0 and w1 of <strong>type</strong> 1 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with only one layer which has one mesh.</p>
+<p>Figure 3a shows walls w0 and w1 of <strong>type</strong> 1 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with only one layer which has one mesh.</p>
 <p>Figure 3b shows walls w2 and w3 of <strong>type</strong> 0 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with two layers (concrete and insulation).</p>
 <p><img alt="in_wall" src="../_images/walls_out.svg" /></p>
 <blockquote>

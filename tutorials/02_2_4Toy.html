@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -410,11 +410,11 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="simulation-perfect-controller">
 <h1>Simulation: perfect controller<a class="headerlink" href="#simulation-perfect-controller" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_2_4Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The simulation is done by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_integration">numerical integration</a> of the <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space</a> representation by using the input data set.</p>
+<p>The simulation is done by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_integration">numerical integration</a> of the <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space</a> representation by using the description of the model as a thermal circuit, the input data set, and the weather data.</p>
 <p><strong>Objectives:</strong></p>
 <ul class="simple">
 <li><p>Resample the inputs at time step.</p></li>
-<li><p>Create input vector in time;</p></li>
+<li><p>Create input vector in time.</p></li>
 <li><p>Integrate in time the state-space model.</p></li>
 <li><p>Plot the results.</p></li>
 </ul>
@@ -445,7 +445,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The thermal circuit was described in the section on modelling. Thermal circuit is transformed in state-space representation.</p>
+<p>The thermal circuit was described in the section on modelling. It is read from the file <code class="docutils literal notranslate"><span class="pre">./toy_model/TC.csv</span></code>. Thermal circuit is transformed in state-space representation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODEL</span>
@@ -459,11 +459,96 @@ document.write(`
 
 <span class="c1"># State-space</span>
 <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
+      θ0   θ1   θ2   θ3   θ4   θ5   θ6   θ7
+q0   1.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+q1  -1.0  1.0  0.0  0.0  0.0  0.0  0.0  0.0
+q2   0.0 -1.0  1.0  0.0  0.0  0.0  0.0  0.0
+q3   0.0  0.0 -1.0  1.0  0.0  0.0  0.0  0.0
+q4   0.0  0.0  0.0 -1.0  1.0  0.0  0.0  0.0
+q5   0.0  0.0  0.0  0.0 -1.0  1.0  0.0  0.0
+q6   0.0  0.0  0.0  0.0 -1.0  0.0  1.0  0.0
+q7   0.0  0.0  0.0  0.0  0.0 -1.0  1.0  0.0
+q8   0.0  0.0  0.0  0.0  0.0  0.0  0.0  1.0
+q9   0.0  0.0  0.0  0.0  0.0  1.0  0.0 -1.0
+q10  0.0  0.0  0.0  0.0  0.0  0.0  1.0  0.0
+q11  0.0  0.0  0.0  0.0  0.0  0.0  1.0  0.0 
+
+G:
+q0     1125.000000
+q1      630.000000
+q2      630.000000
+q3       30.375000
+q4       30.375000
+q5       44.786824
+q6      360.000000
+q7       72.000000
+q8      165.789474
+q9      630.000000
+q10       9.000000
+q11    1000.000000
+Name: G, dtype: float64 
+
+C:
+θ0           0.0
+θ1    18216000.0
+θ2           0.0
+θ3      239580.0
+θ4           0.0
+θ5           0.0
+θ6       32400.0
+θ7     1089000.0
+Name: C, dtype: float64 
+
+b:
+q0        To
+q1         0
+q2         0
+q3         0
+q4         0
+q5         0
+q6         0
+q7         0
+q8        To
+q9         0
+q10       To
+q11    Ti_sp
+Name: b, dtype: object 
+
+f:
+θ0     Φo
+θ1    0.0
+θ2    0.0
+θ3    0.0
+θ4     Φi
+θ5    0.0
+θ6     Qa
+θ7     Φa
+Name: f, dtype: object 
+
+y:
+θ0    0
+θ1    0
+θ2    0
+θ3    0
+θ4    0
+θ5    0
+θ6    1
+θ7    0
+Name: y, dtype: int64 
 </pre></div>
 </div>
 </div>
 </div>
-<p>The condition for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">numerical stability</a> of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler explicit integration</a>, <span class="math notranslate nohighlight">\(\Delta t_{max} = \min (-2 / \lambda_i)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> are the eigenvalues of the state matrix, give the time step used in numerical integration.</p>
+<p>The condition for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">numerical stability</a> of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler explicit integration</a>,</p>
+<div class="math notranslate nohighlight">
+\[\Delta t_{max} = \min (-2 / \lambda_i)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of the state matrix, gives the time step used in numerical integration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
@@ -491,20 +576,247 @@ document.write(`
 <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./toy_model/input_data_set.csv&#39;</span><span class="p">,</span>
                              <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                              <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">input_data_set</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>To</th>
+      <th>Ti_sp</th>
+      <th>Φo</th>
+      <th>Φi</th>
+      <th>Qa</th>
+      <th>Φa</th>
+      <th>Etot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-02-01 12:00:00+01:00</th>
+      <td>10.0</td>
+      <td>20</td>
+      <td>963.900000</td>
+      <td>48.195000</td>
+      <td>0.0</td>
+      <td>244.188000</td>
+      <td>71.400000</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 13:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>945.000000</td>
+      <td>47.250000</td>
+      <td>0.0</td>
+      <td>239.400000</td>
+      <td>70.000000</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 14:00:00+01:00</th>
+      <td>13.0</td>
+      <td>20</td>
+      <td>4071.565031</td>
+      <td>203.578252</td>
+      <td>0.0</td>
+      <td>1031.463141</td>
+      <td>301.597410</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 15:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>548.100000</td>
+      <td>27.405000</td>
+      <td>0.0</td>
+      <td>138.852000</td>
+      <td>40.600000</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 16:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>453.600000</td>
+      <td>22.680000</td>
+      <td>0.0</td>
+      <td>114.912000</td>
+      <td>33.600000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2000-02-07 14:00:00+01:00</th>
+      <td>6.0</td>
+      <td>20</td>
+      <td>2153.962611</td>
+      <td>107.698131</td>
+      <td>0.0</td>
+      <td>545.670528</td>
+      <td>159.552786</td>
+    </tr>
+    <tr>
+      <th>2000-02-07 15:00:00+01:00</th>
+      <td>6.0</td>
+      <td>20</td>
+      <td>1939.496251</td>
+      <td>96.974813</td>
+      <td>0.0</td>
+      <td>491.339050</td>
+      <td>143.666389</td>
+    </tr>
+    <tr>
+      <th>2000-02-07 16:00:00+01:00</th>
+      <td>6.0</td>
+      <td>20</td>
+      <td>734.151990</td>
+      <td>36.707599</td>
+      <td>0.0</td>
+      <td>185.985171</td>
+      <td>54.381629</td>
+    </tr>
+    <tr>
+      <th>2000-02-07 17:00:00+01:00</th>
+      <td>5.0</td>
+      <td>20</td>
+      <td>94.500000</td>
+      <td>4.725000</td>
+      <td>0.0</td>
+      <td>23.940000</td>
+      <td>7.000000</td>
+    </tr>
+    <tr>
+      <th>2000-02-07 18:00:00+01:00</th>
+      <td>4.2</td>
+      <td>20</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>151 rows × 7 columns</p>
+</div></div></div>
 </div>
 <section id="resample-input-data-set">
 <h2>Resample input data set<a class="headerlink" href="#resample-input-data-set" title="Permalink to this headline">#</a></h2>
-<p>The weather data and the scheduled sources are at the time-step of 1h. The data needs to be resampled at time step <code class="docutils literal notranslate"><span class="pre">dt</span></code> used for numerical integration.</p>
+<p>The weather data and the scheduled sources are at the time-step of 1 h. The data needs to be resampled at time step <code class="docutils literal notranslate"><span class="pre">dt</span></code> used for numerical integration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_data_set</span> <span class="o">=</span> <span class="n">input_data_set</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
     <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">input_data_set</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>To</th>
+      <th>Ti_sp</th>
+      <th>Φo</th>
+      <th>Φi</th>
+      <th>Qa</th>
+      <th>Φa</th>
+      <th>Etot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-02-01 12:00:00+01:00</th>
+      <td>10.000000</td>
+      <td>20.0</td>
+      <td>963.9000</td>
+      <td>48.195000</td>
+      <td>0.0</td>
+      <td>244.1880</td>
+      <td>71.400000</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:00:50+01:00</th>
+      <td>10.013889</td>
+      <td>20.0</td>
+      <td>963.6375</td>
+      <td>48.181875</td>
+      <td>0.0</td>
+      <td>244.1215</td>
+      <td>71.380556</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:01:40+01:00</th>
+      <td>10.027778</td>
+      <td>20.0</td>
+      <td>963.3750</td>
+      <td>48.168750</td>
+      <td>0.0</td>
+      <td>244.0550</td>
+      <td>71.361111</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:02:30+01:00</th>
+      <td>10.041667</td>
+      <td>20.0</td>
+      <td>963.1125</td>
+      <td>48.155625</td>
+      <td>0.0</td>
+      <td>243.9885</td>
+      <td>71.341667</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:03:20+01:00</th>
+      <td>10.055556</td>
+      <td>20.0</td>
+      <td>962.8500</td>
+      <td>48.142500</td>
+      <td>0.0</td>
+      <td>243.9220</td>
+      <td>71.322222</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="input-vector-in-time">
@@ -535,18 +847,107 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <p>where the input data set is:</p>
 <p><span class="math notranslate nohighlight">\(T_o\)</span>: the time series vector of outdoor temperatures (from weather data), °C.</p>
 <p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span>: time series vector of indoor setpoint temperatures, °C.</p>
-<p><span class="math notranslate nohighlight">\(\Phi_o\)</span>: time series vector of solar (i.e. short wave) radiation, in W, absorbed by the outdoor surface of the wall;</p>
-<p><span class="math notranslate nohighlight">\(\Phi_i\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall;</p>
+<p><span class="math notranslate nohighlight">\(\Phi_o\)</span>: time series vector of solar (i.e. short wave) radiation absorbed by the outdoor surface of the wall, W;</p>
+<p><span class="math notranslate nohighlight">\(\Phi_i\)</span>: time series vector of short wave (i.e. solar) radiation absorbed by the indoor surfaces of the wall, W;</p>
 <p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>: time vector of auxiliary heat flows (from occupants, electrical devices, etc.), W.</p>
-<p><span class="math notranslate nohighlight">\(\Phi_a\)</span>: time series vector of short wave (i.e. solar) radiation, in W, absorbed by the window glass.</p>
-<p>The input vector <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from the input data set, <span class="math notranslate nohighlight">\(T_o, T_{i,sp}, \Phi_o, \Phi_i, \dot Q_a, \Phi_a\)</span>, by using the order of the sources given in the state-space model, <code class="docutils literal notranslate"><span class="pre">us</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\Phi_a\)</span>: time series vector of short wave (i.e. solar) radiation absorbed by the window glass, W.</p>
+<p>The input vector <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from the input data set, <span class="math notranslate nohighlight">\(T_o, T_{i,sp}, \Phi_o, \Phi_i, \dot Q_a, \Phi_a\)</span>, by using the order of the sources given in the state-space model, <code class="docutils literal notranslate"><span class="pre">us</span></code>: <code class="docutils literal notranslate"><span class="pre">q0</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q8</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q10</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q11</span></code> = <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>, <code class="docutils literal notranslate"><span class="pre">θ0</span></code> = <span class="math notranslate nohighlight">\(\Phi_o\)</span>, <code class="docutils literal notranslate"><span class="pre">θ4</span></code> = <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <code class="docutils literal notranslate"><span class="pre">θ6</span></code> = <span class="math notranslate nohighlight">\(\dot Q_a\)</span>, and <code class="docutils literal notranslate"><span class="pre">θ7</span></code> = <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input vector in time from input_data_set</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+<span class="n">u</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>q0</th>
+      <th>q8</th>
+      <th>q10</th>
+      <th>q11</th>
+      <th>θ0</th>
+      <th>θ4</th>
+      <th>θ6</th>
+      <th>θ7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-02-01 12:00:00+01:00</th>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>10.000000</td>
+      <td>20.0</td>
+      <td>963.9000</td>
+      <td>48.195000</td>
+      <td>0.0</td>
+      <td>244.1880</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:00:50+01:00</th>
+      <td>10.013889</td>
+      <td>10.013889</td>
+      <td>10.013889</td>
+      <td>20.0</td>
+      <td>963.6375</td>
+      <td>48.181875</td>
+      <td>0.0</td>
+      <td>244.1215</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:01:40+01:00</th>
+      <td>10.027778</td>
+      <td>10.027778</td>
+      <td>10.027778</td>
+      <td>20.0</td>
+      <td>963.3750</td>
+      <td>48.168750</td>
+      <td>0.0</td>
+      <td>244.0550</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:02:30+01:00</th>
+      <td>10.041667</td>
+      <td>10.041667</td>
+      <td>10.041667</td>
+      <td>20.0</td>
+      <td>963.1125</td>
+      <td>48.155625</td>
+      <td>0.0</td>
+      <td>243.9885</td>
+    </tr>
+    <tr>
+      <th>2000-02-01 12:03:20+01:00</th>
+      <td>10.055556</td>
+      <td>10.055556</td>
+      <td>10.055556</td>
+      <td>20.0</td>
+      <td>962.8500</td>
+      <td>48.142500</td>
+      <td>0.0</td>
+      <td>243.9220</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="initial-conditions">
@@ -565,10 +966,19 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </section>
 <section id="time-integration">
 <h2>Time integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">#</a></h2>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Explicit Euler</a> integration in time,</p>
+<p>The state-space model</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{rr}
+\dot{\theta}_C=A_s \theta_C + B_s u\\ 
+y = C_s \theta_C + D_s u
+\end{array}\right.\end{split}\]</div>
+<p>is integrated in time by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">Euler backward (or implicit) method</a> for numerical integration:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{s,k+1} = (I - \Delta t A)^{-1} ( \theta_{s,k} + \Delta t B u_k )\]</div>
+<p>or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler forward (or explicit) method</a> for numerical integration:</p>
 <div class="math notranslate nohighlight">
 \[ \theta_{s,k+1} = (I + \Delta t A) \theta_{s,k} + \Delta t B u_k \]</div>
-<p>where <span class="math notranslate nohighlight">\(k = 0, ... , n - 1\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(k = 0, ... , n - 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
@@ -584,7 +994,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 </div>
 </div>
 </div>
-<p>yields the time variation of state variable <span class="math notranslate nohighlight">\(\theta\)</span>, from which we obtain the variation of the output (i.e., indoor temperature) in time:</p>
+<p>From the time variation of state variable <span class="math notranslate nohighlight">\(\theta_s\)</span> we obtain the time variation of the output <span class="math notranslate nohighlight">\(y\)</span> (i.e., indoor temperature):</p>
 <div class="math notranslate nohighlight">
 \[y = C_s \theta_s + D_s u\]</div>
 <div class="cell docutils container">
@@ -630,10 +1040,10 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <h2>Plots<a class="headerlink" href="#plots" title="Permalink to this headline">#</a></h2>
 <p>We select the data to plot:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(T_o\)</span>, outdoor temperature, in °C;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>, indoor temperature, in °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span>, outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span>, indoor temperature, °C;</p></li>
 <li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span>, total solar irradiance, W/m²;</p></li>
-<li><p><span class="math notranslate nohighlight">\(q_{HVAC}\)</span>, thermal load,, i.e., the power needed from the HVAC system in order to maintain the indoor air temperature at its set-point, W.</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_{HVAC}\)</span>, thermal load, i.e., the power that the HVAC system needs to deliver in order to maintain the indoor air temperature at its set-point, W.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,13 +1063,13 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="s1">&#39;θi&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                         <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
-                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature, $θ$ / °C&#39;</span><span class="p">)</span>
+                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature, $θ$ / [°C]&#39;</span><span class="p">)</span>
 
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$θ_</span><span class="si">{outdoor}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$θ_</span><span class="si">{indoor}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Etot&#39;</span><span class="p">,</span> <span class="s1">&#39;q_HVAC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / (W/m²)&#39;</span><span class="p">)</span>
+                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / [W/m²]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
@@ -668,11 +1078,11 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/27ac06990a65e3ce6174c2a2cf7968f7c32bea6a1c567ae49f4dc1c2a01eabb0.png" src="../_images/27ac06990a65e3ce6174c2a2cf7968f7c32bea6a1c567ae49f4dc1c2a01eabb0.png" />
+<img alt="../_images/d7d0b37a28119fafd11e0f85360975e8e9f8dc92f5e8610648811a8f1dfbfd1d.png" src="../_images/d7d0b37a28119fafd11e0f85360975e8e9f8dc92f5e8610648811a8f1dfbfd1d.png" />
 </div>
 </div>
 <blockquote>
-<div><p>Figure 6. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+<div><p>Figure 1. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
 </section>
 <section id="plots-using-matplotlib">
@@ -686,15 +1096,15 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <span class="c1"># plot outdoor and indoor temperature</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$θ_</span><span class="si">{outdoor}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$θ_</span><span class="si">{indoor}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperatures, $θ$ / °C&#39;</span><span class="p">,</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperatures, $θ$ / [°C]&#39;</span><span class="p">,</span>
            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Simulation for weather&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="c1"># plot total solar radiation and HVAC heat flow</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Etot&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$Φ_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Etot&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">q_HVAC</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / day&#39;</span><span class="p">,</span>
-           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat flows, $q$ / W&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / [day]&#39;</span><span class="p">,</span>
+           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat flows, $q$ / [W]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -702,11 +1112,11 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6c40c70ee9920e58b8e4a283927e4c4e98059b17409d3c78fb17339685869d1d.png" src="../_images/6c40c70ee9920e58b8e4a283927e4c4e98059b17409d3c78fb17339685869d1d.png" />
+<img alt="../_images/529451f319174c9a5cb9205051e46987fe40b036208eca4f26440607bb108d12.png" src="../_images/529451f319174c9a5cb9205051e46987fe40b036208eca4f26440607bb108d12.png" />
 </div>
 </div>
 <blockquote>
-<div><p>Figure 7. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+<div><p>Figure 2. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
 </section>
 </section>
@@ -734,14 +1144,13 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
-<li><p>C. Ghiaus (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
-<li><p>C. Ghiaus (2021). Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198 (ref.)
-<a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">DOI 10.1007/978-3-030-76477-7_5</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
-<li><p>J.A. Duffie, W. A. Beckman, N. Blair (2020) <a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Solar Engineering of Thermal Processes</a>, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
-<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a> Annexe à l’arrêté du 19 juillet 2006</p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">C. Ghiaus (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, , open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">C. Ghiaus (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
+<li><p><a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">J.A. Duffie, W. A. Beckman, N. Blair (2020)</a>. Solar Engineering of Thermal Processes, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
+<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a>. Annexe à l’arrêté du 19 juillet 2006</p></li>
 <li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
-<li><p>J.R. Howell et al. (2021) Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, <a class="reference external" href="http://www.thermalradiation.net/indexCat.html">A Catalogue of Configuration Factors</a></p></li>
-<li><p>J. Widén, J. Munkhammar (2019) <a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Solar Radiation Theory</a>, Uppsala University</p></li>
+<li><p><a class="reference external" href="http://www.thermalradiation.net/indexCat.html">J.R. Howell et al. (2021)</a>. Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, A Catalogue of Configuration Factors</p></li>
+<li><p><a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">J. Widén, J. Munkhammar (2019)</a>. Solar Radiation Theory, Uppsala University</p></li>
 </ol>
 </section>
 </section>

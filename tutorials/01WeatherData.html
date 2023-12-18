@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Modeling and simulation" href="02_0ModelSimulation.html" />
-    <link rel="prev" title="From differential-algebraic equations to state-space representation" href="A03_DAE2SS.html" />
+    <link rel="prev" title="From differential-algebraic equations to state-space representation" href="T03_DAE2SS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -158,18 +158,20 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="A01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="A02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="A03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Weather data and solar radiation on a tilted surface</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
 </ul>
 </li>
 </ul>
@@ -182,11 +184,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="miscellaneous.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="07Coupled_rad_convection.html">Radiation coupled with convection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="08Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="09Air_flow_ventilation.html">Air flow by ventilation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="10Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Greenhouse_effect.html">Greenhouse effect</a></li>
 </ul>
 </li>
 </ul>
@@ -446,7 +449,7 @@ document.write(`
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>This notebook:</p>
 <ul class="simple">
-<li><p>Imports standard modules such as numpy, pandas, and matplotlib.pyplot, and a dedicated module, dm4bem. It then reads a file in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
+<li><p>Imports standard modules such as numpy, pandas, and matplotlib.pyplot, and a dedicated module, <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>. It then reads a file in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
 <li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces the year in the index with 2000.</p></li>
 <li><p>Defines a start date and an end date and filters the weather data based on these dates.</p></li>
 <li><p>Creates three plots using the filtered weather data:</p>
@@ -487,7 +490,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">FRA_Lyon.074810_IWEC.epw</span></code> or</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018</span></code></p></li>
 </ul>
-<p>and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
+<p>from <a class="reference external" href="https://climate.onebuilding.org/WMO_Region_6_Europe/FRA_France/index.html">climate.onebuilding.org</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
 </section>
 <section id="read-weather-data">
 <h3>Read weather data<a class="headerlink" href="#read-weather-data" title="Permalink to this headline">#</a></h3>
@@ -824,7 +827,7 @@ document.write(`
 </section>
 <section id="weather-data-is-from-different-years">
 <h4>Weather data is from different years<a class="headerlink" href="#weather-data-is-from-different-years" title="Permalink to this headline">#</a></h4>
-<p>Data for each month may be from different years.</p>
+<p>The weather data from  <span class="xref myst">Climate One Buildings</span> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a>. Data for each month may be from different years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the month and year from the DataFrame index with the format &#39;MM-YYYY&#39;</span>
@@ -928,16 +931,16 @@ document.write(`
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dir_n_rad</span></code></p></td>
 <td><p>Direct normal radiation received during 1 h prior to timestamp</p></td>
-<td><p>W h m⁻²</p></td>
+<td><p>W·h·m⁻²</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dif_h_rad</span></code></p></td>
 <td><p>Diffuse horizontal radiation received during 1 h prior to timestamp</p></td>
-<td><p>W h m⁻²</p></td>
+<td><p>W·h·m⁻²</p></td>
 </tr>
 </tbody>
 </table>
 <p><em>Note</em>: For the description of <code class="docutils literal notranslate"><span class="pre">.EPW</span></code> file, see <a class="reference external" href="https://wholmgren-pvlib-python-new.readthedocs.io/en/stable/_modules/pvlib/iotools/epw.html">pvlib.iotools.epw</a>.</p>
-<p>Since in the dataset the values for each month are from different years, we will replace all year with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
+<p>Since the values for each month are from different years, let’s replace all year with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select columns of interest</span>
@@ -956,8 +959,8 @@ document.write(`
 <p>Select a period for:</p>
 <ul class="simple">
 <li><p>air temperature, °C,</p></li>
-<li><p>normal solar radiation, W m⁻²,</p></li>
-<li><p>diffuse solar radiation received during 60 minutes prior to timestamp, W m⁻².</p></li>
+<li><p>normal solar radiation, W·m⁻²,</p></li>
+<li><p>diffuse solar radiation received during 60 minutes prior to timestamp, W·m⁻².</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1038,14 +1041,14 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Dry-bulb air temperature, θ / °C&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Dry-bulb air temperature, θ / [°C]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/587d11bb606b944235006b44a8b8e5d9e244f750aa5586e1f360068598a6e804.png" src="../_images/587d11bb606b944235006b44a8b8e5d9e244f750aa5586e1f360068598a6e804.png" />
+<img alt="../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" src="../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" />
 </div>
 </div>
 <blockquote>
@@ -1058,14 +1061,14 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[[</span><span class="s1">&#39;dir_n_rad&#39;</span><span class="p">,</span> <span class="s1">&#39;dif_h_rad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation, Φ / (W m⁻²)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation, Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$Φ_</span><span class="si">{direct}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$Φ_</span><span class="si">{diffuse}</span><span class="s1">$&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07ef5ec1c371530ceffb78fe9597a5697b1f7501de264caa00cc742e2d3ace65.png" src="../_images/07ef5ec1c371530ceffb78fe9597a5697b1f7501de264caa00cc742e2d3ace65.png" />
+<img alt="../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" src="../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" />
 </div>
 </div>
 <blockquote>
@@ -1077,7 +1080,7 @@ document.write(`
 <h3>Solar radiation on a tilted surface<a class="headerlink" href="#solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h3>
 <section id="orientation-of-the-tilted-wall">
 <h4>Orientation of the tilted wall<a class="headerlink" href="#orientation-of-the-tilted-wall" title="Permalink to this headline">#</a></h4>
-<p>For a tilted wall and knowing the albedo of the surface which is in front of it, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
+<p>Knowing the albedo of the surface which is in front of a tilted wall, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
 <p>Let’s consider a wall at latitude <span class="math notranslate nohighlight">\(\phi\)</span> with the orientation given by its slope angle, <span class="math notranslate nohighlight">\(\beta\)</span>, and azimuth angle, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1107,7 +1110,7 @@ dtype: int64
 </ul>
 <p>N, S, E, W: North, South, East and West, respectively. <span class="math notranslate nohighlight">\(\vec{n}\)</span> is the vector normal to the surface. ∟ represents right angles.</p>
 </div></blockquote>
-<p>Let’s consider that the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface in front of the wall is:</p>
+<p>Let’s consider that the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface in front of the wall is kown.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -1125,13 +1128,13 @@ dtype: int64
 
 <span class="n">rad_surf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation,  Φ / (W m⁻²)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation,  Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/eb50f3823c7cac65c57a6f4a6f57cbc7c23e67989e236090abe507716a7cff7b.png" src="../_images/eb50f3823c7cac65c57a6f4a6f57cbc7c23e67989e236090abe507716a7cff7b.png" />
+<img alt="../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" src="../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" />
 </div>
 </div>
 <blockquote>
@@ -1181,7 +1184,7 @@ dtype: int64
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(G_{dir}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Direct_insolation">direct normal</a></strong> or <strong>beam radiation</strong>: amount of solar radiation received directly from the solar disk on a surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated, W/m².</p></li>
-<li><p><span class="math notranslate nohighlight">\(G_{dif}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Diffuse_sky_radiation">diffuse radiation</a></strong>: amount of solar radiation received after scattering by the atmosphere, W/m². Note: it does not include the diffuse infrared radiation emitted by the atmosphere.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_{dif}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Diffuse_sky_radiation">diffuse radiation</a></strong>: amount of solar radiation received after scattering by the atmosphere, W/m². It does not include the diffuse infrared radiation emitted by the atmosphere.</p></li>
 <li><p><span class="math notranslate nohighlight">\(G_r\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">total solar radiation coming by reflection</a></strong> from the surface in front of the wall (usually, ground), W/m².</p></li>
 </ul>
 </section>
@@ -1191,9 +1194,9 @@ dtype: int64
 <p>In order to calculate the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, we need:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\phi\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Latitude">latitude</a></em>, the angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta\)</span> <em>slope</em>, the angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>; <span class="math notranslate nohighlight">\(\beta \le 90 ^{\circ}\)</span>: the surface is upward facing.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> <em>slope</em>, the angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. If <span class="math notranslate nohighlight">\(\beta \le 90 ^{\circ}\)</span>, the surface is upward facing.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\gamma\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Azimuth">azimuth</a></em>, the angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\delta\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Declination">declination angle</a></em>, the angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a, p. 14), <a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> §11.2.1.1, eq. (78)):</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Declination">declination angle</a></em>, the angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a, p. 14, <a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> §11.2.1.1, eq. (78)):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ \delta = 23.45 \sin \left( 360 \frac{284 + n}{365} \right)\]</div>
@@ -1222,7 +1225,7 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>The <strong>[incidence angle](<a class="reference external" href="https://en.m.wikipedia.org/wiki/Angle_of_incidence_(optics)">https://en.m.wikipedia.org/wiki/Angle_of_incidence_(optics)</a></strong>, <span class="math notranslate nohighlight">\(\theta\)</span>, is the angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2, p. 14):</p>
+<p>The <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Angle_of_incidence">incidence angle</a></strong>, <span class="math notranslate nohighlight">\(\theta\)</span>, is the angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2, p. 14):</p>
 <div class="math notranslate nohighlight">
 \[\theta = \arccos (\sin \delta \sin \phi \cos \beta - \sin \delta \cos \phi \sin \beta \cos \gamma + \cos \delta \cos \phi \cos \beta \cos \omega + \cos \delta \sin \phi \sin \beta \cos \gamma \cos \omega + \cos \delta \sin \beta \sin \gamma \sin \omega)\]</div>
 <p>If <span class="math notranslate nohighlight">\(\beta \le 90^\circ\)</span>, then the sun is behind the surface. Therefore, if <span class="math notranslate nohighlight">\(\theta &gt; \pi / 2\)</span>, then <span class="math notranslate nohighlight">\(\theta = \pi / 2\)</span>.</p>
@@ -1243,7 +1246,7 @@ dtype: int64
 <p>The <strong>direct radiation</strong>, <span class="math notranslate nohighlight">\(G_{dir}\)</span> on the surface is:</p>
 <div class="math notranslate nohighlight">
 \[G_{dir} = G_{dir,n} \cos \theta\]</div>
-<p>where <em>direct normal radiation</em> or <em>beam radiation</em>, <span class="math notranslate nohighlight">\(G_n\)</span>, is the amount of solar radiation (in W/m²) received directly from the solar disk on the surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated. It is given by weather data.</p>
+<p>where <em>direct normal radiation</em> or <em>beam radiation</em>, <span class="math notranslate nohighlight">\(G_n\)</span>, is the amount of solar radiation (in W/m²) received directly from the solar disk on the surface perpendicular to the sun’s rays during the number of minutes preceding the time indicated. It is given by weather data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dir_rad</span> <span class="o">=</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dir_n_rad&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
@@ -1269,8 +1272,8 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 </section>
 <section id="solar-radiation-reflected-by-the-ground">
 <h3>Solar radiation reflected by the ground<a class="headerlink" href="#solar-radiation-reflected-by-the-ground" title="Permalink to this headline">#</a></h3>
-<p>Considering the radiation reflected by the ground as isotropic, the reflected radiation that gets onto the wall is a function of its slope, albedo and total horizontal radiation (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>,  §11.2.1.3)].</p>
-<p>The normal horizontal radiation is [2] (eq. 80):</p>
+<p>Considering the radiation reflected by the ground as isotropic, the reflected radiation that gets onto the wall is a function of its slope, albedo and total horizontal radiation (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>,  §11.2.1.3).</p>
+<p>The normal horizontal radiation is (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> eq. 80):</p>
 <div class="math notranslate nohighlight">
 \[ G_{dir,h} = G_{dn} \sin \gamma\]</div>
 <div class="cell docutils container">
@@ -1314,16 +1317,15 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <p><span class="math notranslate nohighlight">\(\phi\)</span> <strong>Latitude.</strong> Angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\beta\)</span> <strong>Slope.</strong> Angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\beta &lt; 90^{\circ}\)</span> means that the surface is upward facing.</p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> <strong>Azimuth.</strong> Angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180^{\circ}\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\delta\)</span> <strong>Declination.</strong> Angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive [1, eq. 1.6.1a):</p>
+<p><span class="math notranslate nohighlight">\(\delta\)</span> <strong>Declination.</strong> Angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a):</p>
 <div class="math notranslate nohighlight">
 \[ \delta = 23.45 \sin \left( 360 \frac{284 + n}{365} \right)\]</div>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is the day of the year. <span class="math notranslate nohighlight">\(-23.45 ^{\circ} \leq \delta \leq 23.45 ^{\circ}\)</span>. Declination is used with hour angle to give the direction of a point on the celestial sphere.</p>
 <p><span class="math notranslate nohighlight">\(\omega\)</span> <strong>Hour angle.</strong> Angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>):</p>
 <div class="math notranslate nohighlight">
 \[ \omega = 15\left ( h + \frac{min}{60} - 12 \right )\]</div>
-<p>where <em>h</em> and <em>min</em> is the solar time in hours and in minutes, respectively. The hour angle is <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>.</p>
-<p>with <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
-<p><span class="math notranslate nohighlight">\(\theta\)</span> <strong>Incidence.</strong> Angle between the solar beam on the surface and the normal to the surface [1, eq. 1.6.2]:</p>
+<p>where <em>h</em> and <em>min</em> is the solar time in hours and in minutes, respectively. The hour angle is <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>, with <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
+<p><span class="math notranslate nohighlight">\(\theta\)</span> <strong>Incidence.</strong> Angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2):</p>
 <div class="math notranslate nohighlight">
 \[\theta = \arccos (\sin \delta \sin \phi \cos \beta - \sin \delta \cos \phi \sin \beta \cos \gamma + \cos \delta \cos \phi \cos \beta \cos \omega + \cos \delta \sin \phi \sin \beta \cos \gamma \cos \omega + \cos \delta \sin \beta \sin \gamma \sin \omega)\]</div>
 </section>
@@ -1371,7 +1373,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="A03_DAE2SS.html"
+       href="T03_DAE2SS.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">

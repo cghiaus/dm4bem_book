@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -577,13 +577,16 @@ C_0 &amp; 0 \\
 </section>
 <section id="system-of-differential-algebraic-equations">
 <h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h2>
-<p>By substituting the flow-rates <span class="math notranslate nohighlight">\(q\)</span> from:
-$<span class="math notranslate nohighlight">\(q = Ge = G(- A \theta + b) = G(\Delta \theta + b)\)</span><span class="math notranslate nohighlight">\(
-into 
-\)</span><span class="math notranslate nohighlight">\(C \dot{\theta} = A^T q + f\)</span><span class="math notranslate nohighlight">\(
-or into
-\)</span><span class="math notranslate nohighlight">\(C \dot{\theta} = -\Delta^T q + f\)</span>$
-we obtain the system of differential-algebraic equations:</p>
+<p>By substituting the flow-rates <span class="math notranslate nohighlight">\(q\)</span> from:</p>
+<div class="math notranslate nohighlight">
+\[q = Ge = G(- A \theta + b) = G(\Delta \theta + b)\]</div>
+<p>into</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = A^T q + f\]</div>
+<p>or into</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -\Delta^T q + f\]</div>
+<p>we obtain the system of differential-algebraic equations:</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
 <p>or
@@ -591,8 +594,9 @@ $<span class="math notranslate nohighlight">\(C \dot{\theta} = -\Delta^T G \Delt
 <p>After solving for temperature vector <span class="math notranslate nohighlight">\(\theta\)</span>, the flow rates are found by:</p>
 <div class="math notranslate nohighlight">
 \[q = G(-A \theta + b)\]</div>
-<p>or
-$<span class="math notranslate nohighlight">\(q = G(\Delta \theta + b)\)</span>$</p>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q = G(\Delta \theta + b)\]</div>
 <p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(-\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
@@ -608,12 +612,12 @@ $<span class="math notranslate nohighlight">\(q = G(\Delta \theta + b)\)</span>$
 <p>As opposed to the differential form, the discrete form</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
-<p>contains the boundary conditions (in terms <span class="math notranslate nohighlight">\(- \Delta^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
+<p>contains the boundary conditions (in the terms <span class="math notranslate nohighlight">\(- \Delta^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
 <p><strong>Problem</strong></p>
-<p>Let’s consider a wall with a thickness <span class="math notranslate nohighlight">\(w\)</span> = 0.20 m and a surface area <span class="math notranslate nohighlight">\(S\)</span> = 20.00 m², with outside air temperature <span class="math notranslate nohighlight">\(\theta_o\)</span> = -5.0 °C and inside air temperature maintained at <span class="math notranslate nohighlight">\(\theta_i\)</span> = 24.0 °C. We assume that heat transfer is one-dimensional, in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, and there’s no internal heat generation. The material has <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> <span class="math notranslate nohighlight">\(\lambda\)</span> = 1.00 W/(m·K), and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">heat transfer coefficients</a> by convection outside and inside are <span class="math notranslate nohighlight">\(h_o\)</span> = 25.00 W/(m²·K) and <span class="math notranslate nohighlight">\(h_i\)</span> = 8.00 W/(m²·K), respectively. The outer surface, with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.70, receives solar <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiance</a> <span class="math notranslate nohighlight">\(E\)</span> = 200.0 W/m².</p>
+<p>Let’s consider a wall with thickness <span class="math notranslate nohighlight">\(w\)</span> = 0.20 m and surface area <span class="math notranslate nohighlight">\(S\)</span> = 20.00 m², with outside air temperature <span class="math notranslate nohighlight">\(\theta_o\)</span> = -5.0 °C and inside air temperature maintained at <span class="math notranslate nohighlight">\(\theta_i\)</span> = 24.0 °C. We assume that heat transfer is one-dimensional, in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, and there’s no internal heat generation. The material has <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> <span class="math notranslate nohighlight">\(\lambda\)</span> = 1.00 W/(m·K), and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">heat transfer coefficients</a> by convection outside and inside are <span class="math notranslate nohighlight">\(h_o\)</span> = 25.00 W/(m²·K) and <span class="math notranslate nohighlight">\(h_i\)</span> = 8.00 W/(m²·K), respectively. The outer surface, with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.70, receives solar <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiance</a> <span class="math notranslate nohighlight">\(E\)</span> = 200.0 W/m².</p>
 <p>Calculate the following values:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\theta_o\)</span>: the temperature of the external surface.</p></li>
@@ -662,8 +666,8 @@ q = G(-A\theta + b)
 <span class="n">To</span> <span class="o">=</span> <span class="o">-</span><span class="mf">5.0</span>   <span class="c1"># °C, outside air temperature</span>
 <span class="n">Ti</span> <span class="o">=</span> <span class="mf">24.0</span>   <span class="c1"># °C, inside air temperature</span>
 <span class="n">λ</span> <span class="o">=</span> <span class="mf">1.0</span>     <span class="c1"># W/(m·K), thermal conductivity</span>
-<span class="n">ho</span> <span class="o">=</span> <span class="mf">25.0</span>   <span class="c1"># W/(m²·K), outside convection coefficients</span>
-<span class="n">hi</span> <span class="o">=</span> <span class="mf">8.0</span>    <span class="c1"># W/(m²·K), outside convection coefficients</span>
+<span class="n">ho</span> <span class="o">=</span> <span class="mf">25.0</span>   <span class="c1"># W/(m²·K), outside convection coefficient</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="mf">8.0</span>    <span class="c1"># W/(m²·K), outside convection coefficient</span>
 <span class="n">α</span> <span class="o">=</span> <span class="mf">0.70</span>    <span class="c1"># -, absorbtance of outdoor surface</span>
 <span class="n">E</span> <span class="o">=</span> <span class="mf">200.0</span>   <span class="c1"># W/m², solar irradiance on the outdoor surface</span>
 
@@ -705,7 +709,7 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
 <p>Strang, G. (2007) Computational Science and Engineering. Wellesley, MA: Wellesley-Cambridge Press</p>
-<p>Ghiaus, C. (2013). Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301. <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p>
+<p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301 <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p>
 </section>
 </section>
 
