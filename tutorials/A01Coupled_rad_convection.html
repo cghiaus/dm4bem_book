@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sensible thermal load in steady-state" href="A02Thermal_load.html" />
-    <link rel="prev" title="Annnexes" href="annexes.html" />
+    <link rel="prev" title="Other applications" href="annexes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -184,7 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Other applications</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -683,7 +683,7 @@ E_3
 </section>
 <section id="long-wave-infrared-thermal-radiation">
 <h3>Long-wave (infrared) thermal radiation<a class="headerlink" href="#long-wave-infrared-thermal-radiation" title="Permalink to this headline">#</a></h3>
-<p>Long-wave absorbtion coefficinets of the surfaces are <span class="math notranslate nohighlight">\(\alpha_{LW,0} = \alpha_{LW,1} = \alpha_{LW,2} = 0.8\)</span>.</p>
+<p>Long-wave absorbtion coefficients of the surfaces are <span class="math notranslate nohighlight">\(\alpha_{LW,0} = \alpha_{LW,1} = \alpha_{LW,2} = 0.8\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># α = 0.8 * np.ones(3)</span>
@@ -708,7 +708,7 @@ E_3
 \[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(J_j\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(J_j = \varepsilon_jM^o_j + \rho_j E_{LW, j}\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>.</p></li>
 </ul>
 <p>Taking into account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
 <div class="math notranslate nohighlight">
@@ -783,8 +783,7 @@ T_0^4\\
 T_1^4\\ 
 T_2^4
 \end{bmatrix}\end{split}\]</div>
-<p>is the vector of (absolute) temperatures of the surfaces.</p>
-<p>Let’s consider the particular case in which all temperatures have the same value <span class="math notranslate nohighlight">\(\bar{T}\)</span>. In this case, the heat flow rate between the surfaces is zero,</p>
+<p>is the vector of (absolute) temperatures of the surfaces, let’s consider the particular case in which all temperatures have the same value <span class="math notranslate nohighlight">\(\bar{T}\)</span>. In this case, the heat flow rate between the surfaces is zero,</p>
 <div class="math notranslate nohighlight">
 \[\bar \varphi_{LW} = K \sigma \bar T^4 = 0\]</div>
 <p>Therefore,</p>
@@ -831,7 +830,9 @@ T_2^4
 </div>
 </div>
 <p>The matrix <span class="math notranslate nohighlight">\(\sigma \bar T^3 K\)</span> of the linearized expression of heat flow rates</p>
-<p>$<span class="math notranslate nohighlight">\(\varphi_{LW} = 4 \sigma \bar T^3 K \theta = L \theta\)</span>$ is:</p>
+<div class="math notranslate nohighlight">
+\[\varphi_{LW} = 4 \sigma \bar T^3 K \theta = L \theta\]</div>
+<p>is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">H</span> <span class="o">@</span> <span class="n">K</span>
@@ -950,7 +951,7 @@ T_2^4
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Annnexes</p>
+        <p class="prev-next-title">Other applications</p>
       </div>
     </a>
     <a class="right-next"
