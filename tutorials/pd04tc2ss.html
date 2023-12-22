@@ -412,9 +412,9 @@ document.write(`
 <p>This notebook is a go through complete example of how to obtain a state-space representation from the building described by walls and the thermal circuits. The steps are:</p>
 <ul class="simple">
 <li><p>in a folder, describe the walls (wall type and wall data), the thermal circuits and give the assembling matrix or lists;</p></li>
-<li><p>from walls and thermal circuits obtain the set of disassembled circuits (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
-<li><p>assemble the set of disassembled thermal circuits (function <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix()</span></code>);</p></li>
-<li><p>transform the thermal circuit into state-space representation (function <code class="docutils literal notranslate"><span class="pre">tc2ss()</span></code>).</p></li>
+<li><p>from walls and thermal circuits obtain the set of disassembled circuits (function <code class="docutils literal notranslate"><span class="pre">dm4bem.bldg2TCd()</span></code>);</p></li>
+<li><p>assemble the set of disassembled thermal circuits (function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix()</span></code>);</p></li>
+<li><p>transform the thermal circuit into state-space representation (function <code class="docutils literal notranslate"><span class="pre">dm4bem.tc2ss()</span></code>).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -820,12 +820,12 @@ Setting time:  = 176132 s = 48.9 h
 </section>
 <section id="comparing-the-results">
 <h2>Comparing the results<a class="headerlink" href="#comparing-the-results" title="Permalink to this headline">#</a></h2>
-<p>The model used in this notebook is similar to that used in <code class="docutils literal notranslate"><span class="pre">03CubicBuilding.ipynb</span></code>. The notations in the two models are different (see Figure 2 and Figure 3).</p>
+<p>The model used in this notebook is similar to that used in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>. The notations in the two models are different (see Figure 2 and Figure 3).</p>
 <p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
 <blockquote>
-<div><p>Figure 3. Thermal circuit for the cubic building used in <code class="docutils literal notranslate"><span class="pre">03CubicBuilding.ipynb</span></code></p>
+<div><p>Figure 3. Thermal circuit for the cubic building used in <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a></p>
 </div></blockquote>
-<p>The correspondences between the notations in the two models (i.e., this notebook and <code class="docutils literal notranslate"><span class="pre">03CubicBuilding.ipynb</span></code>) is shown in Tables 1, 2, and 3.</p>
+<p>The correspondences between the notations in the two models (i.e., this notebook and <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>) is shown in Tables 1, 2, and 3.</p>
 <blockquote>
 <div><p>Table 1. Correspondence between states (i.e., temperature nodes with capacities) in Figures 2 and 3.</p>
 </div></blockquote>
@@ -900,7 +900,7 @@ Setting time:  = 176132 s = 48.9 h
 </div>
 </div>
 </div>
-<p>By reindexing the matrices of the state-space model, it becomes easier to compare the results from this notebook and <code class="docutils literal notranslate"><span class="pre">03CubicBuilding.ipynb</span></code>.</p>
+<p>By reindexing the matrices of the state-space model, it becomes easier to compare the results from this notebook and  <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">As</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">θ_order</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ_order</span><span class="p">)</span>
