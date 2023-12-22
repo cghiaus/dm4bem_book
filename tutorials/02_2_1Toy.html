@@ -1025,16 +1025,16 @@ F_{i,i} = 0
 <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 10°C &lt; T - 273.15 &lt; 30°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="n">T_int_20</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mi">20</span>
-<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int_20</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For T - 273.15 = 20°C, 4σT³/[W/(m²·K)] = </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mi">20</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For T - 273.15 = 20°C, 4σT³ = </span><span class="si">{</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> W/(m²·K)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For 0°C &lt; T - 273.15 &lt; 40°C, 4σT³/[W/(m²·K)] ∈ [4.6 7. ]
 For 10°C &lt; T - 273.15 &lt; 30°C, 4σT³/[W/(m²·K)] ∈ [5.1 6.3]
-For T - 273.15 = 20°C, 4σT³/[W/(m²·K)] = 5.7
+For T - 273.15 = 20°C, 4σT³ = 5.7 W/(m²·K)
 </pre></div>
 </div>
 </div>
