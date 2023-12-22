@@ -472,7 +472,7 @@ document.write(`
 <li><p>a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">conductance</a>, <span class="math notranslate nohighlight">\(G_j\)</span>, which needs to be strictly positive;</p></li>
 <li><p>a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a>, <span class="math notranslate nohighlight">\(T_j\)</span>, which can be positive, negative or zero.</p></li>
 </ul>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span>  shows the relation between oriented branches (i.e., flow rates) and nodes (i.e., temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_j\)</span> across the conductances <span class="math notranslate nohighlight">\(G_j\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_k\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_j\)</span>, in the position of the node <span class="math notranslate nohighlight">\(\theta_k\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> [<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>]:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span>  shows the relation between oriented branches (i.e., flow rates) and nodes (i.e., temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_j\)</span> across the conductances <span class="math notranslate nohighlight">\(G_j\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_k\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_j\)</span>, in the position of the node <span class="math notranslate nohighlight">\(\theta_k\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A_{j,i} = \begin{cases}\phantom{-}
 0 &amp; \text{if branch } q_j \text{ is not connected to node }  \theta_i \\ 
@@ -580,23 +580,23 @@ F_{i,i} = 0
 <p>In the second one, the view factors are defined by:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
-F_{i,j} = \frac{S_j}{S_{T} -S_i}\\ 
+F_{i,j} = \frac{S_j}{S_{T,i}} = \frac{S_j}{S_{T} -S_i}\\ 
 F_{i,i} = 0
 \end{cases}\end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(S_{T,i} = \sum_{j=0, j \neq i}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_i\)</span> is not included in the total surface <span class="math notranslate nohighlight">\(S_{T,i} = S_T - S_i\)</span>.</p>
-<p>In this case, the reciprocty theorem is generally not respected:</p>
+<p>In this case, the reciprocity theorem is generally not respected:</p>
 <div class="math notranslate nohighlight">
 \[F_{i, j} S_i = \frac{S_j}{S_{T} - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_{T} - S_j} S_j\]</div>
 <p>but the summation rule is respected:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_{T} - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \end{split}\]</div>
-<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j, k\)</span>, that are in the same plan (e.g. a window and a wall) is zero,</p>
+<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j, k\)</span>, that are in the same plane (e.g. a window and a wall) is zero,</p>
 <div class="math notranslate nohighlight">
 \[F_{j,k} = F_{k,j}=0\]</div>
 <p>Therefore the total surface <span class="math notranslate nohighlight">\(S_{T,i}\)</span> should be:</p>
 <div class="math notranslate nohighlight">
 \[S_{T,i} = \sum_{j=0}^{n-1} S_j - \sum_k S_k\]</div>
-<p>i.e. the surfaces <span class="math notranslate nohighlight">\(S_k\)</span> in the same plan with the surface <span class="math notranslate nohighlight">\(S_i\)</span> are not included in <span class="math notranslate nohighlight">\(S_{T,i}\)</span>.</p>
+<p>i.e., the surfaces <span class="math notranslate nohighlight">\(S_k\)</span> in the same plane with the surface <span class="math notranslate nohighlight">\(S_i\)</span> are not included in <span class="math notranslate nohighlight">\(S_{T,i}\)</span>.</p>
 </section>
 <section id="view-factor-between-tilted-outdoor-walls-and-sky">
 <h4>View factor between tilted outdoor walls and sky<a class="headerlink" href="#view-factor-between-tilted-outdoor-walls-and-sky" title="Permalink to this headline">#</a></h4>
@@ -912,7 +912,7 @@ S_1 &amp; 0 &amp; ... &amp; 0 \\
 </section>
 <section id="system-of-algebraic-differential-equations-dae">
 <h2>System of algebraic-differential equations (DAE)<a class="headerlink" href="#system-of-algebraic-differential-equations-dae" title="Permalink to this headline">#</a></h2>
-<p>The analysis of a thermal circuit, or the direct problem (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03484064/document">Ghiaus 2022</a>), means to find the temperatures in the nodes, <span class="math notranslate nohighlight">\(\theta\)</span>, and the heat flows on the branches, <span class="math notranslate nohighlight">\(q\)</span>, i.e. to solve for <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(q\)</span> the system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations (DAE)</a>:</p>
+<p>The analysis of a thermal circuit, or the direct problem (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03484064/document">Ghiaus 2022</a>), means to find the temperatures in the nodes, <span class="math notranslate nohighlight">\(\theta\)</span>, and the heat flows on the branches, <span class="math notranslate nohighlight">\(q\)</span>, i.e. to solve for <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(q\)</span> the system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations (DAE)</a> (see Jupyter Notebook <a class="reference internal" href="T02_TC2DAE.html"><span class="doc std std-doc">From thermal networks to differential-algebraic equations</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{\begin{array}{ll}
 C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\\ 
@@ -950,7 +950,7 @@ q = G (-A \theta + b)
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a></p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
-<p>is transformed in <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>):</p>
+<p>is transformed in <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>) (see Jupyter Notebook <a class="reference internal" href="T03_DAE2SS.html"><span class="doc std std-doc">From differential-algebraic equations to state-space representation</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left\{\begin{array}{rr}
 \dot{\theta}_s=A_s \theta_s + B_s u\\ 
@@ -975,8 +975,7 @@ y = C_s \theta_s + D_s u
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
-<p>C. Ghiaus (2021). Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198 (ref.)
-<a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">DOI 10.1007/978-3-030-76477-7_5</a>, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p>
+<p>[C. Ghiaus (2021)]((<a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">https://doi.org/10.1007/978-3-030-76477-7_5</a>). Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p>
 <p><a class="reference external" href="https://www.amazon.fr/M%C3%A9motech-G%C3%A9nie-%C3%A9nerg%C3%A9tique-Dal-Zotto/dp/271352122X">Dal Zotto et al.,(2014)</a> Mémotech. Génie énergétique, 5 edition, Casteilla, ISBN-13: 978-2-206-10018-0</p>
 <p><a class="reference external" href="http://www.thermalradiation.net/indexCat.html">Howell, J. R. (2010)</a>. A catalog of radiation heat transfer configuration factors 3rd edition. University of Texas at Austin</p>
 <p><a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén, J., &amp; Munkhammar, J. (2019)</a>. Solar radiation theory. Uppsala University.</p>
