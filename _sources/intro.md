@@ -1,11 +1,6 @@
 # Dynamic Models for Building Energy Management
 
-by Christian Ghiaus
-
-- Researcher ID: ORCID [0000-0001-5561-1245](https://orcid.org/0000-0001-5561-1245)
-- SciProfiles [2970335](https://sciprofiles.com/profile/2970335)
-- Scopus [6603390490](https://www.scopus.com/authid/detail.uri?authorId=6603390490)
-- Web of Science [K-1307-2012](https://www.webofscience.com/wos/author/record/1651371)
+by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-1245), [SciProfiles](https://sciprofiles.com/profile/2970335), [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6603390490), [Web of Science ](https://www.webofscience.com/wos/author/record/1651371))
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 
@@ -19,7 +14,7 @@ The workflow is presented in the Jupyter Notebook on [inputs and simulation](tut
 
 __Prerequisites__
 
-It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Pyhton 2024](https://docs.python.org/3/tutorial/index.html)).
+It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
 
 
 __Notations used for values of quantities__
@@ -54,4 +49,4 @@ __References__
 
 7. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
 
-8. [Docs.Pyhton (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
+8. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
