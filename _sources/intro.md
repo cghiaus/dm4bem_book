@@ -2,7 +2,7 @@
 
 by Christian Ghiaus
 
-- ORCID [0000-0001-5561-1245](https://orcid.org/0000-0001-5561-1245)
+- Researcher ID: ORCID [0000-0001-5561-1245](https://orcid.org/0000-0001-5561-1245)
 - SciProfiles [2970335](https://sciprofiles.com/profile/2970335)
 - Scopus [6603390490](https://www.scopus.com/authid/detail.uri?authorId=6603390490)
 - Web of Science [K-1307-2012](https://www.webofscience.com/wos/author/record/1651371)
@@ -19,7 +19,7 @@ The workflow is presented in the Jupyter Notebook on [inputs and simulation](tut
 
 __Prerequisites__
 
-It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra, heat transfer, and Python programming.
+It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Pyhton 2024](https://docs.python.org/3/tutorial/index.html)).
 
 
 __Notations used for values of quantities__
@@ -49,3 +49,9 @@ __References__
 4. [Gőbel, E., Mills, I., Wallard,  A. (2006)](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3). A concise summary of the International System of Units, the SI
 
 5. [Thomson, A., Taylor, B. N. (2008)](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf). Guide for the use of the international System of units (NIST Special Publication 811․ 2008 Edition). National Institute of Standards and Technology, US Government Printing Office.
+
+6. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
+
+7. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+
+8. [Docs.Pyhton (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
