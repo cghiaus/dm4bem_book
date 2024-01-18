@@ -407,14 +407,14 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <li><p>Inputs:</p>
 <ul>
 <li><p>given the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a> in EnergyPlus format <code class="docutils literal notranslate"><span class="pre">.epw</span></code>;</p></li>
-<li><p>read weather data: outdoor temperatur <span class="math notranslate nohighlight">\(T_o\)</span> and direct <span class="math notranslate nohighlight">\(E_{dir}\)</span>, diffuse solar radiation <span class="math notranslate nohighlight">\(E_{diff}\)</span> (functions <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>);</p></li>
-<li><p>determine the weather sources outdoor temperarure <span class="math notranslate nohighlight">\(T_o\)</span> and solar radiation absorbed by the outdoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, the indoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, and the glass <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p></li>
-<li><p>define the other inputs, such as indoor temperature set points <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>, auxiliary flow-rates <span class="math notranslate nohighlight">\(\dot Q_a\)</span>;</p></li>
+<li><p>read weather data: outdoor temperature, <span class="math notranslate nohighlight">\(T_o,\)</span> and solar radiation (direct, <span class="math notranslate nohighlight">\(E_{dir},\)</span> and diffuse, <span class="math notranslate nohighlight">\(E_{diff}\)</span>) with function <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code> and calculate the solar radiation on tilted surfaces with function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>;</p></li>
+<li><p>determine the weather sources outdoor temperarure, <span class="math notranslate nohighlight">\(T_o,\)</span> and solar radiation absorbed by the outdoor wall, <span class="math notranslate nohighlight">\(\Phi_o,\)</span> the indoor wall, <span class="math notranslate nohighlight">\(\Phi_o,\)</span> and the glass, <span class="math notranslate nohighlight">\(\Phi_a.\)</span></p></li>
+<li><p>define the other inputs, such as indoor temperature set points, <span class="math notranslate nohighlight">\(T_{i,sp},\)</span> auxiliary flow-rates, <span class="math notranslate nohighlight">\(\dot Q_a.\)</span></p></li>
 </ul>
 </li>
 <li><p>Simulation:</p>
 <ul>
-<li><p>prepare the inputs from input description of the state-space  (<span class="math notranslate nohighlight">\(u_s\)</span>) and the <em>input data set</em> (function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>);</p></li>
+<li><p>prepare the inputs from input description of the state-space,  <span class="math notranslate nohighlight">\(u_s,\)</span> and the <em>input data set</em> with function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>;</p></li>
 <li><p>integrate in time by using Euler explicit and/or implicit methods.</p></li>
 </ul>
 </li>
