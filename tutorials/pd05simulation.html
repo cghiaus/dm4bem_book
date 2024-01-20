@@ -433,7 +433,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="inputs-and-simulation">
 <h1>Inputs and simulation<a class="headerlink" href="#inputs-and-simulation" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd05simulation.ipynb"><img alt="Binder" src="https://static.mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook shows a complete example of simulation for a toy model obtained by assembling. It covers (Figure 1):</p>
+<p>This notebook shows a complete example of simulation for a toy model obtained by assembling. It covers (<a class="reference download internal" download="" href="../_downloads/cfd666d6bff7b9dadc06dc53b5352db6/work_flow.svg"><span class="xref download myst">Figure 1</span></a>):</p>
 <ul class="simple">
 <li><p>Model:</p>
 <ul>
@@ -451,10 +451,10 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <li><p>Inputs:</p>
 <ul>
 <li><p>given the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a> in EnergyPlus format <code class="docutils literal notranslate"><span class="pre">.epw</span></code>;</p></li>
-<li><p>read weather data: outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> and direct solar radiation <span class="math notranslate nohighlight">\(E_{dir}\)</span> and diffuse solar radiation <span class="math notranslate nohighlight">\(E_{diff}\)</span> (functions <code class="docutils literal notranslate"><span class="pre">dm4bem.read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">dm4bem.sol_rad_tilt_surf()</span></code>);</p></li>
+<li><p>read weather data: outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span>, direct solar radiation <span class="math notranslate nohighlight">\(E_{dir}\)</span> and diffuse solar radiation <span class="math notranslate nohighlight">\(E_{diff}\)</span> (functions <code class="docutils literal notranslate"><span class="pre">dm4bem.read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">dm4bem.sol_rad_tilt_surf()</span></code>);</p></li>
 <li><p>determine the weather sources:</p>
 <ul>
-<li><p>outdoor temperarure <span class="math notranslate nohighlight">\(T_o\)</span> and</p></li>
+<li><p>outdoor temperarure <span class="math notranslate nohighlight">\(T_o\)</span>,</p></li>
 <li><p>solar radiation absorbed by the outdoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, the indoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, and the glass <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p></li>
 </ul>
 </li>
@@ -489,11 +489,11 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2 and then obtain the state-space representation. The model is described in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>.</p>
 <p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Four disassembled thermal circuits: wall_out, TC0, TC1, TC2, TC3.</p>
+<div><p>Figure 1. Four disassembled thermal circuits: <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">wall_out</span></a>, <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3</span></a>.</p>
 </div></blockquote>
 <p><img alt="disassambled_TC" src="../_images/ass_TC.svg" /></p>
 <blockquote>
-<div><p>Figure 2. The assembling of the four circuits from Figure 1. The dashed black arrows show the merging of nodes, e.g., node 5 of circuit ow0 (faded, because it dissapears) is merged with node 0 of circuit c2 (which is kept).</p>
+<div><p>Figure 2. Assembling the four circuits from Figure 1 according to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly matrix</span></a> or to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">asssembly list</span></a>. The dashed black arrows show the merging of nodes, e.g., node 5 of circuit ow0 (faded, because it dissapears) is merged with node 0 of circuit c2 (which is kept).</p>
 </div></blockquote>
 <p>The thermal circuits are described in a folder (see section <em>Description of the folder containing the circuits</em> in Jupyter Notebook on <a class="reference internal" href="pd02bldg2TCd.html"><span class="doc std std-doc">Disassembled thermal circuits from folder describing the building</span></a>). The steps to obtain a state-space model from thermal circuits are:</p>
 <ol class="arabic simple">
@@ -531,7 +531,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </section>
 <section id="state-space-representation">
 <h3>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h3>
-<p>The state-space representation is obtained from the thermal circuit.</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is obtained from the <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">thermal circuit</span></a> (described by the matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(C\)</span> and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State-space</span>
@@ -585,8 +585,9 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </section>
 <section id="inputs-for-step-response">
 <h2>Inputs for step response<a class="headerlink" href="#inputs-for-step-response" title="Permalink to this headline">#</a></h2>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The inputs of the system are the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>) sources.</p>
-<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (from the state-space representation). The transformation from input data set to the input vector is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The <em>input data set</em> of the system contains the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>) sources.</p>
+<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, may have repeated values; in our <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">thermal circuit</span></a>, the outdoor temperature source <span class="math notranslate nohighlight">\(T_o\)</span> is on branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span> and <span class="math notranslate nohighlight">\(q_{10}\)</span>.</p>
+<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (obtained in the state-space representation from the sources indicated by symbols in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit). The transformation from <em>input data set</em> to the <em>input vector</em> is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create input_data_set</span>
