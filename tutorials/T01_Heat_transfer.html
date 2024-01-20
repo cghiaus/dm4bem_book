@@ -709,9 +709,9 @@ F_{i,i} = 0
 <p>The long-wave heat exchange between surfaces may be modelled by using the concept of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> and then linearizing the radiative heat exchange.</p>
 <p><img alt="LW_rad_excg" src="../_images/03_LW_rad_excg.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (sources) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
+<div><p>Figure 4. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (sources) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
 </div></blockquote>
-<p>For two surfaces, shown by temperature nodes 1 and 2 in Figure 2, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">conductances</a>, in m², for radiative heat exchange expressed by using the emmitance (or the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant excitance</a>)  of the black body, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>, and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of view factors are:</p>
+<p>For two surfaces, shown by temperature nodes 1 and 2 in Figure 4, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">conductances</a>, in m², for radiative heat exchange expressed by using the emmitance (or the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant excitance</a>)  of the black body, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>, and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of view factors are:</p>
 <div class="math notranslate nohighlight">
 \[G_{1}^{r} = \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
 <div class="math notranslate nohighlight">
@@ -813,10 +813,10 @@ F_{i,i} = 0
 </section>
 <section id="proportional-controller">
 <h3>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h3>
-<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> (Figure 3a).</p>
+<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> (Figure 5a).</p>
 <p><img alt="P_controller" src="../_images/A01_P_controller.svg" /></p>
 <blockquote>
-<div><p>Figure 3. HVAC systems as proportional controller of indoor air. a) Block diagramme. b) Thermal circuit representation.</p>
+<div><p>Figure 5. HVAC systems as proportional controller of indoor air. a) Block diagramme. b) Thermal circuit representation.</p>
 </div></blockquote>
 <p>The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
 <div class="math notranslate nohighlight">
