@@ -386,7 +386,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits">Thermal circuits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step-and-settling-time">Time step and settling time</a></li>
 </ul>
@@ -485,8 +485,8 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </div>
 <section id="model">
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">#</a></h2>
-<section id="assembled-thermal-circuits">
-<h3>Assembled thermal circuits<a class="headerlink" href="#assembled-thermal-circuits" title="Permalink to this headline">#</a></h3>
+<section id="thermal-circuits">
+<h3>Thermal circuits<a class="headerlink" href="#thermal-circuits" title="Permalink to this headline">#</a></h3>
 <p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2 and then obtain the state-space representation. The model is described in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>.</p>
 <p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
@@ -496,7 +496,11 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <blockquote>
 <div><p>Figure 2. Assembling the four circuits from Figure 1 according to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly matrix</span></a> or to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">asssembly list</span></a>. The dashed black arrows show the merging of nodes, e.g., node 5 of circuit ow0 (faded, because it dissapears) is merged with node 0 of circuit c2 (which is kept).</p>
 </div></blockquote>
-<p>The thermal circuits are described in a folder (see section <em>Description of the folder containing the circuits</em> in Jupyter Notebook on <a class="reference internal" href="pd02bldg2TCd.html"><span class="doc std std-doc">Disassembled thermal circuits from folder describing the building</span></a>). The steps to obtain a state-space model from thermal circuits are:</p>
+<p>The thermal circuits are described in a folder (see section <em>Description of the folder containing the circuits</em> in Jupyter Notebook on <a class="reference internal" href="pd02bldg2TCd.html"><span class="doc std std-doc">Disassembled thermal circuits from folder describing the building</span></a>).</p>
+</section>
+<section id="state-space-representation">
+<h3>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h3>
+<p>The steps to obtain a state-space model from disassembled thermal circuits are:</p>
 <ol class="arabic simple">
 <li><p>Obtain the disassambled set of thermal circuits from data given in a folder.</p></li>
 <li><p>Assemble the set of thermal circuits.</p></li>
@@ -527,9 +531,6 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </div>
 </div>
 </div>
-</section>
-<section id="state-space-representation">
-<h3>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is obtained from the <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a> (described by the matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(C\)</span> and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -553,10 +554,18 @@ dtype: object
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">us</span></code> contains the correspondence between:</p>
+<p>In state-space representation:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">As</span></code>: state (or system) matrix;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bs</span></code>: input matrix;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cs</span></code>: output matrix;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ds</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us</span></code> : contains the correspondence between:</p>
+<ul>
 <li><p>the branches (e.g. <code class="docutils literal notranslate"><span class="pre">c1_q0</span></code> for circuit <em>c1</em> branch <em>q0</em>) and the symbol of the temperature source (e.g. <code class="docutils literal notranslate"><span class="pre">To</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>);</p></li>
 <li><p>the nodes (e.g. <code class="docutils literal notranslate"><span class="pre">c1_θ0</span></code> for circuit <em>c1</em> node <em>θ0</em>) and the symbol of flow-rate source (e.g. <code class="docutils literal notranslate"><span class="pre">Φa</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>).</p></li>
+</ul>
+</li>
 </ul>
 </section>
 <section id="time-step-and-settling-time">
@@ -608,7 +617,7 @@ dtype: object
 <h2>Inputs for step response<a class="headerlink" href="#inputs-for-step-response" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The <em>input data set</em> of the system contains the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>) sources.</p>
 <p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, may have repeated values; in our <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>, the outdoor temperature source <span class="math notranslate nohighlight">\(T_o\)</span> is on three branches: <span class="math notranslate nohighlight">\(c_1 \_q_0\)</span>, <span class="math notranslate nohighlight">\(c_2\_q_0\)</span> and <span class="math notranslate nohighlight">\(ow_0\_q_0\)</span>.</p>
-<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (obtained in the state-space representation from the sources indicated by symbols in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit). The transformation from <em>input data set</em> to the <em>input vector</em> is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
+<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (obtained in the state-space representation from the sources indicated by symbols in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit). The transformation from <em>input data set</em> to the <em>input vector in time</em> is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create input_data_set</span>
@@ -944,7 +953,7 @@ dtype: object
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
 <span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
 <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># Fill θ with initial valeus θ0</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial valeus θ0</span>
 <span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
 </pre></div>
 </div>
@@ -1379,7 +1388,7 @@ dtype: object
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits">Thermal circuits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step-and-settling-time">Time step and settling time</a></li>
 </ul>
