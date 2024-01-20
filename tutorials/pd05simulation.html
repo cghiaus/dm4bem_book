@@ -388,6 +388,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step-and-settling-time">Time step and settling time</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-for-step-response">Inputs for step response</a></li>
@@ -503,9 +504,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtain state-space representation</span>
-<span class="c1"># =================================</span>
-<span class="c1"># Disassembled thermal circuits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits</span>
 <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -531,15 +530,37 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </section>
 <section id="state-space-representation">
 <h3>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h3>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is obtained from the <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">thermal circuit</span></a> (described by the matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(C\)</span> and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span>).</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> is obtained from the <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a> (described by the matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(C\)</span> and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State-space</span>
 <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<span class="n">us</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1_q0        To
+c2_q0        To
+c3_q0     Ti_sp
+ow0_q0       To
+c1_θ0        Φa
+c2_θ0        Qa
+ow0_θ0       Φo
+ow0_θ4       Φi
+dtype: object
 </pre></div>
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">us</span></code> contains the correspondence between:</p>
+<ul class="simple">
+<li><p>the branches (e.g. <code class="docutils literal notranslate"><span class="pre">c1_q0</span></code> for circuit <em>c1</em> branch <em>q0</em>) and the symbol of the temperature source (e.g. <code class="docutils literal notranslate"><span class="pre">To</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>);</p></li>
+<li><p>the nodes (e.g. <code class="docutils literal notranslate"><span class="pre">c1_θ0</span></code> for circuit <em>c1</em> node <em>θ0</em>) and the symbol of flow-rate source (e.g. <code class="docutils literal notranslate"><span class="pre">Φa</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>).</p></li>
+</ul>
+</section>
+<section id="time-step-and-settling-time">
+<h3>Time step and settling time<a class="headerlink" href="#time-step-and-settling-time" title="Permalink to this headline">#</a></h3>
 <p>The eigenvalues analysis of the state matrix yields:</p>
 <ul class="simple">
 <li><p>maximum <strong>time step</strong> for Euler explicit method: <span class="math notranslate nohighlight">\(\Delta t_{max} = 2·\mathrm{min} (-1 / \lambda_i)\)</span>, where <span class="math notranslate nohighlight">\(\lambda\)</span> is the vector of eigenvalues of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(T_i = -1 / \lambda_i\)</span> are the time constants;</p></li>
@@ -586,7 +607,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <section id="inputs-for-step-response">
 <h2>Inputs for step response<a class="headerlink" href="#inputs-for-step-response" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> consists of the time response of the system when one or more inputs change instantaneously at time <span class="math notranslate nohighlight">\(t = 0\)</span>. The <em>input data set</em> of the system contains the temperature (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>) and flow-rate (<span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>) sources.</p>
-<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, may have repeated values; in our <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">thermal circuit</span></a>, the outdoor temperature source <span class="math notranslate nohighlight">\(T_o\)</span> is on branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span> and <span class="math notranslate nohighlight">\(q_{10}\)</span>.</p>
+<p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, may have repeated values; in our <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>, the outdoor temperature source <span class="math notranslate nohighlight">\(T_o\)</span> is on branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span> and <span class="math notranslate nohighlight">\(q_{10}\)</span>.</p>
 <p>The input vector in time, <span class="math notranslate nohighlight">\(u\)</span>, is a DataFrame with time as index (note that the year is <strong>2000</strong> by convention); its columns are the values of the inputs arranged in the order given by the vector <span class="math notranslate nohighlight">\(u_s\)</span> (obtained in the state-space representation from the sources indicated by symbols in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit). The transformation from <em>input data set</em> to the <em>input vector</em> is done by the function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code> from <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,13 +627,308 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">}</span>
 <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
-
-<span class="c1"># Get input u from input_data_set</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+<span class="n">input_data_set</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>To</th>
+      <th>Ti_sp</th>
+      <th>Qa</th>
+      <th>Φo</th>
+      <th>Φi</th>
+      <th>Φa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-01-01 00:00:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:05:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:10:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:15:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:20:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:35:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:40:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:45:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:50:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:55:00</th>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>588 rows × 6 columns</p>
+</div></div></div>
 </div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code> containts the time series of the inputs specified by symbols in the vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get input u from input_data_set</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+<span class="n">u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c1_q0</th>
+      <th>c2_q0</th>
+      <th>c3_q0</th>
+      <th>ow0_q0</th>
+      <th>c1_θ0</th>
+      <th>c2_θ0</th>
+      <th>ow0_θ0</th>
+      <th>ow0_θ4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-01-01 00:00:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:05:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:10:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:15:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-01 00:20:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:35:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:40:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:45:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:50:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2000-01-03 00:55:00</th>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>588 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>Note the the columns of <code class="docutils literal notranslate"><span class="pre">u</span></code>are the names of the branches and of the nodes from the <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>.</p>
 </section>
 <section id="simulation">
 <h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
@@ -1062,6 +1378,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembled-thermal-circuits">Assembled thermal circuits</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step-and-settling-time">Time step and settling time</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-for-step-response">Inputs for step response</a></li>
