@@ -387,7 +387,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-networks">Thermal networks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall">Plan wall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state">Steady state</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
@@ -492,8 +496,15 @@ document.write(`
 </section>
 <section id="thermal-conductances">
 <h2>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h2>
+<p>The three modes of heat transfer (conduction, convection and radiation) and the heat advection can be modelled by thermal resistances or conductances (Figure 2).</p>
+<p><img alt="heat_transfert" src="../_images/A01_heat_transfert.pdf" /></p>
+<blockquote>
+<div><p>Figure 2. Conductances in heat transfer and energy advection: a) conduction; b) convection; c) radiation; d) advection.</p>
+</div></blockquote>
 <section id="conduction">
 <h3>Conduction<a class="headerlink" href="#conduction" title="Permalink to this headline">#</a></h3>
+<section id="plan-wall">
+<h4>Plan wall<a class="headerlink" href="#plan-wall" title="Permalink to this headline">#</a></h4>
 <p>For a plan wall, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> conductances, in W/K, are of the form:</p>
 <div class="math notranslate nohighlight">
 \[G_{cd} = \frac{\lambda}{w}S\]</div>
@@ -503,6 +514,92 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(w\)</span> - width of the wall, m;</p></li>
 <li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
 </ul>
+</section>
+<section id="steady-state">
+<h4>Steady state<a class="headerlink" href="#steady-state" title="Permalink to this headline">#</a></h4>
+<p>Thermal conduction is the heat diffusion in solids in the direction of the temperature gradient (Figure 2a). <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conduction#Fourier's_law">Fourier law</a>, the equation relating the thermal heat flow rate in a direction <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(q_x\)</span>, to the temperature gradient, <span class="math notranslate nohighlight">\(\frac{d \theta}{d x}\)</span>, in the direction <span class="math notranslate nohighlight">\(x\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[q_x = -\lambda S \frac{d \theta}{d x}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> is the material conductivity, W/(m·K),</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the area of the surface perpendicular to the heat flow rate <span class="math notranslate nohighlight">\(q_x\)</span>, m².</p></li>
+</ul>
+<p>The minus sign shows that heat transfer is from high to low temperature.</p>
+<p><img alt="conduction" src="../_images/A01_conduction.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Steady state thermal conduction: a) stream tube; b) thermal network model.</p>
+</div></blockquote>
+<p>Let us consider stationary conduction in a stream tube in a homogenous and isotropic material without internal heat sources (Figure 3a). Since the heat flow rate <span class="math notranslate nohighlight">\(q\)</span> is conserved, Fourier law in section <span class="math notranslate nohighlight">\(s\)</span> of the streamline is</p>
+<div class="math notranslate nohighlight">
+\[q = -\lambda S \frac{d \theta}{d x}\]</div>
+<p>where the conductivity <span class="math notranslate nohighlight">\(\lambda = \lambda(s)\)</span> and the area surface <span class="math notranslate nohighlight">\(S = S(s)\)</span> depend on the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Curvilinear_coordinates">curvilinear coordinate</a> <span class="math notranslate nohighlight">\(s\)</span>. By separating the variables, the above equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[q \frac{ds}{\lambda S} = -d \theta\]</div>
+<p>By integrating from <span class="math notranslate nohighlight">\(s_0\)</span> to <span class="math notranslate nohighlight">\(s_1\)</span> and from <span class="math notranslate nohighlight">\(\theta_0\)</span> to <span class="math notranslate nohighlight">\(\theta_1\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[q \int_{s_0}^{s_1} \frac{ds}{\lambda S} = -\int_{\theta_0}^{\theta_1} d \theta\]</div>
+<p>the temperature variation with the distance can be written as</p>
+<div class="math notranslate nohighlight">
+\[q R = \theta_0 - \theta\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[R \equiv \int_{s_0}^{s} \frac{1}{\lambda S} ds\]</div>
+<p>is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance#Absolute_thermal_resistance">thermal resistance</a> of the stream tube between <span class="math notranslate nohighlight">\(s_0\)</span> and <span class="math notranslate nohighlight">\(s.\)</span></p>
+<p>If there are internal sources, the variation of the heat flow rate along the curvilinear coordinate <span class="math notranslate nohighlight">\(ds\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[dq = p \, dV\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the rate of heat generation per unit volume and <span class="math notranslate nohighlight">\(dV\)</span> is the infinitesimal volume. If <span class="math notranslate nohighlight">\(ds \rightarrow 0\)</span>, then <span class="math notranslate nohighlight">\(dV = S \, ds\)</span>. By integrating between <span class="math notranslate nohighlight">\(s_0 \)</span> and <span class="math notranslate nohighlight">\(s\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\int_{q_0}^{q} dq = \int_{s_0}^{s} p \, S \, ds\]</div>
+<p>it becomes</p>
+<div class="math notranslate nohighlight">
+\[q(s) =  \int_{s_0}^{s} p \, S \, ds + q_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_0\)</span> is the flow rate entering through the surface <span class="math notranslate nohighlight">\(S_0\)</span>.</p>
+<p>The flow rate getting out through the surface <span class="math notranslate nohighlight">\(S_1\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[q_1 =  \int_{s_0}^{s_1} p \, S \, ds + q_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_0\)</span> is the heat flow rate entering through the surface <span class="math notranslate nohighlight">\(S_0\)</span>.</p>
+<p>Substituting the above equation in the equation <span class="math notranslate nohighlight">\(q = -\lambda S \frac{d \theta}{d x}\)</span>, we obtain, after integration,</p>
+<div class="math notranslate nohighlight">
+\[\theta_1 = \int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} -p \, S \, ds' \right ) ds - q_0\int_{s_0}^{s_1}\frac{1}{\lambda S} ds + \theta_0\]</div>
+<p>By substituting the expression of thermal resistances given by <span class="math notranslate nohighlight">\(R \equiv \int_{s_0}^{s} \frac{1}{\lambda S} ds\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[\theta_1 = -\int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds - R_0 \, q_0 + \theta_0\]</div>
+<p>Equations</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(q(s) =  \int_{s_0}^{s} p \, S \, ds + q_0\)</span> and</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_1 = -\int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds - R_0 \, q_0 + \theta_0\)</span></p></li>
+</ul>
+<p>can be represented by the thermal circuit presented in Figure 3b where the heat rate source is</p>
+<div class="math notranslate nohighlight">
+\[f_1 = \int_{s_0}^{s} p \, S ds\]</div>
+<p>and the temperature source is</p>
+<div class="math notranslate nohighlight">
+\[b_0 = \int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds\]</div>
+<p>The equation for <span class="math notranslate nohighlight">\(b_0\)</span> can be integrated by parts. By noting <span class="math notranslate nohighlight">\(u \equiv \int_{s_0}^{s_1}p \, S \, ds\)</span> and <span class="math notranslate nohighlight">\(v' \equiv \frac{1}{\lambda S}\)</span>, integrating by parts (<span class="math notranslate nohighlight">\(\int uv'ds = uv - \int u'vds\)</span>), we obtain:</p>
+<div class="math notranslate nohighlight">
+\[b_0 = -\left ( \int_{s_0}^{s_1} p \, S \, ds \right )\left ( \int_{s_0}^{s_1} \frac{1}{\lambda S} ds \right ) + \int_{s_0}^{s_1} p \, S \left ( \int_{s_0}^{s_1} \frac{1}{\lambda S} ds' \right )ds\]</div>
+<p>By substituting in the above equation <span class="math notranslate nohighlight">\(R \equiv \int_{s_0}^{s} \frac{1}{\lambda S} ds\)</span> and <span class="math notranslate nohighlight">\(R_0 \equiv \int_{s_0}^{s_1} \frac{1}{\lambda S} ds\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[b_0 = -R_0 \int_{s_0}^{s_1} p \, S \, ds + \int_{s_0}^{s_1} R \, p \, S ds\]</div>
+<p>Equation <span class="math notranslate nohighlight">\(q_1 =  \int_{s_0}^{s_1} p \, S \, ds + q_0\)</span> becomes</p>
+<div class="math notranslate nohighlight">
+\[q_1 = q_0 + f_1\]</div>
+<p>and equation <span class="math notranslate nohighlight">\(\theta_1 = -\int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds - R_0 \, q_0 + \theta_0\)</span> becomes</p>
+<div class="math notranslate nohighlight">
+\[\theta_0 - \theta_1 + b_0 = R_0 q_0\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[e_0 = \theta_0 - \theta_1 + b_0\]</div>
+<p>is the temperature difference across the thermal resistance <span class="math notranslate nohighlight">\(R_0.\)</span></p>
+<p>Refering to the model from Figure 3b:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_0 = -R_0 \int_{s_0}^{s_1} p \, S \, ds + \int_{s_0}^{s_1} R \, p \, S ds\)</span> is temperature source;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_1 = \int_{s_0}^{s} p \, S ds\)</span> is flow rate source;</p></li>
+<li><p><span class="math notranslate nohighlight">\(R_0 = \int_{s_0}^{s_1} \frac{1}{\lambda S} ds\)</span> is the thermal resistance.</p></li>
+</ul>
+</section>
 </section>
 <section id="convection">
 <h3>Convection<a class="headerlink" href="#convection" title="Permalink to this headline">#</a></h3>
@@ -1052,7 +1149,11 @@ y = C_s \theta_s + D_s u
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-networks">Thermal networks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall">Plan wall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state">Steady state</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
