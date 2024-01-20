@@ -385,7 +385,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-input-data-set">Resample input data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hour-time-step">One-hour time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-input-data-set">Resample input data set</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector-in-time">Input vector in time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
@@ -445,6 +450,8 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="state-space-representation">
+<h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h2>
 <p>The thermal circuit was described in the section on modelling. It is read from the file <code class="docutils literal notranslate"><span class="pre">./toy_model/TC.csv</span></code>. Thermal circuit is transformed in state-space representation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -568,7 +575,12 @@ Name: y, dtype: int64
 </div>
 </div>
 </div>
-<p>The input data set was described in the section on inputs.</p>
+</section>
+<section id="input-data-set">
+<h2>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this headline">#</a></h2>
+<section id="one-hour-time-step">
+<h3>One-hour time step<a class="headerlink" href="#one-hour-time-step" title="Permalink to this headline">#</a></h3>
+<p>The input data set was described in the section on inputs. It is at the samplining time of 1 h (according to the weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code>, see notebook on <a class="reference internal" href="02_2_3Toy.html"><span class="doc std std-doc">Inputs</span></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># INPUT DATA SET</span>
@@ -724,8 +736,9 @@ Name: y, dtype: int64
 <p>151 rows × 7 columns</p>
 </div></div></div>
 </div>
+</section>
 <section id="resample-input-data-set">
-<h2>Resample input data set<a class="headerlink" href="#resample-input-data-set" title="Permalink to this headline">#</a></h2>
+<h3>Resample input data set<a class="headerlink" href="#resample-input-data-set" title="Permalink to this headline">#</a></h3>
 <p>The weather data and the scheduled sources are at the time-step of 1 h. The data needs to be resampled at time step <code class="docutils literal notranslate"><span class="pre">dt</span></code> used for numerical integration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -819,6 +832,7 @@ Name: y, dtype: int64
 </div></div></div>
 </div>
 </section>
+</section>
 <section id="input-vector-in-time">
 <h2>Input vector in time<a class="headerlink" href="#input-vector-in-time" title="Permalink to this headline">#</a></h2>
 <p>The input is formed by the vectors of time series of temperature sources <span class="math notranslate nohighlight">\(\left [ T_o, T_o ,T_o, T_{i,sp} \right ]^T\)</span> and vectors of time series of the heat flow sources <span class="math notranslate nohighlight">\(\left [ \Phi_o, \Phi_i, \dot{Q_a}, \Phi_a \right ]^T\)</span>:</p>
@@ -851,7 +865,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <p><span class="math notranslate nohighlight">\(\Phi_i\)</span>: time series vector of short wave (i.e. solar) radiation absorbed by the indoor surfaces of the wall, W;</p>
 <p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>: time vector of auxiliary heat flows (from occupants, electrical devices, etc.), W.</p>
 <p><span class="math notranslate nohighlight">\(\Phi_a\)</span>: time series vector of short wave (i.e. solar) radiation absorbed by the window glass, W.</p>
-<p>The input vector <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from the input data set, <span class="math notranslate nohighlight">\(T_o, T_{i,sp}, \Phi_o, \Phi_i, \dot Q_a, \Phi_a\)</span>, by using the order of the sources given in the state-space model, <code class="docutils literal notranslate"><span class="pre">us</span></code>: <code class="docutils literal notranslate"><span class="pre">q0</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q8</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q10</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q11</span></code> = <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>, <code class="docutils literal notranslate"><span class="pre">θ0</span></code> = <span class="math notranslate nohighlight">\(\Phi_o\)</span>, <code class="docutils literal notranslate"><span class="pre">θ4</span></code> = <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <code class="docutils literal notranslate"><span class="pre">θ6</span></code> = <span class="math notranslate nohighlight">\(\dot Q_a\)</span>, and <code class="docutils literal notranslate"><span class="pre">θ7</span></code> = <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p>
+<p>The <em>input vector</em> <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from the <em>input data set</em>, <span class="math notranslate nohighlight">\(T_o, T_{i,sp}, \Phi_o, \Phi_i, \dot Q_a, \Phi_a\)</span>, by using the order of the sources given in the state-space model, <code class="docutils literal notranslate"><span class="pre">us</span></code>: <code class="docutils literal notranslate"><span class="pre">q0</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q8</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q10</span></code> = <span class="math notranslate nohighlight">\(T_o\)</span>, <code class="docutils literal notranslate"><span class="pre">q11</span></code> = <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>, <code class="docutils literal notranslate"><span class="pre">θ0</span></code> = <span class="math notranslate nohighlight">\(\Phi_o\)</span>, <code class="docutils literal notranslate"><span class="pre">θ4</span></code> = <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <code class="docutils literal notranslate"><span class="pre">θ6</span></code> = <span class="math notranslate nohighlight">\(\dot Q_a\)</span>, and <code class="docutils literal notranslate"><span class="pre">θ7</span></code> = <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input vector in time from input_data_set</span>
@@ -1222,7 +1236,12 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-input-data-set">Resample input data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hour-time-step">One-hour time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-input-data-set">Resample input data set</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector-in-time">Input vector in time</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
