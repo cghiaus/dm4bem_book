@@ -835,7 +835,8 @@ Name: y, dtype: int64
 </section>
 <section id="input-vector-in-time">
 <h2>Input vector in time<a class="headerlink" href="#input-vector-in-time" title="Permalink to this headline">#</a></h2>
-<p>The input is formed by the vectors of time series of temperature sources <span class="math notranslate nohighlight">\(\left [ T_o, T_o ,T_o, T_{i,sp} \right ]^T\)</span> and vectors of time series of the heat flow sources <span class="math notranslate nohighlight">\(\left [ \Phi_o, \Phi_i, \dot{Q_a}, \Phi_a \right ]^T\)</span>:</p>
+<p>In the <em>input data set</em> an input, e.g. <span class="math notranslate nohighlight">\(T_o\)</span>, appears only once. However, the <em>i nput vector</em> may contain the same time series multiple time; for example, in the model presented in <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">Figure 4</span></a> of notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Modeling</span></a> there are three inputs <span class="math notranslate nohighlight">\(T_o\)</span> corresponding to branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span>, and <span class="math notranslate nohighlight">\(q_{10}\)</span>). Therefore, we need to obtain the <em>input vector</em> from the <em>input data set</em>.</p>
+<p>The input in time is formed by the vectors of time series of temperature sources <span class="math notranslate nohighlight">\(\left [ T_o, T_o ,T_o, T_{i,sp} \right ]^T\)</span> and vectors of time series of the heat flow sources <span class="math notranslate nohighlight">\(\left [ \Phi_o, \Phi_i, \dot{Q_a}, \Phi_a \right ]^T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}u = 
 \begin{bmatrix}
