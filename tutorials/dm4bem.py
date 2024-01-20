@@ -1289,11 +1289,18 @@ def tc2ss(TC):
 
     Returns
     -------
-    As state matrix in state equation
-    Bs input matrix in state equation
-    Cs output matrix in observation equation
-    Ds input matrix in observation equation
-    us list of inputs
+    As : state matrix in state equation
+
+    Bs : input matrix in state equation
+
+    Cs : output matrix in observation equation
+
+    Ds : input matrix in observation equation
+
+    us : correspondence `input` <-> `input data set`:
+
+    - `input`: branches and nodes with temperature and flow sources, e.g. c1_q0
+    - `input data set` : symbols of sources (time series), e.g. To
     """
 
     def inv(A):
@@ -1384,13 +1391,13 @@ def tc2ss(TC):
     non_zero_inputs = pd.concat([(TC['b'] != 0), (TC['f'] != 0)])
     Bs = Bs.loc[:, non_zero_inputs]
     Ds = Ds.loc[:, non_zero_inputs]
-    u = u.loc[non_zero_inputs]
+    us = u.loc[non_zero_inputs]
 
     # From complete output vector [θ0, θc], extract actual outputs given by y
     Cs = Cs.loc[y.loc[y != 0].index]
     Ds = Ds.loc[y.loc[y != 0].index]
 
-    return As, Bs, Cs, Ds, u
+    return As, Bs, Cs, Ds, us
 
 
 def inputs_in_time(us, input_data_set):
