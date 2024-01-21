@@ -506,7 +506,7 @@ document.write(`
 <h3>Conduction<a class="headerlink" href="#conduction" title="Permalink to this headline">#</a></h3>
 <section id="plan-wall">
 <h4>Plan wall<a class="headerlink" href="#plan-wall" title="Permalink to this headline">#</a></h4>
-<p>For a plan wall, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> conductances, in W/K, are of the form:</p>
+<p>For a plan wall, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> conductances, in W/K, are of the form (Figure 2a):</p>
 <div class="math notranslate nohighlight">
 \[G_{cd} = \frac{\lambda}{w}S\]</div>
 <p>where:</p>
@@ -578,7 +578,7 @@ document.write(`
 <p>and the temperature source is</p>
 <div class="math notranslate nohighlight">
 \[b_0 = \int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds\]</div>
-<p>The equation for <span class="math notranslate nohighlight">\(b_0\)</span> can be integrated by parts. By noting <span class="math notranslate nohighlight">\(u \equiv \int_{s_0}^{s_1}p \, S \, ds\)</span> and <span class="math notranslate nohighlight">\(v' \equiv \frac{1}{\lambda S}\)</span>, integrating by parts (<span class="math notranslate nohighlight">\(\int uv'ds = uv - \int u'vds\)</span>), we obtain:</p>
+<p>The equation for <span class="math notranslate nohighlight">\(b_0\)</span> can be <a class="reference external" href="https://en.m.wikipedia.org/wiki/Integration_by_parts">integrated by parts</a>. By noting <span class="math notranslate nohighlight">\(u \equiv \int_{s_0}^{s_1}p \, S \, ds\)</span> and <span class="math notranslate nohighlight">\(v' \equiv \frac{1}{\lambda S}\)</span>, integrating by parts <span class="math notranslate nohighlight">\((\int uv'ds = uv - \int u'vds)\)</span>, we obtain:</p>
 <div class="math notranslate nohighlight">
 \[b_0 = -\left ( \int_{s_0}^{s_1} p \, S \, ds \right )\left ( \int_{s_0}^{s_1} \frac{1}{\lambda S} ds \right ) + \int_{s_0}^{s_1} p \, S \left ( \int_{s_0}^{s_1} \frac{1}{\lambda S} ds' \right )ds\]</div>
 <p>By substituting in the above equation <span class="math notranslate nohighlight">\(R \equiv \int_{s_0}^{s} \frac{1}{\lambda S} ds\)</span> and <span class="math notranslate nohighlight">\(R_0 \equiv \int_{s_0}^{s_1} \frac{1}{\lambda S} ds\)</span>, we obtain</p>
@@ -604,7 +604,7 @@ document.write(`
 </section>
 <section id="convection">
 <h3>Convection<a class="headerlink" href="#convection" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">Convection</a> conductances, in W/K, are of the form:</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">Convection</a> conductances, in W/K, are of the form (Figure 2b):</p>
 <div class="math notranslate nohighlight">
 \[G_{cv} = {h S}\]</div>
 <p>where:</p>
@@ -746,7 +746,7 @@ F_{i,i} = 0
 <div class="math notranslate nohighlight">
 \[\bar{T} =\sqrt[3]{ \frac{(T_1^2 + T_2^2)(T_1 + T_2)}{4}}\]</div>
 <p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>. An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, i.e., <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq \bar T - 273.15 \leq 30 \,\mathrm{ °C}\)</span>, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 5 and 6 W/(m²·K). Practically, <span class="math notranslate nohighlight">\(\bar T - 273.15 = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W/(m^2K)}\)</span>.</p>
-<p>After linearization, the conductances, in W/K, for radiative heat exchange are:</p>
+<p>After linearization, the conductances, in W/K, for radiative heat exchange are (Figure 2c):</p>
 <div class="math notranslate nohighlight">
 \[G_{1} = 4 \sigma \bar{T}^3 \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
 <div class="math notranslate nohighlight">
@@ -778,7 +778,7 @@ F_{i,i} = 0
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C (noted in majuscule because it is a <em>temperature source</em> or <em>input variable</em>);</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C (noted in minuscule because it is a <em>dependent temperature</em> or <em>output variable</em>).</p></li>
 </ul>
-<p>Therefore, the conductance of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">infiltration</a>, in W/K, is:</p>
+<p>Therefore, the conductance of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">infiltration</a>, in W/K, is (Figure 2d):</p>
 <div class="math notranslate nohighlight">
 \[G_v = \rho_a c_a \dot{V}_a\]</div>
 <blockquote>
