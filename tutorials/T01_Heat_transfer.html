@@ -389,7 +389,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall">Plan wall</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state">Steady state</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-conduction">Steady state conduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-without-internal-sources">Conduction without internal sources</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-with-internal-sources">Conduction with internal sources</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cylindrical-wall-without-internal-sources">Example: Cylindrical wall without internal sources</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
@@ -516,8 +521,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
 </ul>
 </section>
-<section id="steady-state">
-<h4>Steady state<a class="headerlink" href="#steady-state" title="Permalink to this headline">#</a></h4>
+<section id="steady-state-conduction">
+<h4>Steady state conduction<a class="headerlink" href="#steady-state-conduction" title="Permalink to this headline">#</a></h4>
 <p>Thermal conduction is the heat diffusion in solids in the direction of the temperature gradient (Figure 2a). <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conduction#Fourier's_law">Fourier law</a>, the equation relating the thermal heat flow rate in a direction <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(q_x\)</span>, to the temperature gradient, <span class="math notranslate nohighlight">\(\frac{d \theta}{d x}\)</span>, in the direction <span class="math notranslate nohighlight">\(x\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[q_x = -\lambda S \frac{d \theta}{d x}\]</div>
@@ -531,6 +536,8 @@ document.write(`
 <blockquote>
 <div><p>Figure 3. Steady state thermal conduction: a) stream tube; b) thermal network model.</p>
 </div></blockquote>
+<section id="conduction-without-internal-sources">
+<h5>Conduction without internal sources<a class="headerlink" href="#conduction-without-internal-sources" title="Permalink to this headline">#</a></h5>
 <p>Let us consider stationary conduction in a stream tube in a homogenous and isotropic material without internal heat sources (Figure 3a). Since the heat flow rate <span class="math notranslate nohighlight">\(q\)</span> is conserved, Fourier law in section <span class="math notranslate nohighlight">\(s\)</span> of the streamline is</p>
 <div class="math notranslate nohighlight">
 \[q = -\lambda S \frac{d \theta}{d x}\]</div>
@@ -547,6 +554,9 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[R \equiv \int_{s_0}^{s} \frac{1}{\lambda S} ds\]</div>
 <p>is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance#Absolute_thermal_resistance">thermal resistance</a> of the stream tube between <span class="math notranslate nohighlight">\(s_0\)</span> and <span class="math notranslate nohighlight">\(s.\)</span></p>
+</section>
+<section id="conduction-with-internal-sources">
+<h5>Conduction with internal sources<a class="headerlink" href="#conduction-with-internal-sources" title="Permalink to this headline">#</a></h5>
 <p>If there are internal sources, the variation of the heat flow rate along the curvilinear coordinate <span class="math notranslate nohighlight">\(ds\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[dq = p \, dV\]</div>
@@ -600,6 +610,33 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(f_1 = \int_{s_0}^{s} p \, S ds\)</span> is flow rate source;</p></li>
 <li><p><span class="math notranslate nohighlight">\(R_0 = \int_{s_0}^{s_1} \frac{1}{\lambda S} ds\)</span> is thermal resistance.</p></li>
 </ul>
+</section>
+<section id="example-cylindrical-wall-without-internal-sources">
+<h5>Example: Cylindrical wall without internal sources<a class="headerlink" href="#example-cylindrical-wall-without-internal-sources" title="Permalink to this headline">#</a></h5>
+<p>Let’s consider cylindrical insulation of length <span class="math notranslate nohighlight">\(L\)</span> with internal radius <span class="math notranslate nohighlight">\(r_0\)</span> and external radius <span class="math notranslate nohighlight">\(r_1\)</span>, without internal sources, <span class="math notranslate nohighlight">\(p = 0\)</span>.</p>
+<p>For a cylinder of width <span class="math notranslate nohighlight">\(w = ds\)</span>, the thermal resistance is <span class="math notranslate nohighlight">\(dR = \frac{1}{\lambda S}ds.\)</span> The thermal resistance of the cylinder is</p>
+<div class="math notranslate nohighlight">
+\[R_0 = \int_{s_0}^{s_1}\frac{1}{\lambda S}ds\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s = r\)</span>, <span class="math notranslate nohighlight">\(s_0 = r_0\)</span>, <span class="math notranslate nohighlight">\(s_1 = r_1\)</span>, the radius;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - conductivity is constant;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S = 2 \pi r L\)</span> - surface area of the cylinder of radius <span class="math notranslate nohighlight">\(r\)</span> and length <span class="math notranslate nohighlight">\(L\)</span>.</p></li>
+</ul>
+<p>It results</p>
+<div class="math notranslate nohighlight">
+\[R_0 = \frac{1}{2 \pi L \lambda} \int_{r_0}^{r_1} \frac{1}{r} dr =\frac{1}{2 \pi L \lambda} (\ln r_1 - \ln r_0) = \frac{\ln(r_1 /r_0)}{2 \pi L \lambda}\]</div>
+<p>The temperature source is</p>
+<div class="math notranslate nohighlight">
+\[b_0 = -R_0 \int_{r_0}^{r_1} p \, S \, ds + \int_{r_0}^{r_1} R \, p \, S ds = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(R = \int_{r_0}^{r} \frac{1}{\lambda S} ds\)</span></p>
+<p>The flow rate source is</p>
+<div class="math notranslate nohighlight">
+\[f_1 = \int_{r_0}^{r_1} p \, S dr = 0\]</div>
+<p>The heat flow rate is</p>
+<div class="math notranslate nohighlight">
+\[q_0 = \frac{e_0}{R_0} = \frac{\theta_0 - \theta_1 + b_0}{R_0} = \frac{\theta_0 - \theta_1}{\frac{\ln (r_2 / r_1)}{2 \pi L \lambda}}\]</div>
+</section>
 </section>
 </section>
 <section id="convection">
@@ -1152,7 +1189,12 @@ y = C_s \theta_s + D_s u
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall">Plan wall</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state">Steady state</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-conduction">Steady state conduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-without-internal-sources">Conduction without internal sources</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction-with-internal-sources">Conduction with internal sources</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#example-cylindrical-wall-without-internal-sources">Example: Cylindrical wall without internal sources</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
