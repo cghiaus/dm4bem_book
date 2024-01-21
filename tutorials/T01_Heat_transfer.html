@@ -442,10 +442,10 @@ document.write(`
 <p>The basic principles of thermal networks applied to modeling heat transfer in buildings are presented here. An example of the application of the thermal networks to modeling a wall is given in <a class="reference internal" href="02_1Wall.html"><span class="doc std std-doc">Simple wall</span></a> and for a building is shown in <a class="reference internal" href="02_2_0Toy.html"><span class="doc std std-doc">Toy model house</span></a>.</p>
 <section id="thermal-networks">
 <h2>Thermal networks<a class="headerlink" href="#thermal-networks" title="Permalink to this headline">#</a></h2>
-<p>Thermal networks are weighted <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">directed graphs</a> (Figure 1) in which:</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Electrical_network">Thermal networks</a> (or thermal circuits) are weighted <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">directed graphs</a> (Figure 1) in which:</p>
 <ul class="simple">
 <li><p>the <strong>nodes</strong> (or vertices) represent homogenous <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperatures</a>,  <span class="math notranslate nohighlight">\(\theta_i\)</span>, of geometrical points (0D), lines (1D), surfaces (2D) or volumes (3D);</p></li>
-<li><p>the oriented <strong>branches</strong> (or edges) represent <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rates</a>, <span class="math notranslate nohighlight">\(q_j\)</span>, between the temperature nodes.</p></li>
+<li><p>the <strong>oriented branches</strong> (or edges) represent <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rates</a>, <span class="math notranslate nohighlight">\(q_j\)</span>, between the temperature nodes.</p></li>
 </ul>
 <p><img alt="basic_TC" src="../_images/A01_Basic_thermal_circuit.svg" /></p>
 <blockquote>
@@ -476,7 +476,7 @@ document.write(`
 <li><p>a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">conductance</a>, <span class="math notranslate nohighlight">\(G_j\)</span>, which needs to be strictly positive;</p></li>
 <li><p>a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a>, <span class="math notranslate nohighlight">\(T_j\)</span>, which can be positive, negative or zero.</p></li>
 </ul>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span>  shows the relation between oriented branches (i.e., flow rates) and nodes (i.e., temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_j\)</span> across the conductances <span class="math notranslate nohighlight">\(G_j\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_k\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_j\)</span>, in the position of the node <span class="math notranslate nohighlight">\(\theta_k\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span>  shows the relation between oriented branches (i.e., flow rates) and nodes (i.e., temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_j\)</span> across the conductances <span class="math notranslate nohighlight">\(G_j\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_i\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_j\)</span>, in the position of the node <span class="math notranslate nohighlight">\(\theta_i\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_i\)</span> and 0 if the flow <span class="math notranslate nohighlight">\(q_j\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_i\)</span> (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A_{j,i} = \begin{cases}\phantom{-}
 0 &amp; \text{if branch } q_j \text{ is not connected to node }  \theta_i \\ 
@@ -800,13 +800,13 @@ F_{i,i} = 0
 <tr class="row-even"><td><p>Tilted window, whitout venetian blind</p></td>
 <td><p>0.8 to 4.0</p></td>
 </tr>
-<tr class="row-odd"><td><p>Window half opened</p></td>
+<tr class="row-odd"><td><p>Window half open</p></td>
 <td><p>5 to 10</p></td>
 </tr>
 <tr class="row-even"><td><p>Window fully open</p></td>
 <td><p>9 to 15</p></td>
 </tr>
-<tr class="row-odd"><td><p>Window and French window fully open (cross ventilation)</p></td>
+<tr class="row-odd"><td><p>Cross ventilation, window and French window fully open</p></td>
 <td><p>about 40</p></td>
 </tr>
 </tbody>
@@ -870,7 +870,7 @@ F_{i,i} = 0
 <h2>Temperature sources<a class="headerlink" href="#temperature-sources" title="Permalink to this headline">#</a></h2>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source#Ideal_voltage_sources">temperature sources</a> model temperatures which vary independently of what happens in the themal circuit; they are inputs of the physical model. Generally, the temperature sources are:</p>
 <ul class="simple">
-<li><p>outdoor air and ground temperature;</p></li>
+<li><p>outdoor air and soil (ground) temperature;</p></li>
 <li><p>temperature of adjacent spaces which have controlled temperature;</p></li>
 <li><p>setpoint temperature.</p></li>
 </ul>
@@ -1038,7 +1038,7 @@ q = G (-A \theta + b)
 <p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
-<p>which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation</p>
+<p>which, generally, is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">system of differential-algebraic equations</a> (DAE). Then, the heat flow rates are found from the equation</p>
 <div class="math notranslate nohighlight">
 \[q = G (-A \theta + b)\]</div>
 <p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes. The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the nodes which are the outputs of the model.</p>
