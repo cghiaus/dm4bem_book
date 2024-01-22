@@ -1,6 +1,6 @@
 # Dynamic Models for Building Energy Management
 
-by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-1245), [SciProfiles](https://sciprofiles.com/profile/2970335), [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6603390490), [Web of Science ](https://www.webofscience.com/wos/author/record/1651371))
+by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-1245), [SciProfiles](https://sciprofiles.com/profile/2970335), [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6603390490), [Web of Science ](https://www.webofscience.com/wos/author/record/1651371)), [HAL](https://hal.science/search/index/?q=%2A&rows=30&authIdPerson_i=170031&sort=producedDate_tdate+desc)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 
