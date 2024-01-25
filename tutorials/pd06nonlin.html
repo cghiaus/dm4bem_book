@@ -386,7 +386,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free-running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
 </ul>
             </nav>
         </div>
@@ -562,13 +566,13 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="free-running">
-<h2>Free-running<a class="headerlink" href="#free-running" title="Permalink to this headline">#</a></h2>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">#</a></h2>
 <p><img alt="assambled_TC" src="../_images/ass_TC.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Assembled circuit.</p>
 </div></blockquote>
-<p>In this example, we will consider that the controller is not modeled by the conductance <span class="math notranslate nohighlight">\(G_0\)</span> and the temperature source <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> but, instead, by the heatflow rate <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>, which is added to the indoor air in node <span class="math notranslate nohighlight">\(\theta_0\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC2:c2</span></code>  (Figure 1). Therefore, in <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> the conductance <span class="math notranslate nohighlight">\(G_0 \rightarrow 0\)</span> and the input</p>
+<p>In this example, we will consider that the controller is not modeled by the conductance <span class="math notranslate nohighlight">\(G_0\)</span> and the temperature source <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> but, instead, by the heatflow rate <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>, which is added to the indoor air in node <span class="math notranslate nohighlight">\(\theta_0\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC2:c2</span></code>  (Figure 1). Therefore, in <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> the conductance <span class="math notranslate nohighlight">\(G_0 \rightarrow 0\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[\dot{Q}_a \equiv u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
 <p>where:</p>
@@ -579,6 +583,9 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - indoor temperature setpoint, °C;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> - indoor temperature, which is the temperature node <code class="docutils literal notranslate"><span class="pre">θ0</span></code> of circuit <code class="docutils literal notranslate"><span class="pre">c2</span></code>, °C.</p></li>
 </ul>
+</section>
+<section id="free-running">
+<h2>Free running<a class="headerlink" href="#free-running" title="Permalink to this headline">#</a></h2>
 <p>The model can be simulated in free-runinng when there is no nonlinear controller (i.e., <span class="math notranslate nohighlight">\(\dot{Q}_a = 0\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -602,6 +609,96 @@ document.write(`
 </div>
 <blockquote>
 <div><p>Figure 2. Free-running (i.e., no controller).</p>
+</div></blockquote>
+</section>
+<section id="heating">
+<h2>Heating<a class="headerlink" href="#heating" title="Permalink to this headline">#</a></h2>
+<p>In heating, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is higher than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<p>if <span class="math notranslate nohighlight">\(u_{c2\_θ0} &gt; 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heating</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Kpp = 1e3   # controller gain</span>
+
+<span class="s2">if Tisp &lt; θ_exp.iloc[k - 1][&#39;c2_θ0&#39;]:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">control_for</span><span class="p">(</span><span class="n">heating</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6737b24a4d2a2840606403c6e6a6b2a6c46c824d2ef7b7b3f6f416780a7fdb08.png" src="../_images/6737b24a4d2a2840606403c6e6a6b2a6c46c824d2ef7b7b3f6f416780a7fdb08.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 3. Heating.</p>
+</div></blockquote>
+</section>
+<section id="cooling">
+<h2>Cooling<a class="headerlink" href="#cooling" title="Permalink to this headline">#</a></h2>
+<p>In cooling, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is lower than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 5      # temperature deadband, °C</span>
+<span class="s2">Kpp = 1e2   # controller gain</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ :</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;07-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;07-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">cooling</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/811a6039d889cff4980c3028899fad1d00d067fce2140f7f01601d489b6eb642.png" src="../_images/811a6039d889cff4980c3028899fad1d00d067fce2140f7f01601d489b6eb642.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 4. Cooling.</p>
+</div></blockquote>
+</section>
+<section id="heating-and-cooling-with-deadband">
+<h2>Heating and cooling with deadband<a class="headerlink" href="#heating-and-cooling-with-deadband" title="Permalink to this headline">#</a></h2>
+<p>During mid-season, heating and cooling may be required. In this case a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Deadband">deadband</a> controller is preferred to a perfect controller (see <a class="reference internal" href="pd05simulation.html"><span class="doc std std-doc">Inputs and simulation</span></a>). In deadband controller, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is higher than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> but lower than the setpoint plus the deadband <span class="math notranslate nohighlight">\(\Delta \theta\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heat_cool</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 5      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2   # controller gain</span>
+
+<span class="s2">if Tisp &lt; θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">heat_cool</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/83e5af93a5c5f467f7b0d33f30ed943f707c058bc7c4eb30955670cc2086972f.png" src="../_images/83e5af93a5c5f467f7b0d33f30ed943f707c058bc7c4eb30955670cc2086972f.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 5. Heating and cooling with deadband.</p>
 </div></blockquote>
 </section>
 </section>
@@ -673,7 +770,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free-running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
 </ul>
   </nav></div>
 
