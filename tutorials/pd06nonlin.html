@@ -764,12 +764,16 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">u['ow0_q0']</span></code> (Figure 1);</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">θ_exp['c2_θ0']</span></code>.</p></li>
 </ul>
+<p>Modifying the conductance for advection, <span class="math notranslate nohighlight">\(G_0\)</span> in thermal circuit <code class="docutils literal notranslate"><span class="pre">TC2:</span> <span class="pre">c2</span></code> (Figure 1) implies recalculating the state-space model. As an altenative, we can consider that a flow rate,</p>
+<div class="math notranslate nohighlight">
+\[q_{free} = G_{free} (T_o - \theta_i)\]</div>
+<p>impelented as <code class="docutils literal notranslate"><span class="pre">q_free</span> <span class="pre">=</span> <span class="pre">G_free</span> <span class="pre">*</span> <span class="pre">(u['ow0_q0']</span> <span class="pre">-</span> <span class="pre">θ_exp['c2_θ0'])</span></code>, is added to <span class="math notranslate nohighlight">\(Q_a\)</span>, which is input <code class="docutils literal notranslate"><span class="pre">u['c2_θ0']</span></code> (Figure 1).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">passive_cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
-<span class="s2">Δθ = 1      # temperature deadband, °C</span>
-<span class="s2">Kpp = 3e2   # controller gain</span>
+<span class="s2">Tisp = 20                   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1                      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2                   # controller gain</span>
 
 <span class="s2"># ventilation flow rate</span>
 <span class="s2">l = 3                       # m length of the cubic room</span>
