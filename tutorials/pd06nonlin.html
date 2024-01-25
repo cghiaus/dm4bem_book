@@ -738,6 +738,32 @@ document.write(`
 <h2>Passive cooling<a class="headerlink" href="#passive-cooling" title="Permalink to this headline">#</a></h2>
 <p>In mid-season, the building may be cooled by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_cooling">passive cooling</a> such as solar protection with <a class="reference external" href="https://en.m.wikipedia.org/wiki/Window_shutter">window shutters</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Free_cooling">free cooling</a>.</p>
 <p>Free-cooling is modeled by increasing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a> (ACH). In our example, they increase from 1 ACH to 10 ACH and the cooling is turned off, <code class="docutils literal notranslate"><span class="pre">u.iloc[k]['c2_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<p>The thermal conductance for free-cooling by ventilation is</p>
+<div class="math notranslate nohighlight">
+\[G_{free} = \dot{m}_a c_a  = \rho_a c_a \dot{V}_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_a\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air, kg/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{V}_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a>, m³/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> of the air, J/kg·K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of air, kg/m³.</p></li>
+</ul>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of the air, in m³/s, is:</p>
+<div class="math notranslate nohighlight">
+\[\dot{V}_a = \frac{\mathrm{ACH}}{3600} V_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{ACH}\)</span>  (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a>) is the air infiltration rate, 1/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(3600\)</span> - number of seconds in one hour, s/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_a\)</span> - volume of the air in the thermal zone, m³.</p></li>
+</ul>
+<p>The net flow rate that the building receives by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a>, i.e., introducing outdoor air at temperature <span class="math notranslate nohighlight">\(T_o\)</span> and extracting indoor air at temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a>, is:</p>
+<div class="math notranslate nohighlight">
+\[q_{free} = G_{free} (T_o - \theta_i)\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">u['ow0_q0']</span></code> (Figure 1);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">θ_exp['c2_θ0']</span></code>.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">passive_cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
