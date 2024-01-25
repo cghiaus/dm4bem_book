@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Assembled thermal circuits (from matrix and lists) &#8212; dm4bem</title>
+    <title>Assembled thermal circuits &#8212; dm4bem</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Thermal circuit to state-space" href="pd04tc2ss.html" />
-    <link rel="prev" title="Disassembled thermal circuits from folder describing the building" href="pd02bldg2TCd.html" />
+    <link rel="prev" title="Disassembled thermal circuits from building description" href="pd02bldg2TCd.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -176,10 +176,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -373,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Assembled thermal circuits (from matrix and lists)</h1>
+    <h1>Assembled thermal circuits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -401,8 +402,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="assembled-thermal-circuits-from-matrix-and-lists">
-<h1>Assembled thermal circuits (from matrix and lists)<a class="headerlink" href="#assembled-thermal-circuits-from-matrix-and-lists" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="assembled-thermal-circuits">
+<h1>Assembled thermal circuits<a class="headerlink" href="#assembled-thermal-circuits" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd03assembleTCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be done by using an assembling matrix or assembling lits. The assembling from matrix is implemented in the function <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix by using the function <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>.</p>
 <div class="cell docutils container">
@@ -616,7 +617,7 @@ dtype: float64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Disassembled thermal circuits from folder describing the building</p>
+        <p class="prev-next-title">Disassembled thermal circuits from building description</p>
       </div>
     </a>
     <a class="right-next"
