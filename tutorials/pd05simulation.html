@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd05simulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Other applications" href="annexes.html" />
+    <link rel="next" title="Nonlinear controller in integration loop" href="pd06nonlin.html" />
     <link rel="prev" title="Thermal circuit to state-space" href="pd04tc2ss.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -182,6 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller in integration loop</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -554,13 +555,13 @@ dtype: object
 </div>
 </div>
 </div>
-<p>In state-space representation:</p>
+<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> <code class="docutils literal notranslate"><span class="pre">[As,</span> <span class="pre">Bs,</span> <span class="pre">Cs,</span> <span class="pre">Ds,</span> <span class="pre">us]</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">As</span></code>: state (or system) matrix;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Bs</span></code>: input matrix;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Cs</span></code>: output matrix;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Ds</span></code>:</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">us</span></code> : contains the correspondence between:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ds</span></code>: feedthrough (or feedforward) matrix;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us</span></code> : correspondence between:</p>
 <ul>
 <li><p>the branches (e.g. <code class="docutils literal notranslate"><span class="pre">c1_q0</span></code> for circuit <em>c1</em> branch <em>q0</em>) and the symbol of the temperature source (e.g. <code class="docutils literal notranslate"><span class="pre">To</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>);</p></li>
 <li><p>the nodes (e.g. <code class="docutils literal notranslate"><span class="pre">c1_θ0</span></code> for circuit <em>c1</em> node <em>θ0</em>) and the symbol of flow-rate source (e.g. <code class="docutils literal notranslate"><span class="pre">Φa</span></code>, see <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>).</p></li>
@@ -1269,12 +1270,12 @@ dtype: object
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="s1">&#39;θi&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                         <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
-                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature, $θ$ / °C&#39;</span><span class="p">)</span>
+                        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature, $θ$ / [°C]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$θ_</span><span class="si">{outdoor}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$θ_</span><span class="si">{indoor}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Etot&#39;</span><span class="p">,</span> <span class="s1">&#39;q_HVAC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / (W / m²)&#39;</span><span class="p">)</span>
+                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / [W / m²]&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
@@ -1283,7 +1284,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b3be26cbe02bf511cd617eb2fe14ef77534fd19ec23770a714e4df886dd302c6.png" src="../_images/b3be26cbe02bf511cd617eb2fe14ef77534fd19ec23770a714e4df886dd302c6.png" />
+<img alt="../_images/8f28f80bcd3604558d0444e633af57bfa860ff6f0bf4fb923bc5736807119fc6.png" src="../_images/8f28f80bcd3604558d0444e633af57bfa860ff6f0bf4fb923bc5736807119fc6.png" />
 </div>
 </div>
 <blockquote>
@@ -1361,11 +1362,11 @@ dtype: object
       </div>
     </a>
     <a class="right-next"
-       href="annexes.html"
+       href="pd06nonlin.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Other applications</p>
+        <p class="prev-next-title">Nonlinear controller in integration loop</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

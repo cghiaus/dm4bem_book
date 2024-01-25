@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Assembling thermal circuits &#8212; dm4bem</title>
+    <title>Nonlinear controller in integration loop &#8212; dm4bem</title>
   
   
   
@@ -60,13 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pdREADME';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd06nonlin';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Disassembled thermal circuits from wall description" href="pd01wall2TC.html" />
-    <link rel="prev" title="Simulation: perfect controller" href="02_2_4Toy.html" />
+    <link rel="next" title="Other applications" href="annexes.html" />
+    <link rel="prev" title="Inputs and simulation" href="pd05simulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -176,13 +174,13 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller in integration loop</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Nonlinear controller in integration loop</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -264,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/pdREADME.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/pd06nonlin.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Ouvrez un problème"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +292,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tutorials/pdREADME.md" target="_blank"
+      <li><a href="../_sources/tutorials/pd06nonlin.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Télécharger le fichier source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -304,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -374,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Assembling thermal circuits</h1>
+    <h1>Nonlinear controller in integration loop</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,44 +386,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="assembling-thermal-circuits">
-<h1>Assembling thermal circuits<a class="headerlink" href="#assembling-thermal-circuits" title="Permalink to this headline">#</a></h1>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Workflow">workflow</a> for thermal analysis by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module is presented in Figure 1:</p>
-<ul class="simple">
-<li><p>Model:</p>
-<ul>
-<li><p>given data on walls (type and data on surfaces), thermal circuits and the assembling lists or matrix;</p></li>
-<li><p>obtain the matrices and vectors of the thermal circuit <span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>:</p>
-<ul>
-<li><p>convert a folder containing the files characterizing the building into
-a disassambled thermal circuit (function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code>);</p></li>
-<li><p>assemble the thermal circuits (functions <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix()</span></code> and <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>);</p></li>
-</ul>
-</li>
-<li><p>transform the thermal circuit into state-space representation <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s, u_s\)</span> (function <code class="docutils literal notranslate"><span class="pre">tc2ss()</span></code>).</p></li>
-</ul>
-</li>
-<li><p>Inputs:</p>
-<ul>
-<li><p>given the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a> in EnergyPlus format <code class="docutils literal notranslate"><span class="pre">.epw</span></code>;</p></li>
-<li><p>read weather data: outdoor temperature, <span class="math notranslate nohighlight">\(T_o,\)</span> and solar radiation (direct, <span class="math notranslate nohighlight">\(E_{dir},\)</span> and diffuse, <span class="math notranslate nohighlight">\(E_{diff}\)</span>) with function <code class="docutils literal notranslate"><span class="pre">read_epw()</span></code> and calculate the solar radiation on tilted surfaces with function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf()</span></code>;</p></li>
-<li><p>determine the weather sources outdoor temperarure, <span class="math notranslate nohighlight">\(T_o,\)</span> and solar radiation absorbed by the outdoor wall, <span class="math notranslate nohighlight">\(\Phi_o,\)</span> the indoor wall, <span class="math notranslate nohighlight">\(\Phi_o,\)</span> and the glass, <span class="math notranslate nohighlight">\(\Phi_a.\)</span></p></li>
-<li><p>define the other inputs, such as indoor temperature set points, <span class="math notranslate nohighlight">\(T_{i,sp},\)</span> auxiliary flow-rates, <span class="math notranslate nohighlight">\(\dot Q_a.\)</span></p></li>
-</ul>
-</li>
-<li><p>Simulation:</p>
-<ul>
-<li><p>prepare the inputs from input description of the state-space,  <span class="math notranslate nohighlight">\(u_s,\)</span> and the <em>input data set</em> with function <code class="docutils literal notranslate"><span class="pre">inputs_in_time()</span></code>;</p></li>
-<li><p>integrate in time by using Euler explicit and/or implicit methods.</p></li>
-</ul>
-</li>
-</ul>
-<p><img alt="work_flow" src="../_images/work_flow.svg" /></p>
-<blockquote>
-<div><p>Figure 1. Workflow for building simulation by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
-</div></blockquote>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-controller-in-integration-loop">
+<h1>Nonlinear controller in integration loop<a class="headerlink" href="#nonlinear-controller-in-integration-loop" title="Permalink to this headline">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,20 +422,20 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="02_2_4Toy.html"
+       href="pd05simulation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simulation: perfect controller</p>
+        <p class="prev-next-title">Inputs and simulation</p>
       </div>
     </a>
     <a class="right-next"
-       href="pd01wall2TC.html"
+       href="annexes.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Disassembled thermal circuits from wall description</p>
+        <p class="prev-next-title">Other applications</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
