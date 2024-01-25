@@ -761,7 +761,7 @@ document.write(`
 <span class="s2">    # u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
 <span class="s2">    # u.iloc[k][&#39;c2_θ0&#39;] = min(u.iloc[k][&#39;c2_θ0&#39;], 0)</span>
 <span class="s2">    if u.iloc[k - 1][&#39;ow0_q0&#39;] &lt; Tisp:</span>
-<span class="s2">        u.iloc[k][&#39;c2_θ0&#39;] += q_free</span>
+<span class="s2">        u.iloc[k][&#39;c2_θ0&#39;] = q_free</span>
 <span class="s2">    u.iloc[k][&#39;ow0_θ4&#39;] *= 0.1</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
