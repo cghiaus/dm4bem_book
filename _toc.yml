@@ -26,6 +26,7 @@ chapters:
   - file: tutorials/pd03assembleTCd
   - file: tutorials/pd04tc2ss
   - file: tutorials/pd05simulation
+  - file: tutorials/pd06nonlin
 - file: tutorials/annexes.md
   sections:
   - file: tutorials/A01Coupled_rad_convection

@@ -36,6 +36,7 @@ TC = dm4bem.assemble_TCd_matrix(TCd, ass_matrix)
 
 dt_max = 2 * min(-1. / λ)    # max time step for Euler explicit stability
 dt = dm4bem.round_time(dt_max)
+dt = 30
 dm4bem.print_rounded_time('dt', dt)
 
 t_settle = 4 * max(-1. / λ)
@@ -157,7 +158,7 @@ u = dm4bem.inputs_in_time(us, input_data_set)
 # ==========
 Tisp = 20   # indoor setpoint temperature, °C
 Δθ = 1      # temperature deadband, °C
-Kpp = 1e2   # controller gain
+Kpp = 1e3   # controller gain
 
 # initial conditions
 θ0 = 20                      # initial temperatures
