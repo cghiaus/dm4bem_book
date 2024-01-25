@@ -391,6 +391,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-protection">Solar protection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passive-cooling">Passive cooling</a></li>
 </ul>
             </nav>
         </div>
@@ -701,6 +703,81 @@ document.write(`
 <div><p>Figure 5. Heating and cooling with deadband.</p>
 </div></blockquote>
 </section>
+<section id="solar-protection">
+<h2>Solar protection<a class="headerlink" href="#solar-protection" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">cooling load</a> can be reduced by solar protection. In our example, let’s assume that if the indoor temperature is higher than its setpoint, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Window_shutter">exterior shutters</a> are closed. To model this, the flow rate <span class="math notranslate nohighlight">\(\Phi_i\)</span> in node <span class="math notranslate nohighlight">\(\theta_4\)</span> of thermal circuit <code class="docutils literal notranslate"><span class="pre">walls_out:</span> <span class="pre">ow0</span></code>, i.e. <span class="math notranslate nohighlight">\(u_{ow0\_θ4}\)</span> (Figure 1), is reduced at 10 % of its value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solar</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2   # controller gain</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = min(u.iloc[k][&#39;c2_θ0&#39;], 0)</span>
+<span class="s2">    u.iloc[k][&#39;ow0_θ4&#39;] *= 0.1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">solar</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12e26f2da68b2a0d6467e325cd2089bbe536b99719fc91717a88f16b8057ffc0.png" src="../_images/12e26f2da68b2a0d6467e325cd2089bbe536b99719fc91717a88f16b8057ffc0.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 6. Cooling load is reduced by solar protection.</p>
+</div></blockquote>
+</section>
+<section id="passive-cooling">
+<h2>Passive cooling<a class="headerlink" href="#passive-cooling" title="Permalink to this headline">#</a></h2>
+<p>In mid-season, the building may be cooled by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_cooling">passive cooling</a> such as solar protection with <a class="reference external" href="https://en.m.wikipedia.org/wiki/Window_shutter">window shutters</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Free_cooling">free cooling</a>.</p>
+<p>Free-cooling is modeled by increasing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a> (ACH). In our example, they increase from 1 ACH to 10 ACH and the cooling is turned off, <code class="docutils literal notranslate"><span class="pre">u.iloc[k]['c2_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">passive_cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2   # controller gain</span>
+
+<span class="s2"># ventilation flow rate</span>
+<span class="s2">l = 3                       # m length of the cubic room</span>
+<span class="s2">Va = l**3                   # m³, volume of air</span>
+<span class="s2">ACH = 10                    # 1/h, air changes per hour</span>
+<span class="s2">Va_dot = ACH / 3600 * Va    # m³/s, air infiltration</span>
+<span class="s2">ρ = 1.2                     # kg/m³</span>
+<span class="s2">c = 1000                    # J/(kg·K)</span>
+<span class="s2">G_free = ρ * c * Va_dot</span>
+<span class="s2">q_free = G_free * (u.iloc[k - 1][&#39;ow0_q0&#39;] - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    # u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">    # u.iloc[k][&#39;c2_θ0&#39;] = min(u.iloc[k][&#39;c2_θ0&#39;], 0)</span>
+<span class="s2">    if u.iloc[k - 1][&#39;ow0_q0&#39;] &lt; Tisp:</span>
+<span class="s2">        u.iloc[k][&#39;c2_θ0&#39;] += q_free</span>
+<span class="s2">    u.iloc[k][&#39;ow0_θ4&#39;] *= 0.1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">passive_cooling</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ca07c7861a1ec7ef0183c46bc25ebd4c14a940aa7e5455c93198d79d94afbf4c.png" src="../_images/ca07c7861a1ec7ef0183c46bc25ebd4c14a940aa7e5455c93198d79d94afbf4c.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure . Solar protection and free-cooling. The coling load is “free” because it represents fresh airflow from outdoors.</p>
+</div></blockquote>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -775,6 +852,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-protection">Solar protection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passive-cooling">Passive cooling</a></li>
 </ul>
   </nav></div>
 
