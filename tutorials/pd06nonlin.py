@@ -37,9 +37,8 @@ def control_for(controller, period, dt=30, nonlinear_controller=True):
     λ = np.linalg.eig(As)[0]    # eigenvalues of matrix As
 
     dt_max = 2 * min(-1. / λ)    # max time step for Euler explicit stability
-    dt = dm4bem.round_time(dt_max)
-    dt = 30
-    # dm4bem.print_rounded_time('dt', dt)
+    dt_max = dm4bem.round_time(dt_max)
+    # dm4bem.print_rounded_time('dt_max', dt)
 
     # t_settle = 4 * max(-1. / λ)
     # duration: next multiple of 3600 s that is larger than t_settle
@@ -185,11 +184,11 @@ else:
 
 start_date = '02-01 12:00:00'
 end_date = '02-03 18:00:00'
-
 period = [start_date, end_date]
-control_for(heating, period)
 
 control_for("free running", period, dt=30, nonlinear_controller=False)
+control_for(heating, period)
+
 
 # in summer
 start_date = '07-01 12:00:00'
@@ -214,3 +213,19 @@ else:
 """
 period = ['07-01 12:00:00', '07-03 12:00:00']
 control_for(cooling, period)
+
+# Heating & Cooling
+# =======
+# in summer
+heat_cool = """
+Tisp = 20   # indoor setpoint temperature, °C
+Δθ = 1      # temperature deadband, °C
+Kpp = 3e2   # controller gain
+
+if Tisp < θ_exp.iloc[k - 1]['c2_θ0'] < Tisp + Δθ:
+    u.iloc[k]['c2_θ0'] = 0
+else:
+    u.iloc[k]['c2_θ0'] = Kpp * (Tisp - θ_exp.iloc[k - 1]['c2_θ0'])
+"""
+period = ['07-01 12:00:00', '07-03 12:00:00']
+control_for(heat_cool, period)
