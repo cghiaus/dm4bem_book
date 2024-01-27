@@ -178,10 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Other applications</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -422,7 +423,7 @@ document.write(`
 <p>Let’s consider a triangular prism of infinite lenght (Figure 1a) with the characteristics:</p>
 <ul class="simple">
 <li><p>surface 1: transparnt in short-wave, <span class="math notranslate nohighlight">\(\tau_{SW}=1\)</span>, opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
-<li><p>surfaces 2 and 3: opaque <span class="math notranslate nohighlight">\(\tau_{SW}=1\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{SW} = 0.8\)</span> in short-wave and opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
+<li><p>surfaces 2 and 3: opaque <span class="math notranslate nohighlight">\(\tau_{SW}=0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{SW} = 0.8\)</span> in short-wave and opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
 </ul>
 <p>The short wave (solar) radiation on the walls 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m²}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m²}\)</span>, respectively.</p>
 <p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/m²K}\)</span> for all wals.</p>
