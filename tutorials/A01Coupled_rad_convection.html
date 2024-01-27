@@ -416,19 +416,45 @@ document.write(`
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2FA01Coupled_rad_convection.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p><img alt="Figure 1" src="../_images/07_radiation_convect_prism.svg" /></p>
 <blockquote>
-<div><p>Figures 1. a) Triagular prism. b) Heat flow rate balance on a surface.</p>
+<div><p>Figures 1. a) Triagular prism. b) Heat flow rate, <span class="math notranslate nohighlight">\(\varphi\)</span>, balance on a surface: <span class="math notranslate nohighlight">\(cv\)</span> - convection; <span class="math notranslate nohighlight">\(cd\)</span> - conduction; <span class="math notranslate nohighlight">\(SW\)</span> - short wave; <span class="math notranslate nohighlight">\(LW\)</span> - long wave.</p>
 </div></blockquote>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
-<p>Let’s consider a triangular prism of infinite lenght (Figure 1a) with the characteristics:</p>
+<p>Let’s consider a triangular prism of infinite lenght (Figure 1a) with the characteristics (Table 1):</p>
 <ul class="simple">
-<li><p>surface 1: transparnt in short-wave, <span class="math notranslate nohighlight">\(\tau_{SW}=1\)</span>, opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
-<li><p>surfaces 2 and 3: opaque <span class="math notranslate nohighlight">\(\tau_{SW}=0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{SW} = 0.8\)</span> in short-wave and opaque <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{LW} = 0.8\)</span> in long-wave.</p></li>
+<li><p>surface 0: transparnt in short-wave, opaque and absorbant in long-wave.</p></li>
+<li><p>surfaces 1 and 2: opaque <span class="math notranslate nohighlight">\(\tau_{SW}=0\)</span> and absorbant <span class="math notranslate nohighlight">\(\alpha_{SW} = 0.8\)</span> in short-wave and opaque and in long-wave.</p></li>
 </ul>
-<p>The short wave (solar) radiation on the walls 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m²}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m²}\)</span>, respectively.</p>
+<blockquote>
+<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmistance</a>, <span class="math notranslate nohighlight">\(\tau\)</span>, and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a>, <span class="math notranslate nohighlight">\(\alpha\)</span>, of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW).</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>Surface</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\tau_{SW}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\alpha_{SW}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\tau_{LW}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\alpha_{LW}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1 &amp; 2</p></td>
+<td><p>0</p></td>
+<td><p>0.8</p></td>
+<td><p>0</p></td>
+<td><p>0.8</p></td>
+</tr>
+</tbody>
+</table>
+<p>The short wave (solar) radiation on surfaces 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m²}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m²}\)</span>, respectively.</p>
 <p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/(m²K)}\)</span> for all wals.</p>
-<p>The temperature of each wall is considered homogeneous. The heat balance of a wall is represented in Figure 1b.
-The heat flow rate by conduction is negligible for all walls, <span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> (Figure 1b).</p>
+<p>The temperature of each wall is considered homogeneous. The heat balance of a wall is represented in Figure 1b. The heat flow rate by conduction is negligible for all walls, <span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> (Figure 1b).</p>
 <p>In this conditions, find the temperatures of the walls.</p>
 </section>
 <section id="solution">
@@ -439,11 +465,11 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <h4>Physical model<a class="headerlink" href="#physical-model" title="Permalink to this headline">#</a></h4>
 <p>The indoor air temperature is controlled; since it does not change as a result of what happens in the system, it is an input.</p>
 <p>The short-wave (solar) <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> are also inputs.</p>
-<p>The tempertures of the surfaces are three dependent variables represented by nodes; they are the outputs (dependent variables).</p>
+<p>The tempertures of the surfaces are three dependent variables represented by temperature nodes; they are the outputs (dependent variables).</p>
 </section>
 <section id="computational-model">
 <h4>Computational model<a class="headerlink" href="#computational-model" title="Permalink to this headline">#</a></h4>
-<p>The knwon variables (the inputs of the computational model) are the inputs of the physical model and the ouputs of the computational model are the outputs of the phyisical model. It is a <em>direct problem</em>.</p>
+<p>The known variables (the inputs of the computational model) are the inputs of the physical model and the ouputs of the computational model are the outputs of the phyisical model. It is a <em>direct problem</em>.</p>
 <p>The problem is described by:</p>
 <p><span class="math notranslate nohighlight">\(\sigma\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
 <ol class="arabic simple">
@@ -458,9 +484,9 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <li><p>Vectors of variables:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(E^o\)</span>: direct <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, W/m².</p></li>
-<li><p><span class="math notranslate nohighlight">\(E\)</span>: total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces: the sum of direct irradiance and reflected irradiances received from the other surfaces, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span>: total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, i.e., the sum of direct irradiance and reflected irradiances received from the other surfaces, W/m².</p></li>
 <li><p><span class="math notranslate nohighlight">\(M^o\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant emmitance</a> or total emmisive power of a <a class="reference external" href="https://en.wikipedia.org/wiki/Black-body_radiation">black body</a>, W/m².</p></li>
-<li><p><span class="math notranslate nohighlight">\(T_a\)</span>: air temperaures beyond the boundary layer of each surface, °C.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_a\)</span>: air temperatures beyond the boundary layer of each surface, °C.</p></li>
 </ul>
 </li>
 </ol>
@@ -491,7 +517,7 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 </li>
 </ol>
 <p><strong>Note:</strong></p>
-<p>According to <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">Kirchhoff’s law of thermal radiation</a>, the absorbtivity and the emmisivity are equal for the same wavelength, <span class="math notranslate nohighlight">\(\alpha_{\lambda} = \varepsilon_{\lambda}\)</span>. Therefore, in order to simplify the notations, absortivity <span class="math notranslate nohighlight">\(\alpha\)</span> is used for short-wave radiation and emissivity <span class="math notranslate nohighlight">\(\varepsilon\)</span> is used for long-wave radiation.</p>
+<p>According to <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff’s law of thermal radiation</a>, the absorbtivity and the emmisivity are equal for the same wavelength, <span class="math notranslate nohighlight">\(\alpha_{\lambda} = \varepsilon_{\lambda}\)</span>. Therefore, in order to simplify the notations, absortivity <span class="math notranslate nohighlight">\(\alpha\)</span> is used for short-wave radiation and emissivity <span class="math notranslate nohighlight">\(\varepsilon\)</span> is used for long-wave radiation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -499,13 +525,13 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Stefan-Bolzmann constant</span>
-<span class="n">σ</span> <span class="o">=</span> <span class="mf">5.670e-8</span>    <span class="c1"># W / (m2 K4)</span>
+<span class="n">σ</span> <span class="o">=</span> <span class="mf">5.670e-8</span>    <span class="c1"># W/(m²·K⁴)</span>
 
 <span class="c1"># Vectors of inputs</span>
 <span class="c1"># =================</span>
 <span class="c1"># Irradiances of the surfaces</span>
 <span class="n">E0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">E0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span>     <span class="c1"># W/m2</span>
+<span class="n">E0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span>     <span class="c1"># W/m²</span>
 
 <span class="c1"># Air temperature beyond the boundary layer</span>
 <span class="n">Ta</span> <span class="o">=</span> <span class="mi">20</span>                 <span class="c1"># °C, indoor air temperature</span>
@@ -530,7 +556,7 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <span class="n">ε</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># Heat convection coefficient</span>
-<span class="n">h</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># W/(m2 K)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># W/(m²·K)</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 
@@ -550,7 +576,7 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A_{\theta}\)</span> is a matrix with elements depending on coefficients;</p></li>
 <li><p><span class="math notranslate nohighlight">\(b_{\theta}\)</span> - vector with elements depending on coefficients and inputs;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - vector of temperatures (size 3).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - vector of surface temperatures (size 3).</p></li>
 </ul>
 <p>The system of equations for temperatures will be obtained from the heat balance on the surfaces (Figure 1b):</p>
 <div class="math notranslate nohighlight">
@@ -566,12 +592,41 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 </section>
 <section id="view-factors">
 <h3>View factors<a class="headerlink" href="#view-factors" title="Permalink to this headline">#</a></h3>
-<p><span class="math notranslate nohighlight">\(F_{1,1} = F_{2,2} = F_{3,3} \)</span> - the surfaces are flat.</p>
-<p><span class="math notranslate nohighlight">\(F_{1,2} = F_{3,1}\)</span> - due to symetry.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 1} + F_{1, 2} + F_{1, 3} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = F_{1, 3} = 1/2\)</span>.</p>
-<p>From the reciprocity relation, <span class="math notranslate nohighlight">\(F_{1,2}S_1 = F_{2,1}S_2\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_1 = \sqrt{2}S_2\)</span>, it results that <span class="math notranslate nohighlight">\( \sqrt{2} F_{1, 2} = F_{2, 1}\)</span>, i.e. <span class="math notranslate nohighlight">\(F_{2, 1} = \sqrt{2} / 2\)</span>.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{2, j} = F_{2, 1} + F_{2, 2} + F_{2, 3} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{2, 3} = 1 - F_{2, 1} = 1 - \sqrt{2} / 2\)</span>.</p>
-<p>Due to symetry, <span class="math notranslate nohighlight">\(F_{3, 2} = F_{2, 3}\)</span></p>
+<p><span class="math notranslate nohighlight">\(F_{0,0} = F_{1,1} = F_{2,2} \)</span> - the surfaces are flat.</p>
+<p><span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2}\)</span> - due to symetry.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{0, j} = F_{0, 0} + F_{0, 1} + F_{0, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{0, 1} = F_{0, 2} = 1/2\)</span>.</p>
+<p>From the reciprocity relation, <span class="math notranslate nohighlight">\(F_{0,1} S_0 = F_{1,0} S_1\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_0 = \sqrt{2}S_1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 0} = \sqrt{2} / 2\)</span>.</p>
+<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 0} + F_{1, 1} + F_{1, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = 1 - F_{1, 0} = 1 - \sqrt{2} / 2\)</span>.</p>
+<p>Due to symmetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2} = 1/2\)</span>, <span class="math notranslate nohighlight">\(F_{1,0} = F_{2,0} = \sqrt{2}/2\)</span> and <span class="math notranslate nohighlight">\(F_{1, 2} = F_{2, 1}\)</span> (<span class="math notranslate nohighlight">\(F_{1,2} = 1 - F_{1, 0}\)</span>).</p>
+<blockquote>
+<div><p>Table 2. View factors.</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>F</p></th>
+<th class="text-center head"><p>0</p></th>
+<th class="text-center head"><p>1</p></th>
+<th class="text-center head"><p>2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>0</strong></p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>1/2</p></td>
+<td class="text-center"><p>1/2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>1</strong></p></td>
+<td class="text-center"><p>$<span class="math notranslate nohighlight">\(\frac{\sqrt{2}}{2}\)</span>$</p></td>
+<td class="text-center"><p>0</p></td>
+<td class="text-center"><p>$<span class="math notranslate nohighlight">\(1-\frac{\sqrt{2}}{2}\)</span>$</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>2</strong></p></td>
+<td class="text-center"><p>$<span class="math notranslate nohighlight">\(\frac{\sqrt{2}}{2}\)</span>$</p></td>
+<td class="text-center"><p>$<span class="math notranslate nohighlight">\(1-\frac{\sqrt{2}}{2}\)</span>$</p></td>
+<td class="text-center"><p>0</p></td>
+</tr>
+</tbody>
+</table>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -595,7 +650,7 @@ The heat flow rate by conduction is negligible for all walls, <span class="math 
 </section>
 <section id="short-wave-solar-radiation">
 <h3>Short-wave (solar) radiation<a class="headerlink" href="#short-wave-solar-radiation" title="Permalink to this headline">#</a></h3>
-<p>The set of previous equation for short-wave solar radiation:</p>
+<p>The set of equations for short-wave solar radiation is (see <em>Solar radiation abosorbed by the walls</em> in <a class="reference internal" href="T01_Heat_transfer.html"><span class="doc std std-doc">Thermal networks for heat trasfer in buildings</span></a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -651,31 +706,29 @@ E_3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">((</span><span class="n">I</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">ρ</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">))</span> <span class="o">@</span> <span class="n">E0</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;E = &quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="s1">&#39;W/m²&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;E = </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s1"> W/m²&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E = 
-[ 23.4 126.3 107.4] W/m²
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E = [ 23.4 126.3 107.4] W/m²
 </pre></div>
 </div>
 </div>
 </div>
-<p>Short-wave heat flow rate absorbed by the surfaces:</p>
+<p>Short-wave heat flow rate absorbed by the surfaces is:</p>
 <div class="math notranslate nohighlight">
-\[\varphi = \alpha E\]</div>
+\[\varphi_{SW} = \alpha E\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">φSW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;φ_SW = &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;φ_SW =&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">φSW</span><span class="p">,</span> <span class="s1">&#39;W/m²&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>φ_SW = 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>φ_SW =
 [  0.  101.   85.9] W/m²
 </pre></div>
 </div>
@@ -704,7 +757,7 @@ E_3
 <li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficient of absortivity in long wave;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coefficient of emmissivity in long wave.</p></li>
 </ul>
-<p>The global long wave radiation (luminace) received by the surface is the sum of the emmitted and reflected flow,</p>
+<p>The global long wave radiation (luminace) received by the surface is the sum of the emmitted and reflected flows,</p>
 <div class="math notranslate nohighlight">
 \[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
 <p>where:</p>
@@ -714,7 +767,7 @@ E_3
 <p>Taking into account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
 <div class="math notranslate nohighlight">
 \[E_{LW,i} = \sum_j F_{i, j} (\varepsilon_jM^o_j + \rho_j E_{LW, j})\]</div>
-<p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span> and, since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>. Therefore,</p>
+<p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span> and, since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>, therefore,</p>
 <div class="math notranslate nohighlight">
 \[E_{LW,i} - \sum_j F_{i, j} (1 - \varepsilon_j) E_{LW,j} = \sum_j F_{i,j} \varepsilon_j M^o_j\]</div>
 <p>In matrix form, this equation is:</p>
@@ -796,7 +849,7 @@ T_2^4
 <p>the linearized equation for long-wave radiation is then:</p>
 <div class="math notranslate nohighlight">
 \[\varphi_{LW} = K M^o = \sigma K H (T - \bar T) = \sigma K H \theta\]</div>
-<p>where the matrix <span class="math notranslate nohighlight">\(H\)</span> is diagonal with the elements</p>
+<p>where the matrix <span class="math notranslate nohighlight">\(H\)</span> is diagonal with elements</p>
 <div class="math notranslate nohighlight">
 \[H_i = (T_i^2 + \bar T_i^2 )(T_i + \bar T_i)\]</div>
 <p>Solving this equation requires an initial guess of <span class="math notranslate nohighlight">\(\bar T_i\)</span>. If we consider that <span class="math notranslate nohighlight">\(T_i  \approx \bar T_i\)</span> and that <span class="math notranslate nohighlight">\(\bar T_i = \bar T = 273.15 \, \mathrm K\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, then</p>
@@ -818,12 +871,14 @@ T_2^4
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T0</span> <span class="o">=</span> <span class="mf">273.15</span>        <span class="c1"># K, temperature</span>
 <span class="n">H</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T0</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;H =&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[4.6 0.  0. ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>H =
+[[4.6 0.  0. ]
  [0.  4.6 0. ]
  [0.  0.  4.6]]
 </pre></div>
