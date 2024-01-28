@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd01wall2TC';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Disassembled thermal circuits from folder describing the building" href="pd02bldg2TCd.html" />
+    <link rel="next" title="Disassembled thermal circuits from building description" href="pd02bldg2TCd.html" />
     <link rel="prev" title="Assembling thermal circuits" href="pdREADME.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -178,10 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -703,7 +704,7 @@ document.write(`
 <li><p>The <em>generic</em> walls may define <em>out</em> or <em>in</em> walls by not specifying temperature sources (see <code class="docutils literal notranslate"><span class="pre">wall_generic.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">wall_out.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">wall_in.csv</span></code> files for examples).</p></li>
 <li><p>The <em>out</em> walls do not need the temperature sources on the inner surfaces, T1.</p></li>
 <li><p>The <em>in</em> walls do not need tilt (β) and azimuth (γ) angles, the albedo of the ground, and the temperature sources on the outer (T0) and the inner (T1) surfaces.</p></li>
-<li><p>The colums <strong>TC</strong> shows the information needed to obtain the thermal circuit. The data related to radiative exchange is used in the calculation of flow-rate sources in short-wave and for conductances in long-wave radiative exchange.</p></li>
+<li><p>The column <strong>TC</strong> shows the information needed to obtain the thermal circuit. The data related to radiative exchange is used in the calculation of flow-rate sources in short-wave and for conductances in long-wave radiative exchange.</p></li>
 </ol>
 <section id="generic-wall">
 <h3>Generic wall<a class="headerlink" href="#generic-wall" title="Permalink to this headline">#</a></h3>
@@ -1556,7 +1557,7 @@ dtype: float64
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Disassembled thermal circuits from folder describing the building</p>
+        <p class="prev-next-title">Disassembled thermal circuits from building description</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
