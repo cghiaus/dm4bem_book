@@ -178,10 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -464,7 +465,7 @@ document.write(`
 <p>The parameters of the thermal network are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(G_j ≡ G_{k,i}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">thermal conductance</a>, in W/K, between the spaces characterized by temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i\)</span>. Conductances are grouped in diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(C_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/kg, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_i\)</span>. Note that the thermal capacities for surfaces, lines and points are zero because their volume is zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/K, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_i\)</span>. Note that the thermal capacities for surfaces, lines and points are zero because their volume is zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
 </ul>
 <p>The sources (or the inputs, or the independent variables) of the thermal network are:</p>
 <ul class="simple">
