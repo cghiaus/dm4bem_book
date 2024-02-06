@@ -557,7 +557,7 @@ q_2
 \end{bmatrix}\)</span></p>
 <p>or,</p>
 <div class="math notranslate nohighlight">
-\[C \dot{\theta} = -\Delta^T q + f = A^T q + f\]</div>
+\[C \dot{\theta} = \Sigma q + f = -\Delta^T q + f = A^T q + f\]</div>
 <p>where:</p>
 <p><span class="math notranslate nohighlight">\(C = \begin{bmatrix}
 C_0 &amp; 0 \\ 
@@ -571,12 +571,12 @@ C_0 &amp; 0 \\
 -1 &amp; 1 &amp; 0 \\ 
 0 &amp; -1 &amp; 1
 \end{bmatrix}\)</span> - transpose of difference matrix;</p>
-<p><span class="math notranslate nohighlight">\(A^T = -\Delta^T\)</span> - transpose of incidence matrix;</p>
+<p><span class="math notranslate nohighlight">\(A^T = \Sigma = -\Delta^T\)</span> - transpose of incidence matrix;</p>
 <p><span class="math notranslate nohighlight">\(f = \begin{bmatrix}
 \dot{Q}_0\\ 
 \dot{Q}_1
 \end{bmatrix}\)</span> - vector of flow-rate sources.</p>
-<p>The matrix <span class="math notranslate nohighlight">\(A^T = -\Delta^T\)</span> is a matrix operator for vector <span class="math notranslate nohighlight">\(q\)</span> that sums the flow rates in each temperature node.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\Sigma = A^T = -\Delta^T\)</span> is a matrix operator for vector <span class="math notranslate nohighlight">\(q\)</span> that sums the flow rates in each temperature node.</p>
 </section>
 <section id="system-of-differential-algebraic-equations">
 <h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h2>
