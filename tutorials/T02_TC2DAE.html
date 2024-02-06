@@ -178,10 +178,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -479,6 +480,7 @@ T_0\\
 <li><p>in a thermal resistance, the flow is positif from high temperature to low temperature;</p></li>
 <li><p>in a temperature source, the flow is positif from low temperature to high temperature.</p></li>
 </ul>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span> describes how the temperature nodes are connected by the oriented branches (flow rates). The matrix <span class="math notranslate nohighlight">\(\Delta = -A\)</span> is a difference operator for vector <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 </section>
 <section id="flow-rates">
 <h2>Flow rates<a class="headerlink" href="#flow-rates" title="Permalink to this headline">#</a></h2>
@@ -574,6 +576,7 @@ C_0 &amp; 0 \\
 \dot{Q}_0\\ 
 \dot{Q}_1
 \end{bmatrix}\)</span> - vector of flow-rate sources.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(A^T = -\Delta^T\)</span> is a matrix operator for vector <span class="math notranslate nohighlight">\(q\)</span> that sums the flow rates in each temperature node.</p>
 </section>
 <section id="system-of-differential-algebraic-equations">
 <h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h2>

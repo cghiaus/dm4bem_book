@@ -178,13 +178,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Annnexes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="annexes.html">Other applications</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -429,9 +430,9 @@ document.write(`
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(U_{bldg}\)</span> - overall heat loss coefficient of the building, W/(m²·K) (<a class="reference external" href="https://doi.org/10.1080/19401493.2018.1561753">Ghiaus and Alzetto, 2019</a>);</p></li>
-<li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the building, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the building envelope, m²;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_{out}\)</span> - outdoor temperature, °C;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_{in}\)</span> - indoor temperature, °C.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{in}\)</span> - base (indoor) temperature, °C.</p></li>
 </ul>
 </li>
 </ul>
@@ -455,6 +456,7 @@ document.write(`
 <li><p><em>degree-days</em> when the discrete time <span class="math notranslate nohighlight">\(\Delta t\)</span> is one day;</p></li>
 <li><p><em>degree-hours</em> when the discrete time <span class="math notranslate nohighlight">\(\Delta t\)</span> is one hour.</p></li>
 </ul>
+<p>Degree-days and degree-hours for heating and cooling are given in <code class="docutils literal notranslate"><span class="pre">.stat</span></code> file of <em>expanded EnergyPlus weather statistics</em> that can be douwloaded from <a class="reference external" href="https://climate.onebuilding.org/default.html">Climate.OneBuilding.Org</a>.</p>
 <p>Degree-days and degree-hours are used to estimate the influence of climate and of indoor temperature on energy consumption (<a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, 2003</a>, <a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus and Allard, 2006</a>, <a class="reference external" href="https://doi.org/10.1016/j.buildenv.2005.02.003">Ghiaus et al., 2006</a>). The method has the advantage of comparing the influence of different climates and indoor temperatures without knowing the actual building. It has the disadvantage of not taking into account properly the gains (solar and internal), the variable ventilation rates, and the distribution of outdoor temperatures (e.g., air and ground). Therefore, it is suited for comparing the potential of energy savings due to climate and indoor temperature.</p>
 </section>
 <section id="estimation-of-energy-used-for-heating-with-degree-hours-method">
@@ -522,7 +524,7 @@ document.write(`
 <span class="c1"># ======</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
 
-<span class="n">θ</span> <span class="o">=</span> <span class="mi">22</span>          <span class="c1"># °C, indoor temperature all time</span>
+<span class="n">θ</span> <span class="o">=</span> <span class="mi">20</span>          <span class="c1"># °C, indoor temperature all time</span>
 <span class="n">θday</span> <span class="o">=</span> <span class="n">θ</span>        <span class="c1"># °C, indoor temperature during day,, e.g.: 06:00 - 22:00</span>
 <span class="n">θnight</span> <span class="o">=</span> <span class="mi">16</span>     <span class="c1"># °C, indoor temperature during night 23:00 - 06:00</span>
 
@@ -700,9 +702,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>degree-hours fixed set-point: 92204.7 h·K
-degree-hours variable set-point: 78042.1 h·K
-Estimated savings: 15 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>degree-hours fixed set-point: 77000.2 h·K
+degree-hours variable set-point: 67858.6 h·K
+Estimated savings: 12 %
 </pre></div>
 </div>
 </div>
