@@ -601,9 +601,9 @@ C_0 &amp; 0 \\
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[q = G(\Delta \theta + b)\]</div>
-<p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(\Sigma = -\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
+<p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(\Sigma = -\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (-<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
 <div class="math notranslate nohighlight">
-\[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
+\[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f = \Sigma G \Delta \theta + \Sigma G b + f\]</div>
 <p>has a form similar to <a class="reference external" href="https://en.wikipedia.org/wiki/Heat_equation">heat diffusion equation</a>:</p>
 <div class="math notranslate nohighlight">
 \[\rho c_p \dot{\theta} = -\mathrm{div}(-\lambda \mathbf{grad}\theta) + p\]</div>
@@ -651,10 +651,11 @@ T_0\\
 0
 \end{bmatrix}\)</span> - vector of flow-rate sources.</p>
 <p>The steady-state solution is:</p>
-<p><span class="math notranslate nohighlight">\(\begin{cases}
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
 \theta = (-A^T G A)^{-1} + A^T G b + f\\
 q = G(-A\theta + b)
-\end{cases}\)</span></p>
+\end{cases}\end{split}\]</div>
 <p>obtained from</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
