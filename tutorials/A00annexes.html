@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Theory in a nutshell &#8212; dm4bem</title>
+    <title>Solved problems &#8212; dm4bem</title>
   
   
   
@@ -60,11 +60,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/T00_theory';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A00annexes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Thermal networks for heat trasfer in buildings" href="T01_Heat_transfer.html" />
-    <link rel="prev" title="Dynamic Models for Building Energy Management" href="../intro.html" />
+    <link rel="next" title="Radiation coupled with convection" href="A01Coupled_rad_convection.html" />
+    <link rel="prev" title="Nonlinear controller" href="pd06nonlin.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Theory in a nutshell</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Solved problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -262,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/T00_theory.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A00annexes.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Ouvrez un problème"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +292,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/tutorials/T00_theory.ipynb" target="_blank"
+      <li><a href="../_sources/tutorials/A00annexes.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Télécharger le fichier source"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -302,7 +302,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -372,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Theory in a nutshell</h1>
+    <h1>Solved problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,9 +386,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="theory-in-a-nutshell">
-<h1>Theory in a nutshell<a class="headerlink" href="#theory-in-a-nutshell" title="Permalink to this headline">#</a></h1>
-<p>This chapter presents the theory used in this book. It starts with the basic principles of modeling heat transfer in buildings by using thermal networks, continues with the matrix representation of thermal networks as a system of differential-algebraic equations and ends with obtaining the state-space representation.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="solved-problems">
+<h1>Solved problems<a class="headerlink" href="#solved-problems" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -425,20 +424,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="pd06nonlin.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dynamic Models for Building Energy Management</p>
+        <p class="prev-next-title">Nonlinear controller</p>
       </div>
     </a>
     <a class="right-next"
-       href="T01_Heat_transfer.html"
+       href="A01Coupled_rad_convection.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Thermal networks for heat trasfer in buildings</p>
+        <p class="prev-next-title">Radiation coupled with convection</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
