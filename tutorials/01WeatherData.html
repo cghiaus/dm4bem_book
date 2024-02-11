@@ -178,13 +178,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -1148,7 +1149,7 @@ dtype: int64
 <p>Let’s consider a tilted surface having another surface (e.g., ground) in front of it. Given the weather data, the surface orientation, and the albedo of the ground in front of the surface, find the direct, diffuse and reflected solar radiation for this surface. The algoritm is implemented in the function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf</span></code> of the <code class="docutils literal notranslate"><span class="pre">dm4bem.py</span></code> module.</p>
 <section id="surface-orientation">
 <h3>Surface orientation<a class="headerlink" href="#surface-orientation" title="Permalink to this headline">#</a></h3>
-<p>The orientation of the surface is given by the following angles:</p>
+<p>The orientation of the surface is given by the following angles (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. (2020), p.13</a>):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta\)</span> slope: slope or tilt angle from 0 to 180 degrees</p>
 <ul>
@@ -1159,7 +1160,7 @@ dtype: int64
 <li><p>180° - horizontal, downward facing.</p></li>
 </ul>
 </li>
-<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> azimuth: surface azimuth in degrees, <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>; 0-south; westward: positive; eastward: negatif;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> azimuth: surface azimuth in degrees, <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>; 0-south; westward: positive; eastward: negatif.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\phi\)</span> latitude: local latitude in degree <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span>; northward: positive, southward: negative.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1194,7 +1195,7 @@ dtype: int64
 <p>In order to calculate the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, we need:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\phi\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Latitude">latitude</a></em>, the angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\beta\)</span> <em>slope</em>, the angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. If <span class="math notranslate nohighlight">\(\beta \le 90 ^{\circ}\)</span>, the surface is upward facing.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> <em>slope</em>, the angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. If <span class="math notranslate nohighlight">\(\beta = 0 ^{\circ}\)</span>, the surface is horizontal, upward facing; if <span class="math notranslate nohighlight">\(0^{\circ} &lt; \beta &lt; 90^{\circ}\)</span>, the surface is upward facing; if <span class="math notranslate nohighlight">\(\beta = 90 ^{\circ}\)</span>, the surface is vertical.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\gamma\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Azimuth">azimuth</a></em>, the angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\delta\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Declination">declination angle</a></em>, the angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a, p. 14, <a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> §11.2.1.1, eq. (78)):</p></li>
 </ul>
@@ -1209,7 +1210,7 @@ dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\omega\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Hour_angle#Solar_hour_angle">solar hour angle</a></em>, the angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>):</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Hour_angle#Solar_hour_angle">solar hour angle</a></em>, the angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020, p.13</a>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[ \omega = 15\left ( hour + \frac{minute}{60} - 12 \right )\]</div>
@@ -1315,7 +1316,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <section id="definitions-for-angles-in-degrees">
 <h4>Definitions for angles (in degrees)<a class="headerlink" href="#definitions-for-angles-in-degrees" title="Permalink to this headline">#</a></h4>
 <p><span class="math notranslate nohighlight">\(\phi\)</span> <strong>Latitude.</strong> Angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\beta\)</span> <strong>Slope.</strong> Angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\beta &lt; 90^{\circ}\)</span> means that the surface is upward facing.</p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span> <strong>Slope.</strong> Angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(\beta = 0\)</span> means that the surface is horizontal, upward facing; <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\beta &lt; 90^{\circ}\)</span> means that the surface is upward facing; <span class="math notranslate nohighlight">\(\beta = 90^{\circ}\)</span> the surface is vertical.</p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> <strong>Azimuth.</strong> Angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180^{\circ}\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\delta\)</span> <strong>Declination.</strong> Angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a):</p>
 <div class="math notranslate nohighlight">
@@ -1324,7 +1325,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <p><span class="math notranslate nohighlight">\(\omega\)</span> <strong>Hour angle.</strong> Angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>):</p>
 <div class="math notranslate nohighlight">
 \[ \omega = 15\left ( h + \frac{min}{60} - 12 \right )\]</div>
-<p>where <em>h</em> and <em>min</em> is the solar time in hours and in minutes, respectively. The hour angle is <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>, with <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(min\)</span> are the solar time in hours and in minutes, respectively. The hour angle is <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>, with <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
 <p><span class="math notranslate nohighlight">\(\theta\)</span> <strong>Incidence.</strong> Angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2):</p>
 <div class="math notranslate nohighlight">
 \[\theta = \arccos (\sin \delta \sin \phi \cos \beta - \sin \delta \cos \phi \sin \beta \cos \gamma + \cos \delta \cos \phi \cos \beta \cos \omega + \cos \delta \sin \phi \sin \beta \cos \gamma \cos \omega + \cos \delta \sin \beta \sin \gamma \sin \omega)\]</div>
