@@ -24,6 +24,15 @@ __Notations used for values of quantities__
 
 This book uses the writing conventions for SI unit symbols and names recommanded by the *International Bureau of Weights and Measures* ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. 2006](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3)) and *National Institute of Standards and Technology* ([Thomson and Taylor. 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf)).
 
+Some rules cited from [Gőbel et al. 2006](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3)) and [Thomson and Taylor. 2008] (https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf):
+- _Unit symbols_ are in roman type and _quantity symbols_ are in italic; the unit symbol is placed after the numerical value and _a space_ is left between the numerical value and the unit symbol, e.g. $h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}$ or $h = 10\, \mathrm{W·m^{−2}·K^{−1}}$ or $h$ = 10 W/(m²·K).
+- Symbols for units formed from other units by multiplication are indicated by means of either a half- high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).
+- A prefix symbol attached to a unit symbol constitutes a new inseparable symbol (forming a multiple or submultiple of the unit concerned), e.g. $1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}$ while $1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}$.
+- When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra:
+    - In $T = 273.15 \, \mathrm{K}$, $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T$.
+    - The ordinate of a graph or the entry of a table is labeled $T$/[10³ K], where $T$ is thermodynamic temperature and K is the unit symbol for kelvin. For a graph, if the ordinate value of a point on a curve is 0.273, the corresponding temperature is $T$/[10³ K] = 0.273 or $T$ = 273 K.
+    - Symbol % (percent) is used for the number 0.01, e.g., $\varepsilon$ = 0.85 = 85 %.
+
 
 __Reproducibility__
 

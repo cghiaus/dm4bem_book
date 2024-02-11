@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -399,6 +401,19 @@ document.write(`
 <p>It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra (<a class="reference external" href="https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html">Strang, G. 2023</a>), heat transfer (<a class="reference external" href="https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf">RE2020 2021</a>), and Python programming (<a class="reference external" href="https://docs.python.org/3/tutorial/index.html">Docs.Python 2024</a>).</p>
 <p><strong>Notations used for values of quantities</strong></p>
 <p>This book uses the writing conventions for SI unit symbols and names recommanded by the <em>International Bureau of Weights and Measures</em> (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM 2019</a>, <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. 2006</a>) and <em>National Institute of Standards and Technology</em> (<a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor. 2008</a>).</p>
+<p>Some rules cited from <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. 2006</a>) and [Thomson and Taylor. 2008] (<a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf</a>):</p>
+<ul class="simple">
+<li><p><em>Unit symbols</em> are in roman type and <em>quantity symbols</em> are in italic; the unit symbol is placed after the numerical value and <em>a space</em> is left between the numerical value and the unit symbol, e.g. <span class="math notranslate nohighlight">\(h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h = 10\, \mathrm{W·m^{−2}·K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h\)</span> = 10 W/(m²·K).</p></li>
+<li><p>Symbols for units formed from other units by multiplication are indicated by means of either a half- high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).</p></li>
+<li><p>A prefix symbol attached to a unit symbol constitutes a new inseparable symbol (forming a multiple or submultiple of the unit concerned), e.g. <span class="math notranslate nohighlight">\(1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}\)</span> while <span class="math notranslate nohighlight">\(1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}\)</span>.</p></li>
+<li><p>When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra:</p>
+<ul>
+<li><p>In <span class="math notranslate nohighlight">\(T = 273.15 \, \mathrm{K}\)</span>, <span class="math notranslate nohighlight">\(273.15 = T /\mathrm{K}\)</span> is the numerical value of thermodynamic temperature <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>The ordinate of a graph or the entry of a table is labeled <span class="math notranslate nohighlight">\(T\)</span>/[10³ K], where <span class="math notranslate nohighlight">\(T\)</span> is thermodynamic temperature and K is the unit symbol for kelvin. For a graph, if the ordinate value of a point on a curve is 0.273, the corresponding temperature is <span class="math notranslate nohighlight">\(T\)</span>/[10³ K] = 0.273 or <span class="math notranslate nohighlight">\(T\)</span> = 273 K.</p></li>
+<li><p>Symbol % (percent) is used for the number 0.01, e.g., <span class="math notranslate nohighlight">\(\varepsilon\)</span> = 0.85 = 85 %.</p></li>
+</ul>
+</li>
+</ul>
 <p><strong>Reproducibility</strong></p>
 <p>The Jupyter Notebooks can be run interactively on <a class="reference external" href="https://mybinder.org">mybinder.org</a> by pushing the <strong>launch binder</strong> button:</p>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
