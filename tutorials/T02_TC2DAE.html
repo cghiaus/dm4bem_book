@@ -608,16 +608,18 @@ C_0 &amp; 0 \\
 <div class="math notranslate nohighlight">
 \[\rho c_p \dot{\theta} = -\mathrm{div}(-\lambda \mathbf{grad}\theta) + p\]</div>
 <p>where:</p>
-<p><span class="math notranslate nohighlight">\(\rho c_p\)</span> - massic specific heat capacity of the unit volume, J/(m³·K), where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Density">density</a> in kg/m³ and <span class="math notranslate nohighlight">\(c_p\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> in J/(kg·K).</p>
-<p><span class="math notranslate nohighlight">\(\lambda\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> in W/(m·K).</p>
-<p><span class="math notranslate nohighlight">\(p\)</span> - thermal energy generated per unit of volume, W/m³.</p>
-<p><span class="math notranslate nohighlight">\(\mathrm{div}\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Del#Divergence">divergence</a> of the heat density field.</p>
-<p><span class="math notranslate nohighlight">\(\mathbf{grad}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Gradient?searchToken=9rqqbuz7wuxvbp6gq3b4iignd">gradient</a> of temperature <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\varphi = -\lambda \mathbf{grad}\theta\)</span> - heat flux (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">Fourier’s law</a>), W/m³.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho c_p\)</span> - massic specific heat capacity of the unit volume, J/(m³·K), where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Density">density</a> in kg/m³ and <span class="math notranslate nohighlight">\(c_p\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a>, J/(kg·K).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a>, W/(m·K).</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> - thermal energy generated per unit of volume, W/m³.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{div}\)</span> - <a class="reference external" href="https://en.wikipedia.org/wiki/Del#Divergence">divergence</a> of the heat density field.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{grad}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Gradient?searchToken=9rqqbuz7wuxvbp6gq3b4iignd">gradient</a> of temperature <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varphi = -\lambda \mathbf{grad}\theta\)</span> - heat flux (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">Fourier’s law</a>), W/m³.</p></li>
+</ul>
 <p>As opposed to the differential form, the discrete form</p>
 <div class="math notranslate nohighlight">
-\[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
-<p>contains the boundary conditions (in the terms <span class="math notranslate nohighlight">\(- \Delta^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
+\[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
+<p>contains the boundary conditions (in the terms <span class="math notranslate nohighlight">\(A^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
