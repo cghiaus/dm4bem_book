@@ -731,8 +731,8 @@ document.write(`
 <div><p>Figure 2. Basic thermal network.</p>
 </div></blockquote>
 <p>A thermal network has at least one oriented branch, <span class="math notranslate nohighlight">\(q\)</span>, one node, <span class="math notranslate nohighlight">\(\theta\)</span>, and a reference temperature.</p>
-<p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_function#identically_zero">identically zero</a>) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be zero).</p>
-<p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictely pozitve) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be zero).</p>
+<p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_function#identically_zero">identically zero</a>) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be identically zero).</p>
+<p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictely pozitive) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be identically zero).</p>
 <p>The problem of analysis of thermal circuits (or the simulation problem, or the direct problem) is:</p>
 <p><strong>given</strong>:</p>
 <ul class="simple">
@@ -743,7 +743,7 @@ document.write(`
 <li><p>heat flow source vector <span class="math notranslate nohighlight">\(f\)</span>;</p></li>
 </ul>
 <p><strong>find</strong> the temperature vector <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rate vector <span class="math notranslate nohighlight">\(q.\)</span></p>
-<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is:</p>
+<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is (Figure 3):</p>
 <ul class="simple">
 <li><p>through the walls (concrete and insulation),</p></li>
 <li><p>through the glass window,</p></li>
@@ -779,7 +779,7 @@ document.write(`
 <li><p>concrete &amp; insulation wall: in red;</p></li>
 <li><p>glass window: in green;</p></li>
 <li><p>ventilation: in magenta;</p></li>
-<li><p>indoor volume: in blue (conductances 6 &amp; 7 for convection; conductance 5 for long wave radiation between the walls and the glass window);</p></li>
+<li><p>indoor air volume: in blue (conductances 6 &amp; 7 for convection; conductance 5 for long wave radiation between the walls and the glass window);</p></li>
 <li><p>HVAC system: in black.</p></li>
 </ul>
 <p>The sources are:</p>
@@ -2304,6 +2304,9 @@ Maximum time step: 498.60 s = 8.31 min
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 480.0 s = 8 min
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
