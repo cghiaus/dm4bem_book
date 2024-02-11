@@ -974,12 +974,12 @@ C_0 &amp;  &amp;  &amp; \\
 \[C\dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
-\[C\dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
+\[C\dot{\theta} = \Sigma G \Delta \theta + \Sigma G b + f\]</div>
 <p>which contains the matrices and vectors characterizing the circuit:</p>
 <ul class="simple">
 <li><p>elements: conductances <span class="math notranslate nohighlight">\(G\)</span> and capacities <span class="math notranslate nohighlight">\(C\)</span>;</p></li>
 <li><p>sources: temperatures <span class="math notranslate nohighlight">\(b\)</span> and heat flow rates <span class="math notranslate nohighlight">\(f\)</span>;</p></li>
-<li><p>incidence relation: incidence matrix <span class="math notranslate nohighlight">\(A\)</span> which shows how the nodes of temperature are connected by oriented branches of flow rates or difference matrix <span class="math notranslate nohighlight">\(\Delta \equiv -A\)</span> which operates differences between the temperatures in the nodes.</p></li>
+<li><p>incidence relation: incidence matrix <span class="math notranslate nohighlight">\(A\)</span> which shows how the nodes of temperature are connected by oriented branches of flow rates.  Matrix <span class="math notranslate nohighlight">\(\Delta \equiv -A\)</span>  operates differences between the temperatures over the branches and matrix <span class="math notranslate nohighlight">\(\Sigma \equiv A^T\)</span> operates sum of heat flow rates in the nodes.</p></li>
 </ul>
 </section>
 </section>
