@@ -414,7 +414,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperature">Outdoor air and ground temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperatures">Outdoor air and ground temperatures</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacent-spaces-with-controlled-temperature">Adjacent spaces with controlled temperature</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setpoint-temperature">Setpoint temperature</a></li>
 </ul>
@@ -791,7 +791,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Phi_a\)</span> - solar radiation absorbed by the glass, W.</p></li>
 </ul>
-<p><em>Note</em>: The known values, i.e. the elements of the circuit (the conductances <span class="math notranslate nohighlight">\(G\)</span> and capacities <span class="math notranslate nohighlight">\(C\)</span>) and the sources (of temperature <span class="math notranslate nohighlight">\(T\)</span> and of flow rate <span class="math notranslate nohighlight">\(\Phi\)</span> or <span class="math notranslate nohighlight">\(\dot{Q}\)</span>) are noted in uppercase (majuscule) letters. The unknow variables, i.e. the temperatures in the nodes <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rates on the branches <span class="math notranslate nohighlight">\(q\)</span>, are noted in lowercase (minuscule) letters.</p>
+<p><em>Note</em>: The known values, i.e. the elements of the circuit (conductances <span class="math notranslate nohighlight">\(G\)</span> and capacities <span class="math notranslate nohighlight">\(C\)</span>) and the sources (of temperature <span class="math notranslate nohighlight">\(T\)</span> and of flow rate <span class="math notranslate nohighlight">\(\Phi\)</span> or <span class="math notranslate nohighlight">\(\dot{Q}\)</span>) are noted in uppercase (majuscule) letters. The unknow variables, i.e. the temperatures in the nodes <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rates on the branches <span class="math notranslate nohighlight">\(q\)</span>, are noted in lowercase (minuscule) letters.</p>
 <section id="thermal-conductances">
 <h3>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h3>
 <section id="conduction">
@@ -875,8 +875,8 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p></p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(h_i\)</span>/[W/(m²·K)]</p></td>
-<td class="text-center"><p><span class="math notranslate nohighlight">\(h_o\)</span>/[W/(m²·K)]</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_i\)</span> / [W/(m²·K)]</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_o\)</span> / [W/(m²·K)]</p></td>
 </tr>
 <tr class="row-odd"><td><p><em>Vertical</em> (tilt &gt; 60°): horizontal flow rate</p></td>
 <td class="text-center"><p>7.7</p></td>
@@ -1015,27 +1015,27 @@ F_{i,i} = 0
 <p>where the mean temperature <span class="math notranslate nohighlight">\(\bar{T}\)</span>, measured in kelvin, is:</p>
 <div class="math notranslate nohighlight">
 \[\bar{T} =\sqrt[3]{ \frac{(T_1^2 + T_2^2)(T_1 + T_2)}{4}}\]</div>
-<p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> (in kelvin). An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.6 and 7.0 W/(m²·K) for <span class="math notranslate nohighlight">\(0 \, \mathrm{ °C} \leq \bar T - 273.15 \leq 40 \,\mathrm{ °C}\)</span> and between 5.1 and 6.3 W/(m²·K) for <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq \bar T - 273.15 \leq 30 \,\mathrm{ °C}\)</span>. Practically, <span class="math notranslate nohighlight">\(\bar T - 273.15 = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W/(m^2K)}\)</span>.</p>
+<p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> (in kelvin). An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.6 and 7.0 W/(m²·K) for <span class="math notranslate nohighlight">\(0 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 40 \,\mathrm{ °C}\)</span> and between 5.1 and 6.3 W/(m²·K) for <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 30 \,\mathrm{ °C}\)</span>. Practically, <span class="math notranslate nohighlight">\((\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W/(m^2K)}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
 <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 0°C &lt; T - 273.15 &lt; 40°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 0°C &lt; (T/K - 273.15)°C &lt; 40°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
 <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 10°C &lt; T - 273.15 &lt; 30°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 10°C &lt; (T/K - 273.15)°C &lt; 30°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mi">20</span>
 <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For T - 273.15 = 20°C, 4σT³ = </span><span class="si">{</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> W/(m²·K)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For (T/K - 273.15)°C = 20°C, 4σT³ = </span><span class="si">{</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> W/(m²·K)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For 0°C &lt; T - 273.15 &lt; 40°C, 4σT³/[W/(m²·K)] ∈ [4.6 7. ]
-For 10°C &lt; T - 273.15 &lt; 30°C, 4σT³/[W/(m²·K)] ∈ [5.1 6.3]
-For T - 273.15 = 20°C, 4σT³ = 5.7 W/(m²·K)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For 0°C &lt; (T/K - 273.15)°C &lt; 40°C, 4σT³/[W/(m²·K)] ∈ [4.6 7. ]
+For 10°C &lt; (T/K - 273.15)°C &lt; 30°C, 4σT³/[W/(m²·K)] ∈ [5.1 6.3]
+For (T/K - 273.15)°C = 20°C, 4σT³ = 5.7 W/(m²·K)
 </pre></div>
 </div>
 </div>
@@ -1122,7 +1122,7 @@ For T - 273.15 = 20°C, 4σT³ = 5.7 W/(m²·K)
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Position of windows</p></th>
-<th class="head"><p>Ventilation rate, ACH / (h⁻ⁱ)</p></th>
+<th class="head"><p>Ventilation rate, ACH / [1/h]</p></th>
 </tr>
 </thead>
 <tbody>
@@ -1149,14 +1149,14 @@ For T - 273.15 = 20°C, 4σT³ = 5.7 W/(m²·K)
 </section>
 <section id="proportional-controller">
 <h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h4>
-<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
+<p>In the simplest representation, an <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
 <div class="math notranslate nohighlight">
 \[ q_{HVAC} = K_p (T_{i, sp} - \theta_i)\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain of the controller, W/K;</p></li>
-<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C (noted in majuscule because it is an <em>input, i.e. independent, variable</em>);</p></li>
-<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C (noted in minuscule because it is a <em>output</em>, i.e., dependent variable).</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C (noted in majuscule because it is an <em>input</em>, i.e., independent, variable);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C (noted in minuscule because it is an <em>output</em>, i.e., dependent variable).</p></li>
 </ul>
 <p>This equation shows that the proportional controller can be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{i, sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(K_p\)</span>. If the controller gain tends towards:</p>
 <ul class="simple">
@@ -1322,12 +1322,12 @@ For T - 273.15 = 20°C, 4σT³ = 5.7 W/(m²·K)
 <h3>Temperature sources<a class="headerlink" href="#temperature-sources" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source#Ideal_voltage_sources">temperature sources</a> model temperatures which vary independently of what happens in the themal circuit; they are inputs of the physical model. Generally, the temperature sources are:</p>
 <ul class="simple">
-<li><p>outdoor air and ground temperature;</p></li>
-<li><p>temperature of adjacent spaces which have controlled temperature;</p></li>
+<li><p>outdoor air and ground temperatures;</p></li>
+<li><p>temperature of adjacent spaces which have the temperature controlled;</p></li>
 <li><p>setpoint temperature.</p></li>
 </ul>
-<section id="outdoor-air-and-ground-temperature">
-<h4>Outdoor air and ground temperature<a class="headerlink" href="#outdoor-air-and-ground-temperature" title="Permalink to this headline">#</a></h4>
+<section id="outdoor-air-and-ground-temperatures">
+<h4>Outdoor air and ground temperatures<a class="headerlink" href="#outdoor-air-and-ground-temperatures" title="Permalink to this headline">#</a></h4>
 <p>The hourly values of outdoor temperatures can be obtained from weather data files downloadable from the <a class="reference external" href="http://climate.onebuilding.org">Repository of free climate data for building performance simulation</a> or from <a class="reference external" href="https://energyplus.net/weather">Weather data for EnergyPlus®</a> (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">Weather data and solar radiation</span></a>).</p>
 </section>
 <section id="adjacent-spaces-with-controlled-temperature">
@@ -2037,7 +2037,7 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 </section>
 <section id="thermal-circuit-tc">
 <h2>Thermal circuit TC<a class="headerlink" href="#thermal-circuit-tc" title="Permalink to this headline">#</a></h2>
-<p>The thermal circuit <code class="docutils literal notranslate"><span class="pre">TC</span></code> is a <a class="reference external" href="https://docs.python.org/3.9/tutorial/datastructures.html#dictionaries">dictionary</a> containing the Pandas <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">DataFrame</a> A and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">Series</a> G, C, b, f, and y indexed by the keys ‘A’, ‘G’, ‘C’, ‘b’, ‘f’, and ‘y’, respectively (Figure 6).</p>
+<p>The thermal circuit (or thermal network) <code class="docutils literal notranslate"><span class="pre">TC</span></code> is a <a class="reference external" href="https://docs.python.org/3.9/tutorial/datastructures.html#dictionaries">dictionary</a> containing Pandas <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">DataFrame</a> A and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">Series</a> G, C, b, f, and y indexed by the keys ‘A’, ‘G’, ‘C’, ‘b’, ‘f’, and ‘y’, respectively (Figure 6).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># thermal circuit</span>
@@ -2066,7 +2066,7 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 </div>
 </div>
 </div>
-<p>The gain of the proportional controller is in variable <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span></code>. It can be changed.</p>
+<p>The gain of the proportional controller is in variable <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span></code> (conductance <code class="docutils literal notranslate"><span class="pre">G</span></code> on branch <code class="docutils literal notranslate"><span class="pre">q11</span></code> of thermal circuit <code class="docutils literal notranslate"><span class="pre">TC</span></code>). It can be changed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TC[&#39;G&#39;][&#39;q11&#39;] = 1e3  # Kp -&gt; ∞, almost perfect controller</span>
@@ -2103,7 +2103,7 @@ y = C_s \theta_s + D_s u
 <li><p><span class="math notranslate nohighlight">\(D_s\)</span> - feedthrough (or feedforward) matrix, of dimension <span class="math notranslate nohighlight">\(\dim D_s = \dim y \times \dim u\)</span>.</p></li>
 </ul>
 <p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentiante the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represention of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of differential-algebraic equations (DAE).</p>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a>, i.e., matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is obtained from the system of DAE, i.e., matrices and vectors <span class="math notranslate nohighlight">\(A, G, b, C, f, y\)</span> (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>).</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a>, i.e., matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is obtained from the system of DAE, i.e., matrices and vectors <span class="math notranslate nohighlight">\(A, G, b, C, f, y\)</span> of the thermal circuit (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
@@ -2306,9 +2306,6 @@ Maximum time step: 498.60 s = 8.31 min
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 480.0 s = 8 min
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -2451,7 +2448,7 @@ Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperature">Outdoor air and ground temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperatures">Outdoor air and ground temperatures</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacent-spaces-with-controlled-temperature">Adjacent spaces with controlled temperature</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setpoint-temperature">Setpoint temperature</a></li>
 </ul>
