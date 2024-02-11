@@ -178,13 +178,14 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from folder describing the building</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits (from matrix and lists)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="annexes.html">Other applications</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -496,7 +497,7 @@ document.write(`
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(l=3 \: \mathrm{m}\)</span> - edge length of the cube;</p></li>
 <li><p><span class="math notranslate nohighlight">\(S_g=l^2\)</span>   - surface area of the glass window;</p></li>
-<li><p><span class="math notranslate nohighlight">\(S_c = S_i = 5 \times S_g\)</span>   - surface area of the 5 (concrete and insulation) walls.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_c = S_i = 5 \: S_g\)</span>   - surface area of the 5 (concrete and insulation) walls.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -729,8 +730,8 @@ document.write(`
 <blockquote>
 <div><p>Figure 2. Basic thermal network.</p>
 </div></blockquote>
-<p>A thermal network has at least one oriented branch, <span class="math notranslate nohighlight">\(q\)</span>, and one node, <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or zero) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be zero).</p>
+<p>A thermal network has at least one oriented branch, <span class="math notranslate nohighlight">\(q\)</span>, one node, <span class="math notranslate nohighlight">\(\theta\)</span>, and a reference temperature.</p>
+<p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_function#identically_zero">identically zero</a>) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be zero).</p>
 <p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictely pozitve) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be zero).</p>
 <p>The problem of analysis of thermal circuits (or the simulation problem, or the direct problem) is:</p>
 <p><strong>given</strong>:</p>
