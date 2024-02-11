@@ -27,7 +27,7 @@ chapters:
   - file: tutorials/pd04tc2ss
   - file: tutorials/pd05simulation
   - file: tutorials/pd06nonlin
-- file: tutorials/annexes.md
+- file: tutorials/A00annexes.md
   sections:
   - file: tutorials/A01Coupled_rad_convection
   - file: tutorials/A02Thermal_load.ipynb
