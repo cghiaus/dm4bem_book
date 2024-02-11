@@ -459,18 +459,18 @@ document.write(`
 </div></blockquote>
 <p>The dependent variables of the thermal network are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - temperatures, in °C or K, of a volume, surface, line or point  (3D, 2D, 1D or 0D space, respectively) in which the temperature is considred homogeneous. Temperatures are grouped in vector <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - temperatures, in °C or K, of a volume, surface, line or point  (3D, 2D, 1D or 0D space, respectively) in which the temperature is considred homogeneous. Temperatures are grouped in vector <span class="math notranslate nohighlight">\(\theta.\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(q_j ≡ q_{k,i}\)</span> - flow rates, in W, between two (0D, 1D, 2D or 3D) spaces characterized by homogeneous temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i,\)</span> respectively. Flow rates are grouped in vector <span class="math notranslate nohighlight">\(q.\)</span></p></li>
 </ul>
 <p>The parameters of the thermal network are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(G_j ≡ G_{k,i}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">thermal conductance</a>, in W/K, between the spaces characterized by temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i\)</span>. Conductances are grouped in diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(C_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/K, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_i\)</span>. Note that the thermal capacities for surfaces, lines and points are zero because their volume is zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_j ≡ G_{k,i}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductance_and_resistance">thermal conductance</a>, in W/K, between the spaces characterized by temperatures <span class="math notranslate nohighlight">\(\theta_k\)</span> and <span class="math notranslate nohighlight">\(\theta_i\)</span>. Conductances are grouped in diagonal matrix <span class="math notranslate nohighlight">\(G.\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, in J/K, of the volume characterized by the homogenous temperature <span class="math notranslate nohighlight">\(\theta_i\)</span>. Note that the thermal capacities for surfaces, lines and points are zero because their volume is zero. Capacities are grouped in diagonal matrix <span class="math notranslate nohighlight">\(C.\)</span></p></li>
 </ul>
 <p>The sources (or the inputs, or the independent variables) of the thermal network are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(T_j\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a>, in °C or K, is a source of thermal energy for which the temperature changes arbitrarely and does not depend on the flow rate. They are grouped in vector <span class="math notranslate nohighlight">\(b\)</span>. Typical examples of temperature sources are the temperatures of the outdoor air, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Physical_properties_of_soil#Temperature">soil</a>, indoor air <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">set point</a>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\dot Q_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">flow rate source</a>, in W, is a source of thermal energy for which the flow rate changes arbitrarely and does not depend on the temperature difference. They are grouped in vector <span class="math notranslate nohighlight">\(f\)</span>. Typical examples of flow rate sources are absorbed <a class="reference external" href="https://en.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Home_appliance">electric appliances</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Basal_metabolic_rate">basal metabolic rate</a> of occupants.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot Q_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">flow rate source</a>, in W, is a source of thermal energy for which the flow rate changes arbitrarely and does not depend on the temperature difference. They are grouped in vector <span class="math notranslate nohighlight">\(f.\)</span> Typical examples of flow rate sources are absorbed <a class="reference external" href="https://en.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Home_appliance">electric appliances</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Basal_metabolic_rate">basal metabolic rate</a> of occupants.</p></li>
 </ul>
 <p>In a node, there are:</p>
 <ul class="simple">
@@ -494,10 +494,10 @@ document.write(`
 <p><strong>given</strong>:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span> which indicates how the nodes are connected by oriented branches;</p></li>
-<li><p>conductance diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>;</p></li>
-<li><p>capacity diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>;</p></li>
-<li><p>temperature source vector <span class="math notranslate nohighlight">\(b\)</span>;</p></li>
-<li><p>heat flow source vector <span class="math notranslate nohighlight">\(f\)</span>;</p></li>
+<li><p>conductance diagonal matrix <span class="math notranslate nohighlight">\(G;\)</span></p></li>
+<li><p>capacity diagonal matrix <span class="math notranslate nohighlight">\(C;\)</span></p></li>
+<li><p>temperature source vector <span class="math notranslate nohighlight">\(b;\)</span></p></li>
+<li><p>heat flow source vector <span class="math notranslate nohighlight">\(f;\)</span></p></li>
 </ul>
 <p><strong>find</strong> the temperature vector <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rate vector <span class="math notranslate nohighlight">\(q.\)</span></p>
 </section>

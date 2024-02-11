@@ -2,7 +2,10 @@
 
 by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-1245), [SciProfiles](https://sciprofiles.com/profile/2970335), [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6603390490), [Web of Science ](https://www.webofscience.com/wos/author/record/1651371), [HAL](https://hal.science/search/index/?q=%2A&rows=30&authIdPerson_i=170031&sort=producedDate_tdate+desc))
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
+[![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
+
 
 > “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (*There are three types of knowledge: [knowledge itself](https://en.m.wikipedia.org/wiki/Knowledge), [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [knowing how to live together](https://en.m.wikipedia.org/wiki/Etiquette); the last two quite adequately dispense with the first*), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
 
@@ -32,7 +35,7 @@ Some rules cited from [BIPM (2019)](https://www.bipm.org/documents/20126/4148302
     - In $T = 273.15 \, \mathrm{K}$, the number $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T.$
     - The numerical value of a temperature expressed in degrees Celsius, $\theta$, is related to the numerical value of the thermodynamic temperature expressed in kelvins, $T$, by the relation $\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15$ or $\theta$/[°C] = $T$/[K] − 273.15.
     - The ordinate of a graph or the heading of a table is labeled __Temperature, $T$/[10³ K]__, where $T$ is thermodynamic temperature and K is the unit symbol for kelvin. If the ordinate value of a point on a curve of the graph is 0.273, or the entry in a table is 0.273, then the corresponding temperature is $T$/[10³ K] = 0.273 or $T$ = 273 K.
-    - Symbol % (percent) is used for the number 0.01, e.g., $\varepsilon$ = 0.85 = 85 %.
+    - Symbol % (percent) is used for the number 0.01, e.g., the emmisivity is $\varepsilon$ = 0.85 = 85 %.
 
 
 __Reproducibility__
@@ -40,6 +43,12 @@ __Reproducibility__
 The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
+
+__Licence__
+
+The text of this book is under Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+The software is under MIT Licence.
 
 __Contents__
 
