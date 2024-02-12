@@ -1,0 +1,1673 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Disassembled thermal circuits from wall description &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/pd01wall2TC';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Disassembled thermal circuits from building description" href="pd02bldg2TCd.html" />
+    <link rel="prev" title="Assembling thermal circuits" href="pdREADME.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Greenhouse_effect.html">Greenhouse effect</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/pd01wall2TC.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/pd01wall2TC.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/pd01wall2TC.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Disassembled thermal circuits from wall description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-types">Wall types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walls-data">Walls data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-wall">Generic wall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-walls">Outdoor walls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indoor-walls">Indoor walls</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="disassembled-thermal-circuits-from-wall-description">
+<h1>Disassembled thermal circuits from wall description<a class="headerlink" href="#disassembled-thermal-circuits-from-wall-description" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd01wall2TC.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This notebook presents how the <em>description of the walls</em> is transformed into a set of <em>disassembled thermal networks</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">wall2TC()</span></code> of <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module.</p>
+<p>The <em>description of the walls</em> is given in a folder that contains two types of files:</p>
+<ul class="simple">
+<li><p>wall types: thermo-physical properties of the materials;</p></li>
+<li><p>walls data: regarding the area, temperature &amp; flow-rate sources, coefficients for convection and radiation of the wall surfaces.</p></li>
+</ul>
+<p>The <em>thermal network</em> is a data structure (<code class="docutils literal notranslate"><span class="pre">dictionary</span></code>) containing the matrices <span class="math notranslate nohighlight">\(A, G, C\)</span> and the vectors <span class="math notranslate nohighlight">\(b, f, y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The input data needed for the thermal model of the building is in a folder.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;./pd/bldg_wall2TC&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="wall-types">
+<h2>Wall types<a class="headerlink" href="#wall-types" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider two types of walls with physical properties given in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wall_types</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/wall_types.csv&#39;</span><span class="p">)</span>
+<span class="n">wall_types</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>Material</th>
+      <th>Conductivity</th>
+      <th>Specific heat</th>
+      <th>Density</th>
+      <th>Width</th>
+      <th>Mesh</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Concrete</td>
+      <td>1.400</td>
+      <td>880</td>
+      <td>2300</td>
+      <td>0.200</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>Insulation</td>
+      <td>0.027</td>
+      <td>1210</td>
+      <td>55</td>
+      <td>0.080</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Glass</td>
+      <td>1.400</td>
+      <td>750</td>
+      <td>2500</td>
+      <td>0.004</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code> contains:</p>
+<ul class="simple">
+<li><p>the physical properties of the materials given in SI units: <strong>conductivity</strong> in W·m⁻¹·K⁻¹, <strong>specific heat</strong> in J·kg⁻¹·K⁻¹, <strong>density</strong> in kg·m⁻³;</p></li>
+<li><p>the <strong>width</strong> of the layers in m;</p></li>
+<li><p>the number of <strong>meshes</strong> in which each layer is numerically discretized; each mesh has two resistances and a capacity.</p></li>
+</ul>
+<p>There are two types of walls in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code> (Figure 1):</p>
+<ul class="simple">
+<li><p>The wall of <strong>type 0</strong> has two layers: <em>Concrete</em> and <em>Insulation</em>. <em>Concrete</em> layer has one mesh (two resistances and a capacity) and <em>Insulation</em> layer has two meshes (i.e., four resistances and two capacities).</p></li>
+<li><p>The wall of <strong>type 1</strong> has one layer: <em>Glass</em>, discretized in one mesh.</p></li>
+</ul>
+<p><img alt="wall_types" src="../_images/wall_types.svg" /></p>
+<blockquote>
+<div><p>Figure 1. The two types of wall described in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code></p>
+</div></blockquote>
+</section>
+<section id="walls-data">
+<h2>Walls data<a class="headerlink" href="#walls-data" title="Permalink to this headline">#</a></h2>
+<p>The models of the walls are based on the materials given in the file <code class="docutils literal notranslate"><span class="pre">wall_types.cvs</span></code>. For each specific wall, data related to surfaces is given (area, orientation, convection coefficients, radiative properties, temperature and flow-rate sources).</p>
+<p>There are three kinds of walls (Table 1):</p>
+<ul class="simple">
+<li><p>generic (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code>),</p></li>
+<li><p>outdoor (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>),</p></li>
+<li><p>indoor (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_in.csv</span></code>).</p></li>
+</ul>
+<blockquote>
+<div><p>Table 1. Columns of <code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">walls_in.csv</span></code> files. The columns that are present in the file are maked by ✓ for <strong>_generic</strong>, <strong>_out</strong> and <strong>_in</strong> walls. The columns needed to define the thermal circuit are marked by ✓ in <strong>TC</strong>.</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>_generic</p></th>
+<th class="head"><p>_out</p></th>
+<th class="head"><p>_in</p></th>
+<th class="head"><p>TC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ID</p></td>
+<td><p></p></td>
+<td><p>Identifiant of each wal</p></td>
+<td><p>w2</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td><p></p></td>
+<td><p>Type of wall given in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code></p></td>
+<td><p>1</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>Area</p></td>
+<td><p>m²</p></td>
+<td><p>Surface area of the wall</p></td>
+<td><p>25</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>β</p></td>
+<td><p>°</p></td>
+<td><p>Tilt angle: 90° vertical; &gt;90° upward facing</p></td>
+<td><p>90</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>γ</p></td>
+<td><p>°</p></td>
+<td><p>Azimuth: 0° South, 180° North, &gt;0° westward</p></td>
+<td><p>90</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>albedo</p></td>
+<td><p></p></td>
+<td><p>Fraction of sunlight that is diffusely reflected by ground surface</p></td>
+<td><p>0.25</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>T0</p></td>
+<td><p>°C</p></td>
+<td><p>Temperature source of outer surface</p></td>
+<td><p>To</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>T1</p></td>
+<td><p>°C</p></td>
+<td><p>Temperature source of inner surface</p></td>
+<td><p>Ti</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>Q0</p></td>
+<td><p>W</p></td>
+<td><p>Flow rate source on outer surface</p></td>
+<td><p>Qo</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>Q1</p></td>
+<td><p>W</p></td>
+<td><p>Flow rate source on inner surface</p></td>
+<td><p>Qi</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>h0</p></td>
+<td><p>W·m⁻²·K⁻¹</p></td>
+<td><p>Convection coefficient of outer surface</p></td>
+<td><p>25</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>h1</p></td>
+<td><p>W·m⁻²·K⁻¹</p></td>
+<td><p>Convection coefficient of inner surface</p></td>
+<td><p>8</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>α0</p></td>
+<td><p></p></td>
+<td><p>Short-wave absorbtion coefficient of outer surface</p></td>
+<td><p>0.25</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>α1</p></td>
+<td><p></p></td>
+<td><p>Short-wave absorbtion coefficient of inner surface</p></td>
+<td><p>0.30</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>ε0</p></td>
+<td><p></p></td>
+<td><p>Long-wave hemispherical emissivity of outer surface</p></td>
+<td><p>0.85</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>ε1</p></td>
+<td><p></p></td>
+<td><p>Long-wave hemispherical emissivity of inner surface</p></td>
+<td><p>0.70</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>y</p></td>
+<td><p></p></td>
+<td><p>Output temperature nodes (by using slicing)</p></td>
+<td><p>[0, -1]</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes</strong>:</p>
+<ol class="arabic simple">
+<li><p>The <em>generic</em> walls may define <em>out</em> or <em>in</em> walls by not specifying temperature sources (see <code class="docutils literal notranslate"><span class="pre">wall_generic.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">wall_out.csv</span></code>, and <code class="docutils literal notranslate"><span class="pre">wall_in.csv</span></code> files for examples).</p></li>
+<li><p>The <em>out</em> walls do not need the temperature sources on the inner surfaces, T1.</p></li>
+<li><p>The <em>in</em> walls do not need tilt (β) and azimuth (γ) angles, the albedo of the ground, and the temperature sources on the outer (T0) and the inner (T1) surfaces.</p></li>
+<li><p>The column <strong>TC</strong> shows the information needed to obtain the thermal circuit. The data related to radiative exchange is used in the calculation of flow-rate sources in short-wave and for conductances in long-wave radiative exchange.</p></li>
+</ol>
+<section id="generic-wall">
+<h3>Generic wall<a class="headerlink" href="#generic-wall" title="Permalink to this headline">#</a></h3>
+<p>Generic walls contain all the information listed in Table 1. For example, <code class="docutils literal notranslate"><span class="pre">wall_generic.csv</span></code> file describes the walls shown in Figure 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">walls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/walls_generic.csv&quot;</span><span class="p">)</span>
+<span class="n">walls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>type</th>
+      <th>Area</th>
+      <th>β</th>
+      <th>γ</th>
+      <th>albedo</th>
+      <th>T0</th>
+      <th>T1</th>
+      <th>Q0</th>
+      <th>Q1</th>
+      <th>h0</th>
+      <th>h1</th>
+      <th>α0</th>
+      <th>α1</th>
+      <th>ε0</th>
+      <th>ε1</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>w0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>90.0</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>NaN</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[0, -1]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>w1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>90.0</td>
+      <td>0.0</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>Ti</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>w2</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0.0</td>
+      <td>90.0</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>NaN</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>21</td>
+      <td>11</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[1, 2, -1]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>w3</td>
+      <td>0</td>
+      <td>20</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>22</td>
+      <td>12</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[2, 1, 3]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code> describes four walls (Figure 2):</p>
+<ul class="simple">
+<li><p>according to the types of walls:</p>
+<ul>
+<li><p>w0 and w1 are of <strong>type</strong> 1, i.e., concrete and insulation;</p></li>
+<li><p>w2 and w3 are of <strong>type</strong> 0, i.e., glass.</p></li>
+</ul>
+</li>
+<li><p>according to the temperature sources:</p>
+<ul>
+<li><p>w0 and w1 are outdoor walls that have as boundary condition the outdoor temperature <strong>T0</strong>; the temperature on the inner surface is a room temperature, which is an output of the model.</p></li>
+<li><p>w1 is a wall that has temperature sources on both sides.</p></li>
+<li><p>w3 is an inner wall that separates two rooms. It does not need information for solar direct radiation (tilt and azimuth angles and the albedo of the ground surface in front of the wall).</p></li>
+</ul>
+</li>
+</ul>
+<p>Outdoor walls, such as gw0 (generic wall w0) and gw2 (generic wall w2) in Figure 2, can be obtained from the generic walls by not considering a temperature source <strong>T1</strong> on inner surface, which is indicated by NaN in rows w0 and w2 for column <strong>T1</strong>.</p>
+<p>Likewise, indoor walls, such as gw3 (generic wall 3) in Figure 2, can be obtained from the generic walls by indicating that there are no temperature sources in <strong>T0</strong> and <strong>T1</strong>, i.e. <code class="docutils literal notranslate"><span class="pre">T0</span> <span class="pre">=</span> <span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">T1</span> <span class="pre">=</span> <span class="pre">NaN</span></code>.</p>
+<p>The outputs <strong>y</strong> are indicated in a list using <a class="reference external" href="https://python-reference.readthedocs.io/en/latest/docs/brackets/slicing.html">slicing</a>. For example, the outputs of wall w0 are temperature nodes 0 and -1 (i.e., the last node which is node 3) in Figure 2.</p>
+<p>The numbering convention of the elements of the circuits is:</p>
+<ul class="simple">
+<li><p>the nodes (i.e., temperatures) are numbered from left to right and from up to down;</p></li>
+<li><p>the oriented branches (i.e., flows) are numbered from the node with a lower index to the node with a higher index;</p></li>
+<li><p>the <strong>reference</strong> temperature node is not numbered.</p></li>
+</ul>
+<p><img alt="generic_wall" src="../_images/walls_generic.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Four examples of generic walls described in the file <code class="docutils literal notranslate"><span class="pre">wall_generic.csv</span></code>. Walls gw0 and gw1 are of <strong>type 1</strong> (glass), described in <code class="docutils literal notranslate"><span class="pre">wall_type.csv</span></code>. Walls gw2 and gw3 are of <strong>type 0</strong> (concrete and insulation), described in <code class="docutils literal notranslate"><span class="pre">wall_type.csv</span></code>.</p>
+</div></blockquote>
+<p>The files describing the types (<code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) and the data (<code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code>) of the walls contain the information needed to obtain the disassembled thermal circuits. The names of the walls can have a prefix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thermal circuits from wall types and wall data</span>
+<span class="n">TCd_generic</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">wall2TC</span><span class="p">(</span><span class="n">wall_types</span><span class="p">,</span> <span class="n">walls</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each matrix (<span class="math notranslate nohighlight">\(A, G, C\)</span>) or vector (<span class="math notranslate nohighlight">\(b, f, y\)</span>) of the thermal circuit can be accessed as Pandas dataframes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd_generic</span><span class="p">[</span><span class="s1">&#39;gw0&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gw0_θ0</th>
+      <th>gw0_θ1</th>
+      <th>gw0_θ2</th>
+      <th>gw0_θ3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>gw0_q0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>gw0_q1</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>gw0_q2</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>gw0_q3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>All matrices (<span class="math notranslate nohighlight">\(A, G, C\)</span>) and vectors (<span class="math notranslate nohighlight">\(b, f, y\)</span>) of each thermal circuit can be printed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCd_generic</span><span class="p">[</span><span class="s1">&#39;gw0&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A:
+        gw0_θ0  gw0_θ1  gw0_θ2  gw0_θ3
+gw0_q0     1.0     0.0     0.0     0.0
+gw0_q1    -1.0     1.0     0.0     0.0
+gw0_q2     0.0    -1.0     1.0     0.0
+gw0_q3     0.0     0.0    -1.0     1.0 
+
+G:
+gw0_q0     20.0
+gw0_q1    700.0
+gw0_q2    700.0
+gw0_q3     10.0
+dtype: float64 
+
+C:
+gw0_θ0       0.0
+gw0_θ1    7500.0
+gw0_θ2       0.0
+gw0_θ3       0.0
+dtype: float64 
+
+b:
+gw0_q0     To
+gw0_q1    0.0
+gw0_q2    0.0
+gw0_q3    0.0
+dtype: object 
+
+f:
+gw0_θ0     Qo
+gw0_θ1    0.0
+gw0_θ2     Qi
+gw0_θ3    0.0
+dtype: object 
+
+y:
+gw0_θ0    1.0
+gw0_θ1    0.0
+gw0_θ2    0.0
+gw0_θ3    1.0
+dtype: float64 
+</pre></div>
+</div>
+</div>
+</div>
+<p>All thermal circuits read from the file <code class="docutils literal notranslate"><span class="pre">walls_generic.csv</span></code> can be printed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TCd_generic&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">TCd_generic</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Wall:&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCd_generic</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TCd_generic
+Wall: gw0
+A:
+        gw0_θ0  gw0_θ1  gw0_θ2  gw0_θ3
+gw0_q0     1.0     0.0     0.0     0.0
+gw0_q1    -1.0     1.0     0.0     0.0
+gw0_q2     0.0    -1.0     1.0     0.0
+gw0_q3     0.0     0.0    -1.0     1.0 
+
+G:
+gw0_q0     20.0
+gw0_q1    700.0
+gw0_q2    700.0
+gw0_q3     10.0
+dtype: float64 
+
+C:
+gw0_θ0       0.0
+gw0_θ1    7500.0
+gw0_θ2       0.0
+gw0_θ3       0.0
+dtype: float64 
+
+b:
+gw0_q0     To
+gw0_q1    0.0
+gw0_q2    0.0
+gw0_q3    0.0
+dtype: object 
+
+f:
+gw0_θ0     Qo
+gw0_θ1    0.0
+gw0_θ2     Qi
+gw0_θ3    0.0
+dtype: object 
+
+y:
+gw0_θ0    1.0
+gw0_θ1    0.0
+gw0_θ2    0.0
+gw0_θ3    1.0
+dtype: float64 
+
+Wall: gw1
+A:
+        gw1_θ0  gw1_θ1  gw1_θ2
+gw1_q0     1.0     0.0     0.0
+gw1_q1    -1.0     1.0     0.0
+gw1_q2     0.0    -1.0     1.0
+gw1_q3     0.0     0.0    -1.0 
+
+G:
+gw1_q0     20.0
+gw1_q1    700.0
+gw1_q2    700.0
+gw1_q3     10.0
+dtype: float64 
+
+C:
+gw1_θ0       0.0
+gw1_θ1    7500.0
+gw1_θ2       0.0
+dtype: float64 
+
+b:
+gw1_q0     To
+gw1_q1    0.0
+gw1_q2    0.0
+gw1_q3    -Ti
+dtype: object 
+
+f:
+gw1_θ0     Qo
+gw1_θ1    0.0
+gw1_θ2     Qi
+dtype: object 
+
+y:
+gw1_θ0    0.0
+gw1_θ1    1.0
+gw1_θ2    0.0
+dtype: float64 
+
+Wall: gw2
+A:
+        gw2_θ0  gw2_θ1  gw2_θ2  gw2_θ3  gw2_θ4  gw2_θ5  gw2_θ6  gw2_θ7
+gw2_q0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+gw2_q1    -1.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0
+gw2_q2     0.0    -1.0     1.0     0.0     0.0     0.0     0.0     0.0
+gw2_q3     0.0     0.0    -1.0     1.0     0.0     0.0     0.0     0.0
+gw2_q4     0.0     0.0     0.0    -1.0     1.0     0.0     0.0     0.0
+gw2_q5     0.0     0.0     0.0     0.0    -1.0     1.0     0.0     0.0
+gw2_q6     0.0     0.0     0.0     0.0     0.0    -1.0     1.0     0.0
+gw2_q7     0.0     0.0     0.0     0.0     0.0     0.0    -1.0     1.0 
+
+G:
+gw2_q0    210.0
+gw2_q1    140.0
+gw2_q2    140.0
+gw2_q3     13.5
+gw2_q4     13.5
+gw2_q5     13.5
+gw2_q6     13.5
+gw2_q7    110.0
+dtype: float64 
+
+C:
+gw2_θ0          0.0
+gw2_θ1    4048000.0
+gw2_θ2          0.0
+gw2_θ3      26620.0
+gw2_θ4          0.0
+gw2_θ5      26620.0
+gw2_θ6          0.0
+gw2_θ7          0.0
+dtype: float64 
+
+b:
+gw2_q0     To
+gw2_q1    0.0
+gw2_q2    0.0
+gw2_q3    0.0
+gw2_q4    0.0
+gw2_q5    0.0
+gw2_q6    0.0
+gw2_q7    0.0
+dtype: object 
+
+f:
+gw2_θ0     Qo
+gw2_θ1    0.0
+gw2_θ2    0.0
+gw2_θ3    0.0
+gw2_θ4    0.0
+gw2_θ5    0.0
+gw2_θ6     Qi
+gw2_θ7    0.0
+dtype: object 
+
+y:
+gw2_θ0    0.0
+gw2_θ1    1.0
+gw2_θ2    1.0
+gw2_θ3    0.0
+gw2_θ4    0.0
+gw2_θ5    0.0
+gw2_θ6    0.0
+gw2_θ7    1.0
+dtype: float64 
+
+Wall: gw3
+A:
+        gw3_θ0  gw3_θ1  gw3_θ2  gw3_θ3  gw3_θ4  gw3_θ5  gw3_θ6  gw3_θ7  gw3_θ8
+gw3_q0    -1.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+gw3_q1     0.0    -1.0     1.0     0.0     0.0     0.0     0.0     0.0     0.0
+gw3_q2     0.0     0.0    -1.0     1.0     0.0     0.0     0.0     0.0     0.0
+gw3_q3     0.0     0.0     0.0    -1.0     1.0     0.0     0.0     0.0     0.0
+gw3_q4     0.0     0.0     0.0     0.0    -1.0     1.0     0.0     0.0     0.0
+gw3_q5     0.0     0.0     0.0     0.0     0.0    -1.0     1.0     0.0     0.0
+gw3_q6     0.0     0.0     0.0     0.0     0.0     0.0    -1.0     1.0     0.0
+gw3_q7     0.0     0.0     0.0     0.0     0.0     0.0     0.0    -1.0     1.0 
+
+G:
+gw3_q0    440.0
+gw3_q1    280.0
+gw3_q2    280.0
+gw3_q3     27.0
+gw3_q4     27.0
+gw3_q5     27.0
+gw3_q6     27.0
+gw3_q7    240.0
+dtype: float64 
+
+C:
+gw3_θ0          0.0
+gw3_θ1          0.0
+gw3_θ2    8096000.0
+gw3_θ3          0.0
+gw3_θ4      53240.0
+gw3_θ5          0.0
+gw3_θ6      53240.0
+gw3_θ7          0.0
+gw3_θ8          0.0
+dtype: float64 
+
+b:
+gw3_q0    0.0
+gw3_q1    0.0
+gw3_q2    0.0
+gw3_q3    0.0
+gw3_q4    0.0
+gw3_q5    0.0
+gw3_q6    0.0
+gw3_q7    0.0
+dtype: float64 
+
+f:
+gw3_θ0    0.0
+gw3_θ1     Qo
+gw3_θ2    0.0
+gw3_θ3    0.0
+gw3_θ4    0.0
+gw3_θ5    0.0
+gw3_θ6    0.0
+gw3_θ7     Qi
+gw3_θ8    0.0
+dtype: object 
+
+y:
+gw3_θ0    0.0
+gw3_θ1    1.0
+gw3_θ2    1.0
+gw3_θ3    1.0
+gw3_θ4    0.0
+gw3_θ5    0.0
+gw3_θ6    0.0
+gw3_θ7    0.0
+gw3_θ8    0.0
+dtype: float64 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="outdoor-walls">
+<h3>Outdoor walls<a class="headerlink" href="#outdoor-walls" title="Permalink to this headline">#</a></h3>
+<p>Outdoor walls do not have temperature sources on indoor surfaces (Figure 3). They can be obtained from generic walls by not indicating the temperature source T1 (on the indoor surface), or they can be described by specific files, such as <code class="docutils literal notranslate"><span class="pre">walls_in.csv</span></code>.</p>
+<p>Figure 3a shows walls w0 and w1 of <strong>type</strong> 1 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with only one layer which has one mesh.</p>
+<p>Figure 3b shows walls w2 and w3 of <strong>type</strong> 0 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with two layers (concrete and insulation).</p>
+<p><img alt="in_wall" src="../_images/walls_out.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Outdoor walls: a) of <strong>type</strong> 1 b) of <strong>type</strong> 0. The <strong>type</strong> is indicated in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">walls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/walls_out.csv&#39;</span><span class="p">)</span>
+<span class="n">walls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>type</th>
+      <th>Area</th>
+      <th>β</th>
+      <th>γ</th>
+      <th>albedo</th>
+      <th>T0</th>
+      <th>Q0</th>
+      <th>Q1</th>
+      <th>h0</th>
+      <th>h1</th>
+      <th>α0</th>
+      <th>α1</th>
+      <th>ε0</th>
+      <th>ε1</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>w0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>90</td>
+      <td>0</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[0, -1]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>w1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>90</td>
+      <td>0</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>w2</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>90</td>
+      <td>0.25</td>
+      <td>To</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>21</td>
+      <td>11</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[1, 2, -1]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>w3</td>
+      <td>0</td>
+      <td>20</td>
+      <td>0</td>
+      <td>90</td>
+      <td>0.25</td>
+      <td>Tsoil</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>22</td>
+      <td>12</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[2, 1, 3]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thermal circuits from data &amp; type files of walls</span>
+<span class="n">TCd_out</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">wall2TC</span><span class="p">(</span><span class="n">wall_types</span><span class="p">,</span> <span class="n">walls</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+
+<span class="c1"># Uncomment below to print all thermal circuits</span>
+<span class="c1"># print(&#39;TCd_out&#39;)</span>
+<span class="c1"># for key in TCd_out.keys():</span>
+<span class="c1">#    print(&#39;Wall:&#39;, key)</span>
+<span class="c1">#    pd_dm4bem.print_TC(TCd_out[key])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indoor-walls">
+<h3>Indoor walls<a class="headerlink" href="#indoor-walls" title="Permalink to this headline">#</a></h3>
+<p>Indoor walls do not have temperature sources on surfaces (Figure 4). They can be obtained from generic walls by not indicating temperature sources T0 and T1, or they can be described by specific files, such as <code class="docutils literal notranslate"><span class="pre">walls_in.csv</span></code>.</p>
+<p>Figure 4a shows walls w0 and w1 of <strong>type</strong> 1 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with only one layer which has one mesh.</p>
+<p>Figure 4b shows wall w2 and w3 of <strong>type</strong> 0 (described in <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>) with two layers (concrete and insulation); the insulation layer is discretized in two meshes.</p>
+<p><img alt="in_wall" src="../_images/walls_in.svg" /></p>
+<blockquote>
+<div><p>Figure 4. Indoor walls: a) of <strong>type</strong> 1 b) of <strong>type</strong> 0. The <strong>type</strong> is indicated in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">walls</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder</span> <span class="o">+</span> <span class="s1">&#39;/walls_in.csv&#39;</span><span class="p">)</span>
+<span class="n">walls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>type</th>
+      <th>Area</th>
+      <th>Q0</th>
+      <th>Q1</th>
+      <th>h0</th>
+      <th>h1</th>
+      <th>α0</th>
+      <th>α1</th>
+      <th>ε0</th>
+      <th>ε1</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>w0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[0, -1]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>w1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>20</td>
+      <td>10</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>w2</td>
+      <td>0</td>
+      <td>10</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>21</td>
+      <td>11</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[1, 2, -1]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>w3</td>
+      <td>0</td>
+      <td>20</td>
+      <td>Qo</td>
+      <td>Qi</td>
+      <td>22</td>
+      <td>12</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[2, 1, 3]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thermal circuits from data &amp; type files of walls</span>
+<span class="n">TCd_in</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">wall2TC</span><span class="p">(</span><span class="n">wall_types</span><span class="p">,</span> <span class="n">walls</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;i&quot;</span><span class="p">)</span>
+
+<span class="c1"># Uncomment below to print all thermal circuits</span>
+<span class="c1"># print(&#39;TCd_in&#39;)</span>
+<span class="c1"># for key in TCd_in.keys():</span>
+<span class="c1">#    print(&#39;Wall:&#39;, key)</span>
+<span class="c1">#    pd_dm4bem.print_TC(TCd_in[key])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pdREADME.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assembling thermal circuits</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="pd02bldg2TCd.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Disassembled thermal circuits from building description</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-types">Wall types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#walls-data">Walls data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-wall">Generic wall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-walls">Outdoor walls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indoor-walls">Indoor walls</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

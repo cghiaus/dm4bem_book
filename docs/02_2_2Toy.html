@@ -1,0 +1,1525 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Steady-state and step response &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/02_2_2Toy';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Inputs" href="02_2_3Toy.html" />
+    <link rel="prev" title="Modeling" href="02_2_1Toy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Greenhouse_effect.html">Greenhouse effect</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/02_2_2Toy.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/02_2_2Toy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/02_2_2Toy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Steady-state and step response</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-analysis">Steady-state analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-differential-algebraic-equations-dae">Steady-state from differential algebraic equations (DAE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-state-space-representation">Steady-state from state-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-analysis">Eigenvalues analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step">Time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time-and-duration">Settling time and duration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-outdoor-temperature">Step response to outdoor temperature</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-internal-load">Step response to internal load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="steady-state-and-step-response">
+<h1>Steady-state and step response<a class="headerlink" href="#steady-state-and-step-response" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_2_2Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">Steady-state</a> analysis focuses on the behavior of a system after transients have settled, specifically when the system reaches a stable equilibrium at a constant input.</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">Step response</a> analyses system’s dynamic response to a sudden change in input (i.e., to a step input). Step response is concerned with  transient behavior, such as how the system responds immediately after the input change and how it eventually settles into a new steady-state.</p>
+<p><strong>Objectives:</strong></p>
+<ul class="simple">
+<li><p>Find the steady-state values for thermal circuit and state-space.</p></li>
+<li><p>Estimate the time step and the setthing time from eigenvalue analysis.</p></li>
+<li><p>Simulate the step response.</p></li>
+<li><p>Compare the steady-state results with step response after settling time.</p></li>
+</ul>
+<p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Thermal circuit for the cubic building.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following assumptions are done:</p>
+<ul class="simple">
+<li><p>The indoor air temperature is controlled or not (i.e., the building is in free running).</p></li>
+<li><p>The time integration is done by using Euler explicit or Euler implicit methods.</p></li>
+<li><p>The time step is calculated from the eigenvalues or it is imposed at a value designated as <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">explicit_Euler</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step </span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The thermal circuit was described in the section on modelling (Figure 1). It is given by a <em>thermal circuit</em> imported from the file <code class="docutils literal notranslate"><span class="pre">./toy_model/TC.csv</span></code>.</p>
+<blockquote>
+<div><p>Table 1. Structure of a <em>thermal circuit</em> file.</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>G</p></th>
+<th class="head"><p>b</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>f</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>y</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>A thermal ciruit file contains the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>, the diagonals of matrices <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span> arranged as shown in Table 1. If there is no value in a cell, it is considered <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Matrices and vectors for thermal circuit from Figure 1&#39;</span><span class="p">)</span> 
+<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC_0.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrices and vectors for thermal circuit from Figure 1
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θ0</th>
+      <th>θ1</th>
+      <th>θ2</th>
+      <th>θ3</th>
+      <th>θ4</th>
+      <th>θ5</th>
+      <th>θ6</th>
+      <th>θ7</th>
+      <th>G</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>q0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1125.000000</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>q1</td>
+      <td>-1</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>630.000000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>q2</td>
+      <td>0</td>
+      <td>-1.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>630.000000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>q3</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.375000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>q4</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.375000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>q5</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>44.786824</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>q6</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>360.000000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>q7</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>72.000000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>q8</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>165.789474</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>q9</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>630.000000</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>q10</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>9.000000</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>q11</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0.000000</td>
+      <td>Ti_sp</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>C</td>
+      <td>0</td>
+      <td>18216000.0</td>
+      <td>0</td>
+      <td>239580</td>
+      <td>0</td>
+      <td>0</td>
+      <td>32400</td>
+      <td>1.089E+06</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>f</td>
+      <td>Φo</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Φi</td>
+      <td>0</td>
+      <td>Qa</td>
+      <td>Φa</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>y</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>In this thermal circuit <code class="docutils literal notranslate"><span class="pre">TC.csv</span></code> , the controller is <em>off</em>, i.e., the gain of the proportional controller is 0, <span class="math notranslate nohighlight">\(K_p = G_{11} = 0\)</span>; the building is in free-floating. The controller may be turned <em>on</em> by setting <span class="math notranslate nohighlight">\(K_p = G_{11} \rightarrow \infty\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODEL</span>
+<span class="c1"># =====</span>
+<span class="c1"># Thermal circuit</span>
+<span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC.csv&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">auto_number</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># by default TC[&#39;G&#39;][&#39;q11&#39;] = 0, i.e. Kp -&gt; 0, no controller (free-floating)</span>
+<span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e3</span>        <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thermal circuit is transformed in state-space representation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State-space</span>
+<span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="steady-state-analysis">
+<h2>Steady-state analysis<a class="headerlink" href="#steady-state-analysis" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">Steady-state</a> means that in the system of differential-algebraic equations (DAE):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{ll}
+C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\\ 
+q = G (-A \theta + b)
+\end{array}\right.\end{split}\]</div>
+<p>the term <span class="math notranslate nohighlight">\(C \dot \theta = 0\)</span>.</p>
+<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a>, the model can be checked if it is incorrect. Let’s consider that:</p>
+<ul class="simple">
+<li><p>the controller is not active, <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>,</p></li>
+<li><p>the outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span>,</p></li>
+<li><p>the indoor temperature setpoint is <span class="math notranslate nohighlight">\(T_{i,sp} = 20 \, \mathrm{^\circ C}\)</span>,</p></li>
+<li><p>all flow rate sources are zero.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>        <span class="c1"># temperature sources b for steady state</span>
+<span class="n">bss</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># outdoor temperature</span>
+<span class="n">bss</span><span class="p">[[</span><span class="mi">11</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">20</span>            <span class="c1"># indoor set-point temperature</span>
+
+<span class="n">fss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="c1"># flow-rate sources f for steady state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note</em>: Steady-state analysis is a test of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Falsifiability">falsification (refutability)</a> of the model, not a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Verification_and_validation">verification and validation</a>. If the model does not pass the steady-state test, it means that it is wrong. If the model passes the steady-state test, it does not mean that it is correct. For this example, the values of the capacities in matrix <span class="math notranslate nohighlight">\(C\)</span> or of the conductances in matrix <span class="math notranslate nohighlight">\(G\)</span> can be wrong, even when the steady-state test is passed.</p>
+<section id="steady-state-from-differential-algebraic-equations-dae">
+<h3>Steady-state from differential algebraic equations (DAE)<a class="headerlink" href="#steady-state-from-differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h3>
+<p>The temperature values in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a> are obtained from the system of DAE by considering that <span class="math notranslate nohighlight">\(C \dot{\theta} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{ss} = (A^T G A)^{-1}(A^T G b + f)\]</div>
+<p>For the conditions mentioned above, in steady-state, all temperatures <span class="math notranslate nohighlight">\(\theta_0 ... \theta_7,\)</span> including the indoor air temperature <span class="math notranslate nohighlight">\(\theta_6,\)</span> are equal to <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span> (Figure 1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+<span class="n">diag_G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">θss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">bss</span> <span class="o">+</span> <span class="n">fss</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;θss = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">θss</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10. 10. 10. 10. 10. 10. 10. 10.] °C
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the sum auxiliary heat sources in the room, <span class="math notranslate nohighlight">\(\dot Q_a = f_6\)</span>, is not zero, the temperature in the room <span class="math notranslate nohighlight">\(\theta_6\)</span> has the highest value and the temperature of the outdoor surface of the wall <span class="math notranslate nohighlight">\(\theta_0\)</span> is almost equal to the outdoor temperature, <span class="math notranslate nohighlight">\(T_o = b_0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>        <span class="c1"># temperature sources b for steady state</span>
+
+<span class="n">fss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="c1"># flow-rate sources f for steady state</span>
+<span class="n">fss</span><span class="p">[[</span><span class="mi">6</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">θssQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">bss</span> <span class="o">+</span> <span class="n">fss</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;θssQ = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">θssQ</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θssQ = [ 0.14  0.39  0.65  5.88 11.12  5.57 12.26  4.41] °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-state-from-state-space-representation">
+<h3>Steady-state from state-space representation<a class="headerlink" href="#steady-state-from-state-space-representation" title="Permalink to this headline">#</a></h3>
+<p>The input vector <span class="math notranslate nohighlight">\(u\)</span> of the state-space representation is obtained by stacking the vectors <span class="math notranslate nohighlight">\(b_T\)</span> and <span class="math notranslate nohighlight">\(f_Q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u = \begin{bmatrix} b_T \\ f_Q\end{bmatrix}\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_T\)</span> is a vector of the nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources. For the circuit presented in Figure 1, <span class="math notranslate nohighlight">\(b_T = [T_o, T_o, T_o, T_{i,sp}]^T\)</span> corresponding to branches 0, 8, 10 and 11, where:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - set-point temperaure for the indoor air, °C.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f_Q\)</span> - vector of nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources. For the circuit presented in Figure 1, <span class="math notranslate nohighlight">\(f_Q = [\Phi_o, \Phi_i, \dot{Q}_a, \Phi_a]^T\)</span>, corresponding to nodes 0, 4, 6, and 7, where:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Phi_o\)</span> - solar radiation absorbed by the outdoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_i\)</span> - solar radiation absorbed by the indoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_a\)</span> - solar radiation absorbed by the glass, W.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Note</em>: Zero in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> indicates that there is no source on the branch or in the node, respectively. However, a source can have the value zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>     <span class="c1"># [To, To, To, Tisp]</span>
+<span class="n">fQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>         <span class="c1"># [Φo, Φi, Qa, Φa]</span>
+<span class="n">uss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">bT</span><span class="p">,</span> <span class="n">fQ</span><span class="p">])</span>           <span class="c1"># input vector for state space</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;uss = </span><span class="si">{</span><span class="n">uss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>uss = [10 10 10 20  0  0  0  0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The steady-state value of the output of the state-space representation is obtained when <span class="math notranslate nohighlight">\(\dot \theta_{C} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[y_{ss} = (-C_s A_s^{-1} B_s + D_s) u\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inv_As</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">As</span><span class="p">),</span>
+                      <span class="n">columns</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">yss</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">inv_As</span> <span class="o">@</span> <span class="n">Bs</span> <span class="o">+</span> <span class="n">Ds</span><span class="p">)</span> <span class="o">@</span> <span class="n">uss</span>
+
+<span class="n">yss</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">yss</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yss = </span><span class="si">{</span><span class="n">yss</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = 10.00 °C
+</pre></div>
+</div>
+</div>
+</div>
+<p>The error between the steady-state values obtained from the system of DAE, <span class="math notranslate nohighlight">\(\theta_6\)</span>, and the output of the state-space representation, <span class="math notranslate nohighlight">\(y_{ss}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon = \left | \theta_6 - y_{ss} \right |\]</div>
+<p>is practically zero; the slight difference is due to <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_error">numerical errors</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error between DAE and state-space: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">θss</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">yss</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
+</pre></div>
+</div>
+</div>
+</div>
+<p>Likewise, the steady-state of the output of the state-space representation for input <span class="math notranslate nohighlight">\(\dot Q_a\)</span> is obtained from</p>
+<div class="math notranslate nohighlight">
+\[y_{ss} = (-C_s A_s^{-1} B_s + D_s) u\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>         <span class="c1"># [To, To, To, Tisp]</span>
+<span class="n">fQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>      <span class="c1"># [Φo, Φi, Qa, Φa]</span>
+<span class="n">uss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">bT</span><span class="p">,</span> <span class="n">fQ</span><span class="p">])</span>
+
+<span class="n">inv_As</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">As</span><span class="p">),</span>
+                      <span class="n">columns</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">yssQ</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">inv_As</span> <span class="o">@</span> <span class="n">Bs</span> <span class="o">+</span> <span class="n">Ds</span><span class="p">)</span> <span class="o">@</span> <span class="n">uss</span>
+
+<span class="n">yssQ</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">yssQ</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yssQ = </span><span class="si">{</span><span class="n">yssQ</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yssQ = 12.26 °C
+</pre></div>
+</div>
+</div>
+</div>
+<p>The steady-state values obtained from DAE and state-space representation are pratically equal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error between DAE and state-space: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">θssQ</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">yssQ</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="eigenvalues-analysis">
+<h2>Eigenvalues analysis<a class="headerlink" href="#eigenvalues-analysis" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eigenvalues analysis</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>        <span class="c1"># eigenvalues of matrix As</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="time-step">
+<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this headline">#</a></h3>
+<p>The condition for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">numerical stability</a> of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler explicit integration</a> method is</p>
+<div class="math notranslate nohighlight">
+\[\left |  \lambda_i \Delta t + 1 \right | &lt; 1, \forall \lambda_i, \]</div>
+<p>i.e., in the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Complex_plane">complex plane</a>, <span class="math notranslate nohighlight">\(\lambda_i \Delta t\)</span> is inside a circle of radius 1 centered in {-1, 0 j}, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of matrix <span class="math notranslate nohighlight">\(A_s\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta t\)</span> - time step,</p></li>
+<li><p><span class="math notranslate nohighlight">\(j = \sqrt {-1}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Imaginary_unit">imaginary unit</a>.</p></li>
+</ul>
+<p>For positive real eigenvalues <span class="math notranslate nohighlight">\(\left \{ \lambda \in \Re |\lambda &gt;0  \right \}\)</span>, which is the case of thermal networks, the above condition <a class="reference external" href="http://www.math.iit.edu/~fass/478578_Chapter_4.pdf">becomes</a></p>
+<div class="math notranslate nohighlight">
+\[- \lambda_i \Delta t - 1  &lt; 1, \forall \lambda_i, \]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[ 0 &lt; \Delta t &lt; -\frac{2}{\min \lambda_i} = 
+2 \min \left ( -\frac{1}{\lambda_i}  \right ) = 
+2 \min T_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_i\)</span> are the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_constant">time constants</a>, <span class="math notranslate nohighlight">\(T_i = - \frac{1}{\lambda_i}\)</span>. Let’s chose a time step smaller than <span class="math notranslate nohighlight">\(\Delta t_{max} = \min (-2 / \lambda_i) \)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
+<span class="k">if</span> <span class="n">imposed_time_step</span><span class="p">:</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">Δt</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dtmax</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 300 s = 5.0 min
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="settling-time-and-duration">
+<h3>Settling time and duration<a class="headerlink" href="#settling-time-and-duration" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">settling time</a> is roughly 4 times the largest time constant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># settling time</span>
+<span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;t_settle&#39;</span><span class="p">,</span> <span class="n">t_settle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t_settle = 176132 s = 48.9 h
+</pre></div>
+</div>
+</div>
+</div>
+<p>The duration of the simulation needs to be larger than the estimated <a class="reference external" href="https://en.m.wikipedia.org/wiki/Settling_time">settling time</a>. This requires a corresponding number of time steps in the time vector.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># duration: next multiple of 3600 s that is larger than t_settle</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>duration = 176400 s = 49.0 h
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-response-to-outdoor-temperature">
+<h2>Step response to outdoor temperature<a class="headerlink" href="#step-response-to-outdoor-temperature" title="Permalink to this headline">#</a></h2>
+<section id="input-vector">
+<h3>Input vector<a class="headerlink" href="#input-vector" title="Permalink to this headline">#</a></h3>
+<p>In dynamic simulation, the inputs are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a>, e.g., the oudoor temperature will have <span class="math notranslate nohighlight">\(n\)</span> values <span class="math notranslate nohighlight">\(T_o = [T_{o(0)}, T_{o(1)}, ..., T_{o(n-1)}]\)</span> at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p>
+<p>The input vector <span class="math notranslate nohighlight">\(u\)</span> of the state-space representation is obtained by stacking the vectors <span class="math notranslate nohighlight">\(b_T\)</span> and <span class="math notranslate nohighlight">\(f_Q\)</span> of the system of Differential Algebraic Equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u = \begin{bmatrix} b_T \\ f_Q\end{bmatrix}\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>vector <span class="math notranslate nohighlight">\(b_T\)</span> consists of the nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources; for the circuit presented in Figure 1,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[b = [\begin{matrix}
+T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &amp;T_o  &amp;T_{i,sp} 
+\end{matrix}]^T\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[b_T = [T_o, T_o, T_o, T_{i,sp}]^T\]</div>
+<p>corresponding to branches 0, 8, 10 and 11;</p>
+<ul class="simple">
+<li><p>vector <span class="math notranslate nohighlight">\(f_Q\)</span> is the nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources; for the circuit presented in Figure 1,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[f = [\begin{matrix}
+\Phi_o &amp;0  &amp;0  &amp;0  &amp;\Phi_i  &amp;0  &amp;\dot{Q_a} &amp;\Phi_a 
+\end{matrix}]^T\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[f_Q = [\Phi_o, \Phi_i, \dot{Q}_a, \Phi_a]^T\]</div>
+<p>corresponding to nodes 0, 4, 6, and 7.</p>
+<p>For the thermal circuit shown in Figure 1, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the input vector, <span class="math notranslate nohighlight">\(u = [u_0, u_1, ... , u_{n-1}]^T\)</span>, is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u = 
+\begin{bmatrix}
+T_o\\ 
+T_o\\ 
+T_o\\ 
+T_{i,sp}\\ 
+\Phi_o\\ 
+\Phi_i\\ 
+\dot{Q}_a\\ 
+\Phi_a
+\end{bmatrix}
+= \begin{bmatrix}
+T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\\ 
+T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\ 
+T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\ 
+T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\ 
+\Phi_{o(0)} &amp; \Phi_{o(1)} &amp; ... &amp; \Phi_{o(n-1)}\\
+\Phi_{i(0)} &amp; \Phi_{i(1)} &amp; ... &amp; \Phi_{i(n-1)}\\ 
+\dot{Q}_{a(0)} &amp; \dot{Q}_{a(1)} &amp; ... &amp; \dot{Q}_{a(n-1)}\\ 
+\Phi_{a(0)} &amp; \Phi_{a(1)} &amp; ... &amp; \Phi_{a(n-1)}
+\end{bmatrix}\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o = [T_{o(0)}, T_{o(1)}, ..., T_{o(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the oudoor temperature at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i, sp} = [T_{{i, sp}(0)}, T_{{i, sp}(1)}, ..., T_{{i, sp}(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the setpoint indoor temperature at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_o = [\Phi_{o(0)}, \Phi_{o(1)}, ..., \Phi_{o(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the solar radiation absorbed by the outdoor surface of the wall at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_i = [\Phi_{i(0)}, \Phi_{i(1)}, ..., \Phi_{i(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the solar radiation absorbed by the indoor surface of the wall at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a = [\dot{Q}_{a(0)}, \dot{Q}_{a(1)}, ..., \dot{Q}_{a(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the auxiliary heat gains (i.e., occupants, electrical devices, etc.) at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_a = [\Phi_{a(0)}, \Phi_{a(1)}, ..., \Phi_{a(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the solar radiation absorbed by the glass at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
+</ul>
+<p><em>Note</em>: In Pandas <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.9.1/timeseries.html">time series</a>, time is an index. Therefore, Pandas representation of vector of inputs <span class="math notranslate nohighlight">\(u\)</span> in time is the transpose of the matrix presented above.</p>
+<p>Let’s consider a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> in the conditions used for steady-state analysis, i.e., <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span>, <span class="math notranslate nohighlight">\(T_{i,sp} = 20 \, \mathrm{^\circ C}\)</span>, and all the flow sources zero (including the HVAC system).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create input_data_set</span>
+<span class="c1"># ---------------------</span>
+<span class="c1"># time vector</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">duration</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>    <span class="c1"># number of time steps</span>
+
+<span class="c1"># Create a DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span>
+                           <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="si">}</span><span class="s2">S&quot;</span><span class="p">)</span>
+
+<span class="n">To</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>        <span class="c1"># outdoor temperature</span>
+<span class="n">Ti_sp</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># indoor temperature set point</span>
+<span class="n">Φa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>         <span class="c1"># solar radiation absorbed by the glass</span>
+<span class="n">Qa</span> <span class="o">=</span> <span class="n">Φo</span> <span class="o">=</span> <span class="n">Φi</span> <span class="o">=</span> <span class="n">Φa</span>           <span class="c1"># auxiliary heat sources and solar radiation</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">}</span>
+<span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Get inputs in time from input_data_set</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="time-integration">
+<h3>Time integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">#</a></h3>
+<p>The state-space model</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{rr}
+\dot{\theta}_C=A_s \theta_C + B_s u\\ 
+y = C_s \theta_C + D_s u
+\end{array}\right.\end{split}\]</div>
+<p>is integrated in time by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler forward (or explicit) method</a> for numerical integration:</p>
+<div class="math notranslate nohighlight">
+\[ \theta_{s,k+1} = (I + \Delta t A) \theta_{s,k} + \Delta t B u_k \]</div>
+<p>and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">Euler backward (or implicit) method</a> for numerical integration:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{s,k+1} = (I - \Delta t A)^{-1} ( \theta_{s,k} + \Delta t B u_k )\]</div>
+<p>where <span class="math notranslate nohighlight">\(k = 0, ... , n - 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial values θ0</span>
+<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
+
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
+        <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
+        <span class="o">@</span> <span class="p">(</span><span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we obtain the outputs</p>
+<div class="math notranslate nohighlight">
+\[ y = C_s \theta_s + D_s u\]</div>
+<p>for explicit and for implicit Euler methods, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outputs</span>
+<span class="n">y_exp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y_imp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_imp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The results of explicit and implicit Euler integration are practically identical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">y_imp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Explicit&#39;</span><span class="p">,</span> <span class="s1">&#39;Implicit&#39;</span><span class="p">])</span>
+<span class="c1"># Flatten the two-level column labels into a single level</span>
+<span class="n">y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Indoor temperature, $</span><span class="se">\\</span><span class="s1">theta_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8c0240748acce69a68532d0eeb83596e0fdf964645cb7dda908fd5429662bcba.png" src="../_images/8c0240748acce69a68532d0eeb83596e0fdf964645cb7dda908fd5429662bcba.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 2. Step response to outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> by using Euler
+<a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">implicit</a>
+and
+<a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">explicit</a> integration.</p>
+</div></blockquote>
+<p>The value the indoor temperature obtained after the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Settling_time">settling time</a> is almost equal to the value obtained in steady-state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Steady-state indoor temperature obtained with:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- DAE model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">θss</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- state-space model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">yss</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- steady-state response to step input: </span><span class="se">\</span>
+<span class="si">{</span><span class="n">y_exp</span><span class="p">[</span><span class="s2">&quot;θ6&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steady-state indoor temperature obtained with:
+- DAE model: 10.0000 °C
+- state-space model: 10.0000 °C
+- steady-state response to step input: 9.9635 °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="step-response-to-internal-load">
+<h2>Step response to internal load<a class="headerlink" href="#step-response-to-internal-load" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider that the temperature sources are zero and that the flow-rate sources are zero, with the exception of the auxiliary heat gains, <span class="math notranslate nohighlight">\(\dot Q_a\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create input_data_set</span>
+<span class="c1"># ---------------------</span>
+<span class="c1"># time vector</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">duration</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>    <span class="c1"># number of time steps</span>
+
+<span class="c1"># Create a DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span>
+                           <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="si">}</span><span class="s2">S&quot;</span><span class="p">)</span>
+
+<span class="n">To</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>         <span class="c1"># outdoor temperature</span>
+<span class="n">Ti_sp</span> <span class="o">=</span>  <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># indoor temperature set point</span>
+<span class="n">Φa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>         <span class="c1"># solar radiation absorbed by the glass</span>
+<span class="n">Φo</span> <span class="o">=</span> <span class="n">Φi</span> <span class="o">=</span> <span class="n">Φa</span>                <span class="c1"># solar radiation</span>
+<span class="n">Qa</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>      <span class="c1"># auxiliary heat sources</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">}</span>
+<span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1"># Get inputs in time from input_data_set</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial values θ0</span>
+<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
+
+
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
+        <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
+        <span class="o">@</span> <span class="p">(</span><span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outputs</span>
+<span class="n">y_exp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">y_imp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_imp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">y_imp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Explicit&#39;</span><span class="p">,</span> <span class="s1">&#39;Implicit&#39;</span><span class="p">])</span>
+<span class="c1"># Flatten the two-level column labels into a single level</span>
+<span class="n">y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Indoor temperature, $</span><span class="se">\\</span><span class="s1">theta_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0eb5a9d6385ac48a248ffc45e8a0ede807dd15f1a40bc886ce00419efed89a1c.png" src="../_images/0eb5a9d6385ac48a248ffc45e8a0ede807dd15f1a40bc886ce00419efed89a1c.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 3. Step response to auxiliary heat gains <span class="math notranslate nohighlight">\(\dot Q_a\)</span> by using Euler
+<a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">implicit</a>
+and
+<a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">explicit</a> integration.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Steady-state indoor temperature obtained with:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- DAE model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">θssQ</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- state-space model: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">yssQ</span><span class="p">)</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;- steady-state response to step input: </span><span class="se">\</span>
+<span class="si">{</span><span class="n">y_exp</span><span class="p">[</span><span class="s2">&quot;θ6&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steady-state indoor temperature obtained with:
+- DAE model: 12.2566 °C
+- state-space model: 12.2566 °C
+- steady-state response to step input: 12.2549 °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
+<p>Interchange the materials  of the layers of the wall. Discuss the step responses obtained. Give arguments for the advantages and the disadvantages of indoor and outdoor insulation.</p>
+<p>The time step depends on:</p>
+<ul class="simple">
+<li><p>P-controller gain <code class="docutils literal notranslate"><span class="pre">Kp</span></code>:</p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect and the time step needs to be small;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then, the controller is ineffective and the building is in free-running.</p></li>
+</ul>
+</li>
+<li><p>Capacities considered into the model:</p>
+<ul>
+<li><p>if the capacities of the air <span class="math notranslate nohighlight">\(C_a =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Air']</span></code> and of the glass <span class="math notranslate nohighlight">\(C_g =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Glass']</span></code> are considered, then the time step is small;</p></li>
+<li><p>if the capacities of the air and of the glass are zero, then the time step is large (and the order of the state-space model is reduced).</p></li>
+</ul>
+</li>
+</ul>
+<p>The controller models an HVAC system able to mantain setpoint temperature by heating (when <span class="math notranslate nohighlight">\(q_{HVAC} &gt; 0\)</span>) and by cooling (when <span class="math notranslate nohighlight">\(q_{HVAC} &lt; 0\)</span>).</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">C. Ghiaus (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, , open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
+<li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">C. Ghiaus (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
+<li><p><a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">J.A. Duffie, W. A. Beckman, N. Blair (2020)</a>. Solar Engineering of Thermal Processes, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
+<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a>. Annexe à l’arrêté du 19 juillet 2006</p></li>
+<li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
+<li><p><a class="reference external" href="http://www.thermalradiation.net/indexCat.html">J.R. Howell et al. (2021)</a>. Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, A Catalogue of Configuration Factors</p></li>
+<li><p><a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">J. Widén, J. Munkhammar (2019)</a>. Solar Radiation Theory, Uppsala University</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_2_1Toy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_2_3Toy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Inputs</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-analysis">Steady-state analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-differential-algebraic-equations-dae">Steady-state from differential algebraic equations (DAE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-state-space-representation">Steady-state from state-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-analysis">Eigenvalues analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step">Time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time-and-duration">Settling time and duration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-outdoor-temperature">Step response to outdoor temperature</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-internal-load">Step response to internal load</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
