@@ -1,0 +1,1912 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Disassembled thermal circuits from building description &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/tutorials/pd02bldg2TCd';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/tutorials/pd02bldg2TCd.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/tutorials/pd02bldg2TCd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/tutorials/pd02bldg2TCd.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Disassembled thermal circuits from building description</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem-of-assembling">Stating the problem of assembling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix-and-lists">Assembly matrix and lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix">Assembly matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-lists">Assembly lists</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits">Thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#walls">Walls</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-types">Wall types</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#walls-data">Walls data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disassembled-thermal-circuits">Disassembled thermal circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-thermal-circuits">Accessing the thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-numbering">Auto-numbering</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="disassembled-thermal-circuits-from-building-description">
+<h1>Disassembled thermal circuits from building description<a class="headerlink" href="#disassembled-thermal-circuits-from-building-description" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd02bldg2TCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <code class="docutils literal notranslate"><span class="pre">dm4bem</span> <span class="pre">module</span></code>.</p>
+<p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code>):</p>
+<ul class="simple">
+<li><p>description of the walls (wall type and wall data);</p></li>
+<li><p>description of thermal circuits;</p></li>
+<li><p>assembling matrix or lists.</p></li>
+</ul>
+<p>The <em>disassembled thermal network</em> is a dictionary of thermal networks, each thermal network being described by the matrices <span class="math notranslate nohighlight">\(A, G, C\)</span> and the vectors <span class="math notranslate nohighlight">\(b, f, y\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="description-of-the-building">
+<h2>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this headline">#</a></h2>
+<p><img alt="cube" src="docs/figures/03_cube_principle.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an HVAC system which acts as a proportional controller (see Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>).</p>
+</div></blockquote>
+<p>Let’s consider a cubic building with an HVAC systems acting as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a>.</p>
+<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is:</p>
+<ul class="simple">
+<li><p>through the walls (concrete and insulation),</p></li>
+<li><p>through the glass window,</p></li>
+<li><p>by ventilation,</p></li>
+<li><p>from indoor auxiliary sources,</p></li>
+<li><p>from the HVAC system.</p></li>
+</ul>
+<p>The HVAC system is modelled as a proportional controller.</p>
+<p>There is long wave radiative exchange between the wall and the glass window.</p>
+<p>The sources are:</p>
+<ul class="simple">
+<li><p>temperature sources:</p>
+<ul>
+<li><p>outdoor atmospheric air;</p></li>
+<li><p>indoor air temperature setpoint;</p></li>
+</ul>
+</li>
+<li><p>flow rate sources:</p>
+<ul>
+<li><p>solar radiation on the outdoor and the indoor walls;</p></li>
+<li><p>auxiliary heat gains in the thermal zone.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="heat_processes" src="docs/figures/03_heat_process.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Heat processes for the cubic building shown in Figure 1 (see Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a>).</p>
+</div></blockquote>
+<p>Heat transfer for this toy model is presented in Figures 3 and 4.</p>
+</section>
+<section id="stating-the-problem-of-assembling">
+<h2>Stating the problem of assembling<a class="headerlink" href="#stating-the-problem-of-assembling" title="Permalink to this headline">#</a></h2>
+<p>Consider the disassembled thermal circuits shown in Figure 3 that we want to assemble as shown in Figure 4. The model is described in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="doc std std-doc">Toy model house</span></a></p>
+<p><img alt="disassambled_TC" src="../../_images/ass_TCd.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Four disassembled thermal circuits: wall_out: ow0 (in red), TC0: c0 (in blue), TC1: c1 (in green), TC2: c2 (in magenta), TC3: c3 (in black).</p>
+</div></blockquote>
+<p><img alt="disassambled_TC" src="../../_images/ass_TC.svg" /></p>
+<blockquote>
+<div><p>Figure 4. The assembling of the four circuits from Figure 2. The faded nodes are deleted.</p>
+</div></blockquote>
+<p>The assembling is done by putting temperature nodes in common, e.g., the node 0 of the circuit c0 to be the same with the node 4 of the circuit ow0. This operation is called <a class="reference external" href="https://en.m.wikipedia.org/wiki/Graph_operations#Unary_operations">merging of vertexes</a> in graph theory.</p>
+</section>
+<section id="description-of-the-folder-containing-the-circuits">
+<h2>Description of the folder containing the circuits<a class="headerlink" href="#description-of-the-folder-containing-the-circuits" title="Permalink to this headline">#</a></h2>
+<p>The disassembled circuits and the indications on how to assemble them are given in the folder <code class="docutils literal notranslate"><span class="pre">.\bldg</span></code> composed by the files:</p>
+<ul class="simple">
+<li><p>assembly:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">assembly_lists.csv</span></code>: lists that indicate the nodes to be merged;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>: matrix that indicates the nodes to be merged;</p></li>
+</ul>
+</li>
+<li><p>thermal circuits: <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>, … , <code class="docutils literal notranslate"><span class="pre">TC3.csv</span></code>;</p></li>
+<li><p>walls:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>: physical properties for each type of wall;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>: surface properties for each specific wall.</p></li>
+</ul>
+</li>
+</ul>
+<section id="assembly-matrix-and-lists">
+<h3>Assembly matrix and lists<a class="headerlink" href="#assembly-matrix-and-lists" title="Permalink to this headline">#</a></h3>
+<section id="assembly-matrix">
+<h4>Assembly matrix<a class="headerlink" href="#assembly-matrix" title="Permalink to this headline">#</a></h4>
+<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common:</p>
+<ol class="arabic simple">
+<li><p>The first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept.</p></li>
+<li><p>The second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node.</p></li>
+</ol>
+<p>For example, in Figure 4 the nodes put in commun (or merged) are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
+<p>The five merging arrows in Figure 4 are:</p>
+<ol class="arabic simple" start="0">
+<li><p>Node 4 of circuit ow0 (in red) is merged with node 0 of circuit c0 (in blue); node 4 of circuit ow0 is kept (node 0 of circuit c0, in faded blue, is deleted).</p></li>
+<li><p>2nd last node of circuit c1 (in green) is merged with node 1 of circuit c0 (in blue); the node of circuit c1 is kept (node 1 of circuit c0, in faded blue, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit ow0 (in red); the node of circuit c2 is kept (last node of circuit ow0, in faded red, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the 1st node of circuit c3 (in black); the node of circuit c2 is kept (node 0 of circuit c3, in faded black, is deleted).</p></li>
+<li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit c1 (in green); the node of circuit c2 is kept (last node of circuit c1, in faded green, is deleted).</p></li>
+</ol>
+<p>These connexions are described in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/assembly_matrix.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>TC0</th>
+      <th>node0</th>
+      <th>TC1</th>
+      <th>node1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ow0</td>
+      <td>4</td>
+      <td>c0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>c1</td>
+      <td>-2</td>
+      <td>c0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>c2</td>
+      <td>0</td>
+      <td>ow0</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>c2</td>
+      <td>0</td>
+      <td>c3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>c2</td>
+      <td>0</td>
+      <td>c1</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Note:</strong> Since a node cannot be, in the same time, deleted and kept, a node that appears in multiple rows cannot be specified in the 1st two columns on one row and in the last two columns on another row. For example, node 0 of circuit c2 (which is kept) can be only in the first columns.</p>
+</section>
+<section id="assembly-lists">
+<h4>Assembly lists<a class="headerlink" href="#assembly-lists" title="Permalink to this headline">#</a></h4>
+<p>The assembly lists are in the file <code class="docutils literal notranslate"><span class="pre">assembly_lists.csv</span></code>. Each row contains two lists:</p>
+<ul class="simple">
+<li><p><strong>node0</strong>: the node that is kept (to which all the merging arrows point);</p></li>
+<li><p><strong>nodes</strong>: the node or nodes that are merged and deleted (that are the tail of the merging arrows).</p></li>
+</ul>
+<p>For the circuits shown in Figures 3 and 4, there are three lists representing the three nodes that are kept (nodes to which the merging arrows point):</p>
+<ul class="simple">
+<li><p>On row 0:</p>
+<ul>
+<li><p>node 0 of circuit c2, which is kept;</p></li>
+<li><p>last node of circuit ow0, 1st node of circuit c3, last node of circuit c1, which are merged with node 0 of circuit c2.</p></li>
+</ul>
+</li>
+<li><p>On row 1:</p>
+<ul>
+<li><p>node 4 of circuit ow0, which is kept;</p></li>
+<li><p>node 0 of circuit c0, which is merged.</p></li>
+</ul>
+</li>
+<li><p>On row 2:</p>
+<ul>
+<li><p>second last node of circuit c1, which is kept;</p></li>
+<li><p>node 1 of circuit c0, which is merged.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/assembly_lists.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>node0</th>
+      <th>nodes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>['c2', 0]</td>
+      <td>['ow0', -1], ['c3', 0], ['c1', -1]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>['ow0', 4]</td>
+      <td>['c0', 0],</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>['c1', -2]</td>
+      <td>['c0', 1],</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="thermal-circuits">
+<h3>Thermal circuits<a class="headerlink" href="#thermal-circuits" title="Permalink to this headline">#</a></h3>
+<p>The names of the files which describe the thermal circuits start with TC, e.g., <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>. A thermal circuit is a data structure composed of:</p>
+<ul class="simple">
+<li><p><strong>A</strong>: incidence matrix  which indicates how the nodes are connected by oriented branches;</p></li>
+<li><p><strong>G</strong>: conductance diagonal matrix ;</p></li>
+<li><p><strong>C</strong>: capacity diagonal matrix ;</p></li>
+<li><p><strong>b</strong>: temperature source vector ;</p></li>
+<li><p><strong>f</strong>: heat flow source vector ;</p></li>
+<li><p><strong>y</strong>: output (temperature) vector.</p></li>
+</ul>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 3, 4 and 5.</p>
+<p><img alt="disassambled_TC" src="../../_images/TC1.svg" /></p>
+<blockquote>
+<div><p>Figure 5. Thermal circuit <code class="docutils literal notranslate"><span class="pre">TC1:</span> <span class="pre">c1</span></code> described in the file <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/TC1.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θg</th>
+      <th>θwi</th>
+      <th>θai</th>
+      <th>G</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>qgo</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>165.789</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>qgi</td>
+      <td>-1</td>
+      <td>1.0</td>
+      <td></td>
+      <td>630.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>qai</td>
+      <td></td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>72.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C</td>
+      <td>1089000.0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>f</td>
+      <td>Φa</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>y</td>
+      <td></td>
+      <td></td>
+      <td>1.0</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The incidence matrix <strong>A</strong> describes how the temperature nodes <em>θ</em> are connected by the oriented flow branches <em>q</em>:</p>
+<ul class="simple">
+<li><p>The rows <code class="docutils literal notranslate"><span class="pre">qgo</span></code>, <code class="docutils literal notranslate"><span class="pre">qgi</span></code>, <code class="docutils literal notranslate"><span class="pre">qai</span></code> (glass out, glass in, and air in, respectively) correspond to the flow branches.</p></li>
+<li><p>The columns <code class="docutils literal notranslate"><span class="pre">θg</span></code>, <code class="docutils literal notranslate"><span class="pre">θwi</span></code>, <code class="docutils literal notranslate"><span class="pre">θai</span></code> (glass, window surface in and air in, respectively) correspond to the temperature nodes.</p></li>
+<li><p>Value <code class="docutils literal notranslate"><span class="pre">1</span></code> means that the flow enters into the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgo</span></code> enters node <code class="docutils literal notranslate"><span class="pre">θg</span></code>.</p></li>
+<li><p>Value <code class="docutils literal notranslate"><span class="pre">-1</span></code> means that the flow exists from the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgi</span></code> quits node <code class="docutils literal notranslate"><span class="pre">θg</span></code>.</p></li>
+<li><p>Value <code class="docutils literal notranslate"><span class="pre">0</span></code> or no value (which is rendered as <code class="docutils literal notranslate"><span class="pre">NaN</span></code>by Pandas dataframe) means that the flow is not connected to the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgo</span></code> not conected to node <code class="docutils literal notranslate"><span class="pre">θwi</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;qgo&#39;</span><span class="p">,</span> <span class="s1">&#39;qgi&#39;</span><span class="p">,</span> <span class="s1">&#39;qai&#39;</span><span class="p">]),</span>
+       <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;θg&#39;</span><span class="p">,</span> <span class="s1">&#39;θwi&#39;</span><span class="p">,</span> <span class="s1">&#39;θai&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θg</th>
+      <th>θwi</th>
+      <th>θai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>qgo</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>qgi</td>
+      <td>-1</td>
+      <td>1.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>qai</td>
+      <td></td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The conductances, given in column <strong>G</strong> for each branch <em>q</em>, are the values on the diagonal of the conductance matrix. The conductances <strong>G</strong> are defined only for the rows corresponding to the flow branches. There are no values for <strong>G</strong> in the last three rows (corresponding to C, f and y).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;qgo&#39;</span><span class="p">,</span> <span class="s1">&#39;qgi&#39;</span><span class="p">,</span> <span class="s1">&#39;qai&#39;</span><span class="p">]),</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>G</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>qgo</td>
+      <td>165.789</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>qgi</td>
+      <td>630.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>qai</td>
+      <td>72.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The capacities, given in row <strong>C</strong> for each node <em>θ</em>, are the values on the diagonal of the capacity matrix.  The capacities <strong>C</strong> are defined only for the columns corresponding to the temperature nodes. There are always no values for <strong>C</strong> in the last two columns (corresponding to G and b). The capacities in some temperature nodes may be zero (or NaN).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+       <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;θg&#39;</span><span class="p">,</span> <span class="s1">&#39;θwi&#39;</span><span class="p">,</span> <span class="s1">&#39;θai&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θg</th>
+      <th>θwi</th>
+      <th>θai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>C</td>
+      <td>1089000.0</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Column <strong>b</strong> contains the names of the temperature sources on each flow branch. The temperature sources <strong>b</strong> are defined only for the rows corresponding to the flow branches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;qgo&#39;</span><span class="p">,</span> <span class="s1">&#39;qgi&#39;</span><span class="p">,</span> <span class="s1">&#39;qai&#39;</span><span class="p">]),</span>
+       <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>qgo</td>
+      <td>To</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>qgi</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>qai</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Row <strong>f</strong> contains the names of the flow sources in each temperature node. The flow sources <strong>f</strong> are defined only for the columns corresponding to the temperature nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span>
+       <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;θg&#39;</span><span class="p">,</span> <span class="s1">&#39;θwi&#39;</span><span class="p">,</span> <span class="s1">&#39;θai&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θg</th>
+      <th>θwi</th>
+      <th>θai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>f</td>
+      <td>Φa</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Row <strong>y</strong> indicates by “1” (ones) the temperature nodes that are the outputs of the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span>
+       <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;θg&#39;</span><span class="p">,</span> <span class="s1">&#39;θwi&#39;</span><span class="p">,</span> <span class="s1">&#39;θai&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>θg</th>
+      <th>θwi</th>
+      <th>θai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>y</td>
+      <td></td>
+      <td></td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note that in the data structure of a thermal circuit (the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file) there are always no values for the block defined by the rows <strong>C</strong>, <strong>f</strong> and <strong>y</strong> and the columns <strong>G</strong> and <strong>b</strong>.</p>
+</section>
+<section id="walls">
+<h3>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h3>
+<p>The walls are characterized by two files:</p>
+<ul class="simple">
+<li><p>wall composition and physical properties of material for type of wall (e.g., file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>);</p></li>
+<li><p>surface characteristics of each wall (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>).</p></li>
+</ul>
+<section id="wall-types">
+<h4>Wall types<a class="headerlink" href="#wall-types" title="Permalink to this headline">#</a></h4>
+<p>Let’s consider two types of wall described in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/wall_types.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+      <th>Material</th>
+      <th>Conductivity</th>
+      <th>Specific heat</th>
+      <th>Density</th>
+      <th>Width</th>
+      <th>Mesh</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Concrete</td>
+      <td>1.400</td>
+      <td>880</td>
+      <td>2300</td>
+      <td>0.200</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>Insulation</td>
+      <td>0.027</td>
+      <td>1210</td>
+      <td>55</td>
+      <td>0.080</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Glass</td>
+      <td>1.400</td>
+      <td>750</td>
+      <td>2500</td>
+      <td>0.004</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The walls of <strong>type</strong> 0 have two layers: Concrete and Insulation. Their physical characteristics (conductivity, specific heat, density) are given in SI units (W·m⁻¹·K⁻¹, J·kg⁻¹·K⁻¹, and kg·m⁻³, respectively). The width of the layers is in m. <strong>Mesh</strong> represents the number of meshes in which the layer is discretized. Each mesh has two resistances and a capacity.</p>
+<p>The wall <strong>owO</strong> (in red) in Figures 3 and 4 is of type 0. It has two layers (concrete and insulation), each one discretized in one mesh.</p>
+</section>
+<section id="walls-data">
+<h4>Walls data<a class="headerlink" href="#walls-data" title="Permalink to this headline">#</a></h4>
+<p>There are three types of plane walls (see <em>1.2 Walls data</em> in <a class="reference internal" href="pd01wall2TC.html"><span class="doc std std-doc">pd01wall2TC.ipynb</span></a>):</p>
+<ol class="arabic simple">
+<li><p>generic,</p></li>
+<li><p>outdoor wall,</p></li>
+<li><p>indoor wall.</p></li>
+</ol>
+<p>In this folder, there is only one outdoor wall described by the file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/walls_out.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>type</th>
+      <th>Area</th>
+      <th>β</th>
+      <th>γ</th>
+      <th>albedo</th>
+      <th>T0</th>
+      <th>Q0</th>
+      <th>Q1</th>
+      <th>h0</th>
+      <th>h1</th>
+      <th>α0</th>
+      <th>α1</th>
+      <th>ε0</th>
+      <th>ε1</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>w0</td>
+      <td>0</td>
+      <td>45</td>
+      <td>90</td>
+      <td>0</td>
+      <td>0.2</td>
+      <td>To</td>
+      <td>Φo</td>
+      <td>Φi</td>
+      <td>25</td>
+      <td>8</td>
+      <td>0.25</td>
+      <td>0.3</td>
+      <td>0.85</td>
+      <td>0.7</td>
+      <td>[-1]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The outdoor wall with <strong>ID</strong> w0 has the characteristics:</p>
+<ul class="simple">
+<li><p><strong>type</strong>: 0, given in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p></li>
+<li><p><strong>Area</strong>: 45 m², surface area of the plan wall;</p></li>
+<li><p><strong>β</strong>: 90°, wall slope (0° horizontal, 90° vertical; &gt; 90° downward facing);</p></li>
+<li><p><strong>γ</strong>:  0°, azimuth (0° South, 180° North, &gt;0 westward, &lt;0 eastward);</p></li>
+<li><p><strong>T0</strong>: ‘To’, name of the temperature source of outer surface;</p></li>
+<li><p><strong>Q0</strong>: ‘Qo’, name of the flow rate source of outer surface;</p></li>
+<li><p><strong>Q1</strong>: ‘Qi’, name of the flow rate source of inner surface;</p></li>
+<li><p><strong>h0</strong>: 25 W·m⁻²·K⁻¹, convection coefficient of outer surface;</p></li>
+<li><p><strong>h1</strong>: 8 W·m⁻²·K⁻¹, convection coefficient of inner surface;</p></li>
+<li><p><strong>α0</strong>: 0.25, short-wave absorbtion coefficient of outer surface;</p></li>
+<li><p><strong>α1</strong>: 0.3, short-wave absorbtion coefficient of inner surface;</p></li>
+<li><p><strong>ε0</strong>: 0.85, long-wave hemispherical emissivity of outer surface;</p></li>
+<li><p><strong>ε1</strong>: 0.7, long-wave hemispherical emissivity of inner surface;</p></li>
+<li><p><strong>y</strong>:  [0, -1], output temperature nodes by using slicing, in this case the 1st node and the last node are outputs.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="disassembled-thermal-circuits">
+<h2>Disassembled thermal circuits<a class="headerlink" href="#disassembled-thermal-circuits" title="Permalink to this headline">#</a></h2>
+<p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code> that describes the building.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits with auto-numbering of θ and q</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
+                      <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="accessing-the-thermal-circuits">
+<h3>Accessing the thermal circuits<a class="headerlink" href="#accessing-the-thermal-circuits" title="Permalink to this headline">#</a></h3>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">TCd</span></code> is a dictionary; the keys of this dictionary are the names of the circuits. Each circuit from the set of disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> can be accessed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;A&#39;:        c1_θ0  c1_θ1  c1_θ2
+ c1_q0    1.0    0.0    0.0
+ c1_q1   -1.0    1.0    0.0
+ c1_q2    0.0   -1.0    1.0,
+ &#39;G&#39;: c1_q0    165.789
+ c1_q1    630.000
+ c1_q2     72.000
+ Name: G, dtype: float64,
+ &#39;C&#39;: c1_θ0    1089000.0
+ c1_θ1          0.0
+ c1_θ2          0.0
+ Name: C, dtype: float64,
+ &#39;b&#39;: c1_q0    To
+ c1_q1     0
+ c1_q2     0
+ Name: b, dtype: object,
+ &#39;f&#39;: c1_θ0     Φa
+ c1_θ1    0.0
+ c1_θ2    0.0
+ Name: f, dtype: object,
+ &#39;y&#39;: c1_θ0    0
+ c1_θ1    0
+ c1_θ2    1
+ Name: y, dtype: int64}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The elements (A, G, C, b, f, y) of each circuit can be accessed separately.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c1_θ0</th>
+      <th>c1_θ1</th>
+      <th>c1_θ2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c1_q0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1_q1</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1_q2</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1_q0    165.789
+c1_q1    630.000
+c1_q2     72.000
+Name: G, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>All circuits contained in the data structure <code class="docutils literal notranslate"><span class="pre">TCd</span></code> can be printed (see Figures 3 and 4).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">TCd</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Thermal circuit:&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+    <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCd</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Thermal circuit: ow0
+A:
+        ow0_θ0  ow0_θ1  ow0_θ2  ow0_θ3  ow0_θ4  ow0_θ5
+ow0_q0     1.0     0.0     0.0     0.0     0.0     0.0
+ow0_q1    -1.0     1.0     0.0     0.0     0.0     0.0
+ow0_q2     0.0    -1.0     1.0     0.0     0.0     0.0
+ow0_q3     0.0     0.0    -1.0     1.0     0.0     0.0
+ow0_q4     0.0     0.0     0.0    -1.0     1.0     0.0
+ow0_q5     0.0     0.0     0.0     0.0    -1.0     1.0 
+
+G:
+ow0_q0    1125.000
+ow0_q1     630.000
+ow0_q2     630.000
+ow0_q3      30.375
+ow0_q4      30.375
+ow0_q5     360.000
+dtype: float64 
+
+C:
+ow0_θ0           0.0
+ow0_θ1    18216000.0
+ow0_θ2           0.0
+ow0_θ3      239580.0
+ow0_θ4           0.0
+ow0_θ5           0.0
+dtype: float64 
+
+b:
+ow0_q0     To
+ow0_q1    0.0
+ow0_q2    0.0
+ow0_q3    0.0
+ow0_q4    0.0
+ow0_q5    0.0
+dtype: object 
+
+f:
+ow0_θ0     Φo
+ow0_θ1    0.0
+ow0_θ2    0.0
+ow0_θ3    0.0
+ow0_θ4     Φi
+ow0_θ5    0.0
+dtype: object 
+
+y:
+ow0_θ0    0.0
+ow0_θ1    0.0
+ow0_θ2    0.0
+ow0_θ3    0.0
+ow0_θ4    0.0
+ow0_θ5    1.0
+dtype: float64 
+
+Thermal circuit: c0
+A:
+       c0_θ0  c0_θ1
+c0_q0   -1.0    1.0 
+
+G:
+c0_q0    44.7868
+Name: G, dtype: float64 
+
+C:
+c0_θ0    0.0
+c0_θ1    0.0
+Name: C, dtype: float64 
+
+b:
+c0_q0    0.0
+Name: b, dtype: float64 
+
+f:
+c0_θ0    0.0
+c0_θ1    0.0
+Name: f, dtype: float64 
+
+y:
+c0_θ0    0
+c0_θ1    0
+Name: y, dtype: int64 
+
+Thermal circuit: c1
+A:
+       c1_θ0  c1_θ1  c1_θ2
+c1_q0    1.0    0.0    0.0
+c1_q1   -1.0    1.0    0.0
+c1_q2    0.0   -1.0    1.0 
+
+G:
+c1_q0    165.789
+c1_q1    630.000
+c1_q2     72.000
+Name: G, dtype: float64 
+
+C:
+c1_θ0    1089000.0
+c1_θ1          0.0
+c1_θ2          0.0
+Name: C, dtype: float64 
+
+b:
+c1_q0    To
+c1_q1     0
+c1_q2     0
+Name: b, dtype: object 
+
+f:
+c1_θ0     Φa
+c1_θ1    0.0
+c1_θ2    0.0
+Name: f, dtype: object 
+
+y:
+c1_θ0    0
+c1_θ1    0
+c1_θ2    1
+Name: y, dtype: int64 
+
+Thermal circuit: c2
+A:
+       c2_θ0
+c2_q0    1.0 
+
+G:
+c2_q0    9.0
+Name: G, dtype: float64 
+
+C:
+c2_θ0    32400.0
+Name: C, dtype: float64 
+
+b:
+c2_q0    To
+Name: b, dtype: object 
+
+f:
+c2_θ0    Qa
+Name: f, dtype: object 
+
+y:
+c2_θ0    1
+Name: y, dtype: int64 
+
+Thermal circuit: c3
+A:
+       c3_θ0
+c3_q0    1.0 
+
+G:
+c3_q0    0.0
+Name: G, dtype: float64 
+
+C:
+c3_θ0    0.0
+Name: C, dtype: float64 
+
+b:
+c3_q0    Ti_sp
+Name: b, dtype: object 
+
+f:
+c3_θ0    0.0
+Name: f, dtype: object 
+
+y:
+c3_θ0    0
+Name: y, dtype: int64 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="auto-numbering">
+<h3>Auto-numbering<a class="headerlink" href="#auto-numbering" title="Permalink to this headline">#</a></h3>
+<p>There are two types of files describing the thermal circuits:</p>
+<ol class="arabic simple">
+<li><p>walls, described by the files <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">walls_.csv</span></code>.</p></li>
+<li><p>thermal circuits, described by the files <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>, etc.</p></li>
+</ol>
+<p>The walls are auto-numbered, i.e., the nodes and oriented branches are numbered automatically and named <strong>θ0, θ1</strong>, … and <strong>q0, q1</strong>, …, respectively, preceeded by the name of the wall, e.g., <strong>ow0_</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;ow0&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ow0_θ0</th>
+      <th>ow0_θ1</th>
+      <th>ow0_θ2</th>
+      <th>ow0_θ3</th>
+      <th>ow0_θ4</th>
+      <th>ow0_θ5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ow0_q0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ow0_q1</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ow0_q2</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ow0_q3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ow0_q4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>ow0_q5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The thermal circuits can be autonumbered or they can keep the symbols given to the nodes and the branches in the <code class="docutils literal notranslate"><span class="pre">TC...</span> <span class="pre">.csv</span></code> files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Disassembled thermal circuit with autonumbering&#39;</span><span class="p">)</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
+                      <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with autonumbering
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c1_θ0</th>
+      <th>c1_θ1</th>
+      <th>c1_θ2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c1_q0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1_q1</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1_q2</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Disassembled thermal circuit with symbols&#39;</span><span class="p">)</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
+                      <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with symbols
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c1θg</th>
+      <th>c1θwi</th>
+      <th>c1θai</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>c1qgo</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1qgi</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>c1qai</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stating-the-problem-of-assembling">Stating the problem of assembling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-folder-containing-the-circuits">Description of the folder containing the circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix-and-lists">Assembly matrix and lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-matrix">Assembly matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-lists">Assembly lists</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuits">Thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#walls">Walls</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-types">Wall types</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#walls-data">Walls data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disassembled-thermal-circuits">Disassembled thermal circuits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-thermal-circuits">Accessing the thermal circuits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-numbering">Auto-numbering</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

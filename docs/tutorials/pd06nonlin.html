@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Nonlinear controller &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/tutorials/pd06nonlin';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/tutorials/pd06nonlin.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/tutorials/pd06nonlin.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/tutorials/pd06nonlin.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Nonlinear controller</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-protection">Solar protection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passive-cooling">Passive cooling</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nonlinear-controller">
+<h1>Nonlinear controller<a class="headerlink" href="#nonlinear-controller" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd06nonlin.ipynb"><img alt="Binder" src="https://static.mybinder.org/badge_logo.svg" /></a></p>
+<p>This notebook shows how to change the control input during the numerical integration in order to implement complex control algorithms in the numerical integration loop. The procedure presented in <a class="reference internal" href="pd05simulation.html"><span class="doc std std-doc">Inputs and simulation</span></a> is used with the difference that nonlinear control algorithms are implemented in the time-integration loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">control_for</span><span class="p">(</span><span class="n">controller</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">nonlinear_controller</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Obtain state-space representation</span>
+    <span class="c1"># =================================</span>
+    <span class="c1"># Disassembled thermal circuits</span>
+    <span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
+    <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
+                          <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Assembled thermal circuit</span>
+    <span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
+    <span class="n">ass_matrix</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
+    <span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_matrix</span><span class="p">)</span>
+
+    <span class="c1"># TC[&#39;G&#39;][&#39;c3_q0&#39;] = 1e3  # Kp, controler gain</span>
+    <span class="c1"># TC[&#39;C&#39;][&#39;c2_θ0&#39;] = 0    # indoor air heat capacity</span>
+    <span class="c1"># TC[&#39;C&#39;][&#39;c1_θ0&#39;] = 0    # glass (window) heat capacit</span>
+
+    <span class="c1"># State-space</span>
+    <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+
+    <span class="c1"># Eigenvaleus analysis</span>
+    <span class="c1"># ====================</span>
+    <span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
+
+    <span class="n">dt_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+    <span class="n">dt_max</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dt_max</span><span class="p">)</span>
+    <span class="c1"># dm4bem.print_rounded_time(&#39;dt_max&#39;, dt)</span>
+
+    <span class="c1"># Simulation with weather data</span>
+    <span class="c1"># ============================</span>
+    <span class="c1"># Start / end time</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">period</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">start_date</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">end_date</span>
+
+    <span class="c1"># Weather</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+    <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
+    <span class="k">del</span> <span class="n">data</span>
+    <span class="n">weather</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
+    <span class="n">weather</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
+
+    <span class="c1"># Temperature sources</span>
+    <span class="n">To</span> <span class="o">=</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span>
+
+    <span class="n">Ti_day</span><span class="p">,</span> <span class="n">Ti_night</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">16</span>
+    <span class="n">Ti_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">Ti_sp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">Ti_day</span> <span class="k">if</span> <span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">hour</span> <span class="o">&lt;=</span> <span class="mi">22</span> <span class="k">else</span> <span class="n">Ti_night</span> <span class="k">for</span> <span class="n">hour</span> <span class="ow">in</span> <span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span><span class="p">],</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="c1"># Flow-rate sources</span>
+    <span class="c1"># total solar irradiance</span>
+    <span class="n">wall_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pd/bldg/walls_out.csv&#39;</span><span class="p">)</span>
+    <span class="n">w0</span> <span class="o">=</span> <span class="n">wall_out</span><span class="p">[</span><span class="n">wall_out</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;w0&#39;</span><span class="p">]</span>
+
+    <span class="n">surface_orientation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span><span class="p">:</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;β&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="s1">&#39;azimuth&#39;</span><span class="p">:</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;γ&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">}</span>
+
+    <span class="n">rad_surf</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">sol_rad_tilt_surf</span><span class="p">(</span>
+        <span class="n">weather</span><span class="p">,</span> <span class="n">surface_orientation</span><span class="p">,</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;albedo&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">Etot</span> <span class="o">=</span> <span class="n">rad_surf</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Window glass properties</span>
+    <span class="n">α_gSW</span> <span class="o">=</span> <span class="mf">0.38</span>    <span class="c1"># short wave absortivity: reflective blue glass</span>
+    <span class="n">τ_gSW</span> <span class="o">=</span> <span class="mf">0.30</span>    <span class="c1"># short wave transmitance: reflective blue glass</span>
+    <span class="n">S_g</span> <span class="o">=</span> <span class="mi">9</span>         <span class="c1"># m2, surface area of glass</span>
+
+    <span class="c1"># Flow-rate sources</span>
+    <span class="c1"># solar radiation</span>
+    <span class="n">Φo</span> <span class="o">=</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Etot</span>
+    <span class="n">Φi</span> <span class="o">=</span> <span class="n">τ_gSW</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
+    <span class="n">Φa</span> <span class="o">=</span> <span class="n">α_gSW</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
+
+    <span class="c1"># auxiliary (internal) sources</span>
+    <span class="n">Qa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">To</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="c1"># Input data set</span>
+    <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span>
+                                   <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">,</span>
+                                   <span class="s1">&#39;Etot&#39;</span><span class="p">:</span> <span class="n">Etot</span><span class="p">})</span>
+
+    <span class="c1"># Time integration</span>
+    <span class="c1"># ----------------</span>
+    <span class="c1"># Resample hourly data to time step dt</span>
+    <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">input_data_set</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
+        <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get input from input_data_set</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
+
+    <span class="c1"># initial conditions</span>
+    <span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                     <span class="c1"># initial temperatures</span>
+    <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># Fill θ with initial valeus θ0</span>
+
+    <span class="c1"># time integration</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nonlinear_controller</span><span class="p">:</span>
+            <span class="n">exec</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span>
+
+        <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
+            <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+    <span class="c1"># outputs</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+    <span class="n">Kp</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;c3_q0&#39;</span><span class="p">]</span>     <span class="c1"># W/K, controller gain</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span>                 <span class="c1"># m², surface area of the toy house</span>
+
+    <span class="c1"># q_HVAC / [W/m²]</span>
+    <span class="k">if</span> <span class="n">nonlinear_controller</span><span class="p">:</span>
+        <span class="n">q_HVAC</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="s1">&#39;c2_θ0&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">q_HVAC</span> <span class="o">=</span> <span class="n">Kp</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="s1">&#39;c3_q0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="s1">&#39;c2_θ0&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">S</span>  <span class="c1"># W/m²</span>
+
+    <span class="c1"># plot</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">input_data_set</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;θi&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">[</span><span class="s1">&#39;c2_θ0&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Etot&#39;</span><span class="p">:</span> <span class="n">input_data_set</span><span class="p">[</span><span class="s1">&#39;Etot&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;q_HVAC&#39;</span><span class="p">:</span> <span class="n">q_HVAC</span><span class="p">})</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="s1">&#39;θi&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
+                            <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature, $θ$ / [°C]&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$θ_</span><span class="si">{outdoor}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$θ_</span><span class="si">{indoor}</span><span class="s1">$&#39;</span><span class="p">],</span>
+                  <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Etot&#39;</span><span class="p">,</span> <span class="s1">&#39;q_HVAC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                  <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / [W / m²]&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
+                  <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="model">
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">#</a></h2>
+<p><img alt="assambled_TC" src="../../_images/ass_TC.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Assembled circuit.</p>
+</div></blockquote>
+<p>In this example, we will consider that the controller is not modeled by the conductance <span class="math notranslate nohighlight">\(G_0\)</span> and the temperature source <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> but, instead, by the heatflow rate <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span>, which is added to the indoor air in node <span class="math notranslate nohighlight">\(\theta_0\)</span> of circuit <code class="docutils literal notranslate"><span class="pre">TC2:c2</span></code>  (Figure 1). Therefore, in <code class="docutils literal notranslate"><span class="pre">TC3:c3</span></code> the conductance <span class="math notranslate nohighlight">\(G_0 \rightarrow 0\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[\dot{Q}_a \equiv u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat in node <code class="docutils literal notranslate"><span class="pre">θ0</span></code> of circuit <code class="docutils literal notranslate"><span class="pre">c2</span></code>, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_{c2\_θ0}\)</span> - input of type flow rate source in node <code class="docutils literal notranslate"><span class="pre">θ0</span></code> of circuit <code class="docutils literal notranslate"><span class="pre">c2</span></code>, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_p\)</span> - static gain of the proportional controller, W/°C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - indoor temperature setpoint, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> - indoor temperature, which is the temperature node <code class="docutils literal notranslate"><span class="pre">θ0</span></code> of circuit <code class="docutils literal notranslate"><span class="pre">c2</span></code>, °C.</p></li>
+</ul>
+</section>
+<section id="free-running">
+<h2>Free running<a class="headerlink" href="#free-running" title="Permalink to this headline">#</a></h2>
+<p>The model can be simulated in free-runinng when there is no nonlinear controller (i.e., <span class="math notranslate nohighlight">\(\dot{Q}_a = 0\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;02-01 12:00:00&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;02-03 18:00:00&#39;</span>
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">control_for</span><span class="p">(</span><span class="s2">&quot;free running&quot;</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+            <span class="n">nonlinear_controller</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2563</span><span class="o">/</span><span class="mf">739430079.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">control_for</span><span class="p">(</span><span class="s2">&quot;free running&quot;</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>             <span class="n">nonlinear_controller</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_2563/1536844490.py</span> in <span class="ni">control_for</span><span class="nt">(controller, period, dt, nonlinear_controller)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="c1"># Weather</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">40</span>     <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">del</span> <span class="n">data</span>
+
+<span class="nn">~/Personel/Py/git_book/dm4bem_book/docs/tutorials/dm4bem.py</span> in <span class="ni">read_epw</span><span class="nt">(filename, coerce_year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> 
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="c1"># Assume it&#39;s accessible via the file system</span>
+<span class="ne">--&gt; </span><span class="mi">236</span>     <span class="n">csvdata</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="n">data</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">parse_epw</span><span class="p">(</span><span class="n">csvdata</span><span class="p">,</span> <span class="n">coerce_year</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Figure 2. Free-running (i.e., no controller).</p>
+</div></blockquote>
+</section>
+<section id="heating">
+<h2>Heating<a class="headerlink" href="#heating" title="Permalink to this headline">#</a></h2>
+<p>In heating, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is higher than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<p>if <span class="math notranslate nohighlight">\(u_{c2\_θ0} &gt; 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heating</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Kpp = 1e3   # controller gain</span>
+
+<span class="s2">if Tisp &lt; θ_exp.iloc[k - 1][&#39;c2_θ0&#39;]:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">control_for</span><span class="p">(</span><span class="n">heating</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6737b24a4d2a2840606403c6e6a6b2a6c46c824d2ef7b7b3f6f416780a7fdb08.png" src="../../_images/6737b24a4d2a2840606403c6e6a6b2a6c46c824d2ef7b7b3f6f416780a7fdb08.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 3. Heating.</p>
+</div></blockquote>
+</section>
+<section id="cooling">
+<h2>Cooling<a class="headerlink" href="#cooling" title="Permalink to this headline">#</a></h2>
+<p>In cooling, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is lower than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 5      # temperature deadband, °C</span>
+<span class="s2">Kpp = 1e2   # controller gain</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ :</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;07-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;07-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">cooling</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/811a6039d889cff4980c3028899fad1d00d067fce2140f7f01601d489b6eb642.png" src="../../_images/811a6039d889cff4980c3028899fad1d00d067fce2140f7f01601d489b6eb642.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 4. Cooling.</p>
+</div></blockquote>
+</section>
+<section id="heating-and-cooling-with-deadband">
+<h2>Heating and cooling with deadband<a class="headerlink" href="#heating-and-cooling-with-deadband" title="Permalink to this headline">#</a></h2>
+<p>During mid-season, heating and cooling may be required. In this case a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Deadband">deadband</a> controller is preferred to a perfect controller (see <a class="reference internal" href="pd05simulation.html"><span class="doc std std-doc">Inputs and simulation</span></a>). In deadband controller, the auxiliary heat flow <span class="math notranslate nohighlight">\(\dot{Q}_a \equiv u_{c2\_θ0}\)</span> is zero if the indoor air temperature <span class="math notranslate nohighlight">\(\theta_{c2\_θ0}\)</span> is higher than its setpoint <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> but lower than the setpoint plus the deadband <span class="math notranslate nohighlight">\(\Delta \theta\)</span>. Otherwise, the input is</p>
+<div class="math notranslate nohighlight">
+\[u_{c2\_θ0} = K_p (T_{i,sp} - \theta_{c2\_θ0})\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heat_cool</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 5      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2   # controller gain</span>
+
+<span class="s2">if Tisp &lt; θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">heat_cool</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/83e5af93a5c5f467f7b0d33f30ed943f707c058bc7c4eb30955670cc2086972f.png" src="../../_images/83e5af93a5c5f467f7b0d33f30ed943f707c058bc7c4eb30955670cc2086972f.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 5. Heating and cooling with deadband.</p>
+</div></blockquote>
+</section>
+<section id="solar-protection">
+<h2>Solar protection<a class="headerlink" href="#solar-protection" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">cooling load</a> can be reduced by solar protection. In our example, let’s assume that if the indoor temperature is higher than its setpoint, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Window_shutter">exterior shutters</a> are closed. To model this, the flow rate <span class="math notranslate nohighlight">\(\Phi_i\)</span> in node <span class="math notranslate nohighlight">\(\theta_4\)</span> of thermal circuit <code class="docutils literal notranslate"><span class="pre">walls_out:</span> <span class="pre">ow0</span></code>, i.e. <span class="math notranslate nohighlight">\(u_{ow0\_θ4}\)</span> (Figure 1), is reduced at 10 % of its value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solar</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2   # controller gain</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = Kpp * (Tisp - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = min(u.iloc[k][&#39;c2_θ0&#39;], 0)</span>
+<span class="s2">    u.iloc[k][&#39;ow0_θ4&#39;] *= 0.1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">solar</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/12e26f2da68b2a0d6467e325cd2089bbe536b99719fc91717a88f16b8057ffc0.png" src="../../_images/12e26f2da68b2a0d6467e325cd2089bbe536b99719fc91717a88f16b8057ffc0.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 6. Cooling load is reduced by solar protection.</p>
+</div></blockquote>
+</section>
+<section id="passive-cooling">
+<h2>Passive cooling<a class="headerlink" href="#passive-cooling" title="Permalink to this headline">#</a></h2>
+<p>In mid-season, the building may be cooled by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_cooling">passive cooling</a> techniques, such as solar protection with <a class="reference external" href="https://en.m.wikipedia.org/wiki/Window_shutter">window shutters</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Free_cooling">free cooling</a>.</p>
+<p>Free-cooling is modeled by increasing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a> (ACH). In our example, ventilation rate is increased from 1 ACH to 10 ACH and the cooling is turned off, <code class="docutils literal notranslate"><span class="pre">u.iloc[k]['c2_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<p>The thermal conductance for free-cooling by ventilation is</p>
+<div class="math notranslate nohighlight">
+\[G_{free} = \dot{m}_a c_a  = \rho_a c_a \dot{V}_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_a\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air, kg/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{V}_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a>, m³/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> of the air, J/kg·K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of air, kg/m³.</p></li>
+</ul>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of the air, in m³/s, is:</p>
+<div class="math notranslate nohighlight">
+\[\dot{V}_a = \frac{\mathrm{ACH}}{3600} V_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{ACH}\)</span>  (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a>) is the air infiltration rate, 1/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(3600\)</span> - number of seconds in one hour, s/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_a\)</span> - volume of the air in the thermal zone, m³.</p></li>
+</ul>
+<p>The net flow rate that the building receives by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a>, i.e., introducing outdoor air at temperature <span class="math notranslate nohighlight">\(T_o\)</span> and extracting indoor air at temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a>, is:</p>
+<div class="math notranslate nohighlight">
+\[q_{free} = G_{free} (T_o - \theta_i)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">u['ow0_q0']</span></code> (Figure 1);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C, is <code class="docutils literal notranslate"><span class="pre">θ_exp['c2_θ0']</span></code>.</p></li>
+</ul>
+<p>Modifying the conductance for advection, <span class="math notranslate nohighlight">\(G_0\)</span> in thermal circuit <code class="docutils literal notranslate"><span class="pre">TC2:</span> <span class="pre">c2</span></code> (Figure 1), implies recalculating the state-space model. As an altenative, we can consider that the flow rate</p>
+<div class="math notranslate nohighlight">
+\[q_{free} = G_{free} (T_o - \theta_i)\]</div>
+<p>implemented as <code class="docutils literal notranslate"><span class="pre">q_free</span> <span class="pre">=</span> <span class="pre">G_free</span> <span class="pre">*</span> <span class="pre">(u['ow0_q0']</span> <span class="pre">-</span> <span class="pre">θ_exp['c2_θ0'])</span></code>, is added to <span class="math notranslate nohighlight">\(Q_a\)</span>, which is input <code class="docutils literal notranslate"><span class="pre">u['c2_θ0']</span></code> (Figure 1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">passive_cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Tisp = 20                   # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1                      # temperature deadband, °C</span>
+<span class="s2">Kpp = 3e2                   # controller gain</span>
+
+<span class="s2"># ventilation flow rate</span>
+<span class="s2">l = 3                       # m length of the cubic room</span>
+<span class="s2">Va = l**3                   # m³, volume of air</span>
+<span class="s2">ACH = 10                    # 1/h, air changes per hour</span>
+<span class="s2">Va_dot = ACH / 3600 * Va    # m³/s, air infiltration</span>
+<span class="s2">ρ = 1.2                     # kg/m³</span>
+<span class="s2">c = 1000                    # J/(kg·K)</span>
+<span class="s2">G_free = ρ * c * Va_dot</span>
+<span class="s2">q_free = G_free * (u.iloc[k - 1][&#39;ow0_q0&#39;] - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
+
+<span class="s2">if θ_exp.iloc[k - 1][&#39;c2_θ0&#39;] &lt; Tisp + Δθ:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">else:</span>
+<span class="s2">    u.iloc[k][&#39;c2_θ0&#39;] = 0</span>
+<span class="s2">    if u.iloc[k - 1][&#39;ow0_q0&#39;] &lt; Tisp:</span>
+<span class="s2">        u.iloc[k][&#39;c2_θ0&#39;] = q_free</span>
+<span class="s2">    u.iloc[k][&#39;ow0_θ4&#39;] *= 0.1</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">period</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;05-01 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;05-03 12:00:00&#39;</span><span class="p">]</span>
+<span class="n">control_for</span><span class="p">(</span><span class="n">passive_cooling</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ca07c7861a1ec7ef0183c46bc25ebd4c14a940aa7e5455c93198d79d94afbf4c.png" src="../../_images/ca07c7861a1ec7ef0183c46bc25ebd4c14a940aa7e5455c93198d79d94afbf4c.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure . Solar protection and free-cooling. The coling load is “free” because it represents fresh airflow from outdoors.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-running">Free running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating">Heating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cooling">Cooling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heating-and-cooling-with-deadband">Heating and cooling with deadband</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-protection">Solar protection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passive-cooling">Passive cooling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

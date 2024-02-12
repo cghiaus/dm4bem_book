@@ -1,0 +1,1181 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Weather data and solar radiation on a tilted surface &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/tutorials/01WeatherData';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/tutorials/01WeatherData.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/tutorials/01WeatherData.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/tutorials/01WeatherData.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Weather data and solar radiation on a tilted surface</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-weather-data-in-energyplus-format">Obtain weather data in <code class="docutils literal notranslate"><span class="pre">EnergyPlus™</span></code> format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-file">Download data file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-weather-data">Read weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data-file-name">Weather data file name</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data-is-from-different-years">Weather data is from different years</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-time">Start and end time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-outdoor-air-temperature">Plot outdoor air temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-solar-radiation-normal-direct-and-horizontal-diffuse">Plot solar radiation: normal direct and horizontal diffuse</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-on-a-tilted-surface">Solar radiation on a tilted surface</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-of-the-tilted-wall">Orientation of the tilted wall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solar-radiation">Plot the solar radiation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data">Calculation of solar radiation on a tilted surface from weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-orientation">Surface orientation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-radiation">Direct radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diffuse-radiation">Diffuse radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-reflected-by-the-ground">Solar radiation reflected by the ground</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#radiation-and-time">Radiation and time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-for-angles-in-degrees">Definitions for angles (in degrees)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="weather-data-and-solar-radiation-on-a-tilted-surface">
+<h1>Weather data and solar radiation on a tilted surface<a class="headerlink" href="#weather-data-and-solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F01WeatherData.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<section id="objectives">
+<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Download weather data in <a class="reference external" href="https://energyplus.net/documentation">EnergyPlus™</a> format.</p></li>
+<li><p>Read weather data.</p></li>
+<li><p>Find solar radiation on a tilted surface.</p></li>
+<li><p>Visualize the data.</p></li>
+</ul>
+</section>
+<section id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<p>This notebook:</p>
+<ul class="simple">
+<li><p>Imports standard modules such as numpy, pandas, and matplotlib.pyplot, and a dedicated module, <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>. It then reads a file in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
+<li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces the year in the index with 2000.</p></li>
+<li><p>Defines a start date and an end date and filters the weather data based on these dates.</p></li>
+<li><p>Creates three plots using the filtered weather data:</p>
+<ul>
+<li><p>A line plot of outdoor air temperature over time.</p></li>
+<li><p>A line plot of solar radiation (normal direct and horizontal diffuse) over time.</p></li>
+<li><p>A line plot of solar radiation on a tilted surface over time, calculated using the filtered weather data and the slope, azimuth, and latitude of the surface.</p></li>
+</ul>
+</li>
+<li><p>Calculates the solar radiation on a tilted surface by computing the direct radiation, diffuse radiation, and reflected radiation. It then stores the calculated solar radiation as a new column in the filtered weather data.</p></li>
+</ul>
+</section>
+</section>
+<section id="obtain-weather-data-in-energyplus-format">
+<h2>Obtain weather data in <code class="docutils literal notranslate"><span class="pre">EnergyPlus™</span></code> format<a class="headerlink" href="#obtain-weather-data-in-energyplus-format" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">dm4bem</span> <span class="kn">import</span> <span class="n">read_epw</span><span class="p">,</span> <span class="n">sol_rad_tilt_surf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="download-data-file">
+<h3>Download data file<a class="headerlink" href="#download-data-file" title="Permalink to this headline">#</a></h3>
+<p>Download the weather file with extension <code class="docutils literal notranslate"><span class="pre">.epw</span></code> from:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: folder of files at the repository of free climate data for building performance simulation,</p></li>
+<li><p><a class="reference external" href="https://energyplus.net/weather">EnergyPlus™</a>: interactive map with locations,</p></li>
+<li><p><a class="reference external" href="http://www.ladybug.tools/epwmap/">LadyBug Tools</a>: interactive map with locations,</p></li>
+<li><p><a class="reference external" href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html">PV GIS</a>: interractive map with interpollated data.</p></li>
+</ul>
+<p>For example, for the airport Lyon-Bron, France (N45.73, E5.08), download the files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FRA_Lyon.074810_IWEC.epw</span></code> or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018</span></code></p></li>
+</ul>
+<p>from <a class="reference external" href="https://climate.onebuilding.org/WMO_Region_6_Europe/FRA_France/index.html">Climate OneBuilding</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
+</section>
+<section id="read-weather-data">
+<h3>Read weather data<a class="headerlink" href="#read-weather-data" title="Permalink to this headline">#</a></h3>
+<section id="weather-data-file-name">
+<h4>Weather data file name<a class="headerlink" href="#weather-data-file-name" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<span class="c1"># filename = &#39;./weather_data/FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code> contains hourly data for one year. For the description of the structure and the meaning of the fileds of the <code class="docutils literal notranslate"><span class="pre">.epw</span></code> file, see <code class="docutils literal notranslate"><span class="pre">read_epw</span></code> function in <a class="reference download internal" download="" href="../../_downloads/0b59849abfd72be18dc982f59e4d8a5c/dm4bem.py"><span class="xref download myst">dm4bem.py</span></a> module and the documentation for <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/generated/pvlib.iotools.read_epw.html">pvlib.iotools.read_epw</a> function of <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/index.html">pvlib python</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">vp</span><span class="o">/</span><span class="n">k617ngs97xq4vlzlj5ts6sch0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2425</span><span class="o">/</span><span class="mf">275760639.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">data</span>
+
+<span class="nn">~/Personel/Py/git_book/dm4bem_book/docs/tutorials/dm4bem.py</span> in <span class="ni">read_epw</span><span class="nt">(filename, coerce_year)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> 
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="c1"># Assume it&#39;s accessible via the file system</span>
+<span class="ne">--&gt; </span><span class="mi">236</span>     <span class="n">csvdata</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="n">data</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">parse_epw</span><span class="p">(</span><span class="n">csvdata</span><span class="p">,</span> <span class="n">coerce_year</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="weather-data-is-from-different-years">
+<h4>Weather data is from different years<a class="headerlink" href="#weather-data-is-from-different-years" title="Permalink to this headline">#</a></h4>
+<p>The weather data from  <a class="reference external" href="http://climate.onebuilding.org">Climate One Buildings</a> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a>. Data for each month may be from different years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the month and year from the DataFrame index with the format &#39;MM-YYYY&#39;</span>
+<span class="n">month_year</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m-%Y&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create a set of unique month-year combinations</span>
+<span class="n">unique_month_years</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">month_year</span><span class="p">))</span>
+
+<span class="c1"># Create a DataFrame from the unique month-year combinations</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">unique_month_years</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Month-Year&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Month-Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01-1983</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>02-1985</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>03-1998</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>04-1995</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>05-1986</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>06-1993</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>07-1982</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>08-1993</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>09-1988</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10-1999</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11-1991</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12-1986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From the dataset, select:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>EPWData field</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Unit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">temp_air</span></code></p></td>
+<td><p>Dry bulb air temperature at timestamp</p></td>
+<td><p>°C</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dir_n_rad</span></code></p></td>
+<td><p>Direct normal radiation received during 1 h prior to timestamp</p></td>
+<td><p>W·h·m⁻²</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dif_h_rad</span></code></p></td>
+<td><p>Diffuse horizontal radiation received during 1 h prior to timestamp</p></td>
+<td><p>W·h·m⁻²</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Note</em>: For the description of <code class="docutils literal notranslate"><span class="pre">.EPW</span></code> file, see <a class="reference external" href="https://wholmgren-pvlib-python-new.readthedocs.io/en/stable/_modules/pvlib/iotools/epw.html">pvlib.iotools.epw</a>.</p>
+<p>Since the values for each month are from different years, let’s replace all year with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select columns of interest</span>
+<span class="n">weather_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
+
+<span class="c1"># replace year of the index with 2000</span>
+<span class="n">weather_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="start-and-end-time">
+<h4>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this headline">#</a></h4>
+<p>Select a period for:</p>
+<ul class="simple">
+<li><p>air temperature, °C,</p></li>
+<li><p>normal solar radiation, W·m⁻²,</p></li>
+<li><p>diffuse solar radiation received during 60 minutes prior to timestamp, W·m⁻².</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define start and end dates</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-06-29&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-07-02&#39;</span>
+
+<span class="c1"># Filter the data based on the start and end dates</span>
+<span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">data</span>
+<span class="n">weather_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp_air</th>
+      <th>dir_n_rad</th>
+      <th>dif_h_rad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2000-06-29 00:00:00+01:00</th>
+      <td>16.7</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 01:00:00+01:00</th>
+      <td>17.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 02:00:00+01:00</th>
+      <td>16.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 03:00:00+01:00</th>
+      <td>15.9</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 04:00:00+01:00</th>
+      <td>16.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="plot-outdoor-air-temperature">
+<h4>Plot outdoor air temperature<a class="headerlink" href="#plot-outdoor-air-temperature" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Dry-bulb air temperature, θ / [°C]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" src="../../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 1. Hourly dry bulb air temperature at timestamp.</p>
+</div></blockquote>
+</section>
+<section id="plot-solar-radiation-normal-direct-and-horizontal-diffuse">
+<h4>Plot solar radiation: normal direct and horizontal diffuse<a class="headerlink" href="#plot-solar-radiation-normal-direct-and-horizontal-diffuse" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[[</span><span class="s1">&#39;dir_n_rad&#39;</span><span class="p">,</span> <span class="s1">&#39;dif_h_rad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation, Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$Φ_</span><span class="si">{direct}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$Φ_</span><span class="si">{diffuse}</span><span class="s1">$&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" src="../../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 2. Hourly-mean direct normal and difuse horizontal solar radiation.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="solar-radiation-on-a-tilted-surface">
+<h3>Solar radiation on a tilted surface<a class="headerlink" href="#solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h3>
+<section id="orientation-of-the-tilted-wall">
+<h4>Orientation of the tilted wall<a class="headerlink" href="#orientation-of-the-tilted-wall" title="Permalink to this headline">#</a></h4>
+<p>Knowing the albedo of the surface which is in front of a tilted wall, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
+<p>Let’s consider a wall at latitude <span class="math notranslate nohighlight">\(\phi\)</span> with the orientation given by its slope angle, <span class="math notranslate nohighlight">\(\beta\)</span>, and azimuth angle, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_orientation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>     <span class="c1"># 90° is vertical; &gt; 90° downward</span>
+                       <span class="s1">&#39;azimuth&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>    <span class="c1"># 0° South, positive westward</span>
+                       <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">}</span>  <span class="c1"># °, North Pole 90° positive</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">surface_orientation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>slope       90
+azimuth      0
+latitude    45
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="t01_orientation_angles" src="docs/figures/01_orientation_angles.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Orientation of a surface:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span>: slope angle: <span class="math notranslate nohighlight">\(\beta = 90°\)</span> is vertical; <span class="math notranslate nohighlight">\(\beta &gt; 90°\)</span> is downward facing.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span>: azimuth angle: 0° South, positive westward, negative eastward.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span>: incidence angle: angle between the solar beam on the surface and the normal to the surface.</p></li>
+</ul>
+<p>N, S, E, W: North, South, East and West, respectively. <span class="math notranslate nohighlight">\(\vec{n}\)</span> is the vector normal to the surface. ∟ represents right angles.</p>
+</div></blockquote>
+<p>Let’s consider that the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface in front of the wall is kown.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-solar-radiation">
+<h4>Plot the solar radiation<a class="headerlink" href="#plot-the-solar-radiation" title="Permalink to this headline">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rad_surf</span> <span class="o">=</span> <span class="n">sol_rad_tilt_surf</span><span class="p">(</span>
+    <span class="n">weather_data</span><span class="p">,</span> <span class="n">surface_orientation</span><span class="p">,</span> <span class="n">albedo</span><span class="p">)</span>
+
+<span class="n">rad_surf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation,  Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" src="../../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 4. Hourly-mean direct, diffuse and reflected radiation on a tilted surface.</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data">
+<h2>Calculation of solar radiation on a tilted surface from weather data<a class="headerlink" href="#calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider a tilted surface having another surface (e.g., ground) in front of it. Given the weather data, the surface orientation, and the albedo of the ground in front of the surface, find the direct, diffuse and reflected solar radiation for this surface. The algoritm is implemented in the function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf</span></code> of the <code class="docutils literal notranslate"><span class="pre">dm4bem.py</span></code> module.</p>
+<section id="surface-orientation">
+<h3>Surface orientation<a class="headerlink" href="#surface-orientation" title="Permalink to this headline">#</a></h3>
+<p>The orientation of the surface is given by the following angles (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. (2020), p.13</a>):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> slope: slope or tilt angle from 0 to 180 degrees</p>
+<ul>
+<li><p>β = 0° - horizontal, upward facing;</p></li>
+<li><p>β = 90°- vertical;</p></li>
+<li><p>β &lt; 90°- upward facing;</p></li>
+<li><p>β &gt; 90°- downward facing;</p></li>
+<li><p>180° - horizontal, downward facing.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> azimuth: surface azimuth in degrees, <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>; 0-south; westward: positive; eastward: negatif.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> latitude: local latitude in degree <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span>; northward: positive, southward: negative.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">β</span> <span class="o">=</span> <span class="n">surface_orientation</span><span class="p">[</span><span class="s1">&#39;slope&#39;</span><span class="p">]</span>
+<span class="n">γ</span> <span class="o">=</span> <span class="n">surface_orientation</span><span class="p">[</span><span class="s1">&#39;azimuth&#39;</span><span class="p">]</span>
+<span class="n">ϕ</span> <span class="o">=</span> <span class="n">surface_orientation</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>
+
+<span class="c1"># Transform degrees in radians</span>
+<span class="n">β</span> <span class="o">=</span> <span class="n">β</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+<span class="n">γ</span> <span class="o">=</span> <span class="n">γ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+<span class="n">ϕ</span> <span class="o">=</span> <span class="n">ϕ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Total solar radiation</strong> is the amount of radiation received on a surface during the number of minutes preceding the time indicated:</p>
+<div class="math notranslate nohighlight">
+\[ G_{sr} = G_{dir} + G_{dif} + G_r\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(G_{dir}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Direct_insolation">direct normal</a></strong> or <strong>beam radiation</strong>: amount of solar radiation received directly from the solar disk on a surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_{dif}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Diffuse_sky_radiation">diffuse radiation</a></strong>: amount of solar radiation received after scattering by the atmosphere, W/m². It does not include the diffuse infrared radiation emitted by the atmosphere.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_r\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">total solar radiation coming by reflection</a></strong> from the surface in front of the wall (usually, ground), W/m².</p></li>
+</ul>
+</section>
+<section id="direct-radiation">
+<h3>Direct radiation<a class="headerlink" href="#direct-radiation" title="Permalink to this headline">#</a></h3>
+<p>The direct radiation on the surface, <span class="math notranslate nohighlight">\(G_{dir}\)</span>, depends on the <em>direct normal (or beam) radiation</em>, <span class="math notranslate nohighlight">\(G_n\)</span>, and the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, between the solar beam and the normal to the wall (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>, §11.2.1).</p>
+<p>In order to calculate the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, we need:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Latitude">latitude</a></em>, the angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> <em>slope</em>, the angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. If <span class="math notranslate nohighlight">\(\beta = 0 ^{\circ}\)</span>, the surface is horizontal, upward facing; if <span class="math notranslate nohighlight">\(0^{\circ} &lt; \beta &lt; 90^{\circ}\)</span>, the surface is upward facing; if <span class="math notranslate nohighlight">\(\beta = 90 ^{\circ}\)</span>, the surface is vertical.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Azimuth">azimuth</a></em>, the angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180 ^{\circ}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\delta\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Declination">declination angle</a></em>, the angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a, p. 14, <a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> §11.2.1.1, eq. (78)):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \delta = 23.45 \sin \left( 360 \frac{284 + n}{365} \right)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">declination_angle</span> <span class="o">=</span> <span class="mf">23.45</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">360</span> <span class="o">*</span> <span class="p">(</span><span class="mi">284</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="mi">365</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)</span>
+<span class="n">δ</span> <span class="o">=</span> <span class="n">declination_angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\omega\)</span> <em><a class="reference external" href="https://en.m.wikipedia.org/wiki/Hour_angle#Solar_hour_angle">solar hour angle</a></em>, the angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020, p.13</a>):</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \omega = 15\left ( hour + \frac{minute}{60} - 12 \right )\]</div>
+<p>where <em>hour</em> and <em>minute</em> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_time#Mean_solar_time">solar time</a>.</p>
+<p>Note: <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the celestial sphere.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hour</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span>
+<span class="n">minute</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">minute</span> <span class="o">+</span> <span class="mi">60</span>
+<span class="n">hour_angle</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">*</span> <span class="p">((</span><span class="n">hour</span> <span class="o">+</span> <span class="n">minute</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">-</span> <span class="mi">12</span><span class="p">)</span>   <span class="c1"># deg</span>
+<span class="n">ω</span> <span class="o">=</span> <span class="n">hour_angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>                    <span class="c1"># rad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Angle_of_incidence">incidence angle</a></strong>, <span class="math notranslate nohighlight">\(\theta\)</span>, is the angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2, p. 14):</p>
+<div class="math notranslate nohighlight">
+\[\theta = \arccos (\sin \delta \sin \phi \cos \beta - \sin \delta \cos \phi \sin \beta \cos \gamma + \cos \delta \cos \phi \cos \beta \cos \omega + \cos \delta \sin \phi \sin \beta \cos \gamma \cos \omega + \cos \delta \sin \beta \sin \gamma \sin \omega)\]</div>
+<p>If <span class="math notranslate nohighlight">\(\beta \le 90^\circ\)</span>, then the sun is behind the surface. Therefore, if <span class="math notranslate nohighlight">\(\theta &gt; \pi / 2\)</span>, then <span class="math notranslate nohighlight">\(\theta = \pi / 2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> \
+    <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">γ</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ω</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ω</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">γ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ω</span><span class="p">)</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <strong>direct radiation</strong>, <span class="math notranslate nohighlight">\(G_{dir}\)</span> on the surface is:</p>
+<div class="math notranslate nohighlight">
+\[G_{dir} = G_{dir,n} \cos \theta\]</div>
+<p>where <em>direct normal radiation</em> or <em>beam radiation</em>, <span class="math notranslate nohighlight">\(G_n\)</span>, is the amount of solar radiation (in W/m²) received directly from the solar disk on the surface perpendicular to the sun’s rays during the number of minutes preceding the time indicated. It is given by weather data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dir_rad</span> <span class="o">=</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dir_n_rad&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">dir_rad</span><span class="p">[</span><span class="n">dir_rad</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diffuse-radiation">
+<h3>Diffuse radiation<a class="headerlink" href="#diffuse-radiation" title="Permalink to this headline">#</a></h3>
+<p>The diffuse radiation on the wall is a function on its slope, <span class="math notranslate nohighlight">\(\beta\)</span>, and
+the isotropic diffuse solar radiation, <span class="math notranslate nohighlight">\(G_{dif,h}\)</span>, (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation thermique 2005</a>, §1.2.1.2, eq. 79, p. 31):</p>
+<div class="math notranslate nohighlight">
+\[ G_{dif} = G_{dif,h} \frac{1 + \cos \beta}{2}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dif_rad</span> <span class="o">=</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">β</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="solar-radiation-reflected-by-the-ground">
+<h3>Solar radiation reflected by the ground<a class="headerlink" href="#solar-radiation-reflected-by-the-ground" title="Permalink to this headline">#</a></h3>
+<p>Considering the radiation reflected by the ground as isotropic, the reflected radiation that gets onto the wall is a function of its slope, albedo and total horizontal radiation (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>,  §11.2.1.3).</p>
+<p>The normal horizontal radiation is (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> eq. 80):</p>
+<div class="math notranslate nohighlight">
+\[ G_{dir,h} = G_{dn} \sin \gamma\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ω</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span>
+
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">gamma</span><span class="p">))</span>
+<span class="n">gamma</span><span class="p">[</span><span class="n">gamma</span> <span class="o">&lt;</span> <span class="mf">1e-5</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-5</span>
+
+<span class="n">dir_h_rad</span> <span class="o">=</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dir_n_rad&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total radiation received by reflection is:</p>
+<div class="math notranslate nohighlight">
+\[G_r = (G_{dir,h} + G_{dif,h}) \, \rho \, \frac{1 - \cos \beta}{2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> (or the reflection coefficient) of the surface.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_rad</span> <span class="o">=</span> <span class="p">(</span><span class="n">dir_h_rad</span> <span class="o">+</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dif_h_rad&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="n">albedo</span> \
+        <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">β</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="definitions">
+<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">#</a></h3>
+<section id="radiation-and-time">
+<h4>Radiation and time<a class="headerlink" href="#radiation-and-time" title="Permalink to this headline">#</a></h4>
+<p><span class="math notranslate nohighlight">\(G_{dir,n}\)</span> <strong>Direct normal</strong> or <strong>beam radiation</strong>. Amount of solar radiation in Wh/m² received directly from the solar disk on a surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated.</p>
+<p><span class="math notranslate nohighlight">\(G_{dif,h}\)</span> <strong>Diffuse horizontal radiation</strong>. Amount of solar radiation in Wh/m² received after scattering by the atmosphere. This definition distinguishes the diffuse solar radiation from infrared radiation emitted by the atmosphere.</p>
+<p><strong>Total Solar Radiation</strong>. Total amount of direct and diffuse solar radiation in Wh/m² received on a  surface during the number of minutes preceding the time indicated.</p>
+<p><strong>Global radiation.</strong> Total solar radiation given on a horizontal surface.</p>
+<p><strong>Solar Time.</strong> Time based on the apparent position of the sun in the sky with noon the time when the sun crosses the observer meridian.</p>
+</section>
+<section id="definitions-for-angles-in-degrees">
+<h4>Definitions for angles (in degrees)<a class="headerlink" href="#definitions-for-angles-in-degrees" title="Permalink to this headline">#</a></h4>
+<p><span class="math notranslate nohighlight">\(\phi\)</span> <strong>Latitude.</strong> Angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\beta\)</span> <strong>Slope.</strong> Angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(\beta = 0\)</span> means that the surface is horizontal, upward facing; <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\beta &lt; 90^{\circ}\)</span> means that the surface is upward facing; <span class="math notranslate nohighlight">\(\beta = 90^{\circ}\)</span> the surface is vertical.</p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> <strong>Azimuth.</strong> Angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180^{\circ}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\delta\)</span> <strong>Declination.</strong> Angle between the sun at noon (i.e., when the sun is on the local meridian) and the plane of the equator, north positive (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.1a):</p>
+<div class="math notranslate nohighlight">
+\[ \delta = 23.45 \sin \left( 360 \frac{284 + n}{365} \right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the day of the year. <span class="math notranslate nohighlight">\(-23.45 ^{\circ} \leq \delta \leq 23.45 ^{\circ}\)</span>. Declination is used with hour angle to give the direction of a point on the celestial sphere.</p>
+<p><span class="math notranslate nohighlight">\(\omega\)</span> <strong>Hour angle.</strong> Angle between the sun and the local meridian due to rotation of the earth around its axis at 15° per hour (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, Example 1.6.1 p.15):</p>
+<div class="math notranslate nohighlight">
+\[ \omega = 15\left ( h + \frac{min}{60} - 12 \right )\]</div>
+<p>where <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(min\)</span> are hours and and minutes of the solar time, respectively. The hour angle is <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \omega \leq 180 ^{\circ}\)</span>, with <span class="math notranslate nohighlight">\(\omega &lt; 0\)</span> in the morning, <span class="math notranslate nohighlight">\(\omega = 0\)</span> at noon, and <span class="math notranslate nohighlight">\(\omega &gt; 0\)</span> in the afternoon. Hour angle is used with the declination to give the direction of a point on the <a class="reference external" href="https://en.wikipedia.org/wiki/Celestial_sphere">celestial sphere</a>.</p>
+<p><span class="math notranslate nohighlight">\(\theta\)</span> <strong>Incidence.</strong> Angle between the solar beam on the surface and the normal to the surface (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. 2020</a>, eq. 1.6.2):</p>
+<div class="math notranslate nohighlight">
+\[\theta = \arccos (\sin \delta \sin \phi \cos \beta - \sin \delta \cos \phi \sin \beta \cos \gamma + \cos \delta \cos \phi \cos \beta \cos \omega + \cos \delta \sin \phi \sin \beta \cos \gamma \cos \omega + \cos \delta \sin \beta \sin \gamma \sin \omega)\]</div>
+</section>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie, J.A., Beckman,  W. A., Blair,  N. (2020)</a> Solar Engineering of Thermal Processes, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
+<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a> Annexe à l’arrêté du 19 juillet 2006</p></li>
+<li><p><a class="reference external" href="https://energyplus.net/assets/nrel_custom/pdfs/pdfs_v22.1.0/EngineeringReference.pdf">US Department of Energy (2022)</a> EnergyPlus™ Engineering Reference, version 22.1.0, © 1996-2022</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtain-weather-data-in-energyplus-format">Obtain weather data in <code class="docutils literal notranslate"><span class="pre">EnergyPlus™</span></code> format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-data-file">Download data file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-weather-data">Read weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data-file-name">Weather data file name</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data-is-from-different-years">Weather data is from different years</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-time">Start and end time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-outdoor-air-temperature">Plot outdoor air temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-solar-radiation-normal-direct-and-horizontal-diffuse">Plot solar radiation: normal direct and horizontal diffuse</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-on-a-tilted-surface">Solar radiation on a tilted surface</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-of-the-tilted-wall">Orientation of the tilted wall</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solar-radiation">Plot the solar radiation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data">Calculation of solar radiation on a tilted surface from weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#surface-orientation">Surface orientation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-radiation">Direct radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diffuse-radiation">Diffuse radiation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-reflected-by-the-ground">Solar radiation reflected by the ground</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#radiation-and-time">Radiation and time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions-for-angles-in-degrees">Definitions for angles (in degrees)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

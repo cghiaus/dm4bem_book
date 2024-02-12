@@ -1,0 +1,2516 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modeling &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/tutorials/02_2_1Toy';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/tutorials/02_2_1Toy.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/tutorials/02_2_1Toy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/tutorials/02_2_1Toy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-analysis">Physical analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermo-physical-properties">Thermo-physical properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-properties">Radiative properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection-coefficients">Convection coefficients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network">Thermal network</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factor-between-tilted-outdoor-walls-and-sky">View factor between tilted outdoor walls and sky</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advection">Advection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conductances-in-series-and-or-parallel">Conductances in series and/or parallel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-capacities">Thermal capacities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#walls">Walls</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air">Air</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperatures">Outdoor air and ground temperatures</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacent-spaces-with-controlled-temperature">Adjacent spaces with controlled temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setpoint-temperature">Setpoint temperature</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-flow-rate-sources">Heat flow rate sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-absorbed-by-the-walls">Solar radiation absorbed by the walls</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#external-wall">External wall</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-walls">Internal walls</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-sources">Internal sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-algebraic-differential-equations-dae">System of algebraic-differential equations (DAE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-incidence-matrix">A: incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-conductance-matrix">G: conductance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-capacity-matrix">C: capacity matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-temperature-source-vector">b: temperature source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-heat-flow-source-vector">f: heat flow source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-output-vector">y: output vector</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-tc">Thermal circuit TC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-analysis">Steady-state analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-differential-algebraic-equations-dae">Steady-state from differential algebraic equations (DAE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-state-space-representation">Steady-state from state-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-analysis">Eigenvalues analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step">Time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time">Settling time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modeling">
+<h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_2_1Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>The theory of heat transfer in buildings is examplified on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>. The model is a thermal circuit with thermal capacities in some of the nodes.</p>
+<p><strong>Objectives:</strong></p>
+<ul class="simple">
+<li><p>Analyse a cubic building with 5 identical walls &amp; a transparent wall (glass window), air infiltration, and HVAC system controlling the indoor air temperature.</p></li>
+<li><p>Model the heat transfer in the building by a thermal circuit.</p></li>
+<li><p>Obtain the mathematical model as a system of Differential Algebraic Equations (DAE) from the thermal circuit.</p></li>
+<li><p>Transfrom the system of DAE into state-space representation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">dm4bem</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="physical-analysis">
+<h2>Physical analysis<a class="headerlink" href="#physical-analysis" title="Permalink to this headline">#</a></h2>
+<section id="description-of-the-building">
+<h3>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this headline">#</a></h3>
+<p><img alt="cube" src="docs/figures/03_cube_principle.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC control system</a> which acts as a proportional controller.</p>
+</div></blockquote>
+<p>Let’s consider a cubic building with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> systems acting as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a>.</p>
+<p>The dimensions and surface areas of the building are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l=3 \: \mathrm{m}\)</span> - edge length of the cube;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_g=l^2\)</span>   - surface area of the glass window;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_c = S_i = 5 \: S_g\)</span>   - surface area of the 5 (concrete and insulation) walls.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="mi">3</span>               <span class="c1"># m length of the cubic room</span>
+<span class="n">Sg</span> <span class="o">=</span> <span class="n">l</span><span class="o">**</span><span class="mi">2</span>           <span class="c1"># m² surface area of the glass wall</span>
+<span class="n">Sc</span> <span class="o">=</span> <span class="n">Si</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">Sg</span>    <span class="c1"># m² surface area of concrete &amp; insulation of the 5 walls</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="thermo-physical-properties">
+<h3>Thermo-physical properties<a class="headerlink" href="#thermo-physical-properties" title="Permalink to this headline">#</a></h3>
+<p>The thermophysical properties of the air (in SI units) are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">air</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Density&#39;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span>                      <span class="c1"># kg/m³</span>
+       <span class="s1">&#39;Specific heat&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>               <span class="c1"># J/(kg·K)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">air</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Air&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Density</th>
+      <th>Specific heat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Air</th>
+      <td>1.2</td>
+      <td>1000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The <a class="reference external" href="https://energieplus-lesite.be/donnees/enveloppe44/enveloppe2/conductivite-thermique-des-materiaux/">thermophysical properties</a> (<a class="reference external" href="https://en.m.wikipedia.org/wiki/List_of_thermal_conductivities">thermal conductivities</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Density">densities</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Table_of_specific_heat_capacities">specific heat capacities</a>) and the geometry (widths and surface areas) of the three materials (i.e., concrete, insulation, glass) in SI units are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">concrete</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Conductivity&#39;</span><span class="p">:</span> <span class="mf">1.400</span><span class="p">,</span>          <span class="c1"># W/(m·K)</span>
+            <span class="s1">&#39;Density&#39;</span><span class="p">:</span> <span class="mf">2300.0</span><span class="p">,</span>              <span class="c1"># kg/m³</span>
+            <span class="s1">&#39;Specific heat&#39;</span><span class="p">:</span> <span class="mi">880</span><span class="p">,</span>           <span class="c1"># J/(kg⋅K)</span>
+            <span class="s1">&#39;Width&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>                   <span class="c1"># m</span>
+            <span class="s1">&#39;Surface&#39;</span><span class="p">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">l</span><span class="o">**</span><span class="mi">2</span><span class="p">}</span>            <span class="c1"># m²</span>
+
+<span class="n">insulation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Conductivity&#39;</span><span class="p">:</span> <span class="mf">0.027</span><span class="p">,</span>        <span class="c1"># W/(m·K)</span>
+              <span class="s1">&#39;Density&#39;</span><span class="p">:</span> <span class="mf">55.0</span><span class="p">,</span>              <span class="c1"># kg/m³</span>
+              <span class="s1">&#39;Specific heat&#39;</span><span class="p">:</span> <span class="mi">1210</span><span class="p">,</span>        <span class="c1"># J/(kg⋅K)</span>
+              <span class="s1">&#39;Width&#39;</span><span class="p">:</span> <span class="mf">0.08</span><span class="p">,</span>                <span class="c1"># m</span>
+              <span class="s1">&#39;Surface&#39;</span><span class="p">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">l</span><span class="o">**</span><span class="mi">2</span><span class="p">}</span>          <span class="c1"># m²</span>
+
+<span class="n">glass</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Conductivity&#39;</span><span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span>               <span class="c1"># W/(m·K)</span>
+         <span class="s1">&#39;Density&#39;</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span>                   <span class="c1"># kg/m³</span>
+         <span class="s1">&#39;Specific heat&#39;</span><span class="p">:</span> <span class="mi">1210</span><span class="p">,</span>             <span class="c1"># J/(kg⋅K)</span>
+         <span class="s1">&#39;Width&#39;</span><span class="p">:</span> <span class="mf">0.04</span><span class="p">,</span>                     <span class="c1"># m</span>
+         <span class="s1">&#39;Surface&#39;</span><span class="p">:</span> <span class="n">l</span><span class="o">**</span><span class="mi">2</span><span class="p">}</span>                   <span class="c1"># m²</span>
+
+<span class="n">wall</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;Layer_out&#39;</span><span class="p">:</span> <span class="n">concrete</span><span class="p">,</span>
+                               <span class="s1">&#39;Layer_in&#39;</span><span class="p">:</span> <span class="n">insulation</span><span class="p">,</span>
+                               <span class="s1">&#39;Glass&#39;</span><span class="p">:</span> <span class="n">glass</span><span class="p">},</span>
+                              <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">wall</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Conductivity</th>
+      <th>Density</th>
+      <th>Specific heat</th>
+      <th>Width</th>
+      <th>Surface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Layer_out</th>
+      <td>1.400</td>
+      <td>2300.0</td>
+      <td>880</td>
+      <td>0.20</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>Layer_in</th>
+      <td>0.027</td>
+      <td>55.0</td>
+      <td>1210</td>
+      <td>0.08</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>Glass</th>
+      <td>1.400</td>
+      <td>2500.0</td>
+      <td>1210</td>
+      <td>0.04</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="radiative-properties">
+<h3>Radiative properties<a class="headerlink" href="#radiative-properties" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity#Absorptivity">radiative properties</a> of the surfaces are:</p>
+<ul class="simple">
+<li><p>long wave <a class="reference external" href="https://www.engineeringtoolbox.com/emissivity-coefficients-d_447.html">emmisivity</a> of concrete (between normal and rough) and pyrex glass;</p></li>
+<li><p>short wave <a class="reference external" href="https://www.engineeringtoolbox.com/solar-radiation-absorbed-materials-d_1568.html">absortivity of solar radiation</a> of white smooth surfaces;</p></li>
+<li><p>short wave <a class="reference external" href="https://www.engineeringtoolbox.com/optical-properties-glazing-materials-d_1355.html">transmittance</a> of window glass (thickness of 4 mm);</p></li>
+<li><p>short wave <a class="reference external" href="https://energieplus-lesite.be/techniques/enveloppe7/composants-de-l-enveloppe/vitrages/vitrage-permettant-le-controle-solaire/">absortivity and transmittance</a> of reflective blue window glass.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># radiative properties</span>
+<span class="n">ε_wLW</span> <span class="o">=</span> <span class="mf">0.85</span>    <span class="c1"># long wave emmisivity: wall surface (concrete)</span>
+<span class="n">ε_gLW</span> <span class="o">=</span> <span class="mf">0.90</span>    <span class="c1"># long wave emmisivity: glass pyrex</span>
+<span class="n">α_wSW</span> <span class="o">=</span> <span class="mf">0.25</span>    <span class="c1"># short wave absortivity: white smooth surface</span>
+<span class="n">α_gSW</span> <span class="o">=</span> <span class="mf">0.38</span>    <span class="c1"># short wave absortivity: reflective blue glass</span>
+<span class="n">τ_gSW</span> <span class="o">=</span> <span class="mf">0.30</span>    <span class="c1"># short wave transmitance: reflective blue glass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Boltzmann constant</a> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">σ</span> <span class="o">=</span> <span class="mf">5.67e-8</span>     <span class="c1"># W/(m²⋅K⁴) Stefan-Bolzmann constant</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;σ = </span><span class="si">{</span><span class="n">σ</span><span class="si">}</span><span class="s1"> W/(m²⋅K⁴)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>σ = 5.67e-08 W/(m²⋅K⁴)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convection-coefficients">
+<h3>Convection coefficients<a class="headerlink" href="#convection-coefficients" title="Permalink to this headline">#</a></h3>
+<p>Conventional values for the <a class="reference external" href="https://energieplus-lesite.be/theories/enveloppe9/echanges-chaleur-parois/resistance-thermique-d-echange-superficiel/">convection coeficients</a> for indoor and outdoor convection in W/(m²⋅K) are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;in&#39;</span><span class="p">:</span> <span class="mf">8.</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">])</span>  <span class="c1"># W/(m²⋅K)</span>
+<span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>in</th>
+      <th>out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>h</th>
+      <td>8.0</td>
+      <td>25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="thermal-network">
+<h2>Thermal network<a class="headerlink" href="#thermal-network" title="Permalink to this headline">#</a></h2>
+<p>Thermal networks (or circuits) are weighted <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">directed graphs</a> in which:</p>
+<ul class="simple">
+<li><p>the <strong>nodes</strong> (or vertices) represent <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperatures</a>,  <span class="math notranslate nohighlight">\(\theta_i\)</span>, of geometrical <a class="reference external" href="https://en.m.wikipedia.org/wiki/Point_(geometry)">points</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Line_(geometry)">lines</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Surface_(mathematics)">surfaces</a> or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volume">volumes</a>;</p></li>
+<li><p>the oriented <strong>branches</strong> (or edges) represent thermal <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rates</a>, <span class="math notranslate nohighlight">\(q_j\)</span>, between the temperature nodes.</p></li>
+</ul>
+<p><img alt="basic_TC" src="docs/figures/A01_Basic_thermal_circuit.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Basic thermal network.</p>
+</div></blockquote>
+<p>A thermal network has at least one oriented branch, <span class="math notranslate nohighlight">\(q\)</span>, one node, <span class="math notranslate nohighlight">\(\theta\)</span>, and a reference temperature.</p>
+<p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_function#identically_zero">identically zero</a>) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be identically zero).</p>
+<p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictely pozitive) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be identically zero).</p>
+<p>The problem of analysis of thermal circuits (or the simulation problem, or the direct problem) is:</p>
+<p><strong>given</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span> which indicates how the nodes are connected by oriented branches;</p></li>
+<li><p>conductance diagonal matrix <span class="math notranslate nohighlight">\(G\)</span>;</p></li>
+<li><p>capacity diagonal matrix <span class="math notranslate nohighlight">\(C\)</span>;</p></li>
+<li><p>temperature source vector <span class="math notranslate nohighlight">\(b\)</span>;</p></li>
+<li><p>heat flow source vector <span class="math notranslate nohighlight">\(f\)</span>;</p></li>
+</ul>
+<p><strong>find</strong> the temperature vector <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rate vector <span class="math notranslate nohighlight">\(q.\)</span></p>
+<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is (Figure 3):</p>
+<ul class="simple">
+<li><p>through the walls (concrete and insulation),</p></li>
+<li><p>through the glass window,</p></li>
+<li><p>by ventilation,</p></li>
+<li><p>from indoor auxiliary sources,</p></li>
+<li><p>from the HVAC system.</p></li>
+</ul>
+<p>The HVAC system is modelled as a proportional controller. There is long wave radiative exchange between the wall and the glass window. The sources are:</p>
+<ul class="simple">
+<li><p>temperature sources:</p>
+<ul>
+<li><p>outdoor atmospheric air;</p></li>
+<li><p>indoor air temperature setpoint;</p></li>
+</ul>
+</li>
+<li><p>flow rate sources:</p>
+<ul>
+<li><p>solar radiation on the outdoor and the indoor walls;</p></li>
+<li><p>auxiliary heat gains in the thermal zone.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="heat_processes" src="docs/figures/03_heat_process.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Heat processes for the cubic building shown in Figure 1.</p>
+</div></blockquote>
+<p><img alt="thermal_circuit" src="docs/figures/03_therm_circ.svg" /></p>
+<blockquote>
+<div><p>Figure 4. Thermal circuit for the cubic building shown in Figure 1 and the heat processes shown in Figure 3. <em>Note</em>: space discretization of the walls is done for simplicity.</p>
+</div></blockquote>
+<p>Figure 4 shows the models of:</p>
+<ul class="simple">
+<li><p>concrete &amp; insulation wall: in red;</p></li>
+<li><p>glass window: in green;</p></li>
+<li><p>ventilation: in magenta;</p></li>
+<li><p>indoor air volume: in blue (conductances 6 &amp; 7 for convection; conductance 5 for long wave radiation between the walls and the glass window);</p></li>
+<li><p>HVAC system: in black.</p></li>
+</ul>
+<p>The sources are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - indoor air controlled at the setpoint temperaure for the indoor air, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_o\)</span> - solar radiation absorbed by the outdoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_i\)</span> - solar radiation absorbed by the indoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_a\)</span> - solar radiation absorbed by the glass, W.</p></li>
+</ul>
+<p><em>Note</em>: The known values, i.e. the elements of the circuit (conductances <span class="math notranslate nohighlight">\(G\)</span> and capacities <span class="math notranslate nohighlight">\(C\)</span>) and the sources (of temperature <span class="math notranslate nohighlight">\(T\)</span> and of flow rate <span class="math notranslate nohighlight">\(\Phi\)</span> or <span class="math notranslate nohighlight">\(\dot{Q}\)</span>) are noted in uppercase (majuscule) letters. The unknow variables, i.e. the temperatures in the nodes <span class="math notranslate nohighlight">\(\theta\)</span> and the flow rates on the branches <span class="math notranslate nohighlight">\(q\)</span>, are noted in lowercase (minuscule) letters.</p>
+<section id="thermal-conductances">
+<h3>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h3>
+<section id="conduction">
+<h4>Conduction<a class="headerlink" href="#conduction" title="Permalink to this headline">#</a></h4>
+<p>The conductances 1, 2, 3, and 4 of the thermal circuit from Figure 3 model the heat transfer by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a>. Conduction conductances, in W/K, are of the form:</p>
+<div class="math notranslate nohighlight">
+\[G_{cd} = \frac{\lambda}{w}S\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity">thermal conductvity</a>, W/(m⋅K);</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span> - width of the material, m;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># conduction</span>
+<span class="n">G_cd</span> <span class="o">=</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Conductivity&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Width&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">G_cd</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Conductance&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Conductance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Layer_out</th>
+      <td>315.0000</td>
+    </tr>
+    <tr>
+      <th>Layer_in</th>
+      <td>15.1875</td>
+    </tr>
+    <tr>
+      <th>Glass</th>
+      <td>315.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="convection">
+<h4>Convection<a class="headerlink" href="#convection" title="Permalink to this headline">#</a></h4>
+<p>The conductances 0, 6 and 7 model the heat transfer by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">convection</a>. Convection conductances, in W/K, are of the form:</p>
+<div class="math notranslate nohighlight">
+\[G_{cv} = {h S}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">convection coefficient</a>, W/(m²⋅K);</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
+</ul>
+<blockquote>
+<div><p>Table 1. Surface thermal conductances (adapted after Dal Zotto et al. 2014, p. 261)</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type of wall</p></th>
+<th class="text-center head"><p>Indoor surface</p></th>
+<th class="text-center head"><p>Outdoor surface</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_i\)</span> / [W/(m²·K)]</p></td>
+<td class="text-center"><p><span class="math notranslate nohighlight">\(h_o\)</span> / [W/(m²·K)]</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Vertical</em> (tilt &gt; 60°): horizontal flow rate</p></td>
+<td class="text-center"><p>7.7</p></td>
+<td class="text-center"><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Horizontal</em> (tilt &lt; 60°): vertical flow rate</p></td>
+<td class="text-center"><p></p></td>
+<td class="text-center"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>- upward heat flow rate</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>- downward heat flow rate</p></td>
+<td class="text-center"><p>5.9</p></td>
+<td class="text-center"><p>25</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convection</span>
+<span class="n">Gw</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># wall</span>
+<span class="n">Gg</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># glass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="long-wave-radiation">
+<h4>Long wave radiation<a class="headerlink" href="#long-wave-radiation" title="Permalink to this headline">#</a></h4>
+<section id="view-factors-inside-the-building">
+<h5>View factors inside the building<a class="headerlink" href="#view-factors-inside-the-building" title="Permalink to this headline">#</a></h5>
+<p>The majority of methods used for modelling the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_radiation">radiative heat exchange</a> use the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a> between surfaces. The view factor <span class="math notranslate nohighlight">\(F_{i,j}\)</span> is defined as <em>the proportion of radiation leaving surface <span class="math notranslate nohighlight">\(i\)</span> that is intercepted by surface <span class="math notranslate nohighlight">\(j\)</span></em>. The view factors can be estimated by <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#View_factors_of_differential_areas">differential areas</a> or for different configurations of surfaces (<a class="reference external" href="http://www.thermalradiation.net/indexCat.html">Howell et al. 2021</a>).</p>
+<p>The view factors need to satisfy the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Summation_of_view_factors">summation rule</a></p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{n-1} F_{i,j} = 1\]</div>
+<p>and the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity theorem</a>:</p>
+<div class="math notranslate nohighlight">
+\[F_{i,j} S_i = F_{j,i} S_j\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{i}\)</span> and <span class="math notranslate nohighlight">\(S_{j}\)</span> are the surface areas.</p>
+<p>For a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Convex_function">convex</a> surface <span class="math notranslate nohighlight">\(i\)</span>, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing_surfaces">self-viewing factor</a> is zero,</p>
+<div class="math notranslate nohighlight">
+\[F_{i,i} = 0\]</div>
+<p>Two simplified relations are used to calculate the view factors for buildings.</p>
+<p>In the first one, the view factors are defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+F_{i,j} = \frac{S_i}{S_T}\\ 
+F_{i,i} = 0
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_j\)</span> is included in the total surface <span class="math notranslate nohighlight">\(S_T\)</span>. In this method, the reciprocity theorem is satisfied,
+$<span class="math notranslate nohighlight">\(F_{i,j} S_i = F_{j,i} S_j = \frac{S_i S_j}{S_T}\)</span>$
+but summation rule isn’t,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{n-1} F_{i,j} = \sum_{j=0, j \neq i}^{n-1} \frac{S_j}{S_T} = \frac {S_T - S_i}{S_T} \neq 1\]</div>
+<p>In this case, the heat balance for each surface would be wrong.</p>
+<p>In the second one, the view factors are defined by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+F_{i,j} = \frac{S_j}{S_T -S_i}\\ 
+F_{i,i} = 0
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{T} = \sum_{j=0}^{n-1} S_j\)</span>, i.e. the surface <span class="math notranslate nohighlight">\(S_i\)</span> is not included in the total surface <span class="math notranslate nohighlight">\(S_{T,i} = S_T - S_i\)</span>.</p>
+<p>In this case, the reciprocty theorem is generally not respected:</p>
+<div class="math notranslate nohighlight">
+\[F_{i, j} S_i = \frac{S_j}{S_T - S_i} S_i \neq F_{j, i} S_j = \frac{S_i}{S_T - S_j} S_j\]</div>
+<p>but the summation rule is respected:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \sum_{i=0}^{n-1} F_{i, j} = \frac{1}{S_T - S_i} \sum_{\substack{j=0\\i\neq j}}^{n-1} S_j = 1 \end{split}\]</div>
+<p>Let’s define the view factors by:</p>
+<div class="math notranslate nohighlight">
+\[F_{i,j} = \frac{S_j}{S_T -S_i}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># view factor wall-glass</span>
+<span class="n">Fwg</span> <span class="o">=</span> <span class="n">glass</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">concrete</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note: The view factor between two surfaces, <span class="math notranslate nohighlight">\(j,k\)</span> that are in the same plane (e.g. a window and a wall) is zero,</p>
+<div class="math notranslate nohighlight">
+\[F_{j,k} = F_{k,j}=0\]</div>
+<p>Therefore the total surface <span class="math notranslate nohighlight">\(S_{T,i}\)</span> should be:</p>
+<div class="math notranslate nohighlight">
+\[S_{T,i} = \sum_{j=0}^{n-1} S_j - \sum_k S_k\]</div>
+<p>i.e. the surfaces <span class="math notranslate nohighlight">\(S_k\)</span> in the same plane with the surface <span class="math notranslate nohighlight">\(S_i\)</span> are not included in <span class="math notranslate nohighlight">\(S_{T,i}\)</span>.</p>
+</section>
+<section id="view-factor-between-tilted-outdoor-walls-and-sky">
+<h5>View factor between tilted outdoor walls and sky<a class="headerlink" href="#view-factor-between-tilted-outdoor-walls-and-sky" title="Permalink to this headline">#</a></h5>
+<p>The view factor between the top surface of finite wall <span class="math notranslate nohighlight">\(w\)</span> tilted relative to an infinite plane of the ground <span class="math notranslate nohighlight">\(g\)</span> is (<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén, Munkhammar, 2019</a>, eq. 4.18):</p>
+<div class="math notranslate nohighlight">
+\[ F_{w,g} = \frac {1 - \cos \beta}{2}\]</div>
+<p>Therefore, the view factor between the tilted wall <span class="math notranslate nohighlight">\(w\)</span> and the sky dome <span class="math notranslate nohighlight">\(s\)</span> is (<a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén, Munkhammar, 2019</a>, eq. 4.17):</p>
+<div class="math notranslate nohighlight">
+\[ F_{w,s} = 1 - F_{w,g} = \frac {1 + \cos \beta}{2}\]</div>
+</section>
+<section id="thermal-network-for-long-wave-radiation">
+<h5>Thermal network for long wave radiation<a class="headerlink" href="#thermal-network-for-long-wave-radiation" title="Permalink to this headline">#</a></h5>
+<p>The long-wave heat exchange between surfaces may be modelled by using the concept of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> and then linearizing the radiative heat exchange.</p>
+<p><img alt="LW_rad_excg" src="docs/figures/03_LW_rad_excg.svg" /></p>
+<blockquote>
+<div><p>Figure 5. Radiative long-wave heat exchange between two surfaces: a) modeled by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> (source) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a> (nodes); b) modeled by linearization of emmitance (temperature sources) and radiosity (temperature nodes).</p>
+</div></blockquote>
+<p>For two surfaces, shown by temperature nodes 4 and 5 in Figure 4 and by nodes 1 and 2 in Figure 5, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">conductances</a>, in m², for radiative heat exchange expressed by using the emmitance (or the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant excitance</a>)  of the black body, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosity</a>, and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of view factors are:</p>
+<div class="math notranslate nohighlight">
+\[G_{1}^{r} = \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
+<div class="math notranslate nohighlight">
+\[G_{1,2}^{r} = F_{1,2} S_1 = F_{2,1} S_2\]</div>
+<div class="math notranslate nohighlight">
+\[G_{2}^{r} = \frac{\varepsilon_2}{1 - \varepsilon_2} S_2\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_1\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_2\)</span> are the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Emissivity">emmisivities</a> of the surfaces 1 and 2;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_1\)</span> and <span class="math notranslate nohighlight">\(S_2\)</span> - areas of the surfaces 1 and 2, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{1,2}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factor</a> between surfaces 1 and 2.</p></li>
+</ul>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">net flows leaving the surfaces 1 and 2</a> are:</p>
+<div class="math notranslate nohighlight">
+\[q_{net,1} = \frac{\varepsilon_1}{1 - \varepsilon_1} S_1 (M^o_1 - J_1)= G^r_1 (M_1^o - J_1)\]</div>
+<div class="math notranslate nohighlight">
+\[q_{net,2} = \frac{\varepsilon_2}{1 - \varepsilon_2} S_2 (M^o_2 - J_2)= G^r_2 (M_2^o - J_2)\]</div>
+<p>respectively, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(M^o_1\)</span> and <span class="math notranslate nohighlight">\(M^o_2\)</span> are the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitances</a> of the surfaces 1 and 2 when emmiting as black bodies, <span class="math notranslate nohighlight">\(M^o = \sigma T^4\)</span>, W/m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(J_1\)</span> and <span class="math notranslate nohighlight">\(J_2\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)">radiosities</a> of surfaces 1 and 2, W/m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(G^r_1\)</span> and <span class="math notranslate nohighlight">\(G^r_2\)</span> - conductances for long wave radiative heat exchange, m².</p></li>
+</ul>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiosity_(radiometry)#Circuit_analogy">net flow between surfaces 1 and 2</a> is:</p>
+<div class="math notranslate nohighlight">
+\[q_{1,2} = F_{1,2} S_1 (J_1 - J_2) = F_{2,1} S_2 (J_1 - J_2)= G_{1,2}^r (J_1 - J_2)\]</div>
+<p>In order to express the long-wave radiative exchange as a function of temperature differences, a linearization of the difference of temperatures <span class="math notranslate nohighlight">\(T_1^4 - T_2^4\)</span> may be used:</p>
+<div class="math notranslate nohighlight">
+\[T_1^4 - T_2^4 = (T_1^2 + T_2^2)(T_1^2 - T_2^2) = (T_1^2 + T_2^2)(T_1 + T_2)(T_1 - T_2) = 4 \bar{T}^3 (T_1 - T_2)\]</div>
+<p>where the mean temperature <span class="math notranslate nohighlight">\(\bar{T}\)</span>, measured in kelvin, is:</p>
+<div class="math notranslate nohighlight">
+\[\bar{T} =\sqrt[3]{ \frac{(T_1^2 + T_2^2)(T_1 + T_2)}{4}}\]</div>
+<p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> (in kelvin). An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.6 and 7.0 W/(m²·K) for <span class="math notranslate nohighlight">\(0 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 40 \,\mathrm{ °C}\)</span> and between 5.1 and 6.3 W/(m²·K) for <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 30 \,\mathrm{ °C}\)</span>. Practically, <span class="math notranslate nohighlight">\((\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W/(m^2K)}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 0°C &lt; (T/K - 273.15)°C &lt; 40°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For 10°C &lt; (T/K - 273.15)°C &lt; 30°C, 4σT³/[W/(m²·K)] ∈ </span><span class="si">{</span><span class="n">coeff</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="mi">20</span>
+<span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;For (T/K - 273.15)°C = 20°C, 4σT³ = </span><span class="si">{</span><span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">T_int</span><span class="o">**</span><span class="mi">3</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> W/(m²·K)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For 0°C &lt; (T/K - 273.15)°C &lt; 40°C, 4σT³/[W/(m²·K)] ∈ [4.6 7. ]
+For 10°C &lt; (T/K - 273.15)°C &lt; 30°C, 4σT³/[W/(m²·K)] ∈ [5.1 6.3]
+For (T/K - 273.15)°C = 20°C, 4σT³ = 5.7 W/(m²·K)
+</pre></div>
+</div>
+</div>
+</div>
+<p>After linearization, the conductances, in W/K, for radiative heat exchange are:</p>
+<div class="math notranslate nohighlight">
+\[G_{1} = 4 \sigma \bar{T}^3 \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
+<div class="math notranslate nohighlight">
+\[G_{1,2} = 4 \sigma \bar{T}^3 F_{1,2} S_1 = 4 \sigma \bar{T}^3 F_{2,1} S_2\]</div>
+<div class="math notranslate nohighlight">
+\[G_{2} = 4 \sigma \bar{T}^3 \frac{\varepsilon_2}{1 - \varepsilon_2} S_2\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># long wave radiation</span>
+<span class="n">Tm</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">273</span>   <span class="c1"># K, mean temp for radiative exchange</span>
+
+<span class="n">GLW1</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">Tm</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ε_wLW</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ε_wLW</span><span class="p">)</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">]</span>
+<span class="n">GLW12</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">Tm</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">Fwg</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">]</span>
+<span class="n">GLW2</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">Tm</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">ε_gLW</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ε_gLW</span><span class="p">)</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="s1">&#39;Glass&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The equivalent conductance, in W/K, for the radiative long-wave heat exchange between the wall and the glass window is:</p>
+<div class="math notranslate nohighlight">
+\[G = \frac{1}{1/G_1 + 1/G_{1,2} + 1/G_2}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">GLW</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">GLW1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">GLW12</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">GLW2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note</em>: Resistances in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits">series or parallel</a> can be replaced by their equivalent resistance.</p>
+</section>
+</section>
+<section id="advection">
+<h4>Advection<a class="headerlink" href="#advection" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of the air, in m³/s, is:</p>
+<div class="math notranslate nohighlight">
+\[\dot{V}_a = \frac{\mathrm{ACH}}{3600} V_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{ACH}\)</span>  (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Air_changes_per_hour">air changes per hour</a>) is the air infiltration rate, 1/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(3600\)</span> - number of seconds in one hour, s/h;</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_a\)</span> - volume of the air in the thermal zone, m³.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ventilation flow rate</span>
+<span class="n">Va</span> <span class="o">=</span> <span class="n">l</span><span class="o">**</span><span class="mi">3</span>                   <span class="c1"># m³, volume of air</span>
+<span class="n">ACH</span> <span class="o">=</span> <span class="mi">1</span>                     <span class="c1"># 1/h, air changes per hour</span>
+<span class="n">Va_dot</span> <span class="o">=</span> <span class="n">ACH</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">*</span> <span class="n">Va</span>    <span class="c1"># m³/s, air infiltration</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The net flow rate that the building receives by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a>, i.e., introducing outdoor air at temperature <span class="math notranslate nohighlight">\(T_o\)</span> and extracting indoor air at temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">air infiltration</a>, is:</p>
+<div class="math notranslate nohighlight">
+\[q_v = \dot{m}_a c_a (T_o - \theta_i) = \rho_a c_a \dot{V}_a (T_o - \theta_i)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_a\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air, kg/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{V}_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a>, m³/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> of the air, J/kg·K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_a\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of air, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C (noted in majuscule because it is a <em>temperature source</em> or <em>input variable</em>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C (noted in minuscule because it is a <em>dependent temperature</em> or <em>output variable</em>).</p></li>
+</ul>
+<p>Therefore, the conductance of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">infiltration</a>, in W/K, is:</p>
+<div class="math notranslate nohighlight">
+\[G_v = \rho_a c_a \dot{V}_a\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ventilation &amp; advection</span>
+<span class="n">Gv</span> <span class="o">=</span> <span class="n">air</span><span class="p">[</span><span class="s1">&#39;Density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">air</span><span class="p">[</span><span class="s1">&#39;Specific heat&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">Va_dot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Table 2. Typical values for the ventilation rates (in air changes per hour, ACH) as a function of the position of windows (H. Recknagel, E. Spenger, E_R Schramek (2013), Table 1.12.1-4)</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Position of windows</p></th>
+<th class="head"><p>Ventilation rate, ACH / [1/h]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Window closed, doors closed</p></td>
+<td><p>0 to 0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tilted window, venetian blind closed</p></td>
+<td><p>0.3 to 1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Tilted window, whitout venetian blind</p></td>
+<td><p>0.8 to 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Window half opened</p></td>
+<td><p>5 to 10</p></td>
+</tr>
+<tr class="row-even"><td><p>Window fully open</p></td>
+<td><p>9 to 15</p></td>
+</tr>
+<tr class="row-odd"><td><p>Window and French window fully open (cross ventilation)</p></td>
+<td><p>about 40</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="proportional-controller">
+<h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h4>
+<p>In the simplest representation, an <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>. The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
+<div class="math notranslate nohighlight">
+\[ q_{HVAC} = K_p (T_{i, sp} - \theta_i)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain of the controller, W/K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C (noted in majuscule because it is an <em>input</em>, i.e., independent, variable);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C (noted in minuscule because it is an <em>output</em>, i.e., dependent variable).</p></li>
+</ul>
+<p>This equation shows that the proportional controller can be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{i, sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(K_p\)</span>. If the controller gain tends towards:</p>
+<ul class="simple">
+<li><p>infinity, <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect, <span class="math notranslate nohighlight">\(\theta_i \rightarrow T_{i, sp}\)</span>;</p></li>
+<li><p>zero, <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then the controller is not acting and the building is in free-running, i.e., <span class="math notranslate nohighlight">\(q_{HVAC} = 0\)</span> (<a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus 2003</a>).</p></li>
+</ul>
+<p><em>Note</em>: Respecting the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_sign_convention#Active_and_passive_components">sign convention</a>, the flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> is oriented from the lower to the higher potential of the temperature source <span class="math notranslate nohighlight">\(T_{i,sp}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># P-controler gain</span>
+<span class="c1"># Kp = 1e4            # almost perfect controller Kp -&gt; ∞</span>
+<span class="c1"># Kp = 1e-3           # no controller Kp -&gt; 0</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conductances-in-series-and-or-parallel">
+<h4>Conductances in series and/or parallel<a class="headerlink" href="#conductances-in-series-and-or-parallel" title="Permalink to this headline">#</a></h4>
+<p>If conductances are connected to temperature nodes which have no capacity and/or flow rate source, then the conductances can be considered in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits">series or parallel</a> (depending on the connection). Let’s consider, for example, the outdoor side of the glass window (Figure 4, conductance 8): the outdoor convection conductance and the conduction conductance (corresponding to half of the width of the glass) are in series:</p>
+<div class="math notranslate nohighlight">
+\[ G_{gs} = \frac{1}{1/G_{g,cv.out } + 1/(2 G_{g,cd})} =  
+\frac{1}{\frac{1}{h_{out} S_g} + \frac{w / 2}{\lambda S_g}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># glass: convection outdoor &amp; conduction</span>
+<span class="n">Ggs</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">Gg</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Glass&#39;</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thermal-capacities">
+<h3>Thermal capacities<a class="headerlink" href="#thermal-capacities" title="Permalink to this headline">#</a></h3>
+<section id="walls">
+<h4>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">thermal capacities</a>, in J/kg, of the two layers of the wall and of the glass are:</p>
+<div class="math notranslate nohighlight">
+\[C_w= m_w c_w= \rho_w c_w w_w S_w\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m_w = \rho_w w_w S_w\)</span> is the mass of the wall, kg;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_w\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a>, J/(kg⋅K);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_w\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a>, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_w\)</span> - width of the wall, m;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_w\)</span> - surface area of the wall, m².</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Specific heat&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Width&#39;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Capacity&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Capacity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Layer_out</th>
+      <td>18216000.0</td>
+    </tr>
+    <tr>
+      <th>Layer_in</th>
+      <td>239580.0</td>
+    </tr>
+    <tr>
+      <th>Glass</th>
+      <td>1089000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="air">
+<h4>Air<a class="headerlink" href="#air" title="Permalink to this headline">#</a></h4>
+<p>Similarly, the thermal capacity of the air, in J/kg, is:</p>
+<div class="math notranslate nohighlight">
+\[C_a = m_a c_a = \rho_a c_a V_a\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m_a = \rho_a V_a\)</span> is the mass of the air, kg;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_w\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a> of air, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c_a\)</span> - specific heat capacity of the air, J/(kg⋅K);</p></li>
+<li><p><span class="math notranslate nohighlight">\(V_a\)</span> - volume of the air in the thermal zone, m³.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="s1">&#39;Air&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">air</span><span class="p">[</span><span class="s1">&#39;Density&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">air</span><span class="p">[</span><span class="s1">&#39;Specific heat&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">Va</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Capacity&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Capacity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Layer_out</th>
+      <td>18216000.0</td>
+    </tr>
+    <tr>
+      <th>Layer_in</th>
+      <td>239580.0</td>
+    </tr>
+    <tr>
+      <th>Glass</th>
+      <td>1089000.0</td>
+    </tr>
+    <tr>
+      <th>Air</th>
+      <td>32400.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="temperature-sources">
+<h3>Temperature sources<a class="headerlink" href="#temperature-sources" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source#Ideal_voltage_sources">temperature sources</a> model temperatures which vary independently of what happens in the themal circuit; they are inputs of the physical model. Generally, the temperature sources are:</p>
+<ul class="simple">
+<li><p>outdoor air and ground temperatures;</p></li>
+<li><p>temperature of adjacent spaces which have the temperature controlled;</p></li>
+<li><p>setpoint temperature.</p></li>
+</ul>
+<section id="outdoor-air-and-ground-temperatures">
+<h4>Outdoor air and ground temperatures<a class="headerlink" href="#outdoor-air-and-ground-temperatures" title="Permalink to this headline">#</a></h4>
+<p>The hourly values of outdoor temperatures can be obtained from weather data files downloadable from the <a class="reference external" href="http://climate.onebuilding.org">Repository of free climate data for building performance simulation</a> or from <a class="reference external" href="https://energyplus.net/weather">Weather data for EnergyPlus®</a> (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">Weather data and solar radiation</span></a>).</p>
+</section>
+<section id="adjacent-spaces-with-controlled-temperature">
+<h4>Adjacent spaces with controlled temperature<a class="headerlink" href="#adjacent-spaces-with-controlled-temperature" title="Permalink to this headline">#</a></h4>
+<p>If the adjacent spaces are controlled by a HVAC system, it means that their temperature can be considered independent of the studied thermal zone(s); therefore, they can be modelled by a temperature source.</p>
+</section>
+<section id="setpoint-temperature">
+<h4>Setpoint temperature<a class="headerlink" href="#setpoint-temperature" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">Setpoint</a> temperature does not depend on the heat transfer processes of the analyzed thermal zone. If the HVAC system can deliver the heat flow rate:</p>
+<div class="math notranslate nohighlight">
+\[ q_{HVAC} = K_p (T_{i, sp} - \theta_i)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K_p\)</span> is the proportional gain, W/K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i, sp}\)</span> - indoor temperature <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a>, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor temperature, °C,</p></li>
+</ul>
+<p>then the setpoint for indoor temperature, <span class="math notranslate nohighlight">\(T_{i, sp}\)</span>, may be modelled by a source of temperature.</p>
+</section>
+</section>
+<section id="heat-flow-rate-sources">
+<h3>Heat flow rate sources<a class="headerlink" href="#heat-flow-rate-sources" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source#Background">heat flow rate sources</a> model flow rates which vary idependently of what happens in the themal circuit. They are inputs of the physical model. Generally, the heat flow rate sources are:</p>
+<ul class="simple">
+<li><p>solar radiation absorbed by the walls;</p></li>
+<li><p>internal auxiliary sources.</p></li>
+</ul>
+<section id="solar-radiation-absorbed-by-the-walls">
+<h4>Solar radiation absorbed by the walls<a class="headerlink" href="#solar-radiation-absorbed-by-the-walls" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Direct_insolation">direct</a>, diffuse and reflected components of the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar radiation</a> on a tilted surface can be estimated from weather data by using the function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf</span></code> from the module <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">Weather data and solar radiation</span></a>).</p>
+<section id="external-wall">
+<h5>External wall<a class="headerlink" href="#external-wall" title="Permalink to this headline">#</a></h5>
+<p>The radiation absorbed by the outdoor surface of the wall is:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_o = \alpha_{w,SW} S_w E_{tot}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha_{w,SW}\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> of the outdoor surface of the wall in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_w\)</span> - surface area of the wall, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{tot}\)</span> - total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a> on the wall, W/m².</p></li>
+</ul>
+</section>
+<section id="internal-walls">
+<h5>Internal walls<a class="headerlink" href="#internal-walls" title="Permalink to this headline">#</a></h5>
+<p>The total shortwave incident irradiance on the wall <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(E_i\)</span>, may be estimated as a function of the direct solar irradiance incident on the surface of the walls, <span class="math notranslate nohighlight">\(E_{i}^{o}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[S_i E_i = S_i E_{i}^{o} + \sum_{j=1}^{n} F_{j,i} S_j \rho_j E_j\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_i\)</span> is the area of the surface of the wall <span class="math notranslate nohighlight">\(i\)</span>, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_i\)</span> - total irradiance received directly and by multiple reflections on surface <span class="math notranslate nohighlight">\(i\)</span>, W/m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{i}^{o}\)</span> - irradiance received directly from the sun on surface <span class="math notranslate nohighlight">\(i\)</span>, W/m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_{j, i}\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factor</a> between surface <span class="math notranslate nohighlight">\(j\)</span> and surface <span class="math notranslate nohighlight">\(i\)</span>, <span class="math notranslate nohighlight">\(0 ⩽ F_{j,i} ⩽ 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_j\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Reflectance">reflectance</a> of surface <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(0 ⩽ \rho_j ⩽ 1\)</span>.</p></li>
+</ul>
+<p>By taking into account the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a> of the view factors: <span class="math notranslate nohighlight">\(S_i F_{i,j} = S_j F_{j,i}\)</span>, the set of previous equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+1 - \rho_1 F_{1,1} &amp; - \rho_2 F_{1,2}     &amp; ...  &amp; - \rho_n F_{1,n}\\ 
+- \rho_1 F_{2,1}   &amp; 1 - \rho_2 F_{2,2}  &amp; ...  &amp; - \rho_n F_{2,n} \\ 
+...                         &amp; ...                            &amp; ...  &amp; ... \\ 
+- \rho_1 F_{n,1}  &amp; - \rho_2 F_{n,1}      &amp; ... &amp; 1 - \rho_n F_{n,n}
+\end{bmatrix} \begin{bmatrix}
+E_1\\ 
+E_2\\ 
+...\\ 
+E_n
+\end{bmatrix} = \begin{bmatrix}
+E_{1}^{o}\\ 
+E_{2}^{o}\\ 
+...\\ 
+E_{n}^{o}
+\end{bmatrix}
+\end{split}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[(I - \rho \circ F) E = E^o\]</div>
+<p>The unknown total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> on walls, in W/m², are then</p>
+<div class="math notranslate nohighlight">
+\[ E = (I - \rho \circ F)^{-1} E^o\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>the symbol <span class="math notranslate nohighlight">\(\circ\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a>;</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(I =\begin{bmatrix}
+1 &amp; 0 &amp; ... &amp; 0 \\ 
+0 &amp; 1 &amp; ... &amp; 0 \\ 
+... &amp; ... &amp; ... &amp; ...\\ 
+0 &amp; 0 &amp; ... &amp; 1 
+\end{bmatrix}, \)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Identity_matrix">identity matrix</a>;</p>
+<p><span class="math notranslate nohighlight">\(\rho = \begin{bmatrix}
+\rho_1\\ 
+\rho_2\\ 
+...\\ 
+\rho_n
+\end{bmatrix}\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Reflectance">reflectances</a>, <span class="math notranslate nohighlight">\(0 \le \rho_{i,j} \le 1\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(F = \begin{bmatrix}
+F_{1,1} &amp; F_{1,2} &amp; ... &amp; F_{1,n}\\ 
+F_{2,1} &amp; F_{2,2} &amp; ... &amp; F_{2,n} \\ 
+... &amp; ... &amp; ... &amp; ...\\ 
+F_{n,1} &amp; F_{n,2} &amp; ... &amp; F_{n,n}
+\end{bmatrix}\)</span> - matrix of <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a>, <span class="math notranslate nohighlight">\(0 \le F_{i,j} \le 1\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(E^o = \begin{bmatrix}
+E_{1}^{o}\\ 
+E_{2}^{o}\\ 
+...\\ 
+E_{n}^{o}
+\end{bmatrix}\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">direct solar irradiances</a>, W/m²;</p>
+<p><span class="math notranslate nohighlight">\(E = \begin{bmatrix}
+E_1\\ 
+E_2\\ 
+...\\ 
+E_n
+\end{bmatrix}\)</span> - vector of unknown total irradiances, W/m².</p>
+<p>The radiative short wave (i.e. solar) heat flow rate on each surface is:</p>
+<div class="math notranslate nohighlight">
+\[ \Phi = S E \]</div>
+<p>where:</p>
+<p><span class="math notranslate nohighlight">\(\Phi = \begin{bmatrix}
+\Phi_1\\ 
+\Phi_2\\ 
+...\\ 
+\Phi_n
+\end{bmatrix}\)</span> - vector of total heat flow rates due to solar radiation, W;</p>
+<p><span class="math notranslate nohighlight">\(S =\begin{bmatrix}
+S_1 &amp; 0 &amp; ... &amp; 0 \\ 
+0 &amp; S_2 &amp; ... &amp; 0 \\ 
+... &amp; ... &amp; ... &amp; ...\\ 
+0 &amp; 0 &amp; ... &amp; S_n 
+\end{bmatrix}\)</span> - matrix of surface areas of walls <span class="math notranslate nohighlight">\(i\)</span>, m².</p>
+</section>
+</section>
+<section id="internal-sources">
+<h4>Internal sources<a class="headerlink" href="#internal-sources" title="Permalink to this headline">#</a></h4>
+<p>Internal flow rates are generated by occupants and by the electrical equipment (with values given for <a class="reference external" href="https://energieplus-lesite.be/theories/bilan-thermique44/charges-thermiques-internes-pour-les-bureaux/">offices</a>, <a class="reference external" href="https://energieplus-lesite.be/theories/bilan-thermique44/charges-thermiques-internes-pour-les-commerces/">commercial spaces</a>, etc.).</p>
+</section>
+</section>
+</section>
+<section id="system-of-algebraic-differential-equations-dae">
+<h2>System of algebraic-differential equations (DAE)<a class="headerlink" href="#system-of-algebraic-differential-equations-dae" title="Permalink to this headline">#</a></h2>
+<p>The analysis of a thermal circuit, or the direct problem (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03484064/document">Ghiaus 2022</a>), means to find the temperatures in the nodes, <span class="math notranslate nohighlight">\(\theta\)</span>, and the heat flows on the branches, <span class="math notranslate nohighlight">\(q\)</span>, i.e. to solve for <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(q\)</span> the system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations (DAE)</a> (Figure 6):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{ll}
+C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\\ 
+q = G (-A \theta + b)
+\end{array}\right.\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> is the temperature vector of size <span class="math notranslate nohighlight">\(n_\theta\)</span> equal to the number of nodes;</p></li>
+<li><p><span class="math notranslate nohighlight">\(q\)</span> - heat flow vector of size <span class="math notranslate nohighlight">\(n_q\)</span> equal to the number of branches;</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> of size <span class="math notranslate nohighlight">\(n_q\)</span> rows and <span class="math notranslate nohighlight">\(n_{\theta}\)</span> columns, where <span class="math notranslate nohighlight">\(n_q\)</span> is the number of flow branches and <span class="math notranslate nohighlight">\(n_{\theta}\)</span>  is the number of temperature nodes. It shows how the temperature nodes are connected by oriented branches of heat flows:</p>
+<ul>
+<li><p>if flow <em>m</em> enters into node <em>n</em>, then the element (<em>m, n</em>) of the matrix <span class="math notranslate nohighlight">\(A\)</span> is 1, i.e., <span class="math notranslate nohighlight">\(A_{m,n} = 1\)</span>;</p></li>
+<li><p>if flow <em>m</em> exits from node <em>n</em>, then the element (<em>m, n</em>) of the matrix <span class="math notranslate nohighlight">\(A\)</span> is -1, i.e., <span class="math notranslate nohighlight">\(A_{m,n} = -1\)</span>, ;</p></li>
+<li><p>if flow <em>m</em> is not connected to node <em>n</em>, then the element (<em>m, n</em>) of the matrix <span class="math notranslate nohighlight">\(A\)</span> is 0, i.e., <span class="math notranslate nohighlight">\(A_{m,n} = 0\)</span>.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> - conductance diagonal matrix, of size <span class="math notranslate nohighlight">\(n_q \times n_q\)</span>,  where <span class="math notranslate nohighlight">\(n_q\)</span> is the number of flow branches, containing the conductances. Each branch <span class="math notranslate nohighlight">\(k\)</span> needs to contain a conductance <span class="math notranslate nohighlight">\(0 &lt; G_{k,k} &lt; \infty \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> - capacity diagonal matrix, of size <span class="math notranslate nohighlight">\(n_θ \times n_θ\)</span>,  where <span class="math notranslate nohighlight">\(n_θ\)</span> is the number of temperature nodes, containing the capacities. If there is no capacity in the node <em>n</em>, then <span class="math notranslate nohighlight">\(C_{n, n} = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> - temperature source vector of size <span class="math notranslate nohighlight">\(n_q\)</span>: if there is no temperature source on the branch <em>m</em>, then <span class="math notranslate nohighlight">\(b_m = 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> - heat flow source vector of size <span class="math notranslate nohighlight">\(n_θ\)</span>: if there is no heat flow source in the node <em>n</em>, then <span class="math notranslate nohighlight">\(f_n = 0\)</span>.</p></li>
+</ul>
+<p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
+<p>which, generally, is a system of differential-algebraic equations (DAE). Then, the heat flow rates are found from the equation</p>
+<div class="math notranslate nohighlight">
+\[q = G (-A \theta + b)\]</div>
+<p><img alt="thermal_circuit" src="docs/figures/03_TCmatrices.svg" /></p>
+<blockquote>
+<div><p>Figure 6. Matrices and vectors of the system of Differential-Algebraic Equations (DAE).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># temperature nodes</span>
+<span class="n">θ</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ0&#39;</span><span class="p">,</span> <span class="s1">&#39;θ1&#39;</span><span class="p">,</span> <span class="s1">&#39;θ2&#39;</span><span class="p">,</span> <span class="s1">&#39;θ3&#39;</span><span class="p">,</span> <span class="s1">&#39;θ4&#39;</span><span class="p">,</span> <span class="s1">&#39;θ5&#39;</span><span class="p">,</span> <span class="s1">&#39;θ6&#39;</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">]</span>
+
+<span class="c1"># flow-rate branches</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q1&#39;</span><span class="p">,</span> <span class="s1">&#39;q2&#39;</span><span class="p">,</span> <span class="s1">&#39;q3&#39;</span><span class="p">,</span> <span class="s1">&#39;q4&#39;</span><span class="p">,</span> <span class="s1">&#39;q5&#39;</span><span class="p">,</span> <span class="s1">&#39;q6&#39;</span><span class="p">,</span> <span class="s1">&#39;q7&#39;</span><span class="p">,</span> <span class="s1">&#39;q8&#39;</span><span class="p">,</span> <span class="s1">&#39;q9&#39;</span><span class="p">,</span> <span class="s1">&#39;q10&#39;</span><span class="p">,</span> <span class="s1">&#39;q11&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="a-incidence-matrix">
+<h3>A: incidence matrix<a class="headerlink" href="#a-incidence-matrix" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> is:</p>
+<p><span class="math notranslate nohighlight">\(A_{kl} = \begin{cases}\phantom{-}
+0 &amp; \text{if branch } q_k \text{ is not connected to node }  \theta_l \\ 
++1 &amp; \text{if branch } q_k \text{ enters into node }  \theta_l\\ 
+-1 &amp; \text{if branch } q_k \text{ gets out of node }  \theta_l 
+\end{cases}\)</span></p>
+<p>For the themal circuit shown in Figure 4,</p>
+<p><span class="math notranslate nohighlight">\( A = \begin{cases}
+A_{0,0} = 1\\ 
+A_{1,0} = -1, A_{1,1} = 1\\ 
+...\\
+A_{11,6} = 1\\
+\end{cases}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>       <span class="c1"># n° of branches X n° of nodes</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                 <span class="c1"># branch 0: -&gt; node 0</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 1: node 0 -&gt; node 1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 2: node 1 -&gt; node 2</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 3: node 2 -&gt; node 3</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 4: node 3 -&gt; node 4</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 5: node 4 -&gt; node 5</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 6: node 4 -&gt; node 6</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>    <span class="c1"># branch 7: node 5 -&gt; node 6</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                 <span class="c1"># branch 8: -&gt; node 7</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>    <span class="c1"># branch 9: node 5 -&gt; node 7</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># branch 10: -&gt; node 6</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                <span class="c1"># branch 11: -&gt; node 6</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>θ0</th>
+      <th>θ1</th>
+      <th>θ2</th>
+      <th>θ3</th>
+      <th>θ4</th>
+      <th>θ5</th>
+      <th>θ6</th>
+      <th>θ7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>q0</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q1</th>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q2</th>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q6</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q7</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q8</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>q9</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>q10</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>q11</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="g-conductance-matrix">
+<h3>G: conductance matrix<a class="headerlink" href="#g-conductance-matrix" title="Permalink to this headline">#</a></h3>
+<p>The conductance matrix of the themal circuit shown in Figure 4 is diagonal:</p>
+<p><span class="math notranslate nohighlight">\( G = \begin{cases}
+G_{0,0} = G_{w,out} &amp; \text{convection outside surface of the wall}\\ 
+G_{1,1} = G_{2,2} = 2G_{cd,Layer\,out} &amp; \text{conduction in half width of the outer layer}\\ 
+G_{3,3} = G_{4,4} = 2G_{cd,Layer\,in} &amp; \text{conduction in half width of the inner layer}\\ 
+G_{5,5} = G_{LW} &amp; \text{long-wave radiation walls - window}\\
+G_{6,6} = G_{w,in} &amp; \text{convection inside surface of the wall}\\
+G_{7,7} = G_{g,in} &amp; \text{convection inside surface of the glass}\\
+G_{8,8} = G_{gs} &amp; \text{convection outside surface of the glass}\\  &amp; \text{and conduction in half width of the glass}\\
+G_{9,9} = 2G_{cd,glass} &amp; \text{conduction in half width of the glass}\\
+G_{10,10} = G_v &amp; \text{advection by ventilation}\\
+G_{11,11} = K_p &amp; \text{gain of proportional controller}
+\end{cases}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">Gw</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">],</span>
+     <span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Layer_out&#39;</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Layer_out&#39;</span><span class="p">],</span>
+     <span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">],</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">],</span>
+     <span class="n">GLW</span><span class="p">,</span>
+     <span class="n">Gw</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">],</span>
+     <span class="n">Gg</span><span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">],</span>
+     <span class="n">Ggs</span><span class="p">,</span>
+     <span class="mi">2</span> <span class="o">*</span> <span class="n">G_cd</span><span class="p">[</span><span class="s1">&#39;Glass&#39;</span><span class="p">],</span>
+     <span class="n">Gv</span><span class="p">,</span>
+     <span class="n">Kp</span><span class="p">]))</span>
+
+<span class="c1"># np.set_printoptions(precision=3, threshold=16, suppress=True)</span>
+<span class="c1"># pd.set_option(&quot;display.precision&quot;, 1)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>q0</th>
+      <td>1125.000000</td>
+    </tr>
+    <tr>
+      <th>q1</th>
+      <td>630.000000</td>
+    </tr>
+    <tr>
+      <th>q2</th>
+      <td>630.000000</td>
+    </tr>
+    <tr>
+      <th>q3</th>
+      <td>30.375000</td>
+    </tr>
+    <tr>
+      <th>q4</th>
+      <td>30.375000</td>
+    </tr>
+    <tr>
+      <th>q5</th>
+      <td>44.786824</td>
+    </tr>
+    <tr>
+      <th>q6</th>
+      <td>360.000000</td>
+    </tr>
+    <tr>
+      <th>q7</th>
+      <td>72.000000</td>
+    </tr>
+    <tr>
+      <th>q8</th>
+      <td>165.789474</td>
+    </tr>
+    <tr>
+      <th>q9</th>
+      <td>630.000000</td>
+    </tr>
+    <tr>
+      <th>q10</th>
+      <td>9.000000</td>
+    </tr>
+    <tr>
+      <th>q11</th>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="c-capacity-matrix">
+<h3>C: capacity matrix<a class="headerlink" href="#c-capacity-matrix" title="Permalink to this headline">#</a></h3>
+<p>The capacity matrix of the themal circuit shown in Figure 4 is diagonal:</p>
+<p><span class="math notranslate nohighlight">\( C = \begin{cases}
+C_{1,1} = C_{Layer\,out} &amp; \text{outer layer of the wall}\\ 
+C_{3,3} = C_{Layer\,in} &amp; \text{inner layer of the wall}\\ 
+C_{6,6} = C_{Air} &amp; \text{air of the room}\\ 
+C_{7,7} = C_{Glass} &amp; \text{glass of the windows}\\
+\end{cases}\)</span></p>
+<p>The thermal capacities of the air and of the glass can be neglected or not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neglect_air_glass</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">neglect_air_glass</span><span class="p">:</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Layer_out&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Layer_out&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Layer_in&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                  <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Air&#39;</span><span class="p">],</span> <span class="n">C</span><span class="p">[</span><span class="s1">&#39;Glass&#39;</span><span class="p">]])</span>
+
+<span class="c1"># pd.set_option(&quot;display.precision&quot;, 3)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>θ0</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ1</th>
+      <td>18216000.0</td>
+    </tr>
+    <tr>
+      <th>θ2</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ3</th>
+      <td>239580.0</td>
+    </tr>
+    <tr>
+      <th>θ4</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ5</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ6</th>
+      <td>32400.0</td>
+    </tr>
+    <tr>
+      <th>θ7</th>
+      <td>1089000.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="b-temperature-source-vector">
+<h3>b: temperature source vector<a class="headerlink" href="#b-temperature-source-vector" title="Permalink to this headline">#</a></h3>
+<p>The vector of <em>temperature sources</em> is <span class="math notranslate nohighlight">\(b\)</span>, of size <span class="math notranslate nohighlight">\(n_q\)</span>, the number of branches (in this example 12). An element of the vector <span class="math notranslate nohighlight">\(b\)</span> corresponding to a branch without a source is zero. If the flow in a source is from the lower temperature to the higher temperature of the source (i.e., from - to +), then the source is positive. If the flow rate in the temperature source is from higher temperature to lower temperature (i.e., from + to -), then the source is negative (see <a class="reference external" href="https://en.m.wikipedia.org/wiki/Passive_sign_convention">passive sign convention</a>).</p>
+<p>For the thermal circuit shown in Figure 4,</p>
+<div class="math notranslate nohighlight">
+\[b = [\begin{matrix}
+T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &amp;T_o  &amp;T_{i,sp} 
+\end{matrix}]^T\]</div>
+<p>i.e. <span class="math notranslate nohighlight">\(b_0 = b_8 = b_{10} = T_o\)</span> and <span class="math notranslate nohighlight">\(b_{11} = T_{i,sp}\)</span> where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> is <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - time series of the set-point temperature for the indoor air, °C.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">],</span>
+              <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="f-heat-flow-source-vector">
+<h3>f: heat flow source vector<a class="headerlink" href="#f-heat-flow-source-vector" title="Permalink to this headline">#</a></h3>
+<p>The vector of <em>heat sources</em> is <span class="math notranslate nohighlight">\(f\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes (in this example 8). An element of the vector <span class="math notranslate nohighlight">\(f\)</span> corresponding to a node without a heat source is zero.</p>
+<p>For the thermal circuit shown in Figure 4,</p>
+<div class="math notranslate nohighlight">
+\[f = [\begin{matrix}
+\Phi_o &amp;0  &amp;0  &amp;0  &amp;\Phi_i  &amp;0  &amp;\dot{Q_a} &amp;\Phi_a 
+\end{matrix}]^T\]</div>
+<p>i.e. <span class="math notranslate nohighlight">\(f_0 = \Phi_o\)</span>, <span class="math notranslate nohighlight">\(f_4 = \Phi_i\)</span>, <span class="math notranslate nohighlight">\(f_6 = \dot{Q_a}\)</span>, and <span class="math notranslate nohighlight">\(f_7 = \Phi_a\)</span>, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Phi_o\)</span> - solar radiation absorbed by the outdoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_i\)</span> - solar radiation absorbed by the indoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_a\)</span> - solar radiation absorbed by the glass, W.</p></li>
+</ul>
+<p>The flow rate sources <span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> and <span class="math notranslate nohighlight">\(\Phi_a\)</span> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;Φo&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">],</span>
+              <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="y-output-vector">
+<h3>y: output vector<a class="headerlink" href="#y-output-vector" title="Permalink to this headline">#</a></h3>
+<p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes (in this example 8). The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the nodes which are the outputs of the model.</p>
+<p>For the thermal circuit shown in Figure 4, if the output is the indoor air temperature, then the output vector is:</p>
+<div class="math notranslate nohighlight">
+\[y = [\begin{matrix}
+0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;1 &amp;0 
+\end{matrix}]^T\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="c1"># nodes</span>
+<span class="n">y</span><span class="p">[[</span><span class="mi">6</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>              <span class="c1"># nodes (temperatures) of interest</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>θ0</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ1</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ2</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ3</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ4</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ5</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>θ6</th>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>θ7</th>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="thermal-circuit-tc">
+<h2>Thermal circuit TC<a class="headerlink" href="#thermal-circuit-tc" title="Permalink to this headline">#</a></h2>
+<p>The thermal circuit (or thermal network) <code class="docutils literal notranslate"><span class="pre">TC</span></code> is a <a class="reference external" href="https://docs.python.org/3.9/tutorial/datastructures.html#dictionaries">dictionary</a> containing Pandas <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">DataFrame</a> A and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">Series</a> G, C, b, f, and y indexed by the keys ‘A’, ‘G’, ‘C’, ‘b’, ‘f’, and ‘y’, respectively (Figure 6).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># thermal circuit</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">q</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
+
+<span class="n">TC</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span>
+      <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="n">G</span><span class="p">,</span>
+      <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">C</span><span class="p">,</span>
+      <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span>
+      <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span>
+      <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This thermal circuit can be read directly from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file that contains the matrices and vectors of the system of differential algebraic equations (A, G, C, b, f, y) which describe the circuit shown in Figure 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC.csv&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">auto_number</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The gain of the proportional controller is in variable <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span></code> (conductance <code class="docutils literal notranslate"><span class="pre">G</span></code> on branch <code class="docutils literal notranslate"><span class="pre">q11</span></code> of thermal circuit <code class="docutils literal notranslate"><span class="pre">TC</span></code>). It can be changed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TC[&#39;G&#39;][&#39;q11&#39;] = 1e3  # Kp -&gt; ∞, almost perfect controller</span>
+<span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># Kp -&gt; 0, no controller (free-floating)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="state-space-representation">
+<h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a></p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
+<p>is transformed in <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a> (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{rr}
+\dot{\theta}_s=A_s \theta_s + B_s u\\ 
+y = C_s \theta_s + D_s u
+\end{array}\right.\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta_s\)</span> is the vector of state variables which are the temperatures of nodes containing capacities. Its elements are in the same order as in the vector of temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>; its dimension, <span class="math notranslate nohighlight">\(\dim \theta_s\)</span>, is equal to the number of capacities from the thermal network. For the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(\theta_s = [\theta_1, \theta_3, \theta_6, \theta_7]^T\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u = \begin{bmatrix} b_T \\ f_Q\end{bmatrix}\)</span> - vector of inputs of dimension <span class="math notranslate nohighlight">\(\dim u\)</span> equal to the number of sources (of temperaure, <span class="math notranslate nohighlight">\(b_T\)</span>, and heat flows, <span class="math notranslate nohighlight">\(f_Q\)</span>) of the thermal network, where:</p>
+<ul>
+<li><p>vector <span class="math notranslate nohighlight">\(b_T\)</span> of nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources; for the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(b_T = [T_o, T_o, T_o, T_{i,sp}]^T\)</span> corresponds to branches 0, 8, 10 and 11;</p></li>
+<li><p>vector <span class="math notranslate nohighlight">\(f_Q\)</span> of nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources; for the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(f_Q = [\Phi_o, \Phi_i, \dot{Q}_a, \Phi_a]^T\)</span> corresponds to nodes 0, 4, 6, and 7.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> - vector of outputs, a subset of vector <span class="math notranslate nohighlight">\(\theta\)</span> representing temperature nodes which are of interest; for the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(y = \theta_6\)</span>, the indoor temperature.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_s\)</span> - state matrix, of dimension <span class="math notranslate nohighlight">\(\dim A_s = \dim {\theta_s} \times \dim {\theta_s}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_s\)</span> - input matrix, of dimension <span class="math notranslate nohighlight">\(\dim B_s = \dim {\theta_s} \times \dim u\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_s\)</span> - output matrix, of dimension <span class="math notranslate nohighlight">\(\dim C_s = \dim y \times \dim {\theta_s}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(D_s\)</span> - feedthrough (or feedforward) matrix, of dimension <span class="math notranslate nohighlight">\(\dim D_s = \dim y \times \dim u\)</span>.</p></li>
+</ul>
+<p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentiante the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represention of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of differential-algebraic equations (DAE).</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a>, i.e., matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is obtained from the system of DAE, i.e., matrices and vectors <span class="math notranslate nohighlight">\(A, G, b, C, f, y\)</span> of the thermal circuit (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-state-analysis">
+<h2>Steady-state analysis<a class="headerlink" href="#steady-state-analysis" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">Steady-state</a> means that the term <span class="math notranslate nohighlight">\(C \dot \theta = 0\)</span> in the system of differential-algebraic equations (DAE).</p>
+<p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a>, the model can be checked if it is incorrect. Let’s consider that:</p>
+<ul class="simple">
+<li><p>the controller is not active, <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>,</p></li>
+<li><p>the outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span>,</p></li>
+<li><p>the indoor temperature setpoint is <span class="math notranslate nohighlight">\(T_{i,sp} = 20 \, \mathrm{^\circ C}\)</span>,</p></li>
+<li><p>all flow rate sources are zero.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>        <span class="c1"># temperature sources</span>
+<span class="n">bss</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">10</span>      <span class="c1"># outdoor temperature</span>
+<span class="n">bss</span><span class="p">[[</span><span class="mi">11</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">20</span>            <span class="c1"># indoor set-point temperature</span>
+
+<span class="n">fss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>         <span class="c1"># flow-rate sources</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note</em>: Steady-state analysis is a test of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Falsifiability">falsifiability (refutability)</a> of the model, not a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Verification_and_validation">verification and validation</a>. If the model does not pass the steady-state test, it means that it is wrong. If the model passes the steady-state test, it does not mean that it is correct. For this example, the values of the capacities in matrix <span class="math notranslate nohighlight">\(C\)</span> or of the conductances in matrix <span class="math notranslate nohighlight">\(G\)</span> can be wrong even when the steady-state test is passed.</p>
+<section id="steady-state-from-differential-algebraic-equations-dae">
+<h3>Steady-state from differential algebraic equations (DAE)<a class="headerlink" href="#steady-state-from-differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h3>
+<p>The value of temperature in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a> is obtained from the system of DAE by considering that <span class="math notranslate nohighlight">\(C \dot{\theta} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{ss} = (A^T G A)^{-1}(A^T G b + f)\]</div>
+<p>For the conditions mentioned above, in steady-state, all temperatures <span class="math notranslate nohighlight">\(\theta_0 ... \theta_7\)</span>, including the indoor air temperature <span class="math notranslate nohighlight">\(\theta_6\)</span>, are equal to <span class="math notranslate nohighlight">\(T_o = 10 \, \mathrm{^\circ C}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">]</span>
+<span class="n">diag_G</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">θss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">diag_G</span> <span class="o">@</span> <span class="n">bss</span> <span class="o">+</span> <span class="n">fss</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;θss = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">θss</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θss = [10. 10. 10. 10. 10. 10. 10. 10.] °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="steady-state-from-state-space-representation">
+<h3>Steady-state from state-space representation<a class="headerlink" href="#steady-state-from-state-space-representation" title="Permalink to this headline">#</a></h3>
+<p>The input vector <span class="math notranslate nohighlight">\(u\)</span> is obtained by stacking the vectors <span class="math notranslate nohighlight">\(b_T\)</span> and <span class="math notranslate nohighlight">\(f_Q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}u = \begin{bmatrix} b_T \\ f_Q\end{bmatrix}\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_T\)</span> is a vector of the nonzero elements of vector <span class="math notranslate nohighlight">\(b\)</span> of temperature sources. For the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(b_T = [T_o, T_o, T_o, T_{i,sp}]^T\)</span> corresponding to branches 0, 8, 10 and 11, where:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - set-point temperaure for the indoor air, °C.</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(f_Q\)</span> - vector the nonzero elements of vector <span class="math notranslate nohighlight">\(f\)</span> of flow sources. For the circuit presented in Figure 4, <span class="math notranslate nohighlight">\(f_Q = [\Phi_o, \Phi_i, \dot{Q}_a, \Phi_a]^T\)</span> corresponding to nodes 0, 4, 6, and 7, where:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\Phi_o\)</span> - solar radiation absorbed by the outdoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_i\)</span> - solar radiation absorbed by the indoor surface of the wall, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Phi_a\)</span> - solar radiation absorbed by the glass, W.</p></li>
+</ul>
+</li>
+</ul>
+<p><em>Note</em>: Zero in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> indicates that there is no source on the branch or in the node, respectively. However, a source can have the value zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>     <span class="c1"># [To, To, To, Tisp]</span>
+<span class="n">fQ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>         <span class="c1"># [Φo, Φi, Qa, Φa]</span>
+<span class="n">uss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">bT</span><span class="p">,</span> <span class="n">fQ</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;uss = </span><span class="si">{</span><span class="n">uss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>uss = [10 10 10 20  0  0  0  0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The steady-state value of the output of the state-space representation is obtained when <span class="math notranslate nohighlight">\(\dot \theta_{C} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[y_{ss} = (-C_s A_s^{-1} B_s + D_s) u\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inv_As</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">As</span><span class="p">),</span>
+                      <span class="n">columns</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">As</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">yss</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">inv_As</span> <span class="o">@</span> <span class="n">Bs</span> <span class="o">+</span> <span class="n">Ds</span><span class="p">)</span> <span class="o">@</span> <span class="n">uss</span>
+
+<span class="n">yss</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">yss</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;yss = </span><span class="si">{</span><span class="n">yss</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>yss = 10.00 °C
+</pre></div>
+</div>
+</div>
+</div>
+<p>The error between the steady-state values obtained from the system of DAE, <span class="math notranslate nohighlight">\(\theta_6\)</span>, and the output of the state-space representation, <span class="math notranslate nohighlight">\(y_{ss}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon = \left | \theta_6 - y_{ss} \right |\]</div>
+<p>is practically zero; the slight difference is due to <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_error">numerical errors</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Error between DAE and state-space: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">θss</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">yss</span><span class="p">)</span><span class="si">:</span><span class="s1">.2e</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="eigenvalues-analysis">
+<h2>Eigenvalues analysis<a class="headerlink" href="#eigenvalues-analysis" title="Permalink to this headline">#</a></h2>
+<section id="time-step">
+<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this headline">#</a></h3>
+<p>The condition for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">numerical stability</a> of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler explicit integration</a> method is</p>
+<div class="math notranslate nohighlight">
+\[\left |  \lambda_i \Delta t + 1 \right | &lt; 1, \forall \lambda_i, \]</div>
+<p>i.e., in the complex plane, <span class="math notranslate nohighlight">\(\lambda_i \Delta t\)</span> is inside a circle of radius 1 centered in {-1, 0 j}, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of matrix <span class="math notranslate nohighlight">\(A_s\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta t\)</span> - time step.</p></li>
+</ul>
+<p>For positive real eigenvalues <span class="math notranslate nohighlight">\(\left \{ \lambda \in \Re |\lambda &gt;0  \right \}\)</span>, which is the case of thermal networks, the above condition <a class="reference external" href="http://www.math.iit.edu/~fass/478578_Chapter_4.pdf">becomes</a></p>
+<div class="math notranslate nohighlight">
+\[- \lambda_i \Delta t - 1  &lt; 1, \forall \lambda_i, \]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[ 0 &lt; \Delta t &lt; -\frac{2}{\min \lambda_i} = 2 \min -\frac{1}{\lambda_i} = 2 \min T_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(T_i\)</span> are the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_constant">time constants</a>, <span class="math notranslate nohighlight">\(T_i = - \frac{1}{\lambda_i}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">λ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants:&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">2 x Time constants:&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span> <span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">λ</span><span class="p">])</span>
+
+<span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Maximum time step: </span><span class="si">{</span><span class="n">dtmax</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants:
+[&#39;249.30 s&#39;, &#39;4093.20 s&#39;, &#39;6729.11 s&#39;, &#39;44033.06 s&#39;]
+
+2 x Time constants:
+[&#39;498.60 s&#39;, &#39;8186.41 s&#39;, &#39;13458.22 s&#39;, &#39;88066.12 s&#39;]
+
+Maximum time step: 498.60 s = 8.31 min
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s chose a time step smaller than <span class="math notranslate nohighlight">\(\Delta t_{max} = \min (-2 / \lambda_i) \)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
+<span class="k">if</span> <span class="n">dtmax</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>  <span class="c1"># round to minutes</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> min&#39;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">dtmax</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>  <span class="c1"># round to tens of seconds</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dtmax</span><span class="p">)</span>            <span class="c1"># round to seconds</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 480.0 s = 8 min
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="settling-time">
+<h3>Settling time<a class="headerlink" href="#settling-time" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">settling time</a> is roughly 4 times the largest time constant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># settling time</span>
+<span class="n">time_const</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;4 * Time constants: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">time_const</span><span class="p">,</span> <span class="s1">&#39;s </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Settling time: </span><span class="se">\</span>
+<span class="si">{</span><span class="n">t_settle</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s = </span><span class="se">\</span>
+<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">60</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> min = </span><span class="se">\</span>
+<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h = </span><span class="se">\</span>
+<span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 * Time constants: 
+ [   996  16372  26916 176132] s 
+
+Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>C. Ghiaus (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
+<li><p>C. Ghiaus (2021). Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198 (ref.)
+<a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">DOI 10.1007/978-3-030-76477-7_5</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
+<li><p>J.A. Duffie, W. A. Beckman, N. Blair (2020) <a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Solar Engineering of Thermal Processes</a>, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
+<li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a> Annexe à l’arrêté du 19 juillet 2006</p></li>
+<li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
+<li><p>J.R. Howell et al. (2021) Thermal Radiation Heat Transfer 7th edition, ISBN 978-0-367-34707-0, <a class="reference external" href="http://www.thermalradiation.net/indexCat.html">A Catalogue of Configuration Factors</a></p></li>
+<li><p>J. Widén, J. Munkhammar (2019) <a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Solar Radiation Theory</a>, Uppsala University</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-analysis">Physical analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-building">Description of the building</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermo-physical-properties">Thermo-physical properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-properties">Radiative properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection-coefficients">Convection coefficients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network">Thermal network</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factor-between-tilted-outdoor-walls-and-sky">View factor between tilted outdoor walls and sky</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advection">Advection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conductances-in-series-and-or-parallel">Conductances in series and/or parallel</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-capacities">Thermal capacities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#walls">Walls</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air">Air</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-air-and-ground-temperatures">Outdoor air and ground temperatures</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adjacent-spaces-with-controlled-temperature">Adjacent spaces with controlled temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setpoint-temperature">Setpoint temperature</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-flow-rate-sources">Heat flow rate sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#solar-radiation-absorbed-by-the-walls">Solar radiation absorbed by the walls</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#external-wall">External wall</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-walls">Internal walls</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-sources">Internal sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-algebraic-differential-equations-dae">System of algebraic-differential equations (DAE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-incidence-matrix">A: incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g-conductance-matrix">G: conductance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-capacity-matrix">C: capacity matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-temperature-source-vector">b: temperature source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-heat-flow-source-vector">f: heat flow source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#y-output-vector">y: output vector</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit-tc">Thermal circuit TC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-space-representation">State-space representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-analysis">Steady-state analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-differential-algebraic-equations-dae">Steady-state from differential algebraic equations (DAE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-from-state-space-representation">Steady-state from state-space representation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-analysis">Eigenvalues analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-step">Time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time">Settling time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

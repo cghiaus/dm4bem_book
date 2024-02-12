@@ -1,0 +1,1163 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Sensible thermal load in steady-state &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/tutorials/A02Thermal_load';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/master?urlpath=lab/tree/docs/docs/tutorials/A02Thermal_load.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Dépôt source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fdocs/tutorials/A02Thermal_load.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Ouvrez un problème"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/tutorials/A02Thermal_load.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Télécharger le fichier source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimer au format PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Mode plein écran"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sensible thermal load in steady-state</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenu </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-model">Thermal model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network">Thermal network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductances">Conductances</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exterior-walls-outdoor-convection">Exterior walls: outdoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exterior-walls-conduction-and-indoor-convection">Exterior walls: conduction and indoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interior-walls-indoor-convection-conduction-indoor-convection">Interior walls: indoor convection, conduction indoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ventilation-heat-transfer-by-advection">Ventilation: heat transfer by advection</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-outdoor-room-2-room-4-outdoor">Air-flow: outdoor → room 2 → room 4 → outdoor</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-outdoor-room-4-room-2-outdoor">Air-flow: outdoor → room 4 → room 2 → outdoor</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-flow-rate-from-room-2-to-room-4">Heat flow rate from room 2 to room 4</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-the-change-in-airflow-direction">Modelling the change in airflow direction</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-temperature-sources">Vector of temperature sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-heat-flow-rate-sources">Vector of heat flow rate sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-all-4-rooms-are-controlled">Question 1: all 4 rooms are controlled</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2-rooms-2-4-in-free-running">Question 2: rooms 2 &amp; 4 in free-running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3-ventilation-from-outdoor-to-room-2">Question 3: ventilation from outdoor to room 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4-ventilation-from-room-4-to-room-2">Question 4: ventilation from room 4 to room 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sensible-thermal-load-in-steady-state">
+<h1>Sensible thermal load in steady-state<a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=tutorials%2FA02Thermal_load.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value.</p>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
+<section id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<p>A building is formed of 4 rooms with the dimensions (Figure 1):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L = 6, \, l = 3\,  \mathrm{m}\)</span>, lengths,</p></li>
+<li><p><span class="math notranslate nohighlight">\(H = 3 \, \mathrm{m}\)</span>, height.</p></li>
+<li><p><span class="math notranslate nohighlight">\(w = 0.20 \, \mathrm{m}\)</span>, width of the walls.</p></li>
+</ul>
+<p><img alt="fig" src="docs/figures/08_bldg_plan.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Plan of the building</p>
+</div></blockquote>
+<p>The thermal conductivity of the walls is <span class="math notranslate nohighlight">\(\lambda = 1.7 \, \mathrm{W/(m \, K)}\)</span>.</p>
+<p>The convective heat coefficients between the walls and the indoor and outdoor air are <span class="math notranslate nohighlight">\(h_i = 8 \, \mathrm{W/(m^2 \, K)}\)</span> and <span class="math notranslate nohighlight">\(h_o = 25 \, \mathrm{W/(m^2 \, K)}\)</span> respectively.</p>
+<p>The short-wave solar radiation absorbed by each wall is <span class="math notranslate nohighlight">\(E = 200 \, \mathrm{W/m^2}\)</span>.</p>
+<p>The outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 0 \, \mathrm{°C}\)</span>.</p>
+</section>
+<section id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Let’s consider that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that there is no solar radiation on the walls. Find the thermal loads of the four rooms.</p></li>
+<li><p>From now on, let’s consider that there is solar radiation absorbed by the walls and that rooms 1 and 3 are controlled by a HVAC system while rooms 2 and 4 are in “free-running”. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
+<li><p>Room 2 in ventilated with an air-flow rate of <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span> (ACH is the number of air-changes per hour). The density and specific heat of the air are <span class="math notranslate nohighlight">\(\rho = 1.2 \, \mathrm{kg/m^3}\)</span> and <span class="math notranslate nohighlight">\(c = 1000 \, \mathrm{J/(kg \, K)}\)</span>, respectively. The outdoor air enters in room 2, then is moves to room 4 and, from here, it gets outdoors. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
+<li><p>The air-flow in room 2 is reversed: from outdoors, the air enters in room 4, then it moves to room 2, from which it gets outdoors. Considering that the air flow rate of room 2 is the same as before (i.e., <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span>), find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Data</span>
+<span class="c1"># ====</span>
+<span class="c1"># dimensions</span>
+<span class="n">L</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.20</span>  <span class="c1"># m</span>
+
+<span class="c1"># thermo-physical propertites</span>
+<span class="n">λ</span> <span class="o">=</span> <span class="mf">1.7</span>             <span class="c1"># W/(m K) wall thermal conductivity</span>
+<span class="n">ρ</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">1000</span>    <span class="c1"># kg/m3, J/(kg K) density, specific heat air</span>
+<span class="n">hi</span><span class="p">,</span> <span class="n">ho</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">25</span>      <span class="c1"># W/(m2 K) convection coefficients in, out</span>
+
+<span class="c1"># short-wave solar radiation absorbed by each wall</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">200</span>             <span class="c1"># W/m2</span>
+
+<span class="c1"># outdoor temperature</span>
+<span class="n">To</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># °C</span>
+
+<span class="c1"># ventilation rate (air-changes per hour)</span>
+<span class="n">ACH</span> <span class="o">=</span> <span class="mi">1</span>             <span class="c1"># volume/h</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="thermal-model">
+<h2>Thermal model<a class="headerlink" href="#thermal-model" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of air circulating in room 2 results from the ventilation rate:</p>
+<div class="math notranslate nohighlight">
+\[\dot V = L·l·H·\frac{ACH}{3600 \, \mathrm{s}}\]</div>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">mass flow rate</a> of air entering and getting out of room 2 is:</p>
+<div class="math notranslate nohighlight">
+\[\dot m = \rho \dot V\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V_dot</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">l</span> <span class="o">*</span> <span class="n">H</span> <span class="o">*</span> <span class="n">ACH</span> <span class="o">/</span> <span class="mi">3600</span>  <span class="c1"># volumetric air flow rate</span>
+<span class="n">m_dot</span> <span class="o">=</span> <span class="n">ρ</span> <span class="o">*</span> <span class="n">V_dot</span>               <span class="c1"># mass air flow rate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="thermal-conductances">
+<h3>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h3>
+<p>In the model, we will consider the conductances:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h \, S\)</span> - convection, W/K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda / w \, S\)</span> - conduction, W/K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m c\)</span> - advection, W/K;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_p\)</span> - gain of the proportional controller, W/K.</p></li>
+</ul>
+<p><strong>Note:</strong> in determening the surface area of the walls <span class="math notranslate nohighlight">\(S = L·l·H\)</span> the length of the walls are the indoor values.</p>
+<p>We will consider the conductances of exterior and the interior walls (Figure 2). The exterior walls are modelled with a conductance for outdoor convection (cyan in Figure 2) and an equivalent conductance for conduction in the wall and indoor convection (blue in Figure 2). The indoor walls are modelled by an equivalent conductance for indoor convection, conduction, and indoor convection on the other side.</p>
+<p><img alt="fig" src="docs/figures/08_blds_conductance.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Walls forming thermal coductances in the model.</p>
+</div></blockquote>
+</section>
+<section id="thermal-network">
+<h3>Thermal network<a class="headerlink" href="#thermal-network" title="Permalink to this headline">#</a></h3>
+<p>The thermal network modeling the building is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> (Figure 3). It is composed of edges (or branches) and vertexes (or nodes).</p>
+<p>The temperature nodes model a volume, a surface, a line or a point in space for which the temperature is considered homogenous. The nodes are dependent temperatures (outputs of the physical system). The reference temperature is considered zero Celsius; it has a known value and is represented by a bar (Figure 3).</p>
+<p>To a temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span>, there are connected <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rate</a> branches <span class="math notranslate nohighlight">\(q_k, k = 0 ... n\)</span> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">heat flow rate sources</a>, <span class="math notranslate nohighlight">\(f_j\)</span> (Figure 3a). A heat rate source delivers a heat flow rate whatever is the temperature difference. In buildings, typical heat flow rate sources are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Joule_heating">electrical appliances</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_comfort#Metabolic_rate">occupants</a>. If a heat flow rate source is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a>, then it is not figured on the graph.</p>
+<p>In steady-state, the <a class="reference external" href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_current_law">algebraic sum of the heat flow rates</a> entering the temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span> is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k} q_k + f_j= 0\]</div>
+<p>Two temperature nodes <span class="math notranslate nohighlight">\(\theta_i\)</span> and <span class="math notranslate nohighlight">\(\theta_j\)</span> are connected by directed edges of heat flow rates <span class="math notranslate nohighlight">\(q_k\)</span> (Figure 3a). On each edge, there is a conductance <span class="math notranslate nohighlight">\(G_k\)</span> and a temperature source <span class="math notranslate nohighlight">\(b_k\)</span>. A <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a> maintains a temperature value whatever is the heat flow rate. In building, outdoor air, ground, and setpoint temperatures are typical examples of temperature sources. If a temperature source is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a>, then it is not figured on the graph.</p>
+<p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_voltage_law">directed sum of temperature differences over a branch</a>, it results that the <a class="reference external" href="https://en.wikipedia.org/wiki/Voltage_drop">temperature drop</a> over a conductance is (Figure 3a):</p>
+<div class="math notranslate nohighlight">
+\[e_k = \theta_i - \theta_j + b_k\]</div>
+<p>The relation between the temperature drop, <span class="math notranslate nohighlight">\(e_k\)</span>, over a conductance, <span class="math notranslate nohighlight">\(G_k\)</span>, and the heat flow rate, <span class="math notranslate nohighlight">\(q_k\)</span>, thrrough the conductance <span class="math notranslate nohighlight">\(G_k\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[q_k = G_k \, e_k\]</div>
+<p>This <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> is characterized by:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(G\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Electrical_resistance_and_conductance">conductance</a>  diagonal matrix;</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature sources</a>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">flow-rate sources</a>.</p></li>
+</ul>
+<p>The solution of the problem is (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus (2013)</a>):</p>
+<div class="math notranslate nohighlight">
+\[ \theta = (A^TGA)^{-1}(A^TGb + f)\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[ q = G(-A\theta + b)\]</div>
+<p><img alt="fig" src="docs/figures/08_thermal_network.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Thermal network: a) typical element of the thermal network (the sources are not figured if they are identically zero); b) thermal network model for the buiding shown in Figures 1 and 2.</p>
+</div></blockquote>
+<p>For our model, the graph has 20 braches and 8 nodes (Figure 3b).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq</span><span class="p">,</span> <span class="n">nθ</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">8</span>  <span class="c1"># number of flow-rates branches and of temperaure nodes</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="incidence-matrix">
+<h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix of a directed graph</a> shows the relationship between the edges (or branches) <span class="math notranslate nohighlight">\(k\)</span> and the vertexes (or nodes) <span class="math notranslate nohighlight">\(j\)</span> of the graph (Figure 3a):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A_{k,j} = \begin{cases}\phantom{-}
+0 &amp; \text{if heat flow rate } q_k \text{ is not connected to node }  \theta_j \\ 
++1 &amp; \text{if heat flow rate } q_k \text{ enters into node }  \theta_j\\ 
+-1 &amp; \text{if heat flow rate } q_k \text{ gets out of node }  \theta_l 
+\end{cases}\end{split}\]</div>
+<p>The incidence matrix is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Sparse_matrix">sparce matrix</a> which has:</p>
+<ul class="simple">
+<li><p>the number of rows equal to <span class="math notranslate nohighlight">\(n_q\)</span>, the number of flow rates <span class="math notranslate nohighlight">\(q_k\)</span>;</p></li>
+<li><p>the number of columns equal to <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of temperature nodes <span class="math notranslate nohighlight">\(\theta_j\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Incidence matrix</span>
+<span class="c1"># ================</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">nq</span><span class="p">,</span> <span class="n">nθ</span><span class="p">])</span>
+
+<span class="c1"># q0 ... q3 (cyan branches)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># q4 ... q7 (blue branches)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="c1"># q8 ... q12 (yellow branches)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="c1"># q13 ... q15 (green branches)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># q16 ... q19 (red branches)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conductances">
+<h3>Conductances<a class="headerlink" href="#conductances" title="Permalink to this headline">#</a></h3>
+<p>The number of conductances correspod to the number of flows which is the number of rows of incidence matrix <span class="math notranslate nohighlight">\(A\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conductance matrix</span>
+<span class="c1"># ==================</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exterior-walls-outdoor-convection">
+<h4>Exterior walls: outdoor convection<a class="headerlink" href="#exterior-walls-outdoor-convection" title="Permalink to this headline">#</a></h4>
+<p>The conductances of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the walls and the outdoor air (in cyan in Figures 2 and 3) are of the form</p>
+<div class="math notranslate nohighlight">
+\[G_i = h_o \, S_{o,k},\text{ with } k = 0 ... 3\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{o,k}\)</span> is the surface area of the wall in contact with the outdoor air:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_{o,0} = L \, H\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{o,1} = S_{o,2} = (L + l) H\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{o,3} = (2l + 3L + 2w)H\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G0 ... G3 (cyan branches): outdoor convection</span>
+<span class="n">L4</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">w</span>      <span class="c1"># length outdoor wall room 4</span>
+<span class="n">So</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">L</span><span class="p">,</span> <span class="n">L</span> <span class="o">+</span> <span class="n">l</span><span class="p">,</span> <span class="n">L</span> <span class="o">+</span> <span class="n">l</span><span class="p">,</span> <span class="n">L4</span><span class="p">])</span> <span class="o">*</span> <span class="n">H</span>    <span class="c1"># outdoor surfaces</span>
+<span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">ho</span> <span class="o">*</span> <span class="n">So</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exterior-walls-conduction-and-indoor-convection">
+<h4>Exterior walls: conduction and indoor convection<a class="headerlink" href="#exterior-walls-conduction-and-indoor-convection" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> in the wall and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the wall and the indoor air (in blue in Figure 3) is:</p>
+<div class="math notranslate nohighlight">
+\[G_k = \frac{1}{\frac{w}{\lambda} + \frac{1}{h_i}}S_{o,j},\text{ with } k = 4 ... 7, j = 0 ... 3\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G4 ... G7 (blue branches): conduction, indoor convection</span>
+<span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">w</span> <span class="o">/</span> <span class="n">λ</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">hi</span><span class="p">)</span> <span class="o">*</span> <span class="n">So</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interior-walls-indoor-convection-conduction-indoor-convection">
+<h4>Interior walls: indoor convection, conduction indoor convection<a class="headerlink" href="#interior-walls-indoor-convection-conduction-indoor-convection" title="Permalink to this headline">#</a></h4>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for the indoor walls is formed by the (yellow in Figures 2 and 3):</p>
+<ul class="simple">
+<li><p>convetion between wall and indoor air;</p></li>
+<li><p>conduction into the wall;</p></li>
+<li><p>convetion between wall and indoor air.</p></li>
+</ul>
+<p>It is of the form:
+$<span class="math notranslate nohighlight">\(G_k = \frac{1}{\frac{1}{h_i} + \frac{w}{\lambda} + \frac{1}{h_i}}S_{i,j}, \text{ with } k = 8 ... 12, \text{ and } j = 0 ... 4\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(S_{i,j}\)</span> is the surface area of the wall in contact with the indoor air:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_{i,0} = S_{i,1} = l \, H\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{i,2} = S_{i,3} = S_{i,4} = L \, H\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G8 ... G12 (yellow branches): indoor walls</span>
+<span class="c1">#    indoor convection, conduction, indoor convection</span>
+<span class="n">Si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">l</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">])</span> <span class="o">*</span> <span class="n">H</span>
+<span class="n">G</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">hi</span> <span class="o">+</span> <span class="n">w</span> <span class="o">/</span> <span class="n">λ</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">hi</span><span class="p">)</span> <span class="o">*</span> <span class="n">Si</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ventilation-heat-transfer-by-advection">
+<h4>Ventilation: heat transfer by advection<a class="headerlink" href="#ventilation-heat-transfer-by-advection" title="Permalink to this headline">#</a></h4>
+<p>Ventilation of rooms 2 and 4 transfers heat to these spaces by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> (Figure 4). The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">energy flow rate carried by the fluid</a> is:</p>
+<div class="math notranslate nohighlight">
+\[\dot H = \dot m c \theta\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot H\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Enthalpy#Relationship_to_heat">enthalpy</a> rate carried by the air, W;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m\)</span> - mass flow rate of the air, kg / s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> of the air, J / (kg⋅K);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - air temperature, °C.</p></li>
+</ul>
+<section id="air-flow-outdoor-room-2-room-4-outdoor">
+<h5>Air-flow: outdoor → room 2 → room 4 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-2-room-4-outdoor" title="Permalink to this headline">#</a></h5>
+<p>If the airflow is from outdoor to room 2, then the heat flow rate tranferred from outdoor air to the indoor air of room 2 is (Figure 4 a):</p>
+<div class="math notranslate nohighlight">
+\[q_{13} = \dot m c T_o - \dot m c \theta_3\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{13} = G_{13}(T_o - \theta_3)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{13} = \dot m c\)</span>.</p>
+<p>The heat flow rate transferred by advection of the air from room 2 to room 4 is (Figure 4 a):</p>
+<div class="math notranslate nohighlight">
+\[q_{14a} = \dot m c \theta_3 - \dot m c \theta_6\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{14a} = G_{14}(\theta_3 - \theta_6)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c\)</span>.</p>
+<p><img alt="fig" src="docs/figures/08_vent_advection.svg" /></p>
+<blockquote>
+<div><p>Figure 4. Heat advection by ventilation. a) Air-flow: outdoor  → room 2 → room 4 → outdoor. b) Air-flow: outdoor → room 4 → room 2 → outdoor.</p>
+</div></blockquote>
+</section>
+<section id="air-flow-outdoor-room-4-room-2-outdoor">
+<h5>Air-flow: outdoor → room 4 → room 2 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-4-room-2-outdoor" title="Permalink to this headline">#</a></h5>
+<p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate tranferred to the indoor air of room 2 is:</p>
+<div class="math notranslate nohighlight">
+\[q_{14b} = \dot m c \theta_6 - \dot m c \theta_3\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{14b} = G_{14}(\theta_6 - \theta_3)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c\)</span>.</p>
+<p>The heat flow rate transferred by advection from the outdoor air to room 4 is:</p>
+<div class="math notranslate nohighlight">
+\[q_{15} = \dot m c T_o - \dot m c \theta_6\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[q_{15} = G_{15}(T_o - \theta_6)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c.\)</span></p>
+</section>
+<section id="heat-flow-rate-from-room-2-to-room-4">
+<h5>Heat flow rate from room 2 to room 4<a class="headerlink" href="#heat-flow-rate-from-room-2-to-room-4" title="Permalink to this headline">#</a></h5>
+<p>If the air flows from room 2 to room 4, then the heat flow rate is <span class="math notranslate nohighlight">\(q_{14a} \equiv q_{14}.\)</span> If the air flows from room 4 to room 2, then the heat flow rate is <span class="math notranslate nohighlight">\(q_{14b} \equiv -q_{14}.\)</span> Therefore, a single heat flow rate, <span class="math notranslate nohighlight">\(q_{14}\)</span>, is needed in the thermal network (Figure 3).</p>
+</section>
+<section id="modelling-the-change-in-airflow-direction">
+<h5>Modelling the change in airflow direction<a class="headerlink" href="#modelling-the-change-in-airflow-direction" title="Permalink to this headline">#</a></h5>
+<p>If the air flows in the direction: outdoor  → room 2 → room 4 → outdoor, then conductance <span class="math notranslate nohighlight">\(G_{15}\)</span> is zero and conductances <span class="math notranslate nohighlight">\(G_{13}\)</span> and <span class="math notranslate nohighlight">\(G_{14}\)</span> are equal to <span class="math notranslate nohighlight">\(\dot m c\)</span> (Figure 3 and Figure 4a).</p>
+<p>If the air flows in the direction: outdoor  → room 2 → room 4 → outdoor, then conductance <span class="math notranslate nohighlight">\(G_{13}\)</span> is zero and conductances <span class="math notranslate nohighlight">\(G_{14}\)</span> and <span class="math notranslate nohighlight">\(G_{15}\)</span> are equal to <span class="math notranslate nohighlight">\(\dot m c\)</span> (Figure 3 and Figure 4b).</p>
+<p>If there is no ventilation, the conductances <span class="math notranslate nohighlight">\(G_{13}\)</span>, <span class="math notranslate nohighlight">\(G_{14},\)</span> and <span class="math notranslate nohighlight">\(G_{15}\)</span> are zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G13 ... G15 (green branches): advection by ventilation</span>
+<span class="n">G</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Table 1. Typical values for the ventilation rates (in air changes per hour, ACH) as a function of the position of windows (H. Recknagel, E. Spenger, E_R Schramek (2013), Table 1.12.1-4)</p>
+</div></blockquote>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Position of windows</p></th>
+<th class="head"><p>Ventilation rate, ACH [h⁻ⁱ]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Window closed, doors closed</p></td>
+<td><p>0 to 0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tilted window, venetian blind closed</p></td>
+<td><p>0.3 to 1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Tilted window, whitout venetian blind</p></td>
+<td><p>0.8 to 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Window half opened</p></td>
+<td><p>5 to 10</p></td>
+</tr>
+<tr class="row-even"><td><p>Window fully open</p></td>
+<td><p>9 to 15</p></td>
+</tr>
+<tr class="row-odd"><td><p>Window and French window fully open (cross ventilation)</p></td>
+<td><p>about 40</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="proportional-controller">
+<h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h4>
+<p>The heating, ventilation, and air conditioning (<a class="reference external" href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>) system maintains the indoor air temperature at <a class="reference external" href="https://en.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value. Therefore, the HVAC system may be modelled as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> (Figure 5a) for wich the heat flow rate of the HVAC system is:</p>
+<div class="math notranslate nohighlight">
+\[q = K_P (T_{sp} - \theta)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K_P\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Proportional_control#Theory">proportional gain;</a></p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{sp}\)</span> - setpoint temperature, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> - measured temperature of the indoor air, °C.</p></li>
+</ul>
+<p>The heat flow rate can be then expressed as (Figure 5b):</p>
+<div class="math notranslate nohighlight">
+\[q = G (T_{sp} - \theta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(G \equiv K_p\)</span>.</p>
+<p>The indoor air temperature control by the HVAC system (Figure 5a) may be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(G\)</span> (Figure 5b).</p>
+<p><img alt="fig" src="docs/figures/08_P-controller.svg" /></p>
+<blockquote>
+<div><p>Figure 5. Model of a proportional controller in a thermal network (example for room 1). a) Principle of a temperature control system using a P-controller. b) Model of temperature control system in a thermal network.</p>
+</div></blockquote>
+<p>If the rooms are in “free-runnning” (i.e., the controllers are not active), the proportional gains of the controllers are zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G16 ... G19 (red branches): gains of proportional controllers</span>
+<span class="n">G</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vector-of-temperature-sources">
+<h3>Vector of temperature sources<a class="headerlink" href="#vector-of-temperature-sources" title="Permalink to this headline">#</a></h3>
+<p>Every edge (or branch) of the graph has a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a> which is not figured if it is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a> (Figure 3a). The number of temperature sources is equal to the number of heat flow rates, i.e., the number of rows of the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector of temperature sources</span>
+<span class="c1"># =============================</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The temperature sources modelling the outdoor temperature of the walls are on branches 0 … 3.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">To</span>         <span class="c1"># cyan branches: outdoor temperature for walls</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The temperature sources modelling the outdoor temperature for the ventilation are on braches 13 and 15.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">]]</span> <span class="o">=</span> <span class="n">To</span>    <span class="c1"># green branches: outdoor temperature for ventilation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The temperature sources modelling the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> temperatures are on the branches 16, … 19. The setpoints for room 1 and 3 are 20 °C and 22 °C, respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span>    <span class="c1"># red branches: setpoints room 1 &amp; 3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vector-of-heat-flow-rate-sources">
+<h3>Vector of heat flow rate sources<a class="headerlink" href="#vector-of-heat-flow-rate-sources" title="Permalink to this headline">#</a></h3>
+<p>In our model, the heat flow rate sources are the solar radiation absorbed by the exterior walls. First, we will consider that the solar radiation is zero.</p>
+<p>The number of heat flow rate sources is equal to the number of temperature nodes, i.e., the number of columns of the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vector of flow-rate sources</span>
+<span class="c1"># =============================</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">#</a></h3>
+<p>In this problem, we are looking for the indoor air temperatures of the rooms (1, 2, 3, and 4) and for the thermal loads of the rooms.</p>
+<p>The air temperatures of the rooms are <span class="math notranslate nohighlight">\(\theta_2\)</span>, <span class="math notranslate nohighlight">\(\theta_3\)</span>, <span class="math notranslate nohighlight">\(\theta_4\)</span>, and <span class="math notranslate nohighlight">\(\theta_6\)</span>,</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate needed to compensate all the other heat flow rates in order to maintain the air temperature at its setpoint. Therefore, the thermal loads are the heat flow rates of the controllers, i.e. <span class="math notranslate nohighlight">\(q_{16 ... 19}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Indexes of outputs</span>
+<span class="c1"># ==================</span>
+<span class="n">indoor_air</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>   <span class="c1"># indoor air temperature nodes</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1"># controller branches</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="question-1-all-4-rooms-are-controlled">
+<h2>Question 1: all 4 rooms are controlled<a class="headerlink" href="#question-1-all-4-rooms-are-controlled" title="Permalink to this headline">#</a></h2>
+<p>Considering that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that the there is no solar radiation on the external walls, find the thermal loads of the four rooms.</p>
+<p>For an almost perfect proportional controller, we will consider a very large gain of the controller as compared to the maximum value of the conductance matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum value of conductance: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> W/K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum value of conductance: 1830 W/K
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="n">controller</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">18</span>  <span class="c1"># °C setpoint temperature of the rooms</span>
+<span class="n">G</span><span class="p">[</span><span class="n">controller</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e9</span>             <span class="c1"># P-controller gain</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">@</span> <span class="n">θ</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. All 4 rooms controlled&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;θ:&quot;</span><span class="p">,</span> <span class="n">θ</span><span class="p">[</span><span class="n">indoor_air</span><span class="p">],</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q:&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="s2">&quot;W&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. All 4 rooms controlled
+θ: [20. 20. 22. 18.] °C
+q: [2008.4 1322.6 2346.4 4270. ] W
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2-rooms-2-4-in-free-running">
+<h2>Question 2: rooms 2 &amp; 4 in free-running<a class="headerlink" href="#question-2-rooms-2-4-in-free-running" title="Permalink to this headline">#</a></h2>
+<p>Let’s consider that:</p>
+<ul class="simple">
+<li><p>there is solar radiation absorbed by the exterior walls, i.e. <span class="math notranslate nohighlight">\(f_k = E \, S_{o,j}, \text{ with } k = 0, 1, 5, 7 \text{ and } j = 0...3;\)</span></p></li>
+<li><p>as before, rooms 1 and 3 are controlled by a HVAC system, i.e. <span class="math notranslate nohighlight">\(K_{P,j} \rightarrow \infty, \text{ with } j=16, 18;\)</span></p></li>
+<li><p>rooms 2 and 4 are in “<a class="reference external" href="https://hal.science/hal-01815799/document">free-running</a>”, i.e. <span class="math notranslate nohighlight">\(K_{P,j} = 0, \text{ with } j=17, 19.\)</span></p></li>
+</ul>
+<p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zone 2 &amp; 4 free-running; solar rad; without ventilation</span>
+<span class="n">G</span><span class="p">[[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># controller gains for room 2 &amp; 4</span>
+
+<span class="c1"># Solar radiation</span>
+<span class="n">exterior_wall</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">f</span><span class="p">[</span><span class="n">exterior_wall</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span> <span class="o">*</span> <span class="n">So</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">@</span> <span class="n">θ</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. 2 &amp; 4 free-run w/o ventilation&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;θ:&quot;</span><span class="p">,</span> <span class="n">θ</span><span class="p">[</span><span class="n">indoor_air</span><span class="p">],</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q:&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="s2">&quot;W&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2. 2 &amp; 4 free-run w/o ventilation
+θ: [20.  13.1 22.  11.7] °C
+q: [1719.8    0.  2057.8    0. ] W
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3-ventilation-from-outdoor-to-room-2">
+<h2>Question 3: ventilation from outdoor to room 2<a class="headerlink" href="#question-3-ventilation-from-outdoor-to-room-2" title="Permalink to this headline">#</a></h2>
+<p>Room 2 in ventilated with an air flow rate of <span class="math notranslate nohighlight">\(ACH\)</span> (ACH is the number of air-changes per hour). The outdoor air enters in room 2, then it moves to room 4 and, from here, it gets outdoors.</p>
+<p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
+<p>To model this direction of air flow, the conductances for ventilation are:</p>
+<div class="math notranslate nohighlight">
+\[G_{13} = G_{14} = \dot m c; G_{15} = 0 \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zone 2 &amp; 4 free-running; solar rad;</span>
+<span class="c1"># Ventilation outdoor -&gt; room 2 -&gt; room 4 -&gt; outdoor</span>
+<span class="n">ventilation</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">G</span><span class="p">[</span><span class="n">ventilation</span><span class="p">]</span> <span class="o">=</span> <span class="n">m_dot</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">m_dot</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">@</span> <span class="n">θ</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. 2 &amp; 4 free-run, ventilation out -&gt; 2 -&gt; 4 -&gt; out&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;θ:&quot;</span><span class="p">,</span> <span class="n">θ</span><span class="p">[</span><span class="n">indoor_air</span><span class="p">],</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q:&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="s2">&quot;W&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3. 2 &amp; 4 free-run, ventilation out -&gt; 2 -&gt; 4 -&gt; out
+θ: [20.  11.7 22.  11.6] °C
+q: [1761.1    0.  2099.     0. ] W
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-4-ventilation-from-room-4-to-room-2">
+<h2>Question 4: ventilation from room 4 to room 2<a class="headerlink" href="#question-4-ventilation-from-room-4-to-room-2" title="Permalink to this headline">#</a></h2>
+<p>The air flow in room 2 is reversed: from outdoors, the air enters in room 4, then is moves to room 2, from which it gets outdoors. The air flow rate of room 2 is the same as before.</p>
+<p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
+<p>To model this direction of air flow, the conductances for ventilation are:</p>
+<div class="math notranslate nohighlight">
+\[G_{13} = 0; G_{14} = G_{15} = \dot m c \]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zone 2 &amp; 4 free-running; solar rad;</span>
+<span class="c1"># Ventilation outdoor -&gt; room 4 -&gt; room 2 -&gt; outdoor</span>
+<span class="n">G</span><span class="p">[</span><span class="n">ventilation</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">m_dot</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="n">m_dot</span> <span class="o">*</span> <span class="n">c</span>
+
+<span class="n">θ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span> <span class="o">+</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">@</span> <span class="n">θ</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. 2 &amp; 4 free-run, ventilation out -&gt; 4 -&gt; 2 -&gt; out&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;θ:&quot;</span><span class="p">,</span> <span class="n">θ</span><span class="p">[</span><span class="n">indoor_air</span><span class="p">],</span> <span class="s2">&quot;°C&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;q:&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="s2">&quot;W&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4. 2 &amp; 4 free-run, ventilation out -&gt; 4 -&gt; 2 -&gt; out
+θ: [20.  12.8 22.  11.3] °C
+q: [1750.5    0.  2088.4    0. ] W
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>C. Ghiaus (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p></li>
+<li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenu
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-model">Thermal model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network">Thermal network</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductances">Conductances</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exterior-walls-outdoor-convection">Exterior walls: outdoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exterior-walls-conduction-and-indoor-convection">Exterior walls: conduction and indoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interior-walls-indoor-convection-conduction-indoor-convection">Interior walls: indoor convection, conduction indoor convection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ventilation-heat-transfer-by-advection">Ventilation: heat transfer by advection</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-outdoor-room-2-room-4-outdoor">Air-flow: outdoor → room 2 → room 4 → outdoor</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#air-flow-outdoor-room-4-room-2-outdoor">Air-flow: outdoor → room 4 → room 2 → outdoor</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-flow-rate-from-room-2-to-room-4">Heat flow rate from room 2 to room 4</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-the-change-in-airflow-direction">Modelling the change in airflow direction</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-temperature-sources">Vector of temperature sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-heat-flow-rate-sources">Vector of heat flow rate sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outputs">Outputs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1-all-4-rooms-are-controlled">Question 1: all 4 rooms are controlled</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2-rooms-2-4-in-free-running">Question 2: rooms 2 &amp; 4 in free-running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3-ventilation-from-outdoor-to-room-2">Question 3: ventilation from outdoor to room 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4-ventilation-from-room-4-to-room-2">Question 4: ventilation from room 4 to room 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Par Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

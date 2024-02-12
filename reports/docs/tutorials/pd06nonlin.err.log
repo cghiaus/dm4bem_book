@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+control_for("free running", period, dt=30,
+            nonlinear_controller=False)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_2563/739430079.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m control_for("free running", period, dt=30,
+[0m[1;32m      2[0m             nonlinear_controller=False)
+
+[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_2563/1536844490.py[0m in [0;36mcontrol_for[0;34m(controller, period, dt, nonlinear_controller)[0m
+[1;32m     38[0m     [0;31m# Weather[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     39[0m     [0mfilename[0m [0;34m=[0m [0;34m'../weather_data/FRA_Lyon.074810_IWEC.epw'[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 40[0;31m     [0;34m[[0m[0mdata[0m[0;34m,[0m [0mmeta[0m[0;34m][0m [0;34m=[0m [0mdm4bem[0m[0;34m.[0m[0mread_epw[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0mcoerce_year[0m[0;34m=[0m[0;32mNone[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     41[0m     [0mweather[0m [0;34m=[0m [0mdata[0m[0;34m[[0m[0;34m[[0m[0;34m"temp_air"[0m[0;34m,[0m [0;34m"dir_n_rad"[0m[0;34m,[0m [0;34m"dif_h_rad"[0m[0;34m][0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     42[0m     [0;32mdel[0m [0mdata[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/Personel/Py/git_book/dm4bem_book/docs/tutorials/dm4bem.py[0m in [0;36mread_epw[0;34m(filename, coerce_year)[0m
+[1;32m    234[0m [0;34m[0m[0m
+[1;32m    235[0m     [0;31m# Assume it's accessible via the file system[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 236[0;31m     [0mcsvdata[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mstr[0m[0;34m([0m[0mfilename[0m[0;34m)[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    237[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    238[0m         [0mdata[0m[0;34m,[0m [0mmeta[0m [0;34m=[0m [0mparse_epw[0m[0;34m([0m[0mcsvdata[0m[0;34m,[0m [0mcoerce_year[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../weather_data/FRA_Lyon.074810_IWEC.epw'
+FileNotFoundError: [Errno 2] No such file or directory: '../weather_data/FRA_Lyon.074810_IWEC.epw'
+
