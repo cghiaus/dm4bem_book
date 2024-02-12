@@ -37,6 +37,6 @@ html:
 
 # Control the notebook interface that opens
 # Add a Launch on Binder button
-launch_buttons:
-  notebook_interface: "jupyterlab"  # or "classic"
-  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
+# launch_buttons:
+#   notebook_interface: "jupyterlab"  # or "classic"
+#   binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
