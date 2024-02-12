@@ -4,33 +4,33 @@
 format: jb-book
 root: intro
 chapters:
-- file: tutorials/T00_theory
+- file: docs/T00_theory
   sections:
-  - file: tutorials/T01_Heat_transfer
-  - file: tutorials/T02_TC2DAE
-  - file: tutorials/T03_DAE2SS
-- file: tutorials/01WeatherData
-- file: tutorials/02_0ModelSimulation
+  - file: docs/T01_Heat_transfer
+  - file: docs/T02_TC2DAE
+  - file: docs/T03_DAE2SS
+- file: docs/01WeatherData
+- file: docs/02_0ModelSimulation
   sections:
-  - file: tutorials/02_1Wall
-  - file: tutorials/02_2_0Toy
+  - file: docs/02_1Wall
+  - file: docs/02_2_0Toy
     sections:
-    - file: tutorials/02_2_1Toy
-    - file: tutorials/02_2_2Toy
-    - file: tutorials/02_2_3Toy
-    - file: tutorials/02_2_4Toy
-- file: tutorials/pdREADME.md
+    - file: docs/02_2_1Toy
+    - file: docs/02_2_2Toy
+    - file: docs/02_2_3Toy
+    - file: docs/02_2_4Toy
+- file: docs/pdREADME.md
   sections:
-  - file: tutorials/pd01wall2TC
-  - file: tutorials/pd02bldg2TCd
-  - file: tutorials/pd03assembleTCd
-  - file: tutorials/pd04tc2ss
-  - file: tutorials/pd05simulation
-  - file: tutorials/pd06nonlin
-- file: tutorials/A00annexes.md
+  - file: docs/pd01wall2TC
+  - file: docs/pd02bldg2TCd
+  - file: docs/pd03assembleTCd
+  - file: docs/pd04tc2ss
+  - file: docs/pd05simulation
+  - file: docs/pd06nonlin
+- file: docs/A00annexes.md
   sections:
-  - file: tutorials/A01Coupled_rad_convection
-  - file: tutorials/A02Thermal_load.ipynb
-  - file: tutorials/A03Air_flow_ventilation.ipynb
-  - file: tutorials/A04Degree_hours_intermittance.ipynb
-  - file: tutorials/A05Greenhouse_effect.ipynb
+  - file: docs/A01Coupled_rad_convection
+  - file: docs/A02Thermal_load.ipynb
+  - file: docs/A03Air_flow_ventilation.ipynb
+  - file: docs/A04Degree_hours_intermittance.ipynb
+  - file: docs/A05Greenhouse_effect.ipynb
