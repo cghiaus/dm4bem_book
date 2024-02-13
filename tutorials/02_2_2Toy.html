@@ -450,9 +450,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">explicit_Euler</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step </span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step</span>
 </pre></div>
 </div>
 </div>
@@ -727,6 +728,11 @@ document.write(`
 <span class="c1"># by default TC[&#39;G&#39;][&#39;q11&#39;] = 0, i.e. Kp -&gt; 0, no controller (free-floating)</span>
 <span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
     <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e3</span>        <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
+
+<span class="k">if</span> <span class="n">neglect_air_glass_capacity</span><span class="p">:</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ7&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># or</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;θ6&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;θ7&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -968,13 +974,15 @@ y = C_s \theta_s + D_s u
     <span class="n">dt</span> <span class="o">=</span> <span class="n">Δt</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+    <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dtmax&#39;</span><span class="p">,</span> <span class="n">dtmax</span><span class="p">)</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dtmax</span><span class="p">)</span>
 <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 300 s = 5.0 min
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtmax = 498 s = 8.3 min
+dt = 300 s = 5.0 min
 </pre></div>
 </div>
 </div>
