@@ -2058,10 +2058,10 @@ T_o &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;0  &amp;T_o  &amp;0  &a
 </div>
 </div>
 </div>
-<p>This thermal circuit can be read directly from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file that contains the matrices and vectors of the system of differential algebraic equations (A, G, C, b, f, y) which describe the circuit shown in Figure 4.</p>
+<p>This thermal circuit can be read directly from a <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file,  <a class="reference download internal" download="" href="../_downloads/9c2ae5c5830b8aa4a28e9902da08b080/TC.csv"><span class="xref download myst">./toy_model/TC.csv</span></a>, which contains the matrices and vectors of the system of differential algebraic equations (A, G, C, b, f, y) which describe the circuit shown in Figure 4.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">file2TC</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC.csv&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">auto_number</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TC = dm4bem.file2TC(&#39;./toy_model/TC.csv&#39;, name=&#39;&#39;, auto_number=False)</span>
 </pre></div>
 </div>
 </div>
@@ -2227,7 +2227,7 @@ y = C_s \theta_s + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 3.55e-15 °C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error between DAE and state-space: 8.88e-15 °C
 </pre></div>
 </div>
 </div>
@@ -2329,7 +2329,9 @@ Maximum time step: 498.60 s = 8.31 min
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 * Time constants: 
- [   996  16372  26916 176132] s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [   996  16372  26916 176132] s 
 
 Settling time: 176132 s = 2935.5 min = 48.93 h = 2.04 days
 </pre></div>
