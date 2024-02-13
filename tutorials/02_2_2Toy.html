@@ -457,33 +457,8 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The thermal circuit was described in the section on modelling (Figure 1). It is given by a <em>thermal circuit</em> imported from the file <code class="docutils literal notranslate"><span class="pre">./toy_model/TC.csv</span></code>.</p>
-<blockquote>
-<div><p>Table 1. Structure of a <em>thermal circuit</em> file.</p>
-</div></blockquote>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>A</p></th>
-<th class="head"><p>G</p></th>
-<th class="head"><p>b</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>C</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>f</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>y</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p>A thermal ciruit file contains the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>, the diagonals of matrices <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span> arranged as shown in Table 1. If there is no value in a cell, it is considered <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<p>The thermal circuit was described in the section on modelling (Figure 1). It is given by a <em>thermal circuit</em> imported from the file <a class="reference download internal" download="" href="../_downloads/9c2ae5c5830b8aa4a28e9902da08b080/TC.csv"><span class="xref download myst">./toy_model/TC.csv</span></a>.</p>
+<p>A thermal ciruit file contains the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>, the diagonals of matrices <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, and the vectors <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(f\)</span>, and <span class="math notranslate nohighlight">\(y\)</span> (see example below). If there is no value in a cell, it is considered <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Matrices and vectors for thermal circuit from Figure 1&#39;</span><span class="p">)</span> 
@@ -741,7 +716,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>In this thermal circuit <code class="docutils literal notranslate"><span class="pre">TC.csv</span></code> , the controller is <em>off</em>, i.e., the gain of the proportional controller is 0, <span class="math notranslate nohighlight">\(K_p = G_{11} = 0\)</span>; the building is in free-floating. The controller may be turned <em>on</em> by setting <span class="math notranslate nohighlight">\(K_p = G_{11} \rightarrow \infty\)</span>.</p>
+<p>In the thermal circuit <a class="reference download internal" download="" href="../_downloads/9c2ae5c5830b8aa4a28e9902da08b080/TC.csv"><span class="xref download myst">./toy_model/TC.csv</span></a>, the controller is <em>off</em>, i.e., the gain of the proportional controller is 0, <span class="math notranslate nohighlight">\(K_p = G_{11} = 0\)</span>; the building is in <em>free-floating</em>. The controller may be turned <em>on</em> by setting <span class="math notranslate nohighlight">\(K_p = G_{11} \rightarrow \infty\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MODEL</span>
@@ -773,7 +748,13 @@ document.write(`
 C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\\ 
 q = G (-A \theta + b)
 \end{array}\right.\end{split}\]</div>
-<p>the term <span class="math notranslate nohighlight">\(C \dot \theta = 0\)</span>.</p>
+<p>or in the state-space representation,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{rr}
+\dot{\theta}_s=A_s \theta_s + B_s u\\ 
+y = C_s \theta_s + D_s u
+\end{array}\right.\end{split}\]</div>
+<p>the term <span class="math notranslate nohighlight">\(\dot \theta = 0\)</span>, i.e., the temperatures do not vary in time.</p>
 <p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a>, the model can be checked if it is incorrect. Let’s consider that:</p>
 <ul class="simple">
 <li><p>the controller is not active, <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>,</p></li>
