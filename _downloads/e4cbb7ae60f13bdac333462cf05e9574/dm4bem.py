@@ -1598,8 +1598,10 @@ def round_time(dtmax):
     elif dtmax >= 10:
         dt = round_floor(10)            # round to 10 s
 
+    elif dtmax >= 1:
+        dt = round_floor(1)             # round to 1 s
     else:
-        dt = np.floor(dtmax)            # round to 1 s
+        dt = dtmax                      # if dt < 1 s, not rounded
 
     return dt
 
@@ -1627,5 +1629,7 @@ def print_rounded_time(var_name, t):
         print(var_name + f' = {int(t)} s = {float(hours):.1f} h')
     elif minutes > 1:
         print(var_name + f' = {int(t)} s = {float(minutes):.1f} min')
-    else:
+    elif t > 1:
         print(var_name + f' = {int(t)} s')
+    else:
+        print(var_name + f' = {t:.3f} s')

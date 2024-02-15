@@ -402,7 +402,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-internal-load">Step response to internal load</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Time step</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air-and-glass-capacities">Air and glass capacities</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#controller-gain">Controller gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -444,16 +451,15 @@ document.write(`
 <p>The following assumptions are done:</p>
 <ul class="simple">
 <li><p>The indoor air temperature is controlled or not (i.e., the building is in free running).</p></li>
-<li><p>The time integration is done by using Euler explicit or Euler implicit methods.</p></li>
+<li><p>The heat capacity of air and of glass is neglected or not.</p></li>
 <li><p>The time step is calculated from the eigenvalues or it is imposed at a value designated as <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">explicit_Euler</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step</span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="mi">498</span>    <span class="c1"># s, imposed time step</span>
 </pre></div>
 </div>
 </div>
@@ -463,7 +469,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Matrices and vectors for thermal circuit from Figure 1&#39;</span><span class="p">)</span> 
-<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC_0.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./toy_model/TC_0.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;background-color: yellow&#39;</span>
+                          <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="ow">or</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+                          <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,251 +480,242 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matrices and vectors for thermal circuit from Figure 1
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
+<div class="output text_html"><style type="text/css">
+#T_28c19_row0_col9, #T_28c19_row0_col10, #T_28c19_row1_col9, #T_28c19_row1_col10, #T_28c19_row2_col9, #T_28c19_row2_col10, #T_28c19_row3_col9, #T_28c19_row3_col10, #T_28c19_row4_col9, #T_28c19_row4_col10, #T_28c19_row5_col9, #T_28c19_row5_col10, #T_28c19_row6_col9, #T_28c19_row6_col10, #T_28c19_row7_col9, #T_28c19_row7_col10, #T_28c19_row8_col9, #T_28c19_row8_col10, #T_28c19_row9_col9, #T_28c19_row9_col10, #T_28c19_row10_col9, #T_28c19_row10_col10, #T_28c19_row11_col9, #T_28c19_row11_col10, #T_28c19_row12_col0, #T_28c19_row12_col1, #T_28c19_row12_col2, #T_28c19_row12_col3, #T_28c19_row12_col4, #T_28c19_row12_col5, #T_28c19_row12_col6, #T_28c19_row12_col7, #T_28c19_row12_col8, #T_28c19_row12_col9, #T_28c19_row12_col10, #T_28c19_row13_col0, #T_28c19_row13_col1, #T_28c19_row13_col2, #T_28c19_row13_col3, #T_28c19_row13_col4, #T_28c19_row13_col5, #T_28c19_row13_col6, #T_28c19_row13_col7, #T_28c19_row13_col8, #T_28c19_row13_col9, #T_28c19_row13_col10, #T_28c19_row14_col0, #T_28c19_row14_col1, #T_28c19_row14_col2, #T_28c19_row14_col3, #T_28c19_row14_col4, #T_28c19_row14_col5, #T_28c19_row14_col6, #T_28c19_row14_col7, #T_28c19_row14_col8, #T_28c19_row14_col9, #T_28c19_row14_col10 {
+  background-color: yellow;
+}
 </style>
-<table border="1" class="dataframe">
+<table id="T_28c19_">
   <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>θ0</th>
-      <th>θ1</th>
-      <th>θ2</th>
-      <th>θ3</th>
-      <th>θ4</th>
-      <th>θ5</th>
-      <th>θ6</th>
-      <th>θ7</th>
-      <th>G</th>
-      <th>b</th>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th class="col_heading level0 col0" >A</th>
+      <th class="col_heading level0 col1" >θ0</th>
+      <th class="col_heading level0 col2" >θ1</th>
+      <th class="col_heading level0 col3" >θ2</th>
+      <th class="col_heading level0 col4" >θ3</th>
+      <th class="col_heading level0 col5" >θ4</th>
+      <th class="col_heading level0 col6" >θ5</th>
+      <th class="col_heading level0 col7" >θ6</th>
+      <th class="col_heading level0 col8" >θ7</th>
+      <th class="col_heading level0 col9" >G</th>
+      <th class="col_heading level0 col10" >b</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>q0</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1125.000000</td>
-      <td>To</td>
+      <th id="T_28c19_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_28c19_row0_col0" class="data row0 col0" >q0</td>
+      <td id="T_28c19_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_28c19_row0_col2" class="data row0 col2" >0.000000</td>
+      <td id="T_28c19_row0_col3" class="data row0 col3" >0</td>
+      <td id="T_28c19_row0_col4" class="data row0 col4" >0</td>
+      <td id="T_28c19_row0_col5" class="data row0 col5" >0</td>
+      <td id="T_28c19_row0_col6" class="data row0 col6" >0</td>
+      <td id="T_28c19_row0_col7" class="data row0 col7" >0</td>
+      <td id="T_28c19_row0_col8" class="data row0 col8" >0</td>
+      <td id="T_28c19_row0_col9" class="data row0 col9" >1125.000000</td>
+      <td id="T_28c19_row0_col10" class="data row0 col10" >To</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>q1</td>
-      <td>-1</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>630.000000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_28c19_row1_col0" class="data row1 col0" >q1</td>
+      <td id="T_28c19_row1_col1" class="data row1 col1" >-1</td>
+      <td id="T_28c19_row1_col2" class="data row1 col2" >1.000000</td>
+      <td id="T_28c19_row1_col3" class="data row1 col3" >0</td>
+      <td id="T_28c19_row1_col4" class="data row1 col4" >0</td>
+      <td id="T_28c19_row1_col5" class="data row1 col5" >0</td>
+      <td id="T_28c19_row1_col6" class="data row1 col6" >0</td>
+      <td id="T_28c19_row1_col7" class="data row1 col7" >0</td>
+      <td id="T_28c19_row1_col8" class="data row1 col8" >0</td>
+      <td id="T_28c19_row1_col9" class="data row1 col9" >630.000000</td>
+      <td id="T_28c19_row1_col10" class="data row1 col10" >0</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>q2</td>
-      <td>0</td>
-      <td>-1.0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>630.000000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_28c19_row2_col0" class="data row2 col0" >q2</td>
+      <td id="T_28c19_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_28c19_row2_col2" class="data row2 col2" >-1.000000</td>
+      <td id="T_28c19_row2_col3" class="data row2 col3" >1</td>
+      <td id="T_28c19_row2_col4" class="data row2 col4" >0</td>
+      <td id="T_28c19_row2_col5" class="data row2 col5" >0</td>
+      <td id="T_28c19_row2_col6" class="data row2 col6" >0</td>
+      <td id="T_28c19_row2_col7" class="data row2 col7" >0</td>
+      <td id="T_28c19_row2_col8" class="data row2 col8" >0</td>
+      <td id="T_28c19_row2_col9" class="data row2 col9" >630.000000</td>
+      <td id="T_28c19_row2_col10" class="data row2 col10" >0</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>q3</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>30.375000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_28c19_row3_col0" class="data row3 col0" >q3</td>
+      <td id="T_28c19_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_28c19_row3_col2" class="data row3 col2" >0.000000</td>
+      <td id="T_28c19_row3_col3" class="data row3 col3" >-1</td>
+      <td id="T_28c19_row3_col4" class="data row3 col4" >1</td>
+      <td id="T_28c19_row3_col5" class="data row3 col5" >0</td>
+      <td id="T_28c19_row3_col6" class="data row3 col6" >0</td>
+      <td id="T_28c19_row3_col7" class="data row3 col7" >0</td>
+      <td id="T_28c19_row3_col8" class="data row3 col8" >0</td>
+      <td id="T_28c19_row3_col9" class="data row3 col9" >30.375000</td>
+      <td id="T_28c19_row3_col10" class="data row3 col10" >0</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>q4</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>30.375000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row4" class="row_heading level0 row4" >4</th>
+      <td id="T_28c19_row4_col0" class="data row4 col0" >q4</td>
+      <td id="T_28c19_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_28c19_row4_col2" class="data row4 col2" >0.000000</td>
+      <td id="T_28c19_row4_col3" class="data row4 col3" >0</td>
+      <td id="T_28c19_row4_col4" class="data row4 col4" >-1</td>
+      <td id="T_28c19_row4_col5" class="data row4 col5" >1</td>
+      <td id="T_28c19_row4_col6" class="data row4 col6" >0</td>
+      <td id="T_28c19_row4_col7" class="data row4 col7" >0</td>
+      <td id="T_28c19_row4_col8" class="data row4 col8" >0</td>
+      <td id="T_28c19_row4_col9" class="data row4 col9" >30.375000</td>
+      <td id="T_28c19_row4_col10" class="data row4 col10" >0</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>q5</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>44.786824</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row5" class="row_heading level0 row5" >5</th>
+      <td id="T_28c19_row5_col0" class="data row5 col0" >q5</td>
+      <td id="T_28c19_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_28c19_row5_col2" class="data row5 col2" >0.000000</td>
+      <td id="T_28c19_row5_col3" class="data row5 col3" >0</td>
+      <td id="T_28c19_row5_col4" class="data row5 col4" >0</td>
+      <td id="T_28c19_row5_col5" class="data row5 col5" >-1</td>
+      <td id="T_28c19_row5_col6" class="data row5 col6" >1</td>
+      <td id="T_28c19_row5_col7" class="data row5 col7" >0</td>
+      <td id="T_28c19_row5_col8" class="data row5 col8" >0</td>
+      <td id="T_28c19_row5_col9" class="data row5 col9" >44.786824</td>
+      <td id="T_28c19_row5_col10" class="data row5 col10" >0</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>q6</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>360.000000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row6" class="row_heading level0 row6" >6</th>
+      <td id="T_28c19_row6_col0" class="data row6 col0" >q6</td>
+      <td id="T_28c19_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_28c19_row6_col2" class="data row6 col2" >0.000000</td>
+      <td id="T_28c19_row6_col3" class="data row6 col3" >0</td>
+      <td id="T_28c19_row6_col4" class="data row6 col4" >0</td>
+      <td id="T_28c19_row6_col5" class="data row6 col5" >-1</td>
+      <td id="T_28c19_row6_col6" class="data row6 col6" >0</td>
+      <td id="T_28c19_row6_col7" class="data row6 col7" >1</td>
+      <td id="T_28c19_row6_col8" class="data row6 col8" >0</td>
+      <td id="T_28c19_row6_col9" class="data row6 col9" >360.000000</td>
+      <td id="T_28c19_row6_col10" class="data row6 col10" >0</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>q7</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>72.000000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row7" class="row_heading level0 row7" >7</th>
+      <td id="T_28c19_row7_col0" class="data row7 col0" >q7</td>
+      <td id="T_28c19_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_28c19_row7_col2" class="data row7 col2" >0.000000</td>
+      <td id="T_28c19_row7_col3" class="data row7 col3" >0</td>
+      <td id="T_28c19_row7_col4" class="data row7 col4" >0</td>
+      <td id="T_28c19_row7_col5" class="data row7 col5" >0</td>
+      <td id="T_28c19_row7_col6" class="data row7 col6" >-1</td>
+      <td id="T_28c19_row7_col7" class="data row7 col7" >1</td>
+      <td id="T_28c19_row7_col8" class="data row7 col8" >0</td>
+      <td id="T_28c19_row7_col9" class="data row7 col9" >72.000000</td>
+      <td id="T_28c19_row7_col10" class="data row7 col10" >0</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>q8</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>165.789474</td>
-      <td>To</td>
+      <th id="T_28c19_level0_row8" class="row_heading level0 row8" >8</th>
+      <td id="T_28c19_row8_col0" class="data row8 col0" >q8</td>
+      <td id="T_28c19_row8_col1" class="data row8 col1" >0</td>
+      <td id="T_28c19_row8_col2" class="data row8 col2" >0.000000</td>
+      <td id="T_28c19_row8_col3" class="data row8 col3" >0</td>
+      <td id="T_28c19_row8_col4" class="data row8 col4" >0</td>
+      <td id="T_28c19_row8_col5" class="data row8 col5" >0</td>
+      <td id="T_28c19_row8_col6" class="data row8 col6" >0</td>
+      <td id="T_28c19_row8_col7" class="data row8 col7" >0</td>
+      <td id="T_28c19_row8_col8" class="data row8 col8" >1</td>
+      <td id="T_28c19_row8_col9" class="data row8 col9" >165.789474</td>
+      <td id="T_28c19_row8_col10" class="data row8 col10" >To</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>q9</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>-1</td>
-      <td>630.000000</td>
-      <td>0</td>
+      <th id="T_28c19_level0_row9" class="row_heading level0 row9" >9</th>
+      <td id="T_28c19_row9_col0" class="data row9 col0" >q9</td>
+      <td id="T_28c19_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_28c19_row9_col2" class="data row9 col2" >0.000000</td>
+      <td id="T_28c19_row9_col3" class="data row9 col3" >0</td>
+      <td id="T_28c19_row9_col4" class="data row9 col4" >0</td>
+      <td id="T_28c19_row9_col5" class="data row9 col5" >0</td>
+      <td id="T_28c19_row9_col6" class="data row9 col6" >1</td>
+      <td id="T_28c19_row9_col7" class="data row9 col7" >0</td>
+      <td id="T_28c19_row9_col8" class="data row9 col8" >-1</td>
+      <td id="T_28c19_row9_col9" class="data row9 col9" >630.000000</td>
+      <td id="T_28c19_row9_col10" class="data row9 col10" >0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>q10</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>9.000000</td>
-      <td>To</td>
+      <th id="T_28c19_level0_row10" class="row_heading level0 row10" >10</th>
+      <td id="T_28c19_row10_col0" class="data row10 col0" >q10</td>
+      <td id="T_28c19_row10_col1" class="data row10 col1" >0</td>
+      <td id="T_28c19_row10_col2" class="data row10 col2" >0.000000</td>
+      <td id="T_28c19_row10_col3" class="data row10 col3" >0</td>
+      <td id="T_28c19_row10_col4" class="data row10 col4" >0</td>
+      <td id="T_28c19_row10_col5" class="data row10 col5" >0</td>
+      <td id="T_28c19_row10_col6" class="data row10 col6" >0</td>
+      <td id="T_28c19_row10_col7" class="data row10 col7" >1</td>
+      <td id="T_28c19_row10_col8" class="data row10 col8" >0</td>
+      <td id="T_28c19_row10_col9" class="data row10 col9" >9.000000</td>
+      <td id="T_28c19_row10_col10" class="data row10 col10" >To</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>q11</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0.000000</td>
-      <td>Ti_sp</td>
+      <th id="T_28c19_level0_row11" class="row_heading level0 row11" >11</th>
+      <td id="T_28c19_row11_col0" class="data row11 col0" >q11</td>
+      <td id="T_28c19_row11_col1" class="data row11 col1" >0</td>
+      <td id="T_28c19_row11_col2" class="data row11 col2" >0.000000</td>
+      <td id="T_28c19_row11_col3" class="data row11 col3" >0</td>
+      <td id="T_28c19_row11_col4" class="data row11 col4" >0</td>
+      <td id="T_28c19_row11_col5" class="data row11 col5" >0</td>
+      <td id="T_28c19_row11_col6" class="data row11 col6" >0</td>
+      <td id="T_28c19_row11_col7" class="data row11 col7" >1</td>
+      <td id="T_28c19_row11_col8" class="data row11 col8" >0</td>
+      <td id="T_28c19_row11_col9" class="data row11 col9" >0.000000</td>
+      <td id="T_28c19_row11_col10" class="data row11 col10" >Ti_sp</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>C</td>
-      <td>0</td>
-      <td>18216000.0</td>
-      <td>0</td>
-      <td>239580</td>
-      <td>0</td>
-      <td>0</td>
-      <td>32400</td>
-      <td>1.089E+06</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th id="T_28c19_level0_row12" class="row_heading level0 row12" >12</th>
+      <td id="T_28c19_row12_col0" class="data row12 col0" >C</td>
+      <td id="T_28c19_row12_col1" class="data row12 col1" >0</td>
+      <td id="T_28c19_row12_col2" class="data row12 col2" >18216000.000000</td>
+      <td id="T_28c19_row12_col3" class="data row12 col3" >0</td>
+      <td id="T_28c19_row12_col4" class="data row12 col4" >239580</td>
+      <td id="T_28c19_row12_col5" class="data row12 col5" >0</td>
+      <td id="T_28c19_row12_col6" class="data row12 col6" >0</td>
+      <td id="T_28c19_row12_col7" class="data row12 col7" >32400</td>
+      <td id="T_28c19_row12_col8" class="data row12 col8" >1.089E+06</td>
+      <td id="T_28c19_row12_col9" class="data row12 col9" >nan</td>
+      <td id="T_28c19_row12_col10" class="data row12 col10" >nan</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>f</td>
-      <td>Φo</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>Φi</td>
-      <td>0</td>
-      <td>Qa</td>
-      <td>Φa</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th id="T_28c19_level0_row13" class="row_heading level0 row13" >13</th>
+      <td id="T_28c19_row13_col0" class="data row13 col0" >f</td>
+      <td id="T_28c19_row13_col1" class="data row13 col1" >Φo</td>
+      <td id="T_28c19_row13_col2" class="data row13 col2" >0.000000</td>
+      <td id="T_28c19_row13_col3" class="data row13 col3" >0</td>
+      <td id="T_28c19_row13_col4" class="data row13 col4" >0</td>
+      <td id="T_28c19_row13_col5" class="data row13 col5" >Φi</td>
+      <td id="T_28c19_row13_col6" class="data row13 col6" >0</td>
+      <td id="T_28c19_row13_col7" class="data row13 col7" >Qa</td>
+      <td id="T_28c19_row13_col8" class="data row13 col8" >Φa</td>
+      <td id="T_28c19_row13_col9" class="data row13 col9" >nan</td>
+      <td id="T_28c19_row13_col10" class="data row13 col10" >nan</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>y</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th id="T_28c19_level0_row14" class="row_heading level0 row14" >14</th>
+      <td id="T_28c19_row14_col0" class="data row14 col0" >y</td>
+      <td id="T_28c19_row14_col1" class="data row14 col1" >0</td>
+      <td id="T_28c19_row14_col2" class="data row14 col2" >0.000000</td>
+      <td id="T_28c19_row14_col3" class="data row14 col3" >0</td>
+      <td id="T_28c19_row14_col4" class="data row14 col4" >0</td>
+      <td id="T_28c19_row14_col5" class="data row14 col5" >0</td>
+      <td id="T_28c19_row14_col6" class="data row14 col6" >0</td>
+      <td id="T_28c19_row14_col7" class="data row14 col7" >1</td>
+      <td id="T_28c19_row14_col8" class="data row14 col8" >0</td>
+      <td id="T_28c19_row14_col9" class="data row14 col9" >nan</td>
+      <td id="T_28c19_row14_col10" class="data row14 col10" >nan</td>
     </tr>
   </tbody>
 </table>
-</div></div></div>
+</div></div>
 </div>
 <p>In the thermal circuit <a class="reference download internal" download="" href="../_downloads/9c2ae5c5830b8aa4a28e9902da08b080/TC.csv"><span class="xref download myst">./toy_model/TC.csv</span></a>, the controller is <em>off</em>, i.e., the gain of the proportional controller is 0, <span class="math notranslate nohighlight">\(K_p = G_{11} = 0\)</span>; the building is in <em>free-floating</em>. The controller may be turned <em>on</em> by setting <span class="math notranslate nohighlight">\(K_p = G_{11} \rightarrow \infty\)</span>.</p>
 <div class="cell docutils container">
@@ -970,11 +970,12 @@ y = C_s \theta_s + D_s u
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
+<span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+<span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dtmax&#39;</span><span class="p">,</span> <span class="n">dtmax</span><span class="p">)</span>
+
 <span class="k">if</span> <span class="n">imposed_time_step</span><span class="p">:</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">Δt</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">dtmax</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
-    <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dtmax&#39;</span><span class="p">,</span> <span class="n">dtmax</span><span class="p">)</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dtmax</span><span class="p">)</span>
 <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 </pre></div>
@@ -983,6 +984,14 @@ y = C_s \theta_s + D_s u
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtmax = 498 s = 8.3 min
 dt = 300 s = 5.0 min
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">dt</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Time step is too small. Stopping the script.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1103,7 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 <span class="c1"># time vector</span>
 <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">duration</span> <span class="o">/</span> <span class="n">dt</span><span class="p">))</span>    <span class="c1"># number of time steps</span>
 
-<span class="c1"># Create a DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
+<span class="c1"># DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span>
                            <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="si">}</span><span class="s2">S&quot;</span><span class="p">)</span>
 
@@ -1106,7 +1115,7 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">To</span><span class="p">,</span> <span class="s1">&#39;Ti_sp&#39;</span><span class="p">:</span> <span class="n">Ti_sp</span><span class="p">,</span> <span class="s1">&#39;Φo&#39;</span><span class="p">:</span> <span class="n">Φo</span><span class="p">,</span> <span class="s1">&#39;Φi&#39;</span><span class="p">:</span> <span class="n">Φi</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">:</span> <span class="n">Qa</span><span class="p">,</span> <span class="s1">&#39;Φa&#39;</span><span class="p">:</span> <span class="n">Φa</span><span class="p">}</span>
 <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
 
-<span class="c1"># Get inputs in time from input_data_set</span>
+<span class="c1"># inputs in time from input_data_set</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1131,14 +1140,14 @@ y = C_s \theta_C + D_s u
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
-<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial values θ0</span>
-<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
+<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for explicit Euler</span>
+<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for implicit Euler</span>
 
+<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler explicit with initial values θ0</span>
+<span class="n">θ_imp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler implicit with initial values θ0</span>
 
 <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
-
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
         <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
@@ -1172,12 +1181,13 @@ y = C_s \theta_C + D_s u
 <span class="n">ax</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Indoor temperature, $</span><span class="se">\\</span><span class="s1">theta_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s; $dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dtmax</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8c0240748acce69a68532d0eeb83596e0fdf964645cb7dda908fd5429662bcba.png" src="../_images/8c0240748acce69a68532d0eeb83596e0fdf964645cb7dda908fd5429662bcba.png" />
+<img alt="../_images/4f788dbe56e1e17b173cbb5ec26d52e11fe345758fe5dcc3e37d78ef076fb706.png" src="../_images/4f788dbe56e1e17b173cbb5ec26d52e11fe345758fe5dcc3e37d78ef076fb706.png" />
 </div>
 </div>
 <blockquote>
@@ -1201,7 +1211,7 @@ and
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Steady-state indoor temperature obtained with:
 - DAE model: 10.0000 °C
 - state-space model: 10.0000 °C
-- steady-state response to step input: 9.9635 °C
+- steady-state response to step input: 9.9645 °C
 </pre></div>
 </div>
 </div>
@@ -1221,9 +1231,9 @@ and
 <span class="c1"># Create a DateTimeIndex starting at &quot;00:00:00&quot; with a time step of dt</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span>
                            <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="si">}</span><span class="s2">S&quot;</span><span class="p">)</span>
-
+<span class="c1"># Create input_data_set</span>
 <span class="n">To</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>         <span class="c1"># outdoor temperature</span>
-<span class="n">Ti_sp</span> <span class="o">=</span>  <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># indoor temperature set point</span>
+<span class="n">Ti_sp</span> <span class="o">=</span>  <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># indoor temperature set point</span>
 <span class="n">Φa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>         <span class="c1"># solar radiation absorbed by the glass</span>
 <span class="n">Φo</span> <span class="o">=</span> <span class="n">Φi</span> <span class="o">=</span> <span class="n">Φa</span>                <span class="c1"># solar radiation</span>
 <span class="n">Qa</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>      <span class="c1"># auxiliary heat sources</span>
@@ -1239,14 +1249,10 @@ and
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
-<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial values θ0</span>
-<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
-
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler explicit with initial values θ0</span>
+<span class="n">θ_imp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler implicit with initial values θ0</span>
 
 <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">As</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># identity matrix</span>
-
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
         <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
@@ -1274,12 +1280,13 @@ and
 <span class="n">ax</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Indoor temperature, $</span><span class="se">\\</span><span class="s1">theta_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s; $dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dtmax</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0eb5a9d6385ac48a248ffc45e8a0ede807dd15f1a40bc886ce00419efed89a1c.png" src="../_images/0eb5a9d6385ac48a248ffc45e8a0ede807dd15f1a40bc886ce00419efed89a1c.png" />
+<img alt="../_images/e2bec63c53d1936b52b919f4bbf10172e467242b8fa1736f1ac73a15a1a1cd64.png" src="../_images/e2bec63c53d1936b52b919f4bbf10172e467242b8fa1736f1ac73a15a1a1cd64.png" />
 </div>
 </div>
 <blockquote>
@@ -1310,23 +1317,82 @@ and
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
-<p>Interchange the materials  of the layers of the wall. Discuss the step responses obtained. Give arguments for the advantages and the disadvantages of indoor and outdoor insulation.</p>
+<section id="id1">
+<h3>Time step<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>The time step depends on:</p>
 <ul class="simple">
-<li><p>P-controller gain <code class="docutils literal notranslate"><span class="pre">Kp</span></code>:</p>
-<ul>
-<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect and the time step needs to be small;</p></li>
-<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then, the controller is ineffective and the building is in free-running.</p></li>
-</ul>
-</li>
 <li><p>Capacities considered into the model:</p>
 <ul>
 <li><p>if the capacities of the air <span class="math notranslate nohighlight">\(C_a =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Air']</span></code> and of the glass <span class="math notranslate nohighlight">\(C_g =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Glass']</span></code> are considered, then the time step is small;</p></li>
 <li><p>if the capacities of the air and of the glass are zero, then the time step is large (and the order of the state-space model is reduced).</p></li>
 </ul>
 </li>
+<li><p>P-controller gain <code class="docutils literal notranslate"><span class="pre">Kp</span></code>:</p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect and the time step needs to be small;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then, the controller is ineffective and the building is in free-running.</p></li>
 </ul>
+</li>
+</ul>
+<section id="air-and-glass-capacities">
+<h4>Air and glass capacities<a class="headerlink" href="#air-and-glass-capacities" title="Permalink to this headline">#</a></h4>
+<p>In cell <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Note that the maximum time step for numerical stability of explicit Euler integration method is: <code class="docutils literal notranslate"><span class="pre">dtmax</span> <span class="pre">=</span> <span class="pre">499</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">8.3</span> <span class="pre">min</span></code>.</p>
+<p>Now, in cell <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="mi">498</span>    <span class="c1"># s, imposed time step</span>
+</pre></div>
+</div>
+<p>and explain the simulation results.</p>
+<p>Determine the number of state variables, <span class="math notranslate nohighlight">\(\theta_s\)</span>.</p>
+<p>In cell <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Note that the maximum time step for numerical stability of explicit Euler integration method is: <code class="docutils literal notranslate"><span class="pre">dtmax</span> <span class="pre">=</span> <span class="pre">9587</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">2.7</span> <span class="pre">h</span></code>. Observe the simulation results, comment and correct them.</p>
+<p>Determine the number of state variables, <span class="math notranslate nohighlight">\(\theta_s\)</span> and compare with the case in which the capacities of the air and of the glass were considered.</p>
+</section>
+<section id="controller-gain">
+<h4>Controller gain<a class="headerlink" href="#controller-gain" title="Permalink to this headline">#</a></h4>
 <p>The controller models an HVAC system able to mantain setpoint temperature by heating (when <span class="math notranslate nohighlight">\(q_{HVAC} &gt; 0\)</span>) and by cooling (when <span class="math notranslate nohighlight">\(q_{HVAC} &lt; 0\)</span>).</p>
+<p>In cell <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Maximum time step for numerical stability of explicit Euler integration method is: <code class="docutils literal notranslate"><span class="pre">dtmax</span> <span class="pre">=</span> <span class="pre">8441</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">2.3</span> <span class="pre">h</span></code>.</p>
+<p>Observe, comment and improve the simulation results.</p>
+<p>In cell <code class="docutils literal notranslate"><span class="pre">[2]</span></code>, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">neglect_air_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Comment on time step and simulation results.</p>
+<p>In cell <code class="docutils literal notranslate"><span class="pre">[4]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e3</span>        <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
+
+</pre></div>
+</div>
+<p>Change the gain of the controller to <code class="docutils literal notranslate"><span class="pre">1e5</span></code> in cell <code class="docutils literal notranslate"><span class="pre">[4]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e5</span>        <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
+</pre></div>
+</div>
+<p>Comment the error raised in cell <code class="docutils literal notranslate"><span class="pre">[16]</span></code>.</p>
+</section>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
@@ -1425,7 +1491,14 @@ and
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response-to-internal-load">Step response to internal load</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Time step</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air-and-glass-capacities">Air and glass capacities</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#controller-gain">Controller gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
