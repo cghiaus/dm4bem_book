@@ -404,23 +404,27 @@ document.write(`
 <li><p>Steady-state and step respose:</p></li>
 </ul>
 <blockquote>
-<div><p>Test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>): if the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.
-- compare and interpret the steady-state results obtained for thermal circuit and state-space representation;
-- analyse the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>;
-- simulate the time response (by using <a class="reference external" href="https://en.wikipedia.org/wiki/Explicit_and_implicit_methods">Euler explicit and implicit method</a> to different <a class="reference external" href="https://en.wikipedia.org/wiki/Step_response">step inputs</a>;
-- compare the settling time obtained from simulation of step response with that obtained by eigenvalue analysis;
-- compare the steady-state value obtained by simumation of from the models (therma circuit and state-space representation).</p>
+<div><p>Test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>): if the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.</p>
 </div></blockquote>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- compare and interpret the steady-state results obtained for thermal circuit and state-space representation;
+- analyse the maximum time step (for numerical integration with [Euler explicit or forward method](https://en.wikipedia.org/wiki/Euler_method) and the [settling time](https://en.wikipedia.org/wiki/Settling_time);
+- simulate the time response (by using [Euler explicit and implicit method](https://en.wikipedia.org/wiki/Explicit_and_implicit_methods) to different [step inputs](https://en.wikipedia.org/wiki/Step_response);
+- compare the settling time obtained from simulation of step response with that obtained by eigenvalue analysis;
+- compare the steady-state value obtained by simumation of from the models (therma circuit and state-space representation).
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Inputs:</p></li>
 </ul>
 <blockquote>
-<div><p>Prepare the input data set, i.e., time variation of weather and scheduled sources of temperature and flow-rate.
-- read the weather data (outdoor temperature, direct solar irradiance and diffuse solar irradiace);
+<div><p>Prepare the input data set, i.e., time variation of weather and scheduled sources of temperature and flow-rate.</p>
+</div></blockquote>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- read the weather data (outdoor temperature, direct solar irradiance and diffuse solar irradiace);
 - calculate the sollar irradiance on the outdoor and indoor surfaces of the walls;
 - define the schedules for temperature sources (e.g., indoor temperature set point) and flow rate sources (e.g., internal gains);
-- obtain the input data set.</p>
-</div></blockquote>
+- obtain the input data set.
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Simulation:</p></li>
 </ul>
