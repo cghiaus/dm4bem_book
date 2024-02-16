@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/02_0ModelSimulation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -389,6 +391,50 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="modeling-and-simulation">
 <h1>Modeling and simulation<a class="headerlink" href="#modeling-and-simulation" title="Permalink to this headline">#</a></h1>
 <p>This chapter presents the modeling and simulaiton of thermal behaviour of a multi-layer wall and of a toy model of a house.</p>
+<p>The steps are:</p>
+<ul class="simple">
+<li><p>Modelling:</p></li>
+</ul>
+<blockquote>
+<div><p>Obtain the thermal circuit and the state-space representation.
+- draw the thermal network based on the description of the building and on modelling assumptions;
+- calculate the parameters of the thermal network: conductances and capacities;
+- write the matrices and vectors (<span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>) of the thermal circuit;
+- create the thermal circuit <strong>TC</strong> and convert it to state-space representation (matrices <span class="math notranslate nohighlight">\(A, B, C, D\)</span> and input vector <span class="math notranslate nohighlight">\(u\)</span>).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Steady-state and step respose:</p></li>
+</ul>
+<blockquote>
+<div><p>Test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>): if the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.
+- compare and interpret the steady-state results obtained for thermal circuit and state-space representation;
+- analyse the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a> and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>;
+- simulate the time response (by using <a class="reference external" href="https://en.wikipedia.org/wiki/Explicit_and_implicit_methods">Euler explicit and implicit method</a> to different <a class="reference external" href="https://en.wikipedia.org/wiki/Step_response">step inputs</a>;
+- compare the settling time obtained from simulation of step response with that obtained by eigenvalue analysis;
+- compare the steady-state value obtained by simumation of from the models (therma circuit and state-space representation).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Inputs:</p></li>
+</ul>
+<blockquote>
+<div><p>Prepare the input data set, i.e., time variation of weather and scheduled sources of temperature and flow-rate.
+- read the weather data (outdoor temperature, direct solar irradiance and diffuse solar irradiace);
+- calculate the sollar irradiance on the outdoor and indoor surfaces of the walls;
+- define the schedules for temperature sources (e.g., indoor temperature set point) and flow rate sources (e.g., internal gains);
+- obtain the input data set.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Simulation:</p></li>
+</ul>
+<blockquote>
+<div><p>Integrate in time the model for the given inputs.
+- consider the state-space representation;
+- transform the input data set into input vector in time;
+- set the initial conditions;
+- integrate in time (e.g., by using <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler forward</a> and/or <a class="reference external" href="https://en.wikipedia.org/wiki/Backward_Euler_method">backward</a> methods);
+- calculate the outputs;
+- plot the results.</p>
+</div></blockquote>
 <div class="toctree-wrapper compound">
 </div>
 </section>
