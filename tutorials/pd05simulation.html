@@ -586,13 +586,15 @@ dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_max</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>    <span class="c1"># max time step for Euler explicit stability</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dt_max = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">round_time</span><span class="p">(</span><span class="n">dt_max</span><span class="p">)</span>
 <span class="n">dm4bem</span><span class="o">.</span><span class="n">print_rounded_time</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 300 s = 5.0 min
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt_max = 498.6 s
+dt = 300 s = 5.0 min
 </pre></div>
 </div>
 </div>
@@ -960,6 +962,19 @@ dtype: object
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
+<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for explicit Euler</span>
+<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for implicit Euler</span>
+
+<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler explicit with initial values θ0</span>
+<span class="n">θ_imp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler implicit with initial values θ0</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="time-integration">
 <h4>Time integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">#</a></h4>
@@ -1002,12 +1017,13 @@ dtype: object
 <span class="n">y</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature, $θ_i$ / [°C]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s; $dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b9edff11df52e0402e5f5ae1a244e9ba01a12f88f81f46d410e94aa82ada978.png" src="../_images/5b9edff11df52e0402e5f5ae1a244e9ba01a12f88f81f46d410e94aa82ada978.png" />
+<img alt="../_images/cb6f16861e8c9d95d333b2ec1231c6295d4fbb8ba1377b8e58a984c5703fff00.png" src="../_images/cb6f16861e8c9d95d333b2ec1231c6295d4fbb8ba1377b8e58a984c5703fff00.png" />
 </div>
 </div>
 <blockquote>
@@ -1279,12 +1295,13 @@ dtype: object
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s; $dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8f28f80bcd3604558d0444e633af57bfa860ff6f0bf4fb923bc5736807119fc6.png" src="../_images/8f28f80bcd3604558d0444e633af57bfa860ff6f0bf4fb923bc5736807119fc6.png" />
+<img alt="../_images/c59f31b7156421c587a394a494d95f69aa8517008d45f61e854658a7ef7e5169.png" src="../_images/c59f31b7156421c587a394a494d95f69aa8517008d45f61e854658a7ef7e5169.png" />
 </div>
 </div>
 <blockquote>
@@ -1296,6 +1313,7 @@ dtype: object
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
+<p>See de <em>Discussion</em> of notebook on <a class="reference internal" href="02_2_2Toy.html"><span class="doc std std-doc">Toy model house / Steady-state and step response</span></a>.</p>
 <p><strong>Free-floating or P-controller</strong></p>
 <p>After the assembling of the thermal circuit with the function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix</span></code>, change the gain of the P-controller by setting the value of <code class="docutils literal notranslate"><span class="pre">TC['G']['c3_q0']</span></code>:</p>
 <ul class="simple">
