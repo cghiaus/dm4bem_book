@@ -398,13 +398,18 @@ document.write(`
 <li><p>Draw the thermal network based on the description of the building and on modelling assumptions.</p></li>
 <li><p>Calculate the parameters of the thermal network: conductances and capacities.</p></li>
 <li><p>Write the matrices and vectors (<span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>) of the thermal circuit <strong>TC</strong>.</p></li>
-<li><p>Create the thermal circuit <strong>TC</strong> and convert it to state-space representation (matrices <span class="math notranslate nohighlight">\(A, B, C, D\)</span> and input vector <span class="math notranslate nohighlight">\(u\)</span>).</p></li>
+<li><p>Create the thermal circuit <strong>TC</strong> and convert it to state-space representation (matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> and input vector <span class="math notranslate nohighlight">\(u_s\)</span>).</p></li>
 </ul>
 </li>
-<li><p><strong>Steady-state and step respose:</strong> test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>): if the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.</p>
+<li><p><strong>Tests in steady-state and step respose:</strong> test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>): if the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.</p>
 <ul>
 <li><p>Compare and interpret the steady-state results obtained for thermal circuit and state-space representation.</p></li>
-<li><p>Analyse the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a>) and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>.</p></li>
+<li><p>Perform eigenvalue analysis of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> of the state-space representation and analyse the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a>) and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>. If the maximum time step is:</p>
+<ul>
+<li><p>too small: set to zero the capacities that with the related conductance (or resistance) produce the small time step (e.g., air, windows, doors);</p></li>
+<li><p>too large: consider the discretization of elements which have large lumps (e.g., walls, ground).</p></li>
+</ul>
+</li>
 <li><p>Simulate the time response (by using <a class="reference external" href="https://en.wikipedia.org/wiki/Explicit_and_implicit_methods">Euler explicit and implicit method</a>) to different <a class="reference external" href="https://en.wikipedia.org/wiki/Step_response">step inputs</a>.</p></li>
 <li><p>Compare the settling time obtained from simulation of step response with that obtained by eigenvalue analysis.</p></li>
 <li><p>Compare the steady-state value obtained by simumation of from the models (therma circuit and state-space representation).</p></li>
