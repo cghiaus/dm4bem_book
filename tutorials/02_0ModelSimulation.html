@@ -393,16 +393,14 @@ document.write(`
 <p>This chapter presents the modeling and simulaiton of thermal behaviour of a multi-layer wall and of a toy model of a house.</p>
 <p>The steps are:</p>
 <ul class="simple">
-<li><p>Modelling:</p></li>
+<li><p><strong>Modelling:</strong> obtain the thermal circuit and the state-space representation:</p>
+<ul>
+<li><p>draw the thermal network based on the description of the building and on modelling assumptions;</p></li>
+<li><p>calculate the parameters of the thermal network: conductances and capacities;</p></li>
+<li><p>write the matrices and vectors (<span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>) of the thermal circuit;</p></li>
+<li><p>create the thermal circuit <strong>TC</strong> and convert it to state-space representation (matrices <span class="math notranslate nohighlight">\(A, B, C, D\)</span> and input vector <span class="math notranslate nohighlight">\(u\)</span>).</p></li>
 </ul>
-<blockquote>
-<div><p>Obtain the thermal circuit and the state-space representation.
-- draw the thermal network based on the description of the building and on modelling assumptions;
-- calculate the parameters of the thermal network: conductances and capacities;
-- write the matrices and vectors (<span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>) of the thermal circuit;
-- create the thermal circuit <strong>TC</strong> and convert it to state-space representation (matrices <span class="math notranslate nohighlight">\(A, B, C, D\)</span> and input vector <span class="math notranslate nohighlight">\(u\)</span>).</p>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li><p>Steady-state and step respose:</p></li>
 </ul>
 <blockquote>
