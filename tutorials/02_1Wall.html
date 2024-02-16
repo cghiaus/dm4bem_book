@@ -391,18 +391,22 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-characteristics-and-mathematical-model">Physical characteristics and mathematical model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-model">Thermal network model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resistances">Resistances</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capacities">Capacities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-description">Wall description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-model">Thermal network model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-of-thermal-network">Parameters of thermal network</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resistances">Resistances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capacities">Capacities</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential algebraic equations (DAE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">Conductance matrix <span class="math notranslate nohighlight">\(G\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-matrix-c">Capacity matrix <span class="math notranslate nohighlight">\(C\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arc-node-incidence-matrix-a">Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f">Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations">Differential algebraic equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential algebraic equations (DAE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">Conductance matrix <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-matrix-c">Capacity matrix <span class="math notranslate nohighlight">\(C\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arc-node-incidence-matrix-a">Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f">Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-differential-algebraic-equations">System of differential algebraic equations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-solution">Steady-state solution</a><ul class="nav section-nav flex-column">
@@ -417,18 +421,25 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time">Settling time</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration-using-explicit-and-implicit-euler-methods">Time integration using explicit and implicit Euler methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-input-outdoor-temperature">Step input: outdoor temperature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-input-indoor-heat-flow-rate">Step input: indoor heat flow rate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data">Simulation with outdoor temperature from weather data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-temperature-from-weather-data">Outdoor temperature from weather data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-the-weather-data">Resample the weather data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-results">Plot the results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-temperature">Outdoor temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indoor-heat-flow-rate">Indoor heat flow rate</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data-by-using-pandas">Simulation with outdoor temperature from weather data by using Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data">Simulation with outdoor temperature from weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Outdoor temperature</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#resampled-outdoor-temperature">Resampled outdoor temperature</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Indoor heat flow rate</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-of-results">Plots of results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-by-using-pandas">Simulation by using Pandas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
@@ -487,8 +498,10 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="physical-characteristics-and-mathematical-model">
-<h2>Physical characteristics and mathematical model<a class="headerlink" href="#physical-characteristics-and-mathematical-model" title="Permalink to this headline">#</a></h2>
+<section id="modelling">
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h2>
+<section id="wall-description">
+<h3>Wall description<a class="headerlink" href="#wall-description" title="Permalink to this headline">#</a></h3>
 <p>Let’s consider the heat transfer through a plane wall which separates the outside air, at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperature</a> <span class="math notranslate nohighlight">\(T_o\)</span>, from the inside air. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">Heat flow rate</a> <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> is added to the inside air by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Fan_coil_unit">fan-coil</a> (see Figure 1).</p>
 <p><img alt="wall" src="../_images/02_wall.svg" /></p>
 <blockquote>
@@ -653,7 +666,7 @@ document.write(`
 </div>
 </section>
 <section id="thermal-network-model">
-<h2>Thermal network model<a class="headerlink" href="#thermal-network-model" title="Permalink to this headline">#</a></h2>
+<h3>Thermal network model<a class="headerlink" href="#thermal-network-model" title="Permalink to this headline">#</a></h3>
 <p>The wall consists of two layers: concrete and insulation. The first layer is discretized in 4 <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> and the second layer in 2 meshes. By adding together the resistances which are in series, a simpler thermal network is obtained (Figue 2).</p>
 <p><img alt="RC" src="../_images/02_RC_model.svg" /></p>
 <blockquote>
@@ -675,8 +688,11 @@ document.write(`
 <p>The circuit elements of the thermal network are the resistances and the capacities. Their values are found by using the thermo-physical properties of the materials: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity">thermal conductivity</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a>, and the geometrical values: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Length">width</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Surface_area">surface area</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volume">volume</a>.</p>
 <p>The parameters are grouped in matrices of parameters, or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Coefficient_matrix">coefficent matrices</a>, and the variables are in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Vector_(mathematics_and_physics)">vectors</a>. The variables are physical inputs, modelled by temperature and flow rate sources, and physical outputs, modelled by temperatures of the nodes and flow rates through the branches.</p>
 <p>The thermal circuits model physical systems which are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Causal_system">causal</a>: the values of the outputs depend on past and current values of the inputs (but not on future values of the inputs).</p>
+</section>
+<section id="parameters-of-thermal-network">
+<h3>Parameters of thermal network<a class="headerlink" href="#parameters-of-thermal-network" title="Permalink to this headline">#</a></h3>
 <section id="resistances">
-<h3>Resistances<a class="headerlink" href="#resistances" title="Permalink to this headline">#</a></h3>
+<h4>Resistances<a class="headerlink" href="#resistances" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_resistance">thermal resistances</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">thermal conduction</a> are of the form:</p>
 <div class="math notranslate nohighlight">
 \[R_{cd} = \frac{w}{\lambda S}\]</div>
@@ -712,7 +728,7 @@ document.write(`
 </div>
 </section>
 <section id="capacities">
-<h3>Capacities<a class="headerlink" href="#capacities" title="Permalink to this headline">#</a></h3>
+<h4>Capacities<a class="headerlink" href="#capacities" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">thermal capacities</a> of the wall are of the form:</p>
 <div class="math notranslate nohighlight">
 \[C_w= m_w c_w= \rho_w c_w w_w S_w\]</div>
@@ -751,7 +767,7 @@ document.write(`
 </section>
 </section>
 <section id="differential-algebraic-equations-dae">
-<h2>Differential algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h2>
+<h3>Differential algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h3>
 <p>The number of temperature nodes and of flow branches of the thermal network depend on the number of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> obtained by the discretization of the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -765,7 +781,7 @@ document.write(`
 </div>
 </div>
 <section id="conductance-matrix-g">
-<h3>Conductance matrix <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#conductance-matrix-g" title="Permalink to this headline">#</a></h3>
+<h4>Conductance matrix <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#conductance-matrix-g" title="Permalink to this headline">#</a></h4>
 <p>The resistances are grouped in the conductance matrix, which is diagonal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}G = \begin{bmatrix}
@@ -800,7 +816,7 @@ R_0^{-1} &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="capacity-matrix-c">
-<h3>Capacity matrix <span class="math notranslate nohighlight">\(C\)</span><a class="headerlink" href="#capacity-matrix-c" title="Permalink to this headline">#</a></h3>
+<h4>Capacity matrix <span class="math notranslate nohighlight">\(C\)</span><a class="headerlink" href="#capacity-matrix-c" title="Permalink to this headline">#</a></h4>
 <p>The capacities are grouped in the capacity matrix, which is diagonal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}C = \begin{bmatrix}
@@ -831,7 +847,7 @@ C_0 &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="arc-node-incidence-matrix-a">
-<h3>Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#arc-node-incidence-matrix-a" title="Permalink to this headline">#</a></h3>
+<h4>Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#arc-node-incidence-matrix-a" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>  shows the relation between oriented branches (i.e. flow rates) and nodes (i.e. temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_k\)</span> across the resistances <span class="math notranslate nohighlight">\(R_k\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_l\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_k\)</span> in the position of the node <span class="math notranslate nohighlight">\(\theta_l\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_k\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_k\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the resistance <span class="math notranslate nohighlight">\(R_k\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A_{kl} = \begin{cases}\phantom{-}
@@ -954,7 +970,7 @@ C_0 &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="vectors-of-temperature-sources-b-and-flow-rate-sources-f">
-<h3>Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span><a class="headerlink" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f" title="Permalink to this headline">#</a></h3>
+<h4>Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span><a class="headerlink" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f" title="Permalink to this headline">#</a></h4>
 <p>First, we will set all the temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow sources <span class="math notranslate nohighlight">\(f\)</span> to zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -967,8 +983,8 @@ C_0 &amp;  &amp;  &amp; \\
 </div>
 <p>Their values will be changed depending on the conditions.</p>
 </section>
-<section id="differential-algebraic-equations">
-<h3>Differential algebraic equations<a class="headerlink" href="#differential-algebraic-equations" title="Permalink to this headline">#</a></h3>
+<section id="system-of-differential-algebraic-equations">
+<h4>System of differential algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h4>
 <p>The system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations</a> (DAE) is (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[C\dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
@@ -981,6 +997,7 @@ C_0 &amp;  &amp;  &amp; \\
 <li><p>sources: temperatures <span class="math notranslate nohighlight">\(b\)</span> and heat flow rates <span class="math notranslate nohighlight">\(f\)</span>;</p></li>
 <li><p>incidence relation: incidence matrix <span class="math notranslate nohighlight">\(A\)</span> which shows how the nodes of temperature are connected by oriented branches of flow rates.  Matrix <span class="math notranslate nohighlight">\(\Delta \equiv -A\)</span>  operates differences between the temperatures over the branches and matrix <span class="math notranslate nohighlight">\(\Sigma \equiv A^T\)</span> operates sum of heat flow rates in the nodes.</p></li>
 </ul>
+</section>
 </section>
 </section>
 <section id="steady-state-solution">
@@ -1558,15 +1575,18 @@ Max time step Δt = 416.11 s
 </div>
 </section>
 </section>
-<section id="time-integration-using-explicit-and-implicit-euler-methods">
-<h2>Time integration using explicit and implicit Euler methods<a class="headerlink" href="#time-integration-using-explicit-and-implicit-euler-methods" title="Permalink to this headline">#</a></h2>
+<section id="simulation">
+<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
 <p>We will study the dynamic response of the model to:</p>
 <ul class="simple">
 <li><p>a step variation of a source (outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> or indoor flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>);</p></li>
-<li><p>variation of outdoor temperature given by weather data.</p></li>
+<li><p>variation of outdoor temperature given by weather data</p></li>
 </ul>
-<section id="step-input-outdoor-temperature">
-<h3>Step input: outdoor temperature<a class="headerlink" href="#step-input-outdoor-temperature" title="Permalink to this headline">#</a></h3>
+<p>by using explicit and implicit Euler methods for time integration.</p>
+<section id="step-response">
+<h3>Step response<a class="headerlink" href="#step-response" title="Permalink to this headline">#</a></h3>
+<section id="outdoor-temperature">
+<h4>Outdoor temperature<a class="headerlink" href="#outdoor-temperature" title="Permalink to this headline">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> is the time evolution of the output(s) when the input is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heaviside_step_function">step function</a>. Usually, the zero initial conditions (i.e. the system is at rest and there is no accumulations of energy in the capacities) are considered.</p>
 <p>The number of time steps depends on the settling time and the time step.</p>
 <div class="cell docutils container">
@@ -1806,8 +1826,8 @@ Max time step Δt = 416.11 s
 <div><p>Figure 3. Step response to outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> obtained by explicit and implicit Euler integration of the state-space model. For small time steps, the two solutions are practically identical.</p>
 </div></blockquote>
 </section>
-<section id="step-input-indoor-heat-flow-rate">
-<h3>Step input: indoor heat flow rate<a class="headerlink" href="#step-input-indoor-heat-flow-rate" title="Permalink to this headline">#</a></h3>
+<section id="indoor-heat-flow-rate">
+<h4>Indoor heat flow rate<a class="headerlink" href="#indoor-heat-flow-rate" title="Permalink to this headline">#</a></h4>
 <p>Let’s consider that the indoor heat flow rate <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> has a step variation of 1 W (the outdoor temperature is zero, <span class="math notranslate nohighlight">\(T_o = 0\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1959,10 +1979,13 @@ Max time step Δt = 416.11 s
 <div><p>Figure 4. Step response to indoor heat flow rate <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> obtained by explicit and implicit Euler integration of the state-space model.</p>
 </div></blockquote>
 </section>
+</section>
 <section id="simulation-with-outdoor-temperature-from-weather-data">
 <h3>Simulation with outdoor temperature from weather data<a class="headerlink" href="#simulation-with-outdoor-temperature-from-weather-data" title="Permalink to this headline">#</a></h3>
-<section id="outdoor-temperature-from-weather-data">
-<h4>Outdoor temperature from weather data<a class="headerlink" href="#outdoor-temperature-from-weather-data" title="Permalink to this headline">#</a></h4>
+<section id="input-data-set">
+<h4>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this headline">#</a></h4>
+<section id="id1">
+<h5>Outdoor temperature<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h5>
 <p>We want the weather data for Lyon from <code class="docutils literal notranslate"><span class="pre">start_date</span></code>to <code class="docutils literal notranslate"><span class="pre">end_date</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2146,8 +2169,8 @@ Max time step Δt = 416.11 s
 </div></div></div>
 </div>
 </section>
-<section id="resample-the-weather-data">
-<h4>Resample the weather data<a class="headerlink" href="#resample-the-weather-data" title="Permalink to this headline">#</a></h4>
+<section id="resampled-outdoor-temperature">
+<h5>Resampled outdoor temperature<a class="headerlink" href="#resampled-outdoor-temperature" title="Permalink to this headline">#</a></h5>
 <p>The time vector for simulation is at time step <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2160,9 +2183,9 @@ Max time step Δt = 416.11 s
 <p>The outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> (which is at a time step of <span class="math notranslate nohighlight">\(1 \, \mathrm{hour} = 3600 \, \mathrm{s}\)</span>) needs to be re-sampled at a time step equal to <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resample outdoor temperature at timestep Δt</span>
-<span class="n">θ_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tw</span><span class="p">,</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">])</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">θ_out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;θ °C&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resample outdoor temperature To at timestep Δt</span>
+<span class="n">To</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tw</span><span class="p">,</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">To</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;θ °C&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2239,14 +2262,32 @@ Max time step Δt = 416.11 s
 </div></div></div>
 </div>
 </section>
+<section id="id2">
+<h5>Indoor heat flow rate<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h5>
+<p>Let’s consider that the indoor heat flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> is zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Qh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">To</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="input-vector">
 <h4>Input vector<a class="headerlink" href="#input-vector" title="Permalink to this headline">#</a></h4>
-<p>The input vector <span class="math notranslate nohighlight">\(u\)</span> is formed as a block vector from outdoor temperature and indoor heat flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>, which is zero.</p>
+<p>The input vector <span class="math notranslate nohighlight">\(u\)</span> is formed as a block vector from outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> and indoor heat flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+u =\begin{bmatrix}
+T_o\\ 
+\dot Q_h
+\end{bmatrix}
+\end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># input vector [To, Qh]</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">θ_out</span><span class="p">],</span>
-             <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">θ_out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([[</span><span class="n">To</span><span class="p">],</span> <span class="p">[</span><span class="n">Qh</span><span class="p">]])</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">,</span> <span class="s1">&#39;Qh&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -2366,12 +2407,12 @@ Max time step Δt = 416.11 s
 </div>
 </div>
 </section>
-<section id="plot-the-results">
-<h4>Plot the results<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">#</a></h4>
+<section id="plots-of-results">
+<h4>Plots of results<a class="headerlink" href="#plots-of-results" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">θ_out</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outdoor temperature&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">To</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outdoor temperature&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">θ_exp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Indoor temperature&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / [day]&#39;</span><span class="p">,</span>
        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Air temperature, $θ$ / [°C]&#39;</span><span class="p">,</span>
@@ -2391,7 +2432,7 @@ Max time step Δt = 416.11 s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">θ_out</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outdoor temperature&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">To</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outdoor temperature&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">θ_imp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Indoor temperature&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time $t$ / [day]&#39;</span><span class="p">,</span>
        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Air temperature, $θ$ / [°C]&#39;</span><span class="p">,</span>
@@ -2410,9 +2451,9 @@ Max time step Δt = 416.11 s
 </div></blockquote>
 </section>
 </section>
-<section id="simulation-with-outdoor-temperature-from-weather-data-by-using-pandas">
-<h3>Simulation with outdoor temperature from weather data by using Pandas<a class="headerlink" href="#simulation-with-outdoor-temperature-from-weather-data-by-using-pandas" title="Permalink to this headline">#</a></h3>
-<p>Let’s consider the same code as in the prevoius section, with the difference that Pandas are used for plotting the results of the simulations.</p>
+<section id="simulation-by-using-pandas">
+<h3>Simulation by using Pandas<a class="headerlink" href="#simulation-by-using-pandas" title="Permalink to this headline">#</a></h3>
+<p>Let’s consider the same code as in the previous sections, with the difference that Pandas are used for plotting the results of the simulations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation with outdoor temperature from weather data with Pandas</span>
@@ -2498,7 +2539,7 @@ Max time step Δt = 416.11 s
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Change the time step to do it slightly larger than the maximum time step. Compare the results obtained with Euler explicit and Euler implicit methods.</p></li>
-<li><p>Interchnage the materials  of the layers so that layer 1 to be insulation and layer 2 to be concrete. Discuss the step responses and the simulation for weather. Give arguments for the advantages and the disadvanted of indoor and outdoor insulation. Explain the difference in the maximum time step for numerical integration.</p></li>
+<li><p>Interchnage the materials  of the layers so that layer 1 to be insulation and layer 2 to be concrete. Discuss the step responses and the simulation for weather. Give arguments for the advantages and the disadvantages of indoor and outdoor insulation. Explain the difference in the maximum time step for numerical integration.</p></li>
 </ul>
 </section>
 <section id="references">
@@ -2582,18 +2623,22 @@ Max time step Δt = 416.11 s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-characteristics-and-mathematical-model">Physical characteristics and mathematical model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-model">Thermal network model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resistances">Resistances</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capacities">Capacities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wall-description">Wall description</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-model">Thermal network model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-of-thermal-network">Parameters of thermal network</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resistances">Resistances</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capacities">Capacities</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential algebraic equations (DAE)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">Conductance matrix <span class="math notranslate nohighlight">\(G\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-matrix-c">Capacity matrix <span class="math notranslate nohighlight">\(C\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arc-node-incidence-matrix-a">Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f">Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations">Differential algebraic equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-algebraic-equations-dae">Differential algebraic equations (DAE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">Conductance matrix <span class="math notranslate nohighlight">\(G\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#capacity-matrix-c">Capacity matrix <span class="math notranslate nohighlight">\(C\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#arc-node-incidence-matrix-a">Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f">Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-differential-algebraic-equations">System of differential algebraic equations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steady-state-solution">Steady-state solution</a><ul class="nav section-nav flex-column">
@@ -2608,18 +2653,25 @@ Max time step Δt = 416.11 s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settling-time">Settling time</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration-using-explicit-and-implicit-euler-methods">Time integration using explicit and implicit Euler methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-input-outdoor-temperature">Step input: outdoor temperature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-input-indoor-heat-flow-rate">Step input: indoor heat flow rate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data">Simulation with outdoor temperature from weather data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-temperature-from-weather-data">Outdoor temperature from weather data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-the-weather-data">Resample the weather data</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-results">Plot the results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-response">Step response</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#outdoor-temperature">Outdoor temperature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#indoor-heat-flow-rate">Indoor heat flow rate</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data-by-using-pandas">Simulation with outdoor temperature from weather data by using Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-outdoor-temperature-from-weather-data">Simulation with outdoor temperature from weather data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Outdoor temperature</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#resampled-outdoor-temperature">Resampled outdoor temperature</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Indoor heat flow rate</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#time-integration">Time integration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-of-results">Plots of results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-by-using-pandas">Simulation by using Pandas</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
