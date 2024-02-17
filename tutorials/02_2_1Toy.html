@@ -2101,12 +2101,27 @@ y = C_s \theta_s + D_s u
 <li><p><span class="math notranslate nohighlight">\(B_s\)</span> - input matrix, of dimension <span class="math notranslate nohighlight">\(\dim B_s = \dim {\theta_s} \times \dim u\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(C_s\)</span> - output matrix, of dimension <span class="math notranslate nohighlight">\(\dim C_s = \dim y \times \dim {\theta_s}\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(D_s\)</span> - feedthrough (or feedforward) matrix, of dimension <span class="math notranslate nohighlight">\(\dim D_s = \dim y \times \dim u\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_s\)</span> - correspondence  between <em>inputs</em> (branches with temperature sources and nodes with flow-rate sources) and  <em>input data set</em> (names of temperature and  flow rate sources), e.g., <span class="math notranslate nohighlight">\(q_0\)</span> … <span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(\theta_0\)</span> … <span class="math notranslate nohighlight">\(\Phi_o\)</span>.</p></li>
 </ul>
 <p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentiante the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represention of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of differential-algebraic equations (DAE).</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a>, i.e., matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is obtained from the system of DAE, i.e., matrices and vectors <span class="math notranslate nohighlight">\(A, G, b, C, f, y\)</span> of the thermal circuit (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
+<span class="n">us</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>q0        To
+q8        To
+q10       To
+q11    Ti_sp
+θ0        Φo
+θ4        Φi
+θ6        Qa
+θ7        Φa
+dtype: object
 </pre></div>
 </div>
 </div>
