@@ -90,14 +90,17 @@ By eliminating the algebraic equations, the system of differential-algebraic equ
 
 ## Workflow
 
-The [workflow](https://en.m.wikipedia.org/wiki/Workflow) is:
+![work_flow](./pd/bldg/work_flow.svg)
+
+> Figure 5. Workflow for building simulation by using `dm4bem` module.
+
+The [workflow](https://en.m.wikipedia.org/wiki/Workflow) is (Figure 5):
 
 - __Modelling:__ obtain the thermal circuit and the state-space representation.
     - Draw the thermal network based on the description of the building and on modelling assumptions.
     - Calculate the parameters of the thermal network: conductances and capacities.
     - Write the matrices and vectors ($A, G, C, b, f, y$) of the differential algebraic equations.
     - Create the thermal circuit __TC__ and convert it to state-space representation (matrices $A_s, B_s, C_s, D_s$ and input vector $u_s$).
-
 
 - __Tests in steady-state and step respose:__ test if the model is wrong ([falsifiability](https://en.wikipedia.org/wiki/Falsifiability)). If the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.
     - Compare and interpret the steady-state results obtained for thermal circuit and state-space representation.
