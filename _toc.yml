@@ -4,6 +4,7 @@
 format: jb-book
 root: intro
 chapters:
+- file: tutorials/00_Summary
 - file: tutorials/T00_theory
   sections:
   - file: tutorials/T01_Heat_transfer
