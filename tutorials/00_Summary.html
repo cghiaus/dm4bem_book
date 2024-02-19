@@ -387,7 +387,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-dynamic-thermal-simulation-software">Why another dynamic thermal simulation software?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-dynamic-thermal-simulation-tool">Why another dynamic thermal simulation tool?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-dm4bem-method">Features of <em>dm4bem</em> method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit">Thermal circuit</a></li>
@@ -417,9 +417,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="summary">
 <h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
 <p>State-space representation is widely used in the synthesis and analysis of dynamic systems, with applications particularly in control engineering. However, existing simulation tools often do not find the state-space representation. Dynamic Models for Building Energy Management (<em>dm4bem</em>) is a Python module that offers an innovative methodology for modelling heat and mass transfer using weighted directed graphs, also known as thermal circuits or networks. The methodology allows assembling the circuits to obtain complex models from constituent elements, and then transforming them into state-space representation. This representation provides several advantages, including the ability to analyse the eigenvalues of the transfer matrix, perform numerical integration for simulation, and synthesize control algorithms. Nonlinear models can be dealt with through linearization at each time step. This procedure is presented in this interactive book in which the code and tutorials can be run online.</p>
-<section id="why-another-dynamic-thermal-simulation-software">
-<h2>Why another dynamic thermal simulation software?<a class="headerlink" href="#why-another-dynamic-thermal-simulation-software" title="Permalink to this headline">#</a></h2>
-<p>Building energy management can significantly contribute to optimizing building consumption (<a class="reference external" href="https://doi.org/10.1016/j.rser.2022.112099">Van Thillo, Verbeke, &amp; Audenaert, 2022</a>). In this context, modeling and simulating heat and mass transfer play a crucial role in understanding and optimizing building energy performance. Traditionally, building dynamic thermal simulation software, such as <a class="reference external" href="https://www.trnsys.com">TRNSYS</a>, <a class="reference external" href="https://energyplus.net">EnergyPlus</a>, <a class="reference external" href="https://www.equa.se/en/ida-ice">IDA ICE</a>, <a class="reference external" href="https://www.ces.minesparis.psl.eu/Logiciels/COMFIE/">COMFIE</a> &amp; <a class="reference external" href="https://www.izuba.fr/logiciels/">PLEIADES</a>, <a class="reference external" href="http://www.jnlog.com/kozibu1_en.htm">KoZiBu</a>, rely on iterative solving of balance equations that couple models of different constituent elements. This approach does not provide a state representation of the system, limiting the analysis and synthesis of control systems. State-space representation can be obtained by using plateformes such as <a class="reference external" href="https://mathworks.com/products/simulink.html">MATLAB/Simulink</a>. Another characteristic of current software is that they use a graphical interface, which makes reproducibility difficult. Finally, current solutions use proprietary software components. These software are adapted and largely used for building design and energy performance simulation.</p>
+<section id="why-another-dynamic-thermal-simulation-tool">
+<h2>Why another dynamic thermal simulation tool?<a class="headerlink" href="#why-another-dynamic-thermal-simulation-tool" title="Permalink to this headline">#</a></h2>
+<p>Building energy management can significantly contribute to lower building consumption (<a class="reference external" href="https://doi.org/10.1016/j.rser.2022.112099">Van Thillo, Verbeke, &amp; Audenaert, 2022</a>). In this context, modeling and simulating heat and mass transfer play a crucial role in understanding and optimizing building energy performance. Traditionally, building dynamic thermal simulation software, such as <a class="reference external" href="https://www.trnsys.com">TRNSYS</a>, <a class="reference external" href="https://energyplus.net">EnergyPlus</a>, <a class="reference external" href="https://www.equa.se/en/ida-ice">IDA ICE</a>, <a class="reference external" href="https://www.ces.minesparis.psl.eu/Logiciels/COMFIE/">COMFIE</a> &amp; <a class="reference external" href="https://www.izuba.fr/logiciels/">PLEIADES</a>, <a class="reference external" href="http://www.jnlog.com/kozibu1_en.htm">KoZiBu</a>, rely on iterative solving of balance equations that couple models of different constituent elements. This approach does not provide a state representation of the system, limiting the analysis and synthesis of control systems. State-space representation can be obtained by using plateformes such as <a class="reference external" href="https://mathworks.com/products/simulink.html">MATLAB/Simulink</a>. Another characteristic of current software is that they use a graphical interface, which facilitates building design but makes reproducibility difficult. Finally, current solutions use proprietary software components. These software are adapted and largely used for building design and energy performance simulation.</p>
 <p>The method and the Python module <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> (Dynamic Models for Building Energy Management) offer an innovative approach to modeling heat and mass transfer in buildings with application to control engineering. Unlike traditional coupling methods, thermal models in <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> are obtained by assembling. This approach has the advantage of providing a single model instead of several separate coupled models. Furthermore, thermal circuits are transformed into state representation, opening up new perspectives for analysis and synthesis of control systems for building energy management. The module, written in Python, is open-source and free to use.</p>
 </section>
 <section id="features-of-dm4bem-method">
@@ -427,7 +427,7 @@ document.write(`
 <p>The modeling in <em>dm4bem</em> utilizes thermal networks (or thermal circuits), which are weighted directed graphs (Figure 1) in which:</p>
 <ul class="simple">
 <li><p>Nodes (or vertices) represent homogeneous temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, of geometric points (0D), lines (1D), surfaces (2D), or volumes (3D).</p></li>
-<li><p>Directed links (or edges) represent heat fluxes, <span class="math notranslate nohighlight">\(q\)</span>, between temperature nodes.</p></li>
+<li><p>Directed links (or edges) represent heat flow rates, <span class="math notranslate nohighlight">\(q\)</span>, between temperature nodes.</p></li>
 </ul>
 <p><img alt="basic_TC" src="../_images/A01_Basic_thermal_circuit.svg" /></p>
 <blockquote>
@@ -453,7 +453,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: vector representing the diagonal of the conductance matrix;</p></li>
 <li><p><span class="math notranslate nohighlight">\(C\)</span>: vector representing the diagonal of the capacitance matrix;</p></li>
 <li><p><span class="math notranslate nohighlight">\(b\)</span>: vector containing the names of temperature sources on the branches;</p></li>
-<li><p><span class="math notranslate nohighlight">\(f\)</span>: vector containing the names of flux sources in the nodes;</p></li>
+<li><p><span class="math notranslate nohighlight">\(f\)</span>: vector containing the names of flow rate sources in the nodes;</p></li>
 <li><p><span class="math notranslate nohighlight">\(y\)</span>: vector indicating the temperature nodes considered as outputs.</p></li>
 </ul>
 <p>These vectors and matrices allow writing a system of differential-algebraic equations (Figure 2 and Figure 3):</p>
@@ -480,7 +480,7 @@ document.write(`
 <p>For the thermal models of buildings, a special case is represented by the walls. The description of the walls is provided in a directory that contains two types of files:</p>
 <ul class="simple">
 <li><p><em>Wall types</em>: thermo-physical properties of materials.</p></li>
-<li><p><em>Wall data</em>: surface area, temperature and flux sources, convection and radiation coefficients of surfaces.</p></li>
+<li><p><em>Wall data</em>: surface area, temperature and flow rate sources, convection and radiation coefficients of surfaces.</p></li>
 </ul>
 <p>From this information, the thermal circuit of a wall is obtained (the matrices and vectors <span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>).</p>
 <p>A building can be described in a directory containing:</p>
@@ -561,7 +561,7 @@ document.write(`
 <p>Dynamic Models for Building Energy Management (<em>dm4bem</em>) method offers an efficient approach to obtaining thermal models by assembling different models. The main contributions of the method lie in the following aspects:</p>
 <ul class="simple">
 <li><p>Definition of a data structure describing thermal circuits as weighted directed graphs, described by matrices and vectors <span class="math notranslate nohighlight">\(A, G, C, b, f, y.\)</span></p></li>
-<li><p>Considering, in the state representation <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s, u_s,\)</span> the correspondence table <span class="math notranslate nohighlight">\(u_s\)</span> between the non-zero elements of vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> and the names of temperature and flux sources, respectively.</p></li>
+<li><p>Considering, in the state representation <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s, u_s,\)</span> the correspondence table <span class="math notranslate nohighlight">\(u_s\)</span> between the non-zero elements of vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> and the names of temperature and flow rate sources, respectively.</p></li>
 <li><p>Assembly of thermal circuits by merging nodes (temperature nodes) and the consequent transformation of matrices and vectors <span class="math notranslate nohighlight">\(A, G, C, b, f, y.\)</span></p></li>
 <li><p>Transformation of the thermal circuit (directed graph) into state representation.</p></li>
 <li><p>Procedure for generating thermal circuits for walls (generic, exterior, and interior).</p></li>
@@ -647,7 +647,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-dynamic-thermal-simulation-software">Why another dynamic thermal simulation software?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-another-dynamic-thermal-simulation-tool">Why another dynamic thermal simulation tool?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features-of-dm4bem-method">Features of <em>dm4bem</em> method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-structures">Data structures</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-circuit">Thermal circuit</a></li>
