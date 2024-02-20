@@ -10,7 +10,7 @@ The method and the Python module ([dm4bem](dm4bem.py)) (Dynamic Models for Build
 
 ## Features of _dm4bem_ method
 
-The modeling in [dm4bem](dm4bem.py) utilizes thermal networks (or thermal circuits), which are weighted directed graphs (Figure 1) in which:
+The modeling in [dm4bem](dm4bem.py) utilizes thermal networks (or thermal circuits), which are weighted directed graphs (Figure 1) where:
 
 - Nodes (or vertices) represent homogeneous temperatures, $\theta$, of geometric points (0D), lines (1D), surfaces (2D), or volumes (3D).
 - Directed links (or edges) represent heat flow rates, $q$, between temperature nodes.
@@ -20,13 +20,13 @@ The modeling in [dm4bem](dm4bem.py) utilizes thermal networks (or thermal circui
 > Figure 1. Basic thermal network.
 
 ![procedure](../figures/A02_calc_procedure.svg)
-> Figure 2. Obtaining the system of differential-algebraic equations from a thermal network: a) General framework. b) Temperature differences. c) Flow rates. d) Energy balance.
+> Figure 2. Obtaining the system of differential-algebraic equations from a thermal network: a) General framework. b) Temperature differences. c) Flow rates (constitutive laws). d) Energy balance.
 
 ![T2DAE](../figures/A02_TC2DAE.svg)
 > Figure 3. Example of differential-algebraic system of equations for a thermal network: a) Thermal network. b) Matrices and vectors. c) Differencial-algebraic equations (DAE).
 
 
-Thermal circuits are a visual representation of constitutive laws and energy balance equations, respectively (Figure 2 c and d). Mathematical models, in the form of differential-algebraic equations, are obtained from the thermal circuits using the methodology presented in Figure 2a. An example is provided in Figure 3.
+Thermal circuits are a visual representation of [constitutive laws](https://en.m.wikipedia.org/wiki/Constitutive_equation) and [energy balance equations](https://en.m.wikipedia.org/wiki/Balance_equation) (Figure 2 c and d, respectively). Mathematical models, in the form of differential-algebraic equations, are obtained from the thermal circuits using the methodology presented in Figure 2a. An example is provided in Figure 3.
 
 ## Data structures
 
