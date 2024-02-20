@@ -66,10 +66,10 @@ For the thermal models of buildings, a special case is represented by the walls.
 
 From this information, the thermal circuit of a wall is obtained (the matrices and vectors $A, G, C, b, f, y$).
 
-A building can be described in a directory containing:
-- Walls (_wall types_ and _wall data_) noted as `ow0` in Figure 4.
-- Thermal circuits noted as `TC1`, `TC2`, `TC3` in Figure 4.
-- The matrix or assembly list indicating the nodes that merge (connected by dashed lines in Figure 4).
+A building can be described in a directory (or folder) containing:
+- Walls ([wall types]((./pd/bldg/wall_types.csv) and [walls data](./pd/bldg/walls_out.csv)) noted as `ow0` in Figure 4.
+- Thermal circuits noted as [TC0](./pd/bldg/TC0.csv), [TC1](./pd/bldg/TC1.csv), [TC2](./pd/bldg/TC2.csv), [TC3](./pd/bldg/TC3.csv) in Figure 4.
+- The assembly [matrix](./pd/bldg/assembly_matrix.csv)  or [list](./pd/bldg/assembly_lists.csv) indicating the nodes that merge (connected by dashed lines in Figure 4).
 
 ## Algorithms
 There are two significant algorithms: thermal circuit assembly and conversion of thermal circuits into state representation.
