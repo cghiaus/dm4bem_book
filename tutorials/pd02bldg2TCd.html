@@ -423,7 +423,7 @@ document.write(`
 <h1>Disassembled thermal circuits from building description<a class="headerlink" href="#disassembled-thermal-circuits-from-building-description" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd02bldg2TCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <span class="xref myst">dm4bem</span> module.</p>
-<p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code>):</p>
+<p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code>):</p>
 <ul class="simple">
 <li><p>description of the walls (wall type and wall data);</p></li>
 <li><p>description of thermal circuits;</p></li>
@@ -495,15 +495,15 @@ document.write(`
 <ul class="simple">
 <li><p>assembly:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">assembly_lists.csv</span></code>: lists that indicate the nodes to be merged;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>: matrix that indicates the nodes to be merged;</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">assembly_lists.csv</span></a>: lists with the nodes that merge;</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly_matrix.csv</span></a>: matrix with the nodes that merge;</p></li>
 </ul>
 </li>
-<li><p>thermal circuits: <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>, … , <code class="docutils literal notranslate"><span class="pre">TC3.csv</span></code>;</p></li>
+<li><p>thermal circuits: <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3.csv</span></a>;</p></li>
 <li><p>walls:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>: physical properties for each type of wall;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>: surface properties for each specific wall.</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>: physical properties and width of each mayerial;</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls_out.csv</span></a>: geometric and surface characteristics of each wall.</p></li>
 </ul>
 </li>
 </ul>
@@ -511,7 +511,7 @@ document.write(`
 <h3>Assembly matrix and lists<a class="headerlink" href="#assembly-matrix-and-lists" title="Permalink to this headline">#</a></h3>
 <section id="assembly-matrix">
 <h4>Assembly matrix<a class="headerlink" href="#assembly-matrix" title="Permalink to this headline">#</a></h4>
-<p>The assembly matrix is in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>. Each row of this matrix indicates two nodes that are put in common:</p>
+<p>The assembly matrix is in the file <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly_matrix.csv</span></a>. Each row of this matrix indicates two nodes that are put in common:</p>
 <ol class="arabic simple">
 <li><p>The first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept.</p></li>
 <li><p>The second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node.</p></li>
@@ -525,7 +525,7 @@ document.write(`
 <li><p>Node 0 of circuit c2 (in magenta) is merged with the 1st node of circuit c3 (in black); the node of circuit c2 is kept (node 0 of circuit c3, in faded black, is deleted).</p></li>
 <li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit c1 (in green); the node of circuit c2 is kept (last node of circuit c1, in faded green, is deleted).</p></li>
 </ol>
-<p>These connexions are described in the file <code class="docutils literal notranslate"><span class="pre">assembly_matrix.csv</span></code>.</p>
+<p>These connexions are described in the file <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly_matrix.csv</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/assembly_matrix.csv&#39;</span><span class="p">)</span>
@@ -601,7 +601,7 @@ document.write(`
 </section>
 <section id="assembly-lists">
 <h4>Assembly lists<a class="headerlink" href="#assembly-lists" title="Permalink to this headline">#</a></h4>
-<p>The assembly lists are in the file <code class="docutils literal notranslate"><span class="pre">assembly_lists.csv</span></code>. Each row contains two lists:</p>
+<p>The assembly lists are in the file <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">assembly_lists.csv</span></a>. Each row contains two lists:</p>
 <ul class="simple">
 <li><p><strong>node0</strong>: the node that is kept (to which all the merging arrows point);</p></li>
 <li><p><strong>nodes</strong>: the node or nodes that are merged and deleted (that are the tail of the merging arrows).</p></li>
@@ -680,7 +680,7 @@ document.write(`
 </section>
 <section id="thermal-circuits">
 <h3>Thermal circuits<a class="headerlink" href="#thermal-circuits" title="Permalink to this headline">#</a></h3>
-<p>The names of the files which describe the thermal circuits start with TC, e.g., <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>. A thermal circuit is a data structure composed of:</p>
+<p>The names of the files which describe the thermal circuits start with TC, e.g., <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a>. A thermal circuit is a data structure composed of:</p>
 <ul class="simple">
 <li><p><strong>A</strong>: incidence matrix  which indicates how the nodes are connected by oriented branches;</p></li>
 <li><p><strong>G</strong>: conductance diagonal matrix ;</p></li>
@@ -689,10 +689,10 @@ document.write(`
 <li><p><strong>f</strong>: heat flow source vector ;</p></li>
 <li><p><strong>y</strong>: output (temperature) vector.</p></li>
 </ul>
-<p>For example, the <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 3, 4 and 5.</p>
+<p>For example, the <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1.csv</span></a> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 3, 4 and 5.</p>
 <p><img alt="disassambled_TC" src="../_images/TC1.svg" /></p>
 <blockquote>
-<div><p>Figure 5. Thermal circuit <code class="docutils literal notranslate"><span class="pre">TC1:</span> <span class="pre">c1</span></code> described in the file <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>.</p>
+<div><p>Figure 5. Thermal circuit <code class="docutils literal notranslate"><span class="pre">TC1:</span> <span class="pre">c1</span></code> described in the file <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1.csv</span></a>.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1095,12 +1095,12 @@ document.write(`
 <h3>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h3>
 <p>The walls are characterized by two files:</p>
 <ul class="simple">
-<li><p>wall composition and physical properties of material for type of wall (e.g., file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>);</p></li>
-<li><p>surface characteristics of each wall (e.g., file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>).</p></li>
+<li><p>wall composition and physical properties of material for type of wall (e.g., file <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>);</p></li>
+<li><p>surface characteristics of each wall (e.g., file <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls_out.csv</span></a>).</p></li>
 </ul>
 <section id="wall-types">
 <h4>Wall types<a class="headerlink" href="#wall-types" title="Permalink to this headline">#</a></h4>
-<p>Let’s consider two types of wall described in the file <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code>.</p>
+<p>Let’s consider two types of wall described in the file <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/wall_types.csv&#39;</span><span class="p">)</span>
@@ -1181,7 +1181,7 @@ document.write(`
 <li><p>outdoor wall,</p></li>
 <li><p>indoor wall.</p></li>
 </ol>
-<p>In this folder, there is only one outdoor wall described by the file <code class="docutils literal notranslate"><span class="pre">walls_out.csv</span></code>.</p>
+<p>In this folder, there is only one outdoor wall described by the file <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls_out.csv</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/walls_out.csv&#39;</span><span class="p">)</span>
@@ -1271,7 +1271,7 @@ document.write(`
 </section>
 <section id="disassembled-thermal-circuits">
 <h2>Disassembled thermal circuits<a class="headerlink" href="#disassembled-thermal-circuits" title="Permalink to this headline">#</a></h2>
-<p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">bldg</span></code> that describes the building.</p>
+<p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code> that describes the building.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits with auto-numbering of θ and q</span>
