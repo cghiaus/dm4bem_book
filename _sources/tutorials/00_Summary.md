@@ -26,7 +26,7 @@ The modeling in [dm4bem](dm4bem.py) utilizes thermal networks (or thermal circui
 > Figure 3. Example of differential-algebraic system of equations for a thermal network: a) Thermal network. b) Matrices and vectors. c) Differencial-algebraic equations (DAE).
 
 
-Thermal circuits are a visual representation of [constitutive laws](https://en.m.wikipedia.org/wiki/Constitutive_equation) and [energy balance equations](https://en.m.wikipedia.org/wiki/Balance_equation) (Figure 2 c and d, respectively). Mathematical models, in the form of differential-algebraic equations, are obtained from the thermal circuits using the methodology presented in Figure 2a. An example is provided in Figure 3.
+Thermal circuits are a visual representation of [constitutive laws](https://en.m.wikipedia.org/wiki/Constitutive_equation) and [energy balance equations](https://en.m.wikipedia.org/wiki/Conservation_of_energy) (Figure 2 c and d, respectively). Mathematical models, in the form of differential-algebraic equations, are obtained from the thermal circuits using the methodology presented in Figure 2a. An example is provided in Figure 3.
 
 ## Data structures
 
@@ -69,7 +69,7 @@ From this information, the thermal circuit of a wall is obtained (the matrices a
 A building can be described in a directory (or folder) containing:
 - Walls ([wall types]((./pd/bldg/wall_types.csv) and [walls data](./pd/bldg/walls_out.csv)) noted as `ow0` in Figure 4.
 - Thermal circuits noted as [TC0](./pd/bldg/TC0.csv), [TC1](./pd/bldg/TC1.csv), [TC2](./pd/bldg/TC2.csv), [TC3](./pd/bldg/TC3.csv) in Figure 4.
-- The assembly [matrix](./pd/bldg/assembly_matrix.csv)  or [list](./pd/bldg/assembly_lists.csv) indicating the nodes that merge (connected by dashed lines in Figure 4).
+- The assembly [matrix](./pd/bldg/assembly_matrix.csv)  or [lists](./pd/bldg/assembly_lists.csv) indicating the nodes that merge (connected by dashed lines in Figure 4).
 
 ## Algorithms
 There are two significant algorithms: thermal circuit assembly and conversion of thermal circuits into state representation.
