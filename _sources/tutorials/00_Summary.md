@@ -89,7 +89,7 @@ By eliminating the algebraic equations, the system of differential-algebraic equ
 
 ![work_flow](./pd/bldg/work_flow.svg)
 
-> Figure 5. Workflow for building simulation by using `dm4bem` module.
+> Figure 5. Workflow for building simulation by using `dm4bem` module. The `dm4bem` functions are in bold letters.
 
 The [workflow](https://en.m.wikipedia.org/wiki/Workflow) for modeling and simulation with [dm4bem](dm4bem.py) is (Figure 5):
 

@@ -451,7 +451,7 @@ document.write(`
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>This notebook:</p>
 <ul class="simple">
-<li><p>Imports standard modules such as numpy, pandas, and matplotlib.pyplot, and a dedicated module, <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>. It then reads a file in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
+<li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a dedicated module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a>. It then reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
 <li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces the year in the index with 2000.</p></li>
 <li><p>Defines a start date and an end date and filters the weather data based on these dates.</p></li>
 <li><p>Creates three plots using the filtered weather data:</p>
@@ -490,7 +490,7 @@ document.write(`
 <p>For example, for the airport Lyon-Bron, France (N45.73, E5.08), download the files:</p>
 <ul class="simple">
 <li><p><a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> or</p></li>
-<li><p><a class="reference download internal" download="" href="../_downloads/9d551c580b96deb2583dc8b3ddefeac2/FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw"><span class="xref download myst">FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/9d551c580b96deb2583dc8b3ddefeac2/FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw"><span class="xref download myst">FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw</span></a></p></li>
 </ul>
 <p>from <a class="reference external" href="https://climate.onebuilding.org/WMO_Region_6_Europe/FRA_France/index.html">Climate OneBuilding</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
 </section>
@@ -829,7 +829,7 @@ document.write(`
 </section>
 <section id="weather-data-is-from-different-years">
 <h4>Weather data is from different years<a class="headerlink" href="#weather-data-is-from-different-years" title="Permalink to this headline">#</a></h4>
-<p>The weather data from  <a class="reference external" href="http://climate.onebuilding.org">Climate One Buildings</a> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a>. Data for each month may be from different years.</p>
+<p>The weather data from  <a class="reference external" href="http://climate.onebuilding.org">Climate One Buildings</a> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a>. Therefore, data for each month is from different years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the month and year from the DataFrame index with the format &#39;MM-YYYY&#39;</span>
@@ -922,35 +922,51 @@ document.write(`
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="text-left head"><p>EPWData field</p></th>
-<th class="head"><p>Description</p></th>
+<th class="head"><p>Mean during 1 h prior to timestamp</p></th>
 <th class="head"><p>Unit</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">temp_air</span></code></p></td>
-<td><p>Dry bulb air temperature at timestamp</p></td>
+<td><p>Dry bulb air temperature</p></td>
 <td><p>°C</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dir_n_rad</span></code></p></td>
-<td><p>Direct normal radiation received during 1 h prior to timestamp</p></td>
-<td><p>W·h·m⁻²</p></td>
+<td><p>Direct normal radiation</p></td>
+<td><p>W·m⁻²</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">dif_h_rad</span></code></p></td>
-<td><p>Diffuse horizontal radiation received during 1 h prior to timestamp</p></td>
-<td><p>W·h·m⁻²</p></td>
+<td><p>Diffuse horizontal radiation</p></td>
+<td><p>W·m⁻²</p></td>
 </tr>
 </tbody>
 </table>
 <p><em>Note</em>: For the description of <code class="docutils literal notranslate"><span class="pre">.EPW</span></code> file, see <a class="reference external" href="https://wholmgren-pvlib-python-new.readthedocs.io/en/stable/_modules/pvlib/iotools/epw.html">pvlib.iotools.epw</a>.</p>
-<p>Since the values for each month are from different years, let’s replace all year with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
+<p>Since the values for each month are from different years, let’s replace the different years with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select columns of interest</span>
 <span class="n">weather_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
 
-<span class="c1"># replace year of the index with 2000</span>
+<span class="c1"># replace year with 2000 in the index </span>
 <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
     <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check the weather data at a given date and time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2000-06-29 12:00&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temp_air      25.7
+dir_n_rad    204.0
+dif_h_rad    423.0
+Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -962,18 +978,18 @@ document.write(`
 <ul class="simple">
 <li><p>air temperature, °C,</p></li>
 <li><p>normal solar radiation, W·m⁻²,</p></li>
-<li><p>diffuse solar radiation received during 60 minutes prior to timestamp, W·m⁻².</p></li>
+<li><p>mean diffuse solar radiation received during 60 minutes prior to timestamp, W·m⁻².</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define start and end dates</span>
-<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-06-29&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-07-02&#39;</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-06-29 12:00&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-07-02&#39;</span>         <span class="c1"># time is 00:00 if not indicated</span>
 
 <span class="c1"># Filter the data based on the start and end dates</span>
 <span class="n">weather_data</span> <span class="o">=</span> <span class="n">weather_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
 <span class="k">del</span> <span class="n">data</span>
-<span class="n">weather_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">weather_data</span>
 </pre></div>
 </div>
 </div>
@@ -1003,37 +1019,74 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th>2000-06-29 00:00:00+01:00</th>
-      <td>16.7</td>
+      <th>2000-06-29 12:00:00+01:00</th>
+      <td>25.7</td>
+      <td>204</td>
+      <td>423</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 13:00:00+01:00</th>
+      <td>26.0</td>
+      <td>227</td>
+      <td>439</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 14:00:00+01:00</th>
+      <td>26.0</td>
+      <td>265</td>
+      <td>407</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 15:00:00+01:00</th>
+      <td>24.7</td>
+      <td>312</td>
+      <td>335</td>
+    </tr>
+    <tr>
+      <th>2000-06-29 16:00:00+01:00</th>
+      <td>19.0</td>
+      <td>166</td>
+      <td>294</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2000-07-02 19:00:00+01:00</th>
+      <td>25.0</td>
+      <td>0</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>2000-07-02 20:00:00+01:00</th>
+      <td>24.0</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2000-07-02 21:00:00+01:00</th>
+      <td>24.0</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>2000-06-29 01:00:00+01:00</th>
-      <td>17.0</td>
+      <th>2000-07-02 22:00:00+01:00</th>
+      <td>24.0</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>2000-06-29 02:00:00+01:00</th>
-      <td>16.0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-06-29 03:00:00+01:00</th>
-      <td>15.9</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2000-06-29 04:00:00+01:00</th>
-      <td>16.0</td>
+      <th>2000-07-02 23:00:00+01:00</th>
+      <td>22.0</td>
       <td>0</td>
       <td>0</td>
     </tr>
   </tbody>
 </table>
+<p>84 rows × 3 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1050,7 +1103,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" src="../_images/415e5f5edf6f2db24b26e02e05abb99435a1233edad5d0b314ec8f920c208f13.png" />
+<img alt="../_images/b00207bd1313466f6e20f3a12c914aff63142c8d6d98024da86f4cb074176df2.png" src="../_images/b00207bd1313466f6e20f3a12c914aff63142c8d6d98024da86f4cb074176df2.png" />
 </div>
 </div>
 <blockquote>
@@ -1070,7 +1123,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" src="../_images/09d7652fd7244b98d97da994d1200632f9507d7e5a7c311ea9b13d96dde9b653.png" />
+<img alt="../_images/9830cf7b1508be24a7b0151fe990732261fecdacb39adb0c994142a50b055b5e.png" src="../_images/9830cf7b1508be24a7b0151fe990732261fecdacb39adb0c994142a50b055b5e.png" />
 </div>
 </div>
 <blockquote>
@@ -1089,15 +1142,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_orientation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>     <span class="c1"># 90° is vertical; &gt; 90° downward</span>
                        <span class="s1">&#39;azimuth&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>    <span class="c1"># 0° South, positive westward</span>
                        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">}</span>  <span class="c1"># °, North Pole 90° positive</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">surface_orientation</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>slope       90
-azimuth      0
-latitude    45
-dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1130,18 +1174,58 @@ dtype: int64
 
 <span class="n">rad_surf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation,  Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar irradiance,  Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" src="../_images/8b23da5a231db6734301aadaaa61969fb057d263bb3c41d7d31cd831bd6cfcc8.png" />
+<img alt="../_images/b138397faa5ce2a2579df98db2667dc27eb48cfde87688db8e8af59ba61e351f.png" src="../_images/b138397faa5ce2a2579df98db2667dc27eb48cfde87688db8e8af59ba61e351f.png" />
 </div>
 </div>
 <blockquote>
-<div><p>Figure 4. Hourly-mean direct, diffuse and reflected radiation on a tilted surface.</p>
+<div><p>Figure 4. Hourly-mean direct, diffuse and reflected irradiance on a tilted surface.</p>
 </div></blockquote>
+<p>The values of solar irradiance can be obtained for a specific date and time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rad_surf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2000-06-29 12:00&#39;</span><span class="p">][</span><span class="s1">&#39;direct&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> W/m²&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>71 W/m²
+</pre></div>
+</div>
+</div>
+</div>
+<p>Statistics, such as <code class="docutils literal notranslate"><span class="pre">mean</span></code> and <code class="docutils literal notranslate"><span class="pre">maximum</span></code> value, can be calculated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean. direct irradiation: </span><span class="si">{</span><span class="n">rad_surf</span><span class="p">[</span><span class="s1">&#39;direct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> W/m²&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max. direct irradiation:  </span><span class="si">{</span><span class="n">rad_surf</span><span class="p">[</span><span class="s1">&#39;direct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> W/m²&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean. direct irradiation: 39 W/m²
+Max. direct irradiation:  314 W/m²
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Direct solar irradiance is maximum on </span><span class="si">{</span><span class="n">rad_surf</span><span class="p">[</span><span class="s1">&#39;direct&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Direct solar irradiance is maximum on 2000-07-01 11:00:00+01:00
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>
