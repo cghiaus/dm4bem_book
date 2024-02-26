@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sensible thermal load in steady-state" href="A02Thermal_load.html" />
-    <link rel="prev" title="Solved problems" href="A00annexes.html" />
+    <link rel="prev" title="Annex: Steady-state problems" href="A00annexes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -427,28 +427,25 @@ document.write(`
 <li><p>surfaces 1 and 2: opaque and absorbant in short-wave and in long-wave.</p></li>
 </ul>
 <blockquote>
-<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\varepsilon\)</span>, of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW).</p>
+<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span>, of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW). The surfaces are opaque in long-wave, <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span></p>
 </div></blockquote>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Surface</p></th>
-<th class="head"><p>$<span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>$</p></th>
-<th class="head"><p>$<span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>$</p></th>
-<th class="head"><p>$<span class="math notranslate nohighlight">\(\tau_{LW}\)</span>$</p></th>
-<th class="head"><p>$<span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span>$</p></th>
+<tr class="row-odd"><th class="head"><p>Surface</p></th>
+<th class="head"><p><em>𝜏</em></p></th>
+<th class="head"><p><em>𝛼</em></p></th>
+<th class="head"><p><em>ε</em></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p>0</p></td>
+<tr class="row-even"><td><p>0</p></td>
 <td><p>1</p></td>
-<td><p>0</p></td>
 <td><p>0</p></td>
 <td><p>0.8</p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>1 &amp; 2</p></td>
+<tr class="row-odd"><td><p>1 &amp; 2</p></td>
 <td><p>0</p></td>
 <td><p>0.8</p></td>
-<td><p>0</p></td>
 <td><p>0.8</p></td>
 </tr>
 </tbody>
@@ -1010,7 +1007,7 @@ T_2^4
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Solved problems</p>
+        <p class="prev-next-title">Annex: Steady-state problems</p>
       </div>
     </a>
     <a class="right-next"
