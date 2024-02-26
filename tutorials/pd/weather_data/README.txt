@@ -14,7 +14,6 @@ The weather file with the extension `.epw` can be dowloaded from:
 - [PV GIS](https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html): interractive map with interpollated data.
 
 For example, this folder contains the files:
-- `FRA_AR_Lyon-Bron.AP.074800_TMYx.2004-2018.epw`
 - `FRA_Lyon.074810_IWEC.epw`
 
 for the airport Lyon-Bron, France (N45.73, E5.08).
