@@ -29,7 +29,21 @@ and save in subfolder weather_data
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 import dm4bem
+
+# Inputs
+controller = True
+indoor_air_capacity = False
+glass_capacity = False
+insulation_width = 0.08  # m
+
+date_start = '2000-02-01 12:00'
+date_end = '2000-02-07 12:00'
+
+# get insulation width from wall_types.csv
+df = pd.read_csv("bldg/wall_types.csv")
+insulation_width_file = df[df['Material'] == 'Insulation']['Width'].values[0]
 
 # Model
 # =====
@@ -43,6 +57,20 @@ ass_lists = pd.read_csv(folder_bldg + '/assembly_lists.csv')
 ass_matrix = dm4bem.assemble_lists2matrix(ass_lists)
 TC = dm4bem.assemble_TCd_matrix(TCd, ass_matrix)
 
+"""
+Modify parameters of thermal circuit
+"""
+if controller:
+    TC['G']['c3_q0'] = 1e3  # Kp, controler gain
+if not indoor_air_capacity:
+    TC['C']['c2_θ0'] = 0    # indoor air heat capacity
+if not glass_capacity:
+    TC['C']['c1_θ0'] = 0    # glass (window) heat capacity
+
+# insulation width
+TC['G']['ow0_q3'] *= insulation_width_file / insulation_width
+TC['G']['ow0_q4'] = TC['G']['ow0_q3']
+
 # State-space
 [As, Bs, Cs, Ds, us] = dm4bem.tc2ss(TC)
 
@@ -53,21 +81,16 @@ dt = dm4bem.round_time(dt_max)
 
 # Inputs
 # ======
-# Weather data
-# period
-start_date = '02-01 12:00:00'
-end_date = '02-07 18:00:00'
-start_date = '2000-' + start_date
-end_date = '2000-' + end_date
 
+# Weather data
 file_weather = 'weather_data/FRA_Lyon.074810_IWEC.epw'
 [data, meta] = dm4bem.read_epw(file_weather, coerce_year=None)
 weather = data[["temp_air", "dir_n_rad", "dif_h_rad"]]
 del data
 
-# select weather data for period of the year
+# select weather data from date_start to date_end
 weather.index = weather.index.map(lambda t: t.replace(year=2000))
-weather = weather.loc[start_date:end_date]
+weather = weather.loc[date_start:date_end]
 
 # Temperature sources
 To = weather['temp_air']
@@ -159,3 +182,14 @@ axs[1].legend(['$E_{total}$', '$q_{HVAC}$'],
 axs[0].set_title(f'Time step: $dt$ = {dt:.0f} s;'
                  f' $dt_{{max}}$ = {dt_max:.0f} s')
 plt.show()
+
+# Outputs of pyCloze
+dm4bem.print_rounded_time("Time step:", dt)
+print(f"Mean outdoor temperature: {data['To'].mean():.1f} °C")
+print(f"Min. indoor temperature: {data['θi'].min():.1f} °C")
+print(f"Max. indoor temperature: {data['θi'].max():.1f} °C")
+
+max_load = data['q_HVAC'].max()
+max_load_index = data['q_HVAC'].idxmax()
+print(f"Max. load: {max_load:.1f} W at {max_load_index}")
+print(f"Energy consumption: {(data['q_HVAC'] * dt).sum() / (3.6e6):.1f} kWh")

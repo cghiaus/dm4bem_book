@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Solved problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Air_flow_ventilation.html">Air flow by ventilation</a></li>
@@ -492,6 +492,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">dm4bem</span>
 </pre></div>
 </div>
@@ -1793,7 +1794,7 @@ Max time step Δt = 416.11 s
 \[ \theta_{k+1} = (I + \Delta t A_s) \theta _k + \Delta t B_s u_k \]</div>
 <p>For Euler backward (or implicit) integration it is:</p>
 <div class="math notranslate nohighlight">
-\[\theta_{k+1} = (I - \Delta t A_s)^{-1} ( \theta _k + \Delta t B_s u_k )\]</div>
+\[\theta_{k+1} = (I - \Delta t A_s)^{-1} ( \theta _k + \Delta t B_s u_{k+1} )\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time integration: Euler explicit &amp; implicit</span>
@@ -1801,7 +1802,7 @@ Max time step Δt = 416.11 s
     <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
         <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span>
     <span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">-</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
-        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">])</span>
+        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1948,14 +1949,14 @@ Max time step Δt = 416.11 s
 \[ \theta_{k+1} = (I + \Delta t A_s) \theta _k + \Delta t B_s u_k \]</div>
 <p>and for Euler backward (or implicit) integration it is</p>
 <div class="math notranslate nohighlight">
-\[\theta_{k+1} = (I - \Delta t A_s)^{-1} ( \theta _k + \Delta t B_s u_k )\]</div>
+\[\theta_{k+1} = (I - \Delta t A_s)^{-1} ( \theta _k + \Delta t B_s u_{k+1} )\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
         <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span>
     <span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">-</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
-        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">])</span>
+        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2402,7 +2403,7 @@ T_o\\
     <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
         <span class="n">θ_exp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span>
     <span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)</span> <span class="o">-</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span>\
-        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span><span class="p">])</span>
+        <span class="p">(</span><span class="n">θ_imp</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">Δt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2444,7 +2445,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6414c6de49b690f0c3da3f24d654fec5014db7bf5f0cddbf4acbe12764f48bf9.png" src="../_images/6414c6de49b690f0c3da3f24d654fec5014db7bf5f0cddbf4acbe12764f48bf9.png" />
+<img alt="../_images/623e0e7af6204c47e9f7327dcd7ddc61c3db18ce10d34537df610c6e450ffed5.png" src="../_images/623e0e7af6204c47e9f7327dcd7ddc61c3db18ce10d34537df610c6e450ffed5.png" />
 </div>
 </div>
 <blockquote>

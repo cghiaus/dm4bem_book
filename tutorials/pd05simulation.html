@@ -402,7 +402,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-weather-data">Simulation with weather data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-time">Start and end time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-date-time">Start and end date-time</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data">Weather data</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a></li>
@@ -414,6 +414,7 @@ document.write(`
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Initial conditions</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical integration</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
@@ -481,6 +482,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">dm4bem</span>
 </pre></div>
 </div>
@@ -1035,13 +1037,13 @@ dt = 300 s = 5.0 min
 </section>
 <section id="simulation-with-weather-data">
 <h3>Simulation with weather data<a class="headerlink" href="#simulation-with-weather-data" title="Permalink to this headline">#</a></h3>
-<section id="start-and-end-time">
-<h4>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this headline">#</a></h4>
-<p>The simulation will be done from <code class="docutils literal notranslate"><span class="pre">start_date</span></code> to <code class="docutils literal notranslate"><span class="pre">end_date</span></code> indicated in the format <code class="docutils literal notranslate"><span class="pre">MM-DD</span> <span class="pre">HH:MM:SS</span></code> (month-day hour:minute:second).</p>
+<section id="start-and-end-date-time">
+<h4>Start and end date-time<a class="headerlink" href="#start-and-end-date-time" title="Permalink to this headline">#</a></h4>
+<p>The simulation will be done from <code class="docutils literal notranslate"><span class="pre">date_start</span></code> to <code class="docutils literal notranslate"><span class="pre">date_end</span></code> indicated in the format <code class="docutils literal notranslate"><span class="pre">MM-DD</span> <span class="pre">HH:MM:SS</span></code> (month-day hour:minute:second).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;02-01 12:00:00&#39;</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;02-07 18:00:00&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_start</span> <span class="o">=</span> <span class="s1">&#39;02-01 12:00:00&#39;</span>
+<span class="n">date_end</span> <span class="o">=</span> <span class="s1">&#39;02-07 18:00:00&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1049,10 +1051,10 @@ dt = 300 s = 5.0 min
 <p>The weather data are for a year. The choice of <code class="docutils literal notranslate"><span class="pre">2000</span></code> for the year is arbitrary; it used in order to respect the format <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM:SS</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">start_date</span>
-<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">end_date</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">start date&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">end date&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_start</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">date_start</span>
+<span class="n">date_end</span> <span class="o">=</span> <span class="s1">&#39;2000-&#39;</span> <span class="o">+</span> <span class="n">date_end</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">date_start</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">start date&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">date_end</span><span class="si">}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">end date&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1089,7 +1091,7 @@ dt = 300 s = 5.0 min
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2000</span><span class="p">))</span>
-<span class="n">weather</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">start_date</span><span class="p">:</span><span class="n">end_date</span><span class="p">]</span>
+<span class="n">weather</span> <span class="o">=</span> <span class="n">weather</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">date_start</span><span class="p">:</span><span class="n">date_end</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1273,6 +1275,9 @@ dt = 300 s = 5.0 min
 </div>
 </div>
 <p>In order to plot the results, from the data let’s select the outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span>, the indoor temoerature <span class="math notranslate nohighlight">\(\theta_i\)</span>, the total solar irradiance <span class="math notranslate nohighlight">\(E_{tot}\)</span>, and the specific thermal load <span class="math notranslate nohighlight">\(q_{HVAC}\)</span>.</p>
+</section>
+<section id="results">
+<h5>Results<a class="headerlink" href="#results" title="Permalink to this headline">#</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;To&#39;</span><span class="p">:</span> <span class="n">input_data_set</span><span class="p">[</span><span class="s1">&#39;To&#39;</span><span class="p">],</span>
@@ -1300,11 +1305,25 @@ dt = 300 s = 5.0 min
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s;&#39;</span>
                  <span class="sa">f</span><span class="s1">&#39;$dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Min. indoor temperature: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;θi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max. indoor temperature: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;θi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+
+<span class="n">max_load</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;q_HVAC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">max_load_index</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;q_HVAC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max. load: </span><span class="si">{</span><span class="n">max_load</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> W at </span><span class="si">{</span><span class="n">max_load_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy consumption: </span><span class="si">{</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;q_HVAC&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="mf">3.6e6</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kWh&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/4c269a7faf214c17f2a20aad2cb3aa640f8e053665200424ca3f404ad1e69c6d.png" src="../_images/4c269a7faf214c17f2a20aad2cb3aa640f8e053665200424ca3f404ad1e69c6d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Min. indoor temperature: 2.0 °C
+Max. indoor temperature: 23.5 °C
+Max. load: 0.0 W at 2000-02-01 12:00:00+01:00
+Energy consumption: 0.0 kWh
+</pre></div>
+</div>
 </div>
 </div>
 <blockquote>
@@ -1328,20 +1347,15 @@ dt = 300 s = 5.0 min
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> pd
-<span class="o">%</span><span class="k">run</span> pd05simulation.py
-<span class="o">%</span><span class="k">cd</span> -
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> --no-display
+<span class="o">%</span><span class="n">cd</span> <span class="n">pd</span>
+<span class="o">%</span><span class="n">run</span> <span class="n">pd05simulation</span><span class="o">.</span><span class="n">py</span>
+<span class="o">%</span><span class="n">cd</span> <span class="o">-</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/pd
-</pre></div>
-</div>
-<img alt="../_images/7de47522cba6c3fa89862bb72210aa536f3ea8616b2cf2838a207213deb19007.png" src="../_images/7de47522cba6c3fa89862bb72210aa536f3ea8616b2cf2838a207213deb19007.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials
-</pre></div>
-</div>
+<img alt="../_images/7340f4b5fd4d3b0e5071d16f562a543c93c5b3cc2c423664585fbbe4e391c5df.png" src="../_images/7340f4b5fd4d3b0e5071d16f562a543c93c5b3cc2c423664585fbbe4e391c5df.png" />
 </div>
 </div>
 <blockquote>
@@ -1458,7 +1472,7 @@ dt = 300 s = 5.0 min
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-with-weather-data">Simulation with weather data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-time">Start and end time</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#start-and-end-date-time">Start and end date-time</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data-set">Input data set</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#weather-data">Weather data</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#temperature-sources">Temperature sources</a></li>
@@ -1470,6 +1484,7 @@ dt = 300 s = 5.0 min
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#input-vector">Input vector</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Initial conditions</a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration">Numerical integration</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a></li>
 </ul>
 </li>
 </ul>
