@@ -31,6 +31,18 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import dm4bem
 
+# Inputs
+controller = True
+indoor_air_capacity = False
+glass_capacity = True
+insulation_width = 0.16
+
+date_start = '2000-02-01 12:00'
+date_end = '2000-02-07 15:00'
+
+date_check = '2000-02-01 14:00:00'
+
+
 # Model
 # =====
 # Disassembled thermal circuits
@@ -42,6 +54,20 @@ TCd = dm4bem.bldg2TCd(folder_bldg,
 ass_lists = pd.read_csv(folder_bldg + '/assembly_lists.csv')
 ass_matrix = dm4bem.assemble_lists2matrix(ass_lists)
 TC = dm4bem.assemble_TCd_matrix(TCd, ass_matrix)
+
+"""
+Modify parameters of thermal circuit
+"""
+if controller:
+    TC['G']['c3_q0'] = 1e3  # Kp, controler gain
+if not indoor_air_capacity:
+    TC['C']['c2_θ0'] = 0    # indoor air heat capacity
+if not glass_capacity:
+    TC['C']['c1_θ0'] = 0    # glass (window) heat capacity
+
+# insulation width
+TC['G']['ow0_q3'] *= 0.08 / insulation_width
+TC['G']['ow0_q4'] = TC['G']['ow0_q3']
 
 # State-space
 [As, Bs, Cs, Ds, us] = dm4bem.tc2ss(TC)
@@ -55,10 +81,10 @@ dt = dm4bem.round_time(dt_max)
 # ======
 # Weather data
 # period
-start_date = '02-01 12:00:00'
-end_date = '02-07 18:00:00'
-start_date = '2000-' + start_date
-end_date = '2000-' + end_date
+# date_start = '02-01 12:00:00'
+# date_end = '02-07 18:00:00'
+# date_start = '2000-' + date_start
+# date_end = '2000-' + date_end
 
 file_weather = 'weather_data/FRA_Lyon.074810_IWEC.epw'
 [data, meta] = dm4bem.read_epw(file_weather, coerce_year=None)
@@ -67,7 +93,7 @@ del data
 
 # select weather data for period of the year
 weather.index = weather.index.map(lambda t: t.replace(year=2000))
-weather = weather.loc[start_date:end_date]
+weather = weather.loc[date_start:date_end]
 
 # Temperature sources
 To = weather['temp_air']
@@ -159,3 +185,12 @@ axs[1].legend(['$E_{total}$', '$q_{HVAC}$'],
 axs[0].set_title(f'Time step: $dt$ = {dt:.0f} s;'
                  f' $dt_{{max}}$ = {dt_max:.0f} s')
 plt.show()
+
+# Outputs of pyCloze
+print(f'dt = {dt:.0f}')
+print(f'Mean outdoor temperature: {data["To"].mean():.1f} °C')
+print(f'Min. indoor temperature: {data["θi"].min():.1f} °C')
+print(f'Max. indoor temperature: {data["θi"].max():.1f} °C')
+print(f"Max. load: {data['q_HVAC'].max():.1f} W")
+print(f"Max. load at {data['q_HVAC'].idxmax()}")
+print(f"Energy consumption: {(data['q_HVAC'] * dt).sum() / (3.6e6):.1f} kWh")
