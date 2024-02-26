@@ -511,12 +511,12 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits</span>
-<span class="n">folder_path</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
-<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span>
+<span class="n">folder_bldg</span> <span class="o">=</span> <span class="s1">&#39;./pd/bldg&#39;</span>
+<span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_bldg</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Assembled thermal circuit</span>
-<span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_path</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
+<span class="n">ass_lists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_bldg</span> <span class="o">+</span> <span class="s1">&#39;/assembly_lists.csv&#39;</span><span class="p">)</span>
 <span class="n">ass_matrix</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_lists2matrix</span><span class="p">(</span><span class="n">ass_lists</span><span class="p">)</span>
 <span class="n">TC</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">assemble_TCd_matrix</span><span class="p">(</span><span class="n">TCd</span><span class="p">,</span> <span class="n">ass_matrix</span><span class="p">)</span>
 </pre></div>
