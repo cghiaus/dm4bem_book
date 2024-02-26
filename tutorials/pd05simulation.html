@@ -420,6 +420,7 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyhton-script">Pyhton script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
@@ -473,7 +474,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </ul>
 <p><img alt="work_flow" src="../_images/work_flow.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Work flow for building simulation by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module. The <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> functions are in bold letters.</p>
+<div><p>Figure 1. Workflow for building simulation by using <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> module. The <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> functions are in bold letters.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1070,8 +1071,8 @@ dt = 300 s = 5.0 min
 <p>Dynamic simulation needs <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of weather data for air temperature, direct solar radiation on a normal surface and diffuse solar radiation on an horizontal surface (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">weather data and solar radiation</span></a> and weather file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
-<span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_weather</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
+<span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">read_epw</span><span class="p">(</span><span class="n">file_weather</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">weather</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s2">&quot;temp_air&quot;</span><span class="p">,</span> <span class="s2">&quot;dir_n_rad&quot;</span><span class="p">,</span> <span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]]</span>
 <span class="k">del</span> <span class="n">data</span>
 </pre></div>
@@ -1124,7 +1125,7 @@ dt = 300 s = 5.0 min
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># total solar irradiance</span>
-<span class="n">wall_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;pd/bldg/walls_out.csv&#39;</span><span class="p">)</span>
+<span class="n">wall_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">folder_bldg</span> <span class="o">+</span> <span class="s1">&#39;/walls_out.csv&#39;</span><span class="p">)</span>
 <span class="n">w0</span> <span class="o">=</span> <span class="n">wall_out</span><span class="p">[</span><span class="n">wall_out</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;w0&#39;</span><span class="p">]</span>
 
 <span class="n">surface_orientation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span><span class="p">:</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;β&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
@@ -1296,13 +1297,14 @@ dt = 300 s = 5.0 min
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s; $dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Time step: $dt$ = </span><span class="si">{</span><span class="n">dt</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s;&#39;</span>
+                 <span class="sa">f</span><span class="s1">&#39;$dt_</span><span class="se">{{</span><span class="s1">max</span><span class="se">}}</span><span class="s1">$ = </span><span class="si">{</span><span class="n">dt_max</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c59f31b7156421c587a394a494d95f69aa8517008d45f61e854658a7ef7e5169.png" src="../_images/c59f31b7156421c587a394a494d95f69aa8517008d45f61e854658a7ef7e5169.png" />
+<img alt="../_images/4c269a7faf214c17f2a20aad2cb3aa640f8e053665200424ca3f404ad1e69c6d.png" src="../_images/4c269a7faf214c17f2a20aad2cb3aa640f8e053665200424ca3f404ad1e69c6d.png" />
 </div>
 </div>
 <blockquote>
@@ -1311,6 +1313,40 @@ dt = 300 s = 5.0 min
 </section>
 </section>
 </section>
+</section>
+<section id="pyhton-script">
+<h2>Pyhton script<a class="headerlink" href="#pyhton-script" title="Permalink to this headline">#</a></h2>
+<p>The script <a class="reference download internal" download="" href="../_downloads/0004f3224ad397b8b7769fe02c51c2a7/pd05simulation.py"><span class="xref download myst">pd/pd05simulation.py</span></a> implements the <strong>workflow</strong> presented in this notebook:</p>
+<ol class="arabic simple">
+<li><p>Create a working directory, e.g. <code class="docutils literal notranslate"><span class="pre">pd</span></code></p></li>
+<li><p>Download <span class="xref myst">dm4bem</span> module and save it the working directory.</p></li>
+<li><p>Create subfolder <code class="docutils literal notranslate"><span class="pre">/bldg</span></code> in the working directory.</p></li>
+<li><p>Download <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3</span></a>, and <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">wall_out</span></a> (which is based on <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types</span></a>)and assembly_lists files and save them in subfolder <code class="docutils literal notranslate"><span class="pre">/bldg</span></code>.</p></li>
+<li><p>Create subfolder <code class="docutils literal notranslate"><span class="pre">weather_data</span></code>.</p></li>
+<li><p>Download weaher file <span class="xref myst">FRA_Lyon.074810_IWEC.epw</span> and save in subfolder <code class="docutils literal notranslate"><span class="pre">weather_data</span></code>.</p></li>
+<li><p>Run the script.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> pd
+<span class="o">%</span><span class="k">run</span> pd05simulation.py
+<span class="o">%</span><span class="k">cd</span> -
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/pd
+</pre></div>
+</div>
+<img alt="../_images/7de47522cba6c3fa89862bb72210aa536f3ea8616b2cf2838a207213deb19007.png" src="../_images/7de47522cba6c3fa89862bb72210aa536f3ea8616b2cf2838a207213deb19007.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Figure 4. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+</div></blockquote>
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
@@ -1440,6 +1476,7 @@ dt = 300 s = 5.0 min
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyhton-script">Pyhton script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
