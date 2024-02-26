@@ -6,7 +6,6 @@ by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-124
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 [![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
 
-
 > “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (*There are three types of knowledge: [knowledge itself](https://en.m.wikipedia.org/wiki/Knowledge), [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [knowing how to live together](https://en.m.wikipedia.org/wiki/Etiquette); the last two quite adequately dispense with the first*), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
 
 
@@ -49,6 +48,10 @@ __Licence__
 The text of this book is under Creative Commons Attribution 4.0 International (CC BY 4.0).
 
 The software is under MIT Licence.
+
+
+__GitHub repository:__ https://github.com/cghiaus/dm4bem_book
+
 
 __Contents__
 
