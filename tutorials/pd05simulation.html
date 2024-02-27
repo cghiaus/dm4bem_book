@@ -987,7 +987,7 @@ dt = 300 s = 5.0 min
 \[ \theta_{k+1} = (I + \Delta t A_s) \theta _k + \Delta t B_s u_k \]</div>
 <p>for forward (or explicit) and:</p>
 <div class="math notranslate nohighlight">
-\[\theta_{k+1} = (I - \Delta t A_s)^{-1} ( \theta _k + \Delta t B_s u_{k )\]</div>
+\[\theta_{k+1} = (I - \Delta t A_s)^{-1}(\theta_k + \Delta t B_s u_{k + 1})\]</div>
 <p>for backward (or implicit) integration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -997,7 +997,7 @@ dt = 300 s = 5.0 min
     <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
         <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
     <span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
-        <span class="o">@</span> <span class="p">(</span><span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="o">@</span> <span class="p">(</span><span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
