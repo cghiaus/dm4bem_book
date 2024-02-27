@@ -581,9 +581,7 @@ f_C
 <p><span class="math notranslate nohighlight">\(u = \begin{bmatrix}
 b \\ f_0 \\ f_C
 \end{bmatrix}\)</span>, vector of inputs, where <span class="math notranslate nohighlight">\(b\)</span> is the vector of temperature sources, <span class="math notranslate nohighlight">\(f_0\)</span> and <span class="math notranslate nohighlight">\(f_C\)</span> are the vector of flow-rate sources in the nodes without capacities and the nodes with capacities, respectively.</p>
-<p>After solving for temperatures, the flows can be obtained:</p>
-<div class="math notranslate nohighlight">
-\[q = G(-A \theta + b)\]</div>
+<p>After solving for temperatures, the flows can be obtained.</p>
 <p>The transformation from the system of differential-algebraic equations (DAE) to state-space representation is implemented in the function <code class="docutils literal notranslate"><span class="pre">tc2ss</span></code> of module <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>.</p>
 </section>
 <section id="references">

@@ -958,17 +958,6 @@ dt = 300 s = 5.0 min
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
-<span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ with initial valeus θ0</span>
-<span class="n">θ_imp</span> <span class="o">=</span> <span class="n">θ_exp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
 <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for explicit Euler</span>
 <span class="n">θ_imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for implicit Euler</span>
 
@@ -1013,8 +1002,13 @@ dt = 300 s = 5.0 min
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outputs</span>
 <span class="n">y_exp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 <span class="n">y_imp</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ_imp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-
-<span class="c1"># plot results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">y_exp</span><span class="p">,</span> <span class="n">y_imp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Explicit&#39;</span><span class="p">,</span> <span class="s1">&#39;Implicit&#39;</span><span class="p">])</span>
 <span class="c1"># Flatten the two-level column labels into a single level</span>
 <span class="n">y</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_level_values</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
