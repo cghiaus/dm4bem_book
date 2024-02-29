@@ -853,9 +853,9 @@ F_{i,i} = 0
 <div class="math notranslate nohighlight">
 \[q_{cv} = h_{cv}S_s (\theta_s - \theta_{sur})\]</div>
 <p>is the heat flow rate by convection (<a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_law_of_cooling">Newton’s law</a>).</p>
-<p>The conductance for convetion and radiation is</p>
+<p>The surface conductance for convetion and radiation is</p>
 <div class="math notranslate nohighlight">
-\[G = (h_{cv} + h_r) S_s\]</div>
+\[G_s = (h_{cv} + h_r) S_s\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h_r = 4 \varepsilon \sigma \bar{T}^3\)</span> is the radiative heat transfer coefficent;</p></li>
@@ -921,12 +921,12 @@ F_{i,i} = 0
 </section>
 <section id="proportional-controller">
 <h3>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h3>
-<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> (Figure 6a).</p>
+<p>In the simplest representation, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC system</a> can be considered as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> that adjusts the heat flow rate <span class="math notranslate nohighlight">\(q_{HVAC}\)</span> in order to control the indoor temperature <span class="math notranslate nohighlight">\(\theta_i\)</span> at its setpoint value <span class="math notranslate nohighlight">\(T_{i,sp}\)</span> (Figure 7a).</p>
 <p><img alt="P_controller" src="../_images/A01_P_controller.svg" /></p>
 <blockquote>
-<div><p>Figure 6. HVAC systems as proportional controller of indoor air. a) Block diagramme. b) Thermal circuit representation.</p>
+<div><p>Figure 7. HVAC systems as proportional controller of indoor air. a) Block diagramme. b) Thermal circuit representation.</p>
 </div></blockquote>
-<p>The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is:</p>
+<p>The heat flow-rate, in W, injected by the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> system into the controlled space is (Figure 7):</p>
 <div class="math notranslate nohighlight">
 \[ q_{HVAC} = K_p (T_{i, sp} - \theta_i)\]</div>
 <p>where:</p>
