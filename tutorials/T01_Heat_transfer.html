@@ -407,6 +407,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection-and-radiation">Convection and radiation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advection">Advection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
 </ul>
@@ -822,6 +823,45 @@ F_{i,i} = 0
 \[G_{2} = 4 \sigma \bar{T}^3 \frac{\varepsilon_2}{1 - \varepsilon_2} S_2\]</div>
 </section>
 </section>
+<section id="convection-and-radiation">
+<h3>Convection and radiation<a class="headerlink" href="#convection-and-radiation" title="Permalink to this headline">#</a></h3>
+<p>The net radiatiative flow rate between a surface and its closed surrundings is (Figure 6):</p>
+<div class="math notranslate nohighlight">
+\[q_{rad} = (\varepsilon M_s^o - \alpha E_s) S_s = \varepsilon \sigma (T_s^4 - T_{sur}^4) S_s\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\varepsilon M_s^o\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Emissivity">heat flux emitted</a> by the surface, where <span class="math notranslate nohighlight">\(M_s^o = \sigma T_s^4\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Radiant_exitance">radiant emmitance</a>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha E_s\)</span> is the [heat flux abosrbed](<a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorption_(electromagnetic_radiation)">https://en.m.wikipedia.org/wiki/Absorption_(electromagnetic_radiation)</a> by the surface, where <span class="math notranslate nohighlight">\(E_s = \sigma T_{sur}^4\)</span> is the radiant emmitance of the surroundings.</p></li>
+</ul>
+<p><img alt="convec_rad" src="../_images/A01_conv_radiation.svg" /></p>
+<blockquote>
+<div><p>Figure 6. Radiation and convection between a surface and its surroundings.</p>
+</div></blockquote>
+<p>It is convenient to express the radiation heat flow rate as a function of temperature differences (Bergman, T. L. et al. 2011):</p>
+<div class="math notranslate nohighlight">
+\[q_{rad} = h_r S_s (\theta_s - \theta_{sur})\]</div>
+<p>where the radiative heat transfer coefficient is</p>
+<div class="math notranslate nohighlight">
+\[h_r = \varepsilon \sigma (T_s + T_{sur})(T_s^2 + T_{sur}^2) = 4 \varepsilon \sigma \bar{T}^3\]</div>
+<p>with:</p>
+<div class="math notranslate nohighlight">
+\[\bar{T} =\sqrt[3]{ \frac{(T_s + T_{sur})(T_s^2 + T_{sur}^2)}{4}}\]</div>
+<p>The total heat rate flow by convection and radiation is</p>
+<div class="math notranslate nohighlight">
+\[q = q_{cv} + q_{rad} = (h_{cv} + h_r) S_s (\theta_s - \theta_{sur})\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[q_{cv} = h_{cv}S_s (\theta_s - \theta_{sur})\]</div>
+<p>is the heat flow rate by convection (<a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_law_of_cooling">Newton’s law</a>).</p>
+<p>The conductance for convetion and radiation is</p>
+<div class="math notranslate nohighlight">
+\[G = (h_{cv} + h_r) S_s\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h_r = 4 \varepsilon \sigma \bar{T}^3\)</span> is the radiative heat transfer coefficent;</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_{cv}\)</span> is the convection heat transfer coefficient.</p></li>
+</ul>
+</section>
 <section id="advection">
 <h3>Advection<a class="headerlink" href="#advection" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of the air, in m³/s, is:</p>
@@ -1145,6 +1185,7 @@ y = C_s \theta_s + D_s u
 <p><a class="reference external" href="http://www.thermalradiation.net/indexCat.html">Howell, J. R. (2010)</a>. A catalog of radiation heat transfer configuration factors 3rd edition. University of Texas at Austin</p>
 <p><a class="reference external" href="http://www.diva-portal.org/smash/get/diva2:1305017/FULLTEXT01.pdf">Widén, J., &amp; Munkhammar, J. (2019)</a>. Solar radiation theory. Uppsala University.</p>
 <p><a class="reference external" href="https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf">RE2020 (2021)</a>. Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique</p>
+<p>Bergman, T. L. et al. (2011). Fundamentals of heat and mass transfer. Chapter 1. John Wiley &amp; Sons. ISBN 13 978-0470-50197-9</p>
 </section>
 </section>
 
@@ -1235,6 +1276,7 @@ y = C_s \theta_s + D_s u
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-network-for-long-wave-radiation">Thermal network for long wave radiation</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection-and-radiation">Convection and radiation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advection">Advection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proportional-controller">Proportional controller</a></li>
 </ul>
