@@ -399,10 +399,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Plan wall</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall-conduction">Plan wall conduction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
@@ -532,12 +529,12 @@ document.write(`
 <p>The discrete form of the heat equation can be modeled by a thermal circuit (Figure 3).</p>
 <p><img alt="conduction" src="../_images/A01_cond_dyn.svg" /></p>
 <blockquote>
-<div><p>Figure 3. Discretization of heat equation</p>
+<div><p>Figure 2. Discretization of heat equation</p>
 </div></blockquote>
 </section>
 <section id="steady-state-conduction-in-a-stream-tube">
 <h3>Steady state conduction in a stream tube<a class="headerlink" href="#steady-state-conduction-in-a-stream-tube" title="Permalink to this headline">#</a></h3>
-<p>Thermal conduction is the heat diffusion in solids in the direction of the temperature gradient (Figure 2a). <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conduction#Fourier's_law">Fourier law</a>, the equation relating the thermal heat flow rate in a direction <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(q_x\)</span>, to the temperature gradient, <span class="math notranslate nohighlight">\(\frac{d \theta}{d x}\)</span>, in the direction <span class="math notranslate nohighlight">\(x\)</span> is:</p>
+<p>Thermal conduction is the heat diffusion in solids in the direction of the temperature gradient (Figure 3a). <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_conduction#Fourier's_law">Fourier law</a>, the equation relating the thermal heat flow rate in a direction <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(q_x\)</span>, to the temperature gradient, <span class="math notranslate nohighlight">\(\frac{d \theta}{d x}\)</span>, in the direction <span class="math notranslate nohighlight">\(x\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[q_x = -\lambda S \frac{d \theta}{d x}\]</div>
 <p>where:</p>
@@ -548,11 +545,11 @@ document.write(`
 <p>The minus sign shows that heat transfer is from high to low temperature.</p>
 <p><img alt="conduction" src="../_images/A01_conduction.svg" /></p>
 <blockquote>
-<div><p>Figure 4. Steady state thermal conduction: a) stream tube; b) thermal network model.</p>
+<div><p>Figure 3. Steady state thermal conduction: a) stream tube; b) thermal network model.</p>
 </div></blockquote>
 <section id="conduction-without-internal-sources">
 <h4>Conduction without internal sources<a class="headerlink" href="#conduction-without-internal-sources" title="Permalink to this headline">#</a></h4>
-<p>Let us consider stationary conduction in a stream tube in a homogenous and isotropic material without internal heat sources (Figure 4a). Since the heat flow rate <span class="math notranslate nohighlight">\(q\)</span> is conserved, Fourier law in section <span class="math notranslate nohighlight">\(s\)</span> of the streamline is</p>
+<p>Let us consider stationary conduction in a stream tube in a homogenous and isotropic material without internal heat sources (Figure 3a). Since the heat flow rate <span class="math notranslate nohighlight">\(q\)</span> is conserved, Fourier law in section <span class="math notranslate nohighlight">\(s\)</span> of the streamline is</p>
 <div class="math notranslate nohighlight">
 \[q = -\lambda S \frac{d \theta}{d x}\]</div>
 <p>where the conductivity <span class="math notranslate nohighlight">\(\lambda = \lambda(s)\)</span> and the area surface <span class="math notranslate nohighlight">\(S = S(s)\)</span> depend on the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Curvilinear_coordinates">curvilinear coordinate</a> <span class="math notranslate nohighlight">\(s\)</span>. By separating the variables, the above equation becomes:</p>
@@ -596,7 +593,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(q(s) =  \int_{s_0}^{s} p \, S \, ds + q_0\)</span> and</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_1 = -\int_{s_0}^{s_1} \frac{1}{\lambda S} \left ( \int_{s_0}^{s} p \, S \, ds' \right ) ds - R_0 \, q_0 + \theta_0\)</span></p></li>
 </ul>
-<p>can be represented by the thermal circuit presented in Figure 4b where the heat rate source is</p>
+<p>can be represented by the thermal circuit presented in Figure 3b where the heat rate source is</p>
 <div class="math notranslate nohighlight">
 \[f_1 = \int_{s_0}^{s} p \, S ds\]</div>
 <p>and the temperature source is</p>
@@ -618,7 +615,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[e_0 = \theta_0 - \theta_1 + b_0\]</div>
 <p>is the temperature difference across the thermal resistance <span class="math notranslate nohighlight">\(R_0.\)</span></p>
-<p>Refering to the model from Figure 4b:</p>
+<p>Refering to the model from Figure 3b:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(b_0 = -R_0 \int_{s_0}^{s_1} p \, S \, ds + \int_{s_0}^{s_1} R \, p \, S ds\)</span>, where <span class="math notranslate nohighlight">\(R = \int_{s_0}^{s} \frac{1}{\lambda S} ds\)</span>  is temperature source;</p></li>
 <li><p><span class="math notranslate nohighlight">\(f_1 = \int_{s_0}^{s} p \, S ds\)</span> is flow rate source;</p></li>
@@ -655,16 +652,14 @@ document.write(`
 </section>
 <section id="thermal-conductances">
 <h2>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h2>
-<p>The three modes of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer">heat transfer</a> (conduction, convection and radiation) and the heat advection can be modelled by thermal resistances or conductances (Figure 2).</p>
+<p>The three modes of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer">heat transfer</a> (conduction, convection and radiation) and the heat advection can be modelled by thermal resistances or conductances (Figure 4).</p>
 <p><img alt="heat_transfert" src="../_images/A01_heat_transfert.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Conductances in heat transfer and energy advection: a) conduction; b) convection; c) radiation; d) advection.</p>
+<div><p>Figure 4. Conductances in heat transfer and energy advection: a) conduction; b) convection; c) radiation; d) advection.</p>
 </div></blockquote>
-<section id="conduction">
-<h3>Conduction<a class="headerlink" href="#conduction" title="Permalink to this headline">#</a></h3>
-<section id="id1">
-<h4>Plan wall<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
-<p>For a plan wall, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> conductances, in W/K, are of the form (Figure 2a):</p>
+<section id="plan-wall-conduction">
+<h3>Plan wall conduction<a class="headerlink" href="#plan-wall-conduction" title="Permalink to this headline">#</a></h3>
+<p>For a plan wall, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> conductances, in W/K, are of the form (Figure 4a):</p>
 <div class="math notranslate nohighlight">
 \[G_{cd} = \frac{\lambda}{w}S\]</div>
 <p>where:</p>
@@ -674,10 +669,9 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(S\)</span> - surface area of the wall, m².</p></li>
 </ul>
 </section>
-</section>
 <section id="convection">
 <h3>Convection<a class="headerlink" href="#convection" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">Convection</a> conductances, in W/K, are of the form (Figure 2b):</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Convection_(heat_transfer)">Convection</a> conductances, in W/K, are of the form (Figure 4b):</p>
 <div class="math notranslate nohighlight">
 \[G_{cv} = {h S}\]</div>
 <p>where:</p>
@@ -819,7 +813,7 @@ F_{i,i} = 0
 <div class="math notranslate nohighlight">
 \[\bar{T} =\sqrt[3]{ \frac{(T_1^2 + T_2^2)(T_1 + T_2)}{4}}\]</div>
 <p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span>. An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, i.e., <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq \bar T - 273.15 \leq 30 \,\mathrm{ °C}\)</span>, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 5 and 6 W/(m²·K). Practically, <span class="math notranslate nohighlight">\(\bar T - 273.15 = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W/(m^2K)}\)</span>.</p>
-<p>After linearization, the conductances, in W/K, for radiative heat exchange are (Figure 2c):</p>
+<p>After linearization, the conductances, in W/K, for radiative heat exchange are (Figure 4c):</p>
 <div class="math notranslate nohighlight">
 \[G_{1} = 4 \sigma \bar{T}^3 \frac{\varepsilon_1}{1 - \varepsilon_1} S_1\]</div>
 <div class="math notranslate nohighlight">
@@ -851,7 +845,7 @@ F_{i,i} = 0
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C (noted in majuscule because it is a <em>temperature source</em> or <em>input variable</em>);</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta_i\)</span> - indoor air temperature, °C (noted in minuscule because it is a <em>dependent temperature</em> or <em>output variable</em>).</p></li>
 </ul>
-<p>Therefore, the conductance of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">infiltration</a>, in W/K, is (Figure 2d):</p>
+<p>Therefore, the conductance of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">ventilation</a> and/or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infiltration_(HVAC)">infiltration</a>, in W/K, is (Figure 4d):</p>
 <div class="math notranslate nohighlight">
 \[G_v = \rho_a c_a \dot{V}_a\]</div>
 <blockquote>
@@ -1233,10 +1227,7 @@ y = C_s \theta_s + D_s u
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermal-conductances">Thermal conductances</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conduction">Conduction</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Plan wall</a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plan-wall-conduction">Plan wall conduction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convection">Convection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#long-wave-radiation">Long wave radiation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#view-factors-inside-the-building">View factors inside the building</a></li>
