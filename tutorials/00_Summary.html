@@ -447,7 +447,7 @@ document.write(`
 <h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
 <section id="thermal-circuit">
 <h3>Thermal circuit<a class="headerlink" href="#thermal-circuit" title="Permalink to this headline">#</a></h3>
-<p>The <em>dm4bem</em> method proposes a specific data structure: the thermal circuit (TC). It consists of a dictionary composed of (Figure 3b):</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dm4bem</span></code> method proposes a specific data structure: the thermal circuit (TC). It consists of a <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dictionary</a> composed of (Figure 3b):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A\)</span>: branch (flow rate) - node (temperature) incidence matrix;</p></li>
 <li><p><span class="math notranslate nohighlight">\(G\)</span>: vector representing the diagonal of the conductance matrix;</p></li>
@@ -466,7 +466,7 @@ document.write(`
 </section>
 <section id="state-representation">
 <h3>State representation<a class="headerlink" href="#state-representation" title="Permalink to this headline">#</a></h3>
-<p>The state representation is obtained by eliminating the algebraic equations from the thermal circuits, i.e., by considering only the nodes with capacitances (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. 2013</a>). It contains:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state representation</a> is obtained by eliminating the algebraic equations from the system of differential-algebraic equations, i.e., by considering only the nodes with capacitances in the thermal circuit (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. 2013</a>). It contains:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(A\)</span>: state matrix;</p></li>
 <li><p><span class="math notranslate nohighlight">\(B\)</span>: control matrix;</p></li>
@@ -477,7 +477,7 @@ document.write(`
 </section>
 <section id="information-on-walls-and-building">
 <h3>Information on walls and building<a class="headerlink" href="#information-on-walls-and-building" title="Permalink to this headline">#</a></h3>
-<p>For the thermal models of buildings, a special case is represented by the walls. The description of the walls is provided in a directory that contains two types of files:</p>
+<p>For buildings, walls represent a frequent thermal model. The description of the walls is provided in a directory that contains two types of files:</p>
 <ul class="simple">
 <li><p><em>Wall types</em>: thermo-physical properties of materials.</p></li>
 <li><p><em>Wall data</em>: surface area, temperature and flow rate sources, convection and radiation coefficients of surfaces.</p></li>
@@ -485,7 +485,7 @@ document.write(`
 <p>From this information, the thermal circuit of a wall is obtained (the matrices and vectors <span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>).</p>
 <p>A building can be described in a directory (or folder) containing:</p>
 <ul class="simple">
-<li><p>Walls ([wall types]((./pd/bldg/wall_types.csv) and <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls data</span></a>) noted as <code class="docutils literal notranslate"><span class="pre">ow0</span></code> in Figure 4.</p></li>
+<li><p>Walls (<a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall types</span></a> and <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls data</span></a>) noted as <code class="docutils literal notranslate"><span class="pre">ow0</span></code> in Figure 4.</p></li>
 <li><p>Thermal circuits noted as <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3</span></a> in Figure 4.</p></li>
 <li><p>The assembly <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">matrix</span></a>  or <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">lists</span></a> indicating the nodes that merge (connected by dashed lines in Figure 4).</p></li>
 </ul>

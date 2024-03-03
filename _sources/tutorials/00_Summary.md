@@ -31,7 +31,7 @@ Thermal circuits are a visual representation of [constitutive laws](https://en.m
 ## Data structures
 
 ### Thermal circuit
-The _dm4bem_ method proposes a specific data structure: the thermal circuit (TC). It consists of a dictionary composed of (Figure 3b):
+The `dm4bem` method proposes a specific data structure: the thermal circuit (TC). It consists of a [dictionary](https://docs.python.org/3/tutorial/datastructures.html#dictionaries) composed of (Figure 3b):
 
 - $A$: branch (flow rate) - node (temperature) incidence matrix;
 - $G$: vector representing the diagonal of the conductance matrix;
@@ -52,7 +52,7 @@ $$ q = G(-A \theta + b)$$
 Thermal circuits can be built in Python or specified in a `.csv` file.
 
 ### State representation
-The state representation is obtained by eliminating the algebraic equations from the thermal circuits, i.e., by considering only the nodes with capacitances ([Ghiaus, C. 2013](https://doi.org/10.1016/j.energy.2012.10.024)). It contains:
+The [state representation](https://en.m.wikipedia.org/wiki/State-space_representation) is obtained by eliminating the algebraic equations from the system of differential-algebraic equations, i.e., by considering only the nodes with capacitances in the thermal circuit ([Ghiaus, C. 2013](https://doi.org/10.1016/j.energy.2012.10.024)). It contains:
 - $A$: state matrix;
 - $B$: control matrix;
 - $C$: observation matrix;
@@ -60,14 +60,14 @@ The state representation is obtained by eliminating the algebraic equations from
 - $u$: correspondence table between branches & nodes with sources and their names, i.e., the list of non-zero elements of vectors b & f, as well as their respective positions in these vectors.
 
 ### Information on walls and building
-For the thermal models of buildings, a special case is represented by the walls. The description of the walls is provided in a directory that contains two types of files:
+For buildings, walls represent a frequent thermal model. The description of the walls is provided in a directory that contains two types of files:
 - _Wall types_: thermo-physical properties of materials.
 - _Wall data_: surface area, temperature and flow rate sources, convection and radiation coefficients of surfaces.
 
 From this information, the thermal circuit of a wall is obtained (the matrices and vectors $A, G, C, b, f, y$).
 
 A building can be described in a directory (or folder) containing:
-- Walls ([wall types]((./pd/bldg/wall_types.csv) and [walls data](./pd/bldg/walls_out.csv)) noted as `ow0` in Figure 4.
+- Walls ([wall types](./pd/bldg/wall_types.csv) and [walls data](./pd/bldg/walls_out.csv)) noted as `ow0` in Figure 4.
 - Thermal circuits noted as [TC0](./pd/bldg/TC0.csv), [TC1](./pd/bldg/TC1.csv), [TC2](./pd/bldg/TC2.csv), [TC3](./pd/bldg/TC3.csv) in Figure 4.
 - The assembly [matrix](./pd/bldg/assembly_matrix.csv)  or [lists](./pd/bldg/assembly_lists.csv) indicating the nodes that merge (connected by dashed lines in Figure 4).
 
