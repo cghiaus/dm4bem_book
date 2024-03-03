@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Feb 26 11:55:46 2024
+Modified on Sun Mar  3 20:29:22 2024
 
 @author: cghiaus
 
@@ -183,7 +184,7 @@ axs[0].set_title(f'Time step: $dt$ = {dt:.0f} s;'
                  f' $dt_{{max}}$ = {dt_max:.0f} s')
 plt.show()
 
-# Outputs of pyCloze
+# Outputs
 dm4bem.print_rounded_time("Time step:", dt)
 print(f"Mean outdoor temperature: {data['To'].mean():.1f} °C")
 print(f"Min. indoor temperature: {data['θi'].min():.1f} °C")
@@ -191,5 +192,9 @@ print(f"Max. indoor temperature: {data['θi'].max():.1f} °C")
 
 max_load = data['q_HVAC'].max()
 max_load_index = data['q_HVAC'].idxmax()
+Q_heat = q_HVAC[q_HVAC > 0].sum() * dt / 3.6e6      # kWh
+Q_cool = q_HVAC[q_HVAC < 0].sum() * dt / 3.6e6      # kWh
+
 print(f"Max. load: {max_load:.1f} W at {max_load_index}")
-print(f"Energy consumption: {(data['q_HVAC'] * dt).sum() / (3.6e6):.1f} kWh")
+print(f"Energy consumption for heating: {Q_heat:.1f} kWh")
+print(f"Energy consumption for cooling: {Q_cool:.1f} kWh")
