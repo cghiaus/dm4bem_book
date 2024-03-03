@@ -513,7 +513,7 @@ document.write(`
 \[\rho c \frac{\partial \theta}{\partial t} = - \lambda \frac{\partial ^2 \theta}{\partial x^2}\]</div>
 <p>By discretizing the second derivative in function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\frac{\partial ^2 \theta}{\partial x^2} \approx \frac{\frac{\theta_{i+1} - \theta_i}{\Delta x} - \frac{\theta_i - \theta_{i-1}}{\Delta x}}{\Delta x}\]</div>
+\[\frac{\partial ^2 \theta}{\partial x^2} = \frac{\partial \frac{\partial \theta}{\partial x}}{\partial x}\approx \frac{\frac{\theta_{i+1} - \theta_i}{\Delta x} - \frac{\theta_i - \theta_{i-1}}{\Delta x}}{\Delta x}\]</div>
 <p>and expressing the heat equation for a volume <span class="math notranslate nohighlight">\(V = \Delta x S\)</span>, we obtain:</p>
 <div class="math notranslate nohighlight">
 \[\rho c \Delta x S = \frac{\lambda S}{\Delta x} (\theta_{i-1} - \theta_i) -  \frac{\lambda S}{\Delta x} (\theta_i - \theta_{i+1})\]</div>
@@ -530,7 +530,7 @@ document.write(`
 <p>The discrete form of the heat equation can be modeled by a thermal circuit (Figure 3).</p>
 <p><img alt="conduction" src="../_images/A01_cond_dyn.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Discretization of heat equation</p>
+<div><p>Figure 2. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discretization">Discretization</a> of heat equation: a) Space discretization; b) Thermal circuit.</p>
 </div></blockquote>
 </section>
 <section id="steady-state-conduction-in-a-stream-tube">
@@ -825,7 +825,7 @@ F_{i,i} = 0
 </section>
 <section id="convection-and-radiation">
 <h3>Convection and radiation<a class="headerlink" href="#convection-and-radiation" title="Permalink to this headline">#</a></h3>
-<p>Since the calculation of long-wave radiative exchange is very laborius, a simplfied approach is used to estimate the surfce heat</p>
+<p>Since the calculation of long-wave radiative exchange is very laborious, a simplfied approach is used to estimate the surfce heat coefficient for convection and long-wave radiation.</p>
 <p>The net radiatiative flow rate between a surface and its closed surrundings is (Figure 6):</p>
 <div class="math notranslate nohighlight">
 \[q_{rad} = (\varepsilon M_s^o - \alpha E_s) S_s = \varepsilon \sigma (T_s^4 - T_{sur}^4) S_s\]</div>
@@ -1140,16 +1140,14 @@ q = G (-A \theta + b)
 <li><p><span class="math notranslate nohighlight">\(b\)</span> - temperature source vector of size <span class="math notranslate nohighlight">\(n_q\)</span>: if there is no temperature source on branch <em>m</em>, then <span class="math notranslate nohighlight">\(b_m = 0\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(f\)</span> - heat flow source vector of size <span class="math notranslate nohighlight">\(n_θ\)</span>: if there is no heat flow source in node <em>n</em>, then <span class="math notranslate nohighlight">\(f_n = 0\)</span>.</p></li>
 </ul>
-<p><strong>Note</strong>: The incidence matrix <span class="math notranslate nohighlight">\(A\)</span> is related to difference operator <span class="math notranslate nohighlight">\(\Delta\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[ \Delta = -A\]</div>
+<p><strong>Note</strong>: The incidence matrix <span class="math notranslate nohighlight">\(A\)</span> is related to difference operator (applied to temperatures) <span class="math notranslate nohighlight">\(\Delta = -A\)</span> and to summation operator (applied to heat flow rates) <span class="math notranslate nohighlight">\(\Sigma = A^T\)</span>. Note that <span class="math notranslate nohighlight">\(\Sigma = -\Delta^T\)</span>.</p>
 <p>The resolution is first done for temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>, by solving the equation</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -(A^T G A) \theta + A^T G b + f\]</div>
 <p>which, generally, is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">system of differential-algebraic equations</a> (DAE). Then, the heat flow rates are found from the equation</p>
 <div class="math notranslate nohighlight">
 \[q = G (-A \theta + b)\]</div>
-<p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes. The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the nodes which are the outputs of the model.</p>
+<p>The vector of outputs is <span class="math notranslate nohighlight">\(y\)</span>, of size <span class="math notranslate nohighlight">\(n_{\theta}\)</span>, the number of nodes. The non-zero values of <span class="math notranslate nohighlight">\(y\)</span> indicate the teperature nodes which are the outputs of the model.</p>
 </section>
 <section id="state-space-representation">
 <h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h2>
