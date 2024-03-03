@@ -103,11 +103,11 @@ The [workflow](https://en.m.wikipedia.org/wiki/Workflow) for modeling and simula
 - __Tests in steady-state and step respose:__ test if the model is wrong ([falsifiability](https://en.wikipedia.org/wiki/Falsifiability)). If the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.
     - Compare and interpret the steady-state results obtained for thermal circuit and state-space representation.
     - Perform eigenvalue analysis of the state matrix $A_s$ of the state-space representation and analyse the maximum time step (for numerical integration with [Euler explicit or forward method](https://en.wikipedia.org/wiki/Euler_method)) and the [settling time](https://en.wikipedia.org/wiki/Settling_time). If the maximum time step is:
-        - too small: set to zero the capacities that with the related conductance (or resistance) produce the small time step (e.g., air, windows, doors);
-        - too large: consider the discretization of elements which have large capacities (e.g., walls, ground).
+        - too small: set to zero the capacities which, with the related conductance (or resistance), produce the small time step (e.g., air, windows, doors);
+        - too large: consider thiner discretization of elements which have large capacities (e.g., walls, ground).
     - Simulate the time response (by using [Euler explicit and implicit method](https://en.wikipedia.org/wiki/Explicit_and_implicit_methods)) to different [step inputs](https://en.wikipedia.org/wiki/Step_response).
     - Compare the settling time obtained from simulation of step response with that obtained by eigenvalue analysis.
-    - Compare the steady-state value obtained by simumation of from the models (therma circuit and state-space representation).
+    - Compare the steady-state value obtained by simulation of the models (thermal circuit and state-space representation).
 
 
 - __Inputs:__ prepare the input data set, i.e., time variation of weather and scheduled sources of temperature and flow-rate.
@@ -124,19 +124,19 @@ The [workflow](https://en.m.wikipedia.org/wiki/Workflow) for modeling and simula
     - Calculate the outputs from the states.
     - Plot the results.
 
-## Conclusions
+## Conclusion
 
 Dynamic Models for Building Energy Management ([dm4bem](dm4bem.py)) method offers an efficient approach to obtaining thermal models by assembling different models. The main contributions of the method lie in the following aspects:
 
 - Definition of a data structure describing thermal circuits as weighted directed graphs, described by matrices and vectors $A, G, C, b, f, y.$
 - Considering, in the state representation $A_s, B_s, C_s, D_s, u_s,$ the correspondence table $u_s$ between the non-zero elements of vectors $b$ and $f$ and the names of temperature and flow rate sources, respectively.
-- Assembly of thermal circuits by merging nodes (temperature nodes) and the consequent transformation of matrices and vectors $A, G, C, b, f, y.$
-- Transformation of the thermal circuit (directed graph) into state representation.
+- Assembly of thermal circuits by merging temperature nodes, which requires transformation of matrices and vectors $A, G, C, b, f, y.$
+- Transformation of the thermal circuit (directed weighted graph) into state-space representation.
 - Procedure for generating thermal circuits for walls (generic, exterior, and interior).
-- Folder structure allowing characterization of a building based on the description of walls, thermal circuits, and connection matrix, as well as the procedure for creating the thermal circuit.
-- Implementation of these concepts in Python and the presentation of tutorials in this freely accessible Jupyter.
+- Folder structure allowing characterization of a building based on the description of walls, thermal circuits, and assembly matrix, and the procedure for creating the thermal circuit.
+- Implementation of these concepts in Python and their explanation in Jupyter notebook tutorials.
 
-By transforming thermal circuits into state representations, this method enables their use in the analysis and synthesis of control algorithms. Eigenvalue analysis of the state matrix provides important information about integration time step and response time, as well as proper choices in spatial discretization. By integrating non-linearities into the time integration loop, it is possible to model non-linear control parameters and/or algorithms. _dm4bem_ uses text-based commands and model descriptions, facilitating reproducibility.
+By transforming thermal circuits into state representations, this method enables their use in the analysis and synthesis of control algorithms. Eigenvalue analysis of the state matrix provides important information about integration time step and response time, as well as proper choices in spatial discretization. By integrating non-linearities into the time integration loop, it is possible to model non-linear control parameters and/or algorithms. The method `dm4bem` uses text-based commands and model descriptions, facilitating reproducibility.
 
 The current main drawback is that buildings are not described by using Computer-Aided Design (CAD) tools, which would enable automatic irradiance calculations. Another improvement would be to use sparse matrices to reduce memory usage. 
 
