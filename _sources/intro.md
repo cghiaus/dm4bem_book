@@ -14,7 +14,7 @@ State-space representation is widely used for developing control algorithms. Thi
 
 __Quick overview__
 
-The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _[Python script](tutorials/pd05simulation.ipynb#script)_ for a synthesis of the workflow). [ps](tutorials/pd05simulation#Pyhton_script)
+The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _[Python script](tutorials/pd05simulation.ipynb#script)_ for a synthesis of the workflow).
 
 
 __Prerequisites__
