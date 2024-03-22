@@ -171,12 +171,12 @@ data = pd.DataFrame({'To': input_data_set['To'],
 fig, axs = plt.subplots(2, 1)
 data[['To', 'θi']].plot(ax=axs[0],
                         xticks=[],
-                        ylabel='Temperature, $θ$ / [°C]')
+                        ylabel='Temperature, $θ$ / °C')
 axs[0].legend(['$θ_{outdoor}$', '$θ_{indoor}$'],
               loc='upper right')
 
 data[['Etot', 'q_HVAC']].plot(ax=axs[1],
-                              ylabel='Heat rate, $q$ / [W / m²]')
+                              ylabel='Heat rate, $q$ / W·m⁻²')
 axs[1].set(xlabel='Time')
 axs[1].legend(['$E_{total}$', '$q_{HVAC}$'],
               loc='upper right')

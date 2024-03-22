@@ -451,14 +451,14 @@ document.write(`
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>This notebook:</p>
 <ul class="simple">
-<li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a dedicated module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a>. It then reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus Weather Format (epw) containing weather data for Lyon, France.</p></li>
-<li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces the year in the index with 2000.</p></li>
+<li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a lcal (dedicated) module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a>. It then reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus™ Weather Format (epw) containing weather data for Lyon, France.</p></li>
+<li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces with 2000 the years in the index of the dataframe.</p></li>
 <li><p>Defines a start date and an end date and filters the weather data based on these dates.</p></li>
-<li><p>Creates three plots using the filtered weather data:</p>
+<li><p>Creates three lien plots using the filtered weather data:</p>
 <ul>
-<li><p>A line plot of outdoor air temperature over time.</p></li>
-<li><p>A line plot of solar radiation (normal direct and horizontal diffuse) over time.</p></li>
-<li><p>A line plot of solar radiation on a tilted surface over time, calculated using the filtered weather data and the slope, azimuth, and latitude of the surface.</p></li>
+<li><p>Outdoor air temperature over time.</p></li>
+<li><p>Solar radiation (normal direct and horizontal diffuse) over time.</p></li>
+<li><p>Solar radiation on a tilted surface over time, calculated using the filtered weather data and the slope, azimuth, and latitude of the surface.</p></li>
 </ul>
 </li>
 <li><p>Calculates the solar radiation on a tilted surface by computing the direct radiation, diffuse radiation, and reflected radiation. It then stores the calculated solar radiation as a new column in the filtered weather data.</p></li>
@@ -482,10 +482,10 @@ document.write(`
 <h3>Download data file<a class="headerlink" href="#download-data-file" title="Permalink to this headline">#</a></h3>
 <p>Download the weather file with extension <code class="docutils literal notranslate"><span class="pre">.epw</span></code> from:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: folder of files at the repository of free climate data for building performance simulation,</p></li>
+<li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: repository of free climate data for building performance simulation,</p></li>
 <li><p><a class="reference external" href="https://energyplus.net/weather">EnergyPlus™</a>: interactive map with locations,</p></li>
 <li><p><a class="reference external" href="http://www.ladybug.tools/epwmap/">LadyBug Tools</a>: interactive map with locations,</p></li>
-<li><p><a class="reference external" href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html">PV GIS</a>: interractive map with interpollated data.</p></li>
+<li><p><a class="reference external" href="https://re.jrc.ec.europa.eu/pvg_tools/en/tools.html">PV GIS</a>: interractive map with interpolated data.</p></li>
 </ul>
 <p>For example, for the airport Lyon-Bron, France (N45.73, E5.08), download the files:</p>
 <ul class="simple">
@@ -506,7 +506,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code> contains hourly data for one year. For the description of the structure and the meaning of the fileds of the <code class="docutils literal notranslate"><span class="pre">.epw</span></code> file, see <code class="docutils literal notranslate"><span class="pre">read_epw</span></code> function in <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem.py</span></a> module and the documentation for <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/generated/pvlib.iotools.read_epw.html">pvlib.iotools.read_epw</a> function of <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/index.html">pvlib python</a>.</p>
+<p>The weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code> contains hourly data for one year. For the description of the structure and the meaning of the fields of the <code class="docutils literal notranslate"><span class="pre">.epw</span></code> file, see <code class="docutils literal notranslate"><span class="pre">read_epw</span></code> function in <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem.py</span></a> module and the documentation for <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/generated/pvlib.iotools.read_epw.html">pvlib.iotools.read_epw</a> function of <a class="reference external" href="https://pvlib-python.readthedocs.io/en/v0.9.0/index.html">pvlib python</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">meta</span><span class="p">]</span> <span class="o">=</span> <span class="n">read_epw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">coerce_year</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -921,7 +921,7 @@ document.write(`
 <p>From the dataset, select:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>EPWData field</p></th>
+<tr class="row-odd"><th class="text-left head"><p>EPW Data field</p></th>
 <th class="head"><p>Mean during 1 h prior to timestamp</p></th>
 <th class="head"><p>Unit</p></th>
 </tr>
@@ -941,7 +941,7 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p><em>Note</em>: For the description of <code class="docutils literal notranslate"><span class="pre">.EPW</span></code> file, see <a class="reference external" href="https://wholmgren-pvlib-python-new.readthedocs.io/en/stable/_modules/pvlib/iotools/epw.html">pvlib.iotools.epw</a>.</p>
+<p><em>Note</em>: For the description of <code class="docutils literal notranslate"><span class="pre">.epw</span></code> file, see <a class="reference external" href="https://wholmgren-pvlib-python-new.readthedocs.io/en/stable/_modules/pvlib/iotools/epw.html">pvlib.iotools.epw</a>.</p>
 <p>Since the values for each month are from different years, let’s replace the different years with the same year, e.g. <code class="docutils literal notranslate"><span class="pre">2000</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1096,14 +1096,14 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Dry-bulb air temperature, θ / [°C]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Dry-bulb air temperature, θ / °C&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b00207bd1313466f6e20f3a12c914aff63142c8d6d98024da86f4cb074176df2.png" src="../_images/b00207bd1313466f6e20f3a12c914aff63142c8d6d98024da86f4cb074176df2.png" />
+<img alt="../_images/accfbf5bef01cf32438e848459e68ca8d5aaa4af62932f5708df8009ba19b97a.png" src="../_images/accfbf5bef01cf32438e848459e68ca8d5aaa4af62932f5708df8009ba19b97a.png" />
 </div>
 </div>
 <blockquote>
@@ -1116,14 +1116,14 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[[</span><span class="s1">&#39;dir_n_rad&#39;</span><span class="p">,</span> <span class="s1">&#39;dif_h_rad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation, Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar radiation, Φ / W·m⁻²&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$Φ_</span><span class="si">{direct}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$Φ_</span><span class="si">{diffuse}</span><span class="s1">$&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9830cf7b1508be24a7b0151fe990732261fecdacb39adb0c994142a50b055b5e.png" src="../_images/9830cf7b1508be24a7b0151fe990732261fecdacb39adb0c994142a50b055b5e.png" />
+<img alt="../_images/bd503e0bac4fb3524ec974d51ef6596825c11495cbe06fb2695728e887ad2f5d.png" src="../_images/bd503e0bac4fb3524ec974d51ef6596825c11495cbe06fb2695728e887ad2f5d.png" />
 </div>
 </div>
 <blockquote>
@@ -1135,8 +1135,8 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 <h3>Solar radiation on a tilted surface<a class="headerlink" href="#solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h3>
 <section id="orientation-of-the-tilted-wall">
 <h4>Orientation of the tilted wall<a class="headerlink" href="#orientation-of-the-tilted-wall" title="Permalink to this headline">#</a></h4>
-<p>Knowing the albedo of the surface which is in front of a tilted wall, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
-<p>Let’s consider a wall at latitude <span class="math notranslate nohighlight">\(\phi\)</span> with the orientation given by its slope angle, <span class="math notranslate nohighlight">\(\beta\)</span>, and azimuth angle, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
+<p>Knowing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface which is in front of a tilted wall, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
+<p>Let’s consider a wall at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Latitude">latitude</a> <span class="math notranslate nohighlight">\(\phi\)</span> with the orientation given by its slope angle, <span class="math notranslate nohighlight">\(\beta\)</span>, and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Azimuth">azimuth angle</a>, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">surface_orientation</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;slope&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>     <span class="c1"># 90° is vertical; &gt; 90° downward</span>
@@ -1156,7 +1156,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </ul>
 <p>N, S, E, W: North, South, East and West, respectively. <span class="math notranslate nohighlight">\(\vec{n}\)</span> is the vector normal to the surface. ∟ represents right angles.</p>
 </div></blockquote>
-<p>Let’s consider that the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface in front of the wall is kown.</p>
+<p>Let’s consider that the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface in front of the wall is known.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -1174,13 +1174,13 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 
 <span class="n">rad_surf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar irradiance,  Φ / [W·m⁻²]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Solar irradiance,  Φ / W·m⁻²&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b138397faa5ce2a2579df98db2667dc27eb48cfde87688db8e8af59ba61e351f.png" src="../_images/b138397faa5ce2a2579df98db2667dc27eb48cfde87688db8e8af59ba61e351f.png" />
+<img alt="../_images/f630312ba2c6be36f5754ebcc14f50e4b9c0fe0ebea11933bca7a6e1fee14756.png" src="../_images/f630312ba2c6be36f5754ebcc14f50e4b9c0fe0ebea11933bca7a6e1fee14756.png" />
 </div>
 </div>
 <blockquote>
@@ -1270,7 +1270,7 @@ Max. direct irradiation:  314 W/m²
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(G_{dir}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Direct_insolation">direct normal</a></strong> or <strong>beam radiation</strong>: amount of solar radiation received directly from the solar disk on a surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated, W/m².</p></li>
-<li><p><span class="math notranslate nohighlight">\(G_{dif}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Diffuse_sky_radiation">diffuse radiation</a></strong>: amount of solar radiation received after scattering by the atmosphere, W/m². It does not include the diffuse infrared radiation emitted by the atmosphere.</p></li>
+<li><p><span class="math notranslate nohighlight">\(G_{dif}\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Diffuse_sky_radiation">diffuse radiation</a></strong>: amount of solar radiation received after scattering by the atmosphere, W/m². It does not include the diffuse infrared radiation emitted by the atmosphere, W/m².</p></li>
 <li><p><span class="math notranslate nohighlight">\(G_r\)</span> <strong><a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">total solar radiation coming by reflection</a></strong> from the surface in front of the wall (usually, ground), W/m².</p></li>
 </ul>
 </section>
