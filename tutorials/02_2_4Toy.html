@@ -1091,7 +1091,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Etot&#39;</span><span class="p">,</span> <span class="s1">&#39;q_HVAC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / W·m⁻²&#39;</span><span class="p">)</span>
+                              <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat rate, $q$ / (W·m⁻²)&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">],</span>
               <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
@@ -1100,7 +1100,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62254c52f4b16316e1ae7894606ae78a8724afbbfa1a4db1c9627e6e2c5035eb.png" src="../_images/62254c52f4b16316e1ae7894606ae78a8724afbbfa1a4db1c9627e6e2c5035eb.png" />
+<img alt="../_images/61ba6ccd2fc37aebbe62f35d3606c62d944b3ac11089d7e93366d0166511b8a7.png" src="../_images/61ba6ccd2fc37aebbe62f35d3606c62d944b3ac11089d7e93366d0166511b8a7.png" />
 </div>
 </div>
 <blockquote>
@@ -1126,7 +1126,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Etot&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$E_</span><span class="si">{total}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">q_HVAC</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$q_</span><span class="si">{HVAC}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / day&#39;</span><span class="p">,</span>
-           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat flows, $q$ / W·m⁻²&#39;</span><span class="p">)</span>
+           <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Heat flows, $q$ / (W·m⁻²)&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -1134,7 +1134,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f40e2ae0491aa4243e7b4bf0db6ae1202dac1712407307ed4cc7d763b5089763.png" src="../_images/f40e2ae0491aa4243e7b4bf0db6ae1202dac1712407307ed4cc7d763b5089763.png" />
+<img alt="../_images/63c7e11c4259498c2beddca5aa0e5d3d24353c143bfd5cdd2a52a69e2da55a41.png" src="../_images/63c7e11c4259498c2beddca5aa0e5d3d24353c143bfd5cdd2a52a69e2da55a41.png" />
 </div>
 </div>
 <blockquote>
