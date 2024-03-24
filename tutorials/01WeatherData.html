@@ -451,10 +451,10 @@ document.write(`
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>This notebook:</p>
 <ul class="simple">
-<li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a lcal (dedicated) module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a>. It then reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus™ Weather Format (epw) containing weather data for Lyon, France.</p></li>
+<li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a local (dedicated) module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a> and reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus™ Weather Format (<code class="docutils literal notranslate"><span class="pre">.epw</span></code>) containing weather data for Lyon, France.</p></li>
 <li><p>Selects three columns from the weather data, namely air temperature, direct radiation on a normal surface, and diffuse radiation on an horizontal surface, and replaces with 2000 the years in the index of the dataframe.</p></li>
 <li><p>Defines a start date and an end date and filters the weather data based on these dates.</p></li>
-<li><p>Creates three lien plots using the filtered weather data:</p>
+<li><p>Creates three line plots using the filtered weather data:</p>
 <ul>
 <li><p>Outdoor air temperature over time.</p></li>
 <li><p>Solar radiation (normal direct and horizontal diffuse) over time.</p></li>
@@ -1378,7 +1378,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <p>The total radiation received by reflection is:</p>
 <div class="math notranslate nohighlight">
 \[G_r = (G_{dir,h} + G_{dif,h}) \, \rho \, \frac{1 - \cos \beta}{2}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> (or the reflection coefficient) of the surface.</p>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> (or the reflection coefficient) of the surface and <span class="math notranslate nohighlight">\(\beta\)</span> is the slope of the surface.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_rad</span> <span class="o">=</span> <span class="p">(</span><span class="n">dir_h_rad</span> <span class="o">+</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dif_h_rad&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="n">albedo</span> \
