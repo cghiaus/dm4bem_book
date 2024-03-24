@@ -477,7 +477,7 @@ document.write(`
 <h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>This notebook calculates the temperature distribution in a two-layer wall in steady-state and in a dynamic simulation. The code:</p>
 <ul class="simple">
-<li><p>Imports Python standard modules (NumPy, Pandas, Matplotlib), and functions from a local module (<code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>).</p></li>
+<li><p>Imports Python standard modules (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>), and functions from a local module (<code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>).</p></li>
 <li><p>Defines the physical characteristics of the materials used to construct the wall and of the air inside the room. The characteristics include thermal conductivity, density, specific heat, and width.</p></li>
 <li><p>Creates a data frame to store information about the wall, including the materials used to construct it, and calculates the surface area of the wall and the volume of the air inside the room.</p></li>
 <li><p>Calculates the thermal resistances and thermal capacities of the wall and the air.</p></li>
@@ -688,7 +688,11 @@ document.write(`
 </ul>
 <p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Network_analysis_(electrical_circuits)">Network (or circuit) analysis</a> means finding the temperatures and the flow rates when the circuit (i.e. the elements, the sources and their connections) is given.</p>
 <p>The circuit elements of the thermal network are the resistances and the capacities. Their values are found by using the thermo-physical properties of the materials: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity">thermal conductivity</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Specific_heat_capacity">specific heat capacity</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Density">density</a>, and the geometrical values: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Length">width</a>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Surface_area">surface area</a> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volume">volume</a>.</p>
-<p>The parameters are grouped in matrices of parameters, or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Coefficient_matrix">coefficent matrices</a>, and the variables are in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Vector_(mathematics_and_physics)">vectors</a>. The variables are physical inputs, modelled by temperature and flow rate sources, and physical outputs, modelled by temperatures of the nodes and flow rates through the branches.</p>
+<p>The parameters are grouped in matrices of parameters, or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Coefficient_matrix">coefficient matrices</a>, and the variables are in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Vector_(mathematics_and_physics)">vectors</a>. The variables are:</p>
+<ul class="simple">
+<li><p>physical inputs, modelled by temperature and flow rate sources;</p></li>
+<li><p>physical outputs, modelled by temperatures of the nodes and flow rates through the branches.</p></li>
+</ul>
 <p>The thermal circuits model physical systems which are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Causal_system">causal</a>: the values of the outputs depend on past and current values of the inputs (but not on future values of the inputs).</p>
 </section>
 <section id="parameters-of-thermal-network">
@@ -857,7 +861,7 @@ C_0 &amp;  &amp;  &amp; \\
 +1 &amp; \text{if branch } q_k \text{ enters node }  \theta_l\\ 
 -1 &amp; \text{if branch } q_k \text{ leaves node }  \theta_l 
 \end{cases}\end{split}\]</div>
-<p>The matrix <span class="math notranslate nohighlight">\(-A\)</span> is a difference operator for the vector <span class="math notranslate nohighlight">\(\theta\)</span> of temperatures, <span class="math notranslate nohighlight">\(-A \equiv \Delta\)</span>. That is, <span class="math notranslate nohighlight">\(e = -A \theta\)</span> or <span class="math notranslate nohighlight">\(e = \Delta \theta\)</span> is the vector of differences between temperatures connected by resistances (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>).</p>
+<p>The matrix <span class="math notranslate nohighlight">\(-A\)</span> is a difference operator for the vector <span class="math notranslate nohighlight">\(\theta\)</span> of temperatures, <span class="math notranslate nohighlight">\(-A \equiv \Delta\)</span>. That is, <span class="math notranslate nohighlight">\(e = -A \theta\)</span> or <span class="math notranslate nohighlight">\(e = \Delta \theta\)</span> is the vector of differences between temperature nodes connected by oriented flow rates (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Arc-node incidence matrix</span>
@@ -1814,7 +1818,7 @@ Max time step Δt = 416.11 s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">θ_exp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">θ_imp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / [h]&#39;</span><span class="p">,</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / h&#39;</span><span class="p">,</span>
        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Air temperature, $θ$ / °C&#39;</span><span class="p">,</span>
        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Step input: $T_o$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Euler explicit&#39;</span><span class="p">,</span> <span class="s1">&#39;Euler implicit&#39;</span><span class="p">])</span>
@@ -1823,7 +1827,7 @@ Max time step Δt = 416.11 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4f7742527322aa3b8112d78961af80836aeceb075abf921a33c7182371a979c9.png" src="../_images/4f7742527322aa3b8112d78961af80836aeceb075abf921a33c7182371a979c9.png" />
+<img alt="../_images/6b1798f973b28a55b39ba0f05a3c047a73bf38f7a0eef8c7feb2dad7c59c4550.png" src="../_images/6b1798f973b28a55b39ba0f05a3c047a73bf38f7a0eef8c7feb2dad7c59c4550.png" />
 </div>
 </div>
 <blockquote>
