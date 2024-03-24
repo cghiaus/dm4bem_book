@@ -176,7 +176,7 @@ axs[0].legend(['$θ_{outdoor}$', '$θ_{indoor}$'],
               loc='upper right')
 
 data[['Etot', 'q_HVAC']].plot(ax=axs[1],
-                              ylabel='Heat rate, $q$ / W·m⁻²')
+                              ylabel='Heat rate, $q$ / (W·m⁻²)')
 axs[1].set(xlabel='Time')
 axs[1].legend(['$E_{total}$', '$q_{HVAC}$'],
               loc='upper right')
