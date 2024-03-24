@@ -423,7 +423,7 @@ document.write(`
 <h1>Disassembled thermal circuits from building description<a class="headerlink" href="#disassembled-thermal-circuits-from-building-description" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd02bldg2TCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <span class="xref myst">dm4bem</span> module.</p>
-<p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code>):</p>
+<p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code>, <a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>):</p>
 <ul class="simple">
 <li><p>description of the walls (wall type and wall data);</p></li>
 <li><p>description of thermal circuits;</p></li>
@@ -492,7 +492,7 @@ document.write(`
 </section>
 <section id="description-of-the-folder-containing-the-circuits">
 <h2>Description of the folder containing the circuits<a class="headerlink" href="#description-of-the-folder-containing-the-circuits" title="Permalink to this headline">#</a></h2>
-<p>The disassembled circuits and the indications on how to assemble them are given in the folder <code class="docutils literal notranslate"><span class="pre">.\bldg</span></code> composed by the files:</p>
+<p>The disassembled circuits and the indications on how to assemble them are given in the folder <code class="docutils literal notranslate"><span class="pre">.\bldg</span></code> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>) composed by the files:</p>
 <ul class="simple">
 <li><p>assembly:</p>
 <ul>
@@ -526,7 +526,7 @@ document.write(`
 <li><p>Node 0 of circuit c2 (in magenta) is merged with the 1st node of circuit c3 (in black); the node of circuit c2 is kept (node 0 of circuit c3, in faded black, is deleted).</p></li>
 <li><p>Node 0 of circuit c2 (in magenta) is merged with the last node of circuit c1 (in green); the node of circuit c2 is kept (last node of circuit c1, in faded green, is deleted).</p></li>
 </ol>
-<p>These connexions are described in the file <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly_matrix.csv</span></a>.</p>
+<p>These connexions are described in the file <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly_matrix.csv</span></a> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./pd/bldg/assembly_matrix.csv&#39;</span><span class="p">)</span>
@@ -602,7 +602,7 @@ document.write(`
 </section>
 <section id="assembly-lists">
 <h4>Assembly lists<a class="headerlink" href="#assembly-lists" title="Permalink to this headline">#</a></h4>
-<p>The assembly lists are in the file <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">assembly_lists.csv</span></a>. Each row contains two lists:</p>
+<p>The assembly lists are in the file <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">assembly_lists.csv</span></a> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>. Each row contains two lists:</p>
 <ul class="simple">
 <li><p><strong>node0</strong>: the node that is kept (to which all the merging arrows point);</p></li>
 <li><p><strong>nodes</strong>: the node or nodes that are merged and deleted (that are the tail of the merging arrows).</p></li>
@@ -681,7 +681,7 @@ document.write(`
 </section>
 <section id="thermal-circuits">
 <h3>Thermal circuits<a class="headerlink" href="#thermal-circuits" title="Permalink to this headline">#</a></h3>
-<p>The names of the files which describe the thermal circuits start with TC, e.g., <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a>. A thermal circuit is a data structure composed of:</p>
+<p>The names of the files which describe the thermal circuits start with TC, e.g., <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>). A thermal circuit is a data structure composed of:</p>
 <ul class="simple">
 <li><p><strong>A</strong>: incidence matrix  which indicates how the nodes are connected by oriented branches;</p></li>
 <li><p><strong>G</strong>: conductance diagonal matrix ;</p></li>
@@ -1094,7 +1094,7 @@ document.write(`
 </section>
 <section id="walls">
 <h3>Walls<a class="headerlink" href="#walls" title="Permalink to this headline">#</a></h3>
-<p>The walls are characterized by two files:</p>
+<p>The walls are characterized by two files (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>):</p>
 <ul class="simple">
 <li><p>wall composition and physical properties of material for type of wall (e.g., file <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>);</p></li>
 <li><p>surface characteristics of each wall (e.g., file <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls_out.csv</span></a>).</p></li>
@@ -1272,7 +1272,7 @@ document.write(`
 </section>
 <section id="disassembled-thermal-circuits">
 <h2>Disassembled thermal circuits<a class="headerlink" href="#disassembled-thermal-circuits" title="Permalink to this headline">#</a></h2>
-<p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code> that describes the building.</p>
+<p>The disassembled thermal circuits <code class="docutils literal notranslate"><span class="pre">TCd</span></code> are obtained from the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>) that describes the building.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits with auto-numbering of θ and q</span>
@@ -1575,7 +1575,7 @@ Name: y, dtype: int64
 </section>
 <section id="auto-numbering">
 <h3>Auto-numbering<a class="headerlink" href="#auto-numbering" title="Permalink to this headline">#</a></h3>
-<p>There are two types of files describing the thermal circuits:</p>
+<p>There are two types of files describing the thermal circuits (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>):</p>
 <ol class="arabic simple">
 <li><p>walls, described by the files <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">walls_.csv</span></code>.</p></li>
 <li><p>thermal circuits, described by the files <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>, etc.</p></li>
