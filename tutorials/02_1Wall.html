@@ -1509,6 +1509,29 @@ T_o\\
 <h2>Eigenvalue analysis<a class="headerlink" href="#eigenvalue-analysis" title="Permalink to this headline">#</a></h2>
 <section id="time-constants">
 <h3>Time constants<a class="headerlink" href="#time-constants" title="Permalink to this headline">#</a></h3>
+<p>The eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> are related to the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_constant">time constants</a> <span class="math notranslate nohighlight">\(\tau_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \lambda _i = - \frac{1}{\tau_i},\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># minimum eigenvalue of matrix A</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">,</span> <span class="s1">&#39;s </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants: 
+ [  208.1   441.   1051.   1731.8 62794.2  4925.9  9141.6] s 
+</pre></div>
+</div>
+</div>
+</div>
+<p>The time step and the settling time are related to the time constants.</p>
+</section>
+<section id="time-step">
+<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this headline">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">stability condition for explicit Euler method</a> requires that all eigenvalues <span class="math notranslate nohighlight">\(\lambda _i \in \mathbb{Z}\)</span> of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> satisfy the condition</p>
 <div class="math notranslate nohighlight">
 \[ \left | 1 + \lambda _i \Delta t \right | \leq 1, \forall i \]</div>
@@ -1521,44 +1544,21 @@ T_o\\
 <p>it results that the condition for stability is</p>
 <div class="math notranslate nohighlight">
 \[ 0 \leq \Delta t \leq \min (-2 / \lambda_i) = 2 \min (\tau_i).\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># minimum eigenvalue of matrix A</span>
-<span class="n">max_Δt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time constants: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">,</span> <span class="s1">&#39;s </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;2 x Time constants: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">λ</span><span class="p">,</span> <span class="s1">&#39;s </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max time step Δt = </span><span class="si">{</span><span class="n">max_Δt</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time constants: 
- [  208.1   441.   1051.   1731.8 62794.2  4925.9  9141.6] s 
-
-2 x Time constants: 
- [   416.1    881.9   2101.9   3463.6 125588.4   9851.9  18283.1] s 
-
-Max time step Δt = 416.11 s
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="time-step">
-<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this headline">#</a></h3>
 <p>We choose as time step a multiple of 60 s, which is smaller than the maximum admited for numerical stability of Euler explicit method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># time step</span>
-<span class="n">Δt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">max_Δt</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
+<span class="n">Δt_max</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>              <span class="c1"># s</span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Δt_max</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># s</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Max time step Δt = </span><span class="si">{</span><span class="n">Δt_max</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Δt = </span><span class="si">{</span><span class="n">Δt</span><span class="si">}</span><span class="s1"> s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Δt = 360.0 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max time step Δt = 416.11 s
+Δt = 360.0 s
 </pre></div>
 </div>
 </div>

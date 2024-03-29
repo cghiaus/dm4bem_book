@@ -36,6 +36,32 @@ Some rules cited from [BIPM (2019)](https://www.bipm.org/documents/20126/4148302
     - The ordinate of a graph or the heading of a table is labeled __Temperature, $T$/(10³ K)__, where $T$ is thermodynamic temperature and K is the unit symbol for kelvin. If the ordinate value of a point on a curve of the graph is 0.273, or the entry in a table is 0.273, then the corresponding temperature is $T$/(10³ K) = 0.273 or $T$ = 273 K.
     - Symbol % (percent) is used for the number 0.01, e.g., the emmisivity is $\varepsilon$ = 0.85 = 85 %.
 
+__Nomenclature__
+
+- ±                           Plus-minus sign
+- ⁻¹  ²   ³   ⁴               Superscripts
+- ·                           Multiplication
+
+|Symbol| SI unit |          | Attribute |
+|------|---------|----------|-----------|
+| _t_  | s       |          | Time      |
+| _w_  | m       |          | Widh      |
+| _θ_  | °C      |          | Temperature |
+| _q_  | W       |          | Heat flow rate |
+|_A, S_| m²      |          | Surface area |
+| _T_  | K       |          | Thermodynamic temperature|
+| _T_  | °C      |          | Temperature source|
+|_Q̇, Φ_| W       |          | Heat flow rate source |
+|      |         |          |                |
+| _λ_  | W/(m·K) |W·m⁻¹·K⁻¹ | Thermal conductivity|
+| _ρ_  | kg/m³   |kg·m⁻³    | Density |
+| _c_  | J/(kg·K)|J·kg⁻¹·K⁻¹| Specific heat capacity |
+| _h_  | W/(m²·K)|W·m⁻²·K⁻¹ | Heat transfer coefficient |
+| _C_  | J/K     |J·K⁻¹     | Thermal capacity |
+| _E_  | W/m²    |W·m⁻²     | Irradiance |
+| _G_  | W/K     |W·K⁻¹     | Thermal conductance |
+| _ṁ_  | kg/s    |kg·s⁻¹    | Mass flow rate |
+| _V̇_  | m³/s    |m³·s⁻¹    | Volumetric flow rate |
 
 __Reproducibility__
 
