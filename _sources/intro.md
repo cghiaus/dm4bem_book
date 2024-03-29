@@ -60,6 +60,7 @@ __Nomenclature__
 | _C_  | J/K     |J·K⁻¹     | Thermal capacity |
 | _E_  | W/m²    |W·m⁻²     | Irradiance |
 | _G_  | W/K     |W·K⁻¹     | Thermal conductance |
+| _R_  | K/W     |K·W⁻¹     | Thermal resistance |
 | _ṁ_  | kg/s    |kg·s⁻¹    | Mass flow rate |
 | _V̇_  | m³/s    |m³·s⁻¹    | Volumetric flow rate |
 
