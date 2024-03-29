@@ -51,6 +51,7 @@ __Nomenclature__
 | _θ_  | °C      |          | Temperature |
 | _q_  | W       |          | Heat flow rate |
 |_A, S_| m²      |          | Surface area |
+| _V_  | m³      |          | Volume |
 | _T_  | K       |          | Thermodynamic temperature|
 | _T_  | °C      |          | Temperature source|
 |_Q̇, Φ_| W       |          | Heat flow rate source |
