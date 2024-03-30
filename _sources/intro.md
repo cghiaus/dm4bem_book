@@ -44,7 +44,7 @@ __Nomenclature__
 |⁻¹ ² ³ ⁴| Superscripts    |
 | ·      | Multiplication  |
 
-|Symbol| SI unit |          | Attribute |
+|Symbol| SI unit |          | Quantity |
 |------|---------|----------|-----------|
 | _t_  | s       |          | Time      |
 | _w_  | m       |          | Widh      |
