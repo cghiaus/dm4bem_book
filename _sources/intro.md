@@ -38,11 +38,11 @@ Some rules cited from [BIPM (2019)](https://www.bipm.org/documents/20126/4148302
 
 __Nomenclature__
 
-| Symbol |          |
-|--------|-----------------|
-| ±      | Plus-minus sign |
-|⁻¹ ² ³ ⁴| Superscripts    |
-| ·      | Multiplication  |
+| Symbol  |                 |
+|:--------|:----------------|
+| ±       | Plus-minus sign |
+|⁻ ¹ ² ³ ⁴| Superscripts    |
+| · ×     | Multiplication  |
 
 |Symbol| SI unit |          | Quantity |
 |:-----|:--------|----------|:----------|
