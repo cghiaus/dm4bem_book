@@ -45,7 +45,7 @@ __Nomenclature__
 | ·      | Multiplication  |
 
 |Symbol| SI unit |          | Quantity |
-|------|---------|----------|-----------|
+|:-----|:--------|----------|:----------|
 | _t_  | s       |          | Time      |
 | _w_  | m       |          | Widh      |
 | _θ_  | °C      |          | Temperature |
