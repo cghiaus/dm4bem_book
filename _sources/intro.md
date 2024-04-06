@@ -14,7 +14,16 @@ State-space representation is widely used for developing control algorithms. Thi
 
 __Quick overview__
 
-The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _Python script_ or [an example on GitHub](https://github.com/cghiaus/dm4bem_toy_model)) for a synthesis of the workflow).
+The specifics of this book are:
+
+- Modeling heat transfers (conduction, convection, radiation, advection) through a matrix representation of thermal circuits.
+- Formulating the thermal load calculation as a control problem.
+- Obtaining thermal circuits of walls.
+- Assembling thermal circuits.
+- Transforming thermal circuits into state representations.
+- Providing examples for nonlinear models and control algorithms.
+
+The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _Python script_ or [an example on GitHub](https://github.com/cghiaus/dm4bem_toy_model) for a synthesis of the workflow).
 
 
 __Prerequisites__
@@ -27,8 +36,8 @@ __Notations used for values of quantities__
 This book uses the writing conventions for SI unit symbols and names recommanded by the *International Bureau of Weights and Measures* ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. 2006](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3)) and *National Institute of Standards and Technology* ([Thomson and Taylor. 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf)).
 
 Some rules cited from [BIPM (2019)](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. (2006)](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3) and [Thomson and Taylor. (2008)](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf):
-- _Unit symbols_ are in roman type and _quantity symbols_ are in italic; the unit symbol is placed after the numerical value and _a space_ is left between the numerical value and the unit symbol ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true) §2.1, pp.129-142), e.g. $h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}$ or $h = 10\, \mathrm{W·m^{−2}·K^{−1}}$ or $h$ = 10 W/(m²·K).
-- Symbols for units formed from other units by multiplication are indicated by means of either a half- high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).
+- _Unit symbols_ are in roman type and _quantity symbols_ are in italic; the unit symbol is placed after the numerical value and a space is left between the numerical value and the unit symbol ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true) §2.1, pp.129-142), e.g. $h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}$ or $h = 10\, \mathrm{W·m^{−2}·K^{−1}}$ or $h$ = 10 W/(m²·K).
+- Symbols for units formed from other units by multiplication are indicated by means of either a half-high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).
 - A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §3, pp.143-144), e.g. $1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}$ while $1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.$
 - When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §5.4, pp.148-151, [Thomson and Taylor, 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf), §7.1 p.15), e.g.:
     - In $T = 273.15 \, \mathrm{K}$, the number $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T.$
