@@ -623,9 +623,9 @@ C_0 &amp; 0 \\
 <p>As opposed to the differential form, the discrete form</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
-<p>contains the boundary conditions (in the terms <span class="math notranslate nohighlight">\(A^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
+<p>is written for a finite volume and contains the boundary conditions (in the terms <span class="math notranslate nohighlight">\(A^T G b\)</span> and  <span class="math notranslate nohighlight">\(f\)</span>).</p>
 <blockquote>
-<div><p>Table 1. Equivalence between differential equation for heat diffusion  and matrix equation.</p>
+<div><p>Table 1. Equivalence between differential equation for heat diffusion  and matrix equation of heat transfer.</p>
 </div></blockquote>
 <table class="colwidths-auto table">
 <thead>
@@ -639,39 +639,64 @@ C_0 &amp; 0 \\
 <tr class="row-even"><td><p></p></td>
 <td><p><em>ρc</em> d <em>θ</em> / d <em>t</em> = div (<em>λ</em> grad <em>θ</em>) + <em>p</em></p></td>
 <td><p></p></td>
-<td><p>C dθ/dt = Aᵀ G A θ + Aᵀ G b + f</p></td>
+<td><p>C dθ/dt = -Aᵀ G A θ + Aᵀ G b + f</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>ρc</em></p></td>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>C dθ/dt = Σ G Δ θ + Σ G b + f</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>𝝋 = -<em>λ</em> grad <em>θ</em></p></td>
+<td><p></p></td>
+<td><p>q = G(-A θ + b)</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>q = G(Δ θ + b)</p></td>
+</tr>
+<tr class="row-even"><td><p><em>θ</em></p></td>
+<td><p>Temperature of an infinitesimal volume</p></td>
+<td><p>θ</p></td>
+<td><p>Vector of temperatures of a volumes</p></td>
+</tr>
+<tr class="row-odd"><td><p>𝝋</p></td>
+<td><p>Heat flux</p></td>
+<td><p>q</p></td>
+<td><p>Vector of flow rates between adjacent volumes</p></td>
+</tr>
+<tr class="row-even"><td><p><em>ρc</em></p></td>
 <td><p>Massic specific heat capacity</p></td>
 <td><p>C</p></td>
 <td><p>Capacity matrix</p></td>
 </tr>
-<tr class="row-even"><td><p><em>λ</em></p></td>
+<tr class="row-odd"><td><p><em>λ</em></p></td>
 <td><p>Thermal conductivity</p></td>
 <td><p>G</p></td>
 <td><p>Conductance matrix</p></td>
 </tr>
-<tr class="row-odd"><td><p>-div <em>q</em></p></td>
-<td><p>Divergence of flow rates</p></td>
+<tr class="row-even"><td><p>-div <em>𝝋</em></p></td>
+<td><p>Divergence of heat flux</p></td>
 <td><p>Σ <em>q</em> = Aᵀ <em>q</em></p></td>
-<td><p>Sum of flow rates</p></td>
+<td><p>Sum of flow rates (vector)</p></td>
 </tr>
-<tr class="row-even"><td><p>-grad <em>θ</em></p></td>
+<tr class="row-odd"><td><p>-grad <em>θ</em></p></td>
 <td><p>Gradient of temperatures</p></td>
 <td><p>Δ <em>θ</em> = -A <em>θ</em></p></td>
-<td><p>Difference of temperatures</p></td>
+<td><p>Difference of temperatures (vector)</p></td>
 </tr>
-<tr class="row-odd"><td><p><em>p</em></p></td>
+<tr class="row-even"><td><p><em>p</em></p></td>
 <td><p>Thermal energy generated per unit of volume</p></td>
 <td><p>f</p></td>
-<td><p>Flow-rate sources vector</p></td>
+<td><p>Flow-rate source vector</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p></p></td>
 <td><p>A</p></td>
 <td><p>Incidence matrix</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p></p></td>
 <td><p>b</p></td>
 <td><p>Temperature source vector</p></td>
