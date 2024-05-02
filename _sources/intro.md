@@ -6,10 +6,10 @@ by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-124
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 [![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
 
-> “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (*There are three types of knowledge: [knowledge itself](https://en.m.wikipedia.org/wiki/Knowledge), [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [knowing how to live together](https://en.m.wikipedia.org/wiki/Etiquette); the last two quite adequately dispense with the first*), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
+> “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (_There are three types of knowledge: [knowledge](https://en.m.wikipedia.org/wiki/Knowledge) itself, [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [know how to live](https://en.m.wikipedia.org/wiki/Etiquette); the last two quite adequately dispense with the first_), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
 
 
-State-space representation is widely used for developing control algorithms. This Jupyter Book shows how thermal transfer in buildings can be modeled by complex thermal networks, assembled from elementary thermal networks, that are converted in state-space representation ([Ghiaus 2013](https://hal.archives-ouvertes.fr/hal-03605823/document), [Ghiaus 2021](https://doi.org/10.1007/978-3-030-76477-7_5)). These steps are implemented by using [dm4bem](tutorials/dm4bem.py) module written in _Python 3.9_ (and tested on _Pyhton 3.11_). The book does not cover the development of control algorithms.
+State-space representation is widely used for developing control algorithms. This Jupyter Book shows how thermal transfer in buildings can be modeled by complex thermal networks, assembled from elementary thermal networks, that are converted to state-space representation ([Ghiaus 2013](https://hal.archives-ouvertes.fr/hal-03605823/document), [Ghiaus 2021](https://doi.org/10.1007/978-3-030-76477-7_5)). These steps are implemented by using [dm4bem](tutorials/dm4bem.py) module written in _Python 3.9_ (and tested on _Python 3.11_). The book does not cover the development of control algorithms.
 
 
 __Quick overview__
@@ -20,7 +20,7 @@ The specifics of this book are:
 - Formulating the thermal load calculation as a control problem.
 - Obtaining thermal circuits of walls through spatial discretization.
 - Assembling thermal circuits.
-- Transforming thermal circuits into state representations.
+- Transforming thermal circuits into state-space representations.
 - Providing examples for nonlinear models and control algorithms.
 
 The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _Python script_ or [an example on GitHub](https://github.com/cghiaus/dm4bem_toy_model) for a synthesis of the workflow).
@@ -28,7 +28,7 @@ The workflow is presented in the Jupyter Notebook on [inputs and simulation](tut
 
 __Prerequisites__
 
-It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
+It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([DeWitt et al. 2007](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf), [RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
 
 
 __Notations used for values of quantities__
@@ -111,6 +111,8 @@ __References__
 
 6. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
 
-7. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+7. [DeWitt, D. P., Incropera, F. P., Bergman, T. L., & Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer 6th Edition. John Wiley.
 
-8. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
+8. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+
+9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
