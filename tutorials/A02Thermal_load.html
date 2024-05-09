@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Sensible thermal load in steady-state &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A02Thermal_load';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Air flow by ventilation" href="A03Air_flow_ventilation.html" />
     <link rel="prev" title="Radiation coupled with convection" href="A01Coupled_rad_convection.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A02Thermal_load.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/A02Thermal_load.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -429,16 +453,16 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="sensible-thermal-load-in-steady-state">
-<h1>Sensible thermal load in steady-state<a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this headline">#</a></h1>
+<h1>Sensible thermal load in steady-state<a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=tutorials%2FA02Thermal_load.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value.</p>
 <section id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <section id="data">
-<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
 <p>A building is formed of 4 rooms with the dimensions (Figure 1):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(L = 6, \, l = 3\,  \mathrm{m}\)</span>, lengths,</p></li>
@@ -455,7 +479,7 @@ document.write(`
 <p>The outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 0 \, \mathrm{°C}\)</span>.</p>
 </section>
 <section id="questions">
-<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">#</a></h3>
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Let’s consider that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that there is no solar radiation on the walls. Find the thermal loads of the four rooms.</p></li>
 <li><p>From now on, let’s consider that there is solar radiation absorbed by the walls and that rooms 1 and 3 are controlled by a HVAC system while rooms 2 and 4 are in “free-running”. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
@@ -493,7 +517,7 @@ document.write(`
 </section>
 </section>
 <section id="thermal-model">
-<h2>Thermal model<a class="headerlink" href="#thermal-model" title="Permalink to this headline">#</a></h2>
+<h2>Thermal model<a class="headerlink" href="#thermal-model" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Volumetric_flow_rate">volumetric flow rate</a> of air circulating in room 2 results from the ventilation rate:</p>
 <div class="math notranslate nohighlight">
 \[\dot V = L·l·H·\frac{ACH}{3600 \, \mathrm{s}}\]</div>
@@ -509,7 +533,7 @@ document.write(`
 </div>
 </div>
 <section id="thermal-conductances">
-<h3>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this headline">#</a></h3>
+<h3>Thermal conductances<a class="headerlink" href="#thermal-conductances" title="Permalink to this heading">#</a></h3>
 <p>In the model, we will consider the conductances:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h \, S\)</span> - convection, W/K;</p></li>
@@ -525,7 +549,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="thermal-network">
-<h3>Thermal network<a class="headerlink" href="#thermal-network" title="Permalink to this headline">#</a></h3>
+<h3>Thermal network<a class="headerlink" href="#thermal-network" title="Permalink to this heading">#</a></h3>
 <p>The thermal network modeling the building is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> (Figure 3). It is composed of edges (or branches) and vertexes (or nodes).</p>
 <p>The temperature nodes model a volume, a surface, a line or a point in space for which the temperature is considered homogenous. The nodes are dependent temperatures (outputs of the physical system). The reference temperature is considered zero Celsius; it has a known value and is represented by a bar (Figure 3).</p>
 <p>To a temperature node <span class="math notranslate nohighlight">\(\theta_j\)</span>, there are connected <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">heat flow rate</a> branches <span class="math notranslate nohighlight">\(q_k, k = 0 ... n\)</span> and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source">heat flow rate sources</a>, <span class="math notranslate nohighlight">\(f_j\)</span> (Figure 3a). A heat rate source delivers a heat flow rate whatever is the temperature difference. In buildings, typical heat flow rate sources are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">solar irradiance</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Joule_heating">electrical appliances</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Thermal_comfort#Metabolic_rate">occupants</a>. If a heat flow rate source is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a>, then it is not figured on the graph.</p>
@@ -566,7 +590,7 @@ document.write(`
 </div>
 </section>
 <section id="incidence-matrix">
-<h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this headline">#</a></h3>
+<h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this heading">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix of a directed graph</a> shows the relationship between the edges (or branches) <span class="math notranslate nohighlight">\(k\)</span> and the vertexes (or nodes) <span class="math notranslate nohighlight">\(j\)</span> of the graph (Figure 3a):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A_{k,j} = \begin{cases}\phantom{-}
@@ -620,7 +644,7 @@ document.write(`
 </div>
 </section>
 <section id="conductances">
-<h3>Conductances<a class="headerlink" href="#conductances" title="Permalink to this headline">#</a></h3>
+<h3>Conductances<a class="headerlink" href="#conductances" title="Permalink to this heading">#</a></h3>
 <p>The number of conductances correspod to the number of flows which is the number of rows of incidence matrix <span class="math notranslate nohighlight">\(A\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -632,7 +656,7 @@ document.write(`
 </div>
 </div>
 <section id="exterior-walls-outdoor-convection">
-<h4>Exterior walls: outdoor convection<a class="headerlink" href="#exterior-walls-outdoor-convection" title="Permalink to this headline">#</a></h4>
+<h4>Exterior walls: outdoor convection<a class="headerlink" href="#exterior-walls-outdoor-convection" title="Permalink to this heading">#</a></h4>
 <p>The conductances of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the walls and the outdoor air (in cyan in Figures 2 and 3) are of the form</p>
 <div class="math notranslate nohighlight">
 \[G_i = h_o \, S_{o,k},\text{ with } k = 0 ... 3\]</div>
@@ -654,7 +678,7 @@ document.write(`
 </div>
 </section>
 <section id="exterior-walls-conduction-and-indoor-convection">
-<h4>Exterior walls: conduction and indoor convection<a class="headerlink" href="#exterior-walls-conduction-and-indoor-convection" title="Permalink to this headline">#</a></h4>
+<h4>Exterior walls: conduction and indoor convection<a class="headerlink" href="#exterior-walls-conduction-and-indoor-convection" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">conduction</a> in the wall and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Newton%27s_law_of_cooling">convection</a> between the wall and the indoor air (in blue in Figure 3) is:</p>
 <div class="math notranslate nohighlight">
 \[G_k = \frac{1}{\frac{w}{\lambda} + \frac{1}{h_i}}S_{o,j},\text{ with } k = 4 ... 7, j = 0 ... 3\]</div>
@@ -668,7 +692,7 @@ document.write(`
 </div>
 </section>
 <section id="interior-walls-indoor-convection-conduction-indoor-convection">
-<h4>Interior walls: indoor convection, conduction indoor convection<a class="headerlink" href="#interior-walls-indoor-convection-conduction-indoor-convection" title="Permalink to this headline">#</a></h4>
+<h4>Interior walls: indoor convection, conduction indoor convection<a class="headerlink" href="#interior-walls-indoor-convection-conduction-indoor-convection" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for the indoor walls is formed by the (yellow in Figures 2 and 3):</p>
 <ul class="simple">
 <li><p>convetion between wall and indoor air;</p></li>
@@ -695,7 +719,7 @@ document.write(`
 </div>
 </section>
 <section id="ventilation-heat-transfer-by-advection">
-<h4>Ventilation: heat transfer by advection<a class="headerlink" href="#ventilation-heat-transfer-by-advection" title="Permalink to this headline">#</a></h4>
+<h4>Ventilation: heat transfer by advection<a class="headerlink" href="#ventilation-heat-transfer-by-advection" title="Permalink to this heading">#</a></h4>
 <p>Ventilation of rooms 2 and 4 transfers heat to these spaces by <a class="reference external" href="https://en.m.wikipedia.org/wiki/Advection">advection</a> (Figure 4). The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Mass_flow_rate">energy flow rate carried by the fluid</a> is:</p>
 <div class="math notranslate nohighlight">
 \[\dot H = \dot m c \theta\]</div>
@@ -707,7 +731,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> - air temperature, °C.</p></li>
 </ul>
 <section id="air-flow-outdoor-room-2-room-4-outdoor">
-<h5>Air-flow: outdoor → room 2 → room 4 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-2-room-4-outdoor" title="Permalink to this headline">#</a></h5>
+<h5>Air-flow: outdoor → room 2 → room 4 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-2-room-4-outdoor" title="Permalink to this heading">#</a></h5>
 <p>If the airflow is from outdoor to room 2, then the heat flow rate tranferred from outdoor air to the indoor air of room 2 is (Figure 4 a):</p>
 <div class="math notranslate nohighlight">
 \[q_{13} = \dot m c T_o - \dot m c \theta_3\]</div>
@@ -728,7 +752,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="air-flow-outdoor-room-4-room-2-outdoor">
-<h5>Air-flow: outdoor → room 4 → room 2 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-4-room-2-outdoor" title="Permalink to this headline">#</a></h5>
+<h5>Air-flow: outdoor → room 4 → room 2 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-4-room-2-outdoor" title="Permalink to this heading">#</a></h5>
 <p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate tranferred to the indoor air of room 2 is:</p>
 <div class="math notranslate nohighlight">
 \[q_{14b} = \dot m c \theta_6 - \dot m c \theta_3\]</div>
@@ -745,11 +769,11 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c.\)</span></p>
 </section>
 <section id="heat-flow-rate-from-room-2-to-room-4">
-<h5>Heat flow rate from room 2 to room 4<a class="headerlink" href="#heat-flow-rate-from-room-2-to-room-4" title="Permalink to this headline">#</a></h5>
+<h5>Heat flow rate from room 2 to room 4<a class="headerlink" href="#heat-flow-rate-from-room-2-to-room-4" title="Permalink to this heading">#</a></h5>
 <p>If the air flows from room 2 to room 4, then the heat flow rate is <span class="math notranslate nohighlight">\(q_{14a} \equiv q_{14}.\)</span> If the air flows from room 4 to room 2, then the heat flow rate is <span class="math notranslate nohighlight">\(q_{14b} \equiv -q_{14}.\)</span> Therefore, a single heat flow rate, <span class="math notranslate nohighlight">\(q_{14}\)</span>, is needed in the thermal network (Figure 3).</p>
 </section>
 <section id="modelling-the-change-in-airflow-direction">
-<h5>Modelling the change in airflow direction<a class="headerlink" href="#modelling-the-change-in-airflow-direction" title="Permalink to this headline">#</a></h5>
+<h5>Modelling the change in airflow direction<a class="headerlink" href="#modelling-the-change-in-airflow-direction" title="Permalink to this heading">#</a></h5>
 <p>If the air flows in the direction: outdoor  → room 2 → room 4 → outdoor, then conductance <span class="math notranslate nohighlight">\(G_{15}\)</span> is zero and conductances <span class="math notranslate nohighlight">\(G_{13}\)</span> and <span class="math notranslate nohighlight">\(G_{14}\)</span> are equal to <span class="math notranslate nohighlight">\(\dot m c\)</span> (Figure 3 and Figure 4a).</p>
 <p>If the air flows in the direction: outdoor  → room 2 → room 4 → outdoor, then conductance <span class="math notranslate nohighlight">\(G_{13}\)</span> is zero and conductances <span class="math notranslate nohighlight">\(G_{14}\)</span> and <span class="math notranslate nohighlight">\(G_{15}\)</span> are equal to <span class="math notranslate nohighlight">\(\dot m c\)</span> (Figure 3 and Figure 4b).</p>
 <p>If there is no ventilation, the conductances <span class="math notranslate nohighlight">\(G_{13}\)</span>, <span class="math notranslate nohighlight">\(G_{14},\)</span> and <span class="math notranslate nohighlight">\(G_{15}\)</span> are zero.</p>
@@ -764,7 +788,7 @@ document.write(`
 <blockquote>
 <div><p>Table 1. Typical values for the ventilation rates (in air changes per hour, ACH) as a function of the position of windows (H. Recknagel, E. Spenger, E_R Schramek (2013), Table 1.12.1-4)</p>
 </div></blockquote>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Position of windows</p></th>
 <th class="head"><p>Ventilation rate, ACH / h⁻ⁱ</p></th>
@@ -794,7 +818,7 @@ document.write(`
 </section>
 </section>
 <section id="proportional-controller">
-<h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this headline">#</a></h4>
+<h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this heading">#</a></h4>
 <p>The heating, ventilation, and air conditioning (<a class="reference external" href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>) system maintains the indoor air temperature at <a class="reference external" href="https://en.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value. Therefore, the HVAC system may be modelled as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> (Figure 5a) for wich the heat flow rate of the HVAC system is:</p>
 <div class="math notranslate nohighlight">
 \[q = K_P (T_{sp} - \theta)\]</div>
@@ -825,7 +849,7 @@ document.write(`
 </section>
 </section>
 <section id="vector-of-temperature-sources">
-<h3>Vector of temperature sources<a class="headerlink" href="#vector-of-temperature-sources" title="Permalink to this headline">#</a></h3>
+<h3>Vector of temperature sources<a class="headerlink" href="#vector-of-temperature-sources" title="Permalink to this heading">#</a></h3>
 <p>Every edge (or branch) of the graph has a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source">temperature source</a> which is not figured if it is <a class="reference external" href="https://en.wiktionary.org/wiki/identically_zero">identically zero</a> (Figure 3a). The number of temperature sources is equal to the number of heat flow rates, i.e., the number of rows of the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,7 +886,7 @@ document.write(`
 </div>
 </section>
 <section id="vector-of-heat-flow-rate-sources">
-<h3>Vector of heat flow rate sources<a class="headerlink" href="#vector-of-heat-flow-rate-sources" title="Permalink to this headline">#</a></h3>
+<h3>Vector of heat flow rate sources<a class="headerlink" href="#vector-of-heat-flow-rate-sources" title="Permalink to this heading">#</a></h3>
 <p>In our model, the heat flow rate sources are the solar radiation absorbed by the exterior walls. First, we will consider that the solar radiation is zero.</p>
 <p>The number of heat flow rate sources is equal to the number of temperature nodes, i.e., the number of columns of the incidence matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="cell docutils container">
@@ -876,7 +900,7 @@ document.write(`
 </div>
 </section>
 <section id="outputs">
-<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">#</a></h3>
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading">#</a></h3>
 <p>In this problem, we are looking for the indoor air temperatures of the rooms (1, 2, 3, and 4) and for the thermal loads of the rooms.</p>
 <p>The air temperatures of the rooms are <span class="math notranslate nohighlight">\(\theta_2\)</span>, <span class="math notranslate nohighlight">\(\theta_3\)</span>, <span class="math notranslate nohighlight">\(\theta_4\)</span>, and <span class="math notranslate nohighlight">\(\theta_6\)</span>,</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate needed to compensate all the other heat flow rates in order to maintain the air temperature at its setpoint. Therefore, the thermal loads are the heat flow rates of the controllers, i.e. <span class="math notranslate nohighlight">\(q_{16 ... 19}\)</span>.</p>
@@ -893,7 +917,7 @@ document.write(`
 </section>
 </section>
 <section id="question-1-all-4-rooms-are-controlled">
-<h2>Question 1: all 4 rooms are controlled<a class="headerlink" href="#question-1-all-4-rooms-are-controlled" title="Permalink to this headline">#</a></h2>
+<h2>Question 1: all 4 rooms are controlled<a class="headerlink" href="#question-1-all-4-rooms-are-controlled" title="Permalink to this heading">#</a></h2>
 <p>Considering that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that the there is no solar radiation on the external walls, find the thermal loads of the four rooms.</p>
 <p>For an almost perfect proportional controller, we will consider a very large gain of the controller as compared to the maximum value of the conductance matrix.</p>
 <div class="cell docutils container">
@@ -931,7 +955,7 @@ q: [2008.4 1322.6 2346.4 4270. ] W
 </div>
 </section>
 <section id="question-2-rooms-2-4-in-free-running">
-<h2>Question 2: rooms 2 &amp; 4 in free-running<a class="headerlink" href="#question-2-rooms-2-4-in-free-running" title="Permalink to this headline">#</a></h2>
+<h2>Question 2: rooms 2 &amp; 4 in free-running<a class="headerlink" href="#question-2-rooms-2-4-in-free-running" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider that:</p>
 <ul class="simple">
 <li><p>there is solar radiation absorbed by the exterior walls, i.e. <span class="math notranslate nohighlight">\(f_k = E \, S_{o,j}, \text{ with } k = 0, 1, 5, 7 \text{ and } j = 0...3;\)</span></p></li>
@@ -966,7 +990,7 @@ q: [1719.8    0.  2057.8    0. ] W
 </div>
 </section>
 <section id="question-3-ventilation-from-outdoor-to-room-2">
-<h2>Question 3: ventilation from outdoor to room 2<a class="headerlink" href="#question-3-ventilation-from-outdoor-to-room-2" title="Permalink to this headline">#</a></h2>
+<h2>Question 3: ventilation from outdoor to room 2<a class="headerlink" href="#question-3-ventilation-from-outdoor-to-room-2" title="Permalink to this heading">#</a></h2>
 <p>Room 2 in ventilated with an air flow rate of <span class="math notranslate nohighlight">\(ACH\)</span> (ACH is the number of air-changes per hour). The outdoor air enters in room 2, then it moves to room 4 and, from here, it gets outdoors.</p>
 <p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
 <p>To model this direction of air flow, the conductances for ventilation are:</p>
@@ -997,7 +1021,7 @@ q: [1761.1    0.  2099.     0. ] W
 </div>
 </section>
 <section id="question-4-ventilation-from-room-4-to-room-2">
-<h2>Question 4: ventilation from room 4 to room 2<a class="headerlink" href="#question-4-ventilation-from-room-4-to-room-2" title="Permalink to this headline">#</a></h2>
+<h2>Question 4: ventilation from room 4 to room 2<a class="headerlink" href="#question-4-ventilation-from-room-4-to-room-2" title="Permalink to this heading">#</a></h2>
 <p>The air flow in room 2 is reversed: from outdoors, the air enters in room 4, then is moves to room 2, from which it gets outdoors. The air flow rate of room 2 is the same as before.</p>
 <p>Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p>
 <p>To model this direction of air flow, the conductances for ventilation are:</p>
@@ -1027,7 +1051,7 @@ q: [1750.5    0.  2088.4    0. ] W
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>C. Ghiaus (2013) Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">https://doi.org/10.1016/j.energy.2012.10.024</a>, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p></li>
 <li><p>H. Recknagel, E. Sprenger, E.-R. Schramek (2013) Génie climatique, 5e edition, Dunod, Paris. ISBN 978-2-10-070451-4</p></li>
@@ -1060,11 +1084,10 @@ q: [1750.5    0.  2088.4    0. ] W
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="A01Coupled_rad_convection.html"
@@ -1084,10 +1107,7 @@ q: [1750.5    0.  2088.4    0. ] W
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1096,9 +1116,10 @@ q: [1750.5    0.  2088.4    0. ] W
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -1149,13 +1170,14 @@ q: [1750.5    0.  2088.4    0. ] W
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1182,8 +1204,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

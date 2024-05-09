@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>From thermal networks to differential-algebraic equations &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/T02_TC2DAE';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="From differential-algebraic equations to state-space representation" href="T03_DAE2SS.html" />
     <link rel="prev" title="Thermal networks for heat trasfer in buildings" href="T01_Heat_transfer.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/T02_TC2DAE.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/T02_TC2DAE.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -402,12 +426,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="from-thermal-networks-to-differential-algebraic-equations">
-<h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this headline">#</a></h1>
+<h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FT02_TC2DAE.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The framework for obtaing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a> describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
+<p>The framework for obtaing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a> describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
 <p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flow-rates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes.</p>
 <p><img alt="procedure" src="../_images/A02_calc_procedure.svg" /></p>
 <blockquote>
@@ -419,7 +443,7 @@ document.write(`
 </div></blockquote>
 <p>The system of differential-algebraic equations is obtained by calculating the temperature differences on conductances, then the flow rates, and finally the energy balance (Figure 1).</p>
 <section id="temperature-differences">
-<h2>Temperature differences<a class="headerlink" href="#temperature-differences" title="Permalink to this headline">#</a></h2>
+<h2>Temperature differences<a class="headerlink" href="#temperature-differences" title="Permalink to this heading">#</a></h2>
 <p>Let’s define the temperature difference <span class="math notranslate nohighlight">\(e\)</span> over a conductance <span class="math notranslate nohighlight">\(G\)</span> as being the difference between the temperatures in the direction of the flow rate; e.g., in Figure 2a, the flow rate is from <span class="math notranslate nohighlight">\(\theta_0\)</span> to <span class="math notranslate nohighlight">\(\theta_1\)</span>, so the temperature difference over the conductance <span class="math notranslate nohighlight">\(G_1\)</span> is <span class="math notranslate nohighlight">\(e_1 = \theta_0 - \theta_1\)</span>.</p>
 <p>For the thermal circuit represented in Figure 2a, the temperature differences over the conductances <span class="math notranslate nohighlight">\(G_0, G_1, G_2\)</span> are (Figure 1b):</p>
 <p><span class="math notranslate nohighlight">\(\begin{cases}
@@ -484,7 +508,7 @@ T_0\\
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a> <span class="math notranslate nohighlight">\(A\)</span> describes how the temperature nodes are connected by the oriented branches (flow rates). The matrix <span class="math notranslate nohighlight">\(\Delta = -A\)</span> is a difference operator for vector <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 </section>
 <section id="flow-rates">
-<h2>Flow rates<a class="headerlink" href="#flow-rates" title="Permalink to this headline">#</a></h2>
+<h2>Flow rates<a class="headerlink" href="#flow-rates" title="Permalink to this heading">#</a></h2>
 <p>For the thermal circuit represented in Figure 2a, the flow rates through the conductances are (Figure 2c):</p>
 <p><span class="math notranslate nohighlight">\(\begin{cases}
 q_0 = G_0 e_0 \\ 
@@ -528,7 +552,7 @@ e_2
 \end{bmatrix}\)</span> - vector of temperature differences over the conductances <span class="math notranslate nohighlight">\(G_0, G_1, G_2\)</span>.</p>
 </section>
 <section id="energy-balance">
-<h2>Energy balance<a class="headerlink" href="#energy-balance" title="Permalink to this headline">#</a></h2>
+<h2>Energy balance<a class="headerlink" href="#energy-balance" title="Permalink to this heading">#</a></h2>
 <p>For the thermal circuit represented in Figure 2a, the energy balance equations in the two temperature nodes are (Figure 2d):</p>
 <p><span class="math notranslate nohighlight">\(\begin{cases}
 C_0 \dot{\theta}_0 = q_0 - q_1 + \dot{Q_0} \\ 
@@ -580,7 +604,7 @@ C_0 &amp; 0 \\
 <p>The matrix <span class="math notranslate nohighlight">\(\Sigma = A^T = -\Delta^T\)</span> is a matrix operator for vector <span class="math notranslate nohighlight">\(q\)</span> that sums the flow rates in each temperature node.</p>
 </section>
 <section id="system-of-differential-algebraic-equations">
-<h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h2>
+<h2>System of differential-algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this heading">#</a></h2>
 <p>By substituting the flow-rates <span class="math notranslate nohighlight">\(q\)</span> from:</p>
 <div class="math notranslate nohighlight">
 \[q = Ge = G(- A \theta + b) = G(\Delta \theta + b)\]</div>
@@ -602,7 +626,7 @@ C_0 &amp; 0 \\
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[q = G(\Delta \theta + b)\]</div>
-<p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(\Sigma = -\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (-<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
+<p>Note that the operators <span class="math notranslate nohighlight">\(\Delta\)</span> and <span class="math notranslate nohighlight">\(\Sigma = -\Delta^T\)</span> for vectors correspond to gradient (<strong>grad</strong>) and divergenve (-<em>div</em>) operators for functions, respectively (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;amp;isbn=9780961408817">Strang, 2007</a> pp. 255). Equation</p>
 <div class="math notranslate nohighlight">
 \[C \dot{\theta} = -\Delta^T G \Delta \theta - \Delta^T G b + f\]</div>
 <p>or</p>
@@ -627,7 +651,7 @@ C_0 &amp; 0 \\
 <blockquote>
 <div><p>Table 1. Equivalence between differential equation for heat diffusion  and matrix equation for heat transfer (<a class="reference external" href="https://math.mit.edu/~gs/cse/">Strang, 2007</a>).</p>
 </div></blockquote>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p>Differential equation</p></th>
@@ -705,7 +729,7 @@ C_0 &amp; 0 \\
 </table>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
 <p><strong>Problem</strong></p>
 <p>Let’s consider a wall with thickness <span class="math notranslate nohighlight">\(w\)</span> = 0.20 m and surface area <span class="math notranslate nohighlight">\(S\)</span> = 20.00 m², with outside air temperature <span class="math notranslate nohighlight">\(\theta_o\)</span> = -5.0 °C and inside air temperature maintained at <span class="math notranslate nohighlight">\(\theta_i\)</span> = 24.0 °C. We assume that heat transfer is one-dimensional, in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady state</a>, and there’s no internal heat generation. The material has <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductivity</a> <span class="math notranslate nohighlight">\(\lambda\)</span> = 1.00 W/(m·K), and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer_coefficient">heat transfer coefficients</a> by convection outside and inside are <span class="math notranslate nohighlight">\(h_o\)</span> = 25.00 W/(m²·K) and <span class="math notranslate nohighlight">\(h_i\)</span> = 8.00 W/(m²·K), respectively. The outer surface, with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha\)</span> = 0.70, receives solar <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiance</a> <span class="math notranslate nohighlight">\(E\)</span> = 200.0 W/m².</p>
 <p>Calculate the following values:</p>
@@ -798,7 +822,7 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://math.mit.edu/~gs/cse/">Strang, G. (2007)</a>. Computational Science and Engineering. Wellesley, MA: Wellesley-Cambridge Press</p></li>
 <li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling load. Energy, 50, 292-301 <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p></li>
@@ -831,11 +855,10 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="T01_Heat_transfer.html"
@@ -855,10 +878,7 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -867,9 +887,10 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -893,13 +914,14 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -926,8 +948,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

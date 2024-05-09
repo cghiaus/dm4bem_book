@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Dynamic Models for Building Energy Management &#8212; dm4bem</title>
   
@@ -19,55 +19,53 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Summary" href="tutorials/00_Summary.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -75,7 +73,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -110,11 +116,16 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,9 +140,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="#">
+  
   
   
   
@@ -141,12 +154,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -249,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -266,7 +290,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -287,7 +311,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -296,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="_sources/intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -314,7 +338,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -334,7 +358,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -346,20 +370,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -386,10 +412,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dynamic-models-for-building-energy-management">
-<h1>Dynamic Models for Building Energy Management<a class="headerlink" href="#dynamic-models-for-building-energy-management" title="Permalink to this headline">#</a></h1>
+<h1>Dynamic Models for Building Energy Management<a class="headerlink" href="#dynamic-models-for-building-energy-management" title="Permalink to this heading">#</a></h1>
 <p>by Christian Ghiaus (Researcher ID: <a class="reference external" href="https://orcid.org/0000-0001-5561-1245">ORCID</a>, <a class="reference external" href="https://sciprofiles.com/profile/2970335">SciProfiles</a>, <a class="reference external" href="https://www.scopus.com/authid/detail.uri?authorId=6603390490">Scopus</a>, <a class="reference external" href="https://www.webofscience.com/wos/author/record/1651371">Web of Science</a>, <a class="reference external" href="https://cv.hal.science/cghiaus">HAL</a>)</p>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a>
 <a class="reference external" href="https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
@@ -408,17 +434,17 @@ document.write(`
 <li><p>Transforming thermal circuits into state-space representations.</p></li>
 <li><p>Providing examples for nonlinear models and control algorithms.</p></li>
 </ul>
-<p>The workflow is presented in the Jupyter Notebook on <a class="reference internal" href="tutorials/pd05simulation.html"><span class="doc std std-doc">inputs and simulation</span></a> (see section <em>Python script</em> or <a class="reference external" href="https://github.com/cghiaus/dm4bem_toy_model">an example on GitHub</a> for a synthesis of the workflow).</p>
+<p>The workflow is presented in the Jupyter Notebook on <a class="reference internal" href="tutorials/pd05simulation.html"><span class="std std-doc">inputs and simulation</span></a> (see section <em>Python script</em> or <a class="reference external" href="https://github.com/cghiaus/dm4bem_toy_model">an example on GitHub</a> for a synthesis of the workflow).</p>
 <p><strong>Prerequisites</strong></p>
 <p>It is assumed that readers have a foundational knowledge at the undergraduate level in the areas of linear algebra (<a class="reference external" href="https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html">Strang, G. 2023</a>), heat transfer (<a class="reference external" href="https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf">DeWitt et al. 2007</a>, <a class="reference external" href="https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf">RE2020 2021</a>), and Python programming (<a class="reference external" href="https://docs.python.org/3/tutorial/index.html">Docs.Python 2024</a>).</p>
 <p><strong>Notations used for values of quantities</strong></p>
-<p>This book uses the writing conventions for SI unit symbols and names recommanded by the <em>International Bureau of Weights and Measures</em> (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM 2019</a>, <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. 2006</a>) and <em>National Institute of Standards and Technology</em> (<a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor. 2008</a>).</p>
-<p>Some rules cited from <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM (2019)</a>, <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. (2006)</a> and <a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor. (2008)</a>:</p>
+<p>This book uses the writing conventions for SI unit symbols and names recommanded by the <em>International Bureau of Weights and Measures</em> (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM 2019</a>, <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. 2006</a>) and <em>National Institute of Standards and Technology</em> (<a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor. 2008</a>).</p>
+<p>Some rules cited from <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM (2019)</a>, <a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel et al. (2006)</a> and <a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor. (2008)</a>:</p>
 <ul class="simple">
-<li><p><em>Unit symbols</em> are in roman type and <em>quantity symbols</em> are in italic; the unit symbol is placed after the numerical value and a space is left between the numerical value and the unit symbol (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM 2019</a> §2.1, pp.129-142), e.g. <span class="math notranslate nohighlight">\(h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h = 10\, \mathrm{W·m^{−2}·K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h\)</span> = 10 W/(m²·K).</p></li>
+<li><p><em>Unit symbols</em> are in roman type and <em>quantity symbols</em> are in italic; the unit symbol is placed after the numerical value and a space is left between the numerical value and the unit symbol (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM 2019</a> §2.1, pp.129-142), e.g. <span class="math notranslate nohighlight">\(h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h = 10\, \mathrm{W·m^{−2}·K^{−1}}\)</span> or <span class="math notranslate nohighlight">\(h\)</span> = 10 W/(m²·K).</p></li>
 <li><p>Symbols for units formed from other units by multiplication are indicated by means of either a half-high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).</p></li>
-<li><p>A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM 2019</a>, §3, pp.143-144), e.g. <span class="math notranslate nohighlight">\(1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}\)</span> while <span class="math notranslate nohighlight">\(1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.\)</span></p></li>
-<li><p>When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM 2019</a>, §5.4, pp.148-151, <a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor, 2008</a>, §7.1 p.15), e.g.:</p>
+<li><p>A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM 2019</a>, §3, pp.143-144), e.g. <span class="math notranslate nohighlight">\(1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}\)</span> while <span class="math notranslate nohighlight">\(1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.\)</span></p></li>
+<li><p>When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra (<a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM 2019</a>, §5.4, pp.148-151, <a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson and Taylor, 2008</a>, §7.1 p.15), e.g.:</p>
 <ul>
 <li><p>In <span class="math notranslate nohighlight">\(T = 273.15 \, \mathrm{K}\)</span>, the number <span class="math notranslate nohighlight">\(273.15 = T /\mathrm{K}\)</span> is the numerical value of thermodynamic temperature <span class="math notranslate nohighlight">\(T.\)</span></p></li>
 <li><p>The numerical value of a temperature expressed in degrees Celsius, <span class="math notranslate nohighlight">\(\theta\)</span>, is related to the numerical value of the thermodynamic temperature expressed in kelvins, <span class="math notranslate nohighlight">\(T\)</span>, by the relation <span class="math notranslate nohighlight">\(\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15\)</span> or <span class="math notranslate nohighlight">\(\theta\)</span>/(°C) = <span class="math notranslate nohighlight">\(T\)</span>/(K) − 273.15.</p></li>
@@ -428,10 +454,10 @@ document.write(`
 </li>
 </ul>
 <p><strong>Nomenclature</strong></p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Symbol</p></th>
-<th class="text-left head"><p></p></th>
+<tr class="row-odd"><th class="head text-left"><p>Symbol</p></th>
+<th class="head text-left"><p></p></th>
 </tr>
 </thead>
 <tbody>
@@ -446,12 +472,12 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>Symbol</p></th>
-<th class="text-left head"><p>SI unit</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Symbol</p></th>
+<th class="head text-left"><p>SI unit</p></th>
 <th class="head"><p></p></th>
-<th class="text-left head"><p>Quantity</p></th>
+<th class="head text-left"><p>Quantity</p></th>
 </tr>
 </thead>
 <tbody>
@@ -579,7 +605,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">hal-03605823</a></p></li>
 <li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">Ghiaus, C. (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
-<li><p><a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;t=1671101192839&amp;download=true">BIPM (2019)</a>. The International System of Units (SI), 9th edition, licence CC-BY-3.0</p></li>
+<li><p><a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&amp;amp;t=1671101192839&amp;amp;download=true">BIPM (2019)</a>. The International System of Units (SI), 9th edition, licence CC-BY-3.0</p></li>
 <li><p><a class="reference external" href="https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3">Gőbel, E., Mills, I., Wallard,  A. (2006)</a>. A concise summary of the International System of Units, the SI</p></li>
 <li><p><a class="reference external" href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf">Thomson, A., Taylor, B. N. (2008)</a>. Guide for the use of the international System of units (NIST Special Publication 811․ 2008 Edition). National Institute of Standards and Technology, US Government Printing Office.</p></li>
 <li><p><a class="reference external" href="https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html">Strang, G. (2023)</a>. Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8</p></li>
@@ -614,11 +640,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="right-next"
        href="tutorials/00_Summary.html"
@@ -629,15 +654,14 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -648,13 +672,14 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -681,8 +706,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

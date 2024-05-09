@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Inputs &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/02_2_3Toy';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Simulation: perfect controller" href="02_2_4Toy.html" />
     <link rel="prev" title="Steady-state and step response" href="02_2_2Toy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/02_2_3Toy.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/02_2_3Toy.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -417,10 +441,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="inputs">
-<h1>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">#</a></h1>
+<h1>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_2_3Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>The inputs are modelled by temperature and flow rate sources. A <a class="reference external" href="https://en.m.wikipedia.org/wiki/Control_volume">control volume</a> is a:</p>
 <ul class="simple">
@@ -446,7 +470,7 @@ document.write(`
 </div>
 </div>
 <section id="start-and-end-time">
-<h2>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this headline">#</a></h2>
+<h2>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this heading">#</a></h2>
 <p>The simulation will be done from <code class="docutils literal notranslate"><span class="pre">start_date</span></code> to <code class="docutils literal notranslate"><span class="pre">end_date</span></code> indicated in the format <code class="docutils literal notranslate"><span class="pre">MM-DD</span> <span class="pre">HH:MM:SS</span></code> (month-day, hour:minute:second).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -475,7 +499,7 @@ document.write(`
 </div>
 </section>
 <section id="input-data-set">
-<h2>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this headline">#</a></h2>
+<h2>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code> is a DataFrame which contains the values of the teperature and the flow-rate sources in time. In our case, the sources are (Figure 1):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor air temperature, °C;</p></li>
@@ -491,8 +515,8 @@ document.write(`
 </div></blockquote>
 <p>The temperature and flow-rate sources are obtained from weather data (<span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_o\)</span>, <span class="math notranslate nohighlight">\(\Phi_i\)</span>, <span class="math notranslate nohighlight">\(\Phi_a\)</span>) and from schedules (<span class="math notranslate nohighlight">\(T_{i,sp}\)</span>, <span class="math notranslate nohighlight">\(\dot{Q}_i\)</span>).</p>
 <section id="weather-outdoor-temperature-and-solar-radiation">
-<h3>Weather: outdoor temperature and solar radiation<a class="headerlink" href="#weather-outdoor-temperature-and-solar-radiation" title="Permalink to this headline">#</a></h3>
-<p>Dynamic simulation needs <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of weather data for air temperature, direct solar radiation on a normal surface and diffuse solar radiation on an horizontal surface (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="doc std std-doc">Weather data and solar radiation</span></a>).</p>
+<h3>Weather: outdoor temperature and solar radiation<a class="headerlink" href="#weather-outdoor-temperature-and-solar-radiation" title="Permalink to this heading">#</a></h3>
+<p>Dynamic simulation needs <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of weather data for air temperature, direct solar radiation on a normal surface and diffuse solar radiation on an horizontal surface (see the tutorial on <a class="reference internal" href="01WeatherData.html"><span class="std std-doc">Weather data and solar radiation</span></a>).</p>
 <p>From the weather data, we select:</p>
 <ul class="simple">
 <li><p>hourly outdoor air temperature, °C;</p></li>
@@ -520,7 +544,7 @@ document.write(`
 </div>
 </div>
 <section id="outdoor-temperature">
-<h4>Outdoor temperature<a class="headerlink" href="#outdoor-temperature" title="Permalink to this headline">#</a></h4>
+<h4>Outdoor temperature<a class="headerlink" href="#outdoor-temperature" title="Permalink to this heading">#</a></h4>
 <p>There are two temperature sources:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(T_o = [T_{o(0)}, T_{o(1)}, ..., T_{o(n-1)}]\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the oudoor temperature at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.</p></li>
@@ -536,9 +560,9 @@ document.write(`
 </div>
 </section>
 <section id="solar-irradiance-on-the-walls">
-<h4>Solar irradiance on the walls<a class="headerlink" href="#solar-irradiance-on-the-walls" title="Permalink to this headline">#</a></h4>
+<h4>Solar irradiance on the walls<a class="headerlink" href="#solar-irradiance-on-the-walls" title="Permalink to this heading">#</a></h4>
 <section id="total-solar-irradiance">
-<h5>Total solar irradiance<a class="headerlink" href="#total-solar-irradiance" title="Permalink to this headline">#</a></h5>
+<h5>Total solar irradiance<a class="headerlink" href="#total-solar-irradiance" title="Permalink to this heading">#</a></h5>
 <p>The characteristics of the outdoor walls are given in the file <code class="docutils literal notranslate"><span class="pre">./pd/bldg/walls_out.csv</span></code>.</p>
 <p>For the surface orientation given by <code class="docutils literal notranslate"><span class="pre">slope</span></code>, <code class="docutils literal notranslate"><span class="pre">azimuth</span></code>and <code class="docutils literal notranslate"><span class="pre">latitude</span></code>, and the <code class="docutils literal notranslate"><span class="pre">albedo</span></code> of the surface in front of the wall, by using the weather data, we can calculate the:</p>
 <ul class="simple">
@@ -574,7 +598,7 @@ document.write(`
 <p>Note that if the walls have different orientations and/or tilts, the irradiance on each wall needs to be calculated.</p>
 </section>
 <section id="flow-rate-sources">
-<h5>Flow rate sources<a class="headerlink" href="#flow-rate-sources" title="Permalink to this headline">#</a></h5>
+<h5>Flow rate sources<a class="headerlink" href="#flow-rate-sources" title="Permalink to this heading">#</a></h5>
 <p>The radiation absorbed by the outdoor surface of the wall is:</p>
 <div class="math notranslate nohighlight">
 \[\Phi_o = \alpha_{w,SW} S_w E_{tot}\]</div>
@@ -636,9 +660,9 @@ document.write(`
 </section>
 </section>
 <section id="schedules">
-<h3>Schedules<a class="headerlink" href="#schedules" title="Permalink to this headline">#</a></h3>
+<h3>Schedules<a class="headerlink" href="#schedules" title="Permalink to this heading">#</a></h3>
 <section id="indoor-air-temperature-set-point">
-<h4>Indoor air temperature set-point<a class="headerlink" href="#indoor-air-temperature-set-point" title="Permalink to this headline">#</a></h4>
+<h4>Indoor air temperature set-point<a class="headerlink" href="#indoor-air-temperature-set-point" title="Permalink to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[T_{i, sp} = [T_{{i, sp}(0)}, T_{{i, sp}(1)}, ..., T_{{i, sp}(n-1)}]\]</div>
 <p>is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the setpoint indoor temperature at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>. Let’s consider the indoor temperature set-point constant, <span class="math notranslate nohighlight">\(T_{i, sp} = 20 \, \mathrm{°C}\)</span>.</p>
@@ -664,7 +688,7 @@ document.write(`
 </div>
 </section>
 <section id="auxiliary-heat">
-<h4>Auxiliary heat<a class="headerlink" href="#auxiliary-heat" title="Permalink to this headline">#</a></h4>
+<h4>Auxiliary heat<a class="headerlink" href="#auxiliary-heat" title="Permalink to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[\dot Q_a = [\dot Q_a (0), \dot Q_a (1), ..., \dot Q_a (n-1)]\]</div>
 <p>is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_series">time series</a> of the internal sources (e.g., occupants, electrical devices, etc.) at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Discrete_time_and_continuous_time#Discrete_time">discrete time</a> <span class="math notranslate nohighlight">\(t = [t_0, t_1, ... , t_{n-1}]\)</span>.
@@ -680,7 +704,7 @@ Let’s consider the auxiliary heat flow <span class="math notranslate nohighlig
 </section>
 </section>
 <section id="id1">
-<h3>Input data set<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Input data set<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The input is formed by the vectors of time series of temperature sources <span class="math notranslate nohighlight">\(\left [ T_o, T_{i,sp} \right ]^T\)</span> and vectors of time series of the heat flow sources <span class="math notranslate nohighlight">\(\left [ \Phi_o, \Phi_i, \dot{Q_a}, \Phi_a \right ]^T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}u_{set} = 
@@ -727,12 +751,12 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 </section>
 </section>
 <section id="discussion">
-<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
 <p>Change the start date and end date to obtain longer periods and summmer periods.</p>
 <p>Schedule the auxiliary heat sources.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">C. Ghiaus (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, , open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL-03605823</a></p></li>
 <li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">C. Ghiaus (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198, open access preprint: <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
@@ -770,11 +794,10 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="02_2_2Toy.html"
@@ -794,10 +817,7 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -806,9 +826,10 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -847,13 +868,14 @@ T_{i,sp(0)} &amp; T_{i,sp(1)}&amp; ... &amp; T_{i,sp(n-1)}\ \\
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -880,8 +902,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

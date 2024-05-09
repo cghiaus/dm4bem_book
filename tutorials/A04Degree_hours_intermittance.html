@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Degree-hour estimation of energy savings by intermittent heating &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A04Degree_hours_intermittance';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Greenhouse effect" href="A05Greenhouse_effect.html" />
     <link rel="prev" title="Air flow by ventilation" href="A03Air_flow_ventilation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A04Degree_hours_intermittance.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/A04Degree_hours_intermittance.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -413,14 +437,14 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="degree-hour-estimation-of-energy-savings-by-intermittent-heating">
-<h1>Degree-hour estimation of energy savings by intermittent heating<a class="headerlink" href="#degree-hour-estimation-of-energy-savings-by-intermittent-heating" title="Permalink to this headline">#</a></h1>
+<h1>Degree-hour estimation of energy savings by intermittent heating<a class="headerlink" href="#degree-hour-estimation-of-energy-savings-by-intermittent-heating" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2FA04Degree_hours_intermittance.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>Intermittence consists in reducing the heating power during the night. In a first approximation, the savings obtained can be estimated by using degree-hours (<a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus and Allard, 2006</a>).</p>
 <section id="degree-hour-method">
-<h2>Degree-hour method<a class="headerlink" href="#degree-hour-method" title="Permalink to this headline">#</a></h2>
+<h2>Degree-hour method<a class="headerlink" href="#degree-hour-method" title="Permalink to this heading">#</a></h2>
 <p>Let’s model the building as a volume at indoor temperature separated from the environment by an envelope. Indoor and outdoor temperatures and the properties of the envelope are homogeneous. The heat balance in steady-state is:</p>
 <div class="math notranslate nohighlight">
 \[\dot{Q}_{HVAC} - U_{bldg}·S·(\theta_{in} - \theta_{out}) = 0\]</div>
@@ -461,7 +485,7 @@ document.write(`
 <p>Degree-days and degree-hours are used to estimate the influence of climate and of indoor temperature on energy consumption (<a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, 2003</a>, <a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus and Allard, 2006</a>, <a class="reference external" href="https://doi.org/10.1016/j.buildenv.2005.02.003">Ghiaus et al., 2006</a>). The method has the advantage of comparing the influence of different climates and indoor temperatures without knowing the actual building. It has the disadvantage of not taking into account properly the gains (solar and internal), the variable ventilation rates, and the distribution of outdoor temperatures (e.g., air and ground). Therefore, it is suited for comparing the potential of energy savings due to climate and indoor temperature.</p>
 </section>
 <section id="estimation-of-energy-used-for-heating-with-degree-hours-method">
-<h2>Estimation of energy used for heating with degree-hours method<a class="headerlink" href="#estimation-of-energy-used-for-heating-with-degree-hours-method" title="Permalink to this headline">#</a></h2>
+<h2>Estimation of energy used for heating with degree-hours method<a class="headerlink" href="#estimation-of-energy-used-for-heating-with-degree-hours-method" title="Permalink to this heading">#</a></h2>
 <p>The Heating, Ventilation and Air Conditioning (HVAC) system controls the indoor temperature all the time by heating and cooling the building. Heating is needed only when the outdoor temperature is lower than the indoor temperature. The energy consumption for heating is proportional to degree-hours (or degree-days) for heating:</p>
 <div class="math notranslate nohighlight">
 \[Q_h \sim  \sum_{k=0}^{n} (\theta_{in,k} - \left \lceil  \theta_{out,k} \right \rceil) \Delta t \]</div>
@@ -482,13 +506,13 @@ document.write(`
 \end{cases}\)</span></p>
 </section>
 <section id="degree-hours-for-intermittent-heating">
-<h2>Degree-hours for intermittent heating<a class="headerlink" href="#degree-hours-for-intermittent-heating" title="Permalink to this headline">#</a></h2>
+<h2>Degree-hours for intermittent heating<a class="headerlink" href="#degree-hours-for-intermittent-heating" title="Permalink to this heading">#</a></h2>
 <p>In intermittent heating, the indoor temperature <span class="math notranslate nohighlight">\(\theta_{in,k}\)</span> varies in time. The estimation of energy savings by using degree-hours needs to be corrected to take into account the inertia of the building, the gains (solar and internal) and the air infiltration rate. Nevertheless, the degree-hour method gives an indication on savings by indoor temperature setpoint and climate, without modelling the building.</p>
 </section>
 <section id="python-implementation">
-<h2>Python implementation<a class="headerlink" href="#python-implementation" title="Permalink to this headline">#</a></h2>
+<h2>Python implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h2>
 <section id="weather-data">
-<h3>Weather data<a class="headerlink" href="#weather-data" title="Permalink to this headline">#</a></h3>
+<h3>Weather data<a class="headerlink" href="#weather-data" title="Permalink to this heading">#</a></h3>
 <p>Download the weather file with extension <code class="docutils literal notranslate"><span class="pre">.epw</span></code> from:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: folder of files at the repository of free climate data for building performance simulation,</p></li>
@@ -504,7 +528,7 @@ document.write(`
 <p>from <a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
 </section>
 <section id="inputs">
-<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">#</a></h3>
+<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">filename</span></code> file name of weather data;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">θ</span></code> indoor temperature considered constant all the period;</p></li>
@@ -558,7 +582,7 @@ document.write(`
 </div>
 </section>
 <section id="temperature-differences-for-constant-indoor-temperature">
-<h3>Temperature differences for constant indoor temperature<a class="headerlink" href="#temperature-differences-for-constant-indoor-temperature" title="Permalink to this headline">#</a></h3>
+<h3>Temperature differences for constant indoor temperature<a class="headerlink" href="#temperature-differences-for-constant-indoor-temperature" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[\Delta \theta_{fix,k} = \theta - \left \lceil  \theta_{out,k} \right \rceil\]</div>
 <p>where:</p>
@@ -586,9 +610,9 @@ document.write(`
 </div>
 </section>
 <section id="temperature-differences-for-variable-indoor-temperature">
-<h3>Temperature differences for variable indoor temperature<a class="headerlink" href="#temperature-differences-for-variable-indoor-temperature" title="Permalink to this headline">#</a></h3>
+<h3>Temperature differences for variable indoor temperature<a class="headerlink" href="#temperature-differences-for-variable-indoor-temperature" title="Permalink to this heading">#</a></h3>
 <section id="daytime-and-nighttime">
-<h4>Daytime and nighttime<a class="headerlink" href="#daytime-and-nighttime" title="Permalink to this headline">#</a></h4>
+<h4>Daytime and nighttime<a class="headerlink" href="#daytime-and-nighttime" title="Permalink to this heading">#</a></h4>
 <p>Daytime is from <code class="docutils literal notranslate"><span class="pre">day_start</span></code> to <code class="docutils literal notranslate"><span class="pre">day_end</span></code>(indicated in <code class="docutils literal notranslate"><span class="pre">HH:00</span></code>). Nighttime is when there is no daytime.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -606,7 +630,7 @@ document.write(`
 </div>
 </section>
 <section id="temperature-differences-for-daytime">
-<h4>Temperature differences for daytime<a class="headerlink" href="#temperature-differences-for-daytime" title="Permalink to this headline">#</a></h4>
+<h4>Temperature differences for daytime<a class="headerlink" href="#temperature-differences-for-daytime" title="Permalink to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[\Delta \theta_{day,k} = \theta_{day} - \left \lceil  \theta_{out,k} \right \rceil_{day}\]</div>
 <p>where:</p>
@@ -633,7 +657,7 @@ document.write(`
 </div>
 </section>
 <section id="temperature-differences-for-nighttime">
-<h4>Temperature differences for nighttime<a class="headerlink" href="#temperature-differences-for-nighttime" title="Permalink to this headline">#</a></h4>
+<h4>Temperature differences for nighttime<a class="headerlink" href="#temperature-differences-for-nighttime" title="Permalink to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[\Delta \theta_{night,k} = \theta_{night} - \left \lceil  \theta_{out,k} \right \rceil_{night}\]</div>
 <p>where:</p>
@@ -661,7 +685,7 @@ document.write(`
 </section>
 </section>
 <section id="degree-hours-for-heating-dhh">
-<h3>Degree-hours for heating (DHH)<a class="headerlink" href="#degree-hours-for-heating-dhh" title="Permalink to this headline">#</a></h3>
+<h3>Degree-hours for heating (DHH)<a class="headerlink" href="#degree-hours-for-heating-dhh" title="Permalink to this heading">#</a></h3>
 <p>The degree hours for heating (<em>DHH</em>) are the sum of temperature differences:</p>
 <ul class="simple">
 <li><p>for fixed indoor temperature</p></li>
@@ -698,7 +722,7 @@ document.write(`
 <span class="c1"># =======</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;degree-hours fixed set-point: </span><span class="si">{</span><span class="n">DHH_fix</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> h·K&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;degree-hours variable set-point: </span><span class="si">{</span><span class="n">DHH_interm</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> h·K&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated savings: </span><span class="si">{</span><span class="p">(</span><span class="n">DHH_fix</span> <span class="o">-</span> <span class="n">DHH_interm</span><span class="p">)</span> <span class="o">/</span> <span class="n">DHH_fix</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated savings: </span><span class="si">{</span><span class="p">(</span><span class="n">DHH_fix</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DHH_interm</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DHH_fix</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,7 +738,7 @@ Estimated savings: 12 %
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://doi.org/10.1016/S0378-7788(02)00110-X">Ghiaus, C. (2003)</a>. Free-running building temperature and HVAC climatic suitability. Energy and Buildings, 35(4), 405-411.</p></li>
 <li><p><a class="reference external" href="https://doi.org/10.1016/j.solener.2005.05.019">Ghiaus, C., &amp; Allard, F. (2006)</a>. Potential for free-cooling by ventilation. Solar Energy, 80(4), 402-413.</p></li>
@@ -751,11 +775,10 @@ Estimated savings: 12 %
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="A03Air_flow_ventilation.html"
@@ -775,10 +798,7 @@ Estimated savings: 12 %
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -787,9 +807,10 @@ Estimated savings: 12 %
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -824,13 +845,14 @@ Estimated savings: 12 %
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -857,8 +879,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Air flow by ventilation &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A03Air_flow_ventilation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Degree-hour estimation of energy savings by intermittent heating" href="A04Degree_hours_intermittance.html" />
     <link rel="prev" title="Sensible thermal load in steady-state" href="A02Thermal_load.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A03Air_flow_ventilation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/A03Air_flow_ventilation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -426,13 +450,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="air-flow-by-ventilation">
-<h1>Air flow by ventilation<a class="headerlink" href="#air-flow-by-ventilation" title="Permalink to this headline">#</a></h1>
+<h1>Air flow by ventilation<a class="headerlink" href="#air-flow-by-ventilation" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2FA03Air_flow_ventilation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="problem">
-<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">#</a></h2>
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
 <ul class="simple">
 <li><p>Orrifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
@@ -482,11 +506,11 @@ document.write(`
 </div>
 </section>
 <section id="summary-of-theory">
-<h2>Summary of theory<a class="headerlink" href="#summary-of-theory" title="Permalink to this headline">#</a></h2>
+<h2>Summary of theory<a class="headerlink" href="#summary-of-theory" title="Permalink to this heading">#</a></h2>
 <section id="sources">
-<h3>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">#</a></h3>
+<h3>Sources<a class="headerlink" href="#sources" title="Permalink to this heading">#</a></h3>
 <section id="pressure-sources">
-<h4>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this headline">#</a></h4>
+<h4>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this heading">#</a></h4>
 <p>Pressure sources <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
 <ul class="simple">
 <li><p>stack pressure: <span class="math notranslate nohighlight">\(P_s = P_0 - \rho g z\)</span>;</p></li>
@@ -506,12 +530,12 @@ document.write(`
 </ul>
 </section>
 <section id="flow-sources">
-<h4>Flow sources<a class="headerlink" href="#flow-sources" title="Permalink to this headline">#</a></h4>
+<h4>Flow sources<a class="headerlink" href="#flow-sources" title="Permalink to this heading">#</a></h4>
 <p>Flow sources inject a controlled volumetric airflow rate into the control volume, as is the case in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">balanced mechanical ventilation systems</a>.</p>
 </section>
 </section>
 <section id="constitutive-equation">
-<h3>Constitutive equation<a class="headerlink" href="#constitutive-equation" title="Permalink to this headline">#</a></h3>
+<h3>Constitutive equation<a class="headerlink" href="#constitutive-equation" title="Permalink to this heading">#</a></h3>
 <p>Each opening of a building can be modelled by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Constitutive_equation">constitutive equation</a> or power law <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
 <div class="math notranslate nohighlight">
 \[ \dot V_{i,j} = K_{i,j} \Delta P^n_{i,j} = K_{i,j}(P_i - P_j)^n\]</div>
@@ -524,7 +548,7 @@ document.write(`
 <p>The values of the pressure exponent <span class="math notranslate nohighlight">\(n\)</span> and flow coefficient <span class="math notranslate nohighlight">\(K_{i,j}\)</span> can be obtained experimentally by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">blower door</a> test.</p>
 </section>
 <section id="mass-conservation-equation">
-<h3>Mass conservation equation<a class="headerlink" href="#mass-conservation-equation" title="Permalink to this headline">#</a></h3>
+<h3>Mass conservation equation<a class="headerlink" href="#mass-conservation-equation" title="Permalink to this heading">#</a></h3>
 <p>Mass air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[ \dot m_{i,j} = \rho_i \, \dot V_{i,j}\]</div>
@@ -545,7 +569,7 @@ document.write(`
 </ol>
 </section>
 <section id="domain-of-variation-for-the-indoor-pressure">
-<h3>Domain of variation for the indoor pressure<a class="headerlink" href="#domain-of-variation-for-the-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Domain of variation for the indoor pressure<a class="headerlink" href="#domain-of-variation-for-the-indoor-pressure" title="Permalink to this heading">#</a></h3>
 <p>For the flow directions shown in Figure 1,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -583,7 +607,7 @@ document.write(`
 </section>
 </section>
 <section id="static-pressure">
-<h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this headline">#</a></h2>
+<h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i g z\)</span> - static pressure indoors</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o g z\)</span> - static pressure outdoors</p></li>
@@ -599,9 +623,9 @@ document.write(`
 </div>
 </section>
 <section id="neglecting-the-wind-effect">
-<h2>Neglecting the wind effect<a class="headerlink" href="#neglecting-the-wind-effect" title="Permalink to this headline">#</a></h2>
+<h2>Neglecting the wind effect<a class="headerlink" href="#neglecting-the-wind-effect" title="Permalink to this heading">#</a></h2>
 <section id="dynamic-pressure">
-<h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
@@ -621,7 +645,7 @@ document.write(`
 </div>
 </section>
 <section id="variation-domain-of-indoor-pressure">
-<h3>Variation domain of indoor pressure<a class="headerlink" href="#variation-domain-of-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Variation domain of indoor pressure<a class="headerlink" href="#variation-domain-of-indoor-pressure" title="Permalink to this heading">#</a></h3>
 <p>The domain of variation of <span class="math notranslate nohighlight">\(p_i\)</span> in order to have the flows shown in Figure 1 is</p>
 <div class="math notranslate nohighlight">
 \[P_{si} - (P_{dc} + P{sc}) \le p_i \le \min (P_{dn},P_{ds})\]</div>
@@ -640,7 +664,7 @@ document.write(`
 </div>
 </section>
 <section id="graphical-solution-of-nonlinear-equation-for-indoor-pressure">
-<h3>Graphical solution of nonlinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nonlinear-equation-for-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Graphical solution of nonlinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nonlinear-equation-for-indoor-pressure" title="Permalink to this heading">#</a></h3>
 <p>The mass flow balance equation for pressure node <span class="math notranslate nohighlight">\(p_i\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
@@ -659,7 +683,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">pi</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Error in mass balance equation as a function of indoor pressure.</span>
 <span class="sd">    Used to find indoor pressure pi which makes the mass balance zero.</span>
 <span class="sd">    The north and south flows are entering.</span>
@@ -702,7 +726,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/725be47d6ffb3278293a22b1bf3a161701e47a2446c867e7bf6531e1b524ff18.png" src="../_images/725be47d6ffb3278293a22b1bf3a161701e47a2446c867e7bf6531e1b524ff18.png" />
+<img alt="../_images/3bad0a4ef9d8282d7f30db8ae2a1982f7bc805a143e0ec75ebfad0c95d97bf09.png" src="../_images/3bad0a4ef9d8282d7f30db8ae2a1982f7bc805a143e0ec75ebfad0c95d97bf09.png" />
 </div>
 </div>
 <blockquote>
@@ -710,7 +734,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="numerical-solution">
-<h3>Numerical solution<a class="headerlink" href="#numerical-solution" title="Permalink to this headline">#</a></h3>
+<h3>Numerical solution<a class="headerlink" href="#numerical-solution" title="Permalink to this heading">#</a></h3>
 <p>Alternativelly, the solution to the equation</p>
 <div class="math notranslate nohighlight">
 \[f(p_i) = 0\]</div>
@@ -727,11 +751,15 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -4.45 Pa
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6701/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  root = float(fsolve(f, np.mean([pi_min, pi_max])))
+</pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="check-the-mass-balance">
-<h3>Check the mass balance<a class="headerlink" href="#check-the-mass-balance" title="Permalink to this headline">#</a></h3>
+<h3>Check the mass balance<a class="headerlink" href="#check-the-mass-balance" title="Permalink to this heading">#</a></h3>
 <p>By knowing the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>, the mass flows  <span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>, <span class="math notranslate nohighlight">\(\dot m_{si}\)</span> and <span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>  can be found and the mass balance</p>
 <div class="math notranslate nohighlight">
 \[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
@@ -743,9 +771,9 @@ document.write(`
 <span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">-</span> <span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -761,9 +789,9 @@ error in mass flow balance: 0.000 kg/s
 </section>
 </section>
 <section id="considering-the-wind-effect">
-<h2>Considering the wind effect<a class="headerlink" href="#considering-the-wind-effect" title="Permalink to this headline">#</a></h2>
+<h2>Considering the wind effect<a class="headerlink" href="#considering-the-wind-effect" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
@@ -784,7 +812,7 @@ error in mass flow balance: 0.000 kg/s
 </div>
 </section>
 <section id="domain-of-variation-of-indoor-pressure">
-<h3>Domain of variation of indoor pressure<a class="headerlink" href="#domain-of-variation-of-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Domain of variation of indoor pressure<a class="headerlink" href="#domain-of-variation-of-indoor-pressure" title="Permalink to this heading">#</a></h3>
 <p>The domain of variation of <span class="math notranslate nohighlight">\(p_i\)</span> in order to have the flows shown in Figure 1 is:</p>
 <div class="math notranslate nohighlight">
 \[P_{si} - (P_{dc} + P{sc}) \le p_i \le \min (P_{dn},P_{ds})\]</div>
@@ -803,7 +831,7 @@ error in mass flow balance: 0.000 kg/s
 </div>
 </section>
 <section id="graphical-solution-of-nolinear-equation-for-indoor-pressure">
-<h3>Graphical solution of nolinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nolinear-equation-for-indoor-pressure" title="Permalink to this headline">#</a></h3>
+<h3>Graphical solution of nolinear equation for indoor pressure<a class="headerlink" href="#graphical-solution-of-nolinear-equation-for-indoor-pressure" title="Permalink to this heading">#</a></h3>
 <p>The solution of this non-linear equation can be found graphically (Figure 4).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,7 +852,7 @@ error in mass flow balance: 0.000 kg/s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/089f9b6cc83b308ba6bd29608ff3e5bf6d5f48519ee09a98b17049ae70dea976.png" src="../_images/089f9b6cc83b308ba6bd29608ff3e5bf6d5f48519ee09a98b17049ae70dea976.png" />
+<img alt="../_images/da39925fc58a99d94ae556e7298d32b57ec46ead723167d7ea356f999119f5ef.png" src="../_images/da39925fc58a99d94ae556e7298d32b57ec46ead723167d7ea356f999119f5ef.png" />
 </div>
 </div>
 <blockquote>
@@ -832,7 +860,7 @@ error in mass flow balance: 0.000 kg/s
 </div></blockquote>
 </section>
 <section id="id2">
-<h3>Numerical solution<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Numerical solution<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Alternativelly, the solution to the equation</p>
 <div class="math notranslate nohighlight">
 \[f(p_i) = 0\]</div>
@@ -849,11 +877,15 @@ error in mass flow balance: 0.000 kg/s
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -10.50 Pa
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6701/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+  root = float(fsolve(f, np.mean([pi_min, pi_max])))
+</pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="id3">
-<h3>Check the mass balance<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3>Check the mass balance<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>By knowing the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>, the mass flows  <span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>, <span class="math notranslate nohighlight">\(\dot m_{si}\)</span> and <span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>  can be found and the mass balance</p>
 <div class="math notranslate nohighlight">
 \[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
@@ -864,9 +896,9 @@ error in mass flow balance: 0.000 kg/s
 <span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span> <span class="o">-</span> <span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -882,7 +914,7 @@ error in mass flow balance: 0.000 kg/s
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">B. Rock, S.J. Emmerich, S. Taylor (2017)</a> <em>F16 Ventilation and Infiltration</em> in ASHRAE Fundamentals Handbook, ISBN 10: 1939200598  ISBN 13: 978-1939200594</p>
 </section>
 </section>
@@ -912,11 +944,10 @@ error in mass flow balance: 0.000 kg/s
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="A02Thermal_load.html"
@@ -936,10 +967,7 @@ error in mass flow balance: 0.000 kg/s
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -948,9 +976,10 @@ error in mass flow balance: 0.000 kg/s
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -998,13 +1027,14 @@ error in mass flow balance: 0.000 kg/s
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1031,8 +1061,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

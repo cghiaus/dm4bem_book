@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Simple wall &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/02_1Wall';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Toy model house" href="02_2_0Toy.html" />
     <link rel="prev" title="Modeling and simulation" href="02_0ModelSimulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/02_1Wall.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/02_1Wall.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -454,16 +478,16 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="simple-wall">
-<h1>Simple wall<a class="headerlink" href="#simple-wall" title="Permalink to this headline">#</a></h1>
+<h1>Simple wall<a class="headerlink" href="#simple-wall" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_1Wall.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>This notebook presents a thermal circuit with capacities in every node and its state-space representation.</p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Model heat transfer by using a thermal network.</p></li>
 <li><p>Obtain the mathematical model as a system of differential algebraic equations (DAE).</p></li>
@@ -474,7 +498,7 @@ document.write(`
 </ul>
 </section>
 <section id="summary">
-<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
 <p>This notebook calculates the temperature distribution in a two-layer wall in steady-state and in a dynamic simulation. The code:</p>
 <ul class="simple">
 <li><p>Imports Python standard modules (<code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>), and functions from a local module (<code class="docutils literal notranslate"><span class="pre">dm4bem</span></code>).</p></li>
@@ -501,9 +525,9 @@ document.write(`
 </section>
 </section>
 <section id="modelling">
-<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this headline">#</a></h2>
+<h2>Modelling<a class="headerlink" href="#modelling" title="Permalink to this heading">#</a></h2>
 <section id="wall-description">
-<h3>Wall description<a class="headerlink" href="#wall-description" title="Permalink to this headline">#</a></h3>
+<h3>Wall description<a class="headerlink" href="#wall-description" title="Permalink to this heading">#</a></h3>
 <p>Let’s consider the heat transfer through a plane wall which separates the outside air, at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Temperature">temperature</a> <span class="math notranslate nohighlight">\(T_o\)</span>, from the inside air. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Rate_of_heat_flow">Heat flow rate</a> <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> is added to the inside air by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Fan_coil_unit">fan-coil</a> (see Figure 1).</p>
 <p><img alt="wall" src="../_images/02_wall.svg" /></p>
 <blockquote>
@@ -668,7 +692,7 @@ document.write(`
 </div>
 </section>
 <section id="thermal-network-model">
-<h3>Thermal network model<a class="headerlink" href="#thermal-network-model" title="Permalink to this headline">#</a></h3>
+<h3>Thermal network model<a class="headerlink" href="#thermal-network-model" title="Permalink to this heading">#</a></h3>
 <p>The wall consists of two layers: concrete and insulation. The first layer is discretized in 4 <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> and the second layer in 2 meshes. By adding together the resistances which are in series, a simpler thermal network is obtained (Figue 2).</p>
 <p><img alt="RC" src="../_images/02_RC_model.svg" /></p>
 <blockquote>
@@ -696,9 +720,9 @@ document.write(`
 <p>The thermal circuits model physical systems which are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Causal_system">causal</a>: the values of the outputs depend on past and current values of the inputs (but not on future values of the inputs).</p>
 </section>
 <section id="parameters-of-thermal-network">
-<h3>Parameters of thermal network<a class="headerlink" href="#parameters-of-thermal-network" title="Permalink to this headline">#</a></h3>
+<h3>Parameters of thermal network<a class="headerlink" href="#parameters-of-thermal-network" title="Permalink to this heading">#</a></h3>
 <section id="resistances">
-<h4>Resistances<a class="headerlink" href="#resistances" title="Permalink to this headline">#</a></h4>
+<h4>Resistances<a class="headerlink" href="#resistances" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_resistance">thermal resistances</a> for <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conduction">thermal conduction</a> are of the form:</p>
 <div class="math notranslate nohighlight">
 \[R_{cd} = \frac{w}{\lambda S}\]</div>
@@ -734,7 +758,7 @@ document.write(`
 </div>
 </section>
 <section id="capacities">
-<h4>Capacities<a class="headerlink" href="#capacities" title="Permalink to this headline">#</a></h4>
+<h4>Capacities<a class="headerlink" href="#capacities" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">thermal capacities</a> of the wall are of the form:</p>
 <div class="math notranslate nohighlight">
 \[C_w= m_w c_w= \rho_w c_w w_w S_w\]</div>
@@ -773,7 +797,7 @@ document.write(`
 </section>
 </section>
 <section id="differential-algebraic-equations-dae">
-<h3>Differential algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this headline">#</a></h3>
+<h3>Differential algebraic equations (DAE)<a class="headerlink" href="#differential-algebraic-equations-dae" title="Permalink to this heading">#</a></h3>
 <p>The number of temperature nodes and of flow branches of the thermal network depend on the number of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Types_of_mesh">meshes</a> obtained by the discretization of the wall.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -787,7 +811,7 @@ document.write(`
 </div>
 </div>
 <section id="conductance-matrix-g">
-<h4>Conductance matrix <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#conductance-matrix-g" title="Permalink to this headline">#</a></h4>
+<h4>Conductance matrix <span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#conductance-matrix-g" title="Permalink to this heading">#</a></h4>
 <p>The resistances are grouped in the conductance matrix, which is diagonal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}G = \begin{bmatrix}
@@ -808,6 +832,14 @@ R_0^{-1} &amp;  &amp;  &amp; \\
 <p><em>Note</em>: A branch consists of a temperature source and a thermal resistance (or conductance). Each branch of the network needs to have a resistance (or a conductance) but not necessarily a source of temperature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert R_cv from DataFrame into Series</span>
+<span class="n">R_cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">R_cv</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">R_cv</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conductance matrix</span>
 <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">no_q</span><span class="p">])</span>
 <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">R_cv</span><span class="p">[</span><span class="s1">&#39;out&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">R_cd</span><span class="p">[</span><span class="s1">&#39;Layer_1&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">8</span>
@@ -822,7 +854,7 @@ R_0^{-1} &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="capacity-matrix-c">
-<h4>Capacity matrix <span class="math notranslate nohighlight">\(C\)</span><a class="headerlink" href="#capacity-matrix-c" title="Permalink to this headline">#</a></h4>
+<h4>Capacity matrix <span class="math notranslate nohighlight">\(C\)</span><a class="headerlink" href="#capacity-matrix-c" title="Permalink to this heading">#</a></h4>
 <p>The capacities are grouped in the capacity matrix, which is diagonal:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}C = \begin{bmatrix}
@@ -853,7 +885,7 @@ C_0 &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="arc-node-incidence-matrix-a">
-<h4>Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#arc-node-incidence-matrix-a" title="Permalink to this headline">#</a></h4>
+<h4>Arc-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span><a class="headerlink" href="#arc-node-incidence-matrix-a" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Incidence_matrix">incidence matrix</a>  shows the relation between oriented branches (i.e. flow rates) and nodes (i.e. temperatures). The rows in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> correspond to the branches containing the heat flow rates <span class="math notranslate nohighlight">\(q_k\)</span> across the resistances <span class="math notranslate nohighlight">\(R_k\)</span> and the columns correspond to the temperature nodes <span class="math notranslate nohighlight">\(\theta_l\)</span>. In the row corresponding to the branch <span class="math notranslate nohighlight">\(q_k\)</span> in the position of the node <span class="math notranslate nohighlight">\(\theta_l\)</span> there is -1 if the flow <span class="math notranslate nohighlight">\(q_k\)</span> leaves the node, +1 if the flow <span class="math notranslate nohighlight">\(q_k\)</span> enters into the node <span class="math notranslate nohighlight">\(\theta_k\)</span> and 0 if the resistance <span class="math notranslate nohighlight">\(R_k\)</span> is not connected to the temperature node <span class="math notranslate nohighlight">\(\theta_k\)</span> (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}A_{kl} = \begin{cases}\phantom{-}
@@ -976,7 +1008,7 @@ C_0 &amp;  &amp;  &amp; \\
 </div>
 </section>
 <section id="vectors-of-temperature-sources-b-and-flow-rate-sources-f">
-<h4>Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span><a class="headerlink" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f" title="Permalink to this headline">#</a></h4>
+<h4>Vectors of temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow rate sources <span class="math notranslate nohighlight">\(f\)</span><a class="headerlink" href="#vectors-of-temperature-sources-b-and-flow-rate-sources-f" title="Permalink to this heading">#</a></h4>
 <p>First, we will set all the temperature sources <span class="math notranslate nohighlight">\(b\)</span> and flow sources <span class="math notranslate nohighlight">\(f\)</span> to zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -990,7 +1022,7 @@ C_0 &amp;  &amp;  &amp; \\
 <p>Their values will be changed depending on the conditions.</p>
 </section>
 <section id="system-of-differential-algebraic-equations">
-<h4>System of differential algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this headline">#</a></h4>
+<h4>System of differential algebraic equations<a class="headerlink" href="#system-of-differential-algebraic-equations" title="Permalink to this heading">#</a></h4>
 <p>The system of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">Differential-Algebraic Equations</a> (DAE) is (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, 2013</a>):</p>
 <div class="math notranslate nohighlight">
 \[C\dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
@@ -1007,7 +1039,7 @@ C_0 &amp;  &amp;  &amp; \\
 </section>
 </section>
 <section id="steady-state-solution">
-<h2>Steady-state solution<a class="headerlink" href="#steady-state-solution" title="Permalink to this headline">#</a></h2>
+<h2>Steady-state solution<a class="headerlink" href="#steady-state-solution" title="Permalink to this heading">#</a></h2>
 <p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/Steady_state">steady-state</a>, i.e., <span class="math notranslate nohighlight">\(\dot{\theta} = 0\)</span>, the solution of the system of  Differential-Algebraic Equations (DAE) is:</p>
 <div class="math notranslate nohighlight">
 \[\theta = (A^T G A)^{-1}(A^T G b + f)\]</div>
@@ -1019,7 +1051,7 @@ C_0 &amp;  &amp;  &amp; \\
 <li><p>The indoor flow introduced by the fan-coil is <span class="math notranslate nohighlight">\(\dot{Q}_h = 1\, \mathrm{W}\)</span>, i.e. <span class="math notranslate nohighlight">\(f_6 \equiv f_{end} = 1\)</span> and all other sources are zero.</p></li>
 </ol>
 <section id="response-to-outdoor-temperature-variation">
-<h3>Response to outdoor temperature variation<a class="headerlink" href="#response-to-outdoor-temperature-variation" title="Permalink to this headline">#</a></h3>
+<h3>Response to outdoor temperature variation<a class="headerlink" href="#response-to-outdoor-temperature-variation" title="Permalink to this heading">#</a></h3>
 <p>The outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 1\, \mathrm{^\circ C}\)</span>, i.e. <span class="math notranslate nohighlight">\(b_0 = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1041,7 +1073,7 @@ The indoor temperature is: 1.000 °C
 </div>
 </section>
 <section id="response-to-indoor-flow-rate-variation">
-<h3>Response to indoor flow rate variation<a class="headerlink" href="#response-to-indoor-flow-rate-variation" title="Permalink to this headline">#</a></h3>
+<h3>Response to indoor flow rate variation<a class="headerlink" href="#response-to-indoor-flow-rate-variation" title="Permalink to this heading">#</a></h3>
 <p>The indoor flow introduced by the fan-coil is <span class="math notranslate nohighlight">\(\dot{Q}_h = 1\, \mathrm{W}\)</span>, i.e. <span class="math notranslate nohighlight">\(f_6 \equiv f_{end} = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1064,7 +1096,7 @@ The indoor temperature is: 0.277 °C
 </section>
 </section>
 <section id="state-space-representation">
-<h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this headline">#</a></h2>
+<h2>State-space representation<a class="headerlink" href="#state-space-representation" title="Permalink to this heading">#</a></h2>
 <p>If matrix <span class="math notranslate nohighlight">\(C\)</span> is <a class="reference external" href="https://en.m.wikipedia.org/wiki/Invertible_matrix">invertible (or non-singular)</a>, then the system of Differential-Algebraic Equations (DAE)</p>
 <div class="math notranslate nohighlight">
 \[C\dot{\theta} = -A^T G A \theta + A^T G b + f\]</div>
@@ -1091,7 +1123,7 @@ A^T G &amp; I
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># State matrix</span>
 <span class="n">As</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">@</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span> <span class="o">@</span> <span class="n">A</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># pd.set_option(&#39;precision&#39;, 1)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">As</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">θ</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1127,73 +1159,73 @@ A^T G &amp; I
   <tbody>
     <tr>
       <th>θ0</th>
-      <td>-3.6e-04</td>
-      <td>2.8e-04</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
+      <td>-0.000361</td>
+      <td>0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ1</th>
-      <td>2.8e-04</td>
-      <td>-5.5e-04</td>
-      <td>2.8e-04</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
+      <td>0.000277</td>
+      <td>-0.000553</td>
+      <td>0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ2</th>
-      <td>0.0e+00</td>
-      <td>2.8e-04</td>
-      <td>-5.5e-04</td>
-      <td>2.8e-04</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
+      <td>0.000000</td>
+      <td>0.000277</td>
+      <td>-0.000553</td>
+      <td>0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ3</th>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>2.8e-04</td>
-      <td>-3.0e-04</td>
-      <td>1.9e-05</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000277</td>
+      <td>-0.000296</td>
+      <td>0.000019</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ4</th>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>2.5e-03</td>
-      <td>-3.8e-03</td>
-      <td>1.3e-03</td>
-      <td>0.0e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.002494</td>
+      <td>-0.003785</td>
+      <td>0.001291</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ5</th>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>1.3e-03</td>
-      <td>-3.0e-03</td>
-      <td>1.7e-03</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.001291</td>
+      <td>-0.003013</td>
+      <td>0.001722</td>
     </tr>
     <tr>
       <th>θ6</th>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>0.0e+00</td>
-      <td>3.7e-04</td>
-      <td>-3.7e-04</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000370</td>
+      <td>-0.000370</td>
     </tr>
   </tbody>
 </table>
@@ -1207,7 +1239,7 @@ A^T G &amp; I
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input matrix</span>
 <span class="n">Bs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">block</span><span class="p">([</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">G</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">no_θ</span><span class="p">)])</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># pd.set_option(&#39;precision&#39;, 2)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Bs</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">θ</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">q</span> <span class="o">+</span> <span class="n">θ</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1250,122 +1282,122 @@ A^T G &amp; I
   <tbody>
     <tr>
       <th>θ0</th>
-      <td>8.38e-05</td>
-      <td>-2.77e-04</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.10e-06</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000084</td>
+      <td>-0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ1</th>
-      <td>0.00e+00</td>
-      <td>2.77e-04</td>
-      <td>-2.77e-04</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.10e-06</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000277</td>
+      <td>-0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ2</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>2.77e-04</td>
-      <td>-2.77e-04</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.10e-06</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000277</td>
+      <td>-0.000277</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ3</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>2.77e-04</td>
-      <td>-1.91e-05</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.10e-06</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000277</td>
+      <td>-0.000019</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000001</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ4</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>2.49e-03</td>
-      <td>-1.29e-03</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.43e-04</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.002494</td>
+      <td>-0.001291</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000143</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ5</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.29e-03</td>
-      <td>-1.72e-03</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>1.43e-04</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.001291</td>
+      <td>-0.001722</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000143</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>θ6</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>3.70e-04</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
-      <td>3.09e-05</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000370</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000031</td>
     </tr>
   </tbody>
 </table>
@@ -1429,38 +1461,38 @@ T_o\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>8.38e-05</td>
-      <td>0.00e+00</td>
+      <td>0.000084</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.00e+00</td>
-      <td>0.00e+00</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.00e+00</td>
-      <td>3.09e-05</td>
+      <td>0.000000</td>
+      <td>0.000031</td>
     </tr>
   </tbody>
 </table>
@@ -1506,9 +1538,9 @@ T_o\\
 </div>
 </section>
 <section id="eigenvalue-analysis">
-<h2>Eigenvalue analysis<a class="headerlink" href="#eigenvalue-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Eigenvalue analysis<a class="headerlink" href="#eigenvalue-analysis" title="Permalink to this heading">#</a></h2>
 <section id="time-constants">
-<h3>Time constants<a class="headerlink" href="#time-constants" title="Permalink to this headline">#</a></h3>
+<h3>Time constants<a class="headerlink" href="#time-constants" title="Permalink to this heading">#</a></h3>
 <p>The eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> are related to the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_constant">time constants</a> <span class="math notranslate nohighlight">\(\tau_i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \lambda _i = - \frac{1}{\tau_i},\]</div>
@@ -1531,7 +1563,7 @@ T_o\\
 <p>The time step and the settling time are related to the time constants.</p>
 </section>
 <section id="time-step">
-<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this headline">#</a></h3>
+<h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this heading">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">stability condition for explicit Euler method</a> requires that all eigenvalues <span class="math notranslate nohighlight">\(\lambda _i \in \mathbb{Z}\)</span> of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> satisfy the condition</p>
 <div class="math notranslate nohighlight">
 \[ \left | 1 + \lambda _i \Delta t \right | \leq 1, \forall i \]</div>
@@ -1565,13 +1597,13 @@ T_o\\
 </div>
 </section>
 <section id="settling-time">
-<h3>Settling time<a class="headerlink" href="#settling-time" title="Permalink to this headline">#</a></h3>
+<h3>Settling time<a class="headerlink" href="#settling-time" title="Permalink to this heading">#</a></h3>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Settling_time">settling time</a> is about four times the largest time constant plus dead time (<a class="reference external" href="https://gnindia.dronacharya.info/EEE/5thSem/Downloads/ControlSystem/Books/CONTROL-SYSTEM-REFERENCE-BOOK-2.pdf">N. Nise, 2015</a>, p. 163).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># settling time</span>
 <span class="n">t_settle</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="n">λ</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Settling time: </span><span class="si">{</span><span class="n">t_settle</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">t_settle</span> <span class="o">/</span> <span class="mi">3600</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Settling time: </span><span class="si">{</span><span class="n">t_settle</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> s = </span><span class="si">{</span><span class="n">t_settle</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3600</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> h&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1584,7 +1616,7 @@ T_o\\
 </section>
 </section>
 <section id="simulation">
-<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">#</a></h2>
+<h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
 <p>We will study the dynamic response of the model to:</p>
 <ul class="simple">
 <li><p>a step variation of a source (outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> or indoor flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>);</p></li>
@@ -1592,9 +1624,9 @@ T_o\\
 </ul>
 <p>by using explicit and implicit Euler methods for time integration.</p>
 <section id="step-response">
-<h3>Step response<a class="headerlink" href="#step-response" title="Permalink to this headline">#</a></h3>
+<h3>Step response<a class="headerlink" href="#step-response" title="Permalink to this heading">#</a></h3>
 <section id="outdoor-temperature">
-<h4>Outdoor temperature<a class="headerlink" href="#outdoor-temperature" title="Permalink to this headline">#</a></h4>
+<h4>Outdoor temperature<a class="headerlink" href="#outdoor-temperature" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Step_response">step response</a> is the time evolution of the output(s) when the input is a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heaviside_step_function">step function</a>. Usually, the zero initial conditions (i.e. the system is at rest and there is no accumulations of energy in the capacities) are considered.</p>
 <p>The number of time steps depends on the settling time and the time step.</p>
 <div class="cell docutils container">
@@ -1827,7 +1859,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6b1798f973b28a55b39ba0f05a3c047a73bf38f7a0eef8c7feb2dad7c59c4550.png" src="../_images/6b1798f973b28a55b39ba0f05a3c047a73bf38f7a0eef8c7feb2dad7c59c4550.png" />
+<img alt="../_images/9aa1f157c65fa415ab997c50c2970379b0766e0112693abe83a11f72f2bec0e3.png" src="../_images/9aa1f157c65fa415ab997c50c2970379b0766e0112693abe83a11f72f2bec0e3.png" />
 </div>
 </div>
 <blockquote>
@@ -1835,7 +1867,7 @@ T_o\\
 </div></blockquote>
 </section>
 <section id="indoor-heat-flow-rate">
-<h4>Indoor heat flow rate<a class="headerlink" href="#indoor-heat-flow-rate" title="Permalink to this headline">#</a></h4>
+<h4>Indoor heat flow rate<a class="headerlink" href="#indoor-heat-flow-rate" title="Permalink to this heading">#</a></h4>
 <p>Let’s consider that the indoor heat flow rate <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> has a step variation of 1 W (the outdoor temperature is zero, <span class="math notranslate nohighlight">\(T_o = 0\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1980,7 +2012,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05e9459abe421d37a96929d71893009916388ae07f81b66d3892a5d4188f5817.png" src="../_images/05e9459abe421d37a96929d71893009916388ae07f81b66d3892a5d4188f5817.png" />
+<img alt="../_images/f457f4d12c3b3867e44500e375bf8d6ed211860e0ed596760c135b8ba4e0f998.png" src="../_images/f457f4d12c3b3867e44500e375bf8d6ed211860e0ed596760c135b8ba4e0f998.png" />
 </div>
 </div>
 <blockquote>
@@ -1989,11 +2021,11 @@ T_o\\
 </section>
 </section>
 <section id="simulation-with-outdoor-temperature-from-weather-data">
-<h3>Simulation with outdoor temperature from weather data<a class="headerlink" href="#simulation-with-outdoor-temperature-from-weather-data" title="Permalink to this headline">#</a></h3>
+<h3>Simulation with outdoor temperature from weather data<a class="headerlink" href="#simulation-with-outdoor-temperature-from-weather-data" title="Permalink to this heading">#</a></h3>
 <section id="input-data-set">
-<h4>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this headline">#</a></h4>
+<h4>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this heading">#</a></h4>
 <section id="id1">
-<h5>Outdoor temperature<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h5>
+<h5>Outdoor temperature<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h5>
 <p>We want the weather data for Lyon from <code class="docutils literal notranslate"><span class="pre">start_date</span></code>to <code class="docutils literal notranslate"><span class="pre">end_date</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2178,7 +2210,7 @@ T_o\\
 </div>
 </section>
 <section id="resampled-outdoor-temperature">
-<h5>Resampled outdoor temperature<a class="headerlink" href="#resampled-outdoor-temperature" title="Permalink to this headline">#</a></h5>
+<h5>Resampled outdoor temperature<a class="headerlink" href="#resampled-outdoor-temperature" title="Permalink to this heading">#</a></h5>
 <p>The time vector for simulation is at time step <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2221,23 +2253,23 @@ T_o\\
   </thead>
   <tbody>
     <tr>
-      <th>0.00e+00</th>
+      <th>0.0</th>
       <td>5.10</td>
     </tr>
     <tr>
-      <th>3.60e+02</th>
+      <th>360.0</th>
       <td>5.04</td>
     </tr>
     <tr>
-      <th>7.20e+02</th>
+      <th>720.0</th>
       <td>4.98</td>
     </tr>
     <tr>
-      <th>1.08e+03</th>
+      <th>1080.0</th>
       <td>4.92</td>
     </tr>
     <tr>
-      <th>1.44e+03</th>
+      <th>1440.0</th>
       <td>4.86</td>
     </tr>
     <tr>
@@ -2245,23 +2277,23 @@ T_o\\
       <td>...</td>
     </tr>
     <tr>
-      <th>3.11e+06</th>
+      <th>3108600.0</th>
       <td>12.00</td>
     </tr>
     <tr>
-      <th>3.11e+06</th>
+      <th>3108960.0</th>
       <td>12.00</td>
     </tr>
     <tr>
-      <th>3.11e+06</th>
+      <th>3109320.0</th>
       <td>12.00</td>
     </tr>
     <tr>
-      <th>3.11e+06</th>
+      <th>3109680.0</th>
       <td>12.00</td>
     </tr>
     <tr>
-      <th>3.11e+06</th>
+      <th>3110040.0</th>
       <td>12.00</td>
     </tr>
   </tbody>
@@ -2271,7 +2303,7 @@ T_o\\
 </div>
 </section>
 <section id="id2">
-<h5>Indoor heat flow rate<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h5>
+<h5>Indoor heat flow rate<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h5>
 <p>Let’s consider that the indoor heat flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span> is zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2283,7 +2315,7 @@ T_o\\
 </section>
 </section>
 <section id="input-vector">
-<h4>Input vector<a class="headerlink" href="#input-vector" title="Permalink to this headline">#</a></h4>
+<h4>Input vector<a class="headerlink" href="#input-vector" title="Permalink to this heading">#</a></h4>
 <p>The input vector <span class="math notranslate nohighlight">\(u\)</span> is formed as a block vector from outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span> and indoor heat flow <span class="math notranslate nohighlight">\(\dot{Q}_h\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -2398,7 +2430,7 @@ T_o\\
 </div>
 </section>
 <section id="time-integration">
-<h4>Time integration<a class="headerlink" href="#time-integration" title="Permalink to this headline">#</a></h4>
+<h4>Time integration<a class="headerlink" href="#time-integration" title="Permalink to this heading">#</a></h4>
 <p>The responses are obtained by initializing the temperature vectors for explicit and implicit Euler and by integrating in time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2416,7 +2448,7 @@ T_o\\
 </div>
 </section>
 <section id="plots-of-results">
-<h4>Plots of results<a class="headerlink" href="#plots-of-results" title="Permalink to this headline">#</a></h4>
+<h4>Plots of results<a class="headerlink" href="#plots-of-results" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -2431,7 +2463,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b9487a2564e4422d0d29e888cd33c7c54318ebf9f58ff1243bc0970439e587a.png" src="../_images/5b9487a2564e4422d0d29e888cd33c7c54318ebf9f58ff1243bc0970439e587a.png" />
+<img alt="../_images/49e97e2e3b1caf4af95e6c12b19d9bbb22ac3d76a3aa80c42b75c4f27cf23385.png" src="../_images/49e97e2e3b1caf4af95e6c12b19d9bbb22ac3d76a3aa80c42b75c4f27cf23385.png" />
 </div>
 </div>
 <blockquote>
@@ -2442,7 +2474,7 @@ T_o\\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">To</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outdoor temperature&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">θ_imp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Indoor temperature&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time $t$ / day&#39;</span><span class="p">,</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / day&#39;</span><span class="p">,</span>
        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Air temperature, $θ$ / °C&#39;</span><span class="p">,</span>
        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Implicit Euler&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2451,7 +2483,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/51ee4e6fcabecdd8ba48529bf40d12ea4ba2555bb99f565a5525633edbfdce74.png" src="../_images/51ee4e6fcabecdd8ba48529bf40d12ea4ba2555bb99f565a5525633edbfdce74.png" />
+<img alt="../_images/519a6ebed9cc5241729d70ac6d9bdf891ff98190ea6e8f582262c4edb2bbf99e.png" src="../_images/519a6ebed9cc5241729d70ac6d9bdf891ff98190ea6e8f582262c4edb2bbf99e.png" />
 </div>
 </div>
 <blockquote>
@@ -2460,7 +2492,7 @@ T_o\\
 </section>
 </section>
 <section id="simulation-by-using-pandas">
-<h3>Simulation by using Pandas<a class="headerlink" href="#simulation-by-using-pandas" title="Permalink to this headline">#</a></h3>
+<h3>Simulation by using Pandas<a class="headerlink" href="#simulation-by-using-pandas" title="Permalink to this heading">#</a></h3>
 <p>Let’s consider the same code as in the previous sections, with the difference that Pandas are used for plotting the results of the simulations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2517,7 +2549,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62916f4cf34fddb66337fff2d753177ed0d715e2ec1efd4fe65ff2e8eeda1f9d.png" src="../_images/62916f4cf34fddb66337fff2d753177ed0d715e2ec1efd4fe65ff2e8eeda1f9d.png" />
+<img alt="../_images/f4c1c3b2cdc2fccf3a99bda253bdda4c33fca94ac36b24a8d9dea2def2f90ed3.png" src="../_images/f4c1c3b2cdc2fccf3a99bda253bdda4c33fca94ac36b24a8d9dea2def2f90ed3.png" />
 </div>
 </div>
 <blockquote>
@@ -2535,7 +2567,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c96984507fb84dd0fdc7d923b52663d54a970b53c3b15c3c6a37bd900e85d3a8.png" src="../_images/c96984507fb84dd0fdc7d923b52663d54a970b53c3b15c3c6a37bd900e85d3a8.png" />
+<img alt="../_images/01a3c4b213078b084de72e3b93014361a21d7203e2d6811917a47903648c6539.png" src="../_images/01a3c4b213078b084de72e3b93014361a21d7203e2d6811917a47903648c6539.png" />
 </div>
 </div>
 <blockquote>
@@ -2544,14 +2576,14 @@ T_o\\
 </section>
 </section>
 <section id="discussion">
-<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h2>
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Change the time step to do it slightly larger than the maximum time step. Compare the results obtained with Euler explicit and Euler implicit methods.</p></li>
 <li><p>Interchnage the materials  of the layers so that layer 1 to be insulation and layer 2 to be concrete. Discuss the step responses and the simulation for weather. Give arguments for the advantages and the disadvantages of indoor and outdoor insulation. Explain the difference in the maximum time step for numerical integration.</p></li>
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus, C. (2013)</a>. Causality issue in the heat balance method for calculating the design heating and cooling loads, <em>Energy</em> 50: 292-301, <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">HAL 03605823</a></p></li>
 <li><p><a class="reference external" href="https://doi.org/10.1007/978-3-030-76477-7_5">C. Ghiaus (2021)</a>. Dynamic Models for Energy Control of Smart Homes, in <em>S. Ploix M. Amayri, N. Bouguila (eds.) Towards Energy Smart Homes</em>, Online ISBN: 978-3-030-76477-7, Print ISBN: 978-3-030-76476-0, Springer, pp. 163-198 <a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03578578/document">HAL 03578578</a></p></li>
@@ -2585,11 +2617,10 @@ T_o\\
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="02_0ModelSimulation.html"
@@ -2609,10 +2640,7 @@ T_o\\
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -2621,9 +2649,10 @@ T_o\\
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -2699,13 +2728,14 @@ T_o\\
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -2732,8 +2762,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

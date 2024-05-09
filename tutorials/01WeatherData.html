@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Weather data and solar radiation on a tilted surface &#8212; dm4bem</title>
   
@@ -19,56 +19,54 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/01WeatherData';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Modeling and simulation" href="02_0ModelSimulation.html" />
     <link rel="prev" title="From differential-algebraic equations to state-space representation" href="T03_DAE2SS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -76,7 +74,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -111,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -130,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../intro.html">
+  
   
   
   
@@ -142,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.svg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -250,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Dépôt source"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -267,7 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/01WeatherData.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Ouvrez un problème"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -288,7 +310,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Téléchargez cette page">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -297,7 +319,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="../_sources/tutorials/01WeatherData.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Télécharger le fichier source"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -315,7 +337,7 @@ const thebe_selector_output = ".output, .cell_output"
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimer au format PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -335,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Mode plein écran"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -347,20 +369,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -383,7 +407,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenu </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -431,15 +455,15 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="weather-data-and-solar-radiation-on-a-tilted-surface">
-<h1>Weather data and solar radiation on a tilted surface<a class="headerlink" href="#weather-data-and-solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h1>
+<h1>Weather data and solar radiation on a tilted surface<a class="headerlink" href="#weather-data-and-solar-radiation-on-a-tilted-surface" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2F01WeatherData.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <section id="objectives">
-<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">#</a></h3>
+<h3>Objectives<a class="headerlink" href="#objectives" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Download weather data in <a class="reference external" href="https://energyplus.net/documentation">EnergyPlus™</a> format.</p></li>
 <li><p>Read weather data.</p></li>
@@ -448,7 +472,7 @@ document.write(`
 </ul>
 </section>
 <section id="summary">
-<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h3>
 <p>This notebook:</p>
 <ul class="simple">
 <li><p>Imports standard modules such as <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, and <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>, and a local (dedicated) module, <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a> and reads the file <a class="reference download internal" download="" href="../_downloads/f5c3a9d8d7c971d506ca2ad84bcdea4a/FRA_Lyon.074810_IWEC.epw"><span class="xref download myst">FRA_Lyon.074810_IWEC.epw</span></a> in EnergyPlus™ Weather Format (<code class="docutils literal notranslate"><span class="pre">.epw</span></code>) containing weather data for Lyon, France.</p></li>
@@ -466,7 +490,7 @@ document.write(`
 </section>
 </section>
 <section id="obtain-weather-data-in-energyplus-format">
-<h2>Obtain weather data in <code class="docutils literal notranslate"><span class="pre">EnergyPlus™</span></code> format<a class="headerlink" href="#obtain-weather-data-in-energyplus-format" title="Permalink to this headline">#</a></h2>
+<h2>Obtain weather data in <code class="docutils literal notranslate"><span class="pre">EnergyPlus™</span></code> format<a class="headerlink" href="#obtain-weather-data-in-energyplus-format" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -479,7 +503,7 @@ document.write(`
 </div>
 </div>
 <section id="download-data-file">
-<h3>Download data file<a class="headerlink" href="#download-data-file" title="Permalink to this headline">#</a></h3>
+<h3>Download data file<a class="headerlink" href="#download-data-file" title="Permalink to this heading">#</a></h3>
 <p>Download the weather file with extension <code class="docutils literal notranslate"><span class="pre">.epw</span></code> from:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://climate.onebuilding.org">Climate.OneBuilding.Org</a>: repository of free climate data for building performance simulation,</p></li>
@@ -495,9 +519,9 @@ document.write(`
 <p>from <a class="reference external" href="https://climate.onebuilding.org/WMO_Region_6_Europe/FRA_France/index.html">Climate OneBuilding</a> and place them in the <code class="docutils literal notranslate"><span class="pre">./weather_data</span></code> folder.</p>
 </section>
 <section id="read-weather-data">
-<h3>Read weather data<a class="headerlink" href="#read-weather-data" title="Permalink to this headline">#</a></h3>
+<h3>Read weather data<a class="headerlink" href="#read-weather-data" title="Permalink to this heading">#</a></h3>
 <section id="weather-data-file-name">
-<h4>Weather data file name<a class="headerlink" href="#weather-data-file-name" title="Permalink to this headline">#</a></h4>
+<h4>Weather data file name<a class="headerlink" href="#weather-data-file-name" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;../weather_data/FRA_Lyon.074810_IWEC.epw&#39;</span>
@@ -828,7 +852,7 @@ document.write(`
 </div>
 </section>
 <section id="weather-data-is-from-different-years">
-<h4>Weather data is from different years<a class="headerlink" href="#weather-data-is-from-different-years" title="Permalink to this headline">#</a></h4>
+<h4>Weather data is from different years<a class="headerlink" href="#weather-data-is-from-different-years" title="Permalink to this heading">#</a></h4>
 <p>The weather data from  <a class="reference external" href="http://climate.onebuilding.org">Climate One Buildings</a> are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Typical_meteorological_year">Typical Meteorological Years (TMY)</a>. Therefore, data for each month is from different years.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -919,9 +943,9 @@ document.write(`
 </div></div></div>
 </div>
 <p>From the dataset, select:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>EPW Data field</p></th>
+<tr class="row-odd"><th class="head text-left"><p>EPW Data field</p></th>
 <th class="head"><p>Mean during 1 h prior to timestamp</p></th>
 <th class="head"><p>Unit</p></th>
 </tr>
@@ -973,7 +997,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </section>
 <section id="start-and-end-time">
-<h4>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this headline">#</a></h4>
+<h4>Start and end time<a class="headerlink" href="#start-and-end-time" title="Permalink to this heading">#</a></h4>
 <p>Select a period for:</p>
 <ul class="simple">
 <li><p>air temperature, °C,</p></li>
@@ -1091,7 +1115,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </section>
 <section id="plot-outdoor-air-temperature">
-<h4>Plot outdoor air temperature<a class="headerlink" href="#plot-outdoor-air-temperature" title="Permalink to this headline">#</a></h4>
+<h4>Plot outdoor air temperature<a class="headerlink" href="#plot-outdoor-air-temperature" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -1103,7 +1127,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/accfbf5bef01cf32438e848459e68ca8d5aaa4af62932f5708df8009ba19b97a.png" src="../_images/accfbf5bef01cf32438e848459e68ca8d5aaa4af62932f5708df8009ba19b97a.png" />
+<img alt="../_images/b7bc610077f7cd704e4b27acac70933822c00be4e83319996cf9ec91c5670640.png" src="../_images/b7bc610077f7cd704e4b27acac70933822c00be4e83319996cf9ec91c5670640.png" />
 </div>
 </div>
 <blockquote>
@@ -1111,7 +1135,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div></blockquote>
 </section>
 <section id="plot-solar-radiation-normal-direct-and-horizontal-diffuse">
-<h4>Plot solar radiation: normal direct and horizontal diffuse<a class="headerlink" href="#plot-solar-radiation-normal-direct-and-horizontal-diffuse" title="Permalink to this headline">#</a></h4>
+<h4>Plot solar radiation: normal direct and horizontal diffuse<a class="headerlink" href="#plot-solar-radiation-normal-direct-and-horizontal-diffuse" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather_data</span><span class="p">[[</span><span class="s1">&#39;dir_n_rad&#39;</span><span class="p">,</span> <span class="s1">&#39;dif_h_rad&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -1123,7 +1147,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b22f609f829603a8774fe482c1c1d4f7f9b14eef226b56622fc0850e83a190e9.png" src="../_images/b22f609f829603a8774fe482c1c1d4f7f9b14eef226b56622fc0850e83a190e9.png" />
+<img alt="../_images/8224645589974d75012e02920e0be9308cf28b0440f1354dba6a297a2b8c042e.png" src="../_images/8224645589974d75012e02920e0be9308cf28b0440f1354dba6a297a2b8c042e.png" />
 </div>
 </div>
 <blockquote>
@@ -1132,9 +1156,9 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </section>
 </section>
 <section id="solar-radiation-on-a-tilted-surface">
-<h3>Solar radiation on a tilted surface<a class="headerlink" href="#solar-radiation-on-a-tilted-surface" title="Permalink to this headline">#</a></h3>
+<h3>Solar radiation on a tilted surface<a class="headerlink" href="#solar-radiation-on-a-tilted-surface" title="Permalink to this heading">#</a></h3>
 <section id="orientation-of-the-tilted-wall">
-<h4>Orientation of the tilted wall<a class="headerlink" href="#orientation-of-the-tilted-wall" title="Permalink to this headline">#</a></h4>
+<h4>Orientation of the tilted wall<a class="headerlink" href="#orientation-of-the-tilted-wall" title="Permalink to this heading">#</a></h4>
 <p>Knowing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> of the surface which is in front of a tilted wall, the diffuse and reflected radiation incident on the wall can be calculated from weather data for each hour.</p>
 <p>Let’s consider a wall at <a class="reference external" href="https://en.m.wikipedia.org/wiki/Latitude">latitude</a> <span class="math notranslate nohighlight">\(\phi\)</span> with the orientation given by its slope angle, <span class="math notranslate nohighlight">\(\beta\)</span>, and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Azimuth">azimuth angle</a>, <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
 <div class="cell docutils container">
@@ -1166,7 +1190,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </section>
 <section id="plot-the-solar-radiation">
-<h4>Plot the solar radiation<a class="headerlink" href="#plot-the-solar-radiation" title="Permalink to this headline">#</a></h4>
+<h4>Plot the solar radiation<a class="headerlink" href="#plot-the-solar-radiation" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rad_surf</span> <span class="o">=</span> <span class="n">sol_rad_tilt_surf</span><span class="p">(</span>
@@ -1180,7 +1204,7 @@ Name: 2000-06-29 12:00:00+01:00, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f9966f34fe4146cd35832fc7f273310809235d3f0408a3fa2203c0220da94eb7.png" src="../_images/f9966f34fe4146cd35832fc7f273310809235d3f0408a3fa2203c0220da94eb7.png" />
+<img alt="../_images/10a2ede70309e14489236acbfbf6f1634d3477fb31a8f59743504096b3241c33.png" src="../_images/10a2ede70309e14489236acbfbf6f1634d3477fb31a8f59743504096b3241c33.png" />
 </div>
 </div>
 <blockquote>
@@ -1230,10 +1254,10 @@ Max. direct irradiation:  314 W/m²
 </section>
 </section>
 <section id="calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data">
-<h2>Calculation of solar radiation on a tilted surface from weather data<a class="headerlink" href="#calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data" title="Permalink to this headline">#</a></h2>
+<h2>Calculation of solar radiation on a tilted surface from weather data<a class="headerlink" href="#calculation-of-solar-radiation-on-a-tilted-surface-from-weather-data" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider a tilted surface having another surface (e.g., ground) in front of it. Given the weather data, the surface orientation, and the albedo of the ground in front of the surface, find the direct, diffuse and reflected solar radiation for this surface. The algoritm is implemented in the function <code class="docutils literal notranslate"><span class="pre">sol_rad_tilt_surf</span></code> of the <code class="docutils literal notranslate"><span class="pre">dm4bem.py</span></code> module.</p>
 <section id="surface-orientation">
-<h3>Surface orientation<a class="headerlink" href="#surface-orientation" title="Permalink to this headline">#</a></h3>
+<h3>Surface orientation<a class="headerlink" href="#surface-orientation" title="Permalink to this heading">#</a></h3>
 <p>The orientation of the surface is given by the following angles (<a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie et al. (2020), p.13</a>):</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta\)</span> slope: slope or tilt angle from 0 to 180 degrees</p>
@@ -1275,7 +1299,7 @@ Max. direct irradiation:  314 W/m²
 </ul>
 </section>
 <section id="direct-radiation">
-<h3>Direct radiation<a class="headerlink" href="#direct-radiation" title="Permalink to this headline">#</a></h3>
+<h3>Direct radiation<a class="headerlink" href="#direct-radiation" title="Permalink to this heading">#</a></h3>
 <p>The direct radiation on the surface, <span class="math notranslate nohighlight">\(G_{dir}\)</span>, depends on the <em>direct normal (or beam) radiation</em>, <span class="math notranslate nohighlight">\(G_n\)</span>, and the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, between the solar beam and the normal to the wall (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>, §11.2.1).</p>
 <p>In order to calculate the <em>incidence angle</em>, <span class="math notranslate nohighlight">\(\theta\)</span>, we need:</p>
 <ul class="simple">
@@ -1343,7 +1367,7 @@ Max. direct irradiation:  314 W/m²
 </div>
 </section>
 <section id="diffuse-radiation">
-<h3>Diffuse radiation<a class="headerlink" href="#diffuse-radiation" title="Permalink to this headline">#</a></h3>
+<h3>Diffuse radiation<a class="headerlink" href="#diffuse-radiation" title="Permalink to this heading">#</a></h3>
 <p>The diffuse radiation on the wall is a function on its slope, <span class="math notranslate nohighlight">\(\beta\)</span>, and
 the isotropic diffuse solar radiation, <span class="math notranslate nohighlight">\(G_{dif,h}\)</span>, (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation thermique 2005</a>, §1.2.1.2, eq. 79, p. 31):</p>
 <div class="math notranslate nohighlight">
@@ -1357,7 +1381,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 </div>
 </section>
 <section id="solar-radiation-reflected-by-the-ground">
-<h3>Solar radiation reflected by the ground<a class="headerlink" href="#solar-radiation-reflected-by-the-ground" title="Permalink to this headline">#</a></h3>
+<h3>Solar radiation reflected by the ground<a class="headerlink" href="#solar-radiation-reflected-by-the-ground" title="Permalink to this heading">#</a></h3>
 <p>Considering the radiation reflected by the ground as isotropic, the reflected radiation that gets onto the wall is a function of its slope, albedo and total horizontal radiation (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>,  §11.2.1.3).</p>
 <p>The normal horizontal radiation is (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> eq. 80):</p>
 <div class="math notranslate nohighlight">
@@ -1389,9 +1413,9 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 </div>
 </section>
 <section id="definitions">
-<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">#</a></h3>
+<h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this heading">#</a></h3>
 <section id="radiation-and-time">
-<h4>Radiation and time<a class="headerlink" href="#radiation-and-time" title="Permalink to this headline">#</a></h4>
+<h4>Radiation and time<a class="headerlink" href="#radiation-and-time" title="Permalink to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(G_{dir,n}\)</span> <strong>Direct normal</strong> or <strong>beam radiation</strong>. Amount of solar radiation in Wh/m² received directly from the solar disk on a surface perpendicular to the sun’s rays, during the number of minutes preceding the time indicated.</p>
 <p><span class="math notranslate nohighlight">\(G_{dif,h}\)</span> <strong>Diffuse horizontal radiation</strong>. Amount of solar radiation in Wh/m² received after scattering by the atmosphere. This definition distinguishes the diffuse solar radiation from infrared radiation emitted by the atmosphere.</p>
 <p><strong>Total Solar Radiation</strong>. Total amount of direct and diffuse solar radiation in Wh/m² received on a  surface during the number of minutes preceding the time indicated.</p>
@@ -1399,7 +1423,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <p><strong>Solar Time.</strong> Time based on the apparent position of the sun in the sky with noon the time when the sun crosses the observer meridian.</p>
 </section>
 <section id="definitions-for-angles-in-degrees">
-<h4>Definitions for angles (in degrees)<a class="headerlink" href="#definitions-for-angles-in-degrees" title="Permalink to this headline">#</a></h4>
+<h4>Definitions for angles (in degrees)<a class="headerlink" href="#definitions-for-angles-in-degrees" title="Permalink to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\(\phi\)</span> <strong>Latitude.</strong> Angle between the position and the Equator, ranging from 0° at the Equator to 90° at the North Pole and -90° at the South Pole. <span class="math notranslate nohighlight">\(-90 ^{\circ} \leq \phi \leq 90 ^{\circ}\)</span></p>
 <p><span class="math notranslate nohighlight">\(\beta\)</span> <strong>Slope.</strong> Angle between the plane of the surface and the horizontal. <span class="math notranslate nohighlight">\(\beta = 0\)</span> means that the surface is horizontal, upward facing; <span class="math notranslate nohighlight">\(0 \le \beta \le 180 ^{\circ}\)</span>. <span class="math notranslate nohighlight">\(\beta &lt; 90^{\circ}\)</span> means that the surface is upward facing; <span class="math notranslate nohighlight">\(\beta = 90^{\circ}\)</span> the surface is vertical.</p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> <strong>Azimuth.</strong> Angle between the projection on a horizontal plane of the normal to the surface and the local meridian; south is zero, east negative, and west positive. <span class="math notranslate nohighlight">\(-180 ^{\circ} \leq \gamma \leq 180^{\circ}\)</span>.</p>
@@ -1418,7 +1442,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 </section>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://www.eng.uc.edu/~beaucag/Classes/SolarPowerForAfrica/Solar%20Engineering%20of%20Thermal%20Processes,%20Photovoltaics%20and%20Wind.pdf">Duffie, J.A., Beckman,  W. A., Blair,  N. (2020)</a> Solar Engineering of Thermal Processes, 5th ed. John Wiley &amp; Sons, Inc. ISBN 9781119540281</p></li>
 <li><p><a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005. Méthode de calcul Th-CE.</a> Annexe à l’arrêté du 19 juillet 2006</p></li>
@@ -1452,11 +1476,10 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="T03_DAE2SS.html"
@@ -1476,10 +1499,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1488,9 +1508,10 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenu
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -1543,13 +1564,14 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
   <div class="footer-item">
     
 <p class="component-author">
-Par Christian Ghiaus
+By Christian Ghiaus
 </p>
 
   </div>
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1576,8 +1598,8 @@ Par Christian Ghiaus
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
