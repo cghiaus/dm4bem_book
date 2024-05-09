@@ -447,11 +447,11 @@ document.write(`
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider a triangular prism of infinite length (Figure 1a) with the characteristics (Table 1):</p>
 <ul class="simple">
-<li><p>surface 0: transparnt in short-wave, opaque and absorbant in long-wave.</p></li>
+<li><p>surface 0: transparent in short-wave, opaque and absorbant in long-wave;</p></li>
 <li><p>surfaces 1 and 2: opaque and absorbant in short-wave and in long-wave.</p></li>
 </ul>
 <blockquote>
-<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span>, of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW). The surfaces are opaque in long-wave, <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span></p>
+<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span> of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW). The surfaces are opaque in long-wave, <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span></p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -474,10 +474,11 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>The short wave (solar) radiation received by surfaces 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m²}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m²}\)</span>, respectively.</p>
-<p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/(m²·K)}\)</span> for all wals.</p>
+<p>The short wave (solar) radiation received by surfaces 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m^2}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m^2}\)</span>, respectively.</p>
+<p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/(m^2·K)}\)</span> for all walls.</p>
 <p>The temperature of each wall is considered homogeneous. The heat balance of a wall is represented in Figure 1b. The heat flow rate by conduction is negligible for all walls, <span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> (Figure 1b).</p>
 <p>In this conditions, find the temperatures of the walls.</p>
+<p><span class="math notranslate nohighlight">\(\sigma\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
 </section>
 <section id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h2>
@@ -493,7 +494,6 @@ document.write(`
 <h4>Computational model<a class="headerlink" href="#computational-model" title="Permalink to this heading">#</a></h4>
 <p>The known variables (the inputs of the computational model) are the inputs of the physical model and the ouputs of the computational model are the outputs of the phyisical model. It is a <em>direct problem</em>.</p>
 <p>The problem is described by:</p>
-<p><span class="math notranslate nohighlight">\(\sigma\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
 <ol class="arabic simple">
 <li><p>Vector of outputs</p>
 <ul class="simple">
