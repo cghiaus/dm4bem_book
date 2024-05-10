@@ -58,6 +58,8 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/T00_theory';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -411,6 +413,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-and-computational-causality">Physical and computational causality</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-and-inverse-problems">Direct and inverse problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-laws-in-transport-phenomena">Physical laws in transport phenomena</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-laws">Conservation laws</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-laws">Constitutive laws</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear algebra</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -428,8 +436,9 @@ document.write(`
 <p>This chapter presents the theory used in this book. It starts with the basic principles of modeling heat transfer in buildings by using thermal networks, continues with the matrix representation of thermal networks as a system of differential-algebraic equations and ends with obtaining the state-space representation.</p>
 <section id="physical-and-computational-causality">
 <h2>Physical and computational causality<a class="headerlink" href="#physical-and-computational-causality" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Causality_(physics)">Physical causality</a> is fundamental principle in physics that states that that any modification of a physical variable is caused by other variable or variables (see <em>Physical
-causality</em> in Figure 1). The dependent variables (or the effects) are the outputs and the independent variables (or the causes) are the inputs of the physical system (<a class="reference external" href="https://doi.org/10.1016/j.energy.2014.07.021">Ghiaus 2014</a>, <a class="reference external" href="https://doi.org/10.1080/19401493.2021.1995498">Ghiaus 2022</a>).</p>
+<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Causality_(physics)">Physical causality</a> is a fundamental principle in physics that states that any modification of a physical variable is caused by other variable or variables (see <em>Physical
+causality</em> in Figure 1). The dependent variables (or the effects) are the outputs and the independent variables (or the causes) are the inputs of the physical system (<a class="reference external" href="https://doi.org/10.1080/19401493.2021.1995498">Ghiaus 2022</a>). In a dynamic system, the cause always preceeds the effect (<a class="reference external" href="https://doi.org/10.1016/j.energy.2014.07.021">Ghiaus 2014</a>).</p>
+<p><em>Computational causality</em> is the input-output relationship in a computer-implemented <a class="reference external" href="https://en.m.wikipedia.org/wiki/Algorithm">algorithm</a> (or comutational model).</p>
 <p><img alt="Type_problem" src="../_images/A00_Type_problem.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Direct and inverse problems. Green represents what is known and red what is unknown, i.e., the inputs and the outputs of the computational model, respectively.</p>
@@ -437,9 +446,33 @@ causality</em> in Figure 1). The dependent variables (or the effects) are the ou
 </section>
 <section id="direct-and-inverse-problems">
 <h2>Direct and inverse problems<a class="headerlink" href="#direct-and-inverse-problems" title="Permalink to this heading">#</a></h2>
-<p>The <em>direct</em> problem is when the set of inputs of the computational model is a subset of the inputs of the physical model and the set of outputs of the computational model is a subset of the outputs of the physical model (see Direct problem in Figure 1). For a direct problem, the model (i.e., its structure and parameters) and the inputs are known; the problem is to find the outputs of the physical model. In the case of a direct problem, the information flows (from inputs to outputs) are the same for the physical system and for the computational model. Direct problems are called analysis in the case of electrical, hydraulic, or thermal circuits. The term simulation is also often used. The advantage of direct problems is that, in the context of deterministic classical physics, they are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Well-posed_problem">well posed</a> (the problem has a solution and the solution is unique).</p>
+<p>The <em>direct problem</em> is when the set of inputs of the computational model is a subset of the inputs of the physical model and the set of outputs of the computational model is a subset of the outputs of the physical model (see Direct problem in Figure 1). For a direct problem, the model (i.e., its structure and parameters) and the inputs are known; the problem is to find the outputs of the physical model. In the case of a direct problem, the information flows (from inputs to outputs) are the same for the physical system and for the computational model. Direct problems are called analysis in the case of electrical, hydraulic, or thermal circuits. The term simulation is also often used. The advantage of direct problems is that, in the context of deterministic classical physics, they are <a class="reference external" href="https://en.m.wikipedia.org/wiki/Well-posed_problem">well posed</a> (the problem has a solution and the solution is unique).</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Inverse_problem">inverse problems</a> are of two types: <em>control</em> and <em>model identification</em> (see <em>Inverse problem</em> in Figure 1). The <em>control</em> problem consists in finding an input of the physical system that produces a desired output when its model is known (see <em>Control problem</em> in Figure 1). For simple cases, the problem can be solved by inversing the direct problem. Usually, and especially for dynamic models, the inversion is not possible. Therefore, the problem is stated as a control loop for which a set of direct problems is solved (<a class="reference external" href="https://doi.org/10.1016/j.energy.2012.10.024">Ghiaus 2013</a>).</p>
 <p>In <a class="reference external" href="https://en.m.wikipedia.org/wiki/System_identification">model identification</a>, the problem is to find the model of the physical system when its inputs and outputs are given. Usually, the problem is treated as <a class="reference external" href="https://en.m.wikipedia.org/wiki/Estimation_theory">parameter identification</a> by imposing the structure of the model and solving an optimisation problem in which the arguments are the parameters and the cost function depends on the type of problem (see <em>Parameter identification or optimization problem</em> in Figure 1).</p>
+</section>
+<section id="physical-laws-in-transport-phenomena">
+<h2>Physical laws in transport phenomena<a class="headerlink" href="#physical-laws-in-transport-phenomena" title="Permalink to this heading">#</a></h2>
+<p>In engineering, physics, and chemistry, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transport_phenomena">transport phenomena</a> concerns the interchange of mass, energy, charge, momentum, and angular momentum between systems. Although it draws insights from various disciplines, such as continuum mechanics and thermodynamics, it tranport phenomena share common principles and mathematical frameworks.</p>
+<section id="conservation-laws">
+<h3>Conservation laws<a class="headerlink" href="#conservation-laws" title="Permalink to this heading">#</a></h3>
+<p>In physics, a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Conservation_law">conservation law</a> asserts that a specific measurable attribute of an isolated physical system, <span class="math notranslate nohighlight">\(E\)</span>, remains constant as the system progresses through time. Usually, the flow-rate of the conservative variable is used. For example, in heat transfer, the flow-rate is conserved:</p>
+<div class="math notranslate nohighlight">
+\[\sum q_i = 0\]</div>
+<p>Fundamental conservation laws encompass the preservation of mass-energy, linear momentum, angular momentum, and electric charge.</p>
+</section>
+<section id="constitutive-laws">
+<h3>Constitutive laws<a class="headerlink" href="#constitutive-laws" title="Permalink to this heading">#</a></h3>
+<p>In physics and engineering, a <a class="reference external" href="https://en.wikipedia.org/wiki/Constitutive_equation">constitutive law</a> establishes a relation between two or more physical quantities which is specific to a material, substance, or field. It models the material’s or substance’s response to external stimuli, typically in the form of applied fields or forces.</p>
+<p>Constitutive equations vary in their nature; some are purely phenomenological, while others are derived from fundamental principles. A prevalent form of constitutive equation often expresses a simple proportionality utilizing a parameter that represents a material property, such as thermal or electrical conductivity or a spring constant. For example, in heat transfer, the relation between flow-rate, <span class="math notranslate nohighlight">\(q\)</span>, and temperature difference, <span class="math notranslate nohighlight">\(\Delta \theta\)</span>, is:</p>
+<div class="math notranslate nohighlight">
+\[q_i = G_i \Delta \theta_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(G_i\)</span> is the thermal conductance.</p>
+<p>Constitutive relations may also be adjusted to incorporate the material’s rate of response and its nonlinear behavior.</p>
+</section>
+<section id="linear-algebra">
+<h3>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this heading">#</a></h3>
+<p>Models of the transport phenomena can be obtained as systems of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Linear_equation">linear equations</a> by combining the conservation laws with constitutive laws. Direct and inverse models by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Linear_algebra">linear algebra</a> for environmental <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_transfer">heat transfer</a> is the subject of this book.</p>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
@@ -520,6 +553,12 @@ causality</em> in Figure 1). The dependent variables (or the effects) are the ou
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-and-computational-causality">Physical and computational causality</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-and-inverse-problems">Direct and inverse problems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-laws-in-transport-phenomena">Physical laws in transport phenomena</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conservation-laws">Conservation laws</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-laws">Constitutive laws</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear algebra</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
