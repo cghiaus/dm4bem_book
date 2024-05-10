@@ -426,7 +426,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-matplotlib">Plots using matplotlib</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-method">Numerical integration method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controller-influence-on-time-step">Controller influence on time step</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -455,6 +459,8 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">import</span> <span class="nn">dm4bem</span>
 </pre></div>
@@ -999,7 +1005,7 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                     <span class="c1"># °C, initial temperatures</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mf">20.0</span>                   <span class="c1"># °C, initial temperatures</span>
 <span class="n">θ</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">θ</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>          <span class="c1"># fill θ with initial valeus θ0</span>
 </pre></div>
@@ -1033,18 +1039,6 @@ y = C_s \theta_C + D_s u
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">θ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span>
             <span class="n">I</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">θ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6685/1608742124.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.98986482720178&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ.iloc[k + 1] = (I + dt * As) @ θ.iloc[k] + dt * Bs @ u.iloc[k]
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6685/1608742124.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000706440952303&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ.iloc[k + 1] = (I + dt * As) @ θ.iloc[k] + dt * Bs @ u.iloc[k]
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6685/1608742124.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.92376467811622&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ.iloc[k + 1] = (I + dt * As) @ θ.iloc[k] + dt * Bs @ u.iloc[k]
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6685/1608742124.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.935284837891256&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ.iloc[k + 1] = (I + dt * As) @ θ.iloc[k] + dt * Bs @ u.iloc[k]
 </pre></div>
 </div>
 </div>
@@ -1180,7 +1174,89 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </section>
 <section id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
-<p><strong>Controller</strong></p>
+<section id="numerical-integration-method">
+<h3>Numerical integration method<a class="headerlink" href="#numerical-integration-method" title="Permalink to this heading">#</a></h3>
+<p>While fixed-step methods like Euler explicit or implicit integration can be simpler to implement and understand, they may not be the most efficient choice. Variable time step methods offer greater adaptability and efficiency, making them preferable for many simulation scenarios.</p>
+<p>Let’s compare the simulation time by using Euler explicit and variable time step used in Python Control Systems Library.</p>
+<p>The use of Euler numerical integration method is justified when the input vector varies during the numerical integration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">ss</span><span class="p">(</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">)</span>
+<span class="c1"># Initial conditions</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mf">20.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># °C, initial temperatures</span>
+<span class="n">u_np</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>       <span class="c1"># inputs in time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="c1"># Simulate the system response with Python Control Systems Library</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">yout</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">input_output_response</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="n">u_np</span><span class="p">,</span> <span class="n">X0</span><span class="o">=</span><span class="n">θ0</span><span class="p">)</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">duration_1</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">θ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span> <span class="o">@</span> <span class="n">θ</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Cs</span> <span class="o">@</span> <span class="n">θ</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">Ds</span> <span class="o">@</span>  <span class="n">u</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">duration_2</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">yout</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Control Systems Library&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler explicit&#39;</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time, $t$ / day&#39;</span><span class="p">,</span>
+        <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Indoor temperature, $θ$ / °C&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Comparison  of Control Systems Library with Euler explicit&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" src="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Figure 3. Time variation of indoor temperature obtained with Control Systems Library and for-loop Euler.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the comparison of durations</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration for Control Systems Library: </span><span class="si">{</span><span class="n">duration_1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration for &#39;Euler explict:          </span><span class="si">{</span><span class="n">duration_2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.44 seconds
+Duration for &#39;Euler explict:          9.82 seconds
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="controller-influence-on-time-step">
+<h3>Controller influence on time step<a class="headerlink" href="#controller-influence-on-time-step" title="Permalink to this heading">#</a></h3>
 <p>Simulate the system without controller (i.e., in free floating) and with controller.</p>
 <p>Note that the time step for Euler explicit method depends on:</p>
 <ul class="simple">
@@ -1198,6 +1274,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </li>
 </ul>
 <p>The controller models an HVAC system able to heat (when <span class="math notranslate nohighlight">\(q_{HVAC} &gt; 0\)</span>) and to cool (when <span class="math notranslate nohighlight">\(q_{HVAC} &lt; 0\)</span>) when <span class="math notranslate nohighlight">\(K_p  \approx 10^3 \ \mathrm{W/K}\)</span>. Change <span class="math notranslate nohighlight">\(K_p  \approx 10^2 \ \mathrm{W/K}\)</span> and <span class="math notranslate nohighlight">\(K_p  \approx 10^4 \ \mathrm{W/K}.\)</span></p>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
@@ -1292,7 +1369,11 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plots-using-matplotlib">Plots using matplotlib</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numerical-integration-method">Numerical integration method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controller-influence-on-time-step">Controller influence on time step</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
