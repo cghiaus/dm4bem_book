@@ -441,17 +441,17 @@ document.write(`
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2FA01Coupled_rad_convection.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p><img alt="Figure 1" src="../_images/07_radiation_convect_prism.svg" /></p>
 <blockquote>
-<div><p>Figures 1. a) Triagular prism. b) Heat flow rate, <span class="math notranslate nohighlight">\(\varphi\)</span>, balance on a surface: <span class="math notranslate nohighlight">\(cv\)</span> - convection; <span class="math notranslate nohighlight">\(cd\)</span> - conduction; <span class="math notranslate nohighlight">\(SW\)</span> - short wave; <span class="math notranslate nohighlight">\(LW\)</span> - long wave.</p>
+<div><p>Figures 1. a) Triagular prism. b) Heat flow rate, <span class="math notranslate nohighlight">\(\varphi\)</span>, balance on a surface: <span class="math notranslate nohighlight">\(cv\)</span> - convection; <span class="math notranslate nohighlight">\(cd\)</span> - conduction; <span class="math notranslate nohighlight">\(SW\)</span> - short wave radiation; <span class="math notranslate nohighlight">\(LW\)</span> - long wave radaition.</p>
 </div></blockquote>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider a triangular prism of infinite length (Figure 1a) with the characteristics (Table 1):</p>
 <ul class="simple">
 <li><p>surface 0: transparent in short-wave, opaque and absorbant in long-wave;</p></li>
-<li><p>surfaces 1 and 2: opaque and absorbant in short-wave and in long-wave.</p></li>
+<li><p>surfaces 1 and 2: opaque and absorbant in both short-wave and in long-wave.</p></li>
 </ul>
 <blockquote>
-<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span> of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW). The surfaces are opaque in long-wave, <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span></p>
+<div><p>Table 1. <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">Transmittance</a> <span class="math notranslate nohighlight">\(\tau_{SW} \equiv  \tau\)</span>, <a class="reference external" href="https://en.m.wikipedia.org/wiki/Absorptance">absorptance</a> <span class="math notranslate nohighlight">\(\alpha_{SW} \equiv \alpha\)</span>, and <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">emissivity</a> <span class="math notranslate nohighlight">\(\alpha_{LW} \equiv \varepsilon\)</span> of surfaces in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Light">short wave</a> (SW) and <a class="reference external" href="https://en.m.wikipedia.org/wiki/Infrared">long wave</a> (LW) radiation. All surfaces are opaque in long-wave, <span class="math notranslate nohighlight">\(\tau_{LW} = 0\)</span></p>
 </div></blockquote>
 <table class="table">
 <thead>
@@ -474,12 +474,11 @@ document.write(`
 </tr>
 </tbody>
 </table>
-<p>The short wave (solar) radiation received by surfaces 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m^2}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m^2}\)</span>, respectively.</p>
+<p>The short wave (solar) radiation received by surfaces 1 and 2 are <span class="math notranslate nohighlight">\(E^o_1 = 120 \, \mathrm{W/m^2}\)</span> and <span class="math notranslate nohighlight">\(E^o_2 = 100 \, \mathrm{W/m^2},\)</span> respectively.</p>
 <p>The indoor temperature of the prism is controlled at <span class="math notranslate nohighlight">\(T_i = 20\,\mathrm{°C}\)</span>. The heat convection coefficient between the walls and the indoor air is <span class="math notranslate nohighlight">\(h_i = 5 \, \mathrm{W/(m^2·K)}\)</span> for all walls.</p>
 <p>The temperature of each wall is considered homogeneous. The heat balance of a wall is represented in Figure 1b. The heat flow rate by conduction is negligible for all walls, <span class="math notranslate nohighlight">\(\varphi_{cd} = 0\)</span> (Figure 1b).</p>
 <p>In this conditions, find the temperatures of the walls.</p>
-<p><em>Note:</em></p>
-<p><a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
+<p><em>Note:</em> <a class="reference external" href="https://en.m.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_constant">Stefan-Bolzmann contant</a>, <span class="math notranslate nohighlight">\(\sigma = 5.670374419...×10^{−8} \mathrm{W⋅m^{−2}⋅K^{−4}}\)</span>.</p>
 </section>
 <section id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h2>
@@ -506,8 +505,8 @@ document.write(`
 <ol class="arabic simple" start="2">
 <li><p>Vectors of variables:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(E^o\)</span>: direct <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, W/m².</p></li>
-<li><p><span class="math notranslate nohighlight">\(E\)</span>: total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, i.e., the sum of direct irradiance and reflected irradiances received from the other surfaces, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(E^o\)</span>: direct short-wave <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, W/m².</p></li>
+<li><p><span class="math notranslate nohighlight">\(E\)</span>: total short-wave <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> of the surfaces, i.e., the sum of direct irradiance and reflected irradiances received from the other surfaces, W/m².</p></li>
 <li><p><span class="math notranslate nohighlight">\(M^o\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">radiant emmitance</a> or total emmisive power of a <a class="reference external" href="https://en.wikipedia.org/wiki/Black-body_radiation">black body</a>, W/m².</p></li>
 <li><p><span class="math notranslate nohighlight">\(T_a\)</span>: air temperatures beyond the boundary layer of each surface, °C.</p></li>
 </ul>
@@ -521,7 +520,7 @@ document.write(`
 <ul>
 <li><p><span class="math notranslate nohighlight">\(\alpha\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Absorption_(electromagnetic_radiation)">absorption</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \alpha_i \le 1\)</span>,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\rho\)</span>: coefficients of <a class="reference external" href="https://en.wikipedia.org/wiki/Reflection_coefficient">reflexion</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \rho_i \le 1\)</span>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\tau\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">transmittance</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \tau_i \le 1\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\tau\)</span>: coefficients of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Transmittance">transmittance</a> (diagonal matrix), <span class="math notranslate nohighlight">\(0 \le \tau_i \le 1\)</span>,</p></li>
 <li><p><span class="math notranslate nohighlight">\(F\)</span>: <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a>, <span class="math notranslate nohighlight">\(0 \le F_{i,j} \le 1\)</span>.</p></li>
 </ul>
 </li>
@@ -552,13 +551,13 @@ document.write(`
 
 <span class="c1"># Vectors of inputs</span>
 <span class="c1"># =================</span>
-<span class="c1"># Irradiances of the surfaces</span>
+<span class="c1"># Short-wave irradiances of the surfaces</span>
 <span class="n">E0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">E0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">100</span>     <span class="c1"># W/m²</span>
 
 <span class="c1"># Air temperature beyond the boundary layer</span>
-<span class="n">Ta</span> <span class="o">=</span> <span class="mi">20</span>                 <span class="c1"># °C, indoor air temperature</span>
-<span class="n">Ta</span> <span class="o">=</span> <span class="n">Ta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>    <span class="c1"># the same for all 3 surfaces</span>
+<span class="n">Ta</span> <span class="o">=</span> <span class="mi">20</span>                     <span class="c1"># °C, indoor air temperature</span>
+<span class="n">Ta</span> <span class="o">=</span> <span class="n">Ta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>        <span class="c1"># the same for all 3 surfaces</span>
 
 <span class="c1"># Matrices of coefficients</span>
 <span class="c1"># ========================</span>
@@ -572,7 +571,7 @@ document.write(`
 <span class="n">α</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">α</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
 <span class="n">α</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span>
 
-<span class="c1"># Reflexion coefficient - short-wave (SW)</span>
+<span class="c1"># Reflexion - short-wave (SW)</span>
 <span class="n">ρ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">α</span> <span class="o">+</span> <span class="n">τ</span><span class="p">)</span>
 
 <span class="c1"># Emissivity - long-wave (LW)</span>
@@ -592,7 +591,7 @@ document.write(`
 </section>
 <section id="plan-for-problem-solving">
 <h4>Plan for problem solving<a class="headerlink" href="#plan-for-problem-solving" title="Permalink to this heading">#</a></h4>
-<p>The problem to solve is to find the three temperatures of the surfaces. In linear form, it means to solve the equation</p>
+<p>The problem to solve is to find the three surface temperatures, <span class="math notranslate nohighlight">\(\theta\)</span>. In linear form, it means to solve the equation</p>
 <div class="math notranslate nohighlight">
 \[A_{\theta} \theta = b_{\theta}\]</div>
 <p>where:</p>
@@ -615,11 +614,11 @@ document.write(`
 </section>
 <section id="view-factors">
 <h3>View factors<a class="headerlink" href="#view-factors" title="Permalink to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(F_{0,0} = F_{1,1} = F_{2,2} \)</span> - the surfaces are flat.</p>
-<p><span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2}\)</span> - due to symetry.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{0, j} = F_{0, 0} + F_{0, 1} + F_{0, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{0, 1} = F_{0, 2} = 1/2\)</span>.</p>
-<p>From the reciprocity relation, <span class="math notranslate nohighlight">\(F_{0,1} S_0 = F_{1,0} S_1\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_0 = \sqrt{2}S_1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 0} = \sqrt{2} / 2\)</span>.</p>
-<p>From the complementarity relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 0} + F_{1, 1} + F_{1, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = 1 - F_{1, 0} = 1 - \sqrt{2} / 2\)</span>.</p>
+<p>Since the surcafes are flat, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing">self-viewing</a> factors are zero:
+$<span class="math notranslate nohighlight">\(F_{0,0} = F_{1,1} = F_{2,2} \)</span>$</p>
+<p>Due to symetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2}\)</span>. From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Summation">summation relation</a> of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{0, j} = F_{0, 0} + F_{0, 1} + F_{0, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{0, 1} = F_{0, 2} = 1/2\)</span>.</p>
+<p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity relation</a>, <span class="math notranslate nohighlight">\(F_{0,1} S_0 = F_{1,0} S_1\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_0 = \sqrt{2}S_1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 0} = \sqrt{2} / 2\)</span>.</p>
+<p>From the summation relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 0} + F_{1, 1} + F_{1, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = 1 - F_{1, 0} = 1 - \sqrt{2} / 2\)</span>.</p>
 <p>Due to symmetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2} = 1/2\)</span>, <span class="math notranslate nohighlight">\(F_{1,0} = F_{2,0} = \sqrt{2}/2\)</span> and <span class="math notranslate nohighlight">\(F_{1, 2} = F_{2, 1}\)</span> (<span class="math notranslate nohighlight">\(F_{1,2} = 1 - F_{1, 0}\)</span>).</p>
 <blockquote>
 <div><p>Table 2. View factors.</p>
@@ -693,7 +692,7 @@ E_{3}^{o}
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[(I - \mathrm{diag}(\rho) \circ F) E = E^o\]</div>
-<p>The unknown total <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> on walls, in W/m², are then</p>
+<p>The unknown total short-wave <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> on walls, in W/m², are then</p>
 <div class="math notranslate nohighlight">
 \[ E = (I - \rho \circ F)^{-1} E^o\]</div>
 <p>where:</p>
@@ -725,7 +724,7 @@ E_{3}^{o}
 E_1\\ 
 E_2\\  
 E_3
-\end{bmatrix}\)</span> - vector of unknown total irradiances, W/m².</p>
+\end{bmatrix}\)</span> - vector of unknown total short-wave irradiances, W/m².</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">((</span><span class="n">I</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">ρ</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">))</span> <span class="o">@</span> <span class="n">E0</span>
@@ -747,13 +746,13 @@ E_3
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">φSW</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">α</span><span class="p">)</span> <span class="o">*</span> <span class="n">E</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;φ_SW =&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;φSW = &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">φSW</span><span class="p">,</span> <span class="s1">&#39;W/m²&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>φ_SW =
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>φSW = 
 [  0.  101.   85.9] W/m²
 </pre></div>
 </div>
@@ -782,7 +781,7 @@ E_3
 <li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficient of absortivity in long wave;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coefficient of emmissivity in long wave.</p></li>
 </ul>
-<p>The global long wave radiation (luminace) received by the surface is the sum of the fractions <span class="math notranslate nohighlight">\(F_{j,i}\)</span> of the flows emmitted and reflected by other surfaces <span class="math notranslate nohighlight">\(j\)</span> and intercepted by surface <span class="math notranslate nohighlight">\(i\)</span>,</p>
+<p>The global long wave radiation (luminace) received by the surface, <span class="math notranslate nohighlight">\(S_i E_{LW,i}\)</span>, is the sum of the fractions <span class="math notranslate nohighlight">\(F_{j,i}\)</span> of the flows emmitted and reflected by other surfaces <span class="math notranslate nohighlight">\(j\)</span> and intercepted by surface <span class="math notranslate nohighlight">\(i\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
 <p>where:</p>
@@ -830,7 +829,7 @@ E_3
 </div>
 <p>From this equation, it results the vector of long wave radiation on surfaces:</p>
 <div class="math notranslate nohighlight">
-\[E_{LW} = [(I - F(I - \varepsilon))]^{-1} F \varepsilon M^o\]</div>
+\[E_{LW} = [I - F(I - \varepsilon)]^{-1} F \varepsilon M^o\]</div>
 <p>By substituting <span class="math notranslate nohighlight">\(E_{LW}\)</span> into</p>
 <div class="math notranslate nohighlight">
 \[\varphi_{LW, i} = \varepsilon_i M^o_i - \alpha_i E_{LW,i}\]</div>
