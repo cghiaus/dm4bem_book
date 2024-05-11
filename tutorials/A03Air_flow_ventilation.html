@@ -751,7 +751,7 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -4.45 Pa
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6701/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_12239/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   root = float(fsolve(f, np.mean([pi_min, pi_max])))
 </pre></div>
 </div>
@@ -868,17 +868,13 @@ error in mass flow balance: 0.000 kg/s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
-<span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">])))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -10.50 Pa
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6701/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  root = float(fsolve(f, np.mean([pi_min, pi_max])))
 </pre></div>
 </div>
 </div>
@@ -895,10 +891,20 @@ error in mass flow balance: 0.000 kg/s
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mn</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="n">mn2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ms2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">mc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">m_error</span> <span class="o">=</span> <span class="n">mn2</span> <span class="o">+</span> <span class="n">ms2</span> <span class="o">-</span> <span class="n">mc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="n">mn2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="n">ms2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="n">m_error</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

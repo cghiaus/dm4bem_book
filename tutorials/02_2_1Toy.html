@@ -919,16 +919,8 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convection</span>
-<span class="n">Gw</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># wall</span>
-<span class="n">Gg</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># glass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6668/1840016722.py:2: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  Gw = h * wall[&#39;Surface&#39;][0]     # wall
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6668/1840016722.py:3: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
-  Gg = h * wall[&#39;Surface&#39;][2]     # glass
+<span class="n">Gw</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># wall</span>
+<span class="n">Gg</span> <span class="o">=</span> <span class="n">h</span> <span class="o">*</span> <span class="n">wall</span><span class="p">[</span><span class="s1">&#39;Surface&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># glass</span>
 </pre></div>
 </div>
 </div>

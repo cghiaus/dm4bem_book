@@ -659,11 +659,11 @@ def wall2TC(wall_types, walls_def, prefix="w"):
 
         # b
         b = np.zeros([A.shape[0]])
-        b = pd.Series(b)
+        b = pd.Series(b, dtype=object)
 
         # f
         f = np.zeros([A.shape[1]])
-        f = pd.Series(f)
+        f = pd.Series(f, dtype=object)
         f.iloc[1] = walls_def.loc[walls_def['ID'] == k, 'Q0'].values[0]
         f.iloc[-2] = walls_def.loc[walls_def['ID'] == k, 'Q1'].values[0]
 
@@ -702,14 +702,14 @@ def wall2TC(wall_types, walls_def, prefix="w"):
             bc_T0 = walls_def.loc[walls_def['ID'] == k, ['T0']].notna().values
             bc_T1 = walls_def.loc[walls_def['ID'] == k, ['T1']].notna().values
 
-            if bc_T0 and (not(bc_T1)):
+            if bc_T0 and (not (bc_T1)):
                 A = np.delete(A, 0, axis=1)
                 C = np.delete(C, 0)
                 b.iloc[0] = walls_def.loc[
                     walls_def['ID'] == k, 'T0'].values[0]
                 f = f[1:]
 
-            if not(bc_T0) and bc_T1:
+            if not (bc_T0) and bc_T1:
                 A = np.delete(A, -1, axis=1)
                 C = np.delete(C, -1)
                 b.iloc[-1] = '-' + walls_def.loc[

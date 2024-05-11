@@ -543,7 +543,7 @@ document.write(`
     <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
 
     <span class="c1"># initial conditions</span>
-    <span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                     <span class="c1"># initial temperatures</span>
+    <span class="n">θ0</span> <span class="o">=</span> <span class="mf">20.0</span>                   <span class="c1"># initial temperatures</span>
     <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># Fill θ with initial valeus θ0</span>
 
@@ -632,22 +632,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.961207974965227&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.954322110401346&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.993924345672443&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000423795332924&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/4e3ddb7dd4c39b0d0c31f263fc847a9d68b2312411697281ce61d096d9a0dea1.png" src="../_images/4e3ddb7dd4c39b0d0c31f263fc847a9d68b2312411697281ce61d096d9a0dea1.png" />
 </div>
 </div>
@@ -678,22 +662,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.961207974965227&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.954322110401346&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.993924345672443&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000423795332924&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/1a0bc0ed913fceb9819ad0f27996bb7d1d7c0f1e7df7f68936093cdf27e49528.png" src="../_images/1a0bc0ed913fceb9819ad0f27996bb7d1d7c0f1e7df7f68936093cdf27e49528.png" />
 </div>
 </div>
@@ -724,22 +692,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.071581353538612&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.32607019345128&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.00710243028624&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.003299927824298&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/d77bfca5449c396b25814636ebc548ce44dd0e6530e28f87329f57fd49f930e3.png" src="../_images/d77bfca5449c396b25814636ebc548ce44dd0e6530e28f87329f57fd49f930e3.png" />
 </div>
 </div>
@@ -770,22 +722,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.02356183213588&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.219758003402397&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000427300360872&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.00298429979346&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/5ad411c0d73e1ea1cdbceb8f5109d980cbf2bd8cdd00c912b5a1b14ee1ac700d.png" src="../_images/5ad411c0d73e1ea1cdbceb8f5109d980cbf2bd8cdd00c912b5a1b14ee1ac700d.png" />
 </div>
 </div>
@@ -817,22 +753,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.02356183213588&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.219758003402397&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000427300360872&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.00298429979346&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/52d53edb0b072ece5d6cb36c7c6c3c19d12b7ae2318dc0bb2c8257fa9d17b87e.png" src="../_images/52d53edb0b072ece5d6cb36c7c6c3c19d12b7ae2318dc0bb2c8257fa9d17b87e.png" />
 </div>
 </div>
@@ -878,17 +798,17 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">passive_cooling</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Tisp = 20                   # indoor setpoint temperature, °C</span>
-<span class="s2">Δθ = 1                      # temperature deadband, °C</span>
+<span class="s2">Tisp = 20.0                 # indoor setpoint temperature, °C</span>
+<span class="s2">Δθ = 1.0                    # temperature deadband, °C</span>
 <span class="s2">Kpp = 3e2                   # controller gain</span>
 
 <span class="s2"># ventilation flow rate</span>
-<span class="s2">l = 3                       # m length of the cubic room</span>
+<span class="s2">l = 3.0                     # m length of the cubic room</span>
 <span class="s2">Va = l**3                   # m³, volume of air</span>
-<span class="s2">ACH = 10                    # 1/h, air changes per hour</span>
+<span class="s2">ACH = 10.0                  # 1/h, air changes per hour</span>
 <span class="s2">Va_dot = ACH / 3600 * Va    # m³/s, air infiltration</span>
 <span class="s2">ρ = 1.2                     # kg/m³</span>
-<span class="s2">c = 1000                    # J/(kg·K)</span>
+<span class="s2">c = 1000.0                  # J/(kg·K)</span>
 <span class="s2">G_free = ρ * c * Va_dot</span>
 <span class="s2">q_free = G_free * (u.iloc[k - 1][&#39;ow0_q0&#39;] - θ_exp.iloc[k - 1][&#39;c2_θ0&#39;])</span>
 
@@ -907,22 +827,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.02356183213588&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.219758003402397&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.000427300360872&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_6766/1200885216.py:109: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.00298429979346&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-</pre></div>
-</div>
 <img alt="../_images/2c5a0deeba64a36588abe045f2fac4c265cbf004ef3ce371085d7936c35a0a31.png" src="../_images/2c5a0deeba64a36588abe045f2fac4c265cbf004ef3ce371085d7936c35a0a31.png" />
 </div>
 </div>

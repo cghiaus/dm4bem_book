@@ -550,14 +550,6 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can change the values of the conductances and the capacities from the thermal circuit.</p>
 <div class="cell docutils container">
@@ -669,9 +661,9 @@ dt = 300 s = 5.0 min
 <span class="n">time</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span>
                      <span class="n">periods</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="si">}</span><span class="s2">S&quot;</span><span class="p">)</span>
 
-<span class="n">To</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">Ti_sp</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="n">Φa</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">To</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Ti_sp</span> <span class="o">=</span> <span class="mf">20.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Φa</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">Qa</span> <span class="o">=</span> <span class="n">Φo</span> <span class="o">=</span> <span class="n">Φi</span> <span class="o">=</span> <span class="n">Φa</span>
 
 <span class="c1"># key &lt;- symbol in b and f of thermal circuit TC</span>
@@ -994,7 +986,7 @@ dt = 300 s = 5.0 min
 <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for explicit Euler</span>
 <span class="n">θ_imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>     <span class="c1"># empty df with index for implicit Euler</span>
 
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">0</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mf">0.0</span>                    <span class="c1"># initial temperatures</span>
 <span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler explicit with initial values θ0</span>
 <span class="n">θ_imp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># fill θ for Euler implicit with initial values θ0</span>
 </pre></div>
@@ -1020,26 +1012,6 @@ dt = 300 s = 5.0 min
         <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
     <span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">I</span> <span class="o">-</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
         <span class="o">@</span> <span class="p">(</span><span class="n">θ_imp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:4: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.4567190082644628&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:4: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.8333333333333333&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:4: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.06650957737914258&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:6: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.43936818231975955&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_imp.iloc[k + 1] = np.linalg.inv(I - dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:6: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.557886300521488&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_imp.iloc[k + 1] = np.linalg.inv(I - dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:6: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.06604844897565017&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_imp.iloc[k + 1] = np.linalg.inv(I - dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:6: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.02027885551388331&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_imp.iloc[k + 1] = np.linalg.inv(I - dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/1503878767.py:4: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;0.030631810919948467&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
 </pre></div>
 </div>
 </div>
@@ -1276,7 +1248,7 @@ dt = 300 s = 5.0 min
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initial conditions</span>
-<span class="n">θ0</span> <span class="o">=</span> <span class="mi">20</span>                      <span class="c1"># initial temperatures</span>
+<span class="n">θ0</span> <span class="o">=</span> <span class="mf">20.0</span>                   <span class="c1"># initial temperatures</span>
 <span class="n">θ_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">u</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 <span class="n">θ_exp</span><span class="p">[</span><span class="n">As</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">θ0</span>      <span class="c1"># Fill θ with initial valeus θ0</span>
 </pre></div>
@@ -1298,18 +1270,6 @@ dt = 300 s = 5.0 min
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
     <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">I</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">As</span><span class="p">)</span>\
         <span class="o">@</span> <span class="n">θ_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">Bs</span> <span class="o">@</span> <span class="n">u</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/2917020813.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.611710331743442&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/2917020813.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.542588084637316&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/2917020813.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;19.939188963210704&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
-/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_3720/2917020813.py:5: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;20.00423864591846&#39; has dtype incompatible with int64, please explicitly cast to a compatible dtype first.
-  θ_exp.iloc[k + 1] = (I + dt * As)\
 </pre></div>
 </div>
 </div>

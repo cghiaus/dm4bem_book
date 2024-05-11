@@ -500,8 +500,8 @@ document.write(`
       <td>0</td>
       <td>Concrete</td>
       <td>1.400</td>
-      <td>880</td>
-      <td>2300</td>
+      <td>880.0</td>
+      <td>2300.0</td>
       <td>0.200</td>
       <td>1</td>
     </tr>
@@ -510,8 +510,8 @@ document.write(`
       <td>0</td>
       <td>Insulation</td>
       <td>0.027</td>
-      <td>1210</td>
-      <td>55</td>
+      <td>1210.0</td>
+      <td>55.0</td>
       <td>0.080</td>
       <td>2</td>
     </tr>
@@ -520,8 +520,8 @@ document.write(`
       <td>1</td>
       <td>Glass</td>
       <td>1.400</td>
-      <td>750</td>
-      <td>2500</td>
+      <td>750.0</td>
+      <td>2500.0</td>
       <td>0.004</td>
       <td>1</td>
     </tr>
@@ -785,7 +785,7 @@ document.write(`
       <th>0</th>
       <td>w0</td>
       <td>1</td>
-      <td>1</td>
+      <td>1.0</td>
       <td>90.0</td>
       <td>0.0</td>
       <td>0.25</td>
@@ -793,8 +793,8 @@ document.write(`
       <td>NaN</td>
       <td>Qo</td>
       <td>Qi</td>
-      <td>20</td>
-      <td>10</td>
+      <td>20.0</td>
+      <td>10.0</td>
       <td>0.25</td>
       <td>0.3</td>
       <td>0.85</td>
@@ -805,7 +805,7 @@ document.write(`
       <th>1</th>
       <td>w1</td>
       <td>1</td>
-      <td>1</td>
+      <td>1.0</td>
       <td>90.0</td>
       <td>0.0</td>
       <td>0.25</td>
@@ -813,8 +813,8 @@ document.write(`
       <td>Ti</td>
       <td>Qo</td>
       <td>Qi</td>
-      <td>20</td>
-      <td>10</td>
+      <td>20.0</td>
+      <td>10.0</td>
       <td>0.25</td>
       <td>0.3</td>
       <td>0.85</td>
@@ -825,7 +825,7 @@ document.write(`
       <th>2</th>
       <td>w2</td>
       <td>0</td>
-      <td>10</td>
+      <td>10.0</td>
       <td>0.0</td>
       <td>90.0</td>
       <td>0.25</td>
@@ -833,8 +833,8 @@ document.write(`
       <td>NaN</td>
       <td>Qo</td>
       <td>Qi</td>
-      <td>21</td>
-      <td>11</td>
+      <td>21.0</td>
+      <td>11.0</td>
       <td>0.25</td>
       <td>0.3</td>
       <td>0.85</td>
@@ -845,7 +845,7 @@ document.write(`
       <th>3</th>
       <td>w3</td>
       <td>0</td>
-      <td>20</td>
+      <td>20.0</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>0.25</td>
@@ -853,8 +853,8 @@ document.write(`
       <td>NaN</td>
       <td>Qo</td>
       <td>Qi</td>
-      <td>22</td>
-      <td>12</td>
+      <td>22.0</td>
+      <td>12.0</td>
       <td>0.25</td>
       <td>0.3</td>
       <td>0.85</td>
@@ -899,24 +899,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Thermal circuits from wall types and wall data</span>
 <span class="n">TCd_generic</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">wall2TC</span><span class="p">(</span><span class="n">wall_types</span><span class="p">,</span> <span class="n">walls</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:708: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:722: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:708: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
 </pre></div>
 </div>
 </div>
@@ -1245,7 +1227,7 @@ gw3_q4    0.0
 gw3_q5    0.0
 gw3_q6    0.0
 gw3_q7    0.0
-dtype: float64 
+dtype: object 
 
 f:
 gw3_θ0    0.0
@@ -1422,26 +1404,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Tsoil&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="indoor-walls">
@@ -1568,18 +1530,6 @@ dtype: float64
 <span class="c1"># for key in TCd_in.keys():</span>
 <span class="c1">#    print(&#39;Wall:&#39;, key)</span>
 <span class="c1">#    pd_dm4bem.print_TC(TCd_in[key])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Qo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
 </pre></div>
 </div>
 </div>

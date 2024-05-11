@@ -1166,8 +1166,8 @@ document.write(`
       <td>0</td>
       <td>Concrete</td>
       <td>1.400</td>
-      <td>880</td>
-      <td>2300</td>
+      <td>880.0</td>
+      <td>2300.0</td>
       <td>0.200</td>
       <td>1</td>
     </tr>
@@ -1176,8 +1176,8 @@ document.write(`
       <td>0</td>
       <td>Insulation</td>
       <td>0.027</td>
-      <td>1210</td>
-      <td>55</td>
+      <td>1210.0</td>
+      <td>55.0</td>
       <td>0.080</td>
       <td>1</td>
     </tr>
@@ -1186,8 +1186,8 @@ document.write(`
       <td>1</td>
       <td>Glass</td>
       <td>1.400</td>
-      <td>750</td>
-      <td>2500</td>
+      <td>750.0</td>
+      <td>2500.0</td>
       <td>0.004</td>
       <td>1</td>
     </tr>
@@ -1302,14 +1302,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disassembled thermal circuits with auto-numbering of θ and q</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
 </pre></div>
 </div>
 </div>
@@ -1719,12 +1711,6 @@ Name: y, dtype: int64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with autonumbering
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1782,12 +1768,6 @@ Name: y, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with symbols
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:667: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;Φo&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  f.iloc[1] = walls_def.loc[walls_def[&#39;ID&#39;] == k, &#39;Q0&#39;].values[0]
-/Users/cghiaus/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:735: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value &#39;To&#39; has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
-  b.iloc[0] = walls_def.loc[
 </pre></div>
 </div>
 <div class="output text_html"><div>
