@@ -469,17 +469,23 @@ document.write(`
 </div>
 <p>The following assumptions are done:</p>
 <ul class="simple">
-<li><p>The indoor air temperature is controlled or not (i.e., the building is in free running) by a P-controller having the gain <span class="math notranslate nohighlight">\(K_p\)</span>.</p></li>
+<li><p>The indoor air temperature is controlled or not (i.e., the building is in free running) by a P-controller having the gain <span class="math notranslate nohighlight">\(K_p.\)</span></p></li>
+<li><p>The capacities of the glass and of the air can be neglected or not.</p></li>
 <li><p>The time integration is done by using Euler explicit or Euler implicit.</p></li>
 <li><p>The time step is calculated from the eigenvalues of the state matrix or it is imposed at a value designated as <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e3</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e3</span>    <span class="c1"># controller gain</span>
+
+<span class="n">neglect_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">neglect_air_capacity</span> <span class="o">=</span> <span class="kc">False</span>
+
 <span class="n">explicit_Euler</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step   </span>
+
+<span class="n">imposed_time_step</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">Δt</span> <span class="o">=</span> <span class="mi">3600</span>    <span class="c1"># s, imposed time step </span>
 </pre></div>
 </div>
 </div>
@@ -604,7 +610,7 @@ Name: y, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 50 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dt = 3600 s = 60.0 min
 </pre></div>
 </div>
 </div>
@@ -813,53 +819,53 @@ Name: y, dtype: int64
   <tbody>
     <tr>
       <th>2000-02-01 12:00:00+01:00</th>
-      <td>10.000000</td>
-      <td>20.0</td>
-      <td>963.9000</td>
+      <td>10.0</td>
+      <td>20</td>
+      <td>963.900000</td>
       <td>48.195000</td>
       <td>0.0</td>
-      <td>244.1880</td>
-      <td>71.400000</td>
+      <td>244.188000</td>
+      <td>71.40000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:00:50+01:00</th>
-      <td>10.013889</td>
-      <td>20.0</td>
-      <td>963.6375</td>
-      <td>48.181875</td>
+      <th>2000-02-01 13:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>945.000000</td>
+      <td>47.250000</td>
       <td>0.0</td>
-      <td>244.1215</td>
-      <td>71.380556</td>
+      <td>239.400000</td>
+      <td>70.00000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:01:40+01:00</th>
-      <td>10.027778</td>
-      <td>20.0</td>
-      <td>963.3750</td>
-      <td>48.168750</td>
+      <th>2000-02-01 14:00:00+01:00</th>
+      <td>13.0</td>
+      <td>20</td>
+      <td>4071.565031</td>
+      <td>203.578252</td>
       <td>0.0</td>
-      <td>244.0550</td>
-      <td>71.361111</td>
+      <td>1031.463141</td>
+      <td>301.59741</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:02:30+01:00</th>
-      <td>10.041667</td>
-      <td>20.0</td>
-      <td>963.1125</td>
-      <td>48.155625</td>
+      <th>2000-02-01 15:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>548.100000</td>
+      <td>27.405000</td>
       <td>0.0</td>
-      <td>243.9885</td>
-      <td>71.341667</td>
+      <td>138.852000</td>
+      <td>40.60000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:03:20+01:00</th>
-      <td>10.055556</td>
-      <td>20.0</td>
-      <td>962.8500</td>
-      <td>48.142500</td>
+      <th>2000-02-01 16:00:00+01:00</th>
+      <td>11.0</td>
+      <td>20</td>
+      <td>453.600000</td>
+      <td>22.680000</td>
       <td>0.0</td>
-      <td>243.9220</td>
-      <td>71.322222</td>
+      <td>114.912000</td>
+      <td>33.60000</td>
     </tr>
   </tbody>
 </table>
@@ -941,58 +947,58 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
   <tbody>
     <tr>
       <th>2000-02-01 12:00:00+01:00</th>
-      <td>10.000000</td>
-      <td>10.000000</td>
-      <td>10.000000</td>
-      <td>20.0</td>
-      <td>963.9000</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>20</td>
+      <td>963.900000</td>
       <td>48.195000</td>
       <td>0.0</td>
-      <td>244.1880</td>
+      <td>244.188000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:00:50+01:00</th>
-      <td>10.013889</td>
-      <td>10.013889</td>
-      <td>10.013889</td>
-      <td>20.0</td>
-      <td>963.6375</td>
-      <td>48.181875</td>
+      <th>2000-02-01 13:00:00+01:00</th>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>20</td>
+      <td>945.000000</td>
+      <td>47.250000</td>
       <td>0.0</td>
-      <td>244.1215</td>
+      <td>239.400000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:01:40+01:00</th>
-      <td>10.027778</td>
-      <td>10.027778</td>
-      <td>10.027778</td>
-      <td>20.0</td>
-      <td>963.3750</td>
-      <td>48.168750</td>
+      <th>2000-02-01 14:00:00+01:00</th>
+      <td>13.0</td>
+      <td>13.0</td>
+      <td>13.0</td>
+      <td>20</td>
+      <td>4071.565031</td>
+      <td>203.578252</td>
       <td>0.0</td>
-      <td>244.0550</td>
+      <td>1031.463141</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:02:30+01:00</th>
-      <td>10.041667</td>
-      <td>10.041667</td>
-      <td>10.041667</td>
-      <td>20.0</td>
-      <td>963.1125</td>
-      <td>48.155625</td>
+      <th>2000-02-01 15:00:00+01:00</th>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>20</td>
+      <td>548.100000</td>
+      <td>27.405000</td>
       <td>0.0</td>
-      <td>243.9885</td>
+      <td>138.852000</td>
     </tr>
     <tr>
-      <th>2000-02-01 12:03:20+01:00</th>
-      <td>10.055556</td>
-      <td>10.055556</td>
-      <td>10.055556</td>
-      <td>20.0</td>
-      <td>962.8500</td>
-      <td>48.142500</td>
+      <th>2000-02-01 16:00:00+01:00</th>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>20</td>
+      <td>453.600000</td>
+      <td>22.680000</td>
       <td>0.0</td>
-      <td>243.9220</td>
+      <td>114.912000</td>
     </tr>
   </tbody>
 </table>
@@ -1071,18 +1077,18 @@ y = C_s \theta_C + D_s u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01 12:00:00+01:00    20.000000
-2000-02-01 12:00:50+01:00    19.923765
-2000-02-01 12:01:40+01:00    19.971095
-2000-02-01 12:02:30+01:00    19.927115
-2000-02-01 12:03:20+01:00    19.950813
-                               ...    
-2000-02-07 17:56:40+01:00    18.918714
-2000-02-07 17:57:30+01:00    18.917630
-2000-02-07 17:58:20+01:00    18.916549
-2000-02-07 17:59:10+01:00    18.915469
-2000-02-07 18:00:00+01:00    18.914392
-Freq: 50S, Name: θ6, Length: 10801, dtype: float64
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2000-02-01 12:00:00+01:00     2.000000e+01
+2000-02-01 13:00:00+01:00     1.451106e+01
+2000-02-01 14:00:00+01:00     6.495867e+02
+2000-02-01 15:00:00+01:00    -7.826111e+04
+2000-02-01 16:00:00+01:00     9.728281e+06
+                                 ...      
+2000-02-07 14:00:00+01:00    2.454015e+304
+2000-02-07 15:00:00+01:00   -3.049695e+306
+2000-02-07 16:00:00+01:00              inf
+2000-02-07 17:00:00+01:00              NaN
+2000-02-07 18:00:00+01:00              NaN
+Freq: 3600S, Name: θ6, Length: 151, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1130,7 +1136,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ec0bec6e6504d58ad347e4caa33fd24c084187bdb9e9ed3d999efb362e360114.png" src="../_images/ec0bec6e6504d58ad347e4caa33fd24c084187bdb9e9ed3d999efb362e360114.png" />
+<img alt="../_images/987f7f7549b6a9cb2810f8191c3af2a93c08d2406c3b6b0f66d4b348d40a6c6b.png" src="../_images/987f7f7549b6a9cb2810f8191c3af2a93c08d2406c3b6b0f66d4b348d40a6c6b.png" />
 </div>
 </div>
 <blockquote>
@@ -1164,7 +1170,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/012d71baebec75a7a6e2f856a58dad4ef53ebae803ce934eda0e804cb84c258c.png" src="../_images/012d71baebec75a7a6e2f856a58dad4ef53ebae803ce934eda0e804cb84c258c.png" />
+<img alt="../_images/7f788a219bf9dd7bbfc1c4ba91ea594a2f01a5af08bef671210a55dbad4624ff.png" src="../_images/7f788a219bf9dd7bbfc1c4ba91ea594a2f01a5af08bef671210a55dbad4624ff.png" />
 </div>
 </div>
 <blockquote>
@@ -1241,7 +1247,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" src="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" />
+<img alt="../_images/25b9c766b8efaf80641507f500ecc7850688dbfa519db63e21504087b683fbca.png" src="../_images/25b9c766b8efaf80641507f500ecc7850688dbfa519db63e21504087b683fbca.png" />
 </div>
 </div>
 <blockquote>
@@ -1256,8 +1262,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.47 seconds
-Duration for &#39;Euler explict:          9.58 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.26 seconds
+Duration for &#39;Euler explict:          0.15 seconds
 </pre></div>
 </div>
 </div>
