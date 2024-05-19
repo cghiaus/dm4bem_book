@@ -506,12 +506,13 @@ document.write(`
 
 <span class="c1"># by default TC[&#39;G&#39;][&#39;q11&#39;] = 0 # Kp -&gt; 0, no controller (free-floating</span>
 <span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
-    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kp</span>     <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kp</span>     <span class="c1"># G11 = Kp, conductance of edge q11</span>
+                            <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
 
 <span class="k">if</span> <span class="n">neglect_air_capacity</span><span class="p">:</span>
-    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># C6, capacity of vertex θ6 (air)</span>
 <span class="k">if</span> <span class="n">neglect_glass_capacity</span><span class="p">:</span>
-    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ7&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ7&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># C7, capacity of vertex θ7 (glass) </span>
 
 <span class="c1"># State-space</span>
 <span class="p">[</span><span class="n">As</span><span class="p">,</span> <span class="n">Bs</span><span class="p">,</span> <span class="n">Cs</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">us</span><span class="p">]</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">tc2ss</span><span class="p">(</span><span class="n">TC</span><span class="p">)</span>
@@ -1272,8 +1273,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.64 seconds
-Duration for &#39;Euler explict:          10.22 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.37 seconds
+Duration for &#39;Euler explict:          9.50 seconds
 </pre></div>
 </div>
 </div>
