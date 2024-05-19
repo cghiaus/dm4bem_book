@@ -467,10 +467,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
-<blockquote>
-<div><p>Figure 1. Thermal circuit for the cubic building.</p>
-</div></blockquote>
 <p>The following assumptions can be done (see Figure 1):</p>
 <ul class="simple">
 <li><p>The indoor air temperature is not controlled (i.e., the building is in free running) or it is controlled by a P-controller having the gain <span class="math notranslate nohighlight">\(K_p = G_{11}.\)</span></p></li>
@@ -478,6 +474,10 @@ document.write(`
 <li><p>The time integration is done by using Euler explicit or Euler implicit.</p></li>
 <li><p>The time step is calculated from the eigenvalues of the state matrix or it is imposed at a value designated as <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
 </ul>
+<p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Thermal circuit for the cubic building.</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1273,8 +1273,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.37 seconds
-Duration for &#39;Euler explict:          9.50 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.47 seconds
+Duration for &#39;Euler explict:          9.52 seconds
 </pre></div>
 </div>
 </div>
