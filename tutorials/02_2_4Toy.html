@@ -467,17 +467,21 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The following assumptions are done:</p>
+<p><img alt="thermal_circuit" src="../_images/03_therm_circ.svg" /></p>
+<blockquote>
+<div><p>Figure 1. Thermal circuit for the cubic building.</p>
+</div></blockquote>
+<p>The following assumptions can be done (see Figure 1):</p>
 <ul class="simple">
-<li><p>The indoor air temperature is controlled or not (i.e., the building is in free running) by a P-controller having the gain <span class="math notranslate nohighlight">\(K_p.\)</span></p></li>
-<li><p>The capacities of the air and of the glass can be neglected or not.</p></li>
+<li><p>The indoor air temperature is not controlled (i.e., the building is in free running) or it is controlled by a P-controller having the gain <span class="math notranslate nohighlight">\(K_p = G_{11}.\)</span></p></li>
+<li><p>The capacities of the air, <span class="math notranslate nohighlight">\(C_6\)</span>, and of the glass, <span class="math notranslate nohighlight">\(C_7\)</span>, can be neglected or not.</p></li>
 <li><p>The time integration is done by using Euler explicit or Euler implicit.</p></li>
 <li><p>The time step is calculated from the eigenvalues of the state matrix or it is imposed at a value designated as <span class="math notranslate nohighlight">\(\Delta t\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e3</span>    <span class="c1"># controller gain</span>
+<span class="n">Kp</span> <span class="o">=</span> <span class="mf">1e3</span>    <span class="c1"># W/°C, controller gain</span>
 
 <span class="n">neglect_air_capacity</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">neglect_glass_capacity</span> <span class="o">=</span> <span class="kc">False</span>
@@ -880,7 +884,8 @@ Name: y, dtype: int64
 </section>
 <section id="input-vector-in-time">
 <h2>Input vector in time<a class="headerlink" href="#input-vector-in-time" title="Permalink to this heading">#</a></h2>
-<p>In the <em>input data set</em> an input, e.g. <span class="math notranslate nohighlight">\(T_o\)</span>, appears only once. However, the <em>i nput vector</em> may contain the same time series multiple time; for example, in the model presented in <a class="reference download internal" download="" href="../_downloads/f349ee02ac7885740c88c496002ef157/03_therm_circ.svg"><span class="xref download myst">Figure 4</span></a> of notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="std std-doc">Modeling</span></a> there are three inputs <span class="math notranslate nohighlight">\(T_o\)</span> corresponding to branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span>, and <span class="math notranslate nohighlight">\(q_{10}\)</span>). Therefore, we need to obtain the <em>input vector</em> from the <em>input data set</em>.</p>
+<p>In the <em>input data set</em> an input, e.g. <span class="math notranslate nohighlight">\(T_o\)</span>, appears only once. However, the <em>i nput vector</em> may contain the same time series multiple time; for example, in the model presented in
+Figure 1, there are three inputs <span class="math notranslate nohighlight">\(T_o\)</span> corresponding to branches <span class="math notranslate nohighlight">\(q_0\)</span>, <span class="math notranslate nohighlight">\(q_8\)</span>, and <span class="math notranslate nohighlight">\(q_{10}\)</span>). Therefore, we need to obtain the <em>input vector</em> from the <em>input data set</em>.</p>
 <p>The input in time is formed by the vectors of time series of temperature sources <span class="math notranslate nohighlight">\(\left [ T_o, T_o ,T_o, T_{i,sp} \right ]^T\)</span> and vectors of time series of the heat flow sources <span class="math notranslate nohighlight">\(\left [ \Phi_o, \Phi_i, \dot{Q_a}, \Phi_a \right ]^T\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}u = 
@@ -1145,7 +1150,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <blockquote>
-<div><p>Figure 1. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+<div><p>Figure 2. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
 </section>
 <section id="plots-using-matplotlib">
@@ -1179,7 +1184,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <blockquote>
-<div><p>Figure 2. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+<div><p>Figure 3. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
 </section>
 </section>
@@ -1256,7 +1261,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <blockquote>
-<div><p>Figure 3. Time variation of indoor temperature obtained with Control Systems Library and for-loop Euler.</p>
+<div><p>Figure 4. Time variation of indoor temperature obtained with Control Systems Library and for-loop Euler.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1267,8 +1272,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.52 seconds
-Duration for &#39;Euler explict:          10.28 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.64 seconds
+Duration for &#39;Euler explict:          10.22 seconds
 </pre></div>
 </div>
 </div>
