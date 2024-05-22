@@ -466,6 +466,20 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">time</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">dm4bem</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;control&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>The following assumptions can be done (see Figure 1):</p>
 <ul class="simple">
@@ -508,7 +522,6 @@ document.write(`
 <span class="k">if</span> <span class="n">controller</span><span class="p">:</span>
     <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;G&#39;</span><span class="p">][</span><span class="s1">&#39;q11&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Kp</span>     <span class="c1"># G11 = Kp, conductance of edge q11</span>
                             <span class="c1"># Kp -&gt; ∞, almost perfect controller</span>
-
 <span class="k">if</span> <span class="n">neglect_air_capacity</span><span class="p">:</span>
     <span class="n">TC</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">][</span><span class="s1">&#39;θ6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># C6, capacity of vertex θ6 (air)</span>
 <span class="k">if</span> <span class="n">neglect_glass_capacity</span><span class="p">:</span>
@@ -1268,13 +1281,13 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the comparison of durations</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration for Control Systems Library: </span><span class="si">{</span><span class="n">duration_1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration for &#39;Euler explict:          </span><span class="si">{</span><span class="n">duration_2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration for Euler explict:           </span><span class="si">{</span><span class="n">duration_2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.47 seconds
-Duration for &#39;Euler explict:          9.52 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 2.31 seconds
+Duration for Euler explict:           15.64 seconds
 </pre></div>
 </div>
 </div>
@@ -1285,7 +1298,7 @@ Duration for &#39;Euler explict:          9.52 seconds
 <p>Simulate the system without controller (i.e., in free floating) and with controller.</p>
 <p>Note that the time step for Euler explicit method depends on:</p>
 <ul class="simple">
-<li><p>P-controller gain <code class="docutils literal notranslate"><span class="pre">Kp</span></code>:</p>
+<li><p>Gain <code class="docutils literal notranslate"><span class="pre">TC['G']['q11']</span> <span class="pre">=</span> <span class="pre">Kp</span></code> of the P-controller:</p>
 <ul>
 <li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow \infty\)</span>, then the controller is perfect and the time step needs to be small;</p></li>
 <li><p>if <span class="math notranslate nohighlight">\(K_p \rightarrow 0\)</span>, then, the controller is ineffective and the building is in free-running.</p></li>
@@ -1294,7 +1307,7 @@ Duration for &#39;Euler explict:          9.52 seconds
 <li><p>Capacities considered into the model:</p>
 <ul>
 <li><p>if the capacities of the air <span class="math notranslate nohighlight">\(C_a =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Air']</span></code> and of the glass <span class="math notranslate nohighlight">\(C_g =\)</span> <code class="docutils literal notranslate"><span class="pre">C['Glass']</span></code> are considered, then the time step is small;</p></li>
-<li><p>if the capacities of the air and of the glass are zero, then the time step is large (and the order of the state-space model is reduced).</p></li>
+<li><p>if the capacities of the air, <code class="docutils literal notranslate"><span class="pre">TC['C']['θ6']</span></code>, and of the glass, <code class="docutils literal notranslate"><span class="pre">TC['C']['θ6']</span></code>, are zero, then the time step is large (and the order of the state-space model is reduced).</p></li>
 </ul>
 </li>
 </ul>
