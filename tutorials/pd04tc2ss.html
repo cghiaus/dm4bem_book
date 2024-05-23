@@ -58,6 +58,8 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/pd04tc2ss';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -818,7 +820,7 @@ document.write(`
 </table>
 </div></div></div>
 </div>
-<p>The state-space representation allows us to do the eigenvalues analysis and to find the maximum time step.</p>
+<p>The state-space representation allows us to do the eigenvalues analysis and to find the maximum time step <span class="math notranslate nohighlight">\(\Delta t_{max} = 2 \min (-1 / \lambda_i) \)</span>, where <span class="math notranslate nohighlight">\(\lambda_i\)</span> are the eigenvalues of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">As</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>    <span class="c1"># eigenvalues of matrix As</span>
