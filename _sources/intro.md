@@ -17,7 +17,7 @@ __Quick overview__
 
 The specifics of this book are:
 
-- Modeling heat transfers (conduction, convection, radiation, advection) through a matrix representation of thermal circuits.
+- Modeling heat transfers (conduction, convection, short wave and long wave radiation, advection) through a matrix representation of thermal circuits.
 - Formulating the thermal load calculation as a control problem.
 - Obtaining thermal circuits of walls through spatial discretization.
 - Assembling thermal circuits.
