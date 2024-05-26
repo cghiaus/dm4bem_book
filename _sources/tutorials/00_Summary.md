@@ -57,7 +57,7 @@ The [state representation](https://en.m.wikipedia.org/wiki/State-space_represent
 - $B_s$: control matrix;
 - $C_s$: observation matrix;
 - $D_s$: direct action matrix;
-- $u_s$: correspondence table between branches & nodes with sources and their names, i.e., the list of non-zero elements of vectors b & f, as well as their respective positions in these vectors.
+- $u_s$: correspondence table between branches & nodes with sources and their names, i.e., the list of non-zero elements of vectors $b$ and $f$, as well as their respective positions in these vectors.
 
 ### Information on walls and building
 For buildings, walls represent a frequent thermal model. The description of the walls is provided in a directory that contains two types of files:
