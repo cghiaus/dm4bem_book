@@ -83,7 +83,10 @@ The results presented are [reproducible](https://en.m.wikipedia.org/wiki/Reprodu
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 
-__Licence__
+__Licences__
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 
 The text of this book is under Creative Commons Attribution 4.0 International (CC BY 4.0).
 
