@@ -79,7 +79,7 @@ __Nomenclature__
 
 __Reproducibility__
 
-The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
+The results presented are [reproducible](https://en.m.wikipedia.org/wiki/Reproducibility). The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 
