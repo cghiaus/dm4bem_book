@@ -124,6 +124,8 @@ The [workflow](https://en.m.wikipedia.org/wiki/Workflow) for modeling and simula
     - Calculate the outputs from the states.
     - Plot the results.
 
+(An [example of implementation](https://github.com/cghiaus/dm4bem_toy_model/blob/main/pd05simulation.py#L38) for the thermal network from Figure 4).
+
 ## Conclusion
 
 Dynamic Models for Building Energy Management ([dm4bem](dm4bem.py)) method offers an efficient approach to obtaining thermal models by assembling different models. The main contributions of the method lie in the following aspects:

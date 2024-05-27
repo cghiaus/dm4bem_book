@@ -1523,6 +1523,7 @@ q = G (-A \theta + b)
 <blockquote>
 <div><p>Figure 6. Matrices and vectors of the system of Differential-Algebraic Equations (DAE).</p>
 </div></blockquote>
+<p>The labels for nodes and branches are $\theta_0, …, \theta_{n</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># temperature nodes</span>
@@ -1530,6 +1531,19 @@ q = G (-A \theta + b)
 
 <span class="c1"># flow-rate branches</span>
 <span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;q0&#39;</span><span class="p">,</span> <span class="s1">&#39;q1&#39;</span><span class="p">,</span> <span class="s1">&#39;q2&#39;</span><span class="p">,</span> <span class="s1">&#39;q3&#39;</span><span class="p">,</span> <span class="s1">&#39;q4&#39;</span><span class="p">,</span> <span class="s1">&#39;q5&#39;</span><span class="p">,</span> <span class="s1">&#39;q6&#39;</span><span class="p">,</span> <span class="s1">&#39;q7&#39;</span><span class="p">,</span> <span class="s1">&#39;q8&#39;</span><span class="p">,</span> <span class="s1">&#39;q9&#39;</span><span class="p">,</span> <span class="s1">&#39;q10&#39;</span><span class="p">,</span> <span class="s1">&#39;q11&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># temperature nodes</span>
+<span class="n">nθ</span> <span class="o">=</span> <span class="mi">8</span>      <span class="c1"># number of temperature nodes</span>
+<span class="n">θ</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;θ</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+
+<span class="c1"># flow-rate branches</span>
+<span class="n">nq</span> <span class="o">=</span> <span class="mi">12</span>     <span class="c1"># number of flow branches</span>
+<span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;q</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
