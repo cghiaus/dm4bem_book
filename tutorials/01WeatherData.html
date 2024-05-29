@@ -1374,6 +1374,7 @@ Max. direct irradiation:  314 W/m²
 the isotropic diffuse solar radiation, <span class="math notranslate nohighlight">\(G_{dif,h}\)</span>, (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation thermique 2005</a>, §1.2.1.2, eq. 79, p. 31):</p>
 <div class="math notranslate nohighlight">
 \[ G_{dif} = G_{dif,h} \frac{1 + \cos \beta}{2}\]</div>
+<p>Note: <span class="math notranslate nohighlight">\(\forall \beta, \frac{1 + \cos \beta}{2} \geq 0.\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dif_rad</span> <span class="o">=</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dif_h_rad&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">β</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1387,7 +1388,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <p>Considering the radiation reflected by the ground as isotropic, the reflected radiation that gets onto the wall is a function of its slope, albedo and total horizontal radiation (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a>,  §11.2.1.3).</p>
 <p>The normal horizontal radiation is (<a class="reference external" href="https://pdfslide.fr/documents/rt2005-methode-de-calcul-th-ce.html">Réglementation Thermique 2005</a> eq. 80):</p>
 <div class="math notranslate nohighlight">
-\[ G_{dir,h} = G_{dn} \sin \gamma\]</div>
+\[ G_{dir,h} = G_{dir,n} \sin \gamma\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">δ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ϕ</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ω</span><span class="p">)</span> \
@@ -1405,6 +1406,7 @@ the isotropic diffuse solar radiation, <span class="math notranslate nohighlight
 <div class="math notranslate nohighlight">
 \[G_r = (G_{dir,h} + G_{dif,h}) \, \rho \, \frac{1 - \cos \beta}{2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Albedo">albedo</a> (or the reflection coefficient) of the surface and <span class="math notranslate nohighlight">\(\beta\)</span> is the slope of the surface.</p>
+<p>Note: <span class="math notranslate nohighlight">\(\forall \beta, \frac{1 - \cos \beta}{2} \geq 0.\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_rad</span> <span class="o">=</span> <span class="p">(</span><span class="n">dir_h_rad</span> <span class="o">+</span> <span class="n">weather_data</span><span class="p">[</span><span class="s2">&quot;dif_h_rad&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="n">albedo</span> \
