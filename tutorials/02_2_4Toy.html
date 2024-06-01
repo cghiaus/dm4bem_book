@@ -466,20 +466,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">control</span> <span class="k">as</span> <span class="nn">ctrl</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">time</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">dm4bem</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;control&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>The following assumptions can be done (see Figure 1):</p>
 <ul class="simple">
@@ -1051,12 +1037,12 @@ T_{o(0)} &amp; T_{o(1)}&amp; ... &amp; T_{o(n-1)}\ \\
 \dot{\theta}_C=A_s \theta_C + B_s u\\ 
 y = C_s \theta_C + D_s u
 \end{array}\right.\end{split}\]</div>
-<p>is integrated in time by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">Euler backward (or implicit) method</a> for numerical integration:</p>
-<div class="math notranslate nohighlight">
-\[\theta_{s,k+1} = (I - \Delta t A)^{-1} ( \theta_{s,k} + \Delta t B u_k )\]</div>
-<p>or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler forward (or explicit) method</a> for numerical integration:</p>
+<p>is integrated in time by using <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Euler_method">Euler forward (or explicit) method</a> for numerical integration:</p>
 <div class="math notranslate nohighlight">
 \[ \theta_{s,k+1} = (I + \Delta t A) \theta_{s,k} + \Delta t B u_k \]</div>
+<p>or <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations#Backward_Euler_method">Euler backward (or implicit) method</a> for numerical integration:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{s,k+1} = (I - \Delta t A)^{-1} ( \theta_{s,k} + \Delta t B u_k )\]</div>
 <p>where <span class="math notranslate nohighlight">\(k = 0, ... , n - 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1286,8 +1272,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 2.31 seconds
-Duration for Euler explict:           15.64 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.39 seconds
+Duration for Euler explict:           9.53 seconds
 </pre></div>
 </div>
 </div>
