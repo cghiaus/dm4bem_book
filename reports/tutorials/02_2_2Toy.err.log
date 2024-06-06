@@ -22,7 +22,6 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 y = pd.concat([y_exp, y_imp], axis=1, keys=['Explicit', 'Implicit'])
 # Flatten the two-level column labels into a single level
 y.columns = y.columns.get_level_values(0)
-
 ax = y.plot()
 ax.set_xlabel('Time')
 ax.set_ylabel('Indoor temperature, $\\theta_i$ / °C')
@@ -33,11 +32,11 @@ plt.show()
 
 [0;31m----------------------------------------------------------------[0m
 [0;31mNameError[0m                      Traceback (most recent call last)
-Cell [0;32mIn[22], line 9[0m
-[1;32m      7[0m ax[38;5;241m.[39mset_xlabel([38;5;124m'[39m[38;5;124mTime[39m[38;5;124m'[39m)
-[1;32m      8[0m ax[38;5;241m.[39mset_ylabel([38;5;124m'[39m[38;5;124mIndoor temperature, $[39m[38;5;130;01m\\[39;00m[38;5;124mtheta_i$ / °C[39m[38;5;124m'[39m)
-[0;32m----> 9[0m ax[38;5;241m.[39mset_title([38;5;124mf[39m[38;5;124m'[39m[38;5;124mTime step: $dt$ = [39m[38;5;132;01m{[39;00mdt[38;5;132;01m:[39;00m[38;5;124m.0f[39m[38;5;132;01m}[39;00m[38;5;124m s; $dt_[39m[38;5;130;01m{{[39;00m[38;5;124mmax[39m[38;5;130;01m}}[39;00m[38;5;124m$ = [39m[38;5;132;01m{[39;00mdtmax[38;5;132;01m:[39;00m[38;5;124m.0f[39m[38;5;132;01m}[39;00m[38;5;124m s[39m[38;5;124m'[39m)
-[1;32m     10[0m plt[38;5;241m.[39mshow()
+Cell [0;32mIn[27], line 8[0m
+[1;32m      6[0m ax[38;5;241m.[39mset_xlabel([38;5;124m'[39m[38;5;124mTime[39m[38;5;124m'[39m)
+[1;32m      7[0m ax[38;5;241m.[39mset_ylabel([38;5;124m'[39m[38;5;124mIndoor temperature, $[39m[38;5;130;01m\\[39;00m[38;5;124mtheta_i$ / °C[39m[38;5;124m'[39m)
+[0;32m----> 8[0m ax[38;5;241m.[39mset_title([38;5;124mf[39m[38;5;124m'[39m[38;5;124mTime step: $dt$ = [39m[38;5;132;01m{[39;00mdt[38;5;132;01m:[39;00m[38;5;124m.0f[39m[38;5;132;01m}[39;00m[38;5;124m s; $dt_[39m[38;5;130;01m{{[39;00m[38;5;124mmax[39m[38;5;130;01m}}[39;00m[38;5;124m$ = [39m[38;5;132;01m{[39;00mdtmax[38;5;132;01m:[39;00m[38;5;124m.0f[39m[38;5;132;01m}[39;00m[38;5;124m s[39m[38;5;124m'[39m)
+[1;32m      9[0m plt[38;5;241m.[39mshow()
 
 [0;31mNameError[0m: name 'dtmax' is not defined
 
