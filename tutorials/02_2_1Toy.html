@@ -485,13 +485,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="modeling">
 <h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2F02_2_1Toy.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The theory of heat transfer in buildings is examplified on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>. The model is a thermal circuit with thermal capacities in some of the nodes.</p>
+<p>The theory of heat transfer in buildings is exemplified on a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a>. The model is a thermal circuit with thermal capacities in some of the nodes.</p>
 <p><strong>Objectives:</strong></p>
 <ul class="simple">
-<li><p>Analyse a cubic building with 5 identical walls &amp; a transparent wall (glass window), air infiltration, and HVAC system controlling the indoor air temperature.</p></li>
+<li><p>Analyze a cubic building with 5 identical walls &amp; a transparent wall (glass window), air infiltration, and HVAC system controlling the indoor air temperature.</p></li>
 <li><p>Model the heat transfer in the building by a thermal circuit.</p></li>
 <li><p>Obtain the mathematical model as a system of Differential Algebraic Equations (DAE) from the thermal circuit.</p></li>
-<li><p>Transfrom the system of DAE into state-space representation.</p></li>
+<li><p>Transform the system of DAE into state-space representation.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -510,7 +510,7 @@ document.write(`
 <h3>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this heading">#</a></h3>
 <p><img alt="cube" src="../_images/03_cube_principle.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC control system</a> which acts as a proportional controller.</p>
+<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equipped with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/HVAC_control_system">HVAC control system</a> which acts as a proportional controller.</p>
 </div></blockquote>
 <p>Let’s consider a cubic building with an <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a> systems acting as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a>.</p>
 <p>The dimensions and surface areas of the building are:</p>
@@ -690,7 +690,7 @@ document.write(`
 </section>
 <section id="convection-coefficients">
 <h3>Convection coefficients<a class="headerlink" href="#convection-coefficients" title="Permalink to this heading">#</a></h3>
-<p>Conventional values for the <a class="reference external" href="https://energieplus-lesite.be/theories/enveloppe9/echanges-chaleur-parois/resistance-thermique-d-echange-superficiel/">convection coeficients</a> for indoor and outdoor convection in W/(m²⋅K) are:</p>
+<p>Conventional values for the <a class="reference external" href="https://energieplus-lesite.be/theories/enveloppe9/echanges-chaleur-parois/resistance-thermique-d-echange-superficiel/">convection coefficients</a> for indoor and outdoor convection in W/(m²⋅K) are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s1">&#39;in&#39;</span><span class="p">:</span> <span class="mf">8.</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">])</span>  <span class="c1"># W/(m²⋅K)</span>
@@ -746,7 +746,7 @@ document.write(`
 </div></blockquote>
 <p>A thermal network has at least one oriented branch, <span class="math notranslate nohighlight">\(q\)</span>, one node, <span class="math notranslate nohighlight">\(\theta\)</span>, and a reference temperature.</p>
 <p>In a node, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_capacity">heat capacity</a>, <span class="math notranslate nohighlight">\(C_i\)</span>, (which can be positive or <a class="reference external" href="https://en.wikipedia.org/wiki/Constant_function#identically_zero">identically zero</a>) and a heat flow rate source, <span class="math notranslate nohighlight">\(\dot Q_i\)</span>, (which can be identically zero).</p>
-<p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictely positive) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be identically zero).</p>
+<p>On a branch, there are a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Thermal_conductivity_and_resistivity">thermal conductane</a>, <span class="math notranslate nohighlight">\(G_j &gt; 0\)</span>, (which needs to be strictly positive) and a temperature source, <span class="math notranslate nohighlight">\(T_j\)</span> (which can be identically zero).</p>
 <p>The problem of analysis of thermal circuits (or the simulation problem, or the direct problem) is:</p>
 <p><strong>given</strong>:</p>
 <ul class="simple">
@@ -799,7 +799,7 @@ document.write(`
 <p>The sources are:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(T_o\)</span> - outdoor temperature, °C;</p></li>
-<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - indoor air controlled at the setpoint temperaure for the indoor air, °C;</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{i,sp}\)</span> - indoor air controlled at the setpoint temperature for the indoor air, °C;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Phi_o\)</span> - solar radiation absorbed by the outdoor surface of the wall, W;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Phi_i\)</span> - solar radiation absorbed by the indoor surface of the wall, W;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot{Q}_a\)</span> - auxiliary heat gains (i.e., occupants, electrical devices, etc.), W;</p></li>
@@ -1031,7 +1031,7 @@ F_{i,i} = 0
 <p>where the mean temperature <span class="math notranslate nohighlight">\(\bar{T}\)</span>, measured in kelvin, is:</p>
 <div class="math notranslate nohighlight">
 \[\bar{T} =\sqrt[3]{ \frac{(T_1^2 + T_2^2)(T_1 + T_2)}{4}}\]</div>
-<p>The evaluation of mean temperaure, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface tempetratures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> (in kelvin). An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.6 and 7.0 W/(m²·K) for <span class="math notranslate nohighlight">\(0 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 40 \,\mathrm{ °C}\)</span> and between 5.1 and 6.3 W/(m²·K) for <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 30 \,\mathrm{ °C}\)</span>. Practically, <span class="math notranslate nohighlight">\((\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W·m^{-2}·K^{-1})}\)</span>.</p>
+<p>The evaluation of mean temperature, <span class="math notranslate nohighlight">\(\bar{T}\)</span>, requires the values of the surface temperatures, <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> (in kelvin). An initial guess can be used (and then an iterative process, for a more precise evaluation). For temperatures that are usual in buildings, the values of <span class="math notranslate nohighlight">\(4 \sigma \bar T^3\)</span> vary between 4.6 and 7.0 W/(m²·K) for <span class="math notranslate nohighlight">\(0 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 40 \,\mathrm{ °C}\)</span> and between 5.1 and 6.3 W/(m²·K) for <span class="math notranslate nohighlight">\(10 \, \mathrm{ °C} \leq (\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} \leq 30 \,\mathrm{ °C}\)</span>. Practically, <span class="math notranslate nohighlight">\((\bar T / \mathrm{K} - 273.15) \, \mathrm{°C} = 20 \,\mathrm{ °C}\)</span> may be assumed, for which <span class="math notranslate nohighlight">\(4 \sigma \bar T^3 = 5.7 \,\mathrm{W·m^{-2}·K^{-1})}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_int</span> <span class="o">=</span> <span class="mf">273.15</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
@@ -1148,7 +1148,7 @@ For (T/K - 273.15)°C = 20°C, 4σT³ = 5.7 W/(m²·K)
 <tr class="row-odd"><td><p>Tilted window, venetian blind closed</p></td>
 <td><p>0.3 to 1.5</p></td>
 </tr>
-<tr class="row-even"><td><p>Tilted window, whitout venetian blind</p></td>
+<tr class="row-even"><td><p>Tilted window, without venetian blind</p></td>
 <td><p>0.8 to 4.0</p></td>
 </tr>
 <tr class="row-odd"><td><p>Window half opened</p></td>
@@ -1336,7 +1336,7 @@ For (T/K - 273.15)°C = 20°C, 4σT³ = 5.7 W/(m²·K)
 </section>
 <section id="temperature-sources">
 <h3>Temperature sources<a class="headerlink" href="#temperature-sources" title="Permalink to this heading">#</a></h3>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source#Ideal_voltage_sources">temperature sources</a> model temperatures which vary independently of what happens in the themal circuit; they are inputs of the physical model. Generally, the temperature sources are:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Voltage_source#Ideal_voltage_sources">temperature sources</a> model temperatures which vary independently of what happens in the thermal circuit; they are inputs of the physical model. Generally, the temperature sources are:</p>
 <ul class="simple">
 <li><p>outdoor air and ground temperatures;</p></li>
 <li><p>temperature of adjacent spaces which have the temperature controlled;</p></li>
@@ -1366,7 +1366,7 @@ For (T/K - 273.15)°C = 20°C, 4σT³ = 5.7 W/(m²·K)
 </section>
 <section id="heat-flow-rate-sources">
 <h3>Heat flow rate sources<a class="headerlink" href="#heat-flow-rate-sources" title="Permalink to this heading">#</a></h3>
-<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source#Background">heat flow rate sources</a> model flow rates which vary idependently of what happens in the themal circuit. They are inputs of the physical model. Generally, the heat flow rate sources are:</p>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Current_source#Background">heat flow rate sources</a> model flow rates which vary independently of what happens in the thermal circuit. They are inputs of the physical model. Generally, the heat flow rate sources are:</p>
 <ul class="simple">
 <li><p>solar radiation absorbed by the walls;</p></li>
 <li><p>internal auxiliary sources.</p></li>
@@ -1857,7 +1857,7 @@ G_{11,11} = K_p &amp; \text{gain of proportional controller}
 </section>
 <section id="c-capacity-matrix">
 <h3>C: capacity matrix<a class="headerlink" href="#c-capacity-matrix" title="Permalink to this heading">#</a></h3>
-<p>The capacity matrix of the themal circuit shown in Figure 4 is diagonal:</p>
+<p>The capacity matrix of the thermal circuit shown in Figure 4 is diagonal:</p>
 <p><span class="math notranslate nohighlight">\( C = \begin{cases}
 C_{1,1} = C_{Layer\,out} &amp; \text{outer layer of the wall}\\ 
 C_{3,3} = C_{Layer\,in} &amp; \text{inner layer of the wall}\\ 
@@ -2139,7 +2139,7 @@ y = C_s \theta_s + D_s u
 <li><p><span class="math notranslate nohighlight">\(D_s\)</span> - feedthrough (or feedforward) matrix, of dimension <span class="math notranslate nohighlight">\(\dim D_s = \dim y \times \dim u\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(u_s\)</span> - correspondence  between <em>inputs</em> (branches with temperature sources and nodes with flow-rate sources) and  <em>input data set</em> (names of temperature and  flow rate sources), e.g., <span class="math notranslate nohighlight">\(q_0\)</span> … <span class="math notranslate nohighlight">\(T_o\)</span>, <span class="math notranslate nohighlight">\(\theta_0\)</span> … <span class="math notranslate nohighlight">\(\Phi_o\)</span>.</p></li>
 </ul>
-<p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentiante the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represention of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of differential-algebraic equations (DAE).</p>
+<p><em>Note</em>: The subscript <span class="math notranslate nohighlight">\(s\)</span> of the matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is used to differentinte the matrices <span class="math notranslate nohighlight">\(A_s, C_s\)</span> of the state-space represention of the matrices <span class="math notranslate nohighlight">\(A, C\)</span> of the system of differential-algebraic equations (DAE).</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/State-space_representation">state-space representation</a>, i.e., matrices <span class="math notranslate nohighlight">\(A_s, B_s, C_s, D_s\)</span> is obtained from the system of DAE, i.e., matrices and vectors <span class="math notranslate nohighlight">\(A, G, b, C, f, y\)</span> of the thermal circuit (<a class="reference external" href="https://hal.archives-ouvertes.fr/hal-03605823/document">Ghiaus 2013</a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

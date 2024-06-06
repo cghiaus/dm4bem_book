@@ -415,7 +415,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modeling-and-simulation">
 <h1>Modeling and simulation<a class="headerlink" href="#modeling-and-simulation" title="Permalink to this heading">#</a></h1>
-<p>This chapter presents the modeling and simulation of thermal behaviour of a multi-layer wall and of a toy model of a house.</p>
+<p>This chapter presents the modeling and simulation of thermal behavior of a multi-layer wall and of a toy model of a house.</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Workflow">workflow</a> is:</p>
 <ul class="simple">
 <li><p><strong>Modelling:</strong> obtain the thermal circuit and the state-space representation.</p>
@@ -431,10 +431,10 @@ document.write(`
 </ul>
 </br>
 <ul class="simple">
-<li><p><strong>Tests in steady-state and step respose:</strong> test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>). If the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.</p>
+<li><p><strong>Tests in steady-state and step response:</strong> test if the model is wrong (<a class="reference external" href="https://en.wikipedia.org/wiki/Falsifiability">falsifiability</a>). If the model fails these tests, then it is wrong; if the model passes these tests, it does not mean it is correct.</p>
 <ul>
 <li><p>Compare and interpret the steady-state results obtained for thermal circuit and state-space representation.</p></li>
-<li><p>Perform eigenvalue analysis of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> of the state-space representation and analyse the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a>) and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>. If the maximum time step is:</p>
+<li><p>Perform eigenvalue analysis of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> of the state-space representation and analyze the maximum time step (for numerical integration with <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler explicit or forward method</a>) and the <a class="reference external" href="https://en.wikipedia.org/wiki/Settling_time">settling time</a>. If the maximum time step is:</p>
 <ul>
 <li><p>too small: set to zero the capacities that, with the related conductance (or resistance), produce the small time step (e.g., air, windows, doors);</p></li>
 <li><p>too large: consider the discretization of elements which have thermal capacities and resistances (e.g., walls, ground).</p></li>
@@ -450,7 +450,7 @@ document.write(`
 <ul class="simple">
 <li><p><strong>Inputs:</strong> prepare the input data set, i.e., time variation of weather and scheduled sources of temperatures and flow-rates.</p>
 <ul>
-<li><p>Read the weather data (outdoor temperature, direct solar irradiance and diffuse solar irradiace).</p></li>
+<li><p>Read the weather data (outdoor temperature, direct solar irradiance and diffuse solar irradiance).</p></li>
 <li><p>Calculate the solar irradiance on the outdoor and indoor surfaces of the walls.</p></li>
 <li><p>Define the schedules for temperature sources (e.g., indoor temperature set point) and flow rate sources (e.g., internal gains).</p></li>
 <li><p>Obtain the input data set.</p></li>
