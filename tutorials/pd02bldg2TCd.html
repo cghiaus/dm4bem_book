@@ -446,7 +446,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="disassembled-thermal-circuits-from-building-description">
 <h1>Disassembled thermal circuits from building description<a class="headerlink" href="#disassembled-thermal-circuits-from-building-description" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd02bldg2TCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook presents how to obtain <em>disassambled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a> module.</p>
+<p>This notebook presents how to obtain <em>disassembled thermal circuits</em> from a <em>folder describing the building</em> implemented in the function <code class="docutils literal notranslate"><span class="pre">bldg2TCd()</span></code> of <a class="reference download internal" download="" href="../_downloads/e4cbb7ae60f13bdac333462cf05e9574/dm4bem.py"><span class="xref download myst">dm4bem</span></a> module.</p>
 <p>The <em>folder describing the building</em> contains (see, for example, the folder <code class="docutils literal notranslate"><span class="pre">./pd/bldg</span></code>, <a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>):</p>
 <ul class="simple">
 <li><p>description of the walls (wall type and wall data);</p></li>
@@ -467,10 +467,10 @@ document.write(`
 <h2>Description of the building<a class="headerlink" href="#description-of-the-building" title="Permalink to this heading">#</a></h2>
 <p><img alt="cube" src="../_images/03_cube_principle.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equiped with an HVAC system which acts as a proportional controller (see Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="std std-doc">Toy model house</span></a>).</p>
+<div><p>Figure 1. Simple ventilated room (5 two-layer walls and 1 glass window) equipped with an HVAC system which acts as a proportional controller (see Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="std std-doc">Toy model house</span></a>).</p>
 </div></blockquote>
 <p>Let’s consider a cubic building with an HVAC systems acting as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a>.</p>
-<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfert is:</p>
+<p>For the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Toy_model">toy model</a> shown in Figure 1, heat transfer is:</p>
 <ul class="simple">
 <li><p>through the walls (concrete and insulation),</p></li>
 <li><p>through the glass window,</p></li>
@@ -527,7 +527,7 @@ document.write(`
 <li><p>thermal circuits: <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2.csv</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3.csv</span></a>;</p></li>
 <li><p>walls:</p>
 <ul>
-<li><p><a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>: physical properties and width of each mayerial;</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types.csv</span></a>: physical properties and width of each material;</p></li>
 <li><p><a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">walls_out.csv</span></a>: geometric and surface characteristics of each wall.</p></li>
 </ul>
 </li>
@@ -541,7 +541,7 @@ document.write(`
 <li><p>The first node (designated by columns <strong>TC0</strong> and <strong>node0</strong>) is kept.</p></li>
 <li><p>The second node (designated by columns <strong>TC1</strong> and <strong>node1</strong>) is merged with the first node.</p></li>
 </ol>
-<p>For example, in Figure 4 the nodes put in commun (or merged) are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
+<p>For example, in Figure 4 the nodes put in common (or merged) are indicated by black dashed arrows. The tip of the arrow represents the node that is retained, while the tail of the arrow signifies the node that is merged. Within a node, there cannot coexist both a tip and a tail of the arrows indicating merging.</p>
 <p>The five merging arrows in Figure 4 are:</p>
 <ol class="arabic simple" start="0">
 <li><p>Node 4 of circuit ow0 (in red) is merged with node 0 of circuit c0 (in blue); node 4 of circuit ow0 is kept (node 0 of circuit c0, in faded blue, is deleted).</p></li>
@@ -708,10 +708,10 @@ document.write(`
 <p>The names of the files which describe the thermal circuits start with TC, e.g., <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0.csv</span></a> (<a class="reference external" href="https://github.com/cghiaus/dm4bem_book/tree/main/tutorials/pd/bldg">link</a>). A thermal circuit is a data structure composed of:</p>
 <ul class="simple">
 <li><p><strong>A</strong>: incidence matrix  which indicates how the nodes are connected by oriented branches;</p></li>
-<li><p><strong>G</strong>: conductance diagonal matrix ;</p></li>
-<li><p><strong>C</strong>: capacity diagonal matrix ;</p></li>
-<li><p><strong>b</strong>: temperature source vector ;</p></li>
-<li><p><strong>f</strong>: heat flow source vector ;</p></li>
+<li><p><strong>G</strong>: conductance diagonal matrix;</p></li>
+<li><p><strong>C</strong>: capacity diagonal matrix;</p></li>
+<li><p><strong>b</strong>: temperature source vector;</p></li>
+<li><p><strong>f</strong>: heat flow source vector;</p></li>
 <li><p><strong>y</strong>: output (temperature) vector.</p></li>
 </ul>
 <p>For example, the <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1.csv</span></a> file describes the thermal circuit <strong>c1</strong> (in green) from Figures 3, 4 and 5.</p>
@@ -818,7 +818,7 @@ document.write(`
 <li><p>The columns <code class="docutils literal notranslate"><span class="pre">θg</span></code>, <code class="docutils literal notranslate"><span class="pre">θwi</span></code>, <code class="docutils literal notranslate"><span class="pre">θai</span></code> (glass, window surface in and air in, respectively) correspond to the temperature nodes.</p></li>
 <li><p>Value <code class="docutils literal notranslate"><span class="pre">1</span></code> means that the flow enters into the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgo</span></code> enters node <code class="docutils literal notranslate"><span class="pre">θg</span></code>.</p></li>
 <li><p>Value <code class="docutils literal notranslate"><span class="pre">-1</span></code> means that the flow exists from the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgi</span></code> quits node <code class="docutils literal notranslate"><span class="pre">θg</span></code>.</p></li>
-<li><p>Value <code class="docutils literal notranslate"><span class="pre">0</span></code> or no value (which is rendered as <code class="docutils literal notranslate"><span class="pre">NaN</span></code>by Pandas dataframe) means that the flow is not connected to the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgo</span></code> not conected to node <code class="docutils literal notranslate"><span class="pre">θwi</span></code>.</p></li>
+<li><p>Value <code class="docutils literal notranslate"><span class="pre">0</span></code> or no value (which is rendered as <code class="docutils literal notranslate"><span class="pre">NaN</span></code>by Pandas dataframe) means that the flow is not connected to the node, e.g., flow <code class="docutils literal notranslate"><span class="pre">qgo</span></code> not connected to node <code class="docutils literal notranslate"><span class="pre">θwi</span></code>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1285,8 +1285,8 @@ document.write(`
 <li><p><strong>Q1</strong>: ‘Qi’, name of the flow rate source of inner surface;</p></li>
 <li><p><strong>h0</strong>: 25 W·m⁻²·K⁻¹, convection coefficient of outer surface;</p></li>
 <li><p><strong>h1</strong>: 8 W·m⁻²·K⁻¹, convection coefficient of inner surface;</p></li>
-<li><p><strong>α0</strong>: 0.25, short-wave absorbtion coefficient of outer surface;</p></li>
-<li><p><strong>α1</strong>: 0.3, short-wave absorbtion coefficient of inner surface;</p></li>
+<li><p><strong>α0</strong>: 0.25, short-wave absorption coefficient of outer surface;</p></li>
+<li><p><strong>α1</strong>: 0.3, short-wave absorption coefficient of inner surface;</p></li>
 <li><p><strong>ε0</strong>: 0.85, long-wave hemispherical emissivity of outer surface;</p></li>
 <li><p><strong>ε1</strong>: 0.7, long-wave hemispherical emissivity of inner surface;</p></li>
 <li><p><strong>y</strong>:  [0, -1], output temperature nodes by using slicing, in this case the 1st node and the last node are outputs.</p></li>
@@ -1604,7 +1604,7 @@ Name: y, dtype: int64
 <li><p>walls, described by the files <code class="docutils literal notranslate"><span class="pre">wall_types.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">walls_.csv</span></code>.</p></li>
 <li><p>thermal circuits, described by the files <code class="docutils literal notranslate"><span class="pre">TC0.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">TC1.csv</span></code>, etc.</p></li>
 </ol>
-<p>The walls are auto-numbered, i.e., the nodes and oriented branches are numbered automatically and named <strong>θ0, θ1</strong>, … and <strong>q0, q1</strong>, …, respectively, preceeded by the name of the wall, e.g., <strong>ow0_</strong>.</p>
+<p>The walls are auto-numbered, i.e., the nodes and oriented branches are numbered automatically and named <strong>θ0, θ1</strong>, … and <strong>q0, q1</strong>, …, respectively, preceded by the name of the wall, e.g., <strong>ow0_</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;ow0&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
@@ -1697,10 +1697,10 @@ Name: y, dtype: int64
 </table>
 </div></div></div>
 </div>
-<p>The thermal circuits can be autonumbered or they can keep the symbols given to the nodes and the branches in the <code class="docutils literal notranslate"><span class="pre">TC...</span> <span class="pre">.csv</span></code> files.</p>
+<p>The thermal circuits can be auto-numbered or they can keep the symbols given to the nodes and the branches in the <code class="docutils literal notranslate"><span class="pre">TC...</span> <span class="pre">.csv</span></code> files.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Disassembled thermal circuit with autonumbering&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Disassembled thermal circuit with auto-numbering&#39;</span><span class="p">)</span>
 <span class="n">TCd</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">bldg2TCd</span><span class="p">(</span><span class="n">folder_path</span><span class="o">=</span><span class="s1">&#39;pd/bldg&#39;</span><span class="p">,</span>
                       <span class="n">TC_auto_number</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">TCd</span><span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">][</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
@@ -1708,7 +1708,7 @@ Name: y, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with autonumbering
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Disassembled thermal circuit with auto-numbering
 </pre></div>
 </div>
 <div class="output text_html"><div>

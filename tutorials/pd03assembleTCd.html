@@ -430,7 +430,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="assembled-thermal-circuits">
 <h1>Assembled thermal circuits<a class="headerlink" href="#assembled-thermal-circuits" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Fpd03assembleTCd.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be done by using an assembling matrix or assembling lits. The assembling from matrix is implemented in the function <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix by using the function <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>.</p>
+<p>This notebook shows how a set of <em>disassembled thermal circuits</em> is assembled into a single thermal circuit. The assembling can be done by using an assembling matrix or assembling lists. The assembling from matrix is implemented in the function <code class="docutils literal notranslate"><span class="pre">assemble_TCd_matrix</span></code>. To assemble from lists, first the assembling lists are transformed in assembly matrix by using the function <code class="docutils literal notranslate"><span class="pre">assemble_lists2matrix()</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -512,7 +512,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The otained thermal circuit has all the branches of the set of disassembled circuits but fewer nodes (Figure 2).</p>
+<p>The obtained thermal circuit has all the branches of the set of disassembled circuits but fewer nodes (Figure 2).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm4bem</span><span class="o">.</span><span class="n">print_TC</span><span class="p">(</span><span class="n">TCl</span><span class="p">)</span>
@@ -601,7 +601,7 @@ dtype: float64
 </div>
 </div>
 </div>
-<p>Note that the nodes which are faded in Figure 2 (c0_θ0, c0_θ1, c1_θ2, c3_θ0 and ow0_θ5) do not exist anymore in the assembeled thermal circuit since they were merged with the primary nodes.</p>
+<p>Note that the nodes which are faded in Figure 2 (c0_θ0, c0_θ1, c1_θ2, c3_θ0 and ow0_θ5) do not exist anymore in the assembled thermal circuit since they were merged with the primary nodes.</p>
 </section>
 </section>
 </section>

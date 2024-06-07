@@ -469,8 +469,7 @@ document.write(`
 <li><p>given data on walls (type and data on surfaces), thermal circuits and the assembling lists or matrix;</p></li>
 <li><p>obtain the matrices and vectors of the thermal circuit <span class="math notranslate nohighlight">\(A, G, C, b, f, y\)</span>:</p>
 <ul>
-<li><p>convert a folder containing the files characterizing the building into
-a disassambled thermal circuit (function <code class="docutils literal notranslate"><span class="pre">dm4bem.bldg2TCd()</span></code>);</p></li>
+<li><p>convert a folder containing the files characterizing the building into a disessambled thermal circuit (function <code class="docutils literal notranslate"><span class="pre">dm4bem.bldg2TCd()</span></code>);</p></li>
 <li><p>assemble the thermal circuits (functions <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix()</span></code> and <code class="docutils literal notranslate"><span class="pre">db4bem.assemble_lists2matrix()</span></code>);</p></li>
 </ul>
 </li>
@@ -483,7 +482,7 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <li><p>read weather data: outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span>, direct solar radiation <span class="math notranslate nohighlight">\(E_{dir}\)</span> and diffuse solar radiation <span class="math notranslate nohighlight">\(E_{diff}\)</span> (functions <code class="docutils literal notranslate"><span class="pre">dm4bem.read_epw()</span></code>) and calculate the solar radiation on tilted surfaces (function <code class="docutils literal notranslate"><span class="pre">dm4bem.sol_rad_tilt_surf()</span></code>);</p></li>
 <li><p>determine the weather sources:</p>
 <ul>
-<li><p>outdoor temperarure <span class="math notranslate nohighlight">\(T_o\)</span>,</p></li>
+<li><p>outdoor temperature <span class="math notranslate nohighlight">\(T_o\)</span>,</p></li>
 <li><p>solar radiation absorbed by the outdoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, the indoor wall <span class="math notranslate nohighlight">\(\Phi_o\)</span>, and the glass <span class="math notranslate nohighlight">\(\Phi_a\)</span>.</p></li>
 </ul>
 </li>
@@ -517,14 +516,14 @@ a disassambled thermal circuit (function <code class="docutils literal notransla
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
 <section id="thermal-circuits">
 <h3>Thermal circuits<a class="headerlink" href="#thermal-circuits" title="Permalink to this heading">#</a></h3>
-<p>Consider the disassembled thermal circuits shown in Figure 1 that we want to assemble as shown in Figure 2 and then obtain the state-space representation. The model is described in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="std std-doc">Toy model house</span></a>.</p>
+<p>Consider the disassembled thermal circuits shown in Figure 2 that we want to assemble as shown in Figure 3 and then obtain the state-space representation. The model is described in Jupyter Notebook on <a class="reference internal" href="02_2_1Toy.html"><span class="std std-doc">Toy model house</span></a>.</p>
 <p><img alt="disassambled_TC" src="../_images/ass_TCd.svg" /></p>
 <blockquote>
-<div><p>Figure 1. Four disassembled thermal circuits: <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3</span></a>, and <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">wall_out</span></a> (which is based on <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types</span></a>).</p>
+<div><p>Figure 2. Four disassembled thermal circuits: <a class="reference download internal" download="" href="../_downloads/9a256d722b5b062a1774116413365edd/TC0.csv"><span class="xref download myst">TC0</span></a>, <a class="reference download internal" download="" href="../_downloads/43810beeba230817e2ca3f9e69d61d76/TC1.csv"><span class="xref download myst">TC1</span></a>, <a class="reference download internal" download="" href="../_downloads/ee27542d019ba5050a8a58e620608e28/TC2.csv"><span class="xref download myst">TC2</span></a>, <a class="reference download internal" download="" href="../_downloads/be4f7ea0b5445a9aaa9e0e508616fc97/TC3.csv"><span class="xref download myst">TC3</span></a>, and <a class="reference download internal" download="" href="../_downloads/f482e00d9eb41e41a6117b2ae8cea23c/walls_out.csv"><span class="xref download myst">wall_out</span></a> (which is based on <a class="reference download internal" download="" href="../_downloads/c0a9b892e11fface7b8842673b8d4130/wall_types.csv"><span class="xref download myst">wall_types</span></a>).</p>
 </div></blockquote>
 <p><img alt="disassambled_TC" src="../_images/ass_TC.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Assembling the four circuits from Figure 1 according to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly matrix</span></a> or to the <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">asssembly lists</span></a>. The dashed black arrows show the merging of nodes, e.g., node 5 of circuit ow0 (faded, because it dissapears) is merged with node 0 of circuit c2 (which is kept).</p>
+<div><p>Figure 3. Assembling the four circuits from Figure 2 according to the <a class="reference download internal" download="" href="../_downloads/1d6fd7662441ed7d5978b09626cedff9/assembly_matrix.csv"><span class="xref download myst">assembly matrix</span></a> or to the <a class="reference download internal" download="" href="../_downloads/88de4bd1b17c3d1a2b96ac54619de117/assembly_lists.csv"><span class="xref download myst">assembly lists</span></a>. The dashed black arrows show the merging of nodes, e.g., node 5 of circuit ow0 (faded, because it disappears) is merged with node 0 of circuit c2 (which is kept).</p>
 </div></blockquote>
 <p>The thermal circuits are described in a folder (see section <em>Description of the folder containing the circuits</em> in Jupyter Notebook on <a class="reference internal" href="pd02bldg2TCd.html"><span class="std std-doc">Disassembled thermal circuits from folder describing the building</span></a>).</p>
 </section>
@@ -806,8 +805,8 @@ dt = 300 s = 5.0 min
 <p>588 rows × 6 columns</p>
 </div></div></div>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code> containts the time series of the inputs specified by symbols in the vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit. The names of the columns the keys of <code class="docutils literal notranslate"><span class="pre">data</span></code>, which need to correpond to the symbols indicated in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit. The values of <code class="docutils literal notranslate"><span class="pre">data</span></code> are time series given by the variables of the respective keys.</p>
-<p>The input vector in time <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from correspondece between branches / nodes and temeperature / flow sources given in <code class="docutils literal notranslate"><span class="pre">us</span></code> and the time series given in <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code>.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code> contains the time series of the inputs specified by symbols in the vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit. The names of the columns the keys of <code class="docutils literal notranslate"><span class="pre">data</span></code>, which need to correspond to the symbols indicated in vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span> of the thermal circuit. The values of <code class="docutils literal notranslate"><span class="pre">data</span></code> are time series given by the variables of the respective keys.</p>
+<p>The input vector in time <code class="docutils literal notranslate"><span class="pre">u</span></code> is obtained from correspondence between branches / nodes and temperature / flow sources given in <code class="docutils literal notranslate"><span class="pre">us</span></code> and the time series given in <code class="docutils literal notranslate"><span class="pre">input_data_set</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get input u from input_data_set</span>
@@ -972,7 +971,7 @@ dt = 300 s = 5.0 min
 <p>588 rows × 8 columns</p>
 </div></div></div>
 </div>
-<p>Note the the columns of <code class="docutils literal notranslate"><span class="pre">u</span></code>are the names of the branches and of the nodes from the <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>.</p>
+<p>Note the columns of <code class="docutils literal notranslate"><span class="pre">u</span></code> are the names of the branches and of the nodes from the <a class="reference download internal" download="" href="../_downloads/ac01fca95a6c94404f8ab9d57fbe6617/ass_TC.svg"><span class="xref download myst">thermal circuit</span></a>.</p>
 </section>
 <section id="simulation">
 <h2>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">#</a></h2>
@@ -1050,7 +1049,7 @@ dt = 300 s = 5.0 min
 </div>
 </div>
 <blockquote>
-<div><p>Figure 3. Step response by using Euler explicit and Euler implicit integration methods.</p>
+<div><p>Figure 4. Step response by using Euler explicit and Euler implicit integration methods.</p>
 </div></blockquote>
 </section>
 </section>
@@ -1346,7 +1345,7 @@ Energy consumption: 0.0 kWh
 </div>
 </div>
 <blockquote>
-<div><p>Figure 4. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
+<div><p>Figure 5. Simulation in free-running with weather data using Euler explicit method of integration. a) Indoor and outdoor temperatures. b) Solar and HVAC heat flow rates.</p>
 </div></blockquote>
 <p><a id='script'></a></p>
 </section>
@@ -1380,7 +1379,7 @@ Energy consumption: 0.0 kWh
 </div>
 </div>
 <blockquote>
-<div><p>Figure 5. Results of script <code class="docutils literal notranslate"><span class="pre">pd05simulation.py</span></code>.</p>
+<div><p>Figure 6. Results of script <code class="docutils literal notranslate"><span class="pre">pd05simulation.py</span></code>.</p>
 </div></blockquote>
 </section>
 <section id="discussion">
