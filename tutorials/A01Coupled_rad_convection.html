@@ -441,7 +441,7 @@ document.write(`
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2FA01Coupled_rad_convection.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p><img alt="Figure 1" src="../_images/07_radiation_convect_prism.svg" /></p>
 <blockquote>
-<div><p>Figures 1. a) Triagular prism. b) Heat flow rate, <span class="math notranslate nohighlight">\(\varphi\)</span>, balance on a surface: <span class="math notranslate nohighlight">\(cv\)</span> - convection; <span class="math notranslate nohighlight">\(cd\)</span> - conduction; <span class="math notranslate nohighlight">\(SW\)</span> - short wave radiation; <span class="math notranslate nohighlight">\(LW\)</span> - long wave radiation.</p>
+<div><p>Figures 1. a) Triangular prism. b) Heat flow rate, <span class="math notranslate nohighlight">\(\varphi\)</span>, balance on a surface: <span class="math notranslate nohighlight">\(cv\)</span> - convection; <span class="math notranslate nohighlight">\(cd\)</span> - conduction; <span class="math notranslate nohighlight">\(SW\)</span> - short wave radiation; <span class="math notranslate nohighlight">\(LW\)</span> - long wave radiation.</p>
 </div></blockquote>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
@@ -488,16 +488,16 @@ document.write(`
 <h4>Physical model<a class="headerlink" href="#physical-model" title="Permalink to this heading">#</a></h4>
 <p>The indoor air temperature, <span class="math notranslate nohighlight">\(T_i\)</span>, is controlled; since it does not change as a result of what happens in the system, it is an input.</p>
 <p>The short-wave (solar) <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> received by the surfaces, <span class="math notranslate nohighlight">\(E^o\)</span>, are also inputs.</p>
-<p>The tempertures of the surfaces, <span class="math notranslate nohighlight">\(\theta\)</span>, are three dependent variables represented by temperature nodes; they are the outputs (dependent variables).</p>
+<p>The temperatures of the surfaces, <span class="math notranslate nohighlight">\(\theta\)</span>, are three dependent variables represented by temperature nodes; they are the outputs (dependent variables).</p>
 </section>
 <section id="computational-model">
 <h4>Computational model<a class="headerlink" href="#computational-model" title="Permalink to this heading">#</a></h4>
-<p>The known variables (the inputs of the computational model) are the inputs of the physical model and the ouputs of the computational model are the outputs of the phyisical model. It is a <em>direct problem</em>.</p>
+<p>The known variables (the inputs of the computational model) are the inputs of the physical model and the outputs of the computational model are the outputs of the physical model. It is a <em>direct problem</em>.</p>
 <p>The problem is described by:</p>
 <ol class="arabic simple">
 <li><p>Vector of outputs</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\theta\)</span> : vector of unknown temperaures (output of the model).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> : vector of unknown tempertaures (output of the model).</p></li>
 </ul>
 </li>
 </ol>
@@ -539,7 +539,7 @@ document.write(`
 </li>
 </ol>
 <p><strong>Note:</strong></p>
-<p>According to <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff’s law of thermal radiation</a>, the absorbtivity and the emmisivity are equal for the same wavelength, <span class="math notranslate nohighlight">\(\alpha_{\lambda} = \varepsilon_{\lambda}\)</span>. Therefore, in order to simplify the notations, absortivity <span class="math notranslate nohighlight">\(\alpha\)</span> is used for short-wave radiation and emissivity <span class="math notranslate nohighlight">\(\varepsilon\)</span> is used for long-wave radiation.</p>
+<p>According to <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff’s law of thermal radiation</a>, the absorptivity and the emmisivity are equal for the same wavelength, <span class="math notranslate nohighlight">\(\alpha_{\lambda} = \varepsilon_{\lambda}\)</span>. Therefore, in order to simplify the notations, absorptivity <span class="math notranslate nohighlight">\(\alpha\)</span> is used for short-wave radiation and emissivity <span class="math notranslate nohighlight">\(\varepsilon\)</span> is used for long-wave radiation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -614,9 +614,9 @@ document.write(`
 </section>
 <section id="view-factors">
 <h3>View factors<a class="headerlink" href="#view-factors" title="Permalink to this heading">#</a></h3>
-<p>Since the surcafes are flat, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing">self-viewing</a> factors are zero:
+<p>Since the surfaces are flat, the <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Self-viewing">self-viewing</a> factors are zero:
 $<span class="math notranslate nohighlight">\(F_{0,0} = F_{1,1} = F_{2,2} \)</span>$</p>
-<p>Due to symetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2}\)</span>. From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Summation">summation relation</a> of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{0, j} = F_{0, 0} + F_{0, 1} + F_{0, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{0, 1} = F_{0, 2} = 1/2\)</span>.</p>
+<p>Due to symmetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2}\)</span>. From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Summation">summation relation</a> of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{0, j} = F_{0, 0} + F_{0, 1} + F_{0, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{0, 1} = F_{0, 2} = 1/2\)</span>.</p>
 <p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity relation</a>, <span class="math notranslate nohighlight">\(F_{0,1} S_0 = F_{1,0} S_1\)</span> and from the relation between surface areas, <span class="math notranslate nohighlight">\(S_0 = \sqrt{2}S_1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 0} = \sqrt{2} / 2\)</span>.</p>
 <p>From the summation relation of view factors, <span class="math notranslate nohighlight">\(\sum_{j} F_{1, j} = F_{1, 0} + F_{1, 1} + F_{1, 2} = 1\)</span>, it results that <span class="math notranslate nohighlight">\(F_{1, 2} = 1 - F_{1, 0} = 1 - \sqrt{2} / 2\)</span>.</p>
 <p>Due to symmetry, <span class="math notranslate nohighlight">\(F_{0,1} = F_{0,2} = 1/2\)</span>, <span class="math notranslate nohighlight">\(F_{1,0} = F_{2,0} = \sqrt{2}/2\)</span> and <span class="math notranslate nohighlight">\(F_{1, 2} = F_{2, 1}\)</span> (<span class="math notranslate nohighlight">\(F_{1,2} = 1 - F_{1, 0}\)</span>).</p>
@@ -761,7 +761,7 @@ E_3
 </section>
 <section id="long-wave-infrared-thermal-radiation">
 <h3>Long-wave (infrared) thermal radiation<a class="headerlink" href="#long-wave-infrared-thermal-radiation" title="Permalink to this heading">#</a></h3>
-<p>Long-wave absorbtion coefficients of the surfaces are <span class="math notranslate nohighlight">\(\alpha_{LW,0} = \alpha_{LW,1} = \alpha_{LW,2} = 0.8\)</span>.</p>
+<p>Long-wave absorption coefficients of the surfaces are <span class="math notranslate nohighlight">\(\alpha_{LW,0} = \alpha_{LW,1} = \alpha_{LW,2} = 0.8\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># α = 0.8 * np.ones(3)</span>
@@ -777,11 +777,11 @@ E_3
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(M^o_i\)</span> - <a class="reference external" href="https://en.m.wikipedia.org/wiki/Radiant_exitance">emmitance</a> of the surface, <span class="math notranslate nohighlight">\(M^o_i = \sigma T_i^4\)</span>;</p></li>
-<li><p><span class="math notranslate nohighlight">\(E_{LW,i}\)</span> - global long wave radiation (luminace) received by the surface;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficient of absortivity in long wave;</p></li>
-<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coefficient of emmissivity in long wave.</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{LW,i}\)</span> - global long wave radiation (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Illuminance">illuminace</a>) received by unit area of the surface;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_i\)</span> - coefficient of absorptivity in long wave radiation;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_i\)</span> - coefficient of <a class="reference external" href="https://en.wikipedia.org/wiki/Emissivity">hemispherical emmissivity</a> in long wave radiation.</p></li>
 </ul>
-<p>The global long wave radiation (luminace) received by the surface, <span class="math notranslate nohighlight">\(S_i E_{LW,i}\)</span>, is the sum of the fractions <span class="math notranslate nohighlight">\(F_{j,i}\)</span> of the flows emmitted and reflected by other surfaces <span class="math notranslate nohighlight">\(j\)</span> and intercepted by surface <span class="math notranslate nohighlight">\(i\)</span>,</p>
+<p>The global long wave radiation received by the surface, <span class="math notranslate nohighlight">\(S_i E_{LW,i}\)</span>, is the sum of the fractions <span class="math notranslate nohighlight">\(F_{j,i}\)</span> of the flows emmitted and reflected by other surfaces <span class="math notranslate nohighlight">\(j\)</span> and intercepted by surface <span class="math notranslate nohighlight">\(i\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[S_i E_{LW,i} = \sum_j F_{j, i} S_j (\varepsilon_jM^o_j + \rho_j E_{LW, j}) = \sum_j F_{j, i} S_j J_j\]</div>
 <p>where:</p>
@@ -791,7 +791,7 @@ E_3
 <p>Taking into account the relation of <a class="reference external" href="https://en.wikipedia.org/wiki/View_factor#Reciprocity">reciprocity</a>, <span class="math notranslate nohighlight">\(F_{i, j} S_i = F_{j, i} S_j\)</span>, it results that</p>
 <div class="math notranslate nohighlight">
 \[E_{LW,i} = \sum_j F_{i, j} (\varepsilon_jM^o_j + \rho_j E_{LW, j})\]</div>
-<p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span> and, since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>, therefore,</p>
+<p>For opaque walls, <span class="math notranslate nohighlight">\(\tau_i = 0\)</span>. Then <span class="math notranslate nohighlight">\(\rho_i = 1 - \alpha_i\)</span>. Since <span class="math notranslate nohighlight">\(\alpha_i = \varepsilon_i\)</span> (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchoff’s law of thermal radiation</a>), <span class="math notranslate nohighlight">\(\rho_i = 1 - \varepsilon_i\)</span>. Therefore,</p>
 <div class="math notranslate nohighlight">
 \[E_{LW,i} - \sum_j F_{i, j} (1 - \varepsilon_j) E_{LW,j} = \sum_j F_{i,j} \varepsilon_j M^o_j\]</div>
 <p>In matrix form, this equation is:</p>
@@ -812,7 +812,7 @@ E_3
 </div>
 </div>
 </div>
-<p>and the matrix <span class="math notranslate nohighlight">\(F \varepsilon\)</span> is:</p>
+<p>and the matrix <span class="math notranslate nohighlight">\(F \, \varepsilon\)</span> is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">F</span> <span class="o">@</span> <span class="n">ε</span><span class="p">)</span>

@@ -629,7 +629,7 @@ Name: y, dtype: int64
 <h2>Input data set<a class="headerlink" href="#input-data-set" title="Permalink to this heading">#</a></h2>
 <section id="one-hour-time-step">
 <h3>One-hour time step<a class="headerlink" href="#one-hour-time-step" title="Permalink to this heading">#</a></h3>
-<p>The input data set was described in the section on inputs. It is at the samplining time of 1 h (according to the weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code>, see notebook on <a class="reference internal" href="02_2_3Toy.html"><span class="std std-doc">Inputs</span></a>).</p>
+<p>The input data set was described in the section on inputs. It is at the sampling time of 1 h (according to the weather file <code class="docutils literal notranslate"><span class="pre">.epw</span></code>, see notebook on <a class="reference internal" href="02_2_3Toy.html"><span class="std std-doc">Inputs</span></a>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># INPUT DATA SET</span>
@@ -1155,7 +1155,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </section>
 <section id="plots-using-matplotlib">
 <h3>Plots using matplotlib<a class="headerlink" href="#plots-using-matplotlib" title="Permalink to this heading">#</a></h3>
-<p>Alternativelly, we may use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<p>Alternatively, we may use <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>   <span class="c1"># time vector</span>
@@ -1272,8 +1272,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 2.45 seconds
-Duration for Euler explict:           15.74 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.44 seconds
+Duration for Euler explict:           9.84 seconds
 </pre></div>
 </div>
 </div>

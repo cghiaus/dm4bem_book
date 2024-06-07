@@ -459,7 +459,7 @@ document.write(`
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
 <ul class="simple">
-<li><p>Orrifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
+<li><p>Orifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
 <li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h\,Pa}^{n_c})\)</span>.</p></li>
 <li><p>The other elements of the building are considered airtight.</p></li>
 </ul>
@@ -467,7 +467,7 @@ document.write(`
 <blockquote>
 <div><p>Figure 1. Natural ventilation with wind and stack effect.</p>
 </div></blockquote>
-<p>The static pressure at the level of the orrifices is considered <span class="math notranslate nohighlight">\(P_o = 0 \, \mathrm{Pa}\)</span>.</p>
+<p>The static pressure at the level of the orifices is considered <span class="math notranslate nohighlight">\(P_o = 0 \, \mathrm{Pa}\)</span>.</p>
 <p>Let’s consider that the outdoor air has the parameters <span class="math notranslate nohighlight">\(\theta_o = -5 \, \mathrm{°C}\)</span>, <span class="math notranslate nohighlight">\(\varphi_o = 100 \, \%\)</span>, <span class="math notranslate nohighlight">\(\rho_o = 1.315 \, \mathrm{kg/m^3}\)</span> and the indoor air has the parameters <span class="math notranslate nohighlight">\(\theta_i = 22 \, \mathrm{°C}\)</span>, <span class="math notranslate nohighlight">\(\varphi_i = 50 \, \%\)</span>, <span class="math notranslate nohighlight">\(\rho_i = 1.191 \, \mathrm{kg/m^3}.\)</span></p>
 <p>In these conditions, estimate:</p>
 <ul class="simple">
@@ -475,7 +475,7 @@ document.write(`
 <li><p>The value of the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>.</p></li>
 <li><p>The mass flow rates:</p>
 <ul>
-<li><p><span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>: from outdoors to indoors through the nord façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot m_{ni}\)</span>: from outdoors to indoors through the north façade;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot m_{si}\)</span>: from outdoors to indoors through the south façade;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot m_{ic}\)</span>: from indoors to outdoors through the chimney;</p></li>
 </ul>
@@ -735,24 +735,45 @@ document.write(`
 </section>
 <section id="numerical-solution">
 <h3>Numerical solution<a class="headerlink" href="#numerical-solution" title="Permalink to this heading">#</a></h3>
-<p>Alternativelly, the solution to the equation</p>
+<p>Alternatively, the solution to the equation</p>
 <div class="math notranslate nohighlight">
 \[f(p_i) = 0\]</div>
 <p>can be found numerically.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
-<span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">])))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -4.45 Pa
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-4.860799999999998
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_12239/3672248169.py:2: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
-  root = float(fsolve(f, np.mean([pi_min, pi_max])))
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.44919771])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+<span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pᵢ = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pᵢ = -4.45 Pa
 </pre></div>
 </div>
 </div>
@@ -861,7 +882,7 @@ error in mass flow balance: 0.000 kg/s
 </section>
 <section id="id2">
 <h3>Numerical solution<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<p>Alternativelly, the solution to the equation</p>
+<p>Alternatively, the solution to the equation</p>
 <div class="math notranslate nohighlight">
 \[f(p_i) = 0\]</div>
 <p>can be found numerically.</p>
@@ -869,12 +890,12 @@ error in mass flow balance: 0.000 kg/s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
 <span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi = </span><span class="si">{</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pᵢ = </span><span class="si">{</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi = -10.50 Pa
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pᵢ = -10.50 Pa
 </pre></div>
 </div>
 </div>

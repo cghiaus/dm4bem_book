@@ -541,11 +541,11 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\dot m c\)</span> - advection, W/K;</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p\)</span> - gain of the proportional controller, W/K.</p></li>
 </ul>
-<p><strong>Note:</strong> in determening the surface area of the walls <span class="math notranslate nohighlight">\(S = L·l·H\)</span> the length of the walls are the indoor values.</p>
+<p><strong>Note:</strong> in determining the surface area of the walls, <span class="math notranslate nohighlight">\(S = L·l·H\)</span>, the length of the walls are the indoor values.</p>
 <p>We will consider the conductances of exterior and the interior walls (Figure 2). The exterior walls are modelled with a conductance for outdoor convection (cyan in Figure 2) and an equivalent conductance for conduction in the wall and indoor convection (blue in Figure 2). The indoor walls are modelled by an equivalent conductance for indoor convection, conduction, and indoor convection on the other side.</p>
 <p><img alt="fig" src="../_images/08_blds_conductance.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Walls forming thermal coductances in the model.</p>
+<div><p>Figure 2. Walls forming thermal conductances in the model.</p>
 </div></blockquote>
 </section>
 <section id="thermal-network">
@@ -560,7 +560,7 @@ document.write(`
 <p>From the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws#Kirchhoff's_voltage_law">directed sum of temperature differences over a branch</a>, it results that the <a class="reference external" href="https://en.wikipedia.org/wiki/Voltage_drop">temperature drop</a> over a conductance is (Figure 3a):</p>
 <div class="math notranslate nohighlight">
 \[e_k = \theta_i - \theta_j + b_k\]</div>
-<p>The relation between the temperature drop, <span class="math notranslate nohighlight">\(e_k\)</span>, over a conductance, <span class="math notranslate nohighlight">\(G_k\)</span>, and the heat flow rate, <span class="math notranslate nohighlight">\(q_k\)</span>, thrrough the conductance <span class="math notranslate nohighlight">\(G_k\)</span> is:</p>
+<p>The relation between the temperature drop, <span class="math notranslate nohighlight">\(e_k\)</span>, over a conductance, <span class="math notranslate nohighlight">\(G_k\)</span>, and the heat flow rate, <span class="math notranslate nohighlight">\(q_k\)</span>, through the conductance <span class="math notranslate nohighlight">\(G_k\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[q_k = G_k \, e_k\]</div>
 <p>This <a class="reference external" href="https://en.m.wikipedia.org/wiki/Directed_graph">weighted directed graph</a> is characterized by:</p>
@@ -578,12 +578,12 @@ document.write(`
 \[ q = G(-A\theta + b)\]</div>
 <p><img alt="fig" src="../_images/08_thermal_network.svg" /></p>
 <blockquote>
-<div><p>Figure 3. Thermal network: a) typical element of the thermal network (the sources are not figured if they are identically zero); b) thermal network model for the buiding shown in Figures 1 and 2.</p>
+<div><p>Figure 3. Thermal network: a) typical element of the thermal network (the sources are not figured if they are identically zero); b) thermal network model for the building shown in Figures 1 and 2.</p>
 </div></blockquote>
-<p>For our model, the graph has 20 braches and 8 nodes (Figure 3b).</p>
+<p>For our model, the graph has 20 branches and 8 nodes (Figure 3b).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq</span><span class="p">,</span> <span class="n">nθ</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">8</span>  <span class="c1"># number of flow-rates branches and of temperaure nodes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nq</span><span class="p">,</span> <span class="n">nθ</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">8</span>  <span class="c1"># number of flow-rates branches and of temperature nodes</span>
 </pre></div>
 </div>
 </div>
@@ -645,7 +645,7 @@ document.write(`
 </section>
 <section id="conductances">
 <h3>Conductances<a class="headerlink" href="#conductances" title="Permalink to this heading">#</a></h3>
-<p>The number of conductances correspod to the number of flows which is the number of rows of incidence matrix <span class="math notranslate nohighlight">\(A\)</span></p>
+<p>The number of conductances correspond to the number of flows which is the number of rows of incidence matrix <span class="math notranslate nohighlight">\(A\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conductance matrix</span>
@@ -695,9 +695,9 @@ document.write(`
 <h4>Interior walls: indoor convection, conduction indoor convection<a class="headerlink" href="#interior-walls-indoor-convection-conduction-indoor-convection" title="Permalink to this heading">#</a></h4>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Series_and_parallel_circuits#Combining_conductances">equivalent conductance</a> for the indoor walls is formed by the (yellow in Figures 2 and 3):</p>
 <ul class="simple">
-<li><p>convetion between wall and indoor air;</p></li>
+<li><p>convection between wall and indoor air;</p></li>
 <li><p>conduction into the wall;</p></li>
-<li><p>convetion between wall and indoor air.</p></li>
+<li><p>convection between wall and indoor air.</p></li>
 </ul>
 <p>It is of the form:</p>
 <div class="math notranslate nohighlight">
@@ -732,7 +732,7 @@ document.write(`
 </ul>
 <section id="air-flow-outdoor-room-2-room-4-outdoor">
 <h5>Air-flow: outdoor → room 2 → room 4 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-2-room-4-outdoor" title="Permalink to this heading">#</a></h5>
-<p>If the airflow is from outdoor to room 2, then the heat flow rate tranferred from outdoor air to the indoor air of room 2 is (Figure 4 a):</p>
+<p>If the airflow is from outdoor to room 2, then the heat flow rate transferred from outdoor air to the indoor air of room 2 is (Figure 4 a):</p>
 <div class="math notranslate nohighlight">
 \[q_{13} = \dot m c T_o - \dot m c \theta_3\]</div>
 <p>or</p>
@@ -753,7 +753,7 @@ document.write(`
 </section>
 <section id="air-flow-outdoor-room-4-room-2-outdoor">
 <h5>Air-flow: outdoor → room 4 → room 2 → outdoor<a class="headerlink" href="#air-flow-outdoor-room-4-room-2-outdoor" title="Permalink to this heading">#</a></h5>
-<p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate tranferred to the indoor air of room 2 is:</p>
+<p>If the airflow is from room 4 to room 2 (Figure 4 b), then the heat flow rate transferred to the indoor air of room 2 is:</p>
 <div class="math notranslate nohighlight">
 \[q_{14b} = \dot m c \theta_6 - \dot m c \theta_3\]</div>
 <p>or</p>
@@ -801,7 +801,7 @@ document.write(`
 <tr class="row-odd"><td><p>Tilted window, venetian blind closed</p></td>
 <td><p>0.3 to 1.5</p></td>
 </tr>
-<tr class="row-even"><td><p>Tilted window, whitout venetian blind</p></td>
+<tr class="row-even"><td><p>Tilted window, whithout venetian blind</p></td>
 <td><p>0.8 to 4.0</p></td>
 </tr>
 <tr class="row-odd"><td><p>Window half opened</p></td>
@@ -819,7 +819,7 @@ document.write(`
 </section>
 <section id="proportional-controller">
 <h4>Proportional controller<a class="headerlink" href="#proportional-controller" title="Permalink to this heading">#</a></h4>
-<p>The heating, ventilation, and air conditioning (<a class="reference external" href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>) system maintains the indoor air temperature at <a class="reference external" href="https://en.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value. Therefore, the HVAC system may be modelled as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> (Figure 5a) for wich the heat flow rate of the HVAC system is:</p>
+<p>The heating, ventilation, and air conditioning (<a class="reference external" href="https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>) system maintains the indoor air temperature at <a class="reference external" href="https://en.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value. Therefore, the HVAC system may be modelled as a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Proportional_control">proportional controller</a> (Figure 5a) for which the heat flow rate of the HVAC system is:</p>
 <div class="math notranslate nohighlight">
 \[q = K_P (T_{sp} - \theta)\]</div>
 <p>where:</p>
@@ -837,7 +837,7 @@ document.write(`
 <blockquote>
 <div><p>Figure 5. Model of a proportional controller in a thermal network (example for room 1). a) Principle of a temperature control system using a P-controller. b) Model of temperature control system in a thermal network.</p>
 </div></blockquote>
-<p>If the rooms are in “free-runnning” (i.e., the controllers are not active), the proportional gains of the controllers are zero.</p>
+<p>If the rooms are in “free-running” (i.e., the controllers are not active), the proportional gains of the controllers are zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># G16 ... G19 (red branches): gains of proportional controllers</span>
@@ -868,7 +868,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>The temperature sources modelling the outdoor temperature for the ventilation are on braches 13 and 15.</p>
+<p>The temperature sources modelling the outdoor temperature for the ventilation are on branches 13 and 15.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">]]</span> <span class="o">=</span> <span class="n">To</span>    <span class="c1"># green branches: outdoor temperature for ventilation</span>
