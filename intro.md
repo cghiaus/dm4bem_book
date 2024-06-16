@@ -3,10 +3,11 @@
 by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-1245), [SciProfiles](https://sciprofiles.com/profile/2970335), [Scopus](https://www.scopus.com/authid/detail.uri?authorId=6603390490), [Web of Science](https://www.webofscience.com/wos/author/record/1651371), [HAL](https://cv.hal.science/cghiaus))
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
-[![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
 
-> “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (_There are three types of knowledge: [knowledge](https://en.m.wikipedia.org/wiki/Knowledge) itself, [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [know how to live](https://en.m.wikipedia.org/wiki/Etiquette); the last two quite adequately dispense with the first_), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
+
+> “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (_There are three types of knowledge: [knowledge](https://en.m.wikipedia.org/wiki/Knowledge) itself, [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [know how to live](https://en.m.wikipedia.org/wiki/Etiquette) (or [soft skills](https://en.m.wikipedia.org/wiki/Soft_skills)); the last two quite adequately dispense with the first_), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
 
 
 State-space representation is widely used for developing control algorithms. This Jupyter Book shows how thermal transfer in buildings can be modeled by complex thermal networks, assembled from elementary thermal networks, that are converted to state-space representation ([Ghiaus 2013](https://hal.archives-ouvertes.fr/hal-03605823/document), [Ghiaus 2021](https://doi.org/10.1007/978-3-030-76477-7_5)). These steps are implemented by using [dm4bem](tutorials/dm4bem.py) module written in _Python 3.8_ and tested on _Python 3.11_. The book does not cover the development of control algorithms.
@@ -16,7 +17,7 @@ __Quick overview__
 
 The specifics of this book are:
 
-- Modeling heat transfers (conduction, convection, radiation, advection) through a matrix representation of thermal circuits.
+- Modeling heat transfers (conduction, convection, short wave and long wave radiation, advection) through a matrix representation of thermal circuits.
 - Formulating the thermal load calculation as a control problem.
 - Obtaining thermal circuits of walls through spatial discretization.
 - Assembling thermal circuits.
@@ -38,7 +39,7 @@ This book uses the writing conventions for SI unit symbols and names recommanded
 Some rules cited from [BIPM (2019)](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. (2006)](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3) and [Thomson and Taylor. (2008)](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf):
 - _Unit symbols_ are in roman type and _quantity symbols_ are in italic; the unit symbol is placed after the numerical value and a space is left between the numerical value and the unit symbol ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true) §2.1, pp.129-142), e.g. $h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}$ or $h = 10\, \mathrm{W·m^{−2}·K^{−1}}$ or $h$ = 10 W/(m²·K).
 - Symbols for units formed from other units by multiplication are indicated by means of either a half-high (that is, centered) dot or a space, e.g. W/(m⋅K) or W/(m K).
-- A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §3, pp.143-144), e.g. $1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}$ while $1 \, \mathrm{m·K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.$
+- A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §3, pp.143-144), e.g. $1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}$ while $1 \, \mathrm{m·K} = 1 \, \mathrm{m \ K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.$
 - When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §5.4, pp.148-151, [Thomson and Taylor, 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf), §7.1 p.15), e.g.:
     - In $T = 273.15 \, \mathrm{K}$, the number $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T.$
     - The numerical value of a temperature expressed in degrees Celsius, $\theta$, is related to the numerical value of the thermodynamic temperature expressed in kelvins, $T$, by the relation $\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15$ or $\theta$/(°C) = $T$/(K) − 273.15.
@@ -78,11 +79,14 @@ __Nomenclature__
 
 __Reproducibility__
 
-The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
+The results presented are [reproducible](https://en.m.wikipedia.org/wiki/Reproducibility). The Jupyter Notebooks can be run interactively on [mybinder.org](https://mybinder.org) by pushing the __launch binder__ button:
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 
-__Licence__
+__Licences__
+
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
 
 The text of this book is under Creative Commons Attribution 4.0 International (CC BY 4.0).
 

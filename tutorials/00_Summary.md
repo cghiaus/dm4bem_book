@@ -51,13 +51,13 @@ $$ q = G(-A \theta + b)$$
 
 Thermal circuits can be built in Python or specified in a `.csv` file.
 
-### State representation
-The [state representation](https://en.m.wikipedia.org/wiki/State-space_representation) is obtained by eliminating the algebraic equations from the system of differential-algebraic equations, i.e., by considering only the nodes with capacitances in the thermal circuit ([Ghiaus, C. 2013](https://doi.org/10.1016/j.energy.2012.10.024)). It contains:
+### State-space representation
+The [state-space representation](https://en.m.wikipedia.org/wiki/State-space_representation) is obtained by eliminating the algebraic equations from the system of differential-algebraic equations, i.e., by considering only the nodes with capacitances in the thermal circuit ([Ghiaus, C. 2013](https://doi.org/10.1016/j.energy.2012.10.024)). It contains:
 - $A_s$: state matrix;
 - $B_s$: control matrix;
 - $C_s$: observation matrix;
 - $D_s$: direct action matrix;
-- $u_s$: correspondence table between branches & nodes with sources and their names, i.e., the list of non-zero elements of vectors b & f, as well as their respective positions in these vectors.
+- $u_s$: correspondence table between branches & nodes with sources and their names, i.e., the list of non-zero elements of vectors $b$ and $f$, as well as their respective positions in these vectors.
 
 ### Information on walls and building
 For buildings, walls represent a frequent thermal model. The description of the walls is provided in a directory that contains two types of files:
@@ -66,7 +66,7 @@ For buildings, walls represent a frequent thermal model. The description of the 
 
 From this information, the thermal circuit of a wall is obtained (the matrices and vectors $A, G, C, b, f, y$).
 
-A building can be described in a directory (or folder) containing:
+A building can be described in a [directory (or folder)](https://github.com/cghiaus/dm4bem_toy_model/tree/main/bldg) containing:
 - Walls ([wall types](./pd/bldg/wall_types.csv) and [walls data](./pd/bldg/walls_out.csv)) noted as `ow0` in Figure 4.
 - Thermal circuits noted as [TC0](./pd/bldg/TC0.csv), [TC1](./pd/bldg/TC1.csv), [TC2](./pd/bldg/TC2.csv), [TC3](./pd/bldg/TC3.csv) in Figure 4.
 - The assembly [matrix](./pd/bldg/assembly_matrix.csv)  or [lists](./pd/bldg/assembly_lists.csv) indicating the nodes that merge (connected by dashed lines in Figure 4).
@@ -76,7 +76,7 @@ There are two significant algorithms: thermal circuit assembly and conversion of
 
 ### Assembly
 
-A set of disassembled thermal circuits is assembled into a single thermal circuit (Figure 4). Assembling can be performed by using an assembly matrix or assembly lists. The assembly matrix indicates two nodes to merge. For example, in Figure 4, node 0 of circuit c2 (in purple) merges with node 5 of circuit ow0 (the second node will no longer exist after the merger). The assembly list indicates the node that is kept after merging, for example, node 0 of circuit c2, and a list of nodes that merge, for example, node 5 of circuit ow0 and node 2 of circuit c1.
+A set of disassembled thermal circuits is assembled into a single thermal circuit (Figure 4). Assembling can be performed by using an assembly matrix or assembly lists. The assembly matrix indicates two nodes to merge. For example, in Figure 4, node 0 of circuit c2 (in purple) merges with node 5 of circuit ow0 (the second node will no longer exist after the merger). The assembly list indicates the node that is kept after merging, for example, node 0 of circuit c2, and a list of nodes that merge, for example, node 5 of circuit ow0 and node 2 of circuit c1. The assembly matrix and lists are in a [directory (or folder)](https://github.com/cghiaus/dm4bem_toy_model/tree/main/bldg) describing the building.
 
 ![disassambled_TC](./pd/bldg/ass_TC.svg)
 > Figure 4. Assembling four circuits.
@@ -123,6 +123,8 @@ The [workflow](https://en.m.wikipedia.org/wiki/Workflow) for modeling and simula
     - Integrate the states in time (e.g., by using [Euler forward](https://en.wikipedia.org/wiki/Euler_method) and/or [backward](https://en.wikipedia.org/wiki/Backward_Euler_method) methods).
     - Calculate the outputs from the states.
     - Plot the results.
+
+(An [example of implementation](https://github.com/cghiaus/dm4bem_toy_model/blob/main/pd05simulation.py#L38) for the thermal network from Figure 4).
 
 ## Conclusion
 
