@@ -568,33 +568,33 @@ def wall2TC(wall_types, walls_def, prefix="w"):
         wall['C'] = wall['Density'] * wall['Specific heat'] * volume
         return wall
 
-    def number_branches(wall):
-        """
-        Gives the number of branches in each wall as a function of number of
-        layers and number of meshes in each layer of a wall. Each mesh has
-        two resistances (corresponding to 1/2 of the width of the mesh) and
-        one capacity (corresponding to the whole volume of the mesh).
+    # def number_branches(wall):
+    #     """
+    #     Gives the number of branches in each wall as a function of number of
+    #     layers and number of meshes in each layer of a wall. Each mesh has
+    #     two resistances (corresponding to 1/2 of the width of the mesh) and
+    #     one capacity (corresponding to the whole volume of the mesh).
 
-        Parameters
-        ----------
-        wall : DataFrame
-            Tidy DataFrame of walls and layers in walls.
+    #     Parameters
+    #     ----------
+    #     wall : DataFrame
+    #         Tidy DataFrame of walls and layers in walls.
 
-        Returns
-        -------
-        nq : Series
-            Number of branches for each wall in walls.
+    #     Returns
+    #     -------
+    #     nq : Series
+    #         Number of branches for each wall in walls.
 
-        """
-        # 1 mesh: 2 R and 1 C
-        mesh_df = wall.groupby("ID").agg({"Mesh": "sum"})
-        mesh = mesh_df.squeeze()   # Series or int <-- DataFrame
-        if not isinstance(mesh, pd.Series):
-            mesh = mesh_df['Mesh'].rename_axis(None)
-        # number of flow branches in each wall:
-        # 2R per mesh for conduction & 2 convection for each wall face
-        nq = (2 * (mesh + 1)).rename('nq')
-        return nq
+    #     """
+    #     # 1 mesh: 2 R and 1 C
+    #     mesh_df = wall.groupby("ID").agg({"Mesh": "sum"})
+    #     mesh = mesh_df.squeeze()   # Series or int <-- DataFrame
+    #     if not isinstance(mesh, pd.Series):
+    #         mesh = mesh_df['Mesh'].rename_axis(None)
+    #     # number of flow branches in each wall:
+    #     # 2R per mesh for conduction & 2 convection for each wall face
+    #     nq = (2 * (mesh + 1)).rename('nq')
+    #     return nq
 
     def DAE_without_bound_temp(walls_def, wall, nq, k):
         """
@@ -669,6 +669,35 @@ def wall2TC(wall_types, walls_def, prefix="w"):
 
         return A, G, C, b, f
 
+    def without_sources(wall):
+        # Initialize empty lists for G and CC
+        G = []
+        C = []
+        for _, row in wall.iterrows():
+            if row['Mesh'] == 0:
+                G.append(row['U'])
+                C.append(0.0)
+            else:
+                mesh_G = np.ones(2 * row['Mesh'])
+                G.extend(mesh_G * 2 * row['Mesh'] * row['U'])
+                mesh_C = (np.mod(np.arange(2 * row['Mesh']), 2))
+                C.extend(mesh_C * (row['C'] / row['Mesh']))
+        C.append(0.0)
+
+        h0 = wall['h0'].iloc[0]
+        h1 = wall['h1'].iloc[0]
+        G = [h0] + G + [h1]
+        C = [0] + C + [0]
+
+        G = np.array(G) * wall['Area'].iloc[0]
+        C = np.array(C)
+
+        A = np.diff(np.eye(len(G) + 1), axis=0)
+        b = np.zeros([A.shape[0]])
+        f = np.zeros([A.shape[1]])
+
+        return A, G, C, b, f
+
     def DAE_with_bound_temp(walls_def, A, G, C, b, f, k):
         """
         Add boundary conditions:
@@ -738,6 +767,74 @@ def wall2TC(wall_types, walls_def, prefix="w"):
 
         return A, G, C, b, f
 
+    def with_sources(wall_def, A, G, C, b, f):
+        """
+        Add boundary conditions:
+            - [To, nan]
+            in A, C, f, y; delete first column: 0
+            in b: insert To
+            - [nan, Ti]
+            in A, C, f; delete last column: -1
+            in b: insert Ti
+            - [To, Ti]
+            in A, C, f; delete first and last column: [0, -1]
+            in b: insert [To, Ti]
+
+        Parameters
+        ----------
+        walls_def : DataFrame
+            Definition of each wall instance.
+
+        A, C : Array
+
+        G, b, f : Series
+
+        k : str
+            ID of the wall from walls_def.
+        """
+        b = b.astype(object)
+        f = f.astype(object)
+        f[1] = wall_def['Q0'].iloc[0]
+        f[-2] = wall_def['Q1'].iloc[0]
+
+        if 'T0' in wall_def.columns and 'T1' in wall_def.columns:
+            """
+            General wall with columns for sources T0 and T1
+            """
+            # Add temperature boundary conditions
+            bc_T0 = wall_def['T0'].notna().values
+            bc_T1 = wall_def['T1'].notna().values
+
+            if bc_T0 and (not (bc_T1)):
+                A = np.delete(A, 0, axis=1)
+                C = np.delete(C, 0)
+                b[0] = wall_def['T0'].iloc[0]
+                f = f[1:]
+
+            if not (bc_T0) and bc_T1:
+                A = np.delete(A, -1, axis=1)
+                C = np.delete(C, -1)
+                b[-1] = wall_def['T1'].iloc[0]
+                f = f[:-1]
+
+            if bc_T0 and bc_T1:
+                A = np.delete(A, [0, -1], axis=1)
+                C = np.delete(C, [0, -1])
+                b[0] = wall_def['T0'].iloc[0]
+                b[-1] = wall_def['T1'].iloc[0]
+                f = f[1:-1]
+
+        elif 'T0' in wall_def.columns and 'T1' not in wall_def.columns:
+            """
+            Outdoor wall with T0 (source out)
+            """
+            A = np.delete(A, 0, axis=1)
+            C = np.delete(C, 0)
+            b[0] = wall_def.at[0, 'T0']
+            f = f[1:]
+
+        return A, G, C, b, f
+
     def DAE_output(walls_def, A):
         """
         Add output vector `y`. The elements of `y` are `1`if the temperature
@@ -760,6 +857,34 @@ def wall2TC(wall_types, walls_def, prefix="w"):
         y = pd.Series(y)
 
         slice_str = walls_def.loc[walls_def['ID'] == k, 'y'].values[0]
+        if type(slice_str) == str:
+            parsed_slice = ast.literal_eval(slice_str)
+            y.iloc[parsed_slice] = 1
+        return y
+
+    def output(wall_def, A):
+        """
+        Add output vector `y`. The elements of `y` are `1`if the temperature
+        node is an output and `0` otherwise.
+
+        Parameters
+        ----------
+        walls_def : DataFrame
+            Definition of each wall instance.
+        A : Array
+            Incidence matrix.
+
+        Returns
+        -------
+        y : Series
+            1 if the node is an output, 0 otherwise.
+
+        """
+        y = np.zeros([A.shape[1]])
+        y = pd.Series(y)
+
+        # slice_str = walls_def.loc[walls_def['ID'] == k, 'y'].values[0]
+        slice_str = wall_def['y'].iloc[0]
         if type(slice_str) == str:
             parsed_slice = ast.literal_eval(slice_str)
             y.iloc[parsed_slice] = 1
@@ -796,25 +921,29 @@ def wall2TC(wall_types, walls_def, prefix="w"):
         A = pd.DataFrame(data=A,
                          index=w_q,
                          columns=w_θ)
-        G = pd.Series(G)
-        C = pd.Series(C)
-
-        G = G.set_axis(w_q)
-        C = C.set_axis(w_θ)
-        b = b.set_axis(w_q)
-        f = f.set_axis(w_θ)
-        y = y.set_axis(w_θ)
+        G = pd.Series(G).set_axis(w_q)
+        C = pd.Series(C).set_axis(w_θ)
+        b = pd.Series(b).set_axis(w_q)
+        f = pd.Series(f).set_axis(w_θ)
+        y = pd.Series(y).set_axis(w_θ)
 
         return A, G, C, b, f, y
 
     walls = wall_instances(wall_types, walls_def)
-    nq = number_branches(walls)
+    # nq = number_branches(walls)
 
     TC = {}
     for k in walls_def['ID']:
-        A, G, C, b, f = DAE_without_bound_temp(walls_def, walls, nq, k)
-        A, G, C, b, f = DAE_with_bound_temp(walls_def, A, G, C, b, f, k)
+        # A, G, C, b, f = DAE_without_bound_temp(walls_def, walls, nq, k)
+        wall = walls.loc[walls['ID'] == k]
+        A, G, C, b, f = without_sources(wall)
+
+        # A, G, C, b, f = DAE_with_bound_temp(walls_def, A, G, C, b, f, k)
+        wall_def = walls_def[walls_def['ID'] == k]
+        A, G, C, b, f = with_sources(wall_def, A, G, C, b, f)
+
         y = DAE_output(walls_def, A)
+        # y = output(wall_def, A)
         A, G, C, b, f, y = DAE_pd(A, G, C, b, f, y, k)
 
         TC[prefix + k] = {'A': A,
@@ -955,11 +1084,11 @@ def bldg2TCd(folder_path, TC_auto_number):
         Disassembled thermal circuits. The number of the thermal circuit TC
         in the disassembled thermal circuit TCd is the number of walls in file
         `walls_in.csv`, `walls_out.csv`, `walls_generic.csv` plus the number of
-        files describing the thermal circuits TC_.csv.
+        files describing the thermal circuits TC_*.csv.
 
         Indexes of TC in TCd:
-            - w for walls; e.g. w2_n1 for wall 2 node 1
-            - c for thermal circuits; e.g. c1_b2 for circuit TC1 branch 2
+            - w for walls; e.g. w2_θ1 for wall 2 node 1
+            - c for thermal circuits; e.g. c1_q2 for circuit TC1 branch 2
 
         Each circuit is a dictionary:
             - A: DataFrame, incidence matrix;
@@ -967,8 +1096,8 @@ def bldg2TCd(folder_path, TC_auto_number):
             - C: Series, diagonal of the capacity matrix;
             - b: Series, vector of temperature sources on branches;
             - f: Series, vector of flow sources in nodes;
-        with indexes `b` for branches, e.g. w0_b1 for wall_0 branch_1,
-        and `n` for nodes, e.g. c1_n2 for circuit TC1 node 2.
+        with indexes `q` for branches, e.g. w0_q1 for wall_0 branch_1,
+        and `θ` for nodes, e.g. c1_θ2 for circuit TC1 node 2.
 
     Description of the folder containing the disassembled thermal circuit:
         - Assembly_matrix: pairs of nodes that are in common in the assembled
@@ -989,16 +1118,16 @@ def bldg2TCd(folder_path, TC_auto_number):
         - walls_in, walls_out, walls_generic: see wall2TC()
 
     Description of indexes of thermal circuits TC:
-        - walls: w#_, where # is the wall number (ID); e.g. w0_b0 or w0_n0
-        - TC: c#_, where # is the TC number; e.g. c1_n0
+        - walls: w#_, where # is the wall number (ID); e.g. w0_q0 or w0_θ0
+        - TC: c#_, where # is the TC number; e.g. c1_θ0
 
     Indexes of branches and nodes:
-        - branch indexes: b; e.g. w0_b0 for wall 0 branch 0
-        - node indexes: n; e.g. c1_n2 for TC1 node 2.
+        - branch indexes: q; e.g. w0_q0 for wall 0 branch 0
+        - node indexes: q; e.g. c1_q2 for TC1 node 2.
 
     How to access of disassambled thermal circuit TCd:
-        - a circuit: TCd[1]
-        - an element of the circuit: TCd[1]['A']
+        - a circuit: TCd[1] or TCd['circuit_name']
+        - an element of the circuit: TCd[1]['A'] or TCd['circuit_name']
     """
 
     file_path = os.path.join(folder_path, "wall_types.csv")

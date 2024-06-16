@@ -1,41 +1,105 @@
 Traceback (most recent call last):
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 1112, in execute
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
-    return just_run(coro(*args, **kwargs))
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
-    return loop.run_until_complete(coro)
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
     return future.result()
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 553, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
-    self._check_raise_for_error(cell, exec_reply)
-  File "/Users/cghiaus/opt/anaconda3/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/cghiaus/opt/anaconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # Thermal circuits from data & type files of walls
-TCd_in = pd_dm4bem.wall2TC(wall_types, walls, prefix="i")
+TCd_out = dm4bem.wall2TC(wall_types, walls, prefix="o")
 
 # Uncomment below to print all thermal circuits
-# print('TCd_in')
-# for key in TCd_in.keys():
+# print('TCd_out')
+# for key in TCd_out.keys():
 #    print('Wall:', key)
-#    pd_dm4bem.print_TC(TCd_in[key])
+#    pd_dm4bem.print_TC(TCd_out[key])
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_1675/2803901383.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;31m# Thermal circuits from data & type files of walls[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0mTCd_in[0m [0;34m=[0m [0mpd_dm4bem[0m[0;34m.[0m[0mwall2TC[0m[0;34m([0m[0mwall_types[0m[0;34m,[0m [0mwalls[0m[0;34m,[0m [0mprefix[0m[0;34m=[0m[0;34m"i"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0;31m# Uncomment below to print all thermal circuits[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;31m# print('TCd_in')[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'pd_dm4bem' is not defined
-NameError: name 'pd_dm4bem' is not defined
+[0;31m-----------------------------------------------------------------------[0m
+[0;31mKeyError[0m                              Traceback (most recent call last)
+File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py:3791[0m, in [0;36mIndex.get_loc[0;34m(self, key)[0m
+[1;32m   3790[0m [38;5;28;01mtry[39;00m:
+[0;32m-> 3791[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39m_engine[38;5;241m.[39mget_loc(casted_key)
+[1;32m   3792[0m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m err:
+
+File [0;32mindex.pyx:152[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+
+File [0;32mindex.pyx:181[0m, in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+
+File [0;32mpandas/_libs/hashtable_class_helper.pxi:2606[0m, in [0;36mpandas._libs.hashtable.Int64HashTable.get_item[0;34m()[0m
+
+File [0;32mpandas/_libs/hashtable_class_helper.pxi:2630[0m, in [0;36mpandas._libs.hashtable.Int64HashTable.get_item[0;34m()[0m
+
+[0;31mKeyError[0m: 0
+
+The above exception was the direct cause of the following exception:
+
+[0;31mKeyError[0m                              Traceback (most recent call last)
+Cell [0;32mIn[10], line 2[0m
+[1;32m      1[0m [38;5;66;03m# Thermal circuits from data & type files of walls[39;00m
+[0;32m----> 2[0m TCd_out [38;5;241m=[39m dm4bem[38;5;241m.[39mwall2TC(wall_types, walls, prefix[38;5;241m=[39m[38;5;124m"[39m[38;5;124mo[39m[38;5;124m"[39m)
+
+File [0;32m~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:943[0m, in [0;36mwall2TC[0;34m(wall_types, walls_def, prefix)[0m
+[1;32m    941[0m [38;5;66;03m# A, G, C, b, f = DAE_with_bound_temp(walls_def, A, G, C, b, f, k)[39;00m
+[1;32m    942[0m wall_def [38;5;241m=[39m walls_def[walls_def[[38;5;124m'[39m[38;5;124mID[39m[38;5;124m'[39m] [38;5;241m==[39m k]
+[0;32m--> 943[0m A, G, C, b, f [38;5;241m=[39m with_sources(wall_def, A, G, C, b, f)
+[1;32m    945[0m y [38;5;241m=[39m DAE_output(walls_def, A)
+[1;32m    946[0m [38;5;66;03m# y = output(wall_def, A)[39;00m
+
+File [0;32m~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:833[0m, in [0;36mwall2TC.<locals>.with_sources[0;34m(wall_def, A, G, C, b, f)[0m
+[1;32m    831[0m     A [38;5;241m=[39m np[38;5;241m.[39mdelete(A, [38;5;241m0[39m, axis[38;5;241m=[39m[38;5;241m1[39m)
+[1;32m    832[0m     C [38;5;241m=[39m np[38;5;241m.[39mdelete(C, [38;5;241m0[39m)
+[0;32m--> 833[0m     b[[38;5;241m0[39m] [38;5;241m=[39m wall_def[38;5;241m.[39mat[[38;5;241m0[39m, [38;5;124m'[39m[38;5;124mT0[39m[38;5;124m'[39m]
+[1;32m    834[0m     f [38;5;241m=[39m f[[38;5;241m1[39m:]
+[1;32m    836[0m [38;5;28;01mreturn[39;00m A, G, C, b, f
+
+File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexing.py:2488[0m, in [0;36m_AtIndexer.__getitem__[0;34m(self, key)[0m
+[1;32m   2485[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mInvalid call for scalar access (getting)![39m[38;5;124m"[39m)
+[1;32m   2486[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mobj[38;5;241m.[39mloc[key]
+[0;32m-> 2488[0m [38;5;28;01mreturn[39;00m [38;5;28msuper[39m()[38;5;241m.[39m[38;5;21m__getitem__[39m(key)
+
+File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexing.py:2440[0m, in [0;36m_ScalarAccessIndexer.__getitem__[0;34m(self, key)[0m
+[1;32m   2437[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mInvalid call for scalar access (getting)![39m[38;5;124m"[39m)
+[1;32m   2439[0m key [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_convert_key(key)
+[0;32m-> 2440[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mobj[38;5;241m.[39m_get_value([38;5;241m*[39mkey, takeable[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39m_takeable)
+
+File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/frame.py:4012[0m, in [0;36mDataFrame._get_value[0;34m(self, index, col, takeable)[0m
+[1;32m   4006[0m engine [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mindex[38;5;241m.[39m_engine
+[1;32m   4008[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m([38;5;28mself[39m[38;5;241m.[39mindex, MultiIndex):
+[1;32m   4009[0m     [38;5;66;03m# CategoricalIndex: Trying to use the engine fastpath may give incorrect[39;00m
+[1;32m   4010[0m     [38;5;66;03m#  results if our categories are integers that dont match our codes[39;00m
+[1;32m   4011[0m     [38;5;66;03m# IntervalIndex: IntervalTree has no get_loc[39;00m
+[0;32m-> 4012[0m     row [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mindex[38;5;241m.[39mget_loc(index)
+[1;32m   4013[0m     [38;5;28;01mreturn[39;00m series[38;5;241m.[39m_values[row]
+[1;32m   4015[0m [38;5;66;03m# For MultiIndex going through engine effectively restricts us to[39;00m
+[1;32m   4016[0m [38;5;66;03m#  same-length tuples; see test_get_set_value_no_partial_indexing[39;00m
+
+File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py:3798[0m, in [0;36mIndex.get_loc[0;34m(self, key)[0m
+[1;32m   3793[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(casted_key, [38;5;28mslice[39m) [38;5;129;01mor[39;00m (
+[1;32m   3794[0m         [38;5;28misinstance[39m(casted_key, abc[38;5;241m.[39mIterable)
+[1;32m   3795[0m         [38;5;129;01mand[39;00m [38;5;28many[39m([38;5;28misinstance[39m(x, [38;5;28mslice[39m) [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m casted_key)
+[1;32m   3796[0m     ):
+[1;32m   3797[0m         [38;5;28;01mraise[39;00m InvalidIndexError(key)
+[0;32m-> 3798[0m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m(key) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
+[1;32m   3799[0m [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[1;32m   3800[0m     [38;5;66;03m# If we have a listlike key, _check_indexing_error will raise[39;00m
+[1;32m   3801[0m     [38;5;66;03m#  InvalidIndexError. Otherwise we fall through and re-raise[39;00m
+[1;32m   3802[0m     [38;5;66;03m#  the TypeError.[39;00m
+[1;32m   3803[0m     [38;5;28mself[39m[38;5;241m.[39m_check_indexing_error(key)
+
+[0;31mKeyError[0m: 0
 

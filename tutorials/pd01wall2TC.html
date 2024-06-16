@@ -1101,7 +1101,7 @@ b:
 gw1_q0     To
 gw1_q1    0.0
 gw1_q2    0.0
-gw1_q3    -Ti
+gw1_q3     Ti
 dtype: object 
 
 f:
@@ -1401,6 +1401,83 @@ dtype: float64
 <span class="c1"># for key in TCd_out.keys():</span>
 <span class="c1">#    print(&#39;Wall:&#39;, key)</span>
 <span class="c1">#    pd_dm4bem.print_TC(TCd_out[key])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">-----------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py:3791,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3790</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3791</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3792</span> <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File index.pyx:152,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">File index.pyx:181,</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:2606,</span> in <span class="ni">pandas._libs.hashtable.Int64HashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">File pandas/_libs/hashtable_class_helper.pxi:2630,</span> in <span class="ni">pandas._libs.hashtable.Int64HashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: 0
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Thermal circuits from data &amp; type files of walls</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">TCd_out</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">wall2TC</span><span class="p">(</span><span class="n">wall_types</span><span class="p">,</span> <span class="n">walls</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:943,</span> in <span class="ni">wall2TC</span><span class="nt">(wall_types, walls_def, prefix)</span>
+<span class="g g-Whitespace">    </span><span class="mi">941</span> <span class="c1"># A, G, C, b, f = DAE_with_bound_temp(walls_def, A, G, C, b, f, k)</span>
+<span class="g g-Whitespace">    </span><span class="mi">942</span> <span class="n">wall_def</span> <span class="o">=</span> <span class="n">walls_def</span><span class="p">[</span><span class="n">walls_def</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">k</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">943</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">with_sources</span><span class="p">(</span><span class="n">wall_def</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="n">y</span> <span class="o">=</span> <span class="n">DAE_output</span><span class="p">(</span><span class="n">walls_def</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="c1"># y = output(wall_def, A)</span>
+
+<span class="nn">File ~/Personel/Py/git_book/dm4bem_book/tutorials/dm4bem.py:833,</span> in <span class="ni">wall2TC.&lt;locals&gt;.with_sources</span><span class="nt">(wall_def, A, G, C, b, f)</span>
+<span class="g g-Whitespace">    </span><span class="mi">831</span>     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">832</span>     <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">833</span>     <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">wall_def</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;T0&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span>     <span class="n">f</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="g g-Whitespace">    </span><span class="mi">836</span> <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span>
+
+<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexing.py:2488,</span> in <span class="ni">_AtIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2485</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid call for scalar access (getting)!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2486</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+<span class="ne">-&gt; </span><span class="mi">2488</span> <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexing.py:2440,</span> in <span class="ni">_ScalarAccessIndexer.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2437</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid call for scalar access (getting)!&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2439</span> <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2440</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">takeable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_takeable</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/frame.py:4012,</span> in <span class="ni">DataFrame._get_value</span><span class="nt">(self, index, col, takeable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4006</span> <span class="n">engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">_engine</span>
+<span class="g g-Whitespace">   </span><span class="mi">4008</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">MultiIndex</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4009</span>     <span class="c1"># CategoricalIndex: Trying to use the engine fastpath may give incorrect</span>
+<span class="g g-Whitespace">   </span><span class="mi">4010</span>     <span class="c1">#  results if our categories are integers that dont match our codes</span>
+<span class="g g-Whitespace">   </span><span class="mi">4011</span>     <span class="c1"># IntervalIndex: IntervalTree has no get_loc</span>
+<span class="ne">-&gt; </span><span class="mi">4012</span>     <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4013</span>     <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">_values</span><span class="p">[</span><span class="n">row</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">4015</span> <span class="c1"># For MultiIndex going through engine effectively restricts us to</span>
+<span class="g g-Whitespace">   </span><span class="mi">4016</span> <span class="c1">#  same-length tuples; see test_get_set_value_no_partial_indexing</span>
+
+<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/indexes/base.py:3798,</span> in <span class="ni">Index.get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3793</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3794</span>         <span class="nb">isinstance</span><span class="p">(</span><span class="n">casted_key</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3795</span>         <span class="ow">and</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3796</span>     <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3797</span>         <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3798</span>     <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3799</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3800</span>     <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3801</span>     <span class="c1">#  InvalidIndexError. Otherwise we fall through and re-raise</span>
+<span class="g g-Whitespace">   </span><span class="mi">3802</span>     <span class="c1">#  the TypeError.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3803</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_error</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="ne">KeyError</span>: 0
 </pre></div>
 </div>
 </div>
