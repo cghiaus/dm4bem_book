@@ -830,7 +830,7 @@ def wall2TC(wall_types, walls_def, prefix="w"):
             """
             A = np.delete(A, 0, axis=1)
             C = np.delete(C, 0)
-            b[0] = wall_def.at[0, 'T0']
+            b[0] = wall_def['T0'].iloc[0]
             f = f[1:]
 
         return A, G, C, b, f
