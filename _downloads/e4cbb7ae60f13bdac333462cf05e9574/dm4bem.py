@@ -649,6 +649,7 @@ def wall2TC(wall_types, walls_def, prefix="w"):
             # Initialize empty lists for G and CC
             G = []
             C = []
+            wall = wall.sort_index()
             for _, row in wall.iterrows():
                 if row['Mesh'] == 0:
                     G.append(row['U'])
@@ -734,8 +735,11 @@ def wall2TC(wall_types, walls_def, prefix="w"):
 
         b = b.astype(object)
         f = f.astype(object)
-        f[1] = wall_def['Q0'].iloc[0]
-        f[-2] = wall_def['Q1'].iloc[0]
+
+        if not pd.isna(wall_def['Q0'].iloc[0]):
+            f[1] = wall_def['Q0'].iloc[0]
+        if not pd.isna(wall_def['Q1'].iloc[0]):
+            f[-2] = wall_def['Q1'].iloc[0]
 
         if 'T0' in wall_def.columns and 'T1' in wall_def.columns:
             """
@@ -931,12 +935,18 @@ def file2TC(TC_file, name="w_", auto_number=False):
     TC_file = TC_file.fillna(0)
 
     # select A, G, C, b, f, y from TC_file
-    A = TC_file.iloc[:-3, :-2].astype(float)
-    G = TC_file.iloc[:-3, -2].astype(float)
-    C = TC_file.iloc[-3, :-2].astype(float)
-    b = TC_file.iloc[:-3, -1]
-    f = TC_file.iloc[-2, :-2]
-    y = TC_file.iloc[-1, :-2].astype(int)
+
+    # check if there is a column after "b"
+    columns = TC_file.columns
+    b_index = columns.get_loc("b")
+
+    A = TC_file.iloc[:-3, :b_index - 1].astype(float)
+    G = TC_file.iloc[:-3, b_index - 1].astype(float)
+    C = TC_file.iloc[-3, :b_index - 1].astype(float)
+    b = TC_file.iloc[:-3, b_index].astype(object)
+    f = TC_file.iloc[-2, :b_index - 1].astype(object)
+    y = TC_file.iloc[-1, :b_index - 1].astype(float)
+    
 
     if auto_number:
         """
