@@ -122,3 +122,14 @@ __References__
 9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
 <p>This page has been visited <span id="hit-count">0</span> times.</p>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Use CountAPI to get and increment the hit count
+  fetch('https://api.countapi.xyz/hit/your-namespace/your-key')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('hit-count').textContent = data.value;
+    });
+});
+</script>
