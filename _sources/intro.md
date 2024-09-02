@@ -29,7 +29,7 @@ The workflow is presented in the Jupyter Notebook on [inputs and simulation](tut
 
 __Prerequisites__
 
-It is assumed that readers have a foundational knowledge at the undergraduate level in linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([DeWitt et al. 2007](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf), [RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
+It is assumed that readers have a foundational knowledge at the undergraduate level in linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([Incropera et al. 2007](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf), [RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
 
 
 __Notations used for values of quantities__
@@ -115,7 +115,7 @@ __References__
 
 6. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
 
-7. [DeWitt, D. P., Incropera, F. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer 6th Edition. John Wiley.
+7. [Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer, 6th Edition. John Wiley.
 
 8. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
 
