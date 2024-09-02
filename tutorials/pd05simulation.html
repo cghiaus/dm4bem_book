@@ -1390,8 +1390,8 @@ Energy consumption: 0.0 kWh
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K_p = 0\)</span>: no controller (i.e., free-floating);</p></li>
 <li><p><span class="math notranslate nohighlight">\(K_p = 10^3\)</span>: good balance between precision and time-step;</p></li>
-<li><p><span class="math notranslate nohighlight">\(K_p = 10^2\)</span>: the time step is larger by the precision is low;</p></li>
-<li><p><span class="math notranslate nohighlight">\(K_p = 10^4\)</span>: the precision is good but the time step is very small.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_p = 10^2\)</span>: time step is larger but the precision is lower;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_p = 10^4\)</span>: precision is good but the time step is very small.</p></li>
 </ul>
 <p><strong>Negligible small capacities</strong></p>
 <p>After the assembling of the thermal circuit with the function <code class="docutils literal notranslate"><span class="pre">dm4bem.assemble_TCd_matrix</span></code>, set the indoor air capacity to zero, <code class="docutils literal notranslate"><span class="pre">TC['C']['c2_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code> and the glass capacity to zero, <code class="docutils literal notranslate"><span class="pre">TC['C']['c1_θ0']</span> <span class="pre">=</span> <span class="pre">0</span></code> one-by-one and both in the same time. Note the time step and the precision of the controller in each case.</p>
