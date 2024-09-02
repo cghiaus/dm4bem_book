@@ -120,3 +120,5 @@ __References__
 8. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
 
 9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
+
+<p>This page has been visited <span id="hit-count">0</span> times.</p>
