@@ -121,12 +121,4 @@ __References__
 
 9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
-<p>This page has been visited <span id="hit-count"></span> times.</p>
-
-<script>
-function cb(response) {
-    document.getElementById('visits').innerText = response.value;
-}
-</script>
-<script async src="https://api.countapi.xyz/hit/cghiaus.github.io/dm4bem_book/intro.html/visits?callback=cb">
-</script>
+![Hits](https://hits.sh/https://cghiaus.github.io/dm4bem_book.svg)
