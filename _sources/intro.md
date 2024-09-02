@@ -5,6 +5,7 @@ by Christian Ghiaus (Researcher ID: [ORCID](https://orcid.org/0000-0001-5561-124
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cghiaus/dm4bem_book/blob/main/LICENSE)
+![Hits](https://hits.sh/https://cghiaus.github.io/dm4bem_book.svg)
 
 
 > “Il y a trois sortes de savoir : le [savoir](https://fr.m.wikipedia.org/wiki/Savoir) proprement dit, le [savoir-faire](https://fr.m.wikipedia.org/wiki/Savoir-faire) et le [savoir-vivre](https://fr.m.wikipedia.org/wiki/Civilité) ; les deux derniers dispensent assez bien du premier." (_There are three types of knowledge: [knowledge](https://en.m.wikipedia.org/wiki/Knowledge) itself, [know-how](https://en.m.wikipedia.org/wiki/Procedural_knowledge), and [know how to live](https://en.m.wikipedia.org/wiki/Etiquette) (or [soft skills](https://en.m.wikipedia.org/wiki/Soft_skills)); the last two quite adequately dispense with the first_), [Talleyrand (1754-1838)](https://en.m.wikipedia.org/wiki/Charles_Maurice_de_Talleyrand-Périgord)
@@ -121,4 +122,3 @@ __References__
 
 9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
-![Hits](https://hits.sh/https://cghiaus.github.io/dm4bem_book.svg)
