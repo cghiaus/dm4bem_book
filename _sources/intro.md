@@ -128,5 +128,5 @@ function cb(response) {
     document.getElementById('visits').innerText = response.value;
 }
 </script>
-<script async src="https://api.countapi.xyz/hit/cghiaus.github.io/dm4bem_book/visits?callback=cb">
+<script async src="https://api.countapi.xyz/hit/cghiaus.github.io/dm4bem_book/intro.html/visits?callback=cb">
 </script>
