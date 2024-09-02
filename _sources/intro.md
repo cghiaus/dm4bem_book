@@ -124,12 +124,9 @@ __References__
 <p>This page has been visited <span id="hit-count">0</span> times.</p>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Use CountAPI to get and increment the hit count
-  fetch('https://api.countapi.xyz/hit/your-namespace/your-key')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('hit-count').textContent = data.value;
-    });
-});
+function cb(response) {
+    document.getElementById('visits').innerText = response.value;
+}
+</script>
+<script async src="https://api.countapi.xyz/hit/cghiaus.github.iodm4bem_book/visits?callback=cb">
 </script>
