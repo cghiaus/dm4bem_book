@@ -121,7 +121,7 @@ __References__
 
 9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
-<p>This page has been visited <span id="hit-count">0</span> times.</p>
+<p>This page has been visited <span id="hit-count"></span> times.</p>
 
 <script>
 function cb(response) {
