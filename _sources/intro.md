@@ -24,7 +24,7 @@ The specifics of this book are:
 - Transforming thermal circuits into state-space representations.
 - Providing examples for nonlinear models and control algorithms.
 
-The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _Python script_ or [an example on GitHub](https://github.com/cghiaus/dm4bem_toy_model) for a synthesis of the workflow).
+The workflow is presented in the Jupyter Notebook on [inputs and simulation](tutorials/pd05simulation.ipynb) (see section _Python script_). [An example on GitHub](https://github.com/cghiaus/dm4bem_toy_model) shows the synthesis of the workflow.
 
 
 __Prerequisites__
