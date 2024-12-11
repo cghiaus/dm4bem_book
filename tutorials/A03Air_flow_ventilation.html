@@ -459,7 +459,7 @@ document.write(`
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
 <ul class="simple">
-<li><p>Orifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h·Pa}^{n_o})\)</span>.</p></li>
+<li><p>Orifices on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h·Pa}^{n_o})\)</span>.</p></li>
 <li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h·Pa}^{n_c})\)</span>.</p></li>
 <li><p>The other elements of the building are considered airtight.</p></li>
 </ul>
@@ -609,8 +609,8 @@ document.write(`
 <section id="static-pressure">
 <h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i·g·z\)</span> - static pressure indoors</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o·g·z\)</span> - static pressure outdoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i \, g \, z\)</span> - static pressure indoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o \, g \, z\)</span> - static pressure outdoors</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,12 +626,13 @@ document.write(`
 <h2>Neglecting the wind effect<a class="headerlink" href="#neglecting-the-wind-effect" title="Permalink to this heading">#</a></h2>
 <section id="dynamic-pressure">
 <h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this heading">#</a></h3>
-<p>The dynamic pressures are:</p>
+<p>If wind is neglected (i.e., wind velocity is zero <span class="math notranslate nohighlight">\(v =0\)</span>), then the dynamic pressures:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \, \rho_o \, v^2\)</span> - north face</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \, \rho_o \, v^2\)</span> - south face</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \, \rho_o \, v^2\)</span> - chimney</p></li>
 </ul>
+<p>are zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># m/s, wind speed</span>
@@ -646,7 +647,7 @@ document.write(`
 </section>
 <section id="variation-domain-of-indoor-pressure">
 <h3>Variation domain of indoor pressure<a class="headerlink" href="#variation-domain-of-indoor-pressure" title="Permalink to this heading">#</a></h3>
-<p>The domain of variation of <span class="math notranslate nohighlight">\(p_i\)</span> in order to have the flows shown in Figure 1 is</p>
+<p>In order to have the flows shown in Figure 1, the domain of variation of indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span>  is</p>
 <div class="math notranslate nohighlight">
 \[P_{si} - (P_{dc} + P{sc}) \le p_i \le \min (P_{dn},P_{ds})\]</div>
 <div class="cell docutils container">
@@ -815,7 +816,7 @@ error in mass flow balance: 0.000 kg/s
 <h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o \, v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o \,v^2\)</span> - north face</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \rho_o \, v^2\)</span> - south face</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \rho_o \, v^2\)</span> - chimney</p></li>
 </ul>
