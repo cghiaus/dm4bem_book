@@ -459,8 +459,8 @@ document.write(`
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
 <ul class="simple">
-<li><p>Orifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h\,Pa}^{n_o})\)</span>.</p></li>
-<li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h\,Pa}^{n_c})\)</span>.</p></li>
+<li><p>Orifices located on the north and south faces located at hight <span class="math notranslate nohighlight">\(z_0 = 0.5 \, \mathrm{m}\)</span>. Every façade has two orrifices with the pressure exponent <span class="math notranslate nohighlight">\(n_o = 0.64\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_o = 10 \, \mathrm{m^3/(h·Pa}^{n_o})\)</span>.</p></li>
+<li><p>An exhaust air chimney on the south side of the roof at hight <span class="math notranslate nohighlight">\(z_c = 8.5 \, \mathrm{m}\)</span>. This chimney may be considered an orrifice with the pressure exponent <span class="math notranslate nohighlight">\(n_c = 0.50\)</span> and the flow coefficient <span class="math notranslate nohighlight">\(K_c = 50 \, \mathrm{m^3/(h·Pa}^{n_c})\)</span>.</p></li>
 <li><p>The other elements of the building are considered airtight.</p></li>
 </ul>
 <p><img alt="vent_bldg" src="../_images/A03_nat_vent.svg" /></p>
@@ -513,8 +513,8 @@ document.write(`
 <h4>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this heading">#</a></h4>
 <p>Pressure sources <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
 <ul class="simple">
-<li><p>stack pressure: <span class="math notranslate nohighlight">\(P_s = P_0 - \rho g z\)</span>;</p></li>
-<li><p>wind pressure: <span class="math notranslate nohighlight">\(P_w = C_p \frac{1}{2} \rho_o v^2\)</span></p></li>
+<li><p>stack pressure: <span class="math notranslate nohighlight">\(P_s = P_0 - \rho \, g \, z\)</span>;</p></li>
+<li><p>wind pressure: <span class="math notranslate nohighlight">\(P_w = C_p \frac{1}{2} \rho_o \, v^2\)</span></p></li>
 </ul>
 <p>where:</p>
 <ul class="simple">
@@ -538,7 +538,7 @@ document.write(`
 <h3>Constitutive equation<a class="headerlink" href="#constitutive-equation" title="Permalink to this heading">#</a></h3>
 <p>Each opening of a building can be modelled by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Constitutive_equation">constitutive equation</a> or power law <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
 <div class="math notranslate nohighlight">
-\[ \dot V_{i,j} = K_{i,j} \Delta P^n_{i,j} = K_{i,j}(P_i - P_j)^n\]</div>
+\[ \dot V_{i,j} = K_{i,j} \, \Delta P^n_{i,j} = K_{i,j} \, (P_i - P_j)^n\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric airflow through opening from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
@@ -609,8 +609,8 @@ document.write(`
 <section id="static-pressure">
 <h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i g z\)</span> - static pressure indoors</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o g z\)</span> - static pressure outdoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i·g·z\)</span> - static pressure indoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o·g·z\)</span> - static pressure outdoors</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -628,9 +628,9 @@ document.write(`
 <h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \, \rho_o \, v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \, \rho_o \, v^2\)</span> - south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \, \rho_o \, v^2\)</span> - chimney</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -679,7 +679,7 @@ document.write(`
 \[f(p_i) = 0\]</div>
 <p>where:</p>
 <div class="math notranslate nohighlight">
-\[f(p_i) = 2 \rho_o K_o (P_{dn} - P_{i})^{n_o} + 2 \rho_o K_o (P_{ds} - P_{i})^{n_o} - \rho_i K_c (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\]</div>
+\[f(p_i) = 2 \rho_o \, K_o \, (P_{dn} - P_{i})^{n_o} + 2 \rho_o \, K_o \, (P_{ds} - P_{i})^{n_o} - \rho_i \, K_c \, (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">pi</span><span class="p">):</span>
@@ -815,9 +815,9 @@ error in mass flow balance: 0.000 kg/s
 <h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o v^2\)</span> - north face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \rho_o v^2\)</span> - south face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \rho_o v^2\)</span> - chimney</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \rho_o \, v^2\)</span> - north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \rho_o \, v^2\)</span> - south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \rho_o \, v^2\)</span> - chimney</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
