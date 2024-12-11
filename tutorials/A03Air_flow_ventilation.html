@@ -674,16 +674,16 @@ document.write(`
 \[ \dot m_{ni} + \dot m_{si} - \dot m_{ic} = 0\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( \dot m_{ni} = 2 \rho_o \, K_o \, (P_{dn} - P_{i})^{n_o}\)</span> - mass flow through the two orifices on north façade;</p></li>
-<li><p><span class="math notranslate nohighlight">\( \dot m_{si} = 2 \rho_o \, K_o \, (P_{ds} - P_{i})^{n_o}\)</span> - mass flow through the two orifices on south façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \dot m_{ni} = 2 \rho_o \, K_o \, (P_{dn} - p_{i})^{n_o}\)</span> - mass flow through the two orifices on north façade;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \dot m_{si} = 2 \rho_o \, K_o \, (P_{ds} - p_{i})^{n_o}\)</span> - mass flow through the two orifices on south façade;</p></li>
 <li><p><span class="math notranslate nohighlight">\( \dot m_{ic} = \rho_i \, K_c \, (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\)</span> - mass flow from indoor air through the chimney.</p></li>
 </ul>
-<p>The mass balance is satisfied for the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span> which solves the equation:</p>
+<p>The mass balance is satisfied for the indoor pressure <span class="math notranslate nohighlight">\(p_i\)</span> which solves the mass balance equation for pressure node <span class="math notranslate nohighlight">\(p_i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[f(p_i) = 0\]</div>
 <p>where:</p>
 <div class="math notranslate nohighlight">
-\[f(p_i) = 2 \, \rho_o \, K_o \, (P_{dn} - P_{i})^{n_o} + 2 \,  \rho_o \, K_o \, (P_{ds} - P_{i})^{n_o} - \rho_i \, K_c \, (p_i + P_{si} - P_{dc} - P_{so})^{n_c}\]</div>
+\[f(p_i) = 2 \, \rho_o \, K_o \, (P_{dn} - P_{i})^{n_o} + 2 \,  \rho_o \, K_o \, (P_{ds} - P_{i})^{n_o} - \rho_i \, K_c \, (p_i - (P_{dc} + P_{so} - P_{si}))^{n_c}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">pi</span><span class="p">):</span>
@@ -704,7 +704,7 @@ document.write(`
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="n">no</span> \
         <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="n">no</span> \
-        <span class="o">-</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">pi</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
+        <span class="o">-</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pdc</span> <span class="o">+</span> <span class="n">Pso</span> <span class="o">-</span> <span class="n">Psi</span><span class="p">))</span><span class="o">**</span><span class="n">nc</span>
     <span class="k">return</span> <span class="n">y</span>
 </pre></div>
 </div>
@@ -795,7 +795,7 @@ document.write(`
 <span class="n">mn</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check mass balance:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mn</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ms</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mc</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> kg/s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -803,7 +803,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verify mass balance:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Check mass balance:
 mass flow: north: 0.019 kg/s, south: 0.019 kg/s
 mass flow chimney: 0.038 kg/s
 error in mass flow balance: 0.000000 kg/s
@@ -915,7 +915,7 @@ error in mass flow balance: 0.000000 kg/s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mn</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pdn</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">Ko</span> <span class="o">*</span> <span class="p">(</span><span class="n">Pds</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">**</span><span class="n">no</span>
-<span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">)</span><span class="o">**</span><span class="n">nc</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">Kc</span> <span class="o">*</span> <span class="p">(</span><span class="n">root</span> <span class="o">-</span> <span class="p">(</span><span class="n">Pdc</span> <span class="o">+</span> <span class="n">Pso</span> <span class="o">-</span> <span class="n">Psi</span><span class="p">))</span><span class="o">**</span><span class="n">nc</span>
 <span class="n">mn2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">ms2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">mc</span> <span class="o">=</span> <span class="n">mc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -926,18 +926,18 @@ error in mass flow balance: 0.000000 kg/s
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Verify mass balance:&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check mass balance:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow: north: </span><span class="si">{</span><span class="n">mn2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s, south: </span><span class="si">{</span><span class="n">ms2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mass flow chimney: </span><span class="si">{</span><span class="n">mc</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="n">m_error</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;error in mass flow balance: </span><span class="si">{</span><span class="n">m_error</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verify mass balance:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Check mass balance:
 mass flow: north: 0.045 kg/s, south: 0.009 kg/s
 mass flow chimney: 0.054 kg/s
-error in mass flow balance: 0.000 kg/s
+error in mass flow balance: 0.000000 kg/s
 </pre></div>
 </div>
 </div>
