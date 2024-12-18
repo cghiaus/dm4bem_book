@@ -1564,13 +1564,14 @@ T_o\\
 </section>
 <section id="time-step">
 <h3>Time step<a class="headerlink" href="#time-step" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations">time step</a> represents the amount of time that elapses between two consecutive calculations in a numerical integration method in numerical integration.</p>
 <p>The <a class="reference external" href="https://en.m.wikipedia.org/wiki/Euler_method#Numerical_stability">stability condition for explicit Euler method</a> requires that all eigenvalues <span class="math notranslate nohighlight">\(\lambda _i \in \mathbb{Z}\)</span> of the state matrix <span class="math notranslate nohighlight">\(A_s\)</span> satisfy the condition</p>
 <div class="math notranslate nohighlight">
 \[ \left | 1 + \lambda _i \Delta t \right | \leq 1, \forall i \]</div>
 <p>If all eigenvalues of state matrix <span class="math notranslate nohighlight">\(A_s\)</span> are real, as is the case for thermal networks, then the above condition becomes:</p>
 <div class="math notranslate nohighlight">
 \[ -2 \leq \lambda _i\Delta t\leq 0, ∀ i.\]</div>
-<p>where <span class="math notranslate nohighlight">\(\Delta t\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations">time step</a> used in numerical integration.</p>
+<p>where <span class="math notranslate nohighlight">\(\Delta t\)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations">time step</a>.</p>
 <p>Since the eigenvalues <span class="math notranslate nohighlight">\(\lambda_i\)</span> are related to the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Time_constant">time constants</a> <span class="math notranslate nohighlight">\(\tau_i\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[ \lambda _i = - \frac{1}{\tau_i},\]</div>
