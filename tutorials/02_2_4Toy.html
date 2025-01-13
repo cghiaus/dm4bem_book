@@ -182,8 +182,6 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
 </ul>
 </li>
@@ -588,15 +586,15 @@ f:
 Name: f, dtype: object 
 
 y:
-θ0    0
-θ1    0
-θ2    0
-θ3    0
-θ4    0
-θ5    0
-θ6    1
-θ7    0
-Name: y, dtype: int64 
+θ0    0.0
+θ1    0.0
+θ2    0.0
+θ3    0.0
+θ4    0.0
+θ5    0.0
+θ6    1.0
+θ7    0.0
+Name: y, dtype: float64 
 </pre></div>
 </div>
 </div>
@@ -798,6 +796,10 @@ Name: y, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_5253/466496883.py:1: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
+  input_data_set = input_data_set.resample(
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1098,7 +1100,7 @@ y = C_s \theta_C + D_s u
 2000-02-07 17:58:20+01:00    18.916549
 2000-02-07 17:59:10+01:00    18.915469
 2000-02-07 18:00:00+01:00    18.914392
-Freq: 50S, Name: θ6, Length: 10801, dtype: float64
+Freq: 50s, Name: θ6, Length: 10801, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1146,7 +1148,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ec0bec6e6504d58ad347e4caa33fd24c084187bdb9e9ed3d999efb362e360114.png" src="../_images/ec0bec6e6504d58ad347e4caa33fd24c084187bdb9e9ed3d999efb362e360114.png" />
+<img alt="../_images/b921e4bd9d62cb2197788aa0256bb36644205438b6ea57f1255a7a3249364033.png" src="../_images/b921e4bd9d62cb2197788aa0256bb36644205438b6ea57f1255a7a3249364033.png" />
 </div>
 </div>
 <blockquote>
@@ -1180,7 +1182,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/012d71baebec75a7a6e2f856a58dad4ef53ebae803ce934eda0e804cb84c258c.png" src="../_images/012d71baebec75a7a6e2f856a58dad4ef53ebae803ce934eda0e804cb84c258c.png" />
+<img alt="../_images/e00ae9080300e8989bbd9c080d4fb51fb6e7a551695bde4c2a5324961fa125dd.png" src="../_images/e00ae9080300e8989bbd9c080d4fb51fb6e7a551695bde4c2a5324961fa125dd.png" />
 </div>
 </div>
 <blockquote>
@@ -1257,7 +1259,7 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" src="../_images/702f6e8e4e2b6f0dda0308a4cd6f994a787d36d266691ca37ad99585435bdc68.png" />
+<img alt="../_images/cadc45f26b8ce72f889eec6877192bf35f45c19b946be220edae7d2c218191a4.png" src="../_images/cadc45f26b8ce72f889eec6877192bf35f45c19b946be220edae7d2c218191a4.png" />
 </div>
 </div>
 <blockquote>
@@ -1272,8 +1274,8 @@ Freq: 50S, Name: θ6, Length: 10801, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.42 seconds
-Duration for Euler explict:           9.47 seconds
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Duration for Control Systems Library: 1.43 seconds
+Duration for Euler explict:           11.75 seconds
 </pre></div>
 </div>
 </div>
