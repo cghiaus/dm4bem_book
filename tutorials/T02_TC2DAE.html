@@ -430,7 +430,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="from-thermal-networks-to-differential-algebraic-equations">
 <h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this heading">#</a></h1>
-<p>modif</p>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FT02_TC2DAE.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>The framework for obtaing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a> describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
 <p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flow-rates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes.</p>
@@ -764,7 +763,7 @@ T_0\\
 <p>The steady-state solution is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
-\theta = (-A^T G A)^{-1} + A^T G b + f\\
+\theta = (-A^T G A)^{-1}(A^T G b + f)\\
 q = G(-A\theta + b)
 \end{cases}\end{split}\]</div>
 <p>obtained from</p>
