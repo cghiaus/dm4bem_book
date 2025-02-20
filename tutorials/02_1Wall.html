@@ -2516,7 +2516,7 @@ T_o\\
 
 <span class="c1"># resample weather data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Δt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Δt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;To&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 
 <span class="c1"># indoor auxiliary heat</span>
@@ -2552,10 +2552,6 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vp/k617ngs97xq4vlzlj5ts6sch0000gn/T/ipykernel_18138/3251106475.py:18: FutureWarning: &#39;S&#39; is deprecated and will be removed in a future version, please use &#39;s&#39; instead.
-  data = data.resample(str(Δt) + &#39;S&#39;).interpolate(method=&#39;linear&#39;)
-</pre></div>
-</div>
 <img alt="../_images/bfba3eed65145ed79aaab78f9242d64276307a86c7b7b68f33148265823b1da9.png" src="../_images/bfba3eed65145ed79aaab78f9242d64276307a86c7b7b68f33148265823b1da9.png" />
 </div>
 </div>
