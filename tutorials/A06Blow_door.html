@@ -1,0 +1,842 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Blower door building air leakage test &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/A06Blow_door';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Air flow by ventilation" href="A05Air_flow_ventilation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Greenhouse_effect.html">Greenhouse effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A05Air_flow_ventilation.html">Air flow by ventilation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Blower door building air leakage test</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/A06Blow_door.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/A06Blow_door.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Blower door building air leakage test</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measured-data">Measured data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-coefficients">Estimation of coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-linearize-the-equation">Step 1: Linearize the equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-perform-linear-regression">Step 2: Perform linear regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-extract-parameters">Step 3: Extract parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-uncertainties">Step 4: Calculate uncertainties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in <span class="math notranslate nohighlight">\(n\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in <span class="math notranslate nohighlight">\(K\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-derivative-of-k-with-respect-to-a">Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-error-propagation-formula">Step 2: Apply the error propagation formula</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="blower-door-building-air-leakage-test">
+<h1>Blower door building air leakage test<a class="headerlink" href="#blower-door-building-air-leakage-test" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Building_airtightness">Building airtightness</a> is descibed by power law relation between pressure difference and air flow rate,</p>
+<div class="math notranslate nohighlight">
+\[\dot{V} = K \cdot (\Delta p)^n\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> is the volumetric leakage airflow rate, m³ h⁻¹;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta p\)</span> - pressure difference across the building envelope, Pa;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> - airflow exponent (0.5 ≤ <span class="math notranslate nohighlight">\(n\)</span> ≤ 1);</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> - air leakage coefficient, <span class="math notranslate nohighlight">\(\mathrm{m^3 h^{−1} Pa^{−n}}\)</span>.</p></li>
+</ul>
+<p>The airflow exponent <span class="math notranslate nohighlight">\(n\)</span> and the air leakage coefficient <span class="math notranslate nohighlight">\(K\)</span> can be measured experimentally from data data obtained in a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Blower_door">blower door air leakage test</a>.</p>
+<p>This notebook demonstrates how to determine the coefficients <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(n\)</span> from the power law of flow through an orifice
+$<span class="math notranslate nohighlight">\(\dot{V} = K \cdot (\Delta p)^n\)</span><span class="math notranslate nohighlight">\( 
+using linear regression on log-transformed of experimental data obtained in a [blower door air leakage test](https://en.m.wikipedia.org/wiki/Blower_door). We also calculate the uncertainties in \)</span>K<span class="math notranslate nohighlight">\( and \)</span>n$.</p>
+<section id="measured-data">
+<h2>Measured data<a class="headerlink" href="#measured-data" title="Permalink to this heading">#</a></h2>
+<p>The measured data consists of pressure differences, <span class="math notranslate nohighlight">\(\Delta p\)</span>, and corresponding volumetric flow rates, <span class="math notranslate nohighlight">\(\dot{V}\)</span>.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Test</p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\Delta p\)</span> / (Pa)</p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> / (m³/h)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>237</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td class="text-right"><p>20</p></td>
+<td class="text-right"><p>364</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td class="text-right"><p>30</p></td>
+<td class="text-right"><p>444</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td class="text-right"><p>40</p></td>
+<td class="text-right"><p>625</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td class="text-right"><p>50</p></td>
+<td class="text-right"><p>688</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td class="text-right"><p>60</p></td>
+<td class="text-right"><p>704</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estimation-of-coefficients">
+<h2>Estimation of coefficients<a class="headerlink" href="#estimation-of-coefficients" title="Permalink to this heading">#</a></h2>
+<section id="step-1-linearize-the-equation">
+<h3>Step 1: Linearize the equation<a class="headerlink" href="#step-1-linearize-the-equation" title="Permalink to this heading">#</a></h3>
+<p>The equation <span class="math notranslate nohighlight">\(\dot{V} = K \cdot (\Delta p)^n\)</span> is linearized by taking <span class="math notranslate nohighlight">\(\log_{10}\)</span> of both sides:</p>
+<div class="math notranslate nohighlight">
+\[
+\log_{10}(\dot{V}) = \log_{10}(K) + n \cdot \log_{10}(\Delta p)
+\]</div>
+<p>This is of the form <span class="math notranslate nohighlight">\(y = a x + b\)</span>, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y = \log_{10}(\dot{V})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x = \log_{10}(\Delta p)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b = \log_{10}(K)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(a = n\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-2-perform-linear-regression">
+<h3>Step 2: Perform linear regression<a class="headerlink" href="#step-2-perform-linear-regression" title="Permalink to this heading">#</a></h3>
+<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.stats.linregress</span></code> to perform linear regression on the log-transformed data. The regression provides:</p>
+<ul class="simple">
+<li><p>Slope <span class="math notranslate nohighlight">\(a\)</span>: represents <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>Intercept <span class="math notranslate nohighlight">\(b\)</span>: represents <span class="math notranslate nohighlight">\(\log_{10}(K)\)</span>.</p></li>
+<li><p>Standard error of the slope <span class="math notranslate nohighlight">\(\sigma_a\)</span>: uncertainty in <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>Standard error of the intercept <span class="math notranslate nohighlight">\(\sigma_b\)</span>: uncertainty in <span class="math notranslate nohighlight">\(\log_{10}(K)\)</span>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-3-extract-parameters">
+<h3>Step 3: Extract parameters<a class="headerlink" href="#step-3-extract-parameters" title="Permalink to this heading">#</a></h3>
+<p>From the regression results:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n = a\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(K = 10^b\)</span></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-4-calculate-uncertainties">
+<h3>Step 4: Calculate uncertainties<a class="headerlink" href="#step-4-calculate-uncertainties" title="Permalink to this heading">#</a></h3>
+<section id="uncertainty-in-n">
+<h4>Uncertainty in <span class="math notranslate nohighlight">\(n\)</span><a class="headerlink" href="#uncertainty-in-n" title="Permalink to this heading">#</a></h4>
+<p>The uncertainty in <span class="math notranslate nohighlight">\(n\)</span> is the standard error of the slope:
+$<span class="math notranslate nohighlight">\(
+\sigma_n = \sigma_a
+\)</span>$</p>
+</section>
+<section id="uncertainty-in-k">
+<h4>Uncertainty in <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#uncertainty-in-k" title="Permalink to this heading">#</a></h4>
+<p>The uncertainty in <span class="math notranslate nohighlight">\(K\)</span>:
+$<span class="math notranslate nohighlight">\(
+\sigma_K = K \cdot \ln(10) \cdot \sigma_b
+\)</span>$</p>
+<p>is calculated using simlified formula for <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of uncertainty</a> for a function of a single variable. If <span class="math notranslate nohighlight">\(K = f(b)\)</span>, then the uncertainty <span class="math notranslate nohighlight">\(\sigma_K\)</span> is given by:
+$<span class="math notranslate nohighlight">\(
+\sigma_K = \left| \frac{df}{db} \right| \cdot \sigma_b
+\)</span>$</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the intercept from the linear regression,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_b\)</span> is its standard error (uncertainty) of intercept <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+</ul>
+<p>The relationship between <span class="math notranslate nohighlight">\(K\)</span> and the intercept <span class="math notranslate nohighlight">\(a\)</span> is given by:
+$<span class="math notranslate nohighlight">\(
+K = 10^b
+\)</span>$</p>
+<section id="step-1-compute-the-derivative-of-k-with-respect-to-a">
+<h5>Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span><a class="headerlink" href="#step-1-compute-the-derivative-of-k-with-respect-to-a" title="Permalink to this heading">#</a></h5>
+<p>The function <span class="math notranslate nohighlight">\(K = 10^b\)</span> can be rewritten using the natural logarithm:
+$<span class="math notranslate nohighlight">\(
+K = e^{b \cdot \ln(10)}
+\)</span><span class="math notranslate nohighlight">\(
+The derivative of \)</span>K<span class="math notranslate nohighlight">\( with respect to \)</span>a<span class="math notranslate nohighlight">\( is:
+\)</span><span class="math notranslate nohighlight">\(
+\frac{dK}{db} = \ln(10) \cdot e^{b \cdot \ln(10)} = \ln(10) \cdot 10^b = \ln(10) \cdot K
+\)</span>$</p>
+</section>
+<section id="step-2-apply-the-error-propagation-formula">
+<h5>Step 2: Apply the error propagation formula<a class="headerlink" href="#step-2-apply-the-error-propagation-formula" title="Permalink to this heading">#</a></h5>
+<p>Substitute the derivative into the error propagation formula:
+$<span class="math notranslate nohighlight">\(
+\sigma_K = \left| \frac{dK}{db} \right| \cdot \sigma_b = \left| \ln(10) \cdot K \right| \cdot \sigma_b
+\)</span><span class="math notranslate nohighlight">\(
+Since \)</span>K<span class="math notranslate nohighlight">\( and \)</span>\ln(10)<span class="math notranslate nohighlight">\( are positive, the absolute value can be dropped:
+\)</span><span class="math notranslate nohighlight">\(
+\sigma_K = K \cdot \ln(10) \cdot \sigma_b
+\)</span>$</p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K\)</span>: value calculated from <span class="math notranslate nohighlight">\(K = 10^b\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ln(10)\)</span>: constant factor arising from the derivative of <span class="math notranslate nohighlight">\(10^b\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_b\)</span>: standard error of the intercept <span class="math notranslate nohighlight">\(b\)</span>, which quantifies the uncertainty in <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="c1"># Given data</span>
+<span class="n">delta_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>        <span class="c1"># Pa</span>
+<span class="n">V_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span> <span class="mi">364</span><span class="p">,</span> <span class="mi">444</span><span class="p">,</span> <span class="mi">625</span><span class="p">,</span> <span class="mi">688</span><span class="p">,</span> <span class="mi">704</span><span class="p">])</span>    <span class="c1"># m^3/h</span>
+
+<span class="c1"># Linearize the equation using log10 (exclude the (0, 0) point)</span>
+<span class="n">log_delta_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">delta_p</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">log_V_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">V_dot</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+<span class="c1"># Perform linear regression</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">linregress</span><span class="p">(</span><span class="n">log_delta_p</span><span class="p">,</span> <span class="n">log_V_dot</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">slope</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">intercept</span>
+<span class="n">sigma_a</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span>
+<span class="n">sigma_b</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">intercept_stderr</span>
+
+<span class="n">r_square</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">rvalue</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Extract parameters</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">b</span>
+<span class="n">sigma_n</span> <span class="o">=</span> <span class="n">sigma_a</span>
+<span class="n">sigma_K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma_a</span>
+
+<span class="c1"># Output results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K = </span><span class="si">{</span><span class="n">K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² = </span><span class="si">{</span><span class="n">r_square</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 0.6434 ± 0.0442
+K = 53.3956 ± 5.4338
+R² = 0.9815
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot</span>
+<span class="c1"># =====</span>
+<span class="c1"># Create a range of delta_p values for plotting the fitted curve</span>
+<span class="c1"># Range of delta_p values, including 0</span>
+<span class="n">delta_p_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># Corresponding log10 values, excluding 0</span>
+<span class="n">log_delta_p_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">delta_p_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+<span class="c1"># Calculate the fitted curve and regression line</span>
+<span class="c1"># Fitted curve: V_dot = K * delta_p^n</span>
+<span class="n">V_dot_fitted</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">delta_p_range</span><span class="o">**</span><span class="n">n</span>
+
+<span class="c1"># Regression line: log10(V_dot) = log10(K) + n * log10(delta_p)</span>
+<span class="n">log_V_dot_fitted</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">log_delta_p_range</span>
+
+<span class="c1"># Uncertainty bounds in the fitted curve</span>
+<span class="n">V_dot_upper</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span> <span class="o">+</span> <span class="n">sigma_K</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_p_range</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">sigma_n</span><span class="p">)</span>
+<span class="n">V_dot_lower</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span> <span class="o">-</span> <span class="n">sigma_K</span><span class="p">)</span> <span class="o">*</span> <span class="n">delta_p_range</span><span class="o">**</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">sigma_n</span><span class="p">)</span>
+
+<span class="c1"># Uncertainty bounds n the regression line</span>
+<span class="n">log_V_dot_upper</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">sigma_b</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">sigma_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">log_delta_p_range</span>
+<span class="n">log_V_dot_lower</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">sigma_b</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">sigma_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">log_delta_p_range</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># First pane: Original data and fitted curve with uncertainty</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">delta_p</span><span class="p">,</span> <span class="n">V_dot</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Measured data&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">delta_p_range</span><span class="p">,</span> <span class="n">V_dot_fitted</span><span class="p">,</span>
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Fitted curve: $\dot</span><span class="se">{{</span><span class="s1">V</span><span class="se">}}</span><span class="s1"> = K \cdot \Delta p^n$</span><span class="se">\n</span><span class="s1">&#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;$K = </span><span class="si">{</span><span class="n">K</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> \pm </span><span class="si">{</span><span class="n">sigma_K</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$, $n = </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> \pm </span><span class="si">{</span><span class="n">sigma_n</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">delta_p_range</span><span class="p">,</span> <span class="n">V_dot_lower</span><span class="p">,</span> <span class="n">V_dot_upper</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Uncertainty in fitted curve&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\Delta p$ / (Pa)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\dot</span><span class="si">{V}</span><span class="s1">$ / (m³·h⁻¹)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Original data and fitted curve&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Second pane: Linearized data and regression line with uncertainty</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">log_delta_p</span><span class="p">,</span> <span class="n">log_V_dot</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Linearized data&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">log_delta_p_range</span><span class="p">,</span> <span class="n">log_V_dot_fitted</span><span class="p">,</span> 
+         <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Regression line: &#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;$lg(\dot</span><span class="se">{{</span><span class="s1">V</span><span class="se">}}</span><span class="s1">) = lg(K) + n \cdot lg(\Delta p)$</span><span class="se">\n</span><span class="s1">&#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;$lg(K) = </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> \pm </span><span class="si">{</span><span class="n">sigma_b</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$, $n = </span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> \pm </span><span class="si">{</span><span class="n">sigma_a</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span>
+         <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">$R^2 = </span><span class="si">{</span><span class="n">r_square</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">$</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">log_delta_p_range</span><span class="p">,</span> <span class="n">log_V_dot_lower</span><span class="p">,</span> <span class="n">log_V_dot_upper</span><span class="p">,</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                 <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Uncertainty in regression line&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\Delta p)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\dot</span><span class="si">{V}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Linearized data and regression line&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e20ed74a8c1674c218b1e16b1ff7f6f0c0af89108daee77eebab672d891f71a1.png" src="../_images/e20ed74a8c1674c218b1e16b1ff7f6f0c0af89108daee77eebab672d891f71a1.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="A05Air_flow_ventilation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Air flow by ventilation</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measured-data">Measured data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-coefficients">Estimation of coefficients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-linearize-the-equation">Step 1: Linearize the equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-perform-linear-regression">Step 2: Perform linear regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-extract-parameters">Step 3: Extract parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-uncertainties">Step 4: Calculate uncertainties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in <span class="math notranslate nohighlight">\(n\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in <span class="math notranslate nohighlight">\(K\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-derivative-of-k-with-respect-to-a">Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-error-propagation-formula">Step 2: Apply the error propagation formula</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
