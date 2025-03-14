@@ -574,7 +574,7 @@ K = 10^b
 \[
 K = e^{b \cdot \ln(10)}
 \]</div>
-<p>The derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span> is:</p>
+<p>The derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(b\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dK}{db} = \ln(10) \cdot e^{b \cdot \ln(10)} = \ln(10) \cdot 10^b = \ln(10) \cdot K
@@ -606,7 +606,7 @@ K = e^{b \cdot \ln(10)}
 
 <span class="c1"># Given data</span>
 <span class="n">delta_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>        <span class="c1"># Pa</span>
-<span class="n">V_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span> <span class="mi">364</span><span class="p">,</span> <span class="mi">444</span><span class="p">,</span> <span class="mi">625</span><span class="p">,</span> <span class="mi">688</span><span class="p">,</span> <span class="mi">704</span><span class="p">])</span>    <span class="c1"># m^3/h</span>
+<span class="n">V_dot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span> <span class="mi">364</span><span class="p">,</span> <span class="mi">444</span><span class="p">,</span> <span class="mi">625</span><span class="p">,</span> <span class="mi">688</span><span class="p">,</span> <span class="mi">704</span><span class="p">])</span>    <span class="c1"># m³/h</span>
 
 <span class="c1"># Linearize the equation using log10 (exclude the (0, 0) point)</span>
 <span class="n">log_delta_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">delta_p</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
