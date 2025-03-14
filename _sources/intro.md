@@ -45,7 +45,7 @@ Some rules:
     - In $T = 273.15 \, \mathrm{K}$, the number $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T.$
     - The numerical value of a temperature expressed in degrees Celsius, $\theta$, is related to the numerical value of the thermodynamic temperature expressed in kelvins, $T$, by the relation $\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15$ or $\theta$/(°C) = $T$/(K) − 273.15.
     - The ordinate of a graph or the heading of a table is labeled $Temperature,\, T/(10³ \, \textrm{K})$, where $T$ is the thermodynamic temperature and K is the unit symbol for kelvin. If the ordinate value of a point on a curve of the graph or the entry in a table is 0.273, then the corresponding temperature is $T/(10³ \, \textrm{K}) = 0.273$ or $T = 273 \, \textrm{K}$.
-    - The logarithm ordinate of a graph or the heading of a table is labeled $\log_{10}(T /\textrm{(K)})$. If the ordinate value of a point on a curve of the graph or the entry in a table is 2.436..., then $\log_{10}(T/\textrm{(K)}) = 2.436...$ (or $T/\textrm{(K)} = 10^{2.436...}$ ) and the corresponding temperature is $T = 273 \, \textrm{K}$.
+    - The logarithm ordinate of a graph or the heading of a table is labeled $\log_{10}(T /\textrm{(K)})$. If the ordinate value of a point on a curve of the graph or the entry in a table is 2.436..., then $\log_{10}(T/\textrm{(K)}) = 2.436...$ (or $T/\textrm{(K)} = 10^{2.436...}$ ) and the corresponding temperature is $T = 273 \: \textrm{K}$.
     - Symbol % (percent) is used for the number 0.01, e.g., the emmisivity is $\varepsilon$ = 0.85 = 85 %.
 
 __Nomenclature__
