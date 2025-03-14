@@ -462,7 +462,7 @@ using linear regression on log-transformed of experimental data obtained in a [b
 <thead>
 <tr class="row-odd"><th class="head"><p>Test</p></th>
 <th class="head text-right"><p><span class="math notranslate nohighlight">\(\Delta p\)</span> / (Pa)</p></th>
-<th class="head text-right"><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> / (m³/h)</p></th>
+<th class="head text-right"><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> / (m³·h⁻¹)</p></th>
 </tr>
 </thead>
 <tbody>
@@ -701,8 +701,8 @@ R² = 0.9815
 <span class="n">ax2</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">log_delta_p_range</span><span class="p">,</span> <span class="n">log_V_dot_lower</span><span class="p">,</span> <span class="n">log_V_dot_upper</span><span class="p">,</span> 
                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
                  <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Uncertainty in regression line&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\Delta p)$&#39;</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\dot</span><span class="si">{V}</span><span class="s1">)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\Delta p$ / (Pa))&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\log_</span><span class="si">{10}</span><span class="s1">(\dot</span><span class="si">{V}</span><span class="s1">$ / (m³·h⁻¹))&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Linearized data and regression line&#39;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -714,7 +714,7 @@ R² = 0.9815
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e20ed74a8c1674c218b1e16b1ff7f6f0c0af89108daee77eebab672d891f71a1.png" src="../_images/e20ed74a8c1674c218b1e16b1ff7f6f0c0af89108daee77eebab672d891f71a1.png" />
+<img alt="../_images/f5dd0de263ba13b9bcc92f1d334dd51a33f07c31c9e8db27c957178f7f5d72c4.png" src="../_images/f5dd0de263ba13b9bcc92f1d334dd51a33f07c31c9e8db27c957178f7f5d72c4.png" />
 </div>
 </div>
 </section>
