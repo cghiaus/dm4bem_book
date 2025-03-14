@@ -549,40 +549,46 @@ $<span class="math notranslate nohighlight">\(
 $<span class="math notranslate nohighlight">\(
 \sigma_K = K \cdot \ln(10) \cdot \sigma_b
 \)</span>$</p>
-<p>is calculated using simlified formula for <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of uncertainty</a> for a function of a single variable. If <span class="math notranslate nohighlight">\(K = f(b)\)</span>, then the uncertainty <span class="math notranslate nohighlight">\(\sigma_K\)</span> is given by:
-$<span class="math notranslate nohighlight">\(
+<p>is calculated using simlified formula for <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of uncertainty</a> for a function of a single variable. If <span class="math notranslate nohighlight">\(K = f(b)\)</span>, then the uncertainty <span class="math notranslate nohighlight">\(\sigma_K\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
 \sigma_K = \left| \frac{df}{db} \right| \cdot \sigma_b
-\)</span>$</p>
+\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(b\)</span> is the intercept from the linear regression,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_b\)</span> is its standard error (uncertainty) of intercept <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
 </ul>
-<p>The relationship between <span class="math notranslate nohighlight">\(K\)</span> and the intercept <span class="math notranslate nohighlight">\(a\)</span> is given by:
-$<span class="math notranslate nohighlight">\(
+<p>The relationship between <span class="math notranslate nohighlight">\(K\)</span> and the intercept <span class="math notranslate nohighlight">\(a\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
 K = 10^b
-\)</span>$</p>
+\]</div>
 <section id="step-1-compute-the-derivative-of-k-with-respect-to-a">
 <h5>Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span><a class="headerlink" href="#step-1-compute-the-derivative-of-k-with-respect-to-a" title="Permalink to this heading">#</a></h5>
-<p>The function <span class="math notranslate nohighlight">\(K = 10^b\)</span> can be rewritten using the natural logarithm:
-$<span class="math notranslate nohighlight">\(
+<p>The function <span class="math notranslate nohighlight">\(K = 10^b\)</span> can be rewritten using the natural logarithm:</p>
+<div class="math notranslate nohighlight">
+\[
 K = e^{b \cdot \ln(10)}
-\)</span><span class="math notranslate nohighlight">\(
-The derivative of \)</span>K<span class="math notranslate nohighlight">\( with respect to \)</span>a<span class="math notranslate nohighlight">\( is:
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>The derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{dK}{db} = \ln(10) \cdot e^{b \cdot \ln(10)} = \ln(10) \cdot 10^b = \ln(10) \cdot K
-\)</span>$</p>
+\]</div>
 </section>
 <section id="step-2-apply-the-error-propagation-formula">
 <h5>Step 2: Apply the error propagation formula<a class="headerlink" href="#step-2-apply-the-error-propagation-formula" title="Permalink to this heading">#</a></h5>
-<p>Substitute the derivative into the error propagation formula:
-$<span class="math notranslate nohighlight">\(
+<p>Substitute the derivative into the error propagation formula:</p>
+<div class="math notranslate nohighlight">
+\[
 \sigma_K = \left| \frac{dK}{db} \right| \cdot \sigma_b = \left| \ln(10) \cdot K \right| \cdot \sigma_b
-\)</span><span class="math notranslate nohighlight">\(
-Since \)</span>K<span class="math notranslate nohighlight">\( and \)</span>\ln(10)<span class="math notranslate nohighlight">\( are positive, the absolute value can be dropped:
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(\ln(10)\)</span> are positive, the absolute value can be dropped:</p>
+<div class="math notranslate nohighlight">
+\[
 \sigma_K = K \cdot \ln(10) \cdot \sigma_b
-\)</span>$</p>
+\]</div>
 <p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(K\)</span>: value calculated from <span class="math notranslate nohighlight">\(K = 10^b\)</span>.</p></li>
