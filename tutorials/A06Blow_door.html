@@ -452,9 +452,10 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(K\)</span> - air leakage coefficient, m³·h⁻¹·Pa⁻ⁿ.</p></li>
 </ul>
 <p>The airflow exponent <span class="math notranslate nohighlight">\(n\)</span> and the air leakage coefficient <span class="math notranslate nohighlight">\(K\)</span> can be measured experimentally from data data obtained in a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Blower_door">blower door air leakage test</a>.</p>
-<p>This notebook demonstrates how to determine the coefficients <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(n\)</span> from the power law of flow through an orifice
-$<span class="math notranslate nohighlight">\(\dot{V} = K \cdot (\Delta p)^n\)</span><span class="math notranslate nohighlight">\( 
-using linear regression on log-transformed of experimental data obtained in a [blower door air leakage test](https://en.m.wikipedia.org/wiki/Blower_door). We also calculate the uncertainties in \)</span>K<span class="math notranslate nohighlight">\( and \)</span>n$.</p>
+<p>This notebook demonstrates how to determine the coefficients <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(n\)</span> from the power law of flow through an orifice</p>
+<div class="math notranslate nohighlight">
+\[\dot{V} = K \cdot (\Delta p)^n\]</div>
+<p>using linear regression on log-transformed of experimental data obtained in a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Blower_door">blower door air leakage test</a>. We also calculate the uncertainties in <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <section id="measured-data">
 <h2>Measured data<a class="headerlink" href="#measured-data" title="Permalink to this heading">#</a></h2>
 <p>The measured data consists of pressure differences, <span class="math notranslate nohighlight">\(\Delta p\)</span>, and corresponding volumetric flow rates, <span class="math notranslate nohighlight">\(\dot{V}\)</span>.</p>
