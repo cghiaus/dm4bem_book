@@ -417,8 +417,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-perform-linear-regression">Step 2: Perform linear regression</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-extract-parameters">Step 3: Extract parameters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-uncertainties">Step 4: Calculate uncertainties</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in <span class="math notranslate nohighlight">\(n\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in <span class="math notranslate nohighlight">\(K\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in n</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in K</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-derivative-of-k-with-respect-to-b">Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(b\)</span></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-error-propagation-formula">Step 2: Apply the error propagation formula</a></li>
 </ul>
@@ -446,10 +446,10 @@ document.write(`
 \[\dot{V} = K \cdot (\Delta p)^n\]</div>
 <p>where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> is the volumetric leakage airflow rate, m³ h⁻¹;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> is the volumetric leakage airflow rate, m³·h⁻¹;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Delta p\)</span> - pressure difference across the building envelope, Pa;</p></li>
 <li><p><span class="math notranslate nohighlight">\(n\)</span> - airflow exponent (0.5 ≤ <span class="math notranslate nohighlight">\(n\)</span> ≤ 1);</p></li>
-<li><p><span class="math notranslate nohighlight">\(K\)</span> - air leakage coefficient, <span class="math notranslate nohighlight">\(\mathrm{m^3 h^{−1} Pa^{−n}}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span> - air leakage coefficient, m³·h⁻¹·Pa⁻ⁿ.</p></li>
 </ul>
 <p>The airflow exponent <span class="math notranslate nohighlight">\(n\)</span> and the air leakage coefficient <span class="math notranslate nohighlight">\(K\)</span> can be measured experimentally from data data obtained in a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Blower_door">blower door air leakage test</a>.</p>
 <p>This notebook demonstrates how to determine the coefficients <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(n\)</span> from the power law of flow through an orifice
@@ -538,7 +538,7 @@ using linear regression on log-transformed of experimental data obtained in a [b
 <section id="step-4-calculate-uncertainties">
 <h3>Step 4: Calculate uncertainties<a class="headerlink" href="#step-4-calculate-uncertainties" title="Permalink to this heading">#</a></h3>
 <section id="uncertainty-in-n">
-<h4>Uncertainty in <span class="math notranslate nohighlight">\(n\)</span><a class="headerlink" href="#uncertainty-in-n" title="Permalink to this heading">#</a></h4>
+<h4>Uncertainty in n<a class="headerlink" href="#uncertainty-in-n" title="Permalink to this heading">#</a></h4>
 <p>The uncertainty in <span class="math notranslate nohighlight">\(n\)</span> is the standard error of the slope:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -546,7 +546,7 @@ using linear regression on log-transformed of experimental data obtained in a [b
 \]</div>
 </section>
 <section id="uncertainty-in-k">
-<h4>Uncertainty in <span class="math notranslate nohighlight">\(K\)</span><a class="headerlink" href="#uncertainty-in-k" title="Permalink to this heading">#</a></h4>
+<h4>Uncertainty in K<a class="headerlink" href="#uncertainty-in-k" title="Permalink to this heading">#</a></h4>
 <p>The uncertainty in <span class="math notranslate nohighlight">\(K\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -630,14 +630,14 @@ K = e^{b \cdot \ln(10)}
 
 <span class="c1"># Output results</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K = </span><span class="si">{</span><span class="n">K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K = (</span><span class="si">{</span><span class="n">K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_K</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">) m³·h⁻¹·Pa⁻ⁿ&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R² = </span><span class="si">{</span><span class="n">r_square</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 0.6434 ± 0.0442
-K = 53.3956 ± 5.4338
+K = (53.3956 ± 5.4338) m³·h⁻¹·Pa⁻ⁿ
 R² = 0.9815
 </pre></div>
 </div>
@@ -784,8 +784,8 @@ R² = 0.9815
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-perform-linear-regression">Step 2: Perform linear regression</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-extract-parameters">Step 3: Extract parameters</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-calculate-uncertainties">Step 4: Calculate uncertainties</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in <span class="math notranslate nohighlight">\(n\)</span></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in <span class="math notranslate nohighlight">\(K\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-n">Uncertainty in n</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#uncertainty-in-k">Uncertainty in K</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-derivative-of-k-with-respect-to-b">Step 1: Compute the derivative of <span class="math notranslate nohighlight">\(K\)</span> with respect to <span class="math notranslate nohighlight">\(b\)</span></a></li>
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-the-error-propagation-formula">Step 2: Apply the error propagation formula</a></li>
 </ul>
