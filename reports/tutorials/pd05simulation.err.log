@@ -18,9 +18,12 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+# Resample hourly data to time step dt
 input_data_set = input_data_set.resample(
     str(dt) + 's').interpolate(method='linear')
-input_data_set.head()
+
+# Get input from input_data_set
+u = dm4bem.inputs_in_time(us, input_data_set)
 ------------------
 
 
@@ -28,15 +31,17 @@ input_data_set.head()
 [0;31mValueError[0m                                Traceback (most recent call last)
 File [0;32moffsets.pyx:4548[0m, in [0;36mpandas._libs.tslibs.offsets.to_offset[0;34m()[0m
 
-[0;31mValueError[0m: invalid literal for int() with base 10: '50.0'
+[0;31mValueError[0m: invalid literal for int() with base 10: '300.0'
 
 The above exception was the direct cause of the following exception:
 
 [0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[6], line 1[0m
-[0;32m----> 1[0m input_data_set [38;5;241m=[39m input_data_set[38;5;241m.[39mresample(
-[1;32m      2[0m     [38;5;28mstr[39m(dt) [38;5;241m+[39m [38;5;124m'[39m[38;5;124ms[39m[38;5;124m'[39m)[38;5;241m.[39minterpolate(method[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlinear[39m[38;5;124m'[39m)
-[1;32m      3[0m input_data_set[38;5;241m.[39mhead()
+Cell [0;32mIn[22], line 2[0m
+[1;32m      1[0m [38;5;66;03m# Resample hourly data to time step dt[39;00m
+[0;32m----> 2[0m input_data_set [38;5;241m=[39m input_data_set[38;5;241m.[39mresample(
+[1;32m      3[0m     [38;5;28mstr[39m(dt) [38;5;241m+[39m [38;5;124m'[39m[38;5;124ms[39m[38;5;124m'[39m)[38;5;241m.[39minterpolate(method[38;5;241m=[39m[38;5;124m'[39m[38;5;124mlinear[39m[38;5;124m'[39m)
+[1;32m      5[0m [38;5;66;03m# Get input from input_data_set[39;00m
+[1;32m      6[0m u [38;5;241m=[39m dm4bem[38;5;241m.[39minputs_in_time(us, input_data_set)
 
 File [0;32m~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/generic.py:9439[0m, in [0;36mNDFrame.resample[0;34m(self, rule, axis, closed, label, convention, kind, on, level, origin, offset, group_keys)[0m
 [1;32m   9436[0m [38;5;28;01melse[39;00m:
@@ -75,5 +80,5 @@ File [0;32moffsets.pyx:4460[0m, in [0;36mpandas._libs.tslibs.offsets.to_offse
 
 File [0;32moffsets.pyx:4557[0m, in [0;36mpandas._libs.tslibs.offsets.to_offset[0;34m()[0m
 
-[0;31mValueError[0m: Invalid frequency: 50.0s
+[0;31mValueError[0m: Invalid frequency: 300.0s
 
