@@ -554,7 +554,8 @@ document.write(`
 \[
 \sigma_K = K \cdot \ln(10) \cdot \sigma_b
 \]</div>
-<p>is calculated using simplified formula for <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of uncertainty</a> for a function of a single variable. If <span class="math notranslate nohighlight">\(K = f(b)\)</span>, then the uncertainty <span class="math notranslate nohighlight">\(\sigma_K\)</span> is given by:</p>
+<p>is calculated using simplified formula for <a class="reference external" href="https://en.wikipedia.org/wiki/Propagation_of_uncertainty">propagation of uncertainty</a> for a function of a single variable.</p>
+<p>If <span class="math notranslate nohighlight">\(K = f(b)\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> has the uncertainty <span class="math notranslate nohighlight">\(\sigma_b\)</span>, then the uncertainty in <span class="math notranslate nohighlight">\(K\)</span>, <span class="math notranslate nohighlight">\(\sigma_K\)</span>, is given by:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma_K = \left| \frac{df}{db} \right| \cdot \sigma_b
@@ -564,7 +565,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(b\)</span> is the intercept from the linear regression,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\sigma_b\)</span> is its standard error (uncertainty) of intercept <span class="math notranslate nohighlight">\(b\)</span>.</p></li>
 </ul>
-<p>The relationship between <span class="math notranslate nohighlight">\(K\)</span> and the intercept <span class="math notranslate nohighlight">\(a\)</span> is given by:</p>
+<p>The relationship between <span class="math notranslate nohighlight">\(K\)</span> and the intercept <span class="math notranslate nohighlight">\(b\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
 \[
 K = 10^b
@@ -584,7 +585,7 @@ K = e^{b \cdot \ln(10)}
 </section>
 <section id="step-2-apply-the-error-propagation-formula">
 <h5>Step 2: Apply the error propagation formula<a class="headerlink" href="#step-2-apply-the-error-propagation-formula" title="Permalink to this heading">#</a></h5>
-<p>Substitute the derivative into the error propagation formula:</p>
+<p>Substitute the derivative into the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Propagation_of_uncertainty">error propagation</a> formula:</p>
 <div class="math notranslate nohighlight">
 \[
 \sigma_K = \left| \frac{dK}{db} \right| \cdot \sigma_b = \left| \ln(10) \cdot K \right| \cdot \sigma_b
@@ -628,7 +629,7 @@ K = e^{b \cdot \ln(10)}
 <span class="n">n</span> <span class="o">=</span> <span class="n">a</span>
 <span class="n">K</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">b</span>
 <span class="n">sigma_n</span> <span class="o">=</span> <span class="n">sigma_a</span>
-<span class="n">sigma_K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma_a</span>
+<span class="n">sigma_K</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">sigma_b</span>
 
 <span class="c1"># Output results</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n = </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sigma_n</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -639,7 +640,7 @@ K = e^{b \cdot \ln(10)}
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 0.6434 ± 0.0442
-K = (53.3956 ± 5.4338) m³·h⁻¹·Pa⁻ⁿ
+K = (53.3956 ± 8.1475) m³·h⁻¹·Pa⁻ⁿ
 R² = 0.9815
 </pre></div>
 </div>
@@ -716,7 +717,7 @@ R² = 0.9815
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f5dd0de263ba13b9bcc92f1d334dd51a33f07c31c9e8db27c957178f7f5d72c4.png" src="../_images/f5dd0de263ba13b9bcc92f1d334dd51a33f07c31c9e8db27c957178f7f5d72c4.png" />
+<img alt="../_images/105f8281769977fea314172dee56389bb58861fb0f22867740b56ea4df3947d6.png" src="../_images/105f8281769977fea314172dee56389bb58861fb0f22867740b56ea4df3947d6.png" />
 </div>
 </div>
 </section>
