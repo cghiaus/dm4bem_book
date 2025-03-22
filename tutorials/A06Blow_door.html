@@ -519,7 +519,7 @@ document.write(`
 <hr class="docutils" />
 <section id="step-2-perform-linear-regression">
 <h3>Step 2: Perform linear regression<a class="headerlink" href="#step-2-perform-linear-regression" title="Permalink to this heading">#</a></h3>
-<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.stats.linregress</span></code> to perform linear regression on the log-transformed data. The regression provides:</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.stats.linregress</span></code> to perform <a class="reference external" href="https://en.m.wikipedia.org/wiki/Simple_linear_regression">simple linear regression</a> on the log-transformed data. The regression provides the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Simple_linear_regression#Interpretation_about_the_slope">slope</a>, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Simple_linear_regression#Interpretation_about_the_intercept">intercept</a> and the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Simple_linear_regression#Confidence_intervals">confidence intervals</a>:</p>
 <ul class="simple">
 <li><p>Slope <span class="math notranslate nohighlight">\(a\)</span>: represents <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
 <li><p>Intercept <span class="math notranslate nohighlight">\(b\)</span>: represents <span class="math notranslate nohighlight">\(\log_{10}(K)\)</span>.</p></li>
