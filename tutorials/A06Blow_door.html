@@ -427,6 +427,12 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-leakage-area-ela-and-equivalent-circular-hole">Effective leakage area (ELA) and equivalent circular hole</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-equation-through-a-leakage-orifice">Bernoulli equation through a leakage orifice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-leakage-area">Effective Leakage Area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-experimental-blower-door-law">Using the experimental blower-door law</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -725,6 +731,123 @@ R² = 0.9815
 </section>
 </section>
 </section>
+<section id="effective-leakage-area-ela-and-equivalent-circular-hole">
+<h2>Effective leakage area (ELA) and equivalent circular hole<a class="headerlink" href="#effective-leakage-area-ela-and-equivalent-circular-hole" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">Effective Leakage Area (ELA)</a> is the total area of all building envelope leaks, idealized as a single nozzle-shaped orifice (similar to a blower door fan inlet) that passes the same airflow as the actual leaks at a reference pressure.</p>
+<p>The effective leakage area (ELA) can be derived by combining the Bernoulli equation with the definition of volumetric flow rate and the experimental blower-door law.</p>
+<section id="bernoulli-equation-through-a-leakage-orifice">
+<h3>Bernoulli equation through a leakage orifice<a class="headerlink" href="#bernoulli-equation-through-a-leakage-orifice" title="Permalink to this heading">#</a></h3>
+<p>Consider airflow from the room (point <strong>A</strong>) toward a leakage opening (point <strong>B</strong>).</p>
+<p>The Bernoulli equation along a streamline,</p>
+<div class="math notranslate nohighlight">
+\[
+P_A + \frac{1}{2}\rho v_A^2 + \rho g z_A
+=
+P_B + \frac{1}{2}\rho v_B^2 + \rho g z_B
+\]</div>
+<p>with the assumptions used in blower-door analysis:</p>
+<ul class="simple">
+<li><p>steady incompressible flow,</p></li>
+<li><p>negligible height difference, <span class="math notranslate nohighlight">\(z_A \approx z_B\)</span>,</p></li>
+<li><p>velocity in the room is very small, <span class="math notranslate nohighlight">\(v_A \approx 0\)</span>,</p></li>
+</ul>
+<p>yields
+$<span class="math notranslate nohighlight">\(
+P_A = P_B + \frac{1}{2}\rho v^2
+\)</span>$</p>
+<p>By defining the pressure difference</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta P = P_A - P_B
+\]</div>
+<p>the velocity through the opening <strong>B</strong> is:</p>
+<div class="math notranslate nohighlight">
+\[
+v = \sqrt{\frac{2\Delta P}{\rho}}
+\]</div>
+</section>
+<section id="effective-leakage-area">
+<h3>Effective Leakage Area<a class="headerlink" href="#effective-leakage-area" title="Permalink to this heading">#</a></h3>
+<p>The volumetric flow rate is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{V} = A v
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{V}\)</span> is the volumetric airflow rate (m³/s)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> - flow area (m²)</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> - air velocity (m/s)</p></li>
+</ul>
+<p>Substituting the velocity obtained from Bernoulli equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{V} = A \sqrt{\frac{2\Delta P}{\rho}}
+\]</div>
+<p>we obtain the <strong>Effective Leakage Area (ELA)</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+A = \dot{V} \sqrt{\frac{\rho}{2\Delta P}}
+\]</div>
+</section>
+<section id="using-the-experimental-blower-door-law">
+<h3>Using the experimental blower-door law<a class="headerlink" href="#using-the-experimental-blower-door-law" title="Permalink to this heading">#</a></h3>
+<p>Airflow measured during blower-door tests follows an empirical relation:</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{V} = K(\Delta P)^n
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(K\)</span> - flow coefficient,</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> - pressure exponent,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta P\)</span> - pressure difference (Pa), usually 50 Pa.</p></li>
+</ul>
+<p>Substituting into the ELA expression:</p>
+<div class="math notranslate nohighlight">
+\[
+ELA = \dot{V} \sqrt{\frac{\rho}{2\Delta P}} = K(\Delta P)^n \sqrt{\frac{\rho}{2\Delta P}}
+\]</div>
+<p>The <strong>effective leakage area (ELA)</strong> can be interpreted as the area of an <strong>equivalent circular hole</strong> producing the same airflow. The diameter of the equivalent circular hole is:</p>
+<div class="math notranslate nohighlight">
+\[
+d = \sqrt{\frac{4\,ELA}{\pi}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span> <span class="o">=</span> <span class="mf">1.2</span>          <span class="c1"># kg/m³, air density</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">50</span>             <span class="c1"># Pa, pressure difference</span>
+
+<span class="c1"># airflow law (blower door) in m³/h</span>
+<span class="n">Vdot_m3h</span> <span class="o">=</span> <span class="n">K</span> <span class="o">*</span> <span class="n">P</span><span class="o">**</span><span class="n">n</span>
+
+<span class="c1"># convert to m3/s</span>
+<span class="n">Vdot</span> <span class="o">=</span> <span class="n">Vdot_m3h</span> <span class="o">/</span> <span class="mi">3600</span>
+
+<span class="c1"># Effective leakage area in m²</span>
+<span class="n">ELA</span> <span class="o">=</span> <span class="n">Vdot</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">P</span> <span class="o">/</span> <span class="n">rho</span><span class="p">)</span>
+
+<span class="c1"># equivalent circular diameter (m)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">ELA</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressure difference: </span><span class="si">{</span><span class="n">P</span><span class="si">:</span><span class="s2">.1F</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Airflow rate: </span><span class="si">{</span><span class="n">Vdot_m3h</span><span class="si">:</span><span class="s2">.1F</span><span class="si">}</span><span class="s2"> m³/h = </span><span class="si">{</span><span class="n">Vdot</span><span class="si">:</span><span class="s2">.3F</span><span class="si">}</span><span class="s2"> m³/s&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Effective leakage area ELA: </span><span class="si">{</span><span class="n">ELA</span><span class="si">:</span><span class="s2">.3F</span><span class="si">}</span><span class="s2"> m² = </span><span class="si">{</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ELA</span><span class="si">:</span><span class="s2">.1F</span><span class="si">}</span><span class="s2"> cm²&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equivalent circular hole diameter: </span><span class="si">{</span><span class="n">d</span><span class="si">:</span><span class="s2">.3F</span><span class="si">}</span><span class="s2"> m = </span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="si">:</span><span class="s2">.1F</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressure difference: 50.0 Pa
+Airflow rate: 661.8 m³/h = 0.184 m³/s
+Effective leakage area ELA: 0.020 m² = 201.4 cm²
+Equivalent circular hole diameter: 0.160 m = 16.0 cm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p><a class="reference external" href="https://www.bipm.org/documents/20126/2071204/JCGM_100_2008_E.pdf">Joint Committee for Guides in Metrology. (2008)</a>. Evaluation of measurement data—Guide to the expression of uncertainty in measurement. JCGM, 100(2008), 1-116.</p>
@@ -801,6 +924,12 @@ R² = 0.9815
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-leakage-area-ela-and-equivalent-circular-hole">Effective leakage area (ELA) and equivalent circular hole</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli-equation-through-a-leakage-orifice">Bernoulli equation through a leakage orifice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effective-leakage-area">Effective Leakage Area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-experimental-blower-door-law">Using the experimental blower-door law</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
