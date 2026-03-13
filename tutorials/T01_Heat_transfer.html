@@ -536,7 +536,7 @@ document.write(`
 <h3>Plan wall<a class="headerlink" href="#plan-wall" title="Permalink to this heading">#</a></h3>
 <p>Heat conduction in a plane wall without internal sources is modelled by 1D <a class="reference external" href="https://en.m.wikipedia.org/wiki/Heat_equation">heat equation</a>:</p>
 <div class="math notranslate nohighlight">
-\[\rho c \frac{\partial \theta}{\partial t} = - \lambda \frac{\partial ^2 \theta}{\partial x^2}\]</div>
+\[\rho c \frac{\partial \theta}{\partial t} = \lambda \frac{\partial ^2 \theta}{\partial x^2}\]</div>
 <p>By discretizing the second derivative in function of <span class="math notranslate nohighlight">\(x\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial ^2 \theta}{\partial x^2} = \frac{\partial \frac{\partial \theta}{\partial x}}{\partial x}\approx \frac{\frac{\theta_{i+1} - \theta_i}{\Delta x} - \frac{\theta_i - \theta_{i-1}}{\Delta x}}{\Delta x}\]</div>
