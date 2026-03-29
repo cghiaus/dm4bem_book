@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="From differential-algebraic equations to state-space representation" href="T03_DAE2SS.html" />
-    <link rel="prev" title="Thermal networks for heat trasfer in buildings" href="T01_Heat_transfer.html" />
+    <link rel="prev" title="Thermal networks for heat transfer in buildings" href="T01_Heat_transfer.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,7 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
 </ul>
@@ -433,16 +433,38 @@ document.write(`
 <h1>From thermal networks to differential-algebraic equations<a class="headerlink" href="#from-thermal-networks-to-differential-algebraic-equations" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/main?labpath=%2Ftutorials%2FT02_TC2DAE.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <p>The framework for obtaing the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Differential-algebraic_system_of_equations">differential-algebraic system of equations (DAE)</a> describing the thermal network is illustrated in Figure 1a (<a class="reference external" href="https://www.cambridge.org/fr/universitypress/subjects/mathematics/computational-science/computational-science-and-engineering?format=HB&amp;amp;isbn=9780961408817">Strang, 2007</a>; <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0360544212007864?casa_token=ZOI6B8Osp8cAAAAA:ITZmxHE4dDNb2aNpQ-Z3oGpjqY0Oeik76rdkClTA-MHjmEyihe9zpYbkewjkfHBSQl-U1-SfHw">Ghiaus, 2013</a>).</p>
-<p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flow-rates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes.</p>
+<p>First, we obtain the temperature differences over the conductances (Figure 1b). Then, we obtain the flowates through the conductances (Figure 1c). Finally, we obtain the DAE by energy balance in temperature nodes (Figure 1d).</p>
 <p><img alt="procedure" src="../_images/A02_calc_procedure.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Obtaining the system of differential-algebraic equations from a thermal network: a) General framework. b) Temperature differences. c) Flow rates. d) Energy balance.</p>
 </div></blockquote>
+<p>This framework can be seen as the application of the laws of thermodynamics.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Zeroth_law_of_thermodynamics">zero law of thermodynamics</a> defines the thermoequilibrum and forms the basis for temperature linear scale. This implies that, if <span class="math notranslate nohighlight">\(\Delta T_{AB} \equiv T_A - T_B\)</span> and <span class="math notranslate nohighlight">\(\Delta T_{BC} \equiv T_B - T_C\)</span>, then, <span class="math notranslate nohighlight">\(\Delta T_{AC} \equiv T_A - T_C = \Delta T_{AB} + \Delta T_{BC}\)</span>. Therefore, in Figure 1b,.
+$<span class="math notranslate nohighlight">\(\theta_0 - \theta_1 = -T_0 + e_0\)</span>$</p>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[e_0 = (\theta_0 - \theta_1) + T_0 = \Delta \theta + T_0\]</div>
+<p>Note the <a class="reference external" href="https://en.wikipedia.org/wiki/Passive_sign_convention">sign convention</a> of the temperature source <span class="math notranslate nohighlight">\(T_0\)</span>.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Second_law_of_thermodynamics">second law of thermodynamics</a> states that heat passes from warmer body to cooler body; therefore, in Figure 1b:</p>
+<div class="math notranslate nohighlight">
+\[q_0 = G_0 e_0\]</div>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/First_law_of_thermodynamics">first law of thermodynamics</a> states that the energy is conserved; therefore, in Figure 1d:</p>
+<div class="math notranslate nohighlight">
+\[C_0 \dot{\theta}_0 = q_0 - q_1 + \dot{Q_0}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[C \dot{\theta} = \Sigma q + f\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C \dot{\theta}\)</span> is the variation accumulated energy;</p></li>
+<li><p><span class="math notranslate nohighlight">\( \Sigma q = q_0 - q_1 \)</span> is the algebraic sum of flowrates entering the control volume (temperature node);</p></li>
+<li><p><span class="math notranslate nohighlight">\( f = \dot{Q_0}\)</span> is the thermal energy generated in the control volume (temperature node).</p></li>
+</ul>
+<p>The system of differential-algebraic equations is obtained by calculating the temperature differences on conductances, then the flow rates, and finally the energy balance. Figure 2 shows an exemple.</p>
 <p><img alt="T2DAE" src="../_images/A02_TC2DAE.svg" /></p>
 <blockquote>
-<div><p>Figure 2. Example of differential-algebraic system of equations for a thermal network: a) Thermal network. b) Matrices and vectors. c) Differencial-algebraic equations (DAE).</p>
+<div><p>Figure 2. Example of differential-algebraic system of equations for a thermal network: a) Thermal network. b) Matrices and vectors. c) Differencial-algebraic equatio(Figure 1).</p>
 </div></blockquote>
-<p>The system of differential-algebraic equations is obtained by calculating the temperature differences on conductances, then the flow rates, and finally the energy balance (Figure 1).</p>
 <section id="temperature-differences">
 <h2>Temperature differences<a class="headerlink" href="#temperature-differences" title="Permalink to this heading">#</a></h2>
 <p>Let’s define the temperature difference <span class="math notranslate nohighlight">\(e\)</span> over a conductance <span class="math notranslate nohighlight">\(G\)</span> as being the difference between the temperatures in the direction of the flow rate; e.g., in Figure 2a, the flow rate is from <span class="math notranslate nohighlight">\(\theta_0\)</span> to <span class="math notranslate nohighlight">\(\theta_1\)</span>, so the temperature difference over the conductance <span class="math notranslate nohighlight">\(G_1\)</span> is <span class="math notranslate nohighlight">\(e_1 = \theta_0 - \theta_1\)</span>.</p>
@@ -867,7 +889,7 @@ Flow-rates: q0 = -4082.19 W, q1 = -1282.19 W, q2 = -1282.19 W
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Thermal networks for heat trasfer in buildings</p>
+        <p class="prev-next-title">Thermal networks for heat transfer in buildings</p>
       </div>
     </a>
     <a class="right-next"

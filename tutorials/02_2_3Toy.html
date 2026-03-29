@@ -600,6 +600,7 @@ document.write(`
 </section>
 <section id="flow-rate-sources">
 <h5>Flow rate sources<a class="headerlink" href="#flow-rate-sources" title="Permalink to this heading">#</a></h5>
+<p><strong>Solar radiation on outdoor surfaces</strong></p>
 <p>The radiation absorbed by the outdoor surface of the wall is:</p>
 <div class="math notranslate nohighlight">
 \[\Phi_o = \alpha_{w,SW} S_w E_{tot}\]</div>
@@ -612,12 +613,23 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solar radiation absorbed by the outdoor surface of the wall</span>
-<span class="n">Φo</span> <span class="o">=</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Etot</span>
+<span class="n">Φo</span> <span class="o">=</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Etot</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall is:</p>
+<p><strong>Solar radiation on indoor surfaces</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># window glass properties</span>
+<span class="n">α_gSW</span> <span class="o">=</span> <span class="mf">0.38</span>    <span class="c1"># short wave absortivity: reflective blue glass</span>
+<span class="n">τ_gSW</span> <span class="o">=</span> <span class="mf">0.30</span>    <span class="c1"># short wave transmitance: reflective blue glass</span>
+<span class="n">S_g</span> <span class="o">=</span> <span class="mi">9</span>         <span class="c1"># m², surface area of glass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we consider that the short wave (i.e. solar) radiation, in W, traversing the glass is absorbed by the indoor surfaces of the wall, then:</p>
 <div class="math notranslate nohighlight">
 \[\Phi_i = \tau_{g,SW}  \alpha_{w,SW} S_g E_{tot}\]</div>
 <p>where:</p>
@@ -629,17 +641,85 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># window glass properties</span>
-<span class="n">α_gSW</span> <span class="o">=</span> <span class="mf">0.38</span>    <span class="c1"># short wave absortivity: reflective blue glass</span>
-<span class="n">τ_gSW</span> <span class="o">=</span> <span class="mf">0.30</span>    <span class="c1"># short wave transmitance: reflective blue glass</span>
-<span class="n">S_g</span> <span class="o">=</span> <span class="mi">9</span>         <span class="c1"># m², surface area of glass</span>
-
-<span class="c1"># solar radiation absorbed by the indoor surface of the wall</span>
-<span class="n">Φi</span> <span class="o">=</span> <span class="n">τ_gSW</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solar radiation absorbed by the indoor surface of the wall</span>
+<span class="n">Φi</span> <span class="o">=</span> <span class="n">τ_gSW</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">S_g</span> <span class="o">*</span> <span class="n">Etot</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p><strong>Solar radiation on indoor surfaces by considering multiple reflexions</strong></p>
+<p>If we consider the short wave (i.e. solar) radiation, in W, absorbed by the indoor surfaces of the wall, then:</p>
+<div class="math notranslate nohighlight">
+\[\Phi_i = \alpha_{w,SW} S_w E_w\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tau_{g,SW}\)</span> is the transmission coefficient of the window glass, <span class="math notranslate nohighlight">\(0 \leqslant \tau_{g,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha_{w,SW}\)</span> - absortion coefficient of the indoor surface of the wall in short wave, <span class="math notranslate nohighlight">\(0 \leqslant \alpha_{w,SW} \leqslant 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_g\)</span> - surface area of the window glass, m²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(E_w\)</span> - solar radiation intensity on the wall, W/m²</p></li>
+</ul>
+<p>The short-wave <a class="reference external" href="https://en.m.wikipedia.org/wiki/Irradiance">irradiances</a> on internal surfaces (i.e., window and walls), in W/m², are (see <em>Solar radiation abosorbed by the walls</em> in <a class="reference internal" href="T01_Heat_transfer.html"><span class="std std-doc">Thermal networks for heat trasfer in buildings</span></a>):</p>
+<div class="math notranslate nohighlight">
+\[ E = (I - \mathrm{diag}(\rho) \circ F)^{-1} E^o\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p>indexes <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> stand for the window and the wall, respectively;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathrm{diag}(·)\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Diagonal_matrix#Matrix-to-vector_diag_operator">matrix-to-vector diagonal operator</a>;</p></li>
+<li><p>the symbol <span class="math notranslate nohighlight">\(\circ\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a>;</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(I =\begin{bmatrix}
+1 &amp; 0 \\  
+0 &amp; 1 
+\end{bmatrix}, \)</span> is the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Identity_matrix">identity matrix</a>;</p>
+<p><span class="math notranslate nohighlight">\(\rho = \begin{bmatrix}
+\rho_0 &amp; 0\\ 
+0 &amp; \rho_1
+\end{bmatrix}\)</span> - diagonal matrix of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Reflectance">reflectances</a>;</p>
+<p><span class="math notranslate nohighlight">\(F = \begin{bmatrix}
+F_{0, 0} &amp; F_{0, 1}\\  
+F_{1, 0} &amp; F_{1, 1}
+\end{bmatrix}\)</span> - matrix of <a class="reference external" href="https://en.m.wikipedia.org/wiki/View_factor">view factors</a>, <span class="math notranslate nohighlight">\(0 \le F_{i,j} \le 1\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(E^o = \begin{bmatrix}
+E_{0}^{o}\\ 
+E_{1}^{o}
+\end{bmatrix}\)</span> - vector of <a class="reference external" href="https://en.m.wikipedia.org/wiki/Solar_irradiance">direct solar irradiances</a>, W/m²;</p>
+<p><span class="math notranslate nohighlight">\(E = \begin{bmatrix}
+E_0\\   
+E_1
+\end{bmatrix}\)</span> - vector of unknown total short-wave irradiances, W/m².</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># identity matrix</span>
+<span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># reflexion coefficients in short wave</span>
+<span class="n">ρ_gSW</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">α_gSW</span> <span class="o">+</span> <span class="n">τ_gSW</span><span class="p">)</span>         <span class="c1"># glass</span>
+<span class="n">ρ_wSW</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># wall</span>
+<span class="n">ρ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">ρ_gSW</span><span class="p">,</span> <span class="n">ρ_wSW</span><span class="p">])</span>         <span class="c1"># (diagonal) matrix of coefficients</span>
+
+<span class="c1"># view factors</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>         <span class="c1"># between glass and wall</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">5</span>     <span class="c1"># between wall and glass</span>
+<span class="n">F</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">5</span>     <span class="c1"># between walls (considered as a single wall)</span>
+
+<span class="c1"># irradiance received directly by the indoor surfaces, W/m²</span>
+<span class="n">E0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;window&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">&quot;wall&quot;</span><span class="p">:</span> <span class="n">τ_gSW</span> <span class="o">*</span> <span class="n">Etot</span> <span class="o">/</span> <span class="mi">5</span>
+<span class="p">})</span>
+
+<span class="c1"># irradiance on indoor surfaces, W/m²</span>
+<span class="c1"># E = np.linalg.inv((I - np.diag(ρ) * F)) @ E0</span>
+<span class="n">E_values</span> <span class="o">=</span> <span class="n">E0</span><span class="o">.</span><span class="n">values</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">((</span><span class="n">I</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">ρ</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">E_values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">E0</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">E0</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">Φi</span> <span class="o">=</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;α1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">w0</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">E</span><span class="p">[</span><span class="s1">&#39;wall&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Solar radiation absorbed by the glass</strong></p>
 <p>The short wave (i.e. solar) radiation, in W, absorbed by the window glass is:</p>
 <div class="math notranslate nohighlight">
 \[\Phi_a = \alpha_{g,SW} S_g E_{tot}\]</div>
