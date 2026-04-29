@@ -182,7 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
 </ul>
@@ -446,7 +446,7 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyhton-script">Pyhton script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">Python script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
@@ -1234,68 +1234,10 @@ dt = 300 s = 5.0 min
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resample hourly data to time step dt</span>
 <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">input_data_set</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
-    <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 
 <span class="c1"># Get input from input_data_set</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">File offsets.pyx:4548,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: invalid literal for int() with base 10: &#39;300.0&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Resample hourly data to time step dt</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">input_data_set</span> <span class="o">=</span> <span class="n">input_data_set</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Get input from input_data_set</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">u</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">inputs_in_time</span><span class="p">(</span><span class="n">us</span><span class="p">,</span> <span class="n">input_data_set</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/generic.py:9439,</span> in <span class="ni">NDFrame.resample</span><span class="nt">(self, rule, axis, closed, label, convention, kind, on, level, origin, offset, group_keys)</span>
-<span class="g g-Whitespace">   </span><span class="mi">9436</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">9437</span>     <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">-&gt; </span><span class="mi">9439</span> <span class="k">return</span> <span class="n">get_resampler</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">9440</span>     <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;Series | DataFrame&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">9441</span>     <span class="n">freq</span><span class="o">=</span><span class="n">rule</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9442</span>     <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9443</span>     <span class="n">closed</span><span class="o">=</span><span class="n">closed</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9444</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9445</span>     <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9446</span>     <span class="n">convention</span><span class="o">=</span><span class="n">convention</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9447</span>     <span class="n">key</span><span class="o">=</span><span class="n">on</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9448</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9449</span>     <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9450</span>     <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9451</span>     <span class="n">group_keys</span><span class="o">=</span><span class="n">group_keys</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9452</span> <span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/resample.py:1969,</span> in <span class="ni">get_resampler</span><span class="nt">(obj, kind, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1965</span> <span class="k">def</span> <span class="nf">get_resampler</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Series</span> <span class="o">|</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Resampler</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1966</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1967</span><span class="sd">     Create a TimeGrouper and return our resampler.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1968</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1969</span>     <span class="n">tg</span> <span class="o">=</span> <span class="n">TimeGrouper</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1970</span>     <span class="k">return</span> <span class="n">tg</span><span class="o">.</span><span class="n">_get_resampler</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/resample.py:2046,</span> in <span class="ni">TimeGrouper.__init__</span><span class="nt">(self, freq, closed, label, how, axis, fill_method, limit, kind, convention, origin, offset, group_keys, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2043</span> <span class="k">if</span> <span class="n">convention</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">}:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2044</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported value </span><span class="si">{</span><span class="n">convention</span><span class="si">}</span><span class="s2"> for `convention`&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2046</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2048</span> <span class="n">end_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;BM&quot;</span><span class="p">,</span> <span class="s2">&quot;BA&quot;</span><span class="p">,</span> <span class="s2">&quot;BQ&quot;</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">}</span>
-<span class="g g-Whitespace">   </span><span class="mi">2049</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">rule_code</span>
-
-<span class="nn">File offsets.pyx:4460,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="nn">File offsets.pyx:4557,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: Invalid frequency: 300.0s
 </pre></div>
 </div>
 </div>
@@ -1394,7 +1336,7 @@ dt = 300 s = 5.0 min
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7830f8c03a32bbda4eb2011700a055c8c9e923578603aff6dfa9955162635927.png" src="../_images/7830f8c03a32bbda4eb2011700a055c8c9e923578603aff6dfa9955162635927.png" />
+<img alt="../_images/c72335c88a05d4cab788578d869415394c32837b475c69342f05e73348a021f8.png" src="../_images/c72335c88a05d4cab788578d869415394c32837b475c69342f05e73348a021f8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Min. indoor temperature: 2.0 °C
 Max. indoor temperature: 23.5 °C
 Max. load: 0.0 W at 2000-02-01 12:00:00+01:00
@@ -1411,8 +1353,8 @@ Energy consumption: 0.0 kWh
 </section>
 </section>
 </section>
-<section id="pyhton-script">
-<h2>Pyhton script<a class="headerlink" href="#pyhton-script" title="Permalink to this heading">#</a></h2>
+<section id="python-script">
+<h2>Python script<a class="headerlink" href="#python-script" title="Permalink to this heading">#</a></h2>
 <p>The script <a class="reference download internal" download="" href="../_downloads/0004f3224ad397b8b7769fe02c51c2a7/pd05simulation.py"><span class="xref download myst">pd/pd05simulation.py</span></a> implements the <strong>workflow</strong> presented in this notebook. In order to run this script (in the <a class="reference download internal" download="" href="../_downloads/b7cb75ca59993a879e29bed8cd8469b8/environment.yml"><span class="xref download myst">environment</span></a>):</p>
 <ol class="arabic simple">
 <li><p>Create a working directory, e.g. <code class="docutils literal notranslate"><span class="pre">pd</span></code></p></li>
@@ -1434,7 +1376,7 @@ Energy consumption: 0.0 kWh
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4db558bcf1256dee8354e641bfc8610aec2141979670b2ff1d65135c764c2eab.png" src="../_images/4db558bcf1256dee8354e641bfc8610aec2141979670b2ff1d65135c764c2eab.png" />
+<img alt="../_images/c7c4dbda030471d216e91372fdcd2f9f5b74238c4377b27e867d01fcebaeb05c.png" src="../_images/c7c4dbda030471d216e91372fdcd2f9f5b74238c4377b27e867d01fcebaeb05c.png" />
 </div>
 </div>
 <blockquote>
@@ -1567,7 +1509,7 @@ Energy consumption: 0.0 kWh
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pyhton-script">Pyhton script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-script">Python script</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
