@@ -115,11 +115,13 @@ __References__
 
 5. [Thomson, A., Taylor, B. N. (2008)](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf). Guide for the use of the international System of units (NIST Special Publication 811․ 2008 Edition). National Institute of Standards and Technology, US Government Printing Office.
 
-6. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
+6. [Cohen, E. R., Giacomo, P. (1987)](https://iupap.org/wp-content/uploads/2021/03/A4.pdf) *Symbols, units, nomenclature and fundamental constants in physics (Vol. 508).* Amsterdam, The Netherlands:: North-Holland.
 
-7. [Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer, 6th Edition. John Wiley.
+7. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
 
-8. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+8. [Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer, 6th Edition. John Wiley.
 
-9. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
+9. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+
+10. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
