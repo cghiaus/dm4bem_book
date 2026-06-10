@@ -33,9 +33,9 @@ __Prerequisites__
 It is assumed that readers have a foundational knowledge at the undergraduate level in linear algebra ([Strang, G. 2023](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html)), heat transfer ([Incropera et al. 2007](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf), [RE2020 2021](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf)), and Python programming ([Docs.Python 2024](https://docs.python.org/3/tutorial/index.html)).
 
 
-__Notations used for values of quantities__
+__Notations__
 
-This book uses the writing conventions for SI unit symbols and names recommanded by the *International Bureau of Weights and Measures* ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. 2006](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3)) and *National Institute of Standards and Technology* ([Thomson and Taylor. 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf)).
+This book uses the writing conventions for SI unit symbols and names recommanded by the *International Bureau of Weights and Measures* ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), [Gőbel et al. 2006](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-concise-EN.pdf/2fda4656-e236-0fcb-3867-36ca74eea4e3)), *National Institute of Standards and Technology* ([Thomson and Taylor. 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf)), *International Union of Pure and Applied Physics* ([Cohen and Giacomo, 1987)](https://iupap.org/wp-content/uploads/2021/03/A4.pdf) and *International Union of Pure and Applyed Chemestry* ([Brett et al., 2023](https://www.ir.ethz.ch/GreenBook/GBAV_as_appeared_2023_2024.pdf)).
 
 Some rules:
 - [_Unit symbols_](https://en.m.wikipedia.org/wiki/Unit_of_measurement) are in roman type and [_quantity symbols_](https://en.m.wikipedia.org/wiki/Physical_quantity) are in italic; the unit symbol is placed after the numerical value and a space is left between the numerical value and the unit symbol ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true) §2.1, pp.129-142), e.g. $h = 10 \, \mathrm{W \, m^{−2} \, K^{−1}}$ or $h = 10\, \mathrm{W·m^{−2}·K^{−1}}$ or $h$ = 10 W/(m²·K).
@@ -43,9 +43,11 @@ Some rules:
 - A prefix symbol attached to a unit symbol constitutes a new inseparable symbol, forming a multiple or submultiple of the unit concerned ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §3, pp.143-144), e.g. $1 \, \mathrm{mK} = 10^{-3} \, \mathrm{K}$ while $1 \, \mathrm{m·K} = 1 \, \mathrm{m \ K} = 1 \, \mathrm{m} · 1 \, \mathrm{K}.$
 - When writing the value of a quantity as the product of a numerical value and a unit, both the number and the unit may be treated by the ordinary rules of algebra ([BIPM 2019](https://www.bipm.org/documents/20126/41483022/SI-Brochure-9-EN.pdf/2d2b50bf-f2b4-9661-f402-5f9d66e4b507?version=1.11&t=1671101192839&download=true), §5.4, pp.148-151, [Thomson and Taylor, 2008](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf), §7.1 p.15), e.g.:
     - In $T = 273.15 \, \mathrm{K}$, the number $273.15 = T /\mathrm{K}$ is the numerical value of thermodynamic temperature $T.$
-    - The numerical value of a temperature expressed in degrees Celsius, $\theta$, is related to the numerical value of the thermodynamic temperature expressed in kelvins, $T$, by the relation $\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15$ or $\theta$/(°C) = $T$/(K) − 273.15.
-    - The ordinate of a graph or the heading of a table is labeled $Temperature,$ $T/(10³$ K $)$, where $T$ is the thermodynamic temperature and K is the unit symbol for kelvin. If the ordinate value of a point on a curve of the graph or the entry in a table is 0.273, then the corresponding temperature is $T/(10³$ K $)$ = 0.273 or $T$ = 273 K.
-    - The logarithm ordinate of a graph or the heading of a table is labeled $\log_{10}(T /\textrm{(K)})$. If the ordinate value of a point on a curve of the graph or the entry in a table is 2.436..., then $\log_{10}(T/\textrm{(K)}) = 2.436...$ (or $T/\textrm{(K)} = 10^{2.436...}$ ) and the corresponding temperature is $T$ = 273 K.
+    - The numerical value of a temperature expressed in degrees Celsius, $\theta$, is related to the numerical value of the thermodynamic temperature expressed in kelvins, $T$, by the relation $\theta /\mathrm{°C} = T/ \mathrm{K} − 273.15$.
+    - The numerical value of a heat transfer coefficient $h$ expressed in W/(m²·K) is written as
+$h / (\mathrm{W \, m^{−2} \, K^{−1}})$. If the value is 8, then $h / (\mathrm{W \, m^{−2} \, K^{−1}}) = 8$. An alternative, but less recommended form, is $h / (\mathrm{W / (m^2 \, K))} = 8$, where the unit is written using an explicit division inside parentheses.
+    - The ordinate of a graph or the heading of a table is labeled $Temperature,$ $T/(10^3 \mathrm{K})$, where $T$ is the thermodynamic temperature and K is the unit symbol for kelvin. If the ordinate value of a point on a curve of the graph or the entry in a table is 0.273, then the corresponding temperature is $T/(10^3 \mathrm{K})$ = 0.273 or $T$ = 273 K.
+    - The logarithm ordinate of a graph or the heading of a table is labeled $\log_{10}(T /\textrm{K})$. If the ordinate value of a point on a curve of the graph or the entry in a table is 2.436..., then $\log_{10}(T/\textrm{K}) = 2.436...$ (or $T/\textrm{K} = 10^{2.436...}$ ) and the corresponding temperature is $T$ = 273 K.
     - Symbol % (percent) is used for the number 0.01, e.g., the emmisivity is $\varepsilon$ = 0.85 = 85 %.
 
 __Nomenclature__
@@ -115,13 +117,15 @@ __References__
 
 5. [Thomson, A., Taylor, B. N. (2008)](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication811e2008.pdf). Guide for the use of the international System of units (NIST Special Publication 811․ 2008 Edition). National Institute of Standards and Technology, US Government Printing Office.
 
-6. [Cohen, E. R., Giacomo, P. (1987)](https://iupap.org/wp-content/uploads/2021/03/A4.pdf) *Symbols, units, nomenclature and fundamental constants in physics (Vol. 508).* Amsterdam, The Netherlands:: North-Holland.
+6. [Cohen, E. R., Giacomo, P. (1987)](https://iupap.org/wp-content/uploads/2021/03/A4.pdf). *Symbols, units, nomenclature and fundamental constants in physics (Vol. 508).* Amsterdam, The Netherlands.
 
-7. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
+7. [Brett, C. M., Frey, J. G., Hinde, R., Kuroda, Y., Marquardt, R., Pavese, F., ... & Thor, A. J. (Eds.) (2023)](https://www.ir.ethz.ch/GreenBook/GBAV_as_appeared_2023_2024.pdf). *Quantities, Units and Symbols in Physical Chemistry: Abridged Version.* 4t ed. Royal Society of Chemistry. ISBN: 978-1-83916-318-0
 
-8. [Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer, 6th Edition. John Wiley.
+8. [Strang, G. (2023)](https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html). Introduction to Linear Algebra, 6th ed., ISBN 978-17331466-7-8
 
-9. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+9. [Incropera, F. P., DeWitt, D. P., Bergman, T. L., Lavine, A. S. (2007)](https://hyominsite.files.wordpress.com/2015/03/fundamentals-of-heat-and-mass-transfer-6th-edition.pdf). Fundamentals of Heat and Mass Transfer, 6th Edition. John Wiley.
 
-10. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
+10. [RE2020 (2021)](https://rt-re-batiment.developpement-durable.gouv.fr/IMG/pdf/annexeiv_arrete_4_aout_2021.pdf). Annexe IV : Règles « Th-Bat 2020 » - données d’entrée au calcul de la performance énergétique
+
+11. [Docs.Python (2024)](https://docs.python.org/3/tutorial/index.html) The Python Tutorial
 
