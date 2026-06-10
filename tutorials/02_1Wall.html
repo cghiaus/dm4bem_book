@@ -2518,7 +2518,7 @@ T_o\\
 
 <span class="c1"># resample weather data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Δt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Δt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;To&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
 
 <span class="c1"># indoor auxiliary heat</span>
@@ -2554,62 +2554,7 @@ T_o\\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">File offsets.pyx:4548,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: invalid literal for int() with base 10: &#39;360.0&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="n">line</span> <span class="mi">18</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># resample weather data</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">data</span> <span class="o">=</span> <span class="n">weather</span><span class="p">[</span><span class="s1">&#39;temp_air&#39;</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Δt</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;To&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="c1"># indoor auxiliary heat</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/generic.py:9439,</span> in <span class="ni">NDFrame.resample</span><span class="nt">(self, rule, axis, closed, label, convention, kind, on, level, origin, offset, group_keys)</span>
-<span class="g g-Whitespace">   </span><span class="mi">9436</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">9437</span>     <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">-&gt; </span><span class="mi">9439</span> <span class="k">return</span> <span class="n">get_resampler</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">9440</span>     <span class="n">cast</span><span class="p">(</span><span class="s2">&quot;Series | DataFrame&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">9441</span>     <span class="n">freq</span><span class="o">=</span><span class="n">rule</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9442</span>     <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9443</span>     <span class="n">closed</span><span class="o">=</span><span class="n">closed</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9444</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9445</span>     <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9446</span>     <span class="n">convention</span><span class="o">=</span><span class="n">convention</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9447</span>     <span class="n">key</span><span class="o">=</span><span class="n">on</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9448</span>     <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9449</span>     <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9450</span>     <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9451</span>     <span class="n">group_keys</span><span class="o">=</span><span class="n">group_keys</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">9452</span> <span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/resample.py:1969,</span> in <span class="ni">get_resampler</span><span class="nt">(obj, kind, **kwds)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1965</span> <span class="k">def</span> <span class="nf">get_resampler</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Series</span> <span class="o">|</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Resampler</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1966</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1967</span><span class="sd">     Create a TimeGrouper and return our resampler.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1968</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1969</span>     <span class="n">tg</span> <span class="o">=</span> <span class="n">TimeGrouper</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1970</span>     <span class="k">return</span> <span class="n">tg</span><span class="o">.</span><span class="n">_get_resampler</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/anaconda3/lib/python3.11/site-packages/pandas/core/resample.py:2046,</span> in <span class="ni">TimeGrouper.__init__</span><span class="nt">(self, freq, closed, label, how, axis, fill_method, limit, kind, convention, origin, offset, group_keys, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2043</span> <span class="k">if</span> <span class="n">convention</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">}:</span>
-<span class="g g-Whitespace">   </span><span class="mi">2044</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported value </span><span class="si">{</span><span class="n">convention</span><span class="si">}</span><span class="s2"> for `convention`&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">2046</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">to_offset</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2048</span> <span class="n">end_types</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="s2">&quot;BM&quot;</span><span class="p">,</span> <span class="s2">&quot;BA&quot;</span><span class="p">,</span> <span class="s2">&quot;BQ&quot;</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">}</span>
-<span class="g g-Whitespace">   </span><span class="mi">2049</span> <span class="n">rule</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">rule_code</span>
-
-<span class="nn">File offsets.pyx:4460,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="nn">File offsets.pyx:4557,</span> in <span class="ni">pandas._libs.tslibs.offsets.to_offset</span><span class="nt">()</span>
-
-<span class="ne">ValueError</span>: Invalid frequency: 360.0s
-</pre></div>
-</div>
+<img alt="../_images/f4c1c3b2cdc2fccf3a99bda253bdda4c33fca94ac36b24a8d9dea2def2f90ed3.png" src="../_images/f4c1c3b2cdc2fccf3a99bda253bdda4c33fca94ac36b24a8d9dea2def2f90ed3.png" />
 </div>
 </div>
 <blockquote>
@@ -2625,6 +2570,9 @@ T_o\\
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/01a3c4b213078b084de72e3b93014361a21d7203e2d6811917a47903648c6539.png" src="../_images/01a3c4b213078b084de72e3b93014361a21d7203e2d6811917a47903648c6539.png" />
 </div>
 </div>
 <blockquote>

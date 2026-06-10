@@ -182,7 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat trasfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
 </ul>
@@ -724,14 +724,14 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance $\dot</span><span class="si">{m}</span><span class="s1">$ / [kg/s]&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure $p_i$ / [Pa]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance $\dot</span><span class="si">{m}</span><span class="s1">$ / (kg·s⁻¹)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure $p_i$ / Pa&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3bad0a4ef9d8282d7f30db8ae2a1982f7bc805a143e0ec75ebfad0c95d97bf09.png" src="../_images/3bad0a4ef9d8282d7f30db8ae2a1982f7bc805a143e0ec75ebfad0c95d97bf09.png" />
+<img alt="../_images/5ccccbf7f1c5577ed4b9aa50ba84cdab3dba1c41596a3cf171d27352e471313d.png" src="../_images/5ccccbf7f1c5577ed4b9aa50ba84cdab3dba1c41596a3cf171d27352e471313d.png" />
 </div>
 </div>
 <blockquote>
@@ -871,14 +871,14 @@ error in mass flow balance: 0.000000 kg/s
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pi_max</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">})</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance $\dot</span><span class="si">{m}</span><span class="s1">$ / [kg/s]&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure $p_i$ / [Pa]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Error in mass balance, $\dot</span><span class="si">{m}</span><span class="s1">$ / (kg·s⁻¹)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Indoor pressure, $p_i$ / Pa&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/da39925fc58a99d94ae556e7298d32b57ec46ead723167d7ea356f999119f5ef.png" src="../_images/da39925fc58a99d94ae556e7298d32b57ec46ead723167d7ea356f999119f5ef.png" />
+<img alt="../_images/22b570ec3003799b4c4a42a1cb4be9c737f386da1bea7acf34899eb9ee2a03d7.png" src="../_images/22b570ec3003799b4c4a42a1cb4be9c737f386da1bea7acf34899eb9ee2a03d7.png" />
 </div>
 </div>
 <blockquote>
