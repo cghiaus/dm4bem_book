@@ -414,10 +414,27 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-pressure">Dynamic pressure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-flow-rate-extracted-by-mechanical-ventilation">Mass flow rate extracted by mechanical ventilation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-equations">System of equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-flow-rate-sources">Mass flow rate sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-equations">System of equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix">Conductance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-pressure-sources">Vector of pressure sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-mass-flow-sources">Vector of mass-flow sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-for-pressures">Solve for pressures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z0-pressure-pi1-at-z1">Pressure pi0 at z0, pressure pi1 at z1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z1-pressure-pi1-at-z1">Pressure pi0 at z1, pressure pi1 at z1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z0-pressure-pi1-at-z2">Pressure pi0 at z0, pressure pi1 at z2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z1-pressure-pi1-at-z2">Pressure pi0 at z1, pressure pi1 at z2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-mass-balance">Verify the mass balance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumetric-flow-rates">Volumetric flow rates</a></li>
 </ul>
 </li>
 </ul>
@@ -470,8 +487,10 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 </div>
 </div>
 </section>
+<section id="pressure-sources">
+<h2>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this heading">#</a></h2>
 <section id="static-pressure">
-<h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h2>
+<h3>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i \, g \, z\)</span> - static pressure indoors</p></li>
 <li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o \, g \, z\)</span> - static pressure outdoors</p></li>
@@ -486,6 +505,7 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 </div>
 </div>
 </div>
+</section>
 <section id="dynamic-pressure">
 <h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -501,8 +521,10 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 </div>
 </div>
 </section>
-<section id="mass-flow-rate-extracted-by-mechanical-ventilation">
-<h3>Mass flow rate extracted by mechanical ventilation<a class="headerlink" href="#mass-flow-rate-extracted-by-mechanical-ventilation" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="mass-flow-rate-sources">
+<h2>Mass flow rate sources<a class="headerlink" href="#mass-flow-rate-sources" title="Permalink to this heading">#</a></h2>
+<p>Mass flow rate extracted by mechanical ventilation is a mass flow source.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_dot_MV</span> <span class="o">=</span> <span class="n">ρi</span> <span class="o">*</span> <span class="n">V_dot_VMC</span> <span class="o">/</span> <span class="mi">3600</span>    <span class="c1"># kg/s, mass flow extract rate mech. vent.</span>
@@ -512,14 +534,15 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 </div>
 </section>
 <section id="system-of-equations">
-<h3>System of equations<a class="headerlink" href="#system-of-equations" title="Permalink to this heading">#</a></h3>
+<h2>System of equations<a class="headerlink" href="#system-of-equations" title="Permalink to this heading">#</a></h2>
 <p>The flow networks are shown in Figure 2.</p>
 <p><img alt="vent_2z_network" src="../_images/A06_vent_2z_nodes.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Flow network for ventilation of two zones. The differences between the figures consist in the reference height for the static pressures in zone 0 and 1. a) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, b) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, c) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>, d) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>.</p>
 </div></blockquote>
 <p>To solve this direct problem, we will follow the procedure presented in the section <a class="reference external" href="https://cghiaus.github.io/dm4bem_book/tutorials/T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a>.</p>
-<p><strong>Incidence matrix</strong></p>
+<section id="incidence-matrix">
+<h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(A = -\Delta = \begin{bmatrix}
 1 &amp; 0 \\ 
 -1 &amp; 1 \\ 
@@ -539,7 +562,9 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 </div>
 </div>
 </div>
-<p><strong>Conductance matrix</strong></p>
+</section>
+<section id="conductance-matrix">
+<h3>Conductance matrix<a class="headerlink" href="#conductance-matrix" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(G_0 = \rho_o K_0\)</span>, <span class="math notranslate nohighlight">\(G_1 = \rho_i K_1\)</span>, <span class="math notranslate nohighlight">\(G_2 = \rho_o K_2\)</span>,</p>
 <p><span class="math notranslate nohighlight">\(G = \begin{bmatrix}
 G_0 &amp; 0 &amp; 0 \\ 
@@ -554,7 +579,10 @@ G_0 &amp; 0 &amp; 0 \\
 </div>
 </div>
 </div>
-<p><strong>Vector of pressure sources</strong> for the four cases shown in Figure 2:</p>
+</section>
+<section id="vector-of-pressure-sources">
+<h3>Vector of pressure sources<a class="headerlink" href="#vector-of-pressure-sources" title="Permalink to this heading">#</a></h3>
+<p>For the four cases shown in Figure 2, the vector <span class="math notranslate nohighlight">\(b\)</span> is:</p>
 <ul class="simple">
 <li><p>a) <span class="math notranslate nohighlight">\(b = [P_{s0} + P_{d0}, P_{si0}, P_{s2} + P_{d2} - P_{si1}]\)</span></p></li>
 <li><p>b) <span class="math notranslate nohighlight">\(b = [P_{s0} + P_{d0} + P_{si0}, 0, P_{s2} + P_{d2} - P_{si1}]\)</span></p></li>
@@ -578,7 +606,9 @@ G_0 &amp; 0 &amp; 0 \\
 </div>
 </div>
 </div>
-<p><strong>Vector of mass-flow sources</strong></p>
+</section>
+<section id="vector-of-mass-flow-sources">
+<h3>Vector of mass-flow sources<a class="headerlink" href="#vector-of-mass-flow-sources" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(f = [0, \dot{m}_{MV}]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -587,7 +617,10 @@ G_0 &amp; 0 &amp; 0 \\
 </div>
 </div>
 </div>
-<p><strong>Find the indoor pressures</strong> in zone 0 and 1 at hight <span class="math notranslate nohighlight">\(z_1\)</span> and <span class="math notranslate nohighlight">\(z_2\)</span></p>
+</section>
+<section id="solve-for-pressures">
+<h3>Solve for pressures<a class="headerlink" href="#solve-for-pressures" title="Permalink to this heading">#</a></h3>
+<p>Find the pressures in zone 0 and 1 at hight <span class="math notranslate nohighlight">\(z_1\)</span> and <span class="math notranslate nohighlight">\(z_2\)</span> and the mass flow rates.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{cases}
 p = (A^T G A)^{-1}(A^T G b + f)\\
@@ -602,6 +635,12 @@ p = (A^T G A)^{-1}(A^T G b + f)\\
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">#</a></h2>
+<section id="pressure-pi0-at-z0-pressure-pi1-at-z1">
+<h3>Pressure pi0 at z0, pressure pi1 at z1<a class="headerlink" href="#pressure-pi0-at-z0-pressure-pi1-at-z1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (a) pressure pi0 at z0, pressure pi1 at z1</span>
@@ -619,6 +658,9 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
 </div>
 </div>
 </div>
+</section>
+<section id="pressure-pi0-at-z1-pressure-pi1-at-z1">
+<h3>Pressure pi0 at z1, pressure pi1 at z1<a class="headerlink" href="#pressure-pi0-at-z1-pressure-pi1-at-z1" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (b) pressure pi0 at z1, pressure pi1 at z1</span>
@@ -636,6 +678,9 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
 </div>
 </div>
 </div>
+</section>
+<section id="pressure-pi0-at-z0-pressure-pi1-at-z2">
+<h3>Pressure pi0 at z0, pressure pi1 at z2<a class="headerlink" href="#pressure-pi0-at-z0-pressure-pi1-at-z2" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (c) pressure pi0 at z0, pressure pi1 at z2</span>
@@ -653,6 +698,9 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
 </div>
 </div>
 </div>
+</section>
+<section id="pressure-pi0-at-z1-pressure-pi1-at-z2">
+<h3>Pressure pi0 at z1, pressure pi1 at z2<a class="headerlink" href="#pressure-pi0-at-z1-pressure-pi1-at-z2" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (d) pressure pi0 at z1, pressure pi1 at z2</span>
@@ -670,7 +718,10 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
 </div>
 </div>
 </div>
-<p><strong>Verify the mass balance</strong> in zone 1.</p>
+</section>
+<section id="verify-the-mass-balance">
+<h3>Verify the mass balance<a class="headerlink" href="#verify-the-mass-balance" title="Permalink to this heading">#</a></h3>
+<p>The mass flow balance in zone 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass balance in node pᵢ₁: </span><span class="se">\n</span><span class="s2"> m₁ + m₂ = mᵥ; </span><span class="se">\n\</span>
@@ -686,7 +737,10 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
 </div>
 </div>
 </div>
-<p><strong>Volumetric flow rate</strong> through the three openings.</p>
+</section>
+<section id="volumetric-flow-rates">
+<h3>Volumetric flow rates<a class="headerlink" href="#volumetric-flow-rates" title="Permalink to this heading">#</a></h3>
+<p>The volumetric flow rate through the three openings.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V_dot</span> <span class="o">=</span> <span class="n">m_dot</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ρe</span><span class="p">,</span> <span class="n">ρi</span><span class="p">,</span> <span class="n">ρe</span><span class="p">])</span>              <span class="c1"># m³/s, volum. flow rate</span>
@@ -769,10 +823,27 @@ Mass flow rate: [152.4 152.4  87.6] kg/h
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#static-pressure">Static pressure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-pressure">Dynamic pressure</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-flow-rate-extracted-by-mechanical-ventilation">Mass flow rate extracted by mechanical ventilation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-equations">System of equations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-flow-rate-sources">Mass flow rate sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#system-of-equations">System of equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix">Incidence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix">Conductance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-pressure-sources">Vector of pressure sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-of-mass-flow-sources">Vector of mass-flow sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-for-pressures">Solve for pressures</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions">Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z0-pressure-pi1-at-z1">Pressure pi0 at z0, pressure pi1 at z1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z1-pressure-pi1-at-z1">Pressure pi0 at z1, pressure pi1 at z1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z0-pressure-pi1-at-z2">Pressure pi0 at z0, pressure pi1 at z2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-pi0-at-z1-pressure-pi1-at-z2">Pressure pi0 at z1, pressure pi1 at z2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verify-the-mass-balance">Verify the mass balance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#volumetric-flow-rates">Volumetric flow rates</a></li>
 </ul>
 </li>
 </ul>
