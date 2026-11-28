@@ -146,8 +146,8 @@ For a branch oriented from node $i$ to node $j$:
 
 Therefore, the mass flow relationship becomes
 
-$$\dot{m}_{ij} = K_{ij}
-\rho_{up,ij} \operatorname{sign} (\Delta p_{ij})
+$$\dot{m}_{ij} = \rho_{up,ij} K_{ij}
+ \operatorname{sign} (\Delta p_{ij})
 |\Delta p_{ij}|^{n_{ij}}$$
 
 where $\rho_{up,ij}$ is the density at the
