@@ -488,9 +488,9 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fsolve</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">import</span> <span class="nn">dm4bem</span>
 
@@ -549,8 +549,8 @@ document.write(`
 <section id="static-pressure">
 <h2>Static pressure<a class="headerlink" href="#static-pressure" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i \, g \, z\)</span> - static pressure indoors</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o \, g \, z\)</span> - static pressure outdoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{si} = - \rho_i \, g \, z\)</span> is the static pressure indoors</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{so} = - \rho_o \, g \, z\)</span> is the static pressure outdoors</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -568,14 +568,15 @@ document.write(`
 <h3>Dynamic pressure<a class="headerlink" href="#dynamic-pressure" title="Permalink to this heading">#</a></h3>
 <p>If wind is neglected (i.e., wind velocity is zero <span class="math notranslate nohighlight">\(v =0\)</span>), then the dynamic pressures:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \, \rho_o \, v^2\)</span> - north face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \, \rho_o \, v^2\)</span> - south face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \, \rho_o \, v^2\)</span> - chimney</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \frac{1}{2} \, \rho_o \, v^2\)</span> on north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \frac{1}{2} \, \rho_o \, v^2\)</span> on south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \frac{1}{2} \, \rho_o \, v^2\)</span> on chimney</p></li>
 </ul>
 <p>are zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># m/s, wind speed</span>
+
 <span class="c1"># dynamic pressures, Pa</span>
 <span class="n">Pdn</span> <span class="o">=</span> <span class="n">Cpn</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># north face</span>
 <span class="n">Pds</span> <span class="o">=</span> <span class="n">Cps</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>     <span class="c1"># south face</span>
@@ -694,7 +695,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -707,7 +708,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
-<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
 <span class="n">root</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pᵢ = </span><span class="si">{</span><span class="n">root</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
 </pre></div>
@@ -756,9 +757,9 @@ error in mass flow balance: 0.000000 kg/s
 <h3>Dynamic pressure<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The dynamic pressures are:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \, \frac{1}{2} \,  \rho_o \,v^2\)</span> - north face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \, \frac{1}{2} \,  \rho_o \, v^2\)</span> - south face</p></li>
-<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \, \frac{1}{2} \,  \rho_o \, v^2\)</span> - chimney</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dn} = C_{pn} \, \frac{1}{2} \,  \rho_o \,v^2\)</span> on north face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{ds} = C_{ps} \, \frac{1}{2} \,  \rho_o \, v^2\)</span> on south face</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_{dc} = C_{pc} \, \frac{1}{2} \,  \rho_o \, v^2\)</span> on chimney</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,7 +831,7 @@ error in mass flow balance: 0.000000 kg/s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># numerical solution</span>
-<span class="n">root</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">pi_min</span><span class="p">,</span> <span class="n">pi_max</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pᵢ = </span><span class="si">{</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
