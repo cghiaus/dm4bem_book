@@ -28,7 +28,7 @@ The objective is to find the pressure vector for which
 
 $$r(p) = 0$$
 
-In other words, the numerical method searches for the node pressures $p$ that satisfy all mass-conservation equations $A^T \dot{m}(p) + f = 0$ simultaneously.
+In other words, the numerical method searches for the node pressures $p$ that satisfy all mass-conservation equations $A^T \dot{m}(p) + f = 0$ simultaneously. Note that $A^T$ plays the role of $\sum$ operator for mass flows.
 
 The function $r(p)$ is the function that the nonlinear optimisation algorithm will attempt to bring to zero.
 
