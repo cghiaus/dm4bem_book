@@ -1,0 +1,929 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Airflow networks &#8212; dm4bem</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/a00_flow_network';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt="dm4bem - Home"/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt="dm4bem - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamic Models for Building Energy Management
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="T03_DAE2SS.html">From differential-algebraic equations to state-space representation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01WeatherData.html">Weather data and solar radiation on a tilted surface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_0ModelSimulation.html">Modeling and simulation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_1Wall.html">Simple wall</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="02_2_0Toy.html">Toy model house</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_2_1Toy.html">Modeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_2Toy.html">Steady-state and step response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_3Toy.html">Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_2_4Toy.html">Simulation: perfect controller</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="pdREADME.html">Assembling thermal circuits</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pd01wall2TC.html">Disassembled thermal circuits from wall description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd02bldg2TCd.html">Disassembled thermal circuits from building description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd03assembleTCd.html">Assembled thermal circuits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd04tc2ss.html">Thermal circuit to state-space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd05simulation.html">Inputs and simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A04Greenhouse_effect.html">Greenhouse effect</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/cghiaus/dm4bem_book/issues/new?title=Issue%20on%20page%20%2Ftutorials/a00_flow_network.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorials/a00_flow_network.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Airflow networks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-theory">Summary of theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-sources">Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-equation">Constitutive equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-equation">Mass conservation equation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-principles-balance-equations-and-constitutive-laws">1. Physical principles: balance equations and constitutive laws</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-at-pressure-nodes">1.1. Mass conservation at pressure nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-constitutive-law-volumetric-flow-and-pressure-difference">1.2. Nonlinear constitutive law: volumetric flow and pressure difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-mass-flow-and-volumetric-flow">1.3. Relationship between mass flow and volumetric flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upstream-air-density">1.4. Upstream air density</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources-and-flow-sources">2. Pressure sources and flow sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1. Pressure sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2. Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representation-of-the-airflow-network">3. Graph representation of the airflow network</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix-a">3.1. Incidence matrix (A)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-vector-and-pressure-source-vector">3.2. Pressure vector and pressure-source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">3.3. Conductance matrix (G)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-matrix-formulation">3.4. Complete matrix formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#role-of-the-vectors-and-matrices">3.5. Role of the vectors and matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="airflow-networks">
+<h1>Airflow networks<a class="headerlink" href="#airflow-networks" title="Permalink to this heading">#</a></h1>
+<p>This chapter deals with modeling airflow using flow networks, which are similar to the thermal networks presented in the section  on <a class="reference external" href="https://cghiaus.github.io/dm4bem_book/tutorials/T01_Heat_transfer.html">Thermal networks for heat transfer</a>. These networks are oriented weighted graphs that have conductances and pressure sources on branches and flow sources in nodes. This section addresses only steady-state flow networks. What is specific to aeraulic networks is that the constitutive equations are (generally) non-linear and relate volumetric flow to pressure drop, while the balance equations are based on mass conservation. Since mass flow rate is related to volumetric flow through density, and the density is that of the upstream air—which generally differs from the density of the downstream air—changing the direction of flows changes the values of the mass flow rates (it is not simply a change of sign).</p>
+<section id="summary-of-theory">
+<h2>Summary of theory<a class="headerlink" href="#summary-of-theory" title="Permalink to this heading">#</a></h2>
+<section id="sources">
+<h3>Sources<a class="headerlink" href="#sources" title="Permalink to this heading">#</a></h3>
+<section id="pressure-sources">
+<h4>Pressure sources<a class="headerlink" href="#pressure-sources" title="Permalink to this heading">#</a></h4>
+<p>Pressure sources <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
+<ul class="simple">
+<li><p>stack pressure: <span class="math notranslate nohighlight">\(P_s = P_0 - \rho \, g \, z\)</span>;</p></li>
+<li><p>wind pressure: <span class="math notranslate nohighlight">\(P_w = C_p \frac{1}{2} \rho_o \, v^2\)</span></p></li>
+</ul>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P_s\)</span> stack pressure, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_0\)</span> stack pressure at reference height, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> gravitational acceleration, m/s²</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> indoor or outdoor air density, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(z\)</span> height above the reference level, m</p></li>
+<li><p><span class="math notranslate nohighlight">\(P_w\)</span> wind pressure difference relative to the outdoor pressure in undisturbed flow, Pa</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_p\)</span> pressure coefficient, dimensionless</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_o\)</span> outside air density, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> wind speed, m/s</p></li>
+</ul>
+</section>
+<section id="flow-sources">
+<h4>Flow sources<a class="headerlink" href="#flow-sources" title="Permalink to this heading">#</a></h4>
+<p>Flow sources inject a controlled volumetric airflow rate into the control volume, as is the case in <a class="reference external" href="https://en.m.wikipedia.org/wiki/Ventilation_(architecture)">balanced mechanical ventilation systems</a>.</p>
+</section>
+</section>
+<section id="constitutive-equation">
+<h3>Constitutive equation<a class="headerlink" href="#constitutive-equation" title="Permalink to this heading">#</a></h3>
+<p>Each opening of a building can be modelled by a <a class="reference external" href="https://en.m.wikipedia.org/wiki/Constitutive_equation">constitutive equation</a> or power law <a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">(Rock et al. 2017)</a>:</p>
+<div class="math notranslate nohighlight">
+\[ \dot V_{i,j} = K_{i,j} \, \Delta P^n_{i,j} = K_{i,j} \, (P_i - P_j)^n\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric airflow through opening from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> pressure exponent, dimensionless; typical value about 0.65</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{i,j}\)</span> flow coefficient, m³/(s·Paⁿ)</p></li>
+</ul>
+<p>The values of the pressure exponent <span class="math notranslate nohighlight">\(n\)</span> and flow coefficient <span class="math notranslate nohighlight">\(K_{i,j}\)</span> can be obtained experimentally by using the <a class="reference external" href="https://en.wikipedia.org/wiki/Blower_door">blower door</a> test.</p>
+</section>
+<section id="mass-conservation-equation">
+<h3>Mass conservation equation<a class="headerlink" href="#mass-conservation-equation" title="Permalink to this heading">#</a></h3>
+<p>Mass air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[ \dot m_{i,j} = \rho_i \, \dot V_{i,j}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot m_{i,j}\)</span> mass flow rate of air from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, kg/s</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_i\)</span> air density in control volume <span class="math notranslate nohighlight">\(i\)</span>, kg/m³</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot V_{i,j}\)</span> volumetric air flow rate from control volume <span class="math notranslate nohighlight">\(i\)</span> to control volume <span class="math notranslate nohighlight">\(j\)</span>, m³/s</p></li>
+</ul>
+<p>In steady-state, the <a class="reference external" href="https://en.m.wikipedia.org/wiki/Conservation_of_mass">mass conservation</a> law states that the algebraic sum of mass flow rates entering in a control volume <span class="math notranslate nohighlight">\(j\)</span> is zero:</p>
+<div class="math notranslate nohighlight">
+\[\sum_i \dot m_{i,j} = 0\]</div>
+<p><strong>Notes:</strong></p>
+<ol class="arabic simple">
+<li><p>The constitutive law relates volumetric airflow to pressure difference.</p></li>
+<li><p>The balance equation is done for mass flow rate.</p></li>
+<li><p>Generally, <span class="math notranslate nohighlight">\(\dot m_{i,j} \neq \dot m_{j,i}\)</span>, even if <span class="math notranslate nohighlight">\(\dot V_{i,j} = \dot V_{j,i}\)</span>. This implies that if the mass flow rates obtained by solving the aeraulic circuit are negative, than the direction of the flows need to be changed and a new solution to be searched for.</p></li>
+</ol>
+</section>
+</section>
+<section id="physical-principles-balance-equations-and-constitutive-laws">
+<h2>1. Physical principles: balance equations and constitutive laws<a class="headerlink" href="#physical-principles-balance-equations-and-constitutive-laws" title="Permalink to this heading">#</a></h2>
+<p>An airflow network represents the movement of air through openings, cracks, ducts, or other flow paths connecting different pressure nodes. The network is governed by two fundamental types of equations:</p>
+<ol class="arabic simple">
+<li><p><strong>Balance equations</strong>, expressing conservation of mass at the
+pressure nodes.</p></li>
+<li><p><strong>Constitutive laws</strong>, describing the relationship between the
+airflow rate through a branch and the pressure difference across it.</p></li>
+</ol>
+<p>These equations form a nonlinear system because the airflow through an opening generally depends nonlinearly on the pressure difference.</p>
+<section id="mass-conservation-at-pressure-nodes">
+<h3>1.1. Mass conservation at pressure nodes<a class="headerlink" href="#mass-conservation-at-pressure-nodes" title="Permalink to this heading">#</a></h3>
+<p>Consider a network composed of (N) internal pressure nodes connected by (B) branches. Each branch connects two nodes or an internal node to a reference-pressure node.</p>
+<p>At each internal node, conservation of mass requires that the algebraic sum of the mass flow rates through the connected branches, together with any imposed mass-flow source, be zero.</p>
+<p>Using a consistent orientation for the branches, the mass balance
+equations can be written as</p>
+<div class="math notranslate nohighlight">
+\[\sum \dot{m}_i + f_i = 0\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sum\)</span> is the summation operator;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_i\)</span> are the branch mass flow rates (kg/s);</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_i\)</span> are the imposed mass-flow sources
+at internal nodes (kg/s).</p></li>
+</ul>
+<p>The balance equations express the fact that air cannot accumulate at a pressure node in a steady-state airflow network.</p>
+</section>
+<section id="nonlinear-constitutive-law-volumetric-flow-and-pressure-difference">
+<h3>1.2. Nonlinear constitutive law: volumetric flow and pressure difference<a class="headerlink" href="#nonlinear-constitutive-law-volumetric-flow-and-pressure-difference" title="Permalink to this heading">#</a></h3>
+<p>The airflow through an opening or leakage path is commonly described by
+a power-law relationship between the volumetric flow rate and the
+pressure difference across the opening:</p>
+<div class="math notranslate nohighlight">
+\[\dot{V}_{ij} = K_{ij} \operatorname{sign} (\Delta p_{ij}) |\Delta p_{ij}|^{n_{ij}}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{V}_{ij}\)</span> is the volumetric flow rate, <span class="math notranslate nohighlight">\(m^3/h\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(K_{ij}\)</span> is the flow coefficient, <span class="math notranslate nohighlight">\(m^3 /(h·Pa^{n_{ij}})\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta p_{ij}\)</span> is the pressure difference across the branch, <span class="math notranslate nohighlight">\(Pa\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n_{ij}\)</span> is the flow exponent, with <span class="math notranslate nohighlight">\(0 &lt; n_{ij} \leq 1\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{sign} (\Delta p_{ij})\)</span> indicates the direction of the flow.</p></li>
+</ul>
+<p>The flow exponent depends on the characteristics of the opening and the
+flow regime. Typical values include (<a class="reference external" href="https://www.aivc.org/sites/default/files/members_area/medias/pdf/Guides/Ventilation%20Modelling%20Data%20Guide_web.pdf">Orme &amp; Leksmono, 2002</a>, Appendix E):</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n = 0.5\)</span>: turbulent flow, commonly used for openings;</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> approaching 1: predominantly laminar flow.</p></li>
+</ul>
+<p>The <span class="math notranslate nohighlight">\(\operatorname{sign}\)</span> function is essential because the pressure difference can
+change sign, causing the flow direction to reverse.</p>
+</section>
+<section id="relationship-between-mass-flow-and-volumetric-flow">
+<h3>1.3. Relationship between mass flow and volumetric flow<a class="headerlink" href="#relationship-between-mass-flow-and-volumetric-flow" title="Permalink to this heading">#</a></h3>
+<p>Mass flow rate and volumetric flow rate are related through air density:</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}_{ij} = \rho_{ij} \dot{V}_{ij}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\dot{m}_{ij}\)</span> is the  mass flow, kg/s;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_{ij}\)</span> is the air density, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\dot{V}_{ij}\)</span> the volumetric flow rate, m³/s.</p></li>
+</ul>
+<p>If the flow coefficient is expressed in
+m³/h, then</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}_{ij} =
+\frac{\rho_{ij}}{3600} \dot{V}_{ij}\]</div>
+<p>Substituting the power-law constitutive relationship gives</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}_{ij} = \frac{\rho_{ij}K_{ij}}{3600} \operatorname{sign} (\Delta{p}) |\Delta p_{ij}| ^{n_{ij}}\]</div>
+<p>Note that air density depends on the location from which the air originates.</p>
+</section>
+<section id="upstream-air-density">
+<h3>1.4. Upstream air density<a class="headerlink" href="#upstream-air-density" title="Permalink to this heading">#</a></h3>
+<p>In an airflow network, the density used to calculate mass flow must correspond to the upstream node of the branch, that is, the node from which the air enters the branch.</p>
+<p>For a branch oriented from node <span class="math notranslate nohighlight">\(i\)</span> to node <span class="math notranslate nohighlight">\(j\)</span>:</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(\Delta p_{ij}\)</span> produces positive flow, air travels
+from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span>, and the density is <span class="math notranslate nohighlight">\(\rho_i\)</span>;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\Delta p_{ij}\)</span> produces negative flow, air travels
+from <span class="math notranslate nohighlight">\(j\)</span> to <span class="math notranslate nohighlight">\(i\)</span>, and the density is <span class="math notranslate nohighlight">\(\rho_j\)</span>.</p></li>
+</ul>
+<p>Therefore, the mass flow relationship becomes</p>
+<div class="math notranslate nohighlight">
+\[\dot{m}_{ij} = \frac{K_{ij}}{3600}
+\rho_{up,ij} \operatorname{sign} (\Delta p_{ij})
+|\Delta p_{ij}|^{n_{ij}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{up,ij}\)</span> is the density at the
+upstream end of the branch.</p>
+<p>This distinction is particularly important when a branch connects  environments with different air densities.</p>
+<p>In the Python implementation, the upstream density is selected according to the sign of the branch pressure difference. The code stores two possible densities for each branch, <code class="docutils literal notranslate"><span class="pre">rho_forward</span></code> and <code class="docutils literal notranslate"><span class="pre">rho_backward</span></code>, corresponding to the two possible flow directions, and selects the appropriate one during each iteration.</p>
+</section>
+</section>
+<section id="pressure-sources-and-flow-sources">
+<h2>2. Pressure sources and flow sources<a class="headerlink" href="#pressure-sources-and-flow-sources" title="Permalink to this heading">#</a></h2>
+<p>An airflow is driven by imposed pressure differences and imposed mass flows.</p>
+<section id="id1">
+<h3>2.1. Pressure sources<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Pressure sources contribute to the pressure difference across a branch
+independently of the unknown pressure differences between its internal
+nodes.</p>
+<p><strong>Wind pressure</strong></p>
+<p>Wind creates a pressure distribution on the building envelope. The
+pressure at a particular façade location is commonly expressed as</p>
+<div class="math notranslate nohighlight">
+\[p_{wind} = C_p \frac{\rho_e v^2}{2}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C_p\)</span> is the wind pressure coefficient;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho_e\)</span> is the outdoor air density, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(v\)</span> is the wind velocity, m/s.</p></li>
+</ul>
+<p>The wind pressure coefficient depends on the building geometry, wind direction, and position on the façade. It can be positive or negative, representing positive or suction pressure relative to the reference outdoor pressure (<a class="reference external" href="https://www.aivc.org/sites/default/files/members_area/medias/pdf/Guides/Ventilation%20Modelling%20Data%20Guide_web.pdf">Orme &amp; Leksmono, 2002</a>, Appendix F).</p>
+<p><strong>Static pressure</strong></p>
+<p>The hydrostatic pressure variation with height results from the weight of the air column. For a constant density, the pressure variation
+between a reference height and a height <span class="math notranslate nohighlight">\(z\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[p_{static}(z) = -\rho g z\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> is the air density, kg/m³;</p></li>
+<li><p><span class="math notranslate nohighlight">\(g\)</span> is gravitational acceleration, m/s²;</p></li>
+<li><p><span class="math notranslate nohighlight">\(z\)</span> is the vertical coordinate measured relative to the reference
+level, m.</p></li>
+</ul>
+<p>When indoor and outdoor air densities differ, the hydrostatic pressure distributions also differ. This produces the <a class="reference external" href="https://en.wikipedia.org/wiki/Stack_effect">stack effect</a>, which can drive infiltration and exfiltration even in the absence of wind.</p>
+<p><strong>Combined pressure sources</strong></p>
+<p>The pressure sources acting on a branch can combine wind and static
+pressure contributions. Their algebraic sum is represented by the branch pressure-source <span class="math notranslate nohighlight">\(b\)</span>. The <a class="reference external" href="https://en.wikipedia.org/wiki/Passive_sign_convention">sign of each source</a> depends on the orientation assigned to the mass flow of the branch:</p>
+<ul class="simple">
+<li><p>if the flow is from <span class="math notranslate nohighlight">\(-\)</span> to <span class="math notranslate nohighlight">\(+\)</span> of the source, then the source is positif;</p></li>
+<li><p>if the flow is from <span class="math notranslate nohighlight">\(+\)</span> to <span class="math notranslate nohighlight">\(-\)</span> of the source, then the source is negative.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>2.2. Flow sources<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Flow sources, <span class="math notranslate nohighlight">\(f\)</span>, represent imposed mass flows at pressure nodes (such as mechanical ventilation extraction or supply ventilation).</p>
+<p>If the mechanical ventilation flow is specified as a volumetric  rate, then it needs to be converted into a mass-flow source using
+the indoor or outdoor air density for the extraction and supply, respectively.</p>
+<p>The sign convention must be consistent with the mass balance equation: extraction is represented by a positive sink contribution in the balance equation, while supply is represented by a negative sink contribution.</p>
+</section>
+</section>
+<section id="graph-representation-of-the-airflow-network">
+<h2>3. Graph representation of the airflow network<a class="headerlink" href="#graph-representation-of-the-airflow-network" title="Permalink to this heading">#</a></h2>
+<p>An airflow network can be represented as an <strong>oriented, weighted
+graph</strong>:</p>
+<ul class="simple">
+<li><p>pressure nodes are the vertices of the graph;</p></li>
+<li><p>airflow paths are the edges (branches) connecting the vertices;</p></li>
+<li><p>each branch has an assigned orientation, which defines the positive direction of airflow;</p></li>
+<li><p>each branch is associated with a flow conductance that depends on its pressure difference and upstream air density.</p></li>
+</ul>
+<p>The graph representation provides a systematic way to formulate the mass
+balance equations and the pressure-flow relationships using matrices and
+vectors.</p>
+<section id="incidence-matrix-a">
+<h3>3.1. Incidence matrix (A)<a class="headerlink" href="#incidence-matrix-a" title="Permalink to this heading">#</a></h3>
+<p>The topology of the network is described by the branch-node incidence matrix <span class="math notranslate nohighlight">\(A\)</span>, with dimensions <span class="math notranslate nohighlight">\(B \times N\)</span>, where <span class="math notranslate nohighlight">\(B\)</span> is the number of branches and <span class="math notranslate nohighlight">\(N\)</span> is the number of internal pressure nodes.</p>
+<p>The elements of the matrix are defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A_{ij} =
+\begin{cases}
+-1 &amp; \text{if branch } i \text{ starts at node } j\\
++1 &amp; \text{if branch } i \text{ ends at node } j\\
+0 &amp; \text{if branch } i \text{ is not connected to node } j
+\end{cases}
+\end{split}\]</div>
+<p>The orientation of a branch is arbitrary but must remain consistent throughout the formulation.</p>
+<p>The reference-pressure node is not included among the unknown pressure nodes. Consequently, a branch connecting an internal node to the reference node has only one nonzero entry in its row of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The incidence matrix is used to express pressure
+differences along the branches, <span class="math notranslate nohighlight">\(\Delta p = -Ap\)</span>, and the mass sum in the nodes, <span class="math notranslate nohighlight">\(\sum \dot{m} = A^T \dot{m}\)</span>.</p>
+</section>
+<section id="pressure-vector-and-pressure-source-vector">
+<h3>3.2. Pressure vector and pressure-source vector<a class="headerlink" href="#pressure-vector-and-pressure-source-vector" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> denote the vector of unknown pressures at
+the internal nodes, relative to the reference pressure.</p>
+<p>The pressure difference across all branches is calculated using</p>
+<div class="math notranslate nohighlight">
+\[\Delta p = -A p + b\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p\)</span> is the vector of internal node pressures, Pa;</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the vector of branch pressure sources, Pa;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta p\)</span> is the vector of branch pressure differences, Pa.</p></li>
+</ul>
+<p>The vector <span class="math notranslate nohighlight">\(b\)</span> includes the wind and static pressure
+contributions associated with each branch.</p>
+<p>The minus sign in <span class="math notranslate nohighlight">\(-A p\)</span> follows the chosen incidence-matrix convention: a branch oriented from node <span class="math notranslate nohighlight">\(i\)</span> to node <span class="math notranslate nohighlight">\(j\)</span>
+has a pressure difference <span class="math notranslate nohighlight">\((p_i - p_j)\)</span>, before adding the
+imposed pressure source.</p>
+</section>
+<section id="conductance-matrix-g">
+<h3>3.3. Conductance matrix (G)<a class="headerlink" href="#conductance-matrix-g" title="Permalink to this heading">#</a></h3>
+<p>For a linear flow network, the mass flow through a branch is
+proportional to the pressure difference across it. The proportionality coefficient is its mass-flow conductance.</p>
+<p>For a nonlinear airflow network, the equivalent conductance depends on the current pressure difference and the upstream air density.</p>
+<p>For branch <span class="math notranslate nohighlight">\(i\)</span>, the equivalent mass-flow conductance is</p>
+<div class="math notranslate nohighlight">
+\[G_i = \frac{\rho_{{up},i} K_i}{3600}
+|\Delta p_i|^{n_i-1}\]</div>
+<p>The conductance matrix <span class="math notranslate nohighlight">\(G\)</span> is diagonal:</p>
+<div class="math notranslate nohighlight">
+\[G = \operatorname{diag}(G_1, G_2, \ldots, G_B)\]</div>
+<p>Its diagonal elements have units of kg/(s·Pa).</p>
+<p>The mass-flow vector can then be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\dot{m} = G \Delta p\]</div>
+<p>Unlike a linear network, the airflow conductance changes with the pressure difference and can also change when the flow
+direction reverses and a different upstream density applies.</p>
+</section>
+<section id="complete-matrix-formulation">
+<h3>3.4. Complete matrix formulation<a class="headerlink" href="#complete-matrix-formulation" title="Permalink to this heading">#</a></h3>
+<p>Using the incidence matrix and conductance matrix, the mass conservation equations become</p>
+<div class="math notranslate nohighlight">
+\[A^T G \Delta p + f = 0\]</div>
+<p>Substituting the expression for branch pressure differences gives</p>
+<div class="math notranslate nohighlight">
+\[A^T G(-A p + b) + f=0\]</div>
+<p>or, equivalently,</p>
+<div class="math notranslate nohighlight">
+\[A^T G A p=A^T G b + f\]</div>
+<p>This equation is the fundamental matrix equation used by the fixed-point algorithm.</p>
+<p>It is linear in the unknown pressure vector <span class="math notranslate nohighlight">\(p\)</span> if <span class="math notranslate nohighlight">\(G\)</span> is known. However, in the actual airflow network, <span class="math notranslate nohighlight">\(G\)</span> depends on the pressure differences and upstream densities, which themselves depend on the unknown pressures. The original problem is therefore nonlinear.</p>
+</section>
+<section id="role-of-the-vectors-and-matrices">
+<h3>3.5. Role of the vectors and matrices<a class="headerlink" href="#role-of-the-vectors-and-matrices" title="Permalink to this heading">#</a></h3>
+<p>The airflow network is completely described by the following quantities:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Dimensions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A\)</span></p></td>
+<td><p>Branch-node incidence matrix</p></td>
+<td><p><span class="math notranslate nohighlight">\(B \times N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(G\)</span></p></td>
+<td><p>Diagonal equivalent conductance matrix</p></td>
+<td><p><span class="math notranslate nohighlight">\(B \times B\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
+<td><p>Branch pressure-source vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(B\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f\)</span></p></td>
+<td><p>Node mass-flow-source vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\rho\)</span></p></td>
+<td><p>Internal-node air-density vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\rho_{ref}\)</span></p></td>
+<td><p>Reference-node air density</p></td>
+<td><p>Scalar</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p\)</span></p></td>
+<td><p>Unknown node pressure vector</p></td>
+<td><p><span class="math notranslate nohighlight">\(N\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>The density vector and reference-node density are used to determine the upstream density for each branch.</p>
+<p>The matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(G\)</span>, together with the vectors <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(f\)</span>, provide the mathematical description of the network topology, branch characteristics, and external conditions.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.aivc.org/sites/default/files/members_area/medias/pdf/Guides/Ventilation%20Modelling%20Data%20Guide_web.pdf">Orme, M., &amp; Leksmono, N. (2002)</a>. AIVC Guide 5: Ventilation modelling data guide. International Energy Agency, Air Infiltration Ventilation Center. AIC-GUI, 5.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-theory">Summary of theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources">Pressure sources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#flow-sources">Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutive-equation">Constitutive equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-equation">Mass conservation equation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-principles-balance-equations-and-constitutive-laws">1. Physical principles: balance equations and constitutive laws</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mass-conservation-at-pressure-nodes">1.1. Mass conservation at pressure nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-constitutive-law-volumetric-flow-and-pressure-difference">1.2. Nonlinear constitutive law: volumetric flow and pressure difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-mass-flow-and-volumetric-flow">1.3. Relationship between mass flow and volumetric flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upstream-air-density">1.4. Upstream air density</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-sources-and-flow-sources">2. Pressure sources and flow sources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1. Pressure sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.2. Flow sources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-representation-of-the-airflow-network">3. Graph representation of the airflow network</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#incidence-matrix-a">3.1. Incidence matrix (A)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressure-vector-and-pressure-source-vector">3.2. Pressure vector and pressure-source vector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conductance-matrix-g">3.3. Conductance matrix (G)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-matrix-formulation">3.4. Complete matrix formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#role-of-the-vectors-and-matrices">3.5. Role of the vectors and matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Christian Ghiaus
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
