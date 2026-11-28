@@ -13,6 +13,7 @@ https://github.com/pvlib/pvlib-python/blob/master/pvlib/iotools/epw.py
 
 import numpy as np
 import pandas as pd
+import scipy.optimize
 import os
 import glob
 import ast
@@ -649,6 +650,7 @@ def wall2TC(wall_types, walls_def, prefix="w"):
             # Initialize empty lists for G and CC
             G = []
             C = []
+            wall = wall.sort_index()
             for _, row in wall.iterrows():
                 if row['Mesh'] == 0:
                     G.append(row['U'])
@@ -734,8 +736,11 @@ def wall2TC(wall_types, walls_def, prefix="w"):
 
         b = b.astype(object)
         f = f.astype(object)
-        f[1] = wall_def['Q0'].iloc[0]
-        f[-2] = wall_def['Q1'].iloc[0]
+
+        if not pd.isna(wall_def['Q0'].iloc[0]):
+            f[1] = wall_def['Q0'].iloc[0]
+        if not pd.isna(wall_def['Q1'].iloc[0]):
+            f[-2] = wall_def['Q1'].iloc[0]
 
         if 'T0' in wall_def.columns and 'T1' in wall_def.columns:
             """
@@ -931,12 +936,17 @@ def file2TC(TC_file, name="w_", auto_number=False):
     TC_file = TC_file.fillna(0)
 
     # select A, G, C, b, f, y from TC_file
-    A = TC_file.iloc[:-3, :-2].astype(float)
-    G = TC_file.iloc[:-3, -2].astype(float)
-    C = TC_file.iloc[-3, :-2].astype(float)
-    b = TC_file.iloc[:-3, -1]
-    f = TC_file.iloc[-2, :-2]
-    y = TC_file.iloc[-1, :-2].astype(int)
+
+    # check if there is a column after "b"
+    columns = TC_file.columns
+    b_index = columns.get_loc("b")
+
+    A = TC_file.iloc[:-3, :b_index - 1].astype(float)
+    G = TC_file.iloc[:-3, b_index - 1].astype(float)
+    C = TC_file.iloc[-3, :b_index - 1].astype(float)
+    b = TC_file.iloc[:-3, b_index].astype(object)
+    f = TC_file.iloc[-2, :b_index - 1].astype(object)
+    y = TC_file.iloc[-1, :b_index - 1].astype(float)
 
     if auto_number:
         """
@@ -1673,3 +1683,326 @@ def print_rounded_time(var_name, t):
         print(var_name + f' = {int(t)} s')
     else:
         print(var_name + f' = {t:.3f} s')
+
+
+def flow_network_fixed_point(
+        A, b, f, K, n, rho, rho_ref, p0,
+        omega=0.5,
+        tol_p=1e-9,
+        tol_m=1e-9,
+        d_floor=1e-6,
+        max_iter=1000,
+        p_scale=0.5
+        ):
+    """
+    Solve a nonlinear flow network using fixed-point iterations.
+
+    Parameters
+    ----------
+    A : ndarray (n_branches, n_nodes)
+        Branch-node incidence matrix.
+    b : ndarray (n_branches,)
+        Pressure sources on branches, Pa.
+    f : ndarray (n_nodes,)
+        Mass flows sources at internal pressure nodes, kg/s.
+    K : float or ndarray
+        Flow coefficients, m³/(s·Paⁿ), flow coeff.,
+    n : float or ndarray
+        Flow exponents, 0 < n <= 1.
+    rho : ndarray (n_nodes,)
+        Air densities at internal nodes.
+    rho_ref : float
+        Air density at the reference-pressure node.
+    p0 : ndarray (n_nodes,)
+        Initial pressure estimates, Pa.
+    omega : float
+        Under-relaxation coefficient.
+    tol_p : float
+        Relative pressure convergence tolerance.
+    tol_m : float
+        Mass conservation tolerance, kg/s.
+    d_floor : float
+        Minimum pressure difference for conductance calculation.
+    max_iter : int
+        Maximum number of iterations.
+    p_scale : float
+        Reference pressure for relative convergence criterion (Pa)
+
+    Returns
+    -------
+    p : ndarray
+        Node pressures, Pa.
+    m_dot : ndarray
+        Branch mass flow rates, kg/s.
+    V_dot : ndarray
+        Branch volumetric flow rates, m³/s.
+    """
+
+    # Initial values for the internal node pressures
+    p = np.asarray(p0, dtype=float).copy()
+
+    # forward and backward upstream-density vectors
+    n_branches, n_nodes = A.shape
+
+    rho_forward = np.empty(n_branches)      # flow as given by A matrix
+    rho_backward = np.empty(n_branches)     # flow opposite to that of A
+
+    for i, row in enumerate(A):
+
+        minus = np.flatnonzero(row == -1)
+        plus = np.flatnonzero(row == 1)
+
+        # Density for positive flow (from −1 to +1)
+        rho_forward[i] = (
+            rho[minus[0]] if len(minus) else rho_ref
+        )
+
+        # Density for negative flow (+1 to −1)
+        rho_backward[i] = (
+            rho[plus[0]] if len(plus) else rho_ref
+        )
+
+    def pressure_diff(p):
+        """Pressure differences across branches."""
+        return -A @ p + b
+
+    def upstream_density(d):
+        """Density at the upstream end of each branch."""
+        return np.where(d >= 0, rho_forward, rho_backward)
+
+    def mass_flow(p):
+        """Exact nonlinear mass flow rates."""
+        d = pressure_diff(p)
+        rho_up = upstream_density(d)
+
+        return (
+            rho_up * K * np.sign(d) * np.abs(d)**n
+        )
+
+    # Fixed-point iterations
+
+    for iteration in range(max_iter):
+
+        # Pressure differences at current iteration
+        d = pressure_diff(p)
+
+        # Density of upstream air for each branch
+        rho_up = upstream_density(d)
+
+        # Equivalent mass-flow conductances
+        g = (
+            rho_up * K
+            * np.maximum(np.abs(d), d_floor)**(n - 1)
+        )
+
+        G = np.diag(g)
+
+        # Solve the linear pressure system
+        M = A.T @ G @ A
+        rhs = A.T @ G @ b + f
+        p_linear = np.linalg.solve(M, rhs)
+
+        # Under-relaxation
+        p_new = (1 - omega) * p + omega * p_linear
+
+        # Relative pressure change (p_new-p)/max(0.5Pa, p)
+        # infinity norm (largest absolute component)
+        # max(p_scale, p) : convergence criterion does not become
+        # excessively restrictive when all pressures are close to zero.
+        err_p = (
+            np.linalg.norm(p_new - p, ord=np.inf)
+            / max(p_scale, np.linalg.norm(p_new, ord=np.inf))
+        )
+
+        p = p_new
+
+        # Evaluate exact nonlinear mass flows
+        m_dot = mass_flow(p)
+
+        # Mass conservation residual
+        residual = A.T @ m_dot + f
+
+        # infinity norm (largest absolute component)
+        err_m = np.linalg.norm(residual, ord=np.inf)
+
+        if err_p < tol_p and err_m < tol_m:
+            break
+
+    else:
+        raise RuntimeError(
+            f"Fixed-point method did not converge "
+            f"after {max_iter} iterations.\n"
+            f"Pressure error: {err_p:.3e}\n"
+            f"Mass-balance residual: {err_m:.3e} kg/s"
+        )
+
+    # Final volumetric flow rates
+
+    d = pressure_diff(p)
+
+    V_dot = K * np.sign(d) * np.abs(d)**n
+
+    return p, m_dot, V_dot
+
+
+def flow_network_least_squares(
+        A, b, f, K, n, rho, rho_ref, p0,
+        tol_m=1e-9,
+        max_nfev=1e4
+        ):
+    """
+    Solve a nonlinear flow network using least_squares.
+
+    Parameters
+    ----------
+    A : ndarray (n_branches, n_nodes)
+        Branch-node incidence matrix.
+    b : ndarray (n_branches,)
+        Pressure sources on branches, Pa.
+    f : ndarray (n_nodes,)
+        Mass-flow sources at internal pressure nodes, kg/s.
+    K : ndarray (n_branches,)
+        Flow coefficients, m³/(s·Paⁿ).
+    n : float or ndarray
+        Flow exponents, 0 < n <= 1.
+    rho : ndarray (n_nodes,)
+        Air densities at internal nodes, kg/m³.
+    rho_ref : float
+        Air density at the reference-pressure node, kg/m³.
+    p0 : ndarray (n_nodes,)
+        Initial pressure estimates, Pa.
+    tol_m : float
+        Mass conservation tolerance, kg/s.
+    max_nfev : int
+        Maximum number of function evaluations.
+
+    Returns
+    -------
+    p : ndarray
+        Node pressures, Pa.
+    m_dot : ndarray
+        Branch mass flow rates, kg/s.
+    V_dot : ndarray
+        Branch volumetric flow rates, m³/s.
+    """
+
+    n_branches, n_nodes = A.shape
+
+    # -------------------------------------------------
+    # Construct upstream densities
+    # -------------------------------------------------
+
+    rho_forward = np.empty(n_branches)      # flow as given by A matrix
+    rho_backward = np.empty(n_branches)     # flow opposite to that of A
+
+    for i, row in enumerate(A):
+
+        minus = np.flatnonzero(row == -1)
+        plus = np.flatnonzero(row == 1)
+
+        # Density for positive flow (from −1 to +1)
+        rho_forward[i] = (
+            rho[minus[0]] if len(minus) else rho_ref
+        )
+
+        # Density for negative flow (+1 to −1)
+        rho_backward[i] = (
+            rho[plus[0]] if len(plus) else rho_ref
+        )
+
+    # -------------------------------------------------
+    # Pressure differences
+    # -------------------------------------------------
+
+    def pressure_diff(p):
+        """Pressure differences across branches."""
+        return -A @ p + b
+
+    # -------------------------------------------------
+    # Volumetric and mass flow laws
+    # -------------------------------------------------
+
+    def volume_flow(p):
+        d = pressure_diff(p)
+
+        return K * np.sign(d) * np.abs(d)**n
+
+    def mass_flow(p):
+        d = pressure_diff(p)
+        rho_up = np.where(
+            d >= 0, rho_forward, rho_backward
+        )
+
+        return rho_up * volume_flow(p)
+
+    # -------------------------------------------------
+    # Mass conservation residual
+    # -------------------------------------------------
+
+    def residual(p):
+        return A.T @ mass_flow(p) + f
+
+    # -------------------------------------------------
+    # Scale residual for numerical conditioning
+    # -------------------------------------------------
+
+    rho_max = np.maximum(rho_forward, rho_backward)
+
+    flow_scale = max(
+        np.max(np.abs(f)),
+        np.max(rho_max * K * np.abs(b)**n),
+        1e-12
+    )
+
+    def scaled_residual(p):
+        return residual(p) / flow_scale
+
+    # -------------------------------------------------
+    # Nonlinear least-squares solution
+    # -------------------------------------------------
+
+    sol = scipy.optimize.least_squares(
+        scaled_residual,
+        p0,
+        jac='2-point',
+        x_scale='jac',
+        ftol=1e-12,
+        xtol=1e-12,
+        gtol=1e-12,
+        max_nfev=max_nfev
+    )
+
+    p = sol.x
+
+    # -------------------------------------------------
+    # Check mass conservation
+    # -------------------------------------------------
+
+    mass_balance = residual(p)
+
+    err_m = np.linalg.norm(
+        mass_balance,
+        ord=np.inf
+    )
+
+    if not sol.success or err_m > tol_m:
+        raise RuntimeError(
+            f"Newton solver failed: {sol.message}\n"
+            f"Mass-balance residual: {mass_balance} kg/s\n"
+            f"Maximum residual: {err_m:.3e} kg/s"
+        )
+
+    # -------------------------------------------------
+    # Final flow rates
+    # -------------------------------------------------
+
+    d = pressure_diff(p)
+
+    V_dot = volume_flow(p)
+
+    rho_up = np.where(
+        d >= 0, rho_forward, rho_backward)
+
+    m_dot = rho_up * V_dot
+
+    return p, m_dot, V_dot

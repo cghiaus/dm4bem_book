@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   sodipodi:docname="08_thermal_network.svg"
-   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   sodipodi:docname="A02_DAE.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
    id="svg8"
    version="1.1"
    viewBox="0 0 161.04928 57.877935"
@@ -552,13 +552,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.0152643"
-     inkscape:cx="225.77683"
-     inkscape:cy="103.70848"
+     inkscape:cx="212.8753"
+     inkscape:cy="68.725477"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
-     inkscape:window-width="1666"
+     inkscape:window-width="1672"
      inkscape:window-height="986"
      inkscape:window-x="0"
      inkscape:window-y="25"
@@ -577,7 +577,11 @@
        type="xygrid"
        id="grid3751"
        originx="-71.019114"
-       originy="-14.410137" /></sodipodi:namedview><metadata
+       originy="-14.410137"
+       spacingy="1"
+       spacingx="1"
+       units="mm"
+       visible="true" /></sodipodi:namedview><metadata
      id="metadata5"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><g
@@ -669,9 +673,9 @@
        transform="translate(-1.0162079,-3.8615899)"><tspan
          x="168.68359"
          y="23.240201"
-         id="tspan24344"><tspan
+         id="tspan2"><tspan
            style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-           id="tspan24342">Legend</tspan></tspan></text><rect
+           id="tspan1">Legend</tspan></tspan></text><rect
        style="font-variation-settings:normal;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
        id="rect2269-1"
        width="10"
@@ -987,7 +991,7 @@
          transform="translate(1.5875,-13.758336)"><tspan
            x="37.976562"
            y="78.206202"
-           id="tspan24346">.</tspan></text></g><circle
+           id="tspan3">.</tspan></text></g><circle
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.211173;stroke-opacity:1"
        id="path952-7-1"
        cx="98.365654"
@@ -996,11 +1000,11 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
        x="99.130066"
-       y="28.513119"
+       y="27.983952"
        id="text1381-0"><tspan
          sodipodi:role="line"
          x="99.130066"
-         y="28.513119"
+         y="27.983952"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
          id="tspan1379-1">θ<tspan
    style="font-size:65%;baseline-shift:sub"
@@ -1094,7 +1098,7 @@
          transform="translate(1.5875,-13.758336)"><tspan
            x="37.976562"
            y="78.206202"
-           id="tspan24348">.</tspan></text></g><circle
+           id="tspan4">.</tspan></text></g><circle
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.211173;stroke-opacity:1"
        id="path952-7-1-3"
        cx="118.64794"
@@ -1103,11 +1107,11 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
        x="119.44823"
-       y="28.505154"
+       y="27.975986"
        id="text1381-0-7"><tspan
          sodipodi:role="line"
          x="119.44823"
-         y="28.505154"
+         y="27.975986"
          style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';stroke-width:0.264583"
          id="tspan1379-1-5">θ<tspan
    style="font-size:65%;baseline-shift:sub"
