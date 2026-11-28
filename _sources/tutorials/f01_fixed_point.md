@@ -14,7 +14,7 @@ The procedure is:
 4. Define the upstream air density for each branch.
 5. Define the mass-balance.
 6. Iterations:
-    - Calculate pressure differences, select upstream density, calculate conductances;
+    - calculate pressure differences, select upstream density, calculate conductances;
     - solve the linear system for pressure;
     - under-relaxation update of pressures;
     - calculate the mass flows;
