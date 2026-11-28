@@ -824,9 +824,9 @@ Mass flow rate: [152.44 152.44  87.56] kg/h
 <span class="p">])</span>
 
 <span class="c1"># Pressure, Pa: pi0 at z0, pi1 at z0</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ps0</span> <span class="o">+</span> <span class="n">Pd0</span><span class="p">,</span> 
-              <span class="n">Psi0</span><span class="p">,</span> 
-              <span class="n">Ps2</span> <span class="o">+</span> <span class="n">Pd2</span> <span class="o">-</span> <span class="n">Psi1</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Ps0</span> <span class="o">+</span> <span class="n">Pd0</span><span class="p">,</span>            <span class="c1"># branch 0 </span>
+              <span class="n">Psi0</span><span class="p">,</span>                 <span class="c1"># branch 1 </span>
+              <span class="n">Ps2</span> <span class="o">+</span> <span class="n">Pd2</span> <span class="o">-</span> <span class="n">Psi1</span><span class="p">])</span>    <span class="c1"># branch 2 (Psi1 &lt; 0)</span>
 </pre></div>
 </div>
 </div>
