@@ -420,6 +420,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-for-different-reference-pressures-and-flow-orientation">Solutions for different reference pressures and flow orientation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z0-and-z1-m2-normal">Pressures at z0 and z1, m2 normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z0-and-z1-m2-reversed">Pressures at z0 and z1, m2 reversed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z1-m2-normal">Pressures at z1, m2 normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z1-and-z2-m2-reversed">Pressures at z1 and z2, m2 reversed</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -434,7 +442,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ventilation-of-two-zones-non-linear-models">
 <h1>Ventilation of two zones: non-linear models<a class="headerlink" href="#ventilation-of-two-zones-non-linear-models" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Ff06_flow_2zone_non_lin.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>This sections deals with a multizone model characterized by non-linear constitutuive equations. The problem is solved by using the functions <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> and <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>.</p>
+<p>This sections deals with a multizone model characterized by non-linear constitutuive equations. The problem is solved by using the functions <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> and <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>. The reference level for the indoor air pressures and the initial guess of the direction of mass flow rates does ot change the final results.</p>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider the ventilation of two zones (Figure 1) in the case of non-linear constitutive law:</p>
@@ -454,6 +462,9 @@ document.write(`
 <p>The flow source is mechanical controlled ventilation.</p>
 <p>The problem is solved by <strong>fixed point method</strong> and by <strong>non linear least squares method</strong>.</p>
 <p>The flow directions and the reference height for the indoor pressures are changed from one example to another. Note the changes in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> and in the pressure source vector <span class="math notranslate nohighlight">\(b\)</span>. The values in pressure sources vector <span class="math notranslate nohighlight">\(b\)</span> follow the <a class="reference external" href="https://en.wikipedia.org/wiki/Passive_sign_convention">source sign convention</a>: the source is positive if the flow is from <span class="math notranslate nohighlight">\(-\)</span> to <span class="math notranslate nohighlight">\(+\)</span> and negative if the flow is reversed.</p>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -518,6 +529,11 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="solutions-for-different-reference-pressures-and-flow-orientation">
+<h2>Solutions for different reference pressures and flow orientation<a class="headerlink" href="#solutions-for-different-reference-pressures-and-flow-orientation" title="Permalink to this heading">#</a></h2>
+<section id="pressures-at-z0-and-z1-m2-normal">
+<h3>Pressures at z0 and z1, m2 normal<a class="headerlink" href="#pressures-at-z0-and-z1-m2-normal" title="Permalink to this heading">#</a></h3>
 <p><img alt="ex_a" src="../_images/f06_flow_net_ex_a.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Ventilation of two zones: <span class="math notranslate nohighlight">\(p_{i0}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>, <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span></p>
@@ -574,6 +590,9 @@ Error in mass balance: [6.93889390e-18 1.38777878e-17]kg/s
 </div>
 </div>
 </div>
+</section>
+<section id="pressures-at-z0-and-z1-m2-reversed">
+<h3>Pressures at z0 and z1, m2 reversed<a class="headerlink" href="#pressures-at-z0-and-z1-m2-reversed" title="Permalink to this heading">#</a></h3>
 <p><img alt="ex_a" src="../_images/f06_flow_net_ex_b.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Ventilation of two zones: <span class="math notranslate nohighlight">\(p_{i0}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>, <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span></p>
@@ -630,6 +649,9 @@ Error in mass balance: [6.93889390e-18 1.38777878e-17]kg/s
 </div>
 </div>
 </div>
+</section>
+<section id="pressures-at-z1-m2-normal">
+<h3>Pressures at z1, m2 normal<a class="headerlink" href="#pressures-at-z1-m2-normal" title="Permalink to this heading">#</a></h3>
 <p><img alt="ex_a" src="../_images/f06_flow_net_ex_c.svg" /></p>
 <blockquote>
 <div><p>Figure 4. Ventilation of two zones: both <span class="math notranslate nohighlight">\(p_{i0}\)</span> and <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span></p>
@@ -668,6 +690,9 @@ Error in mass balance: [-4.28809002e-10  4.46201409e-11]kg/s
 </div>
 </div>
 </div>
+</section>
+<section id="pressures-at-z1-and-z2-m2-reversed">
+<h3>Pressures at z1 and z2, m2 reversed<a class="headerlink" href="#pressures-at-z1-and-z2-m2-reversed" title="Permalink to this heading">#</a></h3>
 <p><img alt="ex_a" src="../_images/f06_flow_net_ex_d.svg" /></p>
 <blockquote>
 <div><p>Figure 5. Ventilation of two zones: <span class="math notranslate nohighlight">\(p_{i0}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span></p>
@@ -706,6 +731,7 @@ Error in mass balance: [-3.46944695e-18 -4.16333634e-17]kg/s
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 
@@ -774,6 +800,14 @@ Error in mass balance: [-3.46944695e-18 -4.16333634e-17]kg/s
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-for-different-reference-pressures-and-flow-orientation">Solutions for different reference pressures and flow orientation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z0-and-z1-m2-normal">Pressures at z0 and z1, m2 normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z0-and-z1-m2-reversed">Pressures at z0 and z1, m2 reversed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z1-m2-normal">Pressures at z1, m2 normal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pressures-at-z1-and-z2-m2-reversed">Pressures at z1 and z2, m2 reversed</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
