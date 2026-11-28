@@ -212,9 +212,9 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Airflow networks analysis: fixed-point method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of 2 zones: linear model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of 2-zone: non-linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of one zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of two zones: linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of two zones: non-linear models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
 </ul>
 </li>
@@ -446,7 +446,7 @@ document.write(`
 <section id="principle-of-the-method">
 <h2>Principle of the method<a class="headerlink" href="#principle-of-the-method" title="Permalink to this heading">#</a></h2>
 <p>The difficulty in solving the airflow network comes from the dependence of the conductance matrix <span class="math notranslate nohighlight">\(G\)</span> on the unknown pressure differences.</p>
-<p>The fixed-point method addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed-point method</a> addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.</p>
 <p>The procedure is:</p>
 <ol class="arabic simple">
 <li><p>Assume initial values for the internal node pressures.</p></li>

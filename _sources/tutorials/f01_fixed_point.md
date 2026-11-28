@@ -4,7 +4,7 @@
 
 The difficulty in solving the airflow network comes from the dependence of the conductance matrix $G$ on the unknown pressure differences.
 
-The fixed-point method addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.
+The [fixed-point method](https://en.wikipedia.org/wiki/Fixed_point_(mathematics)) addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.
 
 The procedure is:
 
