@@ -127,15 +127,9 @@ where:
 - $\rho_{ij}$ is the air density, kg/m³;
 - $\dot{V}_{ij}$ the volumetric flow rate, m³/s.
 
-If the flow coefficient is expressed in
-m³/h, then
-
-$$\dot{m}_{ij} =
-\frac{\rho_{ij}}{3600} \dot{V}_{ij}$$
-
 Substituting the power-law constitutive relationship gives
 
-$$\dot{m}_{ij} = \frac{\rho_{ij}K_{ij}}{3600} \operatorname{sign} (\Delta{p}) |\Delta p_{ij}| ^{n_{ij}}$$
+$$\dot{m}_{ij} = \rho_{ij}K_{ij} \operatorname{sign} (\Delta{p}) |\Delta p_{ij}| ^{n_{ij}}$$
 
 Note that air density depends on the location from which the air originates.
 
@@ -152,7 +146,7 @@ For a branch oriented from node $i$ to node $j$:
 
 Therefore, the mass flow relationship becomes
 
-$$\dot{m}_{ij} = \frac{K_{ij}}{3600}
+$$\dot{m}_{ij} = K_{ij}
 \rho_{up,ij} \operatorname{sign} (\Delta p_{ij})
 |\Delta p_{ij}|^{n_{ij}}$$
 
@@ -288,7 +282,7 @@ For a nonlinear airflow network, the equivalent conductance depends on the curre
 
 For branch $i$, the equivalent mass-flow conductance is
 
-$$G_i = \frac{\rho_{{up},i} K_i}{3600}
+$$G_i = \rho_{{up},i} K_i
 |\Delta p_i|^{n_i-1}$$
 
 The conductance matrix $G$ is diagonal:

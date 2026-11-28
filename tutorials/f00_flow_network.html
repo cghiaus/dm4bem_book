@@ -590,14 +590,9 @@ change sign, causing the flow direction to reverse.</p>
 <li><p><span class="math notranslate nohighlight">\(\rho_{ij}\)</span> is the air density, kg/m³;</p></li>
 <li><p><span class="math notranslate nohighlight">\(\dot{V}_{ij}\)</span> the volumetric flow rate, m³/s.</p></li>
 </ul>
-<p>If the flow coefficient is expressed in
-m³/h, then</p>
-<div class="math notranslate nohighlight">
-\[\dot{m}_{ij} =
-\frac{\rho_{ij}}{3600} \dot{V}_{ij}\]</div>
 <p>Substituting the power-law constitutive relationship gives</p>
 <div class="math notranslate nohighlight">
-\[\dot{m}_{ij} = \frac{\rho_{ij}K_{ij}}{3600} \operatorname{sign} (\Delta{p}) |\Delta p_{ij}| ^{n_{ij}}\]</div>
+\[\dot{m}_{ij} = \rho_{ij}K_{ij} \operatorname{sign} (\Delta{p}) |\Delta p_{ij}| ^{n_{ij}}\]</div>
 <p>Note that air density depends on the location from which the air originates.</p>
 </section>
 <section id="upstream-air-density">
@@ -612,7 +607,7 @@ from <span class="math notranslate nohighlight">\(j\)</span> to <span class="mat
 </ul>
 <p>Therefore, the mass flow relationship becomes</p>
 <div class="math notranslate nohighlight">
-\[\dot{m}_{ij} = \frac{K_{ij}}{3600}
+\[\dot{m}_{ij} = K_{ij}
 \rho_{up,ij} \operatorname{sign} (\Delta p_{ij})
 |\Delta p_{ij}|^{n_{ij}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\rho_{up,ij}\)</span> is the density at the
@@ -726,7 +721,7 @@ proportional to the pressure difference across it. The proportionality coefficie
 <p>For a nonlinear airflow network, the equivalent conductance depends on the current pressure difference and the upstream air density.</p>
 <p>For branch <span class="math notranslate nohighlight">\(i\)</span>, the equivalent mass-flow conductance is</p>
 <div class="math notranslate nohighlight">
-\[G_i = \frac{\rho_{{up},i} K_i}{3600}
+\[G_i = \rho_{{up},i} K_i
 |\Delta p_i|^{n_i-1}\]</div>
 <p>The conductance matrix <span class="math notranslate nohighlight">\(G\)</span> is diagonal:</p>
 <div class="math notranslate nohighlight">
