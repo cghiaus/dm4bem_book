@@ -1072,14 +1072,12 @@ Error in mass balance: [-1.94469441e-13]kg/s
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
     <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="p">])</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
 <span class="c1"># Pressure sources (case a)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Pdn</span><span class="p">,</span>                  <span class="c1"># branch n</span>
               <span class="n">Pds</span><span class="p">,</span>                  <span class="c1"># branch s</span>
-              <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">]</span>     <span class="c1"># branch c (Psi1 &lt; 0)</span>
-             <span class="p">)</span>
+              <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">])</span>     <span class="c1"># branch c (Psi1 &lt; 0)</span>
 </pre></div>
 </div>
 </div>
@@ -1106,16 +1104,14 @@ Error in mass balance: [-1.57000878e-10]kg/s
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Network topology</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
-    <span class="p">[</span> <span class="mi">1</span><span class="p">]</span>
-<span class="p">])</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 
 <span class="c1"># Pressure sources (case a)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Pdn</span><span class="p">,</span>                  <span class="c1"># branch n</span>
               <span class="n">Pds</span><span class="p">,</span>                  <span class="c1"># branch s</span>
-              <span class="o">-</span><span class="n">Psi</span> <span class="o">+</span> <span class="n">Pdc</span> <span class="o">+</span> <span class="n">Pso</span><span class="p">]</span>     <span class="c1"># branch c (Psi1 &lt; 0)</span>
-             <span class="p">)</span>
+              <span class="o">-</span><span class="n">Psi</span> <span class="o">+</span> <span class="n">Pdc</span> <span class="o">+</span> <span class="n">Pso</span><span class="p">])</span>    <span class="c1"># branch c (Psi1 &lt; 0)</span>
 </pre></div>
 </div>
 </div>
