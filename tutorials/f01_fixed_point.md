@@ -54,7 +54,7 @@ A positive pressure difference corresponds to flow in the assigned branch orient
 
 ## Upstream densities
 
-For each branch, the upstream density is selected according to the sign of its pressure difference:
+For each branch, the upstream density is selected at each iteration $(k)$ according to the sign of its pressure difference:
 
 $$\rho_{up,i}^{(k)} =
 \begin{cases}
@@ -72,7 +72,7 @@ rho_up = np.where(d >= 0, rho_forward, rho_backward)
 
 ## Equivalent conductances
 
-Using the pressure differences and upstream densities obtained at iteration $k$, the equivalent conductance of each branch is calculated as
+Using the pressure differences and upstream densities obtained at iteration $(k)$, the equivalent conductance of each branch is calculated as
 
 $$G_i^{(k)} = \rho_{up,i}^{(k)}K_i \left|\Delta p_i^{(k)}\right|^{n_i-1}$$
 
@@ -134,7 +134,7 @@ After updating the pressures, the algorithm calculates the mass flow rates using
 
 For each branch:
 
-$$\dot{m}_i^{(k+1)} = \frac{\rho_{up,i}^{(k+1)}K_i}{3600} \operatorname{sign}(\Delta p_i^{(k+1)}) |\Delta p_i^{(k+1)}|^{n_i}$$
+$$\dot{m}_i^{(k+1)} = \rho_{up,i}^{(k+1)}K_i \operatorname{sign}(\Delta p_i^{(k+1)}) |\Delta p_i^{(k+1)}|^{n_i}$$
 
 The use of the exact nonlinear relationship is essential for checking whether the solution satisfies the original airflow network equations.
 

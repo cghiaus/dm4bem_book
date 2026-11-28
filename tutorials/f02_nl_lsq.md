@@ -1,6 +1,6 @@
 # Airflow networks analysis: nonlinear least-squares method 
 
-The nonlinear least-squares method implemented in `flow_network_least_squares` analysis the network by determining the node pressures that minimise the mass-balance residuals.
+The nonlinear least-squares method implemented in `flow_network_least_squares` analyses the network by determining the node pressures that minimise the mass-balance residuals.
 
 The procedure is:
 
