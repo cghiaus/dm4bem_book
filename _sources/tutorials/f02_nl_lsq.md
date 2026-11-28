@@ -1,6 +1,6 @@
 # Airflow networks analysis: nonlinear least-squares method 
 
-The function `dm4bem.flow_network_least_squares()` [nonlinear least-squares method](https://en.wikipedia.org/wiki/Non-linear_least_squares) to analyse the network by determining the node pressures that minimise the mass-balance residuals.
+The function `dm4bem.flow_network_least_squares()` uses [nonlinear least-squares method](https://en.wikipedia.org/wiki/Non-linear_least_squares) to analyse the network by determining the node pressures that minimise the mass-balance residuals.
 
 The procedure is:
 
