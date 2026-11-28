@@ -446,7 +446,7 @@ document.write(`
 <section id="principle-of-the-method">
 <h2>Principle of the method<a class="headerlink" href="#principle-of-the-method" title="Permalink to this heading">#</a></h2>
 <p>The difficulty in solving the airflow network comes from the dependence of the conductance matrix <span class="math notranslate nohighlight">\(G\)</span> on the unknown pressure differences.</p>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed-point method</a> addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed-point method</a> implemented in <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> addresses this difficulty by repeatedly solving a linear system in which the conductances are calculated using the pressure estimates from the preceding iteration.</p>
 <p>The procedure is:</p>
 <ol class="arabic simple">
 <li><p>Assume initial values for the internal node pressures.</p></li>

@@ -212,9 +212,9 @@
 <li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Airflow networks analysis: nonlinear least-squares method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of 2 zones: linear model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of 2-zone: non-linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of one zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of two zones: linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of two zones: non-linear models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
 </ul>
 </li>
@@ -441,7 +441,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="airflow-networks-analysis-nonlinear-least-squares-method">
 <h1>Airflow networks analysis: nonlinear least-squares method<a class="headerlink" href="#airflow-networks-analysis-nonlinear-least-squares-method" title="Permalink to this heading">#</a></h1>
-<p>The nonlinear least-squares method implemented in <code class="docutils literal notranslate"><span class="pre">flow_network_least_squares</span></code> analyses the network by determining the node pressures that minimise the mass-balance residuals.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code> <a class="reference external" href="https://en.wikipedia.org/wiki/Non-linear_least_squares">nonlinear least-squares method</a> to analyse the network by determining the node pressures that minimise the mass-balance residuals.</p>
 <p>The procedure is:</p>
 <ol class="arabic simple">
 <li><p>Construct the forward and backward upstream density vectors.</p></li>
