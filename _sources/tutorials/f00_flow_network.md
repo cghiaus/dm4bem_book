@@ -36,7 +36,8 @@ where:
 - $n$ pressure exponent, dimensionless; typical value about 0.65
 - $K_{i,j}$ flow coefficient, m³/(s·Paⁿ)
 
-The values of the pressure exponent $n$ and flow coefficient $K_{i,j}$ can be obtained experimentally by using the [blower door](https://en.wikipedia.org/wiki/Blower_door) test.
+The values of the pressure exponent $n$ and flow coefficient $K_{i,j}$ can be obtained experimentally by using the [blower door](https://en.wikipedia.org/wiki/Blower_door) test presented in section [Blower door building air leakage test
+](https://cghiaus.github.io/dm4bem_book/tutorials/f07_Blow_door.html).
 
 ### Mass conservation equation
 
