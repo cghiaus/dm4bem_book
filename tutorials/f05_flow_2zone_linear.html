@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/f05_flow_2zone_linear';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ventilation of 2-zone: non-linear models" href="f06_flow_2zone_non_lin.html" />
+    <link rel="prev" title="Ventilation of 1 zone" href="f04_flow_1zone.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
@@ -208,7 +208,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="f00_flow_network.html">Airflow networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Ventilation of 2 zones: linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of 2-zone: non-linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A04Greenhouse_effect.html">Greenhouse effect</a></li>
@@ -455,7 +465,7 @@ document.write(`
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>A dwelling oriented north-south is divided into two zones: zone 1
 on the south side and zone 2 on the north side. A mechanical ventilation system extracts a constant flow of <span class="math notranslate nohighlight">\(\dot{V} = -200\)</span> m³/h in zone 2 (Figure 1).</p>
-<p><img alt="vent_2z" src="../_images/A06_vent_2z_principe.svg" /></p>
+<p><img alt="vent_2z" src="../_images/f05_vent_2z_principe.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Ventilation of two zones.</p>
 </div></blockquote>
@@ -539,7 +549,7 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 <section id="system-of-equations">
 <h2>System of equations<a class="headerlink" href="#system-of-equations" title="Permalink to this heading">#</a></h2>
 <p>The flow networks are shown in Figure 2.</p>
-<p><img alt="vent_2z_network" src="../_images/A06_vent_2z_nodes.svg" /></p>
+<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_nodes.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Flow network for ventilation of two zones. The differences between the figures consist in the reference height for the static pressures in zone 0 and 1. a) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, b) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, c) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>, d) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>.</p>
 </div></blockquote>
@@ -763,7 +773,7 @@ Mass flow rate: [152.44 152.44  87.56] kg/h
 <h2>Solution using dm4bem.flow_network_()<a class="headerlink" href="#solution-using-dm4bem-flow-network" title="Permalink to this heading">#</a></h2>
 <p>The linear problem can be solved by using the functions <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> or <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>.</p>
 <p>Let’s take, for example, the case (a) of the definition of indoor pressures: pressure <span class="math notranslate nohighlight">\(p_{i0} defined at height \)</span>z_0<span class="math notranslate nohighlight">\( and pressure \)</span>p_{i1}<span class="math notranslate nohighlight">\( defined at \)</span>z_1$ (Figure 3).</p>
-<p><img alt="vent_2z_network" src="../_images/A06_vent_2z_direction.svg" /></p>
+<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_direction.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Reference for inside pressures as in casse (a) of Figure 2; two different orientations of mass flow <span class="math notranslate nohighlight">\(\dot{m}_2\)</span>.</p>
 </div></blockquote>
@@ -799,7 +809,7 @@ Mass flow rate: [152.44 152.44  87.56] kg/h
 <section id="unchanged-mass-flow-orientation">
 <h3>Unchanged mass flow orientation<a class="headerlink" href="#unchanged-mass-flow-orientation" title="Permalink to this heading">#</a></h3>
 <p>First, let’s consider the same orientation the mass flows as in the linear models (Figure 4). The flow orientation correspond to the final solution; therefore, the obtained values of the mass flows will be positives.</p>
-<p><img alt="vent_2z_network" src="../_images/A06_vent_2z_direct_a.svg" /></p>
+<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_direct_a.svg" /></p>
 <blockquote>
 <div><p>Figure 4. Unchanged mass flow orientation.</p>
 </div></blockquote>
@@ -861,7 +871,7 @@ Error in mass balance: [-1.18914600e-12 -1.35072509e-13]kg/s
 <h3>Reversed orientation for one mass flow<a class="headerlink" href="#reversed-orientation-for-one-mass-flow" title="Permalink to this heading">#</a></h3>
 <p>Let’s consider the reversed orientatioin of the mass flow <span class="math notranslate nohighlight">\(\dot{m}_2\)</span> (Figure 5). The flow orientation correspond to the final solution; therefore, the obtained values of the mass flows will be positives. Note the changes in the incidence matrix <span class="math notranslate nohighlight">\(A\)</span> and the pressure source <span class="math notranslate nohighlight">\(b\)</span>.</p>
 <p>The numerical results for the mass flows are the same but the sign of the value of the mass flow <span class="math notranslate nohighlight">\(\dot{m}_2\)</span> changed.</p>
-<p><img alt="vent_2z_network" src="../_images/A06_vent_2z_direct_b.svg" /></p>
+<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_direct_b.svg" /></p>
 <blockquote>
 <div><p>Figure 5. Reversed orientation of a mass flow.</p>
 </div></blockquote>
@@ -952,6 +962,24 @@ Error in mass balance: [-1.18914600e-12 -1.35072509e-13]kg/s
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="f04_flow_1zone.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ventilation of 1 zone</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="f06_flow_2zone_non_lin.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ventilation of 2-zone: non-linear models</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

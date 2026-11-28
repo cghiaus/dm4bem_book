@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/f03_Thermal_load';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ventilation of 1 zone" href="f04_flow_1zone.html" />
+    <link rel="prev" title="Airflow networks analysis: nonlinear least-squares method" href="f02_nl_lsq.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
@@ -208,7 +208,17 @@
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="f00_flow_network.html">Airflow networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of 2 zones: linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of 2-zone: non-linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A03Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
 <li class="toctree-l2"><a class="reference internal" href="A04Greenhouse_effect.html">Greenhouse effect</a></li>
@@ -467,7 +477,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(H = 3 \, \mathrm{m}\)</span>, height.</p></li>
 <li><p><span class="math notranslate nohighlight">\(w = 0.20 \, \mathrm{m}\)</span>, width of the walls.</p></li>
 </ul>
-<p><img alt="fig" src="../_images/08_bldg_plan.svg" /></p>
+<p><img alt="fig" src="../_images/f03_bldg_plan.svg" /></p>
 <blockquote>
 <div><p>Figure 1. Plan of the building</p>
 </div></blockquote>
@@ -541,7 +551,7 @@ document.write(`
 </ul>
 <p><strong>Note:</strong> in determining the surface area of the walls, <span class="math notranslate nohighlight">\(S\)</span>, the length of the walls are the indoor values.</p>
 <p>We will consider the conductances of exterior and the interior walls (Figure 2). The exterior walls are modelled with a conductance for outdoor convection (cyan in Figure 2) and an equivalent conductance for conduction in the wall and indoor convection (blue in Figure 2). The indoor walls are modelled by an equivalent conductance for indoor convection, conduction, and indoor convection on the other side.</p>
-<p><img alt="fig" src="../_images/08_blds_conductance.svg" /></p>
+<p><img alt="fig" src="../_images/f03_bldg_conductance.svg" /></p>
 <blockquote>
 <div><p>Figure 2. Walls forming thermal conductances in the model.</p>
 </div></blockquote>
@@ -574,7 +584,7 @@ document.write(`
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[ q = G(-A\theta + b)\]</div>
-<p><img alt="fig" src="../_images/08_thermal_network.svg" /></p>
+<p><img alt="fig" src="../_images/f03_thermal_network.svg" /></p>
 <blockquote>
 <div><p>Figure 3. Thermal network: a) typical element of the thermal network (the sources are not figured if they are identically zero); b) thermal network model for the building shown in Figures 1 and 2.</p>
 </div></blockquote>
@@ -744,7 +754,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[q_{14a} = G_{14}(\theta_3 - \theta_6)\]</div>
 <p>where <span class="math notranslate nohighlight">\(G_{14} = \dot m c\)</span>.</p>
-<p><img alt="fig" src="../_images/08_vent_advection.svg" /></p>
+<p><img alt="fig" src="../_images/f03_vent_advection.svg" /></p>
 <blockquote>
 <div><p>Figure 4. Heat advection by ventilation. a) Air-flow: outdoor  → room 2 → room 4 → outdoor. b) Air-flow: outdoor → room 4 → room 2 → outdoor.</p>
 </div></blockquote>
@@ -831,7 +841,7 @@ document.write(`
 \[q = G (T_{sp} - \theta)\]</div>
 <p>where <span class="math notranslate nohighlight">\(G \equiv K_p\)</span>.</p>
 <p>The indoor air temperature control by the HVAC system (Figure 5a) may be modelled by a source of temperature, <span class="math notranslate nohighlight">\(T_{sp}\)</span>, and a conductance, <span class="math notranslate nohighlight">\(G\)</span> (Figure 5b).</p>
-<p><img alt="fig" src="../_images/08_P-controller.svg" /></p>
+<p><img alt="fig" src="../_images/f03_P-controller.svg" /></p>
 <blockquote>
 <div><p>Figure 5. Model of a proportional controller in a thermal network (example for room 1). a) Principle of a temperature control system using a P-controller. b) Model of temperature control system in a thermal network.</p>
 </div></blockquote>
@@ -1087,6 +1097,24 @@ q: [1750.5    0.  2088.4    0. ] W
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="f02_nl_lsq.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Airflow networks analysis: nonlinear least-squares method</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="f04_flow_1zone.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Ventilation of 1 zone</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
