@@ -438,6 +438,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Check the mass balance</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-by-using-dm4bem-flow-network-functions">Solve by using <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_()</span></code> functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
@@ -453,6 +454,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ventilation-of-one-zone">
 <h1>Ventilation of one zone<a class="headerlink" href="#ventilation-of-one-zone" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Ff04_flow_1zone.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This section deals with airflow in a one zone. The constitutive laws are non-linear. The problem is solved by mass balance and by using the functions  <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> and <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>.</p>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>The natural ventilation system of a two-storey building is composed of (Figure 1):</p>
@@ -879,9 +881,149 @@ error in mass flow balance: 0.000000 kg/s
 </div>
 </section>
 </section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">B. Rock, S.J. Emmerich, S. Taylor (2017)</a> <em>F16 Ventilation and Infiltration</em> in ASHRAE Fundamentals Handbook, ISBN 10: 1939200598  ISBN 13: 978-1939200594</p>
+<section id="solve-by-using-dm4bem-flow-network-functions">
+<h2>Solve by using <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_()</span></code> functions<a class="headerlink" href="#solve-by-using-dm4bem-flow-network-functions" title="Permalink to this heading">#</a></h2>
+<p><img alt="vent_bldg" src="../_images/f04_nat_vent.svg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =================================================</span>
+<span class="c1"># Calculations</span>
+<span class="c1"># =================================================</span>
+
+<span class="c1"># Static pressure, Pa</span>
+<span class="n">Psi</span> <span class="o">=</span> <span class="o">-</span><span class="n">ρi</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">z</span>   <span class="c1"># indoors</span>
+<span class="n">Pso</span> <span class="o">=</span> <span class="o">-</span><span class="n">ρo</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">z</span>   <span class="c1"># outdoors</span>
+
+<span class="c1"># v = 0</span>
+<span class="c1"># Dynamic pressures, Pa</span>
+<span class="n">Pdn</span> <span class="o">=</span> <span class="n">Cpn</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">Pds</span> <span class="o">=</span> <span class="n">Cps</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">Pdc</span> <span class="o">=</span> <span class="n">Cpc</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">ρo</span> <span class="o">*</span> <span class="n">v</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Mass-flow sources</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Nodes densities</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">ρi</span><span class="p">])</span>
+
+<span class="c1"># Flow coefficients in m³/(s·Paⁿ)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Ko</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Ko</span><span class="p">,</span> <span class="n">Kc</span><span class="p">])</span>
+
+<span class="c1"># Pressure exponents</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">no</span><span class="p">,</span> <span class="n">no</span><span class="p">,</span> <span class="n">nc</span><span class="p">])</span>
+
+<span class="c1"># Initial pressure guess</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">10.0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">print_results</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pressures: </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> Pa&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mass flows: </span><span class="si">{</span><span class="n">m_dot</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> kg/s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Volume flows: </span><span class="si">{</span><span class="n">V_dot</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2"> m³/s&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Verify mass conservation</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in mass balance: </span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="n">m_dot</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="si">}</span><span class="s2">kg/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="vent_bldg" src="../_images/f04_nat_vent_n_dir.svg" /></p>
+<blockquote>
+<div><p>Figure 3. Direction of flows corresponding to the solution (normal direction).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Network topology</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Pressure sources (case a)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Pdn</span><span class="p">,</span>                  <span class="c1"># branch n</span>
+              <span class="n">Pds</span><span class="p">,</span>                  <span class="c1"># branch s</span>
+              <span class="n">Psi</span> <span class="o">-</span> <span class="n">Pdc</span> <span class="o">-</span> <span class="n">Pso</span><span class="p">]</span>     <span class="c1"># branch c (Psi1 &lt; 0)</span>
+             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">m_dot</span><span class="p">,</span> <span class="n">V_dot</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">flow_network_fixed_point</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">ρo</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="n">print_results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressures: [-10.495] Pa
+Mass flows: [0.045 0.009 0.054] kg/s
+Volume flows: [0.034 0.007 0.046] m³/s
+Error in mass balance: [-1.57000878e-10]kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="vent_bldg" src="../_images/f04_nat_vent_r_dir.svg" /></p>
+<blockquote>
+<div><p>Figure 4. Direction of flows not corresponding to the solution (reversed direction of flow through the chimney).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Network topology</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Pressure sources (case a)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">Pdn</span><span class="p">,</span>                  <span class="c1"># branch n</span>
+              <span class="n">Pds</span><span class="p">,</span>                  <span class="c1"># branch s</span>
+              <span class="o">-</span><span class="n">Psi</span> <span class="o">+</span> <span class="n">Pdc</span> <span class="o">+</span> <span class="n">Pso</span><span class="p">]</span>     <span class="c1"># branch c (Psi1 &lt; 0)</span>
+             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">m_dot</span><span class="p">,</span> <span class="n">V_dot</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">flow_network_fixed_point</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">ρo</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="n">print_results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressures: [-10.495] Pa
+Mass flows: [ 0.045  0.009 -0.054] kg/s
+Volume flows: [ 0.034  0.007 -0.046] m³/s
+Error in mass balance: [-1.57000878e-10]kg/s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">m_dot</span><span class="p">,</span> <span class="n">V_dot</span> <span class="o">=</span> <span class="n">dm4bem</span><span class="o">.</span><span class="n">flow_network_least_squares</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">ρo</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+<span class="n">print_results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pressures: [-10.495] Pa
+Mass flows: [ 0.045  0.009 -0.054] kg/s
+Volume flows: [ 0.034  0.007 -0.046] m³/s
+Error in mass balance: [-1.94469441e-13]kg/s
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =================================================</span>
@@ -1015,6 +1157,10 @@ Error in mass balance: [-1.94469441e-13]kg/s
 </div>
 </div>
 </section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf">B. Rock, S.J. Emmerich, S. Taylor (2017)</a> <em>F16 Ventilation and Infiltration</em> in ASHRAE Fundamentals Handbook, ISBN 10: 1939200598  ISBN 13: 978-1939200594</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1100,6 +1246,7 @@ Error in mass balance: [-1.94469441e-13]kg/s
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Check the mass balance</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-by-using-dm4bem-flow-network-functions">Solve by using <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_()</span></code> functions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>

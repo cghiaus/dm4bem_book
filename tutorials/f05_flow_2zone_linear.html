@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Ventilation of two zones: non-linear models" href="f06_flow_2zone_non_lin.html" />
-    <link rel="prev" title="Ventilation of 1 zone" href="f04_flow_1zone.html" />
+    <link rel="prev" title="Ventilation of one zone" href="f04_flow_1zone.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -212,7 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of one zone</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Ventilation of two zones: linear model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of two zones: non-linear models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
@@ -462,6 +462,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ventilation-of-two-zones-linear-model">
 <h1>Ventilation of two zones: linear model<a class="headerlink" href="#ventilation-of-two-zones-linear-model" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Ff05_flow_2zone_linear.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This sections deals with a multizone model characterized by linear constitutuive equations. The problem is solved by linear airflow netorks and by using the functions <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> and <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>.</p>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>A dwelling oriented north-south is divided into two zones: zone 1
@@ -550,14 +551,10 @@ on the south side and zone 2 on the north side. A mechanical ventilation system 
 <section id="system-of-equations">
 <h2>System of equations<a class="headerlink" href="#system-of-equations" title="Permalink to this heading">#</a></h2>
 <p>The flow networks are shown in Figure 2.</p>
-<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_nodes.svg" /></p>
-<blockquote>
-<div><p>Figure 2. Flow network for ventilation of two zones. The differences between the figures consist in the reference height for the static pressures in zone 0 and 1. a) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, b) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, c) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>, d) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>.</p>
-</div></blockquote>
 <p>To solve this direct problem, we will follow the procedure presented in the section <a class="reference external" href="https://cghiaus.github.io/dm4bem_book/tutorials/T02_TC2DAE.html">From thermal networks to differential-algebraic equations</a>.</p>
 <section id="incidence-matrix">
 <h3>Incidence matrix<a class="headerlink" href="#incidence-matrix" title="Permalink to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(A = -\Delta = \begin{bmatrix}
+<p><span class="math notranslate nohighlight">\(A = \begin{bmatrix}
 1 &amp; 0 \\ 
 -1 &amp; 1 \\ 
  0 &amp; 1 
@@ -593,6 +590,10 @@ G_0 &amp; 0 &amp; 0 \\
 </div>
 </div>
 </div>
+<p><img alt="vent_2z_network" src="../_images/f05_vent_2z_nodes.svg" /></p>
+<blockquote>
+<div><p>Figure 2. Flow network for ventilation of two zones. The differences between the figures consist in the reference height for the static pressures in zone 0 and 1. a) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, b) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>, c) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_0\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>, d) <span class="math notranslate nohighlight">\(p_{iO}\)</span> at <span class="math notranslate nohighlight">\(z_1\)</span>; <span class="math notranslate nohighlight">\(p_{i1}\)</span> at <span class="math notranslate nohighlight">\(z_2\)</span>.</p>
+</div></blockquote>
 </section>
 <section id="vector-of-pressure-sources">
 <h3>Vector of pressure sources<a class="headerlink" href="#vector-of-pressure-sources" title="Permalink to this heading">#</a></h3>
@@ -969,7 +970,7 @@ Error in mass balance: [-1.18914600e-12 -1.35072509e-13]kg/s
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ventilation of 1 zone</p>
+        <p class="prev-next-title">Ventilation of one zone</p>
       </div>
     </a>
     <a class="right-next"

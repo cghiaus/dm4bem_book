@@ -212,7 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of one zone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of two zones: linear model</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Ventilation of two zones: non-linear models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
@@ -396,7 +396,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -412,6 +414,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -424,6 +434,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ventilation-of-two-zones-non-linear-models">
 <h1>Ventilation of two zones: non-linear models<a class="headerlink" href="#ventilation-of-two-zones-non-linear-models" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=%2Ftutorials%2Ff06_flow_2zone_non_lin.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>This sections deals with a multizone model characterized by non-linear constitutuive equations. The problem is solved by using the functions <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_fixed_point()</span></code> and <code class="docutils literal notranslate"><span class="pre">dm4bem.flow_network_least_squares()</span></code>.</p>
+<section id="problem">
+<h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <p>Let’s consider the ventilation of two zones (Figure 1) in the case of non-linear constitutive law:</p>
 <div class="math notranslate nohighlight">
 \[ \dot V_{i,j} = K_{i,j} \, \Delta P^n_{i,j} = K_{i,j} \, (P_i - P_j)^n\]</div>
@@ -694,6 +707,7 @@ Error in mass balance: [-3.46944695e-18 -4.16333634e-17]kg/s
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -750,7 +764,20 @@ Error in mass balance: [-3.46944695e-18 -4.16333634e-17]kg/s
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem">Problem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
