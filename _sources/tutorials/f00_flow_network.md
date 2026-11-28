@@ -8,7 +8,7 @@ This chapter deals with modeling airflow using flow networks, which are similar 
 #### Pressure sources
 
 Pressure sources [(Rock et al. 2017)](https://ia802804.us.archive.org/23/items/ashraehandbook2017hvacfundamentalssi/2017%2C%20ashrae%20fundamental%20handbook%20SI.pdf):
-- stack pressure: $P_s = P_0 - \rho \, g \, z$;
+- stack pressure: $P_s = P_0 - \rho \, g \, z$
 - wind pressure: $P_w = C_p \frac{1}{2} \rho_o \, v^2$
 
 where:
