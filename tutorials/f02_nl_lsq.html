@@ -551,7 +551,7 @@ document.write(`
 <p>instructs SciPy to estimate this matrix numerically using finite differences.</p>
 <p>For example, the derivative with respect to pressure component <span class="math notranslate nohighlight">\(p_j\)</span> is approximated by</p>
 <div class="math notranslate nohighlight">
-\[\frac{\partial r_i}{\partial p_j} \approx \frac{r_i(p + h_j e_j) - r_i(\mathbf{p})}{h_j},\]</div>
+\[\frac{\partial r_i}{\partial p_j} \approx \frac{r_i(p + h_j e_j) - r_i(p)}{h_j},\]</div>
 <p>where <span class="math notranslate nohighlight">\(h_j\)</span> is a small perturbation and <span class="math notranslate nohighlight">\(e_j\)</span> is the unit vector associated with pressure component <span class="math notranslate nohighlight">\(p_j\)</span>.</p>
 <p>Thus, the Jacobian is not explicitly derived or supplied in the Python code. It is estimated automatically by SciPy.</p>
 <p><strong>Variable scaling: <code class="docutils literal notranslate"><span class="pre">x_scale='jac'</span></code></strong></p>

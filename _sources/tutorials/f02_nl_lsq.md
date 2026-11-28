@@ -130,7 +130,7 @@ instructs SciPy to estimate this matrix numerically using finite differences.
 
 For example, the derivative with respect to pressure component $p_j$ is approximated by
 
-$$\frac{\partial r_i}{\partial p_j} \approx \frac{r_i(p + h_j e_j) - r_i(\mathbf{p})}{h_j},$$
+$$\frac{\partial r_i}{\partial p_j} \approx \frac{r_i(p + h_j e_j) - r_i(p)}{h_j},$$
 
 where $h_j$ is a small perturbation and $e_j$ is the unit vector associated with pressure component $p_j$.
 
