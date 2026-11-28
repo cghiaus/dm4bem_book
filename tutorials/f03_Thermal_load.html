@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/f03_Thermal_load';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Ventilation of 1 zone" href="f04_flow_1zone.html" />
+    <link rel="next" title="Ventilation of one zone" href="f04_flow_1zone.html" />
     <link rel="prev" title="Airflow networks analysis: nonlinear least-squares method" href="f02_nl_lsq.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -212,7 +212,7 @@
 <li class="toctree-l2"><a class="reference internal" href="f01_fixed_point.html">Airflow networks analysis: fixed-point method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Sensible thermal load in steady-state</a></li>
-<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of one zone</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of two zones: linear model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of two zones: non-linear models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
@@ -466,7 +466,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="sensible-thermal-load-in-steady-state">
 <h1>Sensible thermal load in steady-state<a class="headerlink" href="#sensible-thermal-load-in-steady-state" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/cghiaus/dm4bem_book/HEAD?labpath=tutorials%2Ff03_Thermal_load.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value.</p>
+<p>The sensible <a class="reference external" href="https://en.m.wikipedia.org/wiki/Cooling_load">thermal load</a> is the heat flow rate that must to be added to a space by the heating, ventilation and air-conditioning (<a class="reference external" href="https://en.m.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning">HVAC</a>)  system in order to maintain the air temperature at its <a class="reference external" href="https://en.m.wikipedia.org/wiki/Setpoint_(control_system)">setpoint</a> value. This section deals with the load calculation as a function of heat transfer through the envelope and advection by ventilation. The airflow rate is given, but it may be estimated by using airflow networks.</p>
 <section id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this heading">#</a></h2>
 <section id="data">
@@ -481,8 +481,8 @@ document.write(`
 <blockquote>
 <div><p>Figure 1. Plan of the building</p>
 </div></blockquote>
-<p>The thermal conductivity of the walls is <span class="math notranslate nohighlight">\(\lambda = 1.7 \, \mathrm{W/(m \, K)}\)</span>.</p>
-<p>The convective heat coefficients between the walls and the indoor and outdoor air are <span class="math notranslate nohighlight">\(h_i = 8 \, \mathrm{W/(m^2 \, K)}\)</span> and <span class="math notranslate nohighlight">\(h_o = 25 \, \mathrm{W/(m^2 \, K)}\)</span> respectively.</p>
+<p>The thermal conductivity of the walls is <span class="math notranslate nohighlight">\(\lambda = 1.7 \, \mathrm{W/(m·K)}\)</span>.</p>
+<p>The convective heat coefficients between the walls and the indoor and outdoor air are <span class="math notranslate nohighlight">\(h_i = 8 \, \mathrm{W/(m^2 \, K)}\)</span> and <span class="math notranslate nohighlight">\(h_o = 25 \, \mathrm{W/(m^2·K)}\)</span> respectively.</p>
 <p>The short-wave solar radiation absorbed by each wall is <span class="math notranslate nohighlight">\(E = 200 \, \mathrm{W/m^2}\)</span>.</p>
 <p>The outdoor temperature is <span class="math notranslate nohighlight">\(T_o = 0 \, \mathrm{°C}\)</span>.</p>
 </section>
@@ -491,7 +491,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Let’s consider that all four rooms are controlled by a HVAC system at the setpoint temperatures 20 °C, 20 °C, 22 °C, 18 °C for rooms 1, 2, 3, and 4, respectively and that there is no solar radiation on the walls. Find the thermal loads of the four rooms.</p></li>
 <li><p>From now on, let’s consider that there is solar radiation absorbed by the walls and that rooms 1 and 3 are controlled by a HVAC system while rooms 2 and 4 are in “free-running”. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
-<li><p>Room 2 in ventilated with an air-flow rate of <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span> (ACH is the number of air-changes per hour). The density and specific heat of the air are <span class="math notranslate nohighlight">\(\rho = 1.2 \, \mathrm{kg/m^3}\)</span> and <span class="math notranslate nohighlight">\(c = 1000 \, \mathrm{J/(kg \, K)}\)</span>, respectively. The outdoor air enters in room 2, then is moves to room 4 and, from here, it gets outdoors. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
+<li><p>Room 2 in ventilated with an air-flow rate of <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span> (ACH is the number of air-changes per hour). The density and specific heat of the air are <span class="math notranslate nohighlight">\(\rho = 1.2 \, \mathrm{kg/m^3}\)</span> and <span class="math notranslate nohighlight">\(c = 1000 \, \mathrm{J/(kg·K)}\)</span>, respectively. The outdoor air enters in room 2, then is moves to room 4 and, from here, it gets outdoors. Find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
 <li><p>The air-flow in room 2 is reversed: from outdoors, the air enters in room 4, then it moves to room 2, from which it gets outdoors. Considering that the air flow rate of room 2 is the same as before (i.e., <span class="math notranslate nohighlight">\(ACH = 1 \, \mathrm{volume /hour}\)</span>), find the thermal loads of rooms 1 and 3 and the temperatures of the indoor air of rooms 2 and 4.</p></li>
 </ol>
 <div class="cell docutils container">
@@ -1111,7 +1111,7 @@ q: [1750.5    0.  2088.4    0. ] W
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ventilation of 1 zone</p>
+        <p class="prev-next-title">Ventilation of one zone</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
