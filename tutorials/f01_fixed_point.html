@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/f01_fixed_point';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Airflow networks analysis: nonlinear least-squares method" href="f02_nl_lsq.html" />
+    <link rel="prev" title="Airflow networks" href="f00_flow_network.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -124,8 +126,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,7 +179,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_Summary.html">Summary</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="T00_theory.html">Theory in a nutshell</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="T01_Heat_transfer.html">Thermal networks for heat transfer in buildings</a></li>
@@ -208,10 +208,20 @@
 <li class="toctree-l2"><a class="reference internal" href="pd06nonlin.html">Nonlinear controller</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="f00_flow_network.html">Airflow networks</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Airflow networks analysis: fixed-point method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f02_nl_lsq.html">Airflow networks analysis: nonlinear least-squares method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f03_Thermal_load.html">Sensible thermal load in steady-state</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f04_flow_1zone.html">Ventilation of 1 zone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f05_flow_2zone_linear.html">Ventilation of 2 zones: linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f06_flow_2zone_non_lin.html">Ventilation of 2-zone: non-linear models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="f07_Blow_door.html">Blower door building air leakage test</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="A00annexes.html">Annex: Steady-state problems</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="A01Coupled_rad_convection.html">Radiation coupled with convection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="A03Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
-<li class="toctree-l2"><a class="reference internal" href="A04Greenhouse_effect.html">Greenhouse effect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A02Degree_hours_intermittance.html">Degree-hour estimation of energy savings by intermittent heating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="A03Greenhouse_effect.html">Greenhouse effect</a></li>
 </ul>
 </li>
 </ul>
@@ -484,7 +494,7 @@ document.write(`
 </section>
 <section id="upstream-densities">
 <h2>Upstream densities<a class="headerlink" href="#upstream-densities" title="Permalink to this heading">#</a></h2>
-<p>For each branch, the upstream density is selected according to the sign of its pressure difference:</p>
+<p>For each branch, the upstream density is selected at each iteration <span class="math notranslate nohighlight">\((k)\)</span> according to the sign of its pressure difference:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\rho_{up,i}^{(k)} =
 \begin{cases}
@@ -499,7 +509,7 @@ document.write(`
 </section>
 <section id="equivalent-conductances">
 <h2>Equivalent conductances<a class="headerlink" href="#equivalent-conductances" title="Permalink to this heading">#</a></h2>
-<p>Using the pressure differences and upstream densities obtained at iteration <span class="math notranslate nohighlight">\(k\)</span>, the equivalent conductance of each branch is calculated as</p>
+<p>Using the pressure differences and upstream densities obtained at iteration <span class="math notranslate nohighlight">\((k)\)</span>, the equivalent conductance of each branch is calculated as</p>
 <div class="math notranslate nohighlight">
 \[G_i^{(k)} = \rho_{up,i}^{(k)}K_i \left|\Delta p_i^{(k)}\right|^{n_i-1}\]</div>
 <p>For numerical stability, the implementation introduces a minimum pressure difference <span class="math notranslate nohighlight">\(d_{floor}\)</span>:</p>
@@ -548,7 +558,7 @@ document.write(`
 <p>After updating the pressures, the algorithm calculates the mass flow rates using the original nonlinear constitutive relationship, rather than the equivalent linear conductances.</p>
 <p>For each branch:</p>
 <div class="math notranslate nohighlight">
-\[\dot{m}_i^{(k+1)} = \frac{\rho_{up,i}^{(k+1)}K_i}{3600} \operatorname{sign}(\Delta p_i^{(k+1)}) |\Delta p_i^{(k+1)}|^{n_i}\]</div>
+\[\dot{m}_i^{(k+1)} = \rho_{up,i}^{(k+1)}K_i \operatorname{sign}(\Delta p_i^{(k+1)}) |\Delta p_i^{(k+1)}|^{n_i}\]</div>
 <p>The use of the exact nonlinear relationship is essential for checking whether the solution satisfies the original airflow network equations.</p>
 <p>The mass-balance residual is then calculated:</p>
 <div class="math notranslate nohighlight">
@@ -669,6 +679,24 @@ OUTPUT:
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="f00_flow_network.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Airflow networks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="f02_nl_lsq.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Airflow networks analysis: nonlinear least-squares method</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
