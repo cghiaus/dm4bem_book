@@ -59,7 +59,7 @@ $$\sum_i \dot m_{i,j} = 0$$
 3. Generally, $\dot m_{i,j} \neq \dot m_{j,i}$, even if $\dot V_{i,j} = \dot V_{j,i}$. This implies that if the mass flow rates obtained by solving the aeraulic circuit are negative, than the direction of the flows need to be changed and a new solution to be searched for.
 
 
-## 1. Physical principles: balance equations and constitutive laws
+## Physical principles: balance equations and constitutive laws
 
 An airflow network represents the movement of air through openings, cracks, ducts, or other flow paths connecting different pressure nodes. The network is governed by two fundamental types of equations:
 
@@ -70,7 +70,7 @@ An airflow network represents the movement of air through openings, cracks, duct
 
 These equations form a nonlinear system because the airflow through an opening generally depends nonlinearly on the pressure difference.
 
-### 1.1. Mass conservation at pressure nodes
+### Mass conservation at pressure nodes
 
 Consider a network composed of (N) internal pressure nodes connected by (B) branches. Each branch connects two nodes or an internal node to a reference-pressure node.
 
@@ -90,7 +90,7 @@ where:
 
 The balance equations express the fact that air cannot accumulate at a pressure node in a steady-state airflow network.
 
-### 1.2. Nonlinear constitutive law: volumetric flow and pressure difference
+### Nonlinear constitutive law: volumetric flow and pressure difference
 
 The airflow through an opening or leakage path is commonly described by
 a power-law relationship between the volumetric flow rate and the
@@ -115,7 +115,7 @@ flow regime. Typical values include ([Orme & Leksmono, 2002](https://www.aivc.or
 The $\operatorname{sign}$ function is essential because the pressure difference can
 change sign, causing the flow direction to reverse.
 
-### 1.3. Relationship between mass flow and volumetric flow
+### Relationship between mass flow and volumetric flow
 
 Mass flow rate and volumetric flow rate are related through air density:
 
@@ -139,7 +139,7 @@ $$\dot{m}_{ij} = \frac{\rho_{ij}K_{ij}}{3600} \operatorname{sign} (\Delta{p}) |\
 
 Note that air density depends on the location from which the air originates.
 
-### 1.4. Upstream air density
+### Upstream air density
 
 In an airflow network, the density used to calculate mass flow must correspond to the upstream node of the branch, that is, the node from which the air enters the branch.
 
@@ -163,11 +163,11 @@ This distinction is particularly important when a branch connects  environments 
 
 In the Python implementation, the upstream density is selected according to the sign of the branch pressure difference. The code stores two possible densities for each branch, `rho_forward` and `rho_backward`, corresponding to the two possible flow directions, and selects the appropriate one during each iteration.
 
-## 2. Pressure sources and flow sources
+## Pressure sources and flow sources
 
 An airflow is driven by imposed pressure differences and imposed mass flows.
 
-### 2.1. Pressure sources
+### Pressure sources
 
 Pressure sources contribute to the pressure difference across a branch
 independently of the unknown pressure differences between its internal
@@ -212,7 +212,7 @@ pressure contributions. Their algebraic sum is represented by the branch pressur
 - if the flow is from $-$ to $+$ of the source, then the source is positif;
 - if the flow is from $+$ to $-$ of the source, then the source is negative.
 
-### 2.2. Flow sources
+### Flow sources
 
 Flow sources, $f$, represent imposed mass flows at pressure nodes (such as mechanical ventilation extraction or supply ventilation).
 
@@ -222,7 +222,7 @@ the indoor or outdoor air density for the extraction and supply, respectively.
 The sign convention must be consistent with the mass balance equation: extraction is represented by a positive sink contribution in the balance equation, while supply is represented by a negative sink contribution.
 
 
-## 3. Graph representation of the airflow network
+## Graph representation of the airflow network
 
 An airflow network can be represented as an **oriented, weighted
 graph**:
@@ -236,7 +236,7 @@ The graph representation provides a systematic way to formulate the mass
 balance equations and the pressure-flow relationships using matrices and
 vectors.
 
-### 3.1. Incidence matrix (A)
+### Incidence matrix (A)
 
 The topology of the network is described by the branch-node incidence matrix $A$, with dimensions $B \times N$, where $B$ is the number of branches and $N$ is the number of internal pressure nodes.
 
@@ -257,7 +257,7 @@ The reference-pressure node is not included among the unknown pressure nodes. Co
 The incidence matrix is used to express pressure
 differences along the branches, $\Delta p = -Ap$, and the mass sum in the nodes, $\sum \dot{m} = A^T \dot{m}$.
 
-### 3.2. Pressure vector and pressure-source vector
+### Pressure vector and pressure-source vector
 
 Let $p$ denote the vector of unknown pressures at
 the internal nodes, relative to the reference pressure.
@@ -279,7 +279,7 @@ The minus sign in $-A p$ follows the chosen incidence-matrix convention: a branc
 has a pressure difference $(p_i - p_j)$, before adding the
 imposed pressure source.
 
-### 3.3. Conductance matrix (G)
+### Conductance matrix (G)
 
 For a linear flow network, the mass flow through a branch is
 proportional to the pressure difference across it. The proportionality coefficient is its mass-flow conductance.
@@ -304,7 +304,7 @@ $$\dot{m} = G \Delta p$$
 Unlike a linear network, the airflow conductance changes with the pressure difference and can also change when the flow
 direction reverses and a different upstream density applies.
 
-### 3.4. Complete matrix formulation
+### Complete matrix formulation
 
 Using the incidence matrix and conductance matrix, the mass conservation equations become
 
@@ -322,7 +322,7 @@ This equation is the fundamental matrix equation used by the fixed-point algorit
 
 It is linear in the unknown pressure vector $p$ if $G$ is known. However, in the actual airflow network, $G$ depends on the pressure differences and upstream densities, which themselves depend on the unknown pressures. The original problem is therefore nonlinear.
 
-### 3.5. Role of the vectors and matrices
+### Role of the vectors and matrices
 
 The airflow network is completely described by the following quantities:
 
