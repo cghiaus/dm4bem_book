@@ -386,9 +386,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.6382209"
-     inkscape:cx="270.63693"
-     inkscape:cy="155.7868"
+     inkscape:zoom="1.626062"
+     inkscape:cx="457.54714"
+     inkscape:cy="105.77703"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -396,7 +396,7 @@
      inkscape:window-width="1448"
      inkscape:window-height="907"
      inkscape:window-x="70"
-     inkscape:window-y="25"
+     inkscape:window-y="30"
      inkscape:window-maximized="0"
      inkscape:snap-bbox="true"
      inkscape:snap-midpoints="true"
@@ -1211,27 +1211,6 @@
          y="71.257469">(<tspan
    style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic'"
    id="tspan4605">b</tspan>)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
-       x="200.84157"
-       y="21.788309"
-       id="text900-2-5-2-6-8-1-1"
-       inkscape:transform-center-y="3.6452221e-06"
-       inkscape:transform-center-x="3.5255354"><tspan
-         sodipodi:role="line"
-         x="200.84157"
-         y="21.788309"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
-         id="tspan898-2-5-9-4-4-8-3"><tspan
-           id="tspan634-9-7"
-           style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic'">P<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan638-9-7">dc</tspan> + P<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan648-9-5">so</tspan> - P<tspan
-   style="font-size:65%;baseline-shift:sub"
-   id="tspan4969">si</tspan> </tspan></tspan></text>
     <path
        style="fill:#000000;stroke:#000000;stroke-width:0.262202"
        d="M 169.33334,51.413718 V 31.569967"
@@ -1253,5 +1232,30 @@
        style="fill:#000000;stroke:#000000;stroke-width:0.262202"
        d="M 112.44792,15.694966 V 51.413718"
        id="path6363" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;line-height:0px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
+       x="198.32338"
+       y="22.703268"
+       id="text900-2-5-2-6-8-0"
+       inkscape:transform-center-y="3.6452221e-06"
+       inkscape:transform-center-x="3.5255354"><tspan
+         sodipodi:role="line"
+         x="198.32338"
+         y="22.703268"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';baseline-shift:baseline;stroke-width:0.264583"
+         id="tspan898-2-5-9-4-4-2">P<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan624-4">si</tspan> - <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+   id="tspan626-8">(</tspan><tspan
+   id="tspan634-3"
+   style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Italic'">P<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan638-9">dc</tspan> + P<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan648-0">so</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+   id="tspan646-5">)</tspan> </tspan></tspan></text>
   </g>
 </svg>

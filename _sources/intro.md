@@ -52,11 +52,11 @@ $h / (\mathrm{W \, m^{−2} \, K^{−1}})$. If the value is 8, then $h / (\mathr
 
 __Nomenclature__
 
-| Symbol  |                 |
-|:--------|:----------------|
-| ±       | Plus-minus sign |
-|⁻ ¹ ² ³ ⁴| Superscripts    |
-| · ×     | Multiplication  |
+| Symbol    |                 |
+|:----------|:----------------|
+| ±         | Plus-minus sign |
+|⁻ ¹ ² ³ ⁴ ⁿ| Superscripts    |
+| · ×       | Multiplication  |
 
 |Symbol| SI unit |          | Quantity |
 |:-----|:--------|----------|:----------|
